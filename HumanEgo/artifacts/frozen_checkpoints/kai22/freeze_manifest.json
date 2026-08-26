@@ -1,0 +1,22 @@
+{
+  "status": "frozen",
+  "embodiment": "kai22",
+  "source": "/mnt/workspace/code/chaoyang/HumanEgo/runs/grap_a_cap/dual_kai22/best.pt",
+  "frozen_checkpoint": "/mnt/workspace/code/chaoyang/HumanEgo/artifacts/frozen_checkpoints/kai22/best.pt",
+  "checkpoint_sha256": "5d8862d400b2e8eb2bdb5dfe1fdff389b7e5f39cf53ddab3600a8e4c4df08bc3",
+  "epoch": 365,
+  "latest_epoch_at_freeze": 400,
+  "validation_score": 0.2006341069608478,
+  "validation_snapshot": "/mnt/workspace/code/chaoyang/HumanEgo/runs/grap_a_cap/dual_kai22/eval_snapshots/eval_ep_0365.json",
+  "validation_snapshot_sha256": "62834ab23f70f711ed9c9761c6dbc0a89beb5f71ef7b61ea03692662c17fb89f",
+  "model_weights": "ema",
+  "selection_metric": "wrist_position_m + rotation_deg/100 + normalized_robot_q_term",
+  "split_sha256": "3716ce97961ce42cb8d15b44d84f73dfe2ab2901e707580c6ecc40d990056978",
+  "run_manifest_sha256": "dbbceaa1940f2eafbca11c7357ccc2c400d739d395969f7555be3b74ba0334cb",
+  "dataset_stats_sha256": "a8ceb0bc02af36e8c180953b22b4e340e494d6589bd378b64671d04a510004cc",
+  "frozen_sidecars": {
+    "dataset_stats.json": "a8ceb0bc02af36e8c180953b22b4e340e494d6589bd378b64671d04a510004cc",
+    "run_manifest.json": "dbbceaa1940f2eafbca11c7357ccc2c400d739d395969f7555be3b74ba0334cb",
+    "config.json": "086684ff7723acd9e82acc9b4108a29ee1ed22b5e85b7fcbe8da0321e5c85b3a"
+  }
+}

@@ -1,0 +1,56 @@
+# Secrets and local credentials
+.env
+.env.*
+*.pem
+*.key
+/.secrets/
+/secrets/
+credentials*.json
+*_token.txt
+
+# Python/editor/runtime caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+.DS_Store
+.idea/
+.vscode/
+.venv/
+venv/
+
+# All runtime and promoted data stay local
+/_run/*
+!/_run/.gitkeep
+/processed/*
+!/processed/.gitkeep
+/hand_benchmark/production_runs/
+/HumanEgo/runs/
+/HumanEgo/outputs/
+/HumanEgo/reports/
+*.log
+*.lock
+*.tmp
+
+# Large numerical/model artifacts
+*.pt
+*.pth
+*.ckpt
+/HumanEgo/data_manifests/robot_sidecars_v4_candidate/**/*.npz
+
+# Media, archives and generated frames
+*.mp4
+*.avi
+*.mov
+*.zip
+*.tar
+*.tar.gz
+
+# Robot assets stay local until redistribution rights are confirmed
+/assets/robot/tianji/
+/assets/robot/kaihand/packages/
+*.STL
+*.stl
+/HumanEgo/vendor/

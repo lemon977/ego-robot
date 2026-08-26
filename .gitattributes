@@ -1,0 +1,9 @@
+* text=auto
+
+# Preserve vendor assets byte-for-byte and suppress misleading whitespace diffs.
+/assets/robot/** -text -diff
+
+# Frozen lineage files are immutable byte contracts.
+/HumanEgo/data_manifests/** -text -diff
+/HumanEgo/artifacts/** -text -diff
+/HumanEgo/cfg/training/grap_a_cap/kai22_retarget_ab_r2.yaml -text -diff

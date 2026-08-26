@@ -1,0 +1,75 @@
+task: grap_a_cap
+MPS_PATHS_TRAIN: []
+MPS_PATHS_EVAL: []
+robot_sidecar_root: data_manifests/robot_sidecars_v4_candidate/r2_robust24_confidence_temporal
+pretrained_checkpoint: artifacts/pretrained_humanego/latest.pt
+
+single_hand: false
+hand_tracking_method: hawor_v3
+hand_action_representation: kaihand_joint_state
+pred_horizon: 50
+img_name: rgb.png
+image_size: [240, 320]
+centric_mode: object_centric
+frame_mode: camera_frame
+action_mode: absolute
+max_ict: 8
+
+use_pcd_features: false
+use_aux_obj_dynamics: false
+use_aux_visual_foresight: false
+use_aux_temporal_contrastive: false
+use_region_attn: true
+use_done_in_flow: false
+use_pre_norm: true
+use_ctx_norm: true
+use_legacy_image_loading: false
+
+epochs: 400
+batch_size: 8
+lr: 1.0e-4
+weight_decay: 1.0e-2
+grad_clip: 1.0
+num_workers: 16
+use_amp: true
+use_lr_schedule: true
+warmup_steps: 200
+min_lr_ratio: 0.05
+use_ema: true
+ema_decay: 0.999
+
+w_flow: 1.0
+w_pos: 5.0
+w_rot: 1.0
+w_hand_joint: 5.0
+w_joint_limit: 0.1
+w_velocity: 0.1
+w_done: 0.2
+
+enable_augmentation: true
+enable_aug_img: true
+enable_aug_rrc: true
+enable_aug_target_jittering: true
+enable_aug_cutout: true
+enable_aug_temporal_stride: false
+enable_aug_interpolation: false
+cache_json_in_memory: true
+cache_image_bytes_in_memory: true
+persistent_workers: true
+prefetch_factor: 4
+num_inference_steps: 20
+model_h_weighting: uniform
+model_h_beta: 0.0
+patch_size: 16
+vision_embed_dim: 384
+num_decoder_layers: 6
+num_heads: 8
+mlp_ratio: 4.0
+dropout: 0.05
+eval_every: 5
+early_stop_patience: 12
+vis_eval_every: 100
+make_video: false
+device: cuda
+seed: 7
+

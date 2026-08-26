@@ -1,0 +1,1816 @@
+{
+  "schema_version": "humanego-shared-session-split-v1",
+  "seed": 7,
+  "selection_rule": "production complete + full_pipeline_complete + both frozen sidecars",
+  "ordering_rule": "ascending sha256(f'{seed}:{session_id}')",
+  "split_unit": "session",
+  "ratios_realized": {
+    "train": 0.7948717948717948,
+    "validation": 0.10256410256410256,
+    "test": 0.10256410256410256
+  },
+  "train": [
+    "grap_a_cap_004",
+    "grap_a_cap_005",
+    "grap_a_cap_010",
+    "grap_a_cap_021",
+    "grap_a_cap_023",
+    "grap_a_cap_025",
+    "grap_a_cap_026",
+    "grap_a_cap_032",
+    "grap_a_cap_034",
+    "grap_a_cap_035",
+    "grap_a_cap_039",
+    "grap_a_cap_040",
+    "grap_a_cap_043",
+    "grap_a_cap_044",
+    "grap_a_cap_045",
+    "grap_a_cap_048",
+    "grap_a_cap_051",
+    "grap_a_cap_053",
+    "grap_a_cap_056",
+    "grap_a_cap_057",
+    "grap_a_cap_058",
+    "grap_a_cap_059",
+    "grap_a_cap_060",
+    "grap_a_cap_065",
+    "grap_a_cap_068",
+    "grap_a_cap_069",
+    "grap_a_cap_071",
+    "grap_a_cap_072",
+    "grap_a_cap_073",
+    "grap_a_cap_076",
+    "grap_a_cap_079",
+    "grap_a_cap_081",
+    "grap_a_cap_085",
+    "grap_a_cap_090",
+    "grap_a_cap_091",
+    "grap_a_cap_092",
+    "grap_a_cap_094",
+    "grap_a_cap_095",
+    "grap_a_cap_102",
+    "grap_a_cap_103",
+    "grap_a_cap_106",
+    "grap_a_cap_109",
+    "grap_a_cap_114",
+    "grap_a_cap_116",
+    "grap_a_cap_118",
+    "grap_a_cap_121",
+    "grap_a_cap_122",
+    "grap_a_cap_123",
+    "grap_a_cap_124",
+    "grap_a_cap_125",
+    "grap_a_cap_132",
+    "grap_a_cap_134",
+    "grap_a_cap_137",
+    "grap_a_cap_138",
+    "grap_a_cap_139",
+    "grap_a_cap_140",
+    "grap_a_cap_141",
+    "grap_a_cap_142",
+    "grap_a_cap_144",
+    "grap_a_cap_148",
+    "grap_a_cap_149",
+    "grap_a_cap_157"
+  ],
+  "validation": [
+    "grap_a_cap_002",
+    "grap_a_cap_019",
+    "grap_a_cap_024",
+    "grap_a_cap_041",
+    "grap_a_cap_050",
+    "grap_a_cap_062",
+    "grap_a_cap_101",
+    "grap_a_cap_155"
+  ],
+  "test": [
+    "grap_a_cap_012",
+    "grap_a_cap_052",
+    "grap_a_cap_055",
+    "grap_a_cap_070",
+    "grap_a_cap_087",
+    "grap_a_cap_113",
+    "grap_a_cap_119",
+    "grap_a_cap_143"
+  ],
+  "sessions": {
+    "grap_a_cap_002": {
+      "production_status_sha256": "6fc7ea9ac4e6489edb06bc1711ec3b9551eeba055703c980f6150a5e1d658a35",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_002/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "a30739c2e4f6aa808d8a63019614e4a6816ca854900de35718157d23af550c61",
+          "frames": 393,
+          "valid_left": 393,
+          "valid_right": 393,
+          "training_samples_upper_bound": 392,
+          "canonical_sha256": "7f8e3034b601b5865b24cffa11dd47e79d3125daffa8243ec533d698de3bcf3f"
+        },
+        "wuji20": {
+          "sidecar_sha256": "39822bcb7cd6de07ea8caf3c36a12ef92fc9351d3463c3c63ae6290df7e9423a",
+          "frames": 393,
+          "valid_left": 393,
+          "valid_right": 393,
+          "training_samples_upper_bound": 392,
+          "canonical_sha256": "7f8e3034b601b5865b24cffa11dd47e79d3125daffa8243ec533d698de3bcf3f"
+        }
+      }
+    },
+    "grap_a_cap_004": {
+      "production_status_sha256": "589a5ccd45c630a7fd159c3d4ef068b67b46fb6d3f88a5a04de08c34d1c7144d",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "928c0fcd814e1345212f0bc6500f074c8ec51a0e0c97230dbd3e2cadd7fb52a9",
+          "frames": 460,
+          "valid_left": 460,
+          "valid_right": 458,
+          "training_samples_upper_bound": 459,
+          "canonical_sha256": "b0bf18396d2c6ff6d01f619a401987a04b02d63040eb42621bf47af05cb1891f"
+        },
+        "wuji20": {
+          "sidecar_sha256": "cc396822e09118148da6e52b83357749f47e9b57b11c6062bfe7ba60e7d71cea",
+          "frames": 460,
+          "valid_left": 460,
+          "valid_right": 458,
+          "training_samples_upper_bound": 459,
+          "canonical_sha256": "b0bf18396d2c6ff6d01f619a401987a04b02d63040eb42621bf47af05cb1891f"
+        }
+      }
+    },
+    "grap_a_cap_005": {
+      "production_status_sha256": "2446ebb91c63e7a2aaa73953fd7f6cb1c528c63d505c41ec43850905424698e9",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_005/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "997fec27005ad7000990607b67c36d398a733455948b5401bb289309710c0d69",
+          "frames": 391,
+          "valid_left": 374,
+          "valid_right": 375,
+          "training_samples_upper_bound": 390,
+          "canonical_sha256": "bfcc100b270f432cd88a550f12d19d0377c8f3b819e5b87642784fe165f33174"
+        },
+        "wuji20": {
+          "sidecar_sha256": "b14fa007922a008f3775de5ad036340e16b7cedb354b81ac7c8839f1ed20ad00",
+          "frames": 391,
+          "valid_left": 374,
+          "valid_right": 375,
+          "training_samples_upper_bound": 390,
+          "canonical_sha256": "bfcc100b270f432cd88a550f12d19d0377c8f3b819e5b87642784fe165f33174"
+        }
+      }
+    },
+    "grap_a_cap_010": {
+      "production_status_sha256": "c624713844b7e76f6f3f88b202c8ad2bc72b739013e14d80b9bb7b64bced1ced",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_010/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "845efd9fe487df6628b7c167d57a18d00e00b27a99b68b29ecce3f825e3fe57e",
+          "frames": 386,
+          "valid_left": 362,
+          "valid_right": 330,
+          "training_samples_upper_bound": 381,
+          "canonical_sha256": "08e97b8773bd8339f67df5a327b5190516a5e5779ac41aa8c35b281484cdf907"
+        },
+        "wuji20": {
+          "sidecar_sha256": "47339bbb7561e13818882bf1ff5b7ed1cfb6964209082709feb34833eed8bb12",
+          "frames": 386,
+          "valid_left": 362,
+          "valid_right": 330,
+          "training_samples_upper_bound": 381,
+          "canonical_sha256": "08e97b8773bd8339f67df5a327b5190516a5e5779ac41aa8c35b281484cdf907"
+        }
+      }
+    },
+    "grap_a_cap_012": {
+      "production_status_sha256": "d5e0bab8660fa0bb4cb5fe76225f8f80f539d0a6b0c94f79ac941e0b2077c3b2",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_012/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "f27dba930d3cf2fbb08f3d505467112db2be70742b2eaa16de56d9d44ed279d3",
+          "frames": 364,
+          "valid_left": 364,
+          "valid_right": 364,
+          "training_samples_upper_bound": 363,
+          "canonical_sha256": "902307da08c1c70dadaa82212df41bbbd0a99e4c46ada9b0ecc1ecf73aa61695"
+        },
+        "wuji20": {
+          "sidecar_sha256": "9cfcd5fa8e75f45ac09b6c13a36564adccae7c09a7be85d3d29fd20b2a00414a",
+          "frames": 364,
+          "valid_left": 364,
+          "valid_right": 364,
+          "training_samples_upper_bound": 363,
+          "canonical_sha256": "902307da08c1c70dadaa82212df41bbbd0a99e4c46ada9b0ecc1ecf73aa61695"
+        }
+      }
+    },
+    "grap_a_cap_019": {
+      "production_status_sha256": "934e917e4d92b307a74bd20c8f0208fa17b0a13ceea616ec753173ba22e4ed93",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_019/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "8dbe296424701791f174a7b12479f731de1862611aa90c8cd5924213d1094179",
+          "frames": 375,
+          "valid_left": 372,
+          "valid_right": 374,
+          "training_samples_upper_bound": 374,
+          "canonical_sha256": "e8bd841a512048612b25e081e10ddfd0f8782bdd5432098b96ee8687a5006c8f"
+        },
+        "wuji20": {
+          "sidecar_sha256": "c64a5dca3ac635682b5179b624a600318bb5a927f5573acee696f4bab9543b39",
+          "frames": 375,
+          "valid_left": 372,
+          "valid_right": 374,
+          "training_samples_upper_bound": 374,
+          "canonical_sha256": "e8bd841a512048612b25e081e10ddfd0f8782bdd5432098b96ee8687a5006c8f"
+        }
+      }
+    },
+    "grap_a_cap_021": {
+      "production_status_sha256": "0ca1af8c98d48e25cedcd97a0121c26fa91143d3af47628050234d66e3578ca4",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_021/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "51ac35bf9ab1532a67a63ba8021bee6a1db88c981475ff0899c95f8798e9b658",
+          "frames": 431,
+          "valid_left": 431,
+          "valid_right": 256,
+          "training_samples_upper_bound": 430,
+          "canonical_sha256": "076581b2c22f3ec4180cefa3f1610b757d77f98483fc3d435514ff91fa974945"
+        },
+        "wuji20": {
+          "sidecar_sha256": "56fe8ff273fd779e59a7311da8718b5e6bec3254d21d7578072056f2340a077e",
+          "frames": 431,
+          "valid_left": 431,
+          "valid_right": 256,
+          "training_samples_upper_bound": 430,
+          "canonical_sha256": "076581b2c22f3ec4180cefa3f1610b757d77f98483fc3d435514ff91fa974945"
+        }
+      }
+    },
+    "grap_a_cap_023": {
+      "production_status_sha256": "47f0440671c0374456c723aee60e50709c89a9980b227861a76c0ad90853c931",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_023/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "82de426eb5e76c16b3da79efb2ab106fa06e5a688813fa80e10b9966732fb8c8",
+          "frames": 407,
+          "valid_left": 407,
+          "valid_right": 335,
+          "training_samples_upper_bound": 406,
+          "canonical_sha256": "32655d06562aa1be149d15968f002472a64441924402557fd807cd4325418193"
+        },
+        "wuji20": {
+          "sidecar_sha256": "c8b78aac4561b19e9fa0681ebaf516ccb43ff2ec6acdd19a535fcf127e9615ad",
+          "frames": 407,
+          "valid_left": 407,
+          "valid_right": 335,
+          "training_samples_upper_bound": 406,
+          "canonical_sha256": "32655d06562aa1be149d15968f002472a64441924402557fd807cd4325418193"
+        }
+      }
+    },
+    "grap_a_cap_024": {
+      "production_status_sha256": "4a7013a656821adeb39546c849973246a86a4563a17ef757a5080344658c001d",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_024/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "b8cd29b0b173c2a9925b609698edb45e662b4e9792e2bbb59340df08cfa99d80",
+          "frames": 305,
+          "valid_left": 279,
+          "valid_right": 247,
+          "training_samples_upper_bound": 304,
+          "canonical_sha256": "874d841c5318fe221b864061435eecb6573ba3ecaf42ef507c9236248f6026c0"
+        },
+        "wuji20": {
+          "sidecar_sha256": "283c935f3220be381bfef567e1dfccf7ad444476be6aac0c0569330fc0b534e4",
+          "frames": 305,
+          "valid_left": 279,
+          "valid_right": 247,
+          "training_samples_upper_bound": 304,
+          "canonical_sha256": "874d841c5318fe221b864061435eecb6573ba3ecaf42ef507c9236248f6026c0"
+        }
+      }
+    },
+    "grap_a_cap_025": {
+      "production_status_sha256": "edb7dbd89f52e0b6840abd464cee27c94de97e8c9f21489d16636a54625b1510",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_025/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "5e1661ce21e9214e33981d415bb8bb755daeb4e5d14f8c50c978daf25dc53e78",
+          "frames": 501,
+          "valid_left": 500,
+          "valid_right": 365,
+          "training_samples_upper_bound": 500,
+          "canonical_sha256": "40252c7b7e4144d269604db3e32fc71a1fcdac84fbd083e0bd76965f6ab0ea22"
+        },
+        "wuji20": {
+          "sidecar_sha256": "5bf2cbcce02e2de111b95e067cbab4009e9d1073b40eefff4276b3ad62b43fad",
+          "frames": 501,
+          "valid_left": 500,
+          "valid_right": 365,
+          "training_samples_upper_bound": 500,
+          "canonical_sha256": "40252c7b7e4144d269604db3e32fc71a1fcdac84fbd083e0bd76965f6ab0ea22"
+        }
+      }
+    },
+    "grap_a_cap_026": {
+      "production_status_sha256": "debc6c1a39f69dfe554e3bbe22ae3c58cde06ac84259b4780277812b0c26d993",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_026/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "af5c9e8128a681b421d0ac3cac3d6b57c4ead81639b3d83f0222ab800b0f95a6",
+          "frames": 342,
+          "valid_left": 342,
+          "valid_right": 253,
+          "training_samples_upper_bound": 341,
+          "canonical_sha256": "cf531542f0987e87b2dde05b5f8c201d6adfefbe81c0013c9abfc3ced335483d"
+        },
+        "wuji20": {
+          "sidecar_sha256": "7ff10aa70223907857e4c6a0fcc3f3d8fbd9eb57f3d3861547d9a418dcd20bc2",
+          "frames": 342,
+          "valid_left": 342,
+          "valid_right": 253,
+          "training_samples_upper_bound": 341,
+          "canonical_sha256": "cf531542f0987e87b2dde05b5f8c201d6adfefbe81c0013c9abfc3ced335483d"
+        }
+      }
+    },
+    "grap_a_cap_032": {
+      "production_status_sha256": "74cb9271af9e3669ccba1d38cde12538f70d6b3568d78a6d9f45fbd34d739d52",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_032/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "3e750d787c1bcb8d13fae1f7fdf0f4b2e792560908d40a40b286ab31d84bd518",
+          "frames": 436,
+          "valid_left": 386,
+          "valid_right": 345,
+          "training_samples_upper_bound": 434,
+          "canonical_sha256": "c3285303a85dc76616b89d9f036a241894164475b5a3d027e17beddb93ff7e9d"
+        },
+        "wuji20": {
+          "sidecar_sha256": "4fd2335823da7720784639a043e527a254c8d423ad19ef6a1e23c40936160573",
+          "frames": 436,
+          "valid_left": 386,
+          "valid_right": 345,
+          "training_samples_upper_bound": 434,
+          "canonical_sha256": "c3285303a85dc76616b89d9f036a241894164475b5a3d027e17beddb93ff7e9d"
+        }
+      }
+    },
+    "grap_a_cap_034": {
+      "production_status_sha256": "b449f17ee1f31b4d62009a1332cff1a3fab1632b2b1152f7ee19571484b3cb02",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_034/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "819d1ef62f667287db44f9e5257dfc9dff4a5ec49a0ae8a731df627e1a154ddd",
+          "frames": 402,
+          "valid_left": 323,
+          "valid_right": 252,
+          "training_samples_upper_bound": 323,
+          "canonical_sha256": "dfd6d52321b8dee29e32b76bd657d526ce2d9cc6c84178d64c73f4e7af1f6bbb"
+        },
+        "wuji20": {
+          "sidecar_sha256": "6fbfe3ef42791ffcad21a0f414b93ea8a7742fb2b9a92cf904fc8894af149963",
+          "frames": 402,
+          "valid_left": 323,
+          "valid_right": 252,
+          "training_samples_upper_bound": 323,
+          "canonical_sha256": "dfd6d52321b8dee29e32b76bd657d526ce2d9cc6c84178d64c73f4e7af1f6bbb"
+        }
+      }
+    },
+    "grap_a_cap_035": {
+      "production_status_sha256": "2cefe595159fabad93f81cebbdf4da07dc41d2a7802973cd1bfed6e3546f552b",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_035/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "f3cf502b2b2be24d8f545ba4fa6d3690e75328b9d407d94aeb40bdfc211d35ed",
+          "frames": 369,
+          "valid_left": 367,
+          "valid_right": 281,
+          "training_samples_upper_bound": 368,
+          "canonical_sha256": "c216135eca62d9d1bba1defaa762bbb5e4a14c75299a0fb15acbd525018025f9"
+        },
+        "wuji20": {
+          "sidecar_sha256": "1b1488d5a0d26010ca06e41e86b6717e33b933508ef516b05482036745ae9aff",
+          "frames": 369,
+          "valid_left": 367,
+          "valid_right": 281,
+          "training_samples_upper_bound": 368,
+          "canonical_sha256": "c216135eca62d9d1bba1defaa762bbb5e4a14c75299a0fb15acbd525018025f9"
+        }
+      }
+    },
+    "grap_a_cap_039": {
+      "production_status_sha256": "3fdba58d4a48ea6f130c6f7a9100295e5ce96610dcf7c1304275b97dec294a46",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_039/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "1d09d7204a98925f2c8c75c2cfb3bd535b6bbe67eaffc67474878752d281070c",
+          "frames": 373,
+          "valid_left": 370,
+          "valid_right": 301,
+          "training_samples_upper_bound": 372,
+          "canonical_sha256": "11b7e71cfc98685f8ecdb760665992de34b43e529e8a82c145d6fde181271bb2"
+        },
+        "wuji20": {
+          "sidecar_sha256": "8ab463200f7e4859102e5be734e25526d4d38ef776c85895c2c76ee044c4fefa",
+          "frames": 373,
+          "valid_left": 370,
+          "valid_right": 301,
+          "training_samples_upper_bound": 372,
+          "canonical_sha256": "11b7e71cfc98685f8ecdb760665992de34b43e529e8a82c145d6fde181271bb2"
+        }
+      }
+    },
+    "grap_a_cap_040": {
+      "production_status_sha256": "53846d411e93c345e23c3c68227d097228f32d1d75084718b6a57c40719cce02",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_040/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "495e1f827610392d34be4a2fb14fe29151d22facd82a5378a60348fcd822b3e9",
+          "frames": 359,
+          "valid_left": 359,
+          "valid_right": 303,
+          "training_samples_upper_bound": 358,
+          "canonical_sha256": "7e35f280d46b553ea2252e883442b4c33f18f74a239351c77ed04bd37b2bb12c"
+        },
+        "wuji20": {
+          "sidecar_sha256": "242fa84951f3bf89eeb94025d68098585f46629ce312ca13506ae94dcb05d47b",
+          "frames": 359,
+          "valid_left": 359,
+          "valid_right": 303,
+          "training_samples_upper_bound": 358,
+          "canonical_sha256": "7e35f280d46b553ea2252e883442b4c33f18f74a239351c77ed04bd37b2bb12c"
+        }
+      }
+    },
+    "grap_a_cap_041": {
+      "production_status_sha256": "6fac05f75a279f3473e1882d43307941add47a0595ee0ae220540457744e22a0",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_041/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "c0bfd2144d2f7a3be4c3eb836e382028d76b666c663c2022f24b63928831c563",
+          "frames": 406,
+          "valid_left": 390,
+          "valid_right": 358,
+          "training_samples_upper_bound": 391,
+          "canonical_sha256": "1c52edee624d486611e258206308007a976484ce8751d19c285a5e1bda4e4fe7"
+        },
+        "wuji20": {
+          "sidecar_sha256": "691ba2d205233ad112352b6dd9d6424ac708083dc2683fda88618a507ce45729",
+          "frames": 406,
+          "valid_left": 390,
+          "valid_right": 358,
+          "training_samples_upper_bound": 391,
+          "canonical_sha256": "1c52edee624d486611e258206308007a976484ce8751d19c285a5e1bda4e4fe7"
+        }
+      }
+    },
+    "grap_a_cap_043": {
+      "production_status_sha256": "45f37373e8b1c8a9a07caf95c6cf4d69a6a09e4679e43e0e17a5a37b9020b524",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_043/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "c2fa5995053043bccd097c07aced8eef813741048872d591ad93e5c39330e443",
+          "frames": 362,
+          "valid_left": 330,
+          "valid_right": 298,
+          "training_samples_upper_bound": 360,
+          "canonical_sha256": "6e447493ebe19d7490ceb3bba3390dbffe212c9a8d8870350aa2f7c94bf31d49"
+        },
+        "wuji20": {
+          "sidecar_sha256": "aaa81568d87a52c9a2d325b03f2d514cfc12d89a71b92a3e751e6d24542fc70b",
+          "frames": 362,
+          "valid_left": 330,
+          "valid_right": 298,
+          "training_samples_upper_bound": 360,
+          "canonical_sha256": "6e447493ebe19d7490ceb3bba3390dbffe212c9a8d8870350aa2f7c94bf31d49"
+        }
+      }
+    },
+    "grap_a_cap_044": {
+      "production_status_sha256": "4bf9da73a7490ce7a103131c904a85e0d215d4b8b42ed9a50a51355034d39f50",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_044/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "1fb086e819fcee27591be41559795093085edf286c8ca52387c2baf45fd73b66",
+          "frames": 359,
+          "valid_left": 302,
+          "valid_right": 316,
+          "training_samples_upper_bound": 358,
+          "canonical_sha256": "d4f60c100f7d59d9c2e3d85c7e9878ef7e0206b2e5028885f472d1af5b2fa523"
+        },
+        "wuji20": {
+          "sidecar_sha256": "49135f04897b9bfc9eab5b0b7b551b12d4384894f64e9cde80e121b8b6930fee",
+          "frames": 359,
+          "valid_left": 302,
+          "valid_right": 316,
+          "training_samples_upper_bound": 358,
+          "canonical_sha256": "d4f60c100f7d59d9c2e3d85c7e9878ef7e0206b2e5028885f472d1af5b2fa523"
+        }
+      }
+    },
+    "grap_a_cap_045": {
+      "production_status_sha256": "9670f3dc718362a041762374330d46d9905760470d501206d34faf34d5c99c10",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_045/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "da728e92d4ea5056fae728deff7e0fdfdc7528f58fca287e5a03cbc25008e669",
+          "frames": 354,
+          "valid_left": 348,
+          "valid_right": 303,
+          "training_samples_upper_bound": 348,
+          "canonical_sha256": "00d0a61f55e90102260b6773d4653aee46ee974a2791a73e4544c3a1711f4146"
+        },
+        "wuji20": {
+          "sidecar_sha256": "5e2a0a0083ea7047803bfd65bc1c4de53a37ae3555c7a1d660c9898c60f6e72e",
+          "frames": 354,
+          "valid_left": 348,
+          "valid_right": 303,
+          "training_samples_upper_bound": 348,
+          "canonical_sha256": "00d0a61f55e90102260b6773d4653aee46ee974a2791a73e4544c3a1711f4146"
+        }
+      }
+    },
+    "grap_a_cap_048": {
+      "production_status_sha256": "037bd63a052748c6eae72a8b9f61298dd1f2e5edb2319c0a4ff1c1a244d91dfa",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_048/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "21516a74baddaebeca763f95fe6915b949213ae73072f9c61a65ea5bd6d2fa7e",
+          "frames": 594,
+          "valid_left": 482,
+          "valid_right": 355,
+          "training_samples_upper_bound": 566,
+          "canonical_sha256": "5501cfdfa514a70164f3998e848adbdb1804f190cf0b14361a632e594a2ad39c"
+        },
+        "wuji20": {
+          "sidecar_sha256": "940b6df1f61743efbcdb8aa644a112932b5ead66dc733c2472f2d1836868a389",
+          "frames": 594,
+          "valid_left": 482,
+          "valid_right": 355,
+          "training_samples_upper_bound": 566,
+          "canonical_sha256": "5501cfdfa514a70164f3998e848adbdb1804f190cf0b14361a632e594a2ad39c"
+        }
+      }
+    },
+    "grap_a_cap_050": {
+      "production_status_sha256": "459bf44667625f0929348a5b8b28a91f38f25492861d822010209b631a05ba9a",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_050/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "9186cdc259c5a617adb3e8b490122710468779a8c26bcab499f5a66b76f738d4",
+          "frames": 298,
+          "valid_left": 285,
+          "valid_right": 185,
+          "training_samples_upper_bound": 297,
+          "canonical_sha256": "e969d50df91b15949119e053fd0c9961b66409d600078a3105e06950cde64041"
+        },
+        "wuji20": {
+          "sidecar_sha256": "ff55b2661d8319c4ad0e848f10926c9d8b57848fbf77bc351e6d2083c8eea8ee",
+          "frames": 298,
+          "valid_left": 285,
+          "valid_right": 185,
+          "training_samples_upper_bound": 297,
+          "canonical_sha256": "e969d50df91b15949119e053fd0c9961b66409d600078a3105e06950cde64041"
+        }
+      }
+    },
+    "grap_a_cap_051": {
+      "production_status_sha256": "8c3d3d41b49ef03a35d3d45628a5213866efcea9b8cb2a42123669f099f6d7a8",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_051/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "db1de190d80773b67bb183d500f096577fa4e34ce23e2add6e6c669aeb506c59",
+          "frames": 376,
+          "valid_left": 376,
+          "valid_right": 178,
+          "training_samples_upper_bound": 375,
+          "canonical_sha256": "6c68ea5c8f571666793d7d9804e645991f4f09fa463b2c91257effc4783a9abd"
+        },
+        "wuji20": {
+          "sidecar_sha256": "d2d587abf3b81b0609ff8a9803e2559e2f2fec61c6f1b06d8d86baeedd411600",
+          "frames": 376,
+          "valid_left": 376,
+          "valid_right": 178,
+          "training_samples_upper_bound": 375,
+          "canonical_sha256": "6c68ea5c8f571666793d7d9804e645991f4f09fa463b2c91257effc4783a9abd"
+        }
+      }
+    },
+    "grap_a_cap_052": {
+      "production_status_sha256": "ea7dd5685d5efabe779b707e9e8aab79fed237f91439c76be2c294bca187671c",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_052/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "5757f0b5b1f4a87d8d45d1329c86920c1fe3e908f5eadc20f30108ccb6f3b954",
+          "frames": 373,
+          "valid_left": 373,
+          "valid_right": 177,
+          "training_samples_upper_bound": 372,
+          "canonical_sha256": "eba282e335ccac387d45b2fa67c39ee705a5b884c34d4a606e580c0130c0b95c"
+        },
+        "wuji20": {
+          "sidecar_sha256": "853f1e10668420cb8ea0b73735b8745dd1562040036219d2edbace528d9a7226",
+          "frames": 373,
+          "valid_left": 373,
+          "valid_right": 177,
+          "training_samples_upper_bound": 372,
+          "canonical_sha256": "eba282e335ccac387d45b2fa67c39ee705a5b884c34d4a606e580c0130c0b95c"
+        }
+      }
+    },
+    "grap_a_cap_053": {
+      "production_status_sha256": "be07327d2012f772c4359f885c68b73aaefcbfb21fe1dc5baf25e094410d2a11",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_053/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "33a48601b192df1325154ecdd1f79e0f3a7ccd45c0d7832a1143ee4d10a7d97c",
+          "frames": 429,
+          "valid_left": 429,
+          "valid_right": 243,
+          "training_samples_upper_bound": 428,
+          "canonical_sha256": "c2fc738939a1ad64af3a483e17aa341cfaca4a0787a5992a8760aee37b14a4d2"
+        },
+        "wuji20": {
+          "sidecar_sha256": "91acfa08c0cfb10e31db605fc07005effefb427f1e3964f4f21307224db7ab93",
+          "frames": 429,
+          "valid_left": 429,
+          "valid_right": 243,
+          "training_samples_upper_bound": 428,
+          "canonical_sha256": "c2fc738939a1ad64af3a483e17aa341cfaca4a0787a5992a8760aee37b14a4d2"
+        }
+      }
+    },
+    "grap_a_cap_055": {
+      "production_status_sha256": "72e87feb14b9698481227d297d30a131638827054a7c2f312c81793fb07881ed",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_055/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "3532acb3d28a9c784608510cac36d3911dda3e83b712bb4a07d5741fdd60de7a",
+          "frames": 362,
+          "valid_left": 287,
+          "valid_right": 123,
+          "training_samples_upper_bound": 354,
+          "canonical_sha256": "100dc8cc0396b63efd9cf4311dbdf8edcccab10fa7da1a6bee04ec617de7d221"
+        },
+        "wuji20": {
+          "sidecar_sha256": "a290a820bcdea57dacc01288094f147daa6d430a7baf968e25dcc58f88c02927",
+          "frames": 362,
+          "valid_left": 287,
+          "valid_right": 123,
+          "training_samples_upper_bound": 354,
+          "canonical_sha256": "100dc8cc0396b63efd9cf4311dbdf8edcccab10fa7da1a6bee04ec617de7d221"
+        }
+      }
+    },
+    "grap_a_cap_056": {
+      "production_status_sha256": "51381bf9824f6c95565d6999d9c595a6020a74b5106fff39d6eaa96c2045a1ca",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_056/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "a75f987edbbb8bb846df27f7d6501d92218666bae8fa54d949cf856019e6059c",
+          "frames": 440,
+          "valid_left": 340,
+          "valid_right": 330,
+          "training_samples_upper_bound": 349,
+          "canonical_sha256": "d8685645647fd555b96e14d9ab654847843a249720ad069cd84aaf4459f68d3f"
+        },
+        "wuji20": {
+          "sidecar_sha256": "8685ffe80cea92acf43c89e82ece75029e8489ec654cd3fe0ddfa821b3af8d4d",
+          "frames": 440,
+          "valid_left": 340,
+          "valid_right": 330,
+          "training_samples_upper_bound": 349,
+          "canonical_sha256": "d8685645647fd555b96e14d9ab654847843a249720ad069cd84aaf4459f68d3f"
+        }
+      }
+    },
+    "grap_a_cap_057": {
+      "production_status_sha256": "f281b9e1c7cadec8bfd2e66355ae978835fd7ae438037b884b26c91ce30911e6",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_057/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "3519c61919b73386d54cb5d635ff5ca5cdf80b85fb13671041f18c4474273cd3",
+          "frames": 419,
+          "valid_left": 317,
+          "valid_right": 171,
+          "training_samples_upper_bound": 418,
+          "canonical_sha256": "06b82c1dca92b201b624e3bb07b0cabb5b5fdd49ca110456a218c4c3477ccda5"
+        },
+        "wuji20": {
+          "sidecar_sha256": "1266690128b14ad8c3423def656a918e4da172fb495baccdde72fdc1b26a5d3e",
+          "frames": 419,
+          "valid_left": 317,
+          "valid_right": 171,
+          "training_samples_upper_bound": 418,
+          "canonical_sha256": "06b82c1dca92b201b624e3bb07b0cabb5b5fdd49ca110456a218c4c3477ccda5"
+        }
+      }
+    },
+    "grap_a_cap_058": {
+      "production_status_sha256": "a2beee465c1ddfefc586b38dc632308aa19bfdc4d017154f776d6bfcc781ff49",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_058/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "07f2a8a8f76a7b7740183ad565498114c99444c9a91653d0b598206393e7a927",
+          "frames": 432,
+          "valid_left": 347,
+          "valid_right": 285,
+          "training_samples_upper_bound": 431,
+          "canonical_sha256": "324e8b1954a383651af53172ec9694b52935b26abbb8c14a1a0f85d10b3e570e"
+        },
+        "wuji20": {
+          "sidecar_sha256": "3e4340077ed9ebacf09977c291a26aa1166a8f992a9629b01ec2ad162e3d0241",
+          "frames": 432,
+          "valid_left": 347,
+          "valid_right": 285,
+          "training_samples_upper_bound": 431,
+          "canonical_sha256": "324e8b1954a383651af53172ec9694b52935b26abbb8c14a1a0f85d10b3e570e"
+        }
+      }
+    },
+    "grap_a_cap_059": {
+      "production_status_sha256": "74e0c4cd511ab706b93b0d15010c5d96885bdac8271b8fd4ae82d1f4a2515b57",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_059/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "2af7d3758a4060355a0828f74687dac9d9904d3ec67ca380e498b138ae754979",
+          "frames": 391,
+          "valid_left": 339,
+          "valid_right": 179,
+          "training_samples_upper_bound": 374,
+          "canonical_sha256": "7d9bbf334628be2f81f7fdfc2c3a51162d1418c45ebcd45db7a6d96e4d2fef69"
+        },
+        "wuji20": {
+          "sidecar_sha256": "847d58d160e577ba10964ee9c545984999c00e8247bb2dff32566359239454d4",
+          "frames": 391,
+          "valid_left": 339,
+          "valid_right": 179,
+          "training_samples_upper_bound": 374,
+          "canonical_sha256": "7d9bbf334628be2f81f7fdfc2c3a51162d1418c45ebcd45db7a6d96e4d2fef69"
+        }
+      }
+    },
+    "grap_a_cap_060": {
+      "production_status_sha256": "e8c4c28a38d2e524c9c166408afe06a44839c7f65ef47428df33730e023f45e4",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_060/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "7e478a3c7d02c0886f80c5df7fb5c6ab3115aded7141d261be34cddf8e65bc30",
+          "frames": 378,
+          "valid_left": 378,
+          "valid_right": 188,
+          "training_samples_upper_bound": 377,
+          "canonical_sha256": "1c3c7545b408d61af7e420e376ac5723be6c70436fcb6640ae0d13e70af131a2"
+        },
+        "wuji20": {
+          "sidecar_sha256": "d50efdf4592f1b73a16445cec2112328b9bfba697f5fb4bbbb5eb15495fb9529",
+          "frames": 378,
+          "valid_left": 378,
+          "valid_right": 188,
+          "training_samples_upper_bound": 377,
+          "canonical_sha256": "1c3c7545b408d61af7e420e376ac5723be6c70436fcb6640ae0d13e70af131a2"
+        }
+      }
+    },
+    "grap_a_cap_062": {
+      "production_status_sha256": "a4732524ff9f627e67651e6867e8f132c58817b502bae53d2217bef613dde807",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_062/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "5ccb6ea8a957494e33f29210b4320a0fa4854891dd51a8618f1547597b01072b",
+          "frames": 407,
+          "valid_left": 384,
+          "valid_right": 228,
+          "training_samples_upper_bound": 406,
+          "canonical_sha256": "4f2c7dd57480705f1ff7a2a1bc37984db73c0f64f38bbecb763dbb3246bece33"
+        },
+        "wuji20": {
+          "sidecar_sha256": "095d71215ee6b9f2c8b01303a1ea7d1b3e1c84245c814553ccd93975dd7f3168",
+          "frames": 407,
+          "valid_left": 384,
+          "valid_right": 228,
+          "training_samples_upper_bound": 406,
+          "canonical_sha256": "4f2c7dd57480705f1ff7a2a1bc37984db73c0f64f38bbecb763dbb3246bece33"
+        }
+      }
+    },
+    "grap_a_cap_065": {
+      "production_status_sha256": "b21f0b4d4b77f968fe206022577a7c1bc693247c5aaee3dc6da06f304950cd57",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_065/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "42733351ab11b655d7fb3d1ac8e61f158aba073b3862788dc570713221e7f77c",
+          "frames": 406,
+          "valid_left": 389,
+          "valid_right": 271,
+          "training_samples_upper_bound": 405,
+          "canonical_sha256": "4dce8a2ab3f9c98059c9eaeaeffb9c82efe1617cf645844d6eff7fdd2e65b6cd"
+        },
+        "wuji20": {
+          "sidecar_sha256": "ef2e0ef0968668f1b22a0e66398aa0ad58849b04489244a168e47cd4d1633279",
+          "frames": 406,
+          "valid_left": 389,
+          "valid_right": 271,
+          "training_samples_upper_bound": 405,
+          "canonical_sha256": "4dce8a2ab3f9c98059c9eaeaeffb9c82efe1617cf645844d6eff7fdd2e65b6cd"
+        }
+      }
+    },
+    "grap_a_cap_068": {
+      "production_status_sha256": "e17bb7624879a7f1d1bfa6a5cdf8354b6212f8ff5981dfa1f133fd4c852d6f66",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_068/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "a945700610af9de6b89255d5b0b6674e693b0be8b72544df23e6afe068212910",
+          "frames": 455,
+          "valid_left": 432,
+          "valid_right": 348,
+          "training_samples_upper_bound": 454,
+          "canonical_sha256": "aedb5a49f524b2e0891873db431c17c2312409c593589ba85fc5fb47473825f9"
+        },
+        "wuji20": {
+          "sidecar_sha256": "406589901556e68870cc8bd99176c5128fd9c243a00e2815dfe88165014a41c7",
+          "frames": 455,
+          "valid_left": 432,
+          "valid_right": 348,
+          "training_samples_upper_bound": 454,
+          "canonical_sha256": "aedb5a49f524b2e0891873db431c17c2312409c593589ba85fc5fb47473825f9"
+        }
+      }
+    },
+    "grap_a_cap_069": {
+      "production_status_sha256": "bc5450ca05b1f1c668e9e07a3b59dc9f6591fa627af307658ced3f77651ebcad",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_069/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "b10d43159aff491f93d609329d60702c1fbf8ebbff1b70f7ea68e07d3952bbb8",
+          "frames": 399,
+          "valid_left": 370,
+          "valid_right": 251,
+          "training_samples_upper_bound": 391,
+          "canonical_sha256": "697e8ca4b19911478b16eb3e7ed0200f862b68a296f9860bf8e802b597dc1850"
+        },
+        "wuji20": {
+          "sidecar_sha256": "4a2c2230b5f99a23f355736bd7cb23a864ef954ab761822b743f4a4532c60296",
+          "frames": 399,
+          "valid_left": 370,
+          "valid_right": 251,
+          "training_samples_upper_bound": 391,
+          "canonical_sha256": "697e8ca4b19911478b16eb3e7ed0200f862b68a296f9860bf8e802b597dc1850"
+        }
+      }
+    },
+    "grap_a_cap_070": {
+      "production_status_sha256": "a3b2423ec9ff9c1fbfb78b77b48ce3507672e91085916d3370d656162df8e236",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_070/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "77d669527a0f4c660242946cc7f61ed3c3d3dd24493ebdd21f20b4c231a85cc3",
+          "frames": 386,
+          "valid_left": 384,
+          "valid_right": 167,
+          "training_samples_upper_bound": 385,
+          "canonical_sha256": "1463dcd0866925b09efdb5fcc0e3f2a10915e367f6bd6244a1987477739d0f71"
+        },
+        "wuji20": {
+          "sidecar_sha256": "c47ea3e80d5c8910af9fe600c466beac237a2a033ee9f5a4299df5b442321b84",
+          "frames": 386,
+          "valid_left": 384,
+          "valid_right": 167,
+          "training_samples_upper_bound": 385,
+          "canonical_sha256": "1463dcd0866925b09efdb5fcc0e3f2a10915e367f6bd6244a1987477739d0f71"
+        }
+      }
+    },
+    "grap_a_cap_071": {
+      "production_status_sha256": "a6523f40d747ce4bd92c39fffd08b1dbffefee79b4387b6ac8707f23cb65a09c",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_071/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "d7649401ac6b1a84296d6f60898aff8119795ff659505fe713e27a6eb5b3a348",
+          "frames": 434,
+          "valid_left": 388,
+          "valid_right": 270,
+          "training_samples_upper_bound": 406,
+          "canonical_sha256": "437649c7fc4b70dd551b1d75b2798db2b8d4241a37507f7ad850eb95ccf53c42"
+        },
+        "wuji20": {
+          "sidecar_sha256": "2b2c02161c7c8dc765146c25c3ebe8284ea644514e28b7acf3d0f206b68a66ce",
+          "frames": 434,
+          "valid_left": 388,
+          "valid_right": 270,
+          "training_samples_upper_bound": 406,
+          "canonical_sha256": "437649c7fc4b70dd551b1d75b2798db2b8d4241a37507f7ad850eb95ccf53c42"
+        }
+      }
+    },
+    "grap_a_cap_072": {
+      "production_status_sha256": "7dc3ac6c02dc888e1324629d0005af73fcd2e1cdb66c338901aab186ecbd7908",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_072/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "4670d4f2b99ade5bb8d49b9540e681b47fd52710a08f8bf3656566ec5719cc67",
+          "frames": 390,
+          "valid_left": 352,
+          "valid_right": 147,
+          "training_samples_upper_bound": 389,
+          "canonical_sha256": "bd34d6e5576b29ed317e07ef5d1a0c132a20b968e4cada0e061453521556a070"
+        },
+        "wuji20": {
+          "sidecar_sha256": "f4ccfe53951c592a706e43b968c7857e2b2201e6c8d75b3302664324b2508d6b",
+          "frames": 390,
+          "valid_left": 352,
+          "valid_right": 147,
+          "training_samples_upper_bound": 389,
+          "canonical_sha256": "bd34d6e5576b29ed317e07ef5d1a0c132a20b968e4cada0e061453521556a070"
+        }
+      }
+    },
+    "grap_a_cap_073": {
+      "production_status_sha256": "4b4d01f32cf03597352d59d5f835879bbd9b33e1277731872031030969bc20f4",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_073/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "a214c87af1b905bb8d1f838f0c3d4065e166f38d91c79c7635ca5bb3767c41dc",
+          "frames": 414,
+          "valid_left": 373,
+          "valid_right": 287,
+          "training_samples_upper_bound": 403,
+          "canonical_sha256": "0bf8b71835ebbece2a574ffa7d55661ddce5229bcb876527767184f1ec227379"
+        },
+        "wuji20": {
+          "sidecar_sha256": "10936039e3f80f56062cc409b4814e11ae42a09ff0b07c1064c4dad299c56e18",
+          "frames": 414,
+          "valid_left": 373,
+          "valid_right": 287,
+          "training_samples_upper_bound": 403,
+          "canonical_sha256": "0bf8b71835ebbece2a574ffa7d55661ddce5229bcb876527767184f1ec227379"
+        }
+      }
+    },
+    "grap_a_cap_076": {
+      "production_status_sha256": "be8a9658bce67fb2f69ee997fd662448fb720c5f35dfc58b657ff3fb61625c8b",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_076/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "27344e432825e731e2df965c97d31b11d6d2dc784f5092ad49632f7d0385a484",
+          "frames": 451,
+          "valid_left": 428,
+          "valid_right": 284,
+          "training_samples_upper_bound": 450,
+          "canonical_sha256": "940af6d520d0148f94f3d51b2b42336d65c8fa592398443b68fd1db647a3c96f"
+        },
+        "wuji20": {
+          "sidecar_sha256": "b8ea4d38c202b8e04b366d05dd8be696ab482d01d57e0da867598e2d93e08622",
+          "frames": 451,
+          "valid_left": 428,
+          "valid_right": 284,
+          "training_samples_upper_bound": 450,
+          "canonical_sha256": "940af6d520d0148f94f3d51b2b42336d65c8fa592398443b68fd1db647a3c96f"
+        }
+      }
+    },
+    "grap_a_cap_079": {
+      "production_status_sha256": "5a15c02bde2bc961a0afd7391f6de181e8a2ccb071fbcc4c17c09b3f4525af37",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_079/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "6c5d8060d370c7111783d982a2b6cef5b7d59a70f05e11fa27f6847e3103d409",
+          "frames": 444,
+          "valid_left": 382,
+          "valid_right": 315,
+          "training_samples_upper_bound": 434,
+          "canonical_sha256": "5629f24cf2e5dec55b68f057769ec3d59cae6bfe80103835093a2fb0a181f613"
+        },
+        "wuji20": {
+          "sidecar_sha256": "631909ac2770ea67db4d9cb0ded52ae0d45f2f2d4e0dd9bc57d9cca0fc4c9a0d",
+          "frames": 444,
+          "valid_left": 382,
+          "valid_right": 315,
+          "training_samples_upper_bound": 434,
+          "canonical_sha256": "5629f24cf2e5dec55b68f057769ec3d59cae6bfe80103835093a2fb0a181f613"
+        }
+      }
+    },
+    "grap_a_cap_081": {
+      "production_status_sha256": "4eec2752446d7c8a4424511441aea630caca69ac6b062ca6691e45e03fcc7ed4",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_081/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "06159e56b3898cedf626c0a0d1c211b6af11b9661849ab50f18e8bea9b18dfcc",
+          "frames": 451,
+          "valid_left": 376,
+          "valid_right": 253,
+          "training_samples_upper_bound": 428,
+          "canonical_sha256": "07fe6c9bc0914cd5b5ec60a20e0912dfd0af81be7e5334982e1558b7ef47b8a7"
+        },
+        "wuji20": {
+          "sidecar_sha256": "7523711bcd58b038b917b0599be69d4d02fd2a7252550b451c522bccce9426c9",
+          "frames": 451,
+          "valid_left": 376,
+          "valid_right": 253,
+          "training_samples_upper_bound": 428,
+          "canonical_sha256": "07fe6c9bc0914cd5b5ec60a20e0912dfd0af81be7e5334982e1558b7ef47b8a7"
+        }
+      }
+    },
+    "grap_a_cap_085": {
+      "production_status_sha256": "b4c2992bb51e98216d5ee9f85e4d65cf8d938bfb3a7885f77f27a8e513b5d9f4",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_085/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "1b0bd964ed48c6386e28a9ef7faa32ca0ebe672d71f867ab5a03d2c89f2bb784",
+          "frames": 464,
+          "valid_left": 423,
+          "valid_right": 331,
+          "training_samples_upper_bound": 459,
+          "canonical_sha256": "14dc757bbbf91466d5eafd43dceaa3ea52f6ea4f95397afea08a5e31b54b20c9"
+        },
+        "wuji20": {
+          "sidecar_sha256": "e86c13add1666ebfa301a9aa9eae6fdea7dd621fbc3935ae674bf22c7e566100",
+          "frames": 464,
+          "valid_left": 423,
+          "valid_right": 331,
+          "training_samples_upper_bound": 459,
+          "canonical_sha256": "14dc757bbbf91466d5eafd43dceaa3ea52f6ea4f95397afea08a5e31b54b20c9"
+        }
+      }
+    },
+    "grap_a_cap_087": {
+      "production_status_sha256": "4f80bc1fa946997e7b04536167ec7d8104605eec90666b01a950fbaf9c3d0949",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_087/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "ca05057d7804942791473c1d4e5ca889bb1dafd53ed4b2c44abf2455aa22703e",
+          "frames": 421,
+          "valid_left": 401,
+          "valid_right": 187,
+          "training_samples_upper_bound": 420,
+          "canonical_sha256": "a1b5add0a085023d9751fe04511c8895fd661644a2f9c84c952328ac42be4ce4"
+        },
+        "wuji20": {
+          "sidecar_sha256": "e95f6aeaeb988cf10a37e516634ea62d5236f7f8d2ebf00e9bfed24128c4c8ee",
+          "frames": 421,
+          "valid_left": 401,
+          "valid_right": 187,
+          "training_samples_upper_bound": 420,
+          "canonical_sha256": "a1b5add0a085023d9751fe04511c8895fd661644a2f9c84c952328ac42be4ce4"
+        }
+      }
+    },
+    "grap_a_cap_090": {
+      "production_status_sha256": "91efb0ec7177150459586d0a04b7b97a599862b8b38130ea217c1e520f5ad077",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_090/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "8da336e0562ca85f889cb7548858725402c1ddf7318396bf0452aa3155cbb876",
+          "frames": 415,
+          "valid_left": 411,
+          "valid_right": 415,
+          "training_samples_upper_bound": 414,
+          "canonical_sha256": "7ae9adc7a100fb840bb60aa9c633170ca16f9b047e7683c1c07fdf5ac7145e52"
+        },
+        "wuji20": {
+          "sidecar_sha256": "2766e9f971af15ed77cdadaeaed319db0fdd485a43bf42e4df1565238f450288",
+          "frames": 415,
+          "valid_left": 411,
+          "valid_right": 415,
+          "training_samples_upper_bound": 414,
+          "canonical_sha256": "7ae9adc7a100fb840bb60aa9c633170ca16f9b047e7683c1c07fdf5ac7145e52"
+        }
+      }
+    },
+    "grap_a_cap_091": {
+      "production_status_sha256": "f75bb2d3f3f39e16de9fd2e4433374de02224c981ac6a20bb5045784321f22dd",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_091/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "94064bbb451b2815edcb544b529de6c4053690191a772aed7f5ec0976f3da114",
+          "frames": 425,
+          "valid_left": 380,
+          "valid_right": 284,
+          "training_samples_upper_bound": 424,
+          "canonical_sha256": "ebe17d1c6809be9cef94c001c5e13ddab252df72ed0fe053b02f06c831ac7939"
+        },
+        "wuji20": {
+          "sidecar_sha256": "1632514560600e29e3f73eda2e73061a2fecae68a5c2810cc55b0b223ec8bc84",
+          "frames": 425,
+          "valid_left": 380,
+          "valid_right": 284,
+          "training_samples_upper_bound": 424,
+          "canonical_sha256": "ebe17d1c6809be9cef94c001c5e13ddab252df72ed0fe053b02f06c831ac7939"
+        }
+      }
+    },
+    "grap_a_cap_092": {
+      "production_status_sha256": "5b5d3dbefd84242f369561eaf69a1d941b01f0476b518bf8a894cf43f71dea55",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_092/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "1cdcbb58bfc3967dd2a4e7b5315844d8fea80692f43ebbf65f295436fc4e948e",
+          "frames": 415,
+          "valid_left": 372,
+          "valid_right": 333,
+          "training_samples_upper_bound": 371,
+          "canonical_sha256": "b9d556b7907cf7371fa6a16c9198506380903de9549ed164c37d92d19b452aa8"
+        },
+        "wuji20": {
+          "sidecar_sha256": "c66f3d2e1fe6123fdb8f0c12b72aac44ffafe9667cd0804524c36b7175ed990f",
+          "frames": 415,
+          "valid_left": 372,
+          "valid_right": 333,
+          "training_samples_upper_bound": 371,
+          "canonical_sha256": "b9d556b7907cf7371fa6a16c9198506380903de9549ed164c37d92d19b452aa8"
+        }
+      }
+    },
+    "grap_a_cap_094": {
+      "production_status_sha256": "82df46904a38477704aa242138ee53b3310829ddbeb32131364834c2b1e95169",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_094/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "7ad40c0e0469005ccc09f0f6520b490b3ba6f82804f1720078660c0458003c78",
+          "frames": 402,
+          "valid_left": 303,
+          "valid_right": 385,
+          "training_samples_upper_bound": 401,
+          "canonical_sha256": "717559623cd18bbd74536477b9982a9148ff2483b3c1c17a1f3e8bbcf3ba0197"
+        },
+        "wuji20": {
+          "sidecar_sha256": "a375e49df324f677a67948958edaba3b3ec0314f72f89a0a777f5d739595473f",
+          "frames": 402,
+          "valid_left": 303,
+          "valid_right": 385,
+          "training_samples_upper_bound": 401,
+          "canonical_sha256": "717559623cd18bbd74536477b9982a9148ff2483b3c1c17a1f3e8bbcf3ba0197"
+        }
+      }
+    },
+    "grap_a_cap_095": {
+      "production_status_sha256": "7fd13613f097f9a960c8ef7256845f09471c205980f2e23303cbaa884727041b",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_095/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "1076402cac5ea874bec68c0c1fe8389932906ea1f684b7f380bc4bc2efe2db6d",
+          "frames": 386,
+          "valid_left": 356,
+          "valid_right": 257,
+          "training_samples_upper_bound": 385,
+          "canonical_sha256": "1428dbbde8d99c0093c1b9c4b07d03d0d01983cdc8ee3e7f3b34b609720e7a01"
+        },
+        "wuji20": {
+          "sidecar_sha256": "1b9e22d09ee4bbf69d69f539919194af0f0e7ffe3fc6a890190dd19efe637928",
+          "frames": 386,
+          "valid_left": 356,
+          "valid_right": 257,
+          "training_samples_upper_bound": 385,
+          "canonical_sha256": "1428dbbde8d99c0093c1b9c4b07d03d0d01983cdc8ee3e7f3b34b609720e7a01"
+        }
+      }
+    },
+    "grap_a_cap_101": {
+      "production_status_sha256": "bf57b6fc9ca9cbc84a655f218c4de51c3b63eabe8aaa6e64d8ae87f4708d3184",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_101/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "48bdb1a7ff453953361dad1ec78b904d94925a94035b2ca0e493480af309f94a",
+          "frames": 517,
+          "valid_left": 350,
+          "valid_right": 469,
+          "training_samples_upper_bound": 470,
+          "canonical_sha256": "fe2eab09c961dae44428e95c457be992a3e2acc375566d11445ee3550d9d08b1"
+        },
+        "wuji20": {
+          "sidecar_sha256": "205aaf255f724ee06f4ce5895016302dbd8150c0e5efbd74550f3dc2e5718db6",
+          "frames": 517,
+          "valid_left": 350,
+          "valid_right": 469,
+          "training_samples_upper_bound": 470,
+          "canonical_sha256": "fe2eab09c961dae44428e95c457be992a3e2acc375566d11445ee3550d9d08b1"
+        }
+      }
+    },
+    "grap_a_cap_102": {
+      "production_status_sha256": "055415fcf37e0fa01abe8786359477a84d41f1e5480131e4d741bb08cf2684f2",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_102/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "bd6848526c19cdcf86d0e846bab5063bd166d4e13bd84e1d92d7558a9df5730c",
+          "frames": 478,
+          "valid_left": 339,
+          "valid_right": 376,
+          "training_samples_upper_bound": 388,
+          "canonical_sha256": "14a26d5871e4e29988c4534be9068337ed4c8b8fab7cf14b06f37147daf7f9c1"
+        },
+        "wuji20": {
+          "sidecar_sha256": "4eeed84ee8db24590d793da211aee8998d37746af117526c9658c293f754d237",
+          "frames": 478,
+          "valid_left": 339,
+          "valid_right": 376,
+          "training_samples_upper_bound": 388,
+          "canonical_sha256": "14a26d5871e4e29988c4534be9068337ed4c8b8fab7cf14b06f37147daf7f9c1"
+        }
+      }
+    },
+    "grap_a_cap_103": {
+      "production_status_sha256": "11653808dcbe040719127a74c31de84da08ddd9537ad8f79ef69b5c88064ab40",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_103/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "93416e35b8f5adf9a6cdaa534e51ff93c15156853144af662936e4929c1386f6",
+          "frames": 429,
+          "valid_left": 343,
+          "valid_right": 122,
+          "training_samples_upper_bound": 368,
+          "canonical_sha256": "b54f7ddeaaed8e0d6b3fb5d85c176e00962acc38b4ca3536a380c60488a1139d"
+        },
+        "wuji20": {
+          "sidecar_sha256": "ff53725e993f1d6dc0ea6a481c75b9b2eef313eb2206132d193fc1849faf2974",
+          "frames": 429,
+          "valid_left": 343,
+          "valid_right": 122,
+          "training_samples_upper_bound": 368,
+          "canonical_sha256": "b54f7ddeaaed8e0d6b3fb5d85c176e00962acc38b4ca3536a380c60488a1139d"
+        }
+      }
+    },
+    "grap_a_cap_106": {
+      "production_status_sha256": "76a57526464e9198f8308b2022fbb5b572a0dbb3ffbaecf749ac83c8ed0f1a2d",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_106/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "f347809ad937609148cbfbc0f8b3202ff8d3eb1e800af1f12a2f781943fcf80c",
+          "frames": 438,
+          "valid_left": 422,
+          "valid_right": 157,
+          "training_samples_upper_bound": 437,
+          "canonical_sha256": "b74c4697eb2c27dceeb6e88f0a5e7fc0eea39e84ec30c0e8a015910938a9751f"
+        },
+        "wuji20": {
+          "sidecar_sha256": "7454513c5e9784deb5ecfcfe77165bee230345e463bbbd92a74b04da460110e4",
+          "frames": 438,
+          "valid_left": 422,
+          "valid_right": 157,
+          "training_samples_upper_bound": 437,
+          "canonical_sha256": "b74c4697eb2c27dceeb6e88f0a5e7fc0eea39e84ec30c0e8a015910938a9751f"
+        }
+      }
+    },
+    "grap_a_cap_109": {
+      "production_status_sha256": "41d21ca2553bbf6145d8d18973d20ff4797abf266c956a7a768ad365b012361e",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_109/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "23c092d470f4bcdf0def69824acba8982b12cff31d26383bbe5e66e38852a37a",
+          "frames": 421,
+          "valid_left": 262,
+          "valid_right": 415,
+          "training_samples_upper_bound": 415,
+          "canonical_sha256": "d599cf15c272a3292777058611d66d0a3fd03a9639c965c971140a3ee03064a2"
+        },
+        "wuji20": {
+          "sidecar_sha256": "7f6572482b049bab47407ea14e475e9666e39ca673c0be4d114565e5020b5b6e",
+          "frames": 421,
+          "valid_left": 262,
+          "valid_right": 415,
+          "training_samples_upper_bound": 415,
+          "canonical_sha256": "d599cf15c272a3292777058611d66d0a3fd03a9639c965c971140a3ee03064a2"
+        }
+      }
+    },
+    "grap_a_cap_113": {
+      "production_status_sha256": "17ce008bd396736274171e55d06caa6863ceafd6283b075da6e4b6b6c4336f36",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_113/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "b3e5bf8fb8d8b8fb8850e6398460f54bde18a0bf873ee350d9aa81915ac9fba7",
+          "frames": 400,
+          "valid_left": 329,
+          "valid_right": 191,
+          "training_samples_upper_bound": 359,
+          "canonical_sha256": "cfb42ec0b1e81a86be67b9393e80b3daf2f7e428b96bc139f3ad578ceab668a8"
+        },
+        "wuji20": {
+          "sidecar_sha256": "3e69f20955c3972087e6759c40a243fd14fa8839d789069ba9840f4428c1667d",
+          "frames": 400,
+          "valid_left": 329,
+          "valid_right": 191,
+          "training_samples_upper_bound": 359,
+          "canonical_sha256": "cfb42ec0b1e81a86be67b9393e80b3daf2f7e428b96bc139f3ad578ceab668a8"
+        }
+      }
+    },
+    "grap_a_cap_114": {
+      "production_status_sha256": "323a0ac796635028e08115e9531983d3f16a5eecd1d053b0cd78b281821d11fe",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_114/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "92c8e980c98d23ba92325d795093f464738a9e773edba70ecb0c4b0036eeee38",
+          "frames": 441,
+          "valid_left": 375,
+          "valid_right": 233,
+          "training_samples_upper_bound": 396,
+          "canonical_sha256": "44e811c30b08f7b4a573b356639ca58146e66b144d7be66c83bce03336cfb2e3"
+        },
+        "wuji20": {
+          "sidecar_sha256": "183c21adcd231af2fd1096dab5b1bc751c7a2e40f0d641bbd3ed4ef11570e73d",
+          "frames": 441,
+          "valid_left": 375,
+          "valid_right": 233,
+          "training_samples_upper_bound": 396,
+          "canonical_sha256": "44e811c30b08f7b4a573b356639ca58146e66b144d7be66c83bce03336cfb2e3"
+        }
+      }
+    },
+    "grap_a_cap_116": {
+      "production_status_sha256": "f6650df9c04fb8653da4a30fbc3d34b798658a8981bc9c64b3c835ca42501748",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_116/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "ab5218ed2b7005aec10270903577ca7c77c011f8f6c774fa7584abc2a8123487",
+          "frames": 433,
+          "valid_left": 299,
+          "valid_right": 134,
+          "training_samples_upper_bound": 325,
+          "canonical_sha256": "43991b1a2c3dae1ddb8ff7268311e1a3800e78f048270b6a82e9b95dd121a1b1"
+        },
+        "wuji20": {
+          "sidecar_sha256": "aad352ef886056e5b4f49af58c8683649e7acf2bd3dcd5128b4d3b3bad457f42",
+          "frames": 433,
+          "valid_left": 299,
+          "valid_right": 134,
+          "training_samples_upper_bound": 325,
+          "canonical_sha256": "43991b1a2c3dae1ddb8ff7268311e1a3800e78f048270b6a82e9b95dd121a1b1"
+        }
+      }
+    },
+    "grap_a_cap_118": {
+      "production_status_sha256": "903b196b31267e5e057b13a60e0a01b85d1b3d676754e04a48dec5f97ee56d11",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_118/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "0830df463d2b1711fccd7d58f766b9cc9d2ad824ecfe30b1597363c166de336d",
+          "frames": 455,
+          "valid_left": 308,
+          "valid_right": 303,
+          "training_samples_upper_bound": 454,
+          "canonical_sha256": "cd9f3d5450d44c804c6f7b5f4649ac8ce835a9037873cae4fffd8b9c4c0fde22"
+        },
+        "wuji20": {
+          "sidecar_sha256": "5bdecf94a350c065601661d98e696bb3d8000d80b88439f283e9a57a16b91b12",
+          "frames": 455,
+          "valid_left": 308,
+          "valid_right": 303,
+          "training_samples_upper_bound": 454,
+          "canonical_sha256": "cd9f3d5450d44c804c6f7b5f4649ac8ce835a9037873cae4fffd8b9c4c0fde22"
+        }
+      }
+    },
+    "grap_a_cap_119": {
+      "production_status_sha256": "75221762c3d137c529ce79c56e0bec9fa1a8130e37bca4e5cd5c9927667f3302",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_119/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "9508fec5ab8e1ce92d49b146c72bee3256be33c465c08b9bf0bc46ff1ca8667e",
+          "frames": 395,
+          "valid_left": 298,
+          "valid_right": 385,
+          "training_samples_upper_bound": 384,
+          "canonical_sha256": "b6a2f39c09fad7405af9bbd3db2f7b9ae79dd193ad4d2871197dd6c8954a3f1d"
+        },
+        "wuji20": {
+          "sidecar_sha256": "b125d40b0b31095ff721a60bad1f85bd13aa9d34f699313d10cf3b6e00c5ed9a",
+          "frames": 395,
+          "valid_left": 298,
+          "valid_right": 385,
+          "training_samples_upper_bound": 384,
+          "canonical_sha256": "b6a2f39c09fad7405af9bbd3db2f7b9ae79dd193ad4d2871197dd6c8954a3f1d"
+        }
+      }
+    },
+    "grap_a_cap_121": {
+      "production_status_sha256": "216fbef842a41224d1e1c3c348e36aca4ba75fb7f4ff2587407eb3ff0ef79393",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_121/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "19f2fd680b3daee44874d75d4fe04c097b089707f813e53e6713b72704d0d95a",
+          "frames": 455,
+          "valid_left": 406,
+          "valid_right": 364,
+          "training_samples_upper_bound": 437,
+          "canonical_sha256": "1969c2139e260a4b015b2e370a79c47ffbffac9400060b00bb1d4cc3ce5d1da5"
+        },
+        "wuji20": {
+          "sidecar_sha256": "45bda8003ca01826c05b889d19112b0ace6d712734374ddf9653857de44aa127",
+          "frames": 455,
+          "valid_left": 406,
+          "valid_right": 364,
+          "training_samples_upper_bound": 437,
+          "canonical_sha256": "1969c2139e260a4b015b2e370a79c47ffbffac9400060b00bb1d4cc3ce5d1da5"
+        }
+      }
+    },
+    "grap_a_cap_122": {
+      "production_status_sha256": "881c414a081ffc3de40a9ce56133bf512d75a86b61cfae7ce596beffb2872a48",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_122/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "2b1137f12509ae45a110e055441ff41bc13a712935a6c27cc626a4fa05fb94b7",
+          "frames": 462,
+          "valid_left": 461,
+          "valid_right": 284,
+          "training_samples_upper_bound": 461,
+          "canonical_sha256": "56f4c784c41249d999dea8817343cf19fc4363f213d8d6820b8abbc7c629e22f"
+        },
+        "wuji20": {
+          "sidecar_sha256": "5947006e6652cc72d995b5d38cd4012768ad16dc8d8b1d6bf7821e1fdd46cf3d",
+          "frames": 462,
+          "valid_left": 461,
+          "valid_right": 284,
+          "training_samples_upper_bound": 461,
+          "canonical_sha256": "56f4c784c41249d999dea8817343cf19fc4363f213d8d6820b8abbc7c629e22f"
+        }
+      }
+    },
+    "grap_a_cap_123": {
+      "production_status_sha256": "2b2fba565b6e8ede009af9b5bdef0f116c33966564d19cccaa88493e001e5025",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_123/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "41f78bd2870eaf9ba7e1a3aaa3b3d04fa64ad41997979a9b9d4301f61ea0cae4",
+          "frames": 413,
+          "valid_left": 379,
+          "valid_right": 263,
+          "training_samples_upper_bound": 395,
+          "canonical_sha256": "7b312682f653903570bec319aa31a8402c076385ff970016975fd54b3d5c4d06"
+        },
+        "wuji20": {
+          "sidecar_sha256": "ad86d01317982651aefa437336eb0cc2b7af84c14691a474bde626a565cba436",
+          "frames": 413,
+          "valid_left": 379,
+          "valid_right": 263,
+          "training_samples_upper_bound": 395,
+          "canonical_sha256": "7b312682f653903570bec319aa31a8402c076385ff970016975fd54b3d5c4d06"
+        }
+      }
+    },
+    "grap_a_cap_124": {
+      "production_status_sha256": "292ddc9375ee0b26d7e72bc4c1577aa4e114067bfbad02f7f32af3c2b5e627e8",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_124/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "1d5bf93d759e6c5cfac65a15e1d3f185c6f950db4b630434a4747b61b2c3a11e",
+          "frames": 459,
+          "valid_left": 446,
+          "valid_right": 260,
+          "training_samples_upper_bound": 451,
+          "canonical_sha256": "fd9dba3a6386cb8686a6e9f452570339449d243f15bd69c18a8ee2fb05aa41dc"
+        },
+        "wuji20": {
+          "sidecar_sha256": "3a08a23d717f4f840254d38da56a890f135d460750c0ed8056925ce7739ad981",
+          "frames": 459,
+          "valid_left": 446,
+          "valid_right": 260,
+          "training_samples_upper_bound": 451,
+          "canonical_sha256": "fd9dba3a6386cb8686a6e9f452570339449d243f15bd69c18a8ee2fb05aa41dc"
+        }
+      }
+    },
+    "grap_a_cap_125": {
+      "production_status_sha256": "1a78c58e9fcead3e5472291367be3e989ddf4913aeff094a83fe67759b6310e9",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_125/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "d00e2a4f7c61c962356948aa4aaeb88ecf66a02a02c090ce7aa18a8932f7a53c",
+          "frames": 449,
+          "valid_left": 372,
+          "valid_right": 183,
+          "training_samples_upper_bound": 416,
+          "canonical_sha256": "ec3f9c4d687378ea3f9067201daf818a28fe025296284f3de66fbdfa6ca6e5c3"
+        },
+        "wuji20": {
+          "sidecar_sha256": "42c73991d7356ffab5059caa91bfb8bda3a0a9d12a7193f262f6f0a9087c46e5",
+          "frames": 449,
+          "valid_left": 372,
+          "valid_right": 183,
+          "training_samples_upper_bound": 416,
+          "canonical_sha256": "ec3f9c4d687378ea3f9067201daf818a28fe025296284f3de66fbdfa6ca6e5c3"
+        }
+      }
+    },
+    "grap_a_cap_132": {
+      "production_status_sha256": "c340bb724c46ad6d6cc24c403065c00dabc7486a291985d9923307f11919ded8",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_132/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "e876637c01c09dcd85f5787f8269e35c852aa38c0d55f83f9f23caf3c4e27fbc",
+          "frames": 434,
+          "valid_left": 409,
+          "valid_right": 371,
+          "training_samples_upper_bound": 409,
+          "canonical_sha256": "6cbc8c8b775828df146cdbcf09583cf690da5e8072d64acb52786130f504614d"
+        },
+        "wuji20": {
+          "sidecar_sha256": "00ae142f2dfc7e4ab62116011c4cc5399b22ab7e0bd694c0e7fc8015e8d38a0c",
+          "frames": 434,
+          "valid_left": 409,
+          "valid_right": 371,
+          "training_samples_upper_bound": 409,
+          "canonical_sha256": "6cbc8c8b775828df146cdbcf09583cf690da5e8072d64acb52786130f504614d"
+        }
+      }
+    },
+    "grap_a_cap_134": {
+      "production_status_sha256": "61b8e24bcda60a8944e58509c45ba2f3cc51552ee1c14efd5d4fdb619777ed7d",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_134/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "e3c7f5f91a386027895807f0e3c46d35c260a8912077c8f73292d149033e9956",
+          "frames": 471,
+          "valid_left": 450,
+          "valid_right": 465,
+          "training_samples_upper_bound": 465,
+          "canonical_sha256": "96a36392fcaecf245ca6753af5195268b77f495e96c9401279b0e794811a2d68"
+        },
+        "wuji20": {
+          "sidecar_sha256": "57cc6b1bb5c7765863d0fd6c5248ad8f1a262c9239a4ec01e2ccf72dd470cad7",
+          "frames": 471,
+          "valid_left": 450,
+          "valid_right": 465,
+          "training_samples_upper_bound": 465,
+          "canonical_sha256": "96a36392fcaecf245ca6753af5195268b77f495e96c9401279b0e794811a2d68"
+        }
+      }
+    },
+    "grap_a_cap_137": {
+      "production_status_sha256": "4bfbdff1a2244d9bcc5dad26962d2b9f14810f557eb34dc89c29b968a3a109ab",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_137/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "5e901d7d9d77ea3f227f7ac5ad8a1d65f710a1ed30eef643619556612c8ef680",
+          "frames": 384,
+          "valid_left": 343,
+          "valid_right": 384,
+          "training_samples_upper_bound": 383,
+          "canonical_sha256": "e3d8384960559bd9fdecc2bf6ab2e48292702eaabacb84fbc1bcc55c8a21b714"
+        },
+        "wuji20": {
+          "sidecar_sha256": "48de306459dffb98a4fe7d201f6afae81c4e8136d85a324719213458f47fcf0c",
+          "frames": 384,
+          "valid_left": 343,
+          "valid_right": 384,
+          "training_samples_upper_bound": 383,
+          "canonical_sha256": "e3d8384960559bd9fdecc2bf6ab2e48292702eaabacb84fbc1bcc55c8a21b714"
+        }
+      }
+    },
+    "grap_a_cap_138": {
+      "production_status_sha256": "a7f7d35512e2c3fc477b94c77d533c302220259bed1fd5f136fe1fc91d87da31",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_138/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "7d2385eb80c56a600049374d88926903f87a246083acd6a608c80073209863a6",
+          "frames": 418,
+          "valid_left": 400,
+          "valid_right": 395,
+          "training_samples_upper_bound": 417,
+          "canonical_sha256": "4a7fe051e761e81bbc210eb75ca59050506a528db6f672c5b49d89e66cfa2df4"
+        },
+        "wuji20": {
+          "sidecar_sha256": "049746b769f66476fb0d8b5d0cc2bfb7a43ecedb6d989ec166e781606d54deed",
+          "frames": 418,
+          "valid_left": 400,
+          "valid_right": 395,
+          "training_samples_upper_bound": 417,
+          "canonical_sha256": "4a7fe051e761e81bbc210eb75ca59050506a528db6f672c5b49d89e66cfa2df4"
+        }
+      }
+    },
+    "grap_a_cap_139": {
+      "production_status_sha256": "aaf137c889705a25ae0e9bd64be5efe8ff5fb7d846c86ab2db6eeac5b04916f8",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_139/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "04f17c9e0e3ada80450f3dfafc0e509ce90b455874b5a7e82386ed220da41cce",
+          "frames": 429,
+          "valid_left": 429,
+          "valid_right": 429,
+          "training_samples_upper_bound": 428,
+          "canonical_sha256": "af0f8a747f13f9559a308267fd5fcddbbb78da85d0185b65ff963082ee70e0d4"
+        },
+        "wuji20": {
+          "sidecar_sha256": "4eeeb16e8ad5459cb219c70fa358ddc99ca07d7288fda1e96f490e3b1e30710a",
+          "frames": 429,
+          "valid_left": 429,
+          "valid_right": 429,
+          "training_samples_upper_bound": 428,
+          "canonical_sha256": "af0f8a747f13f9559a308267fd5fcddbbb78da85d0185b65ff963082ee70e0d4"
+        }
+      }
+    },
+    "grap_a_cap_140": {
+      "production_status_sha256": "8322a6d68e5954bb054293db08e3774491f8f859a630065a3b626286af49b3ef",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_140/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "aa69281749e8be53277fc8e52c9bd0c8d91b2f56efb35ff530e2793e5818847b",
+          "frames": 424,
+          "valid_left": 338,
+          "valid_right": 423,
+          "training_samples_upper_bound": 422,
+          "canonical_sha256": "9335973a3464cfed0971369e66a45edd1e2efcb815f10443af02d76e1b14a9d8"
+        },
+        "wuji20": {
+          "sidecar_sha256": "d6074b4eb1d991898c36cc555f42d621ca9f6049407b4d39259355a0f10c499b",
+          "frames": 424,
+          "valid_left": 338,
+          "valid_right": 423,
+          "training_samples_upper_bound": 422,
+          "canonical_sha256": "9335973a3464cfed0971369e66a45edd1e2efcb815f10443af02d76e1b14a9d8"
+        }
+      }
+    },
+    "grap_a_cap_141": {
+      "production_status_sha256": "e739c29320b34504317dfb7cf37c203da7e468e6d2d0a28f5f93fb7d46b31fce",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_141/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "bfe0f09c5a53cd29ee47bd833109d26eedafca69126dc22aa865f783149360dd",
+          "frames": 423,
+          "valid_left": 340,
+          "valid_right": 423,
+          "training_samples_upper_bound": 422,
+          "canonical_sha256": "2a276b0dff398b9d9d3acc95c69395ccbeea7b50aab86a445b963c921f95a95a"
+        },
+        "wuji20": {
+          "sidecar_sha256": "5120626bcc423d9091e3d329343b3642ead04dd3a6876cf711c4b1b1f27cb3b7",
+          "frames": 423,
+          "valid_left": 340,
+          "valid_right": 423,
+          "training_samples_upper_bound": 422,
+          "canonical_sha256": "2a276b0dff398b9d9d3acc95c69395ccbeea7b50aab86a445b963c921f95a95a"
+        }
+      }
+    },
+    "grap_a_cap_142": {
+      "production_status_sha256": "e09e33c65ad0784fa391613fa0d3c2fc783b5f2deb79f4a766b178b2409c924c",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_142/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "fca2ecff2578d28786caa9fa5536f5af35a06d9da6beccc360990dd29bc3e879",
+          "frames": 406,
+          "valid_left": 348,
+          "valid_right": 406,
+          "training_samples_upper_bound": 405,
+          "canonical_sha256": "10deb09177ffbac9d5d44c2196e3707e82433141c01f959aa36ebb4d554a546e"
+        },
+        "wuji20": {
+          "sidecar_sha256": "31f4f67c1394c469bce8f9c12e97ed8b749c8dcc11366b4464590d58d4510f67",
+          "frames": 406,
+          "valid_left": 348,
+          "valid_right": 406,
+          "training_samples_upper_bound": 405,
+          "canonical_sha256": "10deb09177ffbac9d5d44c2196e3707e82433141c01f959aa36ebb4d554a546e"
+        }
+      }
+    },
+    "grap_a_cap_143": {
+      "production_status_sha256": "a1e3b4d9a65249ef2f271ca4f1748a97e40c7af5b2944d9882334181488423a5",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_143/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "f722f4b3d4e8d675dafcafda67c83e562446bdaa62638cf54730ee77edc0a581",
+          "frames": 447,
+          "valid_left": 360,
+          "valid_right": 387,
+          "training_samples_upper_bound": 431,
+          "canonical_sha256": "21368058ab75d4f47503b52b2212f7e927d2ba12313731f3b66cdab174fd199b"
+        },
+        "wuji20": {
+          "sidecar_sha256": "4f2b28de957c015f7480f244a4764aaa693e68811e636a14f29f0d3a85ea7172",
+          "frames": 447,
+          "valid_left": 360,
+          "valid_right": 387,
+          "training_samples_upper_bound": 431,
+          "canonical_sha256": "21368058ab75d4f47503b52b2212f7e927d2ba12313731f3b66cdab174fd199b"
+        }
+      }
+    },
+    "grap_a_cap_144": {
+      "production_status_sha256": "2c847ce89402144049d07293ee5c4ca0448a98f66dac0d8b0be82394dc5197cd",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_144/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "1634ee5e4d881bcca29276f33e4a8a3e01b380737ff1f9845c86979d6de57c8d",
+          "frames": 416,
+          "valid_left": 391,
+          "valid_right": 416,
+          "training_samples_upper_bound": 415,
+          "canonical_sha256": "225d37c2f5a8e01aa5c2f4b11e7b432ba8b8abe153de27c57063513beeef3601"
+        },
+        "wuji20": {
+          "sidecar_sha256": "d342a1e9d5e598867d61ccdd9c989a34d8ad20e1a9f815e99535133a10c82060",
+          "frames": 416,
+          "valid_left": 391,
+          "valid_right": 416,
+          "training_samples_upper_bound": 415,
+          "canonical_sha256": "225d37c2f5a8e01aa5c2f4b11e7b432ba8b8abe153de27c57063513beeef3601"
+        }
+      }
+    },
+    "grap_a_cap_148": {
+      "production_status_sha256": "de7d51e3c26ab6298ad18e850fe863d61c47c0c07b5c4c392e0801aa140a56ae",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_148/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "78da0f2ee5b5fffe84539798cf940979e6a7239578a50994cca7e484e43c32b8",
+          "frames": 377,
+          "valid_left": 377,
+          "valid_right": 377,
+          "training_samples_upper_bound": 376,
+          "canonical_sha256": "5c20829123168b886d39a41ddb059e4d95fbff6ee56cee249cae48f79fa56cd4"
+        },
+        "wuji20": {
+          "sidecar_sha256": "883c40719c7789a2e86e6a929fc98b383cfd001c371780b2b810c7f49445f91f",
+          "frames": 377,
+          "valid_left": 377,
+          "valid_right": 377,
+          "training_samples_upper_bound": 376,
+          "canonical_sha256": "5c20829123168b886d39a41ddb059e4d95fbff6ee56cee249cae48f79fa56cd4"
+        }
+      }
+    },
+    "grap_a_cap_149": {
+      "production_status_sha256": "233c12095a3b6e45fb17fe9e84921a13cdd49f8ebbd09340ad0c94fce842943f",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_149/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "27155d6ca4e5b3e2d5438603ee0628f1632d3329accda8f38ebc7fb3244e1337",
+          "frames": 404,
+          "valid_left": 404,
+          "valid_right": 404,
+          "training_samples_upper_bound": 403,
+          "canonical_sha256": "412a4f1d2f2f0441c8075de8fca6a37ae8d4d9ddd1462482e8cbe94eb911e383"
+        },
+        "wuji20": {
+          "sidecar_sha256": "477f139562d8fe814af7d1712e7d0c1866d919cf8eb99c54bfab859ac7ef0fd2",
+          "frames": 404,
+          "valid_left": 404,
+          "valid_right": 404,
+          "training_samples_upper_bound": 403,
+          "canonical_sha256": "412a4f1d2f2f0441c8075de8fca6a37ae8d4d9ddd1462482e8cbe94eb911e383"
+        }
+      }
+    },
+    "grap_a_cap_155": {
+      "production_status_sha256": "16b2b3f89f59d1b19cf36291ed25a455a3a7fa3d2cc11a5f92f547501e95f614",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_155/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "d6f57d40bd39741f788990c861fe269d4127a9e748bceed912dd63a38e1654ff",
+          "frames": 389,
+          "valid_left": 350,
+          "valid_right": 273,
+          "training_samples_upper_bound": 383,
+          "canonical_sha256": "5f92b8ba434aca0890c91afb65150a24f3bff2e83337264e0084cc2b11bafefe"
+        },
+        "wuji20": {
+          "sidecar_sha256": "cecbc4c9eab54ebf0718c7e54dfa263f6188c56ac1dd1d4856fe0fd87118ceb6",
+          "frames": 389,
+          "valid_left": 350,
+          "valid_right": 273,
+          "training_samples_upper_bound": 383,
+          "canonical_sha256": "5f92b8ba434aca0890c91afb65150a24f3bff2e83337264e0084cc2b11bafefe"
+        }
+      }
+    },
+    "grap_a_cap_157": {
+      "production_status_sha256": "82f77e847919e615ab8c25ef07165180c5870d58f2745ee42bd079c516146c26",
+      "adapter": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_157/09_humanego_adapter",
+      "embodiments": {
+        "kai22": {
+          "sidecar_sha256": "6267fc152a1d8147f92afff33fe4e45541937c0c13439c797a3a7cbd6aad4632",
+          "frames": 419,
+          "valid_left": 343,
+          "valid_right": 419,
+          "training_samples_upper_bound": 418,
+          "canonical_sha256": "986cf26bdd9ecd0ce4923b082156346e4176eaf57a4df40688de880c839f3b1e"
+        },
+        "wuji20": {
+          "sidecar_sha256": "879a3696cf800b5ce117a6f5eb38d4ba9824ac678d6a69a6a66d2ab04c79011f",
+          "frames": 419,
+          "valid_left": 343,
+          "valid_right": 419,
+          "training_samples_upper_bound": 418,
+          "canonical_sha256": "986cf26bdd9ecd0ce4923b082156346e4176eaf57a4df40688de880c839f3b1e"
+        }
+      }
+    }
+  },
+  "production_root": "/mnt/workspace/code/chaoyang/hand_benchmark/production_runs/final_v3_grap_a_cap_0812",
+  "sidecar_root": "/mnt/workspace/code/chaoyang/HumanEgo/data_manifests/robot_sidecars_v1"
+}
