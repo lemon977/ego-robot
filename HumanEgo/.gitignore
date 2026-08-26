@@ -1,0 +1,36 @@
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.coverage
+.DS_Store
+
+# Runtime products. Keep frozen manifests and the imported legacy artifact.
+runs/**
+!runs/.gitkeep
+outputs/**
+!outputs/.gitkeep
+reports/project_status/status.json
+reports/render_preflight/*/preflight.json
+reports/overnight_pipeline.jsonl
+reports/overnight_pipeline.lock
+data_manifests/robot_sidecars_*/*.lock
+# Generated per-session arrays, raw retarget diagnostics and logs are rebuildable.
+# Keep the compact sidecar manifest for provenance and cohort-level reports.
+data_manifests/robot_sidecars_*/*/*/*
+!data_manifests/robot_sidecars_*/*/*/sidecar_manifest.json
+data_manifests/robot_sidecars_*/logs/
+*.lock
+*.tmp
+
+# Model files are tracked only when explicitly force-added as frozen artifacts.
+*.pt
+*.pth
+*.ckpt
+
+# Frozen weights and copied sidecars are runtime artifacts; keep only the
+# compact hash/provenance manifest reviewable in Git.
+artifacts/frozen_checkpoints/**
+!artifacts/frozen_checkpoints/
+!artifacts/frozen_checkpoints/*/
+!artifacts/frozen_checkpoints/*/freeze_manifest.json

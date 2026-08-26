@@ -1,0 +1,15 @@
+# Minimal dependencies for the retained HumanEgo policy/evaluation core.
+# CUDA-specific torch wheels should be selected for the deployment driver.
+torch==2.5.1
+torchvision==0.20.1
+numpy>=1.24
+scipy>=1.10
+opencv-python>=4.8
+imageio>=2.30
+matplotlib>=3.7
+pyyaml>=6.0
+tqdm>=4.65
+rich>=13.0
+
+# Tests
+pytest>=8.0
