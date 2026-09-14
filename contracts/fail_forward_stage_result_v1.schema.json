@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang/fail-forward-stage-result-v1",
+  "title": "Nine-hour fail-forward stage receipt",
+  "type": "object",
+  "required": [
+    "schema_version", "task", "session", "stage", "terminal",
+    "grade", "may_train", "may_be_delivery_candidate", "defects",
+    "metrics", "inputs", "artifacts", "consumption_authorized"
+  ],
+  "properties": {
+    "schema_version": {"const": "fail-forward-stage-result-v1"},
+    "task": {"enum": ["chips", "poker"]},
+    "session": {"type": "string", "minLength": 1},
+    "stage": {"enum": ["HAWOR", "MASK", "CLEAN", "ROBOT"]},
+    "terminal": {"const": true},
+    "grade": {"enum": ["A", "B", "C"]},
+    "training_weight": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "may_train": {"type": "boolean"},
+    "may_be_delivery_candidate": {"type": "boolean"},
+    "consumption_authorized": {"type": "boolean"},
+    "defects": {"type": "array", "items": {"type": "string"}},
+    "metrics": {"type": "object"},
+    "inputs": {"type": "object"},
+    "artifacts": {"type": "object"},
+    "hard_invalidators": {"type": "array", "items": {"type": "string"}}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"grade": {"const": "A"}}},
+      "then": {
+        "properties": {
+          "may_train": {"const": true},
+          "training_weight": {"const": 1.0}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"grade": {"const": "B"}}},
+      "then": {
+        "properties": {
+          "may_train": {"const": true},
+          "training_weight": {"type": "number", "exclusiveMinimum": 0, "exclusiveMaximum": 1}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"grade": {"const": "C"}}},
+      "then": {
+        "properties": {
+          "may_train": {"const": false},
+          "may_be_delivery_candidate": {"const": false},
+          "consumption_authorized": {"const": false},
+          "training_weight": {"const": null}
+        }
+      }
+    }
+  ]
+}

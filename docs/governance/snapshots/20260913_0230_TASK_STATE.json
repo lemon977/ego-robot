@@ -1,0 +1,343 @@
+{
+  "blockers": [
+    {
+      "name": "KaiHand adapter CAD",
+      "resolution": "Verified adapter CAD and measured installation transform.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Robot TCP and installation calibration",
+      "resolution": "Measured TCP, mount and camera/world-to-base calibration.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Real Robot action demonstrations",
+      "resolution": "Synchronized action/state/RGB data satisfying the formal schema.",
+      "scope": "HumanEgo policy checkpoints",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Shared H20 occupied by external egotouch training",
+      "resolution": "Wait for the external egotouch process to exit, then re-run physical GPU, lease and disk preflight without preempting it.",
+      "scope": "Wave0 ProPainter Clean GPU batch",
+      "status": "BLOCKED_RESOURCE"
+    },
+    {
+      "name": "Contact-aware Robot execution closure",
+      "resolution": "Provide a verified NaturalV2 flange-to-KaiHand assembly transform or adapter CAD/measured installation transform, world-to-Tianji-base calibration, and Robot TCP/installation calibration. Then rerun only the frozen four-frame retarget gate before any 24-frame or full-session render; do not guess missing transforms from a prior visual proxy.",
+      "scope": "Poker042 contact-aware Robot retarget, Robot render, occlusion compositor and any Robot authority; Chips034 additionally remains BLOCKED_PREREQ upstream. Evidence: /mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json. Poker042 human-contact output is HYPOTHESIS_ONLY.",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Contact/Robot 034/042 formal prerequisites",
+      "resolution": "For Chips034, pass the frozen Role Mask successor and publish a fresh formal Depth/Object6D delta before contact inference. For Poker042, do not rerun contact inference; close the separately recorded Robot assembly/world-to-base/TCP prerequisites, then run only the frozen four-frame retarget gate. Clean and Robot render are required later for the compositor, not for contact inference.",
+      "scope": "Chips034 Human Contact remains blocked because its current Role Mask is Grade C and no formal Wave0 Depth/Object6D exists. Poker042 Human Contact is complete as HYPOTHESIS_ONLY; only its Robot retarget and compositor remain blocked.",
+      "status": "BLOCKED_PREREQ"
+    }
+  ],
+  "generated_at": "2026-09-13T02:25:26+08:00",
+  "generation_id": "gov-000130-aa4d50a5591c",
+  "generator_code_sha": "018ca559f797e23b3e352368930ec2a29fbf41869c08edfbcd2005567431a30b",
+  "governance_revision": 130,
+  "host": "dsw-1019706-57c5b8df6-4vg6j",
+  "next_task": {
+    "expected_resource": "CPU for failure-cluster audit; GPU only for one frozen canary after the shared GPU becomes available",
+    "prerequisites": [
+      "governance_fact_ledger_v1",
+      "contact_occlusion_canary_034_042_v1"
+    ],
+    "session": "get_potato_chips_0902_034",
+    "stop_condition": "Two successor rounds, four engineering wall-clock hours or two GPU-hours for the failure cluster, whichever is reached first.",
+    "task_id": "exact78_upstream_c_successors_v1"
+  },
+  "recent_events": [
+    {
+      "created_at": "2026-09-13T01:37:47+08:00",
+      "message": "Initial evidence-driven governance ledger published.",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_fact_ledger_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:41:11+08:00",
+      "message": "Wave0 frozen: 58 metric-ready, Clean passed 4, pending 54.",
+      "result": {
+        "bytes": 149770,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
+        "sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_wave0_freeze_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-13T01:41:13+08:00",
+      "message": "Disk budget passed; physical H20 is occupied by external egotouch training, so ProPainter was not started.",
+      "result": {
+        "bytes": 15300,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/PREFLIGHT.json",
+        "sha256": "3773fcf11181ced0b4b01f039f7fee69bdfe1eb212a326bbf554fa68e1259e0c"
+      },
+      "session": null,
+      "status": "BLOCKED_RESOURCE",
+      "task_id": "exact78_wave0_clean_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-13T01:43:33+08:00",
+      "message": "H50 visual-aux and real-action schemas are implemented and tested; Robotized RGB authority and synchronized real Robot actions remain absent.",
+      "result": {
+        "bytes": 662,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+        "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "humanego_visual_aux_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:48:50+08:00",
+      "message": "Independent Contact Hypothesis, Robot Retarget and Occlusion Compositor interfaces passed tests; both frozen four-frame canaries stopped before solver because formal prerequisites are absent.",
+      "result": {
+        "bytes": 6676,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary/INPUT_CLOSURE_AND_4FRAME_GO_NO_GO.json",
+        "sha256": "a18993da2a9d9b1babecd67c39f451a81582118bdc737d50613fccfaa0c76a30"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_PREREQ",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:51:25+08:00",
+      "message": "Safe cache-only cleanup completed: 65 cache paths, 1,030 files and 26,990,561 bytes removed; protected current artifacts and referenced _run/NOW/old runs were not moved.",
+      "result": {
+        "bytes": 1798,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_root_cleanup_v3_lane_a/CLEANUP_RECEIPT.json",
+        "sha256": "e00814b0b5c150595b7d1c9e621bbd71d26ad559645cec1d961b8cb4a499fdd7"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "workspace_cleanup_v3"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:56:25+08:00",
+      "message": "Lane C CPU closure complete; waiting physical GPU + central lease without queue lock.",
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:58:40+08:00",
+      "message": "CPU cluster manifests + bounded remediation selection frozen; waiting external GPU resource.",
+      "result": {
+        "bytes": 5173,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/REMEDIATION_SELECTION.json",
+        "sha256": "52e7ee5133915091b6beb04267160ac10bc65d3177c2fdcdfc9d6dd04338b8ff"
+      },
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-13T02:01:25+08:00",
+      "message": "Independent gates corrected: Poker042 Human Contact is READY_HYPOTHESIS_ONLY without Clean or Robot-contact authority; Retarget and compositor remain separately blocked. Chips034 still lacks formal Object6D because Role Mask is C.",
+      "result": {
+        "bytes": 8597,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v2/INPUT_CLOSURE_AND_4FRAME_GO_NO_GO.json",
+        "sha256": "bb3a715b263abf49c4b1b4c2a0259cbde262ac1dc60e12b419630ce05e03d5eb"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_PREREQ",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T02:13:54+08:00",
+      "message": "Poker042 HYPOTHESIS_ONLY complete; retarget stopped before solver on verified external assembly/world-to-base/TCP prerequisites. Chips034 remains upstream-prerequisite blocked.",
+      "result": {
+        "bytes": 9903,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T02:17:29+08:00",
+      "message": "Reconciled mixed blockers: Chips034 prerequisite-blocked; Poker042 contact complete and Robot execution externally blocked.",
+      "result": {
+        "bytes": 9903,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T02:22:04+08:00",
+      "message": "Lane C CPU closure complete; waiting physical GPU + central lease without queue lock.",
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T02:22:58+08:00",
+      "message": "Chinese 4-keyframe HYPOTHESIS_ONLY diagnostic and 80-frame video passed visual review; no Robot was drawn and solver remains unexecuted.",
+      "result": {
+        "bytes": 4424,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    }
+  ],
+  "repository": {
+    "branch": "main",
+    "commit": "1f97e25f99723ec3a6c73dfe6f3fb963ca515db5"
+  },
+  "schema_version": "chaoyang-long-horizon-task-state-v1",
+  "tasks": [
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "governance",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_fact_ledger_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "selection",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 149770,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
+        "sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_wave0_freeze_v1",
+      "updated_at": "2026-09-13T01:41:11+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": "2026-09-13T02:25:26+08:00",
+      "phase": "wait_gpu_resource",
+      "pid": 2042087,
+      "proc_start_ticks": 150070099,
+      "result": {
+        "bytes": 15300,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/PREFLIGHT.json",
+        "sha256": "3773fcf11181ced0b4b01f039f7fee69bdfe1eb212a326bbf554fa68e1259e0c"
+      },
+      "session": "get_potato_chips_0902_107",
+      "status": "CLAIMED",
+      "task_id": "exact78_wave0_clean_v1",
+      "updated_at": "2026-09-13T02:25:26+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": "2026-09-13T02:25:12+08:00",
+      "phase": "wait_gpu_resource",
+      "pid": 2061080,
+      "proc_start_ticks": 150301584,
+      "result": {
+        "bytes": 5173,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/REMEDIATION_SELECTION.json",
+        "sha256": "52e7ee5133915091b6beb04267160ac10bc65d3177c2fdcdfc9d6dd04338b8ff"
+      },
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1",
+      "updated_at": "2026-09-13T02:25:12+08:00"
+    },
+    {
+      "attempt": 3,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "poker042_visual_diagnostic_complete_retarget_no_go",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 4424,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1",
+      "updated_at": "2026-09-13T02:22:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "robot",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "robot_visual_canary_034_042_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "training",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 662,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+        "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "humanego_visual_aux_v1",
+      "updated_at": "2026-09-13T01:43:33+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "maintenance",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1798,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_root_cleanup_v3_lane_a/CLEANUP_RECEIPT.json",
+        "sha256": "e00814b0b5c150595b7d1c9e621bbd71d26ad559645cec1d961b8cb4a499fdd7"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "workspace_cleanup_v3",
+      "updated_at": "2026-09-13T01:51:25+08:00"
+    }
+  ]
+}

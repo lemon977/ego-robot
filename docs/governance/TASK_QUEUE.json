@@ -1,0 +1,249 @@
+{
+  "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
+  "generated_at": "2026-09-14T19:12:16+08:00",
+  "generation_id": "gov-005869-1eff2016fad2",
+  "governance_revision": 5869,
+  "next_task": {
+    "expected_resource": "CPU Robot retarget plus serialized GPU render when needed",
+    "prerequisites": [
+      "exact78_wave0_clean_v1",
+      "contact_geometry_v2_fixture"
+    ],
+    "session": null,
+    "stop_condition": "All 156 sessions receive METRIC_CONTACT_ROBOT, POSE_ONLY_VISUAL_ROBOT, FAILED_QUALITY_C, FAILED_RUNTIME_FINAL, or BLOCKED_PREREQ terminal; no physical authority promotion.",
+    "task_id": "exact78_v52_lane_c_contact_robot"
+  },
+  "schema_version": "chaoyang-task-queue-v1",
+  "tasks": [
+    {
+      "attempt": 2,
+      "gpu_id": null,
+      "heartbeat_at": "2026-09-14T19:12:16+08:00",
+      "phase": "robot_067_finite_continuation",
+      "session": "get_potato_chips_0902_067",
+      "status": "RUNNING",
+      "task_id": "exact78_v52_lane_c_contact_robot",
+      "updated_at": "2026-09-14T19:12:16+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "recovered_after_dead_guardian",
+      "session": "get_potato_chips_0902_034",
+      "status": "PENDING",
+      "task_id": "exact78_upstream_c_successors_v1",
+      "updated_at": "2026-09-13T23:45:42+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "wait_goldset_robotized_rgb_and_train_val_labels_5_projection",
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_d_visual_aux",
+      "updated_at": "2026-09-14T02:29:40+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "training",
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "humanego_visual_aux_v1",
+      "updated_at": "2026-09-13T01:43:33+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "robot",
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "robot_visual_canary_034_042_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "wait_lane_a_clean_priority",
+      "session": null,
+      "status": "BLOCKED_RESOURCE",
+      "task_id": "exact78_v52_lane_b_upstream_c",
+      "updated_at": "2026-09-14T00:53:37+08:00"
+    },
+    {
+      "attempt": 3,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "poker042_visual_diagnostic_complete_retarget_no_go",
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1",
+      "updated_at": "2026-09-13T02:22:58+08:00"
+    },
+    {
+      "attempt": 3,
+      "gpu_id": null,
+      "heartbeat_at": "2026-09-13T03:09:19+08:00",
+      "phase": "final_bounded_active_chain_topology_successor_v3",
+      "session": "play_cards_0902_042",
+      "status": "FAILED_QUALITY_C",
+      "task_id": "robot_contact_retarget_poker042_visual_v1",
+      "updated_at": "2026-09-13T03:18:35+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "superseded_by_cleanup_v6_currentization",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "exact78_v52_lane_e_baseline_docs",
+      "updated_at": "2026-09-14T13:21:52+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "cleanup_v6_terminal",
+      "session": "workspace",
+      "status": "PASSED",
+      "task_id": "chaoyang_current_only_cleanup_v6",
+      "updated_at": "2026-09-14T18:37:33+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "runner_terminal",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_lane_a_clean_successor_v521",
+      "updated_at": "2026-09-14T16:24:01+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "external_temp_safe_cache_closed_old_run_docs_quarantined",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_lane_f_cleanup",
+      "updated_at": "2026-09-14T09:27:35+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "data_session_publication_23_restored_verified",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_robot_review_publication",
+      "updated_at": "2026-09-14T10:26:07+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "stage0_complete",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_stage0",
+      "updated_at": "2026-09-14T03:52:05+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "wave0_terminal_58_unique",
+      "session": "play_cards_0902_042",
+      "status": "PASSED",
+      "task_id": "exact78_wave0_clean_v1",
+      "updated_at": "2026-09-14T18:36:45+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "selection",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_wave0_freeze_v1",
+      "updated_at": "2026-09-13T01:41:11+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "governance",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_fact_ledger_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "governance_recovery",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_recovery_v5",
+      "updated_at": "2026-09-14T00:23:42+08:00"
+    },
+    {
+      "attempt": 2,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "terminal_verified",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "nas_chenxianchi_project_consolidation_v1",
+      "updated_at": "2026-09-14T12:45:46+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "visual_training_contract_frozen",
+      "session": "play_cards_0902_042",
+      "status": "PASSED",
+      "task_id": "robot_historical_closure_recovery_v1",
+      "updated_at": "2026-09-13T02:36:34+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "maintenance",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "workspace_cleanup_v3",
+      "updated_at": "2026-09-13T01:51:25+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "erroneous_robot_data_copy_cleanup_fully_reverted",
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "exact78_v52_external_derived_copy_cleanup",
+      "updated_at": "2026-09-14T10:25:59+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "superseded_by_active_successor_v521",
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "exact78_v52_lane_a_clean",
+      "updated_at": "2026-09-14T13:22:03+08:00"
+    }
+  ]
+}

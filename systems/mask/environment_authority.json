@@ -1,0 +1,225 @@
+{
+  "schema_version": "chaoyang-mask-environment-authority-v1",
+  "status": "CPU_PASS_GPU_REPLAY_PENDING",
+  "canonical_cpu_runtime_authorized": true,
+  "canonical_gpu_runtime_authorized": false,
+  "consumption_authorized": false,
+  "environment_id": "mask-sam3-py311-v1",
+  "claim_limit": "Canonical project-local Mask/SAM3 CPU import and static/fixture validation only. This authority does not authorize GPU, checkpoint loading, Mask production, current pointers, formal equivalence, or downstream consumption.",
+  "launch": {
+    "command": [
+      "tools/mask_python.sh"
+    ],
+    "activation_required": false,
+    "fallback_to_external_python_forbidden": true,
+    "inherited_pythonpath_forbidden": true,
+    "cuda_hidden": true,
+    "temporary_files_project_local": true,
+    "network_model_fallback_disabled": true,
+    "project_relative_environment_root": "assets/environments/mask-sam3-py311-v1",
+    "project_relative_python": "assets/environments/mask-sam3-py311-v1/bin/python",
+    "absolute_python": "/mnt/workspace/code/chaoyang/assets/environments/mask-sam3-py311-v1/bin/python"
+  },
+  "base_snapshot": {
+    "snapshot_id": "b03d8217d01c4c7aa8f66223873d3d00",
+    "method": "NO_CLOBBER_SAME_FILESYSTEM_HARDLINK",
+    "publish_method": "owned_empty_directory_reservation_then_rename",
+    "manifest": "assets/environments/mask-sam3-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "manifest_bytes": 4385631,
+    "manifest_sha256": "1c06a3f8de646cfedf7e6743a42c899161a179f15c5c54ca93eb5af1b29811d5",
+    "tree_content_sha256": "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64",
+    "counts": {
+      "directories": 7638,
+      "regular_files": 67676,
+      "special": 0,
+      "symlinks": 1382
+    },
+    "logical_bytes": 8097135393,
+    "device": 102,
+    "clean_base_identity": {
+      "authority": "systems/clean/environment_authority.json",
+      "authority_bytes": 4806,
+      "authority_sha256": "55b95bcd92154c7d1bc18d3ea8e5d92114436cf3b9f1f5a8b3eef1efb1b67bac",
+      "counts_logical_bytes_and_tree_sha_match_exactly": true,
+      "note": "The no-clobber tool reserves its control directory and therefore cannot resnapshot a published snapshot directly. The new snapshot used the Clean snapshot's unchanged same-inode provenance source; the complete tree identity is exactly equal."
+    },
+    "source_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_PATH_DEPENDENCY",
+    "source_path": "/mnt/workspace/miniconda3/envs/track4world",
+    "metadata_risk_acknowledged": true,
+    "capacity_basis": "Same-device inode capacity plus the already-published CPFS 8MiB non-sparse write/fsync/full-readback proof; regular payload files add hard links, not duplicate blocks."
+  },
+  "sam3_import_closure": {
+    "materialization": "CROSS_FILESYSTEM_NO_CLOBBER_COPY_WITH_SOURCE_STABILITY_AND_DESTINATION_FULL_READBACK",
+    "source_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "source_site": "/usr/local/lib/python3.11/site-packages",
+    "runtime_requires_source_site": false,
+    "overlay": "assets/environments/mask-sam3-py311-v1/.chaoyang-hardlink-snapshot/mask-sam3-import-closure-v1",
+    "manifest": "assets/environments/mask-sam3-py311-v1/.chaoyang-hardlink-snapshot/mask-sam3-import-closure-v1/MANIFEST.json",
+    "manifest_bytes": 1205364,
+    "manifest_sha256": "b01832ce239477cb9eb040816337f7c8b2f5574c5b00f0d4beefbdb645a940fd",
+    "tree_content_sha256": "dea1000d28a38a47bde548994c38453a946058099d95bb031d24640b02e08eea",
+    "files": 2073,
+    "logical_bytes": 231506446,
+    "distribution_records": 13,
+    "record_rows": 3551,
+    "copied_record_rows_size_and_sha_checked": 2073,
+    "console_scripts_excluded": 7,
+    "generated_bytecode_paths_excluded": 1471,
+    "generated_bytecode_creation_disabled": true,
+    "distribution_versions": {
+      "av": "16.1.0",
+      "dill": "0.3.8",
+      "ftfy": "6.3.1",
+      "google-auth": "2.47.0",
+      "google-genai": "1.59.0",
+      "nvidia-ml-py": "13.590.44",
+      "opentelemetry-api": "1.44.0",
+      "psutil": "7.2.1",
+      "pycocotools": "2.0.11",
+      "setuptools-pkg-resources-provenance": "65.5.1",
+      "simplejson": "3.20.2",
+      "timm": "1.0.24",
+      "wandb": "0.28.2"
+    },
+    "licenses": {
+      "license_files_copied": 11,
+      "nvidia_ml_py_metadata_license": "BSD",
+      "pycocotools_metadata_license": "FreeBSD",
+      "license_or_metadata_recorded_for_every_distribution": true
+    },
+    "known_constraint_difference": {
+      "upstream_pyproject": "ftfy==6.1.1",
+      "localized_actual_usr_local_version": "6.3.1",
+      "cpu_import_result": "PASS",
+      "policy": "Pin the actual validated source closure; GPU/checkpoint replay remains mandatory before GPU authority."
+    }
+  },
+  "capacity_execution": {
+    "status": "PASS_512M_HELD_AND_RELEASED",
+    "simultaneous_held_bytes_during_copy": 536870912,
+    "lease_count": 4,
+    "bytes_per_lease": 134217728,
+    "implementation": "Four nested calls to the unchanged run_held_command API; no hard-cap or global profile change.",
+    "pre_copy_validation": "All four authority creator PID/start identities, reservation inode/allocation/mode, and complete deterministic pattern readback SHA passed.",
+    "release_order": "stage3_to_stage0_inner_to_outer",
+    "live_authority_withdrawn_before_reservation_unlink": true,
+    "final_reservation_and_authority_paths_absent": true,
+    "chain_result": {
+      "path": "tasks/control/runs/20260903_mask_local_environment_v1/CAPACITY_CHAIN_RESULT.json",
+      "bytes": 2551,
+      "sha256": "db1f25c9bc14440f9d408a0c0553622d12b03d3cc7466f2a4df863dce0b61f11"
+    },
+    "release_receipt_sha256_by_stage": {
+      "0": "462d52b9493c03f62c4aeedd74f09178a0e0429a3039403cc735bcbbc0889daa",
+      "1": "d41c5d7ef8127bba7c99d2f0b1c550ee0ec23010ef6aea553444edb9b29e37cb",
+      "2": "396b6f73c44169a131c2511aba2936ac6b7e83a1feaec6be521ab323e52b4da0",
+      "3": "53905cd3c7cdf550b50ab4fd43d5f925d4182997b1dd900bb6ff3f1662fcbdb0"
+    }
+  },
+  "runtime": {
+    "python_version": "3.11.15",
+    "numpy_version": "1.26.4",
+    "torch_version": "2.5.1+cu121",
+    "torchvision_version": "0.20.1+cu121",
+    "torch_cuda_initialized_during_probe": false,
+    "cuda_visible_devices": "",
+    "canonical_builder_origin": "/mnt/workspace/code/chaoyang/third_party/SAM3/sam3/model_builder.py",
+    "loaded_file_origins_checked": 3262,
+    "loaded_origins_outside_project_or_environment": 0
+  },
+  "canonical_sam_pins": {
+    "runtime_contract": {
+      "path": "systems/mask/configs/sam31_runtime_source_v1.json",
+      "bytes": 1948,
+      "sha256": "ce100807728eda716c4d1535fee3264c24078238751622518af8442eb48927e4"
+    },
+    "system_manifest": {
+      "path": "systems/mask/system.manifest.json",
+      "bytes": 7697,
+      "sha256": "9bb8bdf3c930b034c16430f26077647bd9485d56081fdcddaa2d076a337bb0c2"
+    },
+    "model_builder": {
+      "path": "third_party/SAM3/sam3/model_builder.py",
+      "bytes": 42755,
+      "sha256": "d71d6d3e485ec3eae48bbc2ba676f401b5853d65c4195a91d077b04da38121c2"
+    },
+    "license": {
+      "path": "third_party/SAM3/LICENSE",
+      "bytes": 7353,
+      "sha256": "4dea99bfaa016e21bc860d73f344236bd1e5c4977d1a9a8fd32f822b500ae1be"
+    },
+    "checkpoint": {
+      "path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+      "bytes": 3502755717,
+      "existing_sha256_pin": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "same_inode_as_previously_hashed_source": true,
+      "content_rehashed_or_loaded_for_localization": false
+    }
+  },
+  "verification": {
+    "local_probe": {
+      "path": "tasks/control/runs/20260903_mask_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+      "bytes": 793418,
+      "sha256": "2fe63e3913b6e163f3250bde254b6e5569d001c2d2c7a325d090d30ff148ebad",
+      "status": "CPU_PASS_GPU_REPLAY_PENDING"
+    },
+    "overlay_full_readback": {
+      "path": "tasks/control/runs/20260903_mask_local_environment_v1/CLOSURE_VERIFY.json",
+      "bytes": 882,
+      "sha256": "42cd9320290b21fd50b20b4ea399bfa89d19f4102a6724eea00a861db5b7b0f0",
+      "status": "PASS"
+    },
+    "test_receipt": {
+      "path": "tasks/control/runs/20260903_mask_local_environment_v1/TEST_RECEIPT.json",
+      "bytes": 3875,
+      "sha256": "e933c234da4596ad326e2ffde63bb5fd3576a9fa2433686b3249fbfa9e4af033",
+      "status": "CPU_PASS_GPU_REPLAY_PENDING"
+    },
+    "v5_validate_only": "PASS_V5_ROOTCAUSE_CPU_PREFLIGHT",
+    "stable_v4_compat_fixture_tests": "PASS_29",
+    "stable_switch_read_only": "PASS_POST_SWITCH_NO_DEEP_WEIGHT_HASH"
+  },
+  "tools": {
+    "launcher": {
+      "path": "tools/mask_python.sh",
+      "bytes": 1981,
+      "sha256": "ee42a0284fc18370b32fa6e41e5f536961ecc287ca51a05c40d996f2ab5af08b"
+    },
+    "materializer": {
+      "path": "tools/materialize_mask_sam3_import_closure.py",
+      "bytes": 26614,
+      "sha256": "9a43e54d7b3bd110b2d453aecc97a71c2cf867c996ec0e210f03ca34e8999b53"
+    },
+    "capacity_chain": {
+      "path": "tools/run_mask_environment_capacity_chain.py",
+      "bytes": 10487,
+      "sha256": "172c6c58e716fec829dd8f49cef44cda1f2f076af950d76d7a0c3e13bb0572e5"
+    },
+    "verifier": {
+      "path": "tools/verify_mask_environment_migration.py",
+      "bytes": 20882,
+      "sha256": "4f1c23018f7b7d96f1c71e54f460f901cb282409c88c903a0ee59a88c002262a"
+    },
+    "snapshot": {
+      "path": "tools/no_clobber_hardlink_snapshot.py",
+      "sha256": "9ec43f2a1cd12d6d44c631f7902813b8f8148d6e0f4251b632810e6dbd1e541e"
+    },
+    "capacity": {
+      "path": "tools/project_capacity_reservation.py",
+      "sha256": "51570e2a18b965e9eccadba07de99d4a54f4b3cb31771e588041c61c539a87c8"
+    }
+  },
+  "rollback": {
+    "path": "systems/mask/local_environment_rollback.json",
+    "bytes": 3237,
+    "sha256": "3cfd97c19d5aca24c7c38899faadaaf8dd43b51ba2065b12cbfe6fe30cd6aa22",
+    "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE",
+    "executed": false
+  },
+  "historical_non_authority": {
+    "initial_plan_included_generated_bytecode": "tasks/control/runs/20260903_mask_local_environment_v1/CLOSURE_PLAN.json",
+    "initial_origin_probe_tmp_escape": "tasks/control/runs/20260903_mask_local_environment_v1/LOCAL_ENV_PROBE.json",
+    "policy": "Retained for audit; neither file is canonical authority."
+  },
+  "next_gate": "Run one bounded GPU/checkpoint replay under the central GPU lease using this launcher, compare against frozen reference outputs, and publish a successor authority only if bitwise/metric and loaded-origin gates pass."
+}

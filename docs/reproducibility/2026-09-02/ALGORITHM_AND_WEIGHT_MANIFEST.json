@@ -1,0 +1,974 @@
+{
+  "schema_version": "chaoyang-algorithm-weight-manifest-v1",
+  "sealed_at_local": "2026-09-02T01:32:01+08:00",
+  "last_incremental_update_local": "2026-09-02T13:36:54+08:00",
+  "project_root": "/mnt/workspace/code/chaoyang",
+  "status": "SEALED_WITH_EXPLICIT_HOLDS",
+  "policy": {
+    "missing_path_bytes_sha": "HOLD_MISSING_ARTIFACT_IDENTITY",
+    "digest_or_version_drift": "HOLD_INPUT_DRIFT_CREATE_NEW_LINEAGE",
+    "unknown_weight": "HOLD_MISSING_WEIGHT_DO_NOT_INVENT",
+    "historical_output_overwrite_allowed": false,
+    "weights_not_consumed": "represented by an explicit empty learned_weights array"
+  },
+  "license_registry": {
+    "SAM_LICENSE_LOCAL": {
+      "status": "RECORDED_SUBJECT_TO_LICENSE_TERMS",
+      "path": "/mnt/workspace/code/chaoyang/_run/sam31_mirror_authorized_ready_preflight_v1/sam31_mirror_smoke/staging/code/sam3/LICENSE",
+      "bytes": 7353,
+      "sha256": "4dea99bfaa016e21bc860d73f344236bd1e5c4977d1a9a8fd32f822b500ae1be",
+      "scope": "SAM code and trained model weights; redistribution must include and comply with this agreement"
+    },
+    "PROJECT_INTERNAL_LICENSE_HOLD": {
+      "status": "HOLD_MISSING_PROJECT_LEVEL_REDISTRIBUTION_LICENSE",
+      "evidence": "No project-level license was identified for these project-authored scripts in the sealed evidence set",
+      "scope": "workspace-internal reproduction only; no external redistribution inference"
+    },
+    "PHONE_DATA_LICENSE_HOLD": {
+      "status": "HOLD_MISSING_REDISTRIBUTION_LICENSE",
+      "evidence": "SOURCE_FREEZE records explicit user authorization for algorithm preparation only",
+      "scope": "phone baseline development use; not permission to redistribute or promote to PICO/formal data"
+    },
+    "ROBOT_ASSET_LICENSE_HOLD": {
+      "status": "HOLD_REDISTRIBUTION_RIGHTS_UNCONFIRMED",
+      "path": "/mnt/workspace/code/chaoyang/THIRD_PARTY_NOTICES.md",
+      "bytes": 1111,
+      "sha256": "1f8cee4102c896162156b9a3c07d8578dac866b6f7fbecceeb9491fdd2a8dac4",
+      "scope": "Tianji, KaiHand, flange, URDF, CAD and mesh assets are runtime-only until rights are confirmed"
+    },
+    "CAPTURE_DATA_LICENSE_HOLD": {
+      "status": "HOLD_MISSING_REDISTRIBUTION_LICENSE",
+      "evidence": "internal mounted egodata and derived sidecars; no redistribution license frozen in Robot evidence",
+      "scope": "internal diagnostic consumption only"
+    },
+    "GENERATED_DERIVATIVE_HOLD": {
+      "status": "HOLD_INHERITS_INPUT_AND_DEPENDENCY_RESTRICTIONS",
+      "scope": "generated evidence is workspace-internal unless all source, model and asset rights are cleared"
+    }
+  },
+  "systems": {
+    "mask_sam31": {
+      "status": "CHIPS_ASSISTED_FULL_PASS_POKER_TRACKER_HOLD_GENERIC_HISTORY_PRESERVED",
+      "generic": [
+        "pinned SAM3.1 model/code/compatibility adapter",
+        "same raw instance ID propagation without pixel repair",
+        "independent object and human streams",
+        "input, frame-0 selector, coverage, semantic, object-protection and artifact gates",
+        "separate human_core, sleeve_cuff and wrist_wearable raw-instance canary gates before propagation or union",
+        "offline nine-class left/right skin/sleeve/tracker plus task-object/uncertain/background annotation contract",
+        "v4 human text raw with fail-closed true bidirectional DIS intersection only at the unchanged 0.25x/4.0x gate",
+        "v4 independent wearable point raw, discarded protected-object priming ID, RAW DIS flow and deterministic 20-frame single-frame refresh",
+        "fixed IoU/centroid/area/cycle/edge/same-side/opposing-side/object-overlap gates with no color or morphology repair"
+      ],
+      "per_session_or_source": [
+        "source path/bytes/SHA/frame-count/display rotation",
+        "frame-0 prompt and anchor",
+        "pre-registered canary frames and semantic points",
+        "future labels and train/dev/blind splits must be frozen by whole session",
+        "v4 upper/lower frame-0 anchors and visible wearable role inventory",
+        "poker recovery labels: minimum 8 declared frames/16 tracker instances or robust 11 frames/22 tracker instances"
+      ],
+      "session_patches": [],
+      "replay_limit": "v4 replays require frozen decoded frame roots, protected object masks, byte-pinned anchors/protocol/runner/checkpoint, an ACQUIRED central GPU lease and a nonexistent fresh output root; source MOV to frame materializer is still not parameterized; chips PASS does not authorize poker or cross-task tracker consumption",
+      "historical_commands": [
+        "python3 tools/run_mask_wearable_semantic_rescue.py --root /mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3 --protocol /mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v1/PROTOCOL.json",
+        "/usr/local/bin/python3.11 tools/run_assisted_bilateral_flow_refresh.py --case chips --frame-root _run/newtask_baseline_mask_probe_20260901_v1/action_input_frames/chips --output-root _run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4 --frame-count 360 --fps 30",
+        "/usr/local/bin/python3.11 tools/run_assisted_bilateral_flow_refresh.py --case poker --frame-root _run/newtask_baseline_mask_probe_20260901_v1/action_input_frames/poker --output-root _run/gpt_mask_assisted_bilateral_flow_refresh_poker_20260902_v4 --frame-count 480 --fps 30"
+      ],
+      "v4_runtime": {
+        "python_executable": "/usr/local/bin/python3.11",
+        "python": "3.11.11",
+        "pytorch": "2.9.1+cu128",
+        "cuda_runtime": "12.8",
+        "numpy": "1.26.4",
+        "opencv": "4.11.0",
+        "pillow": "11.3.0",
+        "ffmpeg": "4.4.2-0ubuntu0.22.04.1",
+        "gpu": "NVIDIA H20",
+        "driver": "570.133.20",
+        "chips_peak_cuda_allocated_bytes": 26962155008,
+        "chips_peak_cuda_reserved_bytes": 30247223296,
+        "poker_peak_cuda_allocated_bytes": 28479868416,
+        "poker_peak_cuda_reserved_bytes": 31608274944
+      },
+      "learned_weights": [
+        {
+          "name": "sam3.1_multiplex.pt",
+          "path": "/mnt/workspace/code/chaoyang/_run/sam31_mirror_authorized_ready_preflight_v1/sam31_mirror_smoke/staging/model/sam3.1_multiplex.pt",
+          "bytes": 3502755717,
+          "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+          "provenance": {
+            "official_model_repository": "facebook/sam3.1",
+            "official_model_revision": "daa63191845a41281374e725f4c9e51c7a824460",
+            "mirror_repository": "Supbatomic/sam3-1-model",
+            "mirror_revision": "99cb53e9cb67e5660e6d19de43cec2ea14279401",
+            "official_code_repository": "https://github.com/facebookresearch/sam3.git",
+            "official_code_commit": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7"
+          },
+          "license_ref": "SAM_LICENSE_LOCAL",
+          "claim_scope": "phone-baseline development only; loaded by historical probes and assisted v4. Chips assisted full PASS does not authorize poker, blind, formal PICO or zero-click wearable PASS"
+        }
+      ],
+      "claim_scope": "historical object and neutral-prompt authorities remain unchanged. Assisted v4 chips is PASS_CANARY12_FULL_ARTIFACTS_EMITTED with four roles 360/360, exact role-OR-minus-object union, zero published object overlap and consumption_authorized=true. Byte-identical poker v4 is HOLD: human streams and lower cuff pass, upper tracker 17/23 and lower tracker 0/23 refresh; no full poker union and consumption_authorized=false. Assisted frame-0 registration only; no zero-click, blind, formal PICO or cross-task tracker-generalization claim"
+    },
+    "clean_l2_l3": {
+      "status": "L2_SOURCE_READY_L3_HOLD_HUMAN_SEMANTIC_CLOSURE_UNRESOLVED_CHIPS_FRAME0_HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT",
+      "generic": [
+        "same-MOV true-pixel temporal donor",
+        "human/object/fixture protection",
+        "per-pixel source_map and unsupported_mask",
+        "no inpaint, generated fill or cross-video donor",
+        "ORB homography remains a phone-development diagnostic and never becomes K/c2w authority",
+        "cross-camera whole-table static is PHONE_DEV diagnostic only; projective numeric safety never overrides duplicate-object, seam, warp or visible-residual gates"
+      ],
+      "per_session_or_source": [
+        "source MOV SHA and display orientation",
+        "target frames and donor bank",
+        "upstream human/object raw-mask result identities",
+        "formal route requires per-session K/c2w/table-plane/donor coverage",
+        "frame0 cross-camera diagnostics require a byte-pinned consumable Mask result, static atlas, independent correspondences, table polygon and protocol"
+      ],
+      "session_patches": [],
+      "learned_weights": [],
+      "upstream_weight_dependency": "Consumes frozen SAM3.1 raw masks but does not load or copy the checkpoint",
+      "historical_commands": [
+        "/cpfs_infra/user/chenxianchi/miniconda3/envs/humanego/bin/python tools/run_newtask_baseline_clean_l3.py --output _run/newtask_baseline_clean_l3_repro_v1",
+        "CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 python3 tools/build_clean_frame0_whole_table_bounded_final.py --output _run/newtask_clean_chips_frame0_whole_table_bounded_final_repro_v1"
+      ],
+      "frame0_successor": {
+        "status": "HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT",
+        "scope": "PHONE_DEV chips frame0 only",
+        "mask_input": "chips v4 consumption_authorized=true with 360/360 binary union masks",
+        "algorithm": "independent six-anchor robust affine A versus pole/condition constrained homography B; whole-table real static atlas; action objects and non-table protected byte-identically",
+        "promotion": "forbidden; visible frame0 gate failed; ten_frame_started=false and full_video_started=false",
+        "minimum_missing_input": "same-camera same-pose 2-3s clean plate, preferably exact object layout, or at least four independent table-perimeter correspondences distributed around the replacement polygon"
+      },
+      "claim_scope": "Historical L3: 10 phone-development target frames and 61202 byte-identical copied pixels, but human/wearable semantic policy HOLD remains. Chips successor: upstream bilateral Mask is authorized and frame0 hands are replaced, but cross-camera static duplicates objects and distorts table geometry; HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT, no 10-frame/full-video output, no formal CLEAN_RGB"
+    },
+    "robot_004_and_cross_session": {
+      "status": "004_MANO21_F345_F402_CPU_PASS_WINDOW_EXPANSION_PENDING_FULL460_HOLD_CROSS_SESSION_CORRECT_MANO_GATE_NOT_RUN",
+      "generic": [
+        "pinned robot assets and URDF limits",
+        "audited mirrored KaiHand-root mount, fixed home pair and robot_to_human mapping",
+        "six-seed IK, 10mm/5deg pose, 0.12 rad/frame velocity and 0.06 rad/frame2 acceleration gates",
+        "final_v3 MANO21 authority: wrist 0, tips 4/8/12/16/20, MCP 2/5/9/13/17 and palm basis wrist0/index5/middle9/pinky17",
+        "HumanEgo wrist5 is valid only after explicit mano_to_humanego_21 reorder",
+        "shape-only retarget compares four normalized palm-frame bone directions per finger; thumb is an independent six-joint solve; metric fingertip targets and Object6D reads are forbidden",
+        "correct human contact intent requires all-bone finite-Y-cylinder 3D proximity plus 2D projection adjacency",
+        "KaiHand gate uses the true nearest SDF over the correctly named finger-chain CAD visual surfaces, dense 2mm triangle sampling with minimum SDF >= -1mm and distinct-finger exact visual-triangle SAT",
+        "session-window initializer from the earliest 24 bilateral-valid frames using coordinatewise median position and proper chordal-mean orientation",
+        "one frozen T_world_rig per session followed by fixed six seeds, at most four anchors/backward tracks and second-order DP",
+        "bounded event rescue uses frozen first/event/last anchor banks and the same hard-gated second-order DP without base or threshold changes"
+      ],
+      "per_session_or_source": [
+        "each manifest, SLAM, R2 sidecar, Object6D sidecar, RGB/keyframe metadata, c2w, final_v3 array order and explicit adapter reorder",
+        "one T_world_rig derived only from that session's opening bilateral wrists and its own c2w",
+        "correct MANO contact-intent timeline is human-label evidence and is not a Robot physical-contact result",
+        "TrackerState and target validity remain upstream data gates"
+      ],
+      "session_patches": [],
+      "learned_weights": [],
+      "historical_commands": [
+        "/usr/local/bin/python3.11 /mnt/workspace/code/chaoyang/_run/robot_cross_session_window_initializer_dp_cpu_20260902_v1/run_window_init_dp.py",
+        "/usr/local/bin/python3.11 /mnt/workspace/code/chaoyang/_run/robot_cross_session_temporal_blocker_audit_cpu_20260902_v1/audit_temporal.py",
+        "/usr/local/bin/python3.11 /mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_cpu_20260902_v1/run_event_rescue.py",
+        "/usr/local/bin/python3.11 /mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_independent_qa_20260902_v1/run_independent_qa.py",
+        "/usr/local/bin/python3.11 /mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/run_gate.py",
+        "CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 python -m pytest -q -p no:cacheprovider tests/test_robot_wrist_kai_adapter.py tests/test_robot_contact_geometry.py"
+      ],
+      "replay_limit": "run_gate.py is bound to and writes its historical root; never rerun it in place. Copy the byte-pinned runner and PROTOCOL.json to a nonexistent fresh root without changing inputs/assets/thresholds. The regression command is safe and currently gives 30 passed.",
+      "mano21_contact_successor": {
+        "status": "PASS_F345_F402_CPU_READY_FOR_WINDOW_EXPANSION",
+        "scope": "004 human side 0 mapped to physical arm side 1; frames 345 and 402 only",
+        "root_correction": "9.9mm translation and 0deg rotation on both frames; initial translation exactly MANO wrist0",
+        "f345": "required thumb/index; closest SDF +1.499990/+1.499998mm; all-link dense minimum +0.510345mm",
+        "f402": "required thumb; closest and all-link dense minimum +0.620999mm",
+        "stage_boundary": "GPU calls 0, renderer calls 0, no 10-frame CAD/physical continuity, no new full460 and no correct-MANO 002/035/065 cross-session run"
+      },
+      "correct_mano_contact_timeline": {
+        "active_frames": 251,
+        "thumb_intervals": "90-152,186-192,232-254,283-300,317-438",
+        "index_intervals": "63-76,125-142,288,329-335,340-345,356-362,370-375",
+        "middle_intervals": "59-69",
+        "ring_and_pinky": "none",
+        "selected_raw_evidence_frames": [0, 59, 108, 143, 251, 331, 367, 402, 438, 459],
+        "claim_scope": "human required-finger intent labels only; not 251 Robot contact passes"
+      },
+      "revoked_authorities": {
+        "old_227_224_semantics": "robot_004_full460_visual_soft_depth_cycles contact_required=227 and hidden=224 are pixel occlusion under wrong labels, not contact, nonpenetration or grasp",
+        "wrong_joint5_or_points_first5_roots": [
+          "archive/legacy_runs/robot/robot_004_full460_collision_constrained_cpu_20260902_v1",
+          "_run/robot_004_full460_visual_soft_depth_cycles_20260902_v1",
+          "archive/legacy_runs/robot/robot_004_full460_visual_soft_depth_keyframes_cycles_20260902_v1",
+          "archive/legacy_runs/robot/robot_004_kaihand_contact_response_cpu_20260902_v1",
+          "archive/legacy_runs/robot/robot_004_kaihand_contact_rootcause_readonly_20260902_v1",
+          "archive/legacy_runs/robot/robot_anatomical_wrist_frame_adapter_cpu_20260902_v1",
+          "archive/legacy_runs/robot/robot_anatomical_wrist_kai_contact_gate_cpu_20260902_v1",
+          "archive/legacy_runs/robot/robot_global_wrist_kai_adapter_cpu_20260902_v1",
+          "archive/legacy_runs/robot/robot_global_wrist_kai_session_initializer_cpu_20260902_v1",
+          "archive/legacy_runs/robot/robot_global_wrist_kai_session_initializer_cpu_20260902_v2"
+        ],
+        "forbidden_claims": "root, palm, tip, contact and grasp authority"
+      },
+      "asset_license_ref": "ROBOT_ASSET_LICENSE_HOLD",
+      "data_license_ref": "CAPTURE_DATA_LICENSE_HOLD",
+      "claim_scope": "Current correct hand authority is only 004 f345/f402 single-side bounded CPU PASS. The correct human-intent timeline is label evidence only. No 10-frame CAD/physical continuity, new full460 scene/video, GPU/render, bilateral, grasp or correct-MANO cross-session claim. Older 004 window renders remain arm/posture visual evidence only. Cross-session pose/limits/temporal downstream results remain bounded diagnostics, but their older contact proxy is not the new MANO21/KaiHand physical gate; TrackerState and formal/full-video holds remain. All joint5-root and points[:5] authorities plus the old 227/224 grasp semantics are revoked."
+    },
+    "newtask_contract_v2_2": {
+      "status": "COMPLETE_FULL_DECODED_FILE_AUTHORITY",
+      "generic": [
+        "fail-closed measurement/registry/timeline schemas",
+        "Pillow 11.3.0 verify plus full-load from SHA-bound bytes",
+        "object type firewall and manual same-frame review requirement"
+      ],
+      "per_session_or_source": [
+        "formal measurement evidence path/bytes/SHA/provenance and decoded metadata",
+        "manual ruler-or-caliper plus correct-object same-frame review"
+      ],
+      "session_patches": [],
+      "learned_weights": [],
+      "claim_scope": "decoded-file authority only; machine does not claim scene-content review"
+    },
+    "newtask_geometry_v2": {
+      "status": "COMPLETE_APPROX_GEOMETRY_FORMAL_PICO_PENDING",
+      "generic": [
+        "CARD_THIN_BOX, RACK_BOX, CHIP_SADDLE and BOWL_REVOLVE geometry adapters",
+        "separate visual/collision assets",
+        "positive ordered 2x optical-Z depth and state-aware protect proposal"
+      ],
+      "per_session_or_source": [
+        "validated measurement/registry/timeline",
+        "formal route requires real PICO intrinsics, poses, timestamps and measurement photos"
+      ],
+      "session_patches": [],
+      "learned_weights": [],
+      "claim_scope": "development synthetic approximate geometry only; no phone pixel-to-metre inference and no formal PICO metric/pose authority"
+    }
+  },
+  "algorithm_artifacts": [
+    {
+      "id": "task_plan_v2",
+      "path": "/mnt/workspace/code/chaoyang/NEW_TASK_POKER_CHIPS_COMPLETION_FIRST_V2.md",
+      "bytes": 24963,
+      "sha256": "7c9e85b14a4e88098006a99715e69f7251908acda424579990a4b8f23b48b578",
+      "provenance": "project task contract provided before formal data arrival",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "execution plan, not result evidence"
+    },
+    {
+      "id": "mask_static_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/run_newtask_baseline_sam31_mask_probe.py",
+      "bytes": 23459,
+      "sha256": "41e4a5d183fc89b2b03c960fa875a7717ff1d0dbfdba279d0e885ae26410455e",
+      "provenance": "project-authored pinned SAM3.1 static phone-development runner",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "static puke/shupian development probes"
+    },
+    {
+      "id": "mask_action_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/run_newtask_baseline_sam31_action_probe.py",
+      "bytes": 23425,
+      "sha256": "ebf720f12dcc90bf49027e087dd8ba7f230f835794a1e10a93bc893a611c560d",
+      "provenance": "project-authored pinned SAM3.1 action runner",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "phone-development chips/poker object and human streams"
+    },
+    {
+      "id": "mask_poker_human_continuation_v2_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/run_newtask_baseline_sam31_poker_human_continuation.py",
+      "bytes": 4103,
+      "sha256": "66a1dc898ba652a5bdbd980c59fe3a29caa99c9b0c0811f6a2bff5a121fd0a74",
+      "provenance": "fresh continuation successor after import-preflight failure and safe interruption",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "only missing poker-human chain; semantic result remains HOLD"
+    },
+    {
+      "id": "mask_wearable_semantic_rescue_live_repaired_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/run_mask_wearable_semantic_rescue.py",
+      "bytes": 22006,
+      "sha256": "a23bf1df26dea7413031f8977b34a54c35ab8e9d69f26d70fd56d84f0dd591ed",
+      "provenance": "live runner after one-token reproduction-only false-to-False repair; executed v3 SHA was 6971e9a612746c3221953f974fe0cf1f9d7c96a92fa40ecd42ca658809a6e3fb and is pinned in POSTRUN_RUNNER_REPAIR.json",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "fresh-root replay of frozen neutral-prompt canaries only; no semantic promotion"
+    },
+    {
+      "id": "mask_assisted_bilateral_flow_refresh_v4_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/run_assisted_bilateral_flow_refresh.py",
+      "bytes": 39745,
+      "sha256": "65cb00ffaa0d6c36fd8fea6a7c5448abcf3083f738fe5c1d5d3ca37bb969a774",
+      "provenance": "project-authored assisted bilateral SAM3.1 plus deterministic RAW DIS flow-refresh producer; executed unchanged for chips and poker v4",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "chips phone-development full PASS and poker HOLD under one frozen protocol; requires frame-0 assisted wearable registration"
+    },
+    {
+      "id": "mask_assisted_bilateral_flow_refresh_v4_protocol",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/FLOW_REFRESH_PROTOCOL_V4.json",
+      "bytes": 3501,
+      "sha256": "ab52ed204cb5221a72df62db8b0cbf5759f71399c6d9191efac9639a734d57bd",
+      "provenance": "frozen before chips v4 canary; reused byte-identically for poker",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "fixed algorithm/gates only; does not convert a HOLD result into PASS"
+    },
+    {
+      "id": "mask_offline_nine_class_annotator_portable",
+      "path": "/mnt/workspace/code/chaoyang/tools/offline_mask_annotator_portable_v1.zip",
+      "bytes": 38421,
+      "sha256": "a66641e75a9b264f021ff62cb47155ba3453e2015dcfc2560663e19a953f780d",
+      "provenance": "portable offline polygon/brush annotator with nine-class schema and synthetic unit/end-to-end/HTTP smoke",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "annotation tool readiness only; no real label authority, trainer or learned weight"
+    },
+    {
+      "id": "sam31_compat_adapter",
+      "path": "/mnt/workspace/code/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+      "bytes": 25496,
+      "sha256": "e776ce1551834f684ed55bcc6bc835538efbf1a3f0319ddbf56620ad3491aa4b",
+      "provenance": "project compatibility layer for official SAM3.1 snapshot",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "adapter only; underlying SAM materials remain under SAM License"
+    },
+    {
+      "id": "clean_l2_probe",
+      "path": "/mnt/workspace/code/chaoyang/tools/probe_baseline_clean_sources.py",
+      "bytes": 14087,
+      "sha256": "e1b2041cae575988138d9b48742769fd10e6e06ec168da70598302392efbe380",
+      "provenance": "project CPU source-readiness probe",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "L2 identity/decode/registration/photometry/coverage only"
+    },
+    {
+      "id": "clean_l3_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/run_newtask_baseline_clean_l3.py",
+      "bytes": 46528,
+      "sha256": "ede2f5b0bd43e402077be55e60586cdec2358757bf83c4515d3411e5c3ad3a32",
+      "provenance": "project CPU deterministic same-MOV donor diagnostic runner",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "phone-development L3; no formal Clean consumer"
+    },
+    {
+      "id": "clean_chips_frame0_whole_table_bounded_final_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/build_clean_frame0_whole_table_bounded_final.py",
+      "bytes": 19959,
+      "sha256": "4a4382cc2e9833755b46f579500d7e8db1294381d10bafebca12f8193fa9247e",
+      "provenance": "project CPU-only frozen frame0 bounded whole-table affine versus constrained-homography diagnostic producer",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "PHONE_DEV chips frame0 only; no learning weights; visible gate HOLD; 10-frame/full promotion forbidden"
+    },
+    {
+      "id": "robot_wrist_kai_adapter",
+      "path": "/mnt/workspace/code/chaoyang/pipeline/robot_wrist_kai_adapter.py",
+      "bytes": 17859,
+      "sha256": "14f8b1897536847e7c2e5e97e3ad54a37a45e3076ccd9c03913a385e253f97b0",
+      "provenance": "project MANO21 order, palm-basis and KaiHand shape-retarget adapter under the corrected authority",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "correct wrist0/tip/MCP ordering and shape-only retarget utilities; not a full trajectory producer"
+    },
+    {
+      "id": "robot_wrist_kai_adapter_tests",
+      "path": "/mnt/workspace/code/chaoyang/tests/test_robot_wrist_kai_adapter.py",
+      "bytes": 8952,
+      "sha256": "218337d149dca733fbe6b1817de00e4f61ee3e72817db594b346606e0b07dc85",
+      "provenance": "project regression tests for MANO21 order, explicit HumanEgo reorder and KaiHand retarget behavior",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "part of the combined 30-test CPU regression; test pass is not a Robot trajectory claim"
+    },
+    {
+      "id": "robot_contact_geometry",
+      "path": "/mnt/workspace/code/chaoyang/pipeline/robot_contact_geometry.py",
+      "bytes": 11963,
+      "sha256": "a4b86485e59f09eb9c1d3f4724b376e32e7146f69d5d6f339208e210081bcfb1",
+      "provenance": "project finite-Y-cylinder SDF, deterministic visual-triangle sampling and exact SAT contact geometry",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "geometry primitives and gates only; deployed pair semantics remain pinned separately"
+    },
+    {
+      "id": "robot_contact_geometry_tests",
+      "path": "/mnt/workspace/code/chaoyang/tests/test_robot_contact_geometry.py",
+      "bytes": 6321,
+      "sha256": "5aff24949a131ca5c7b62f3738cf25ef1c922da49f74eb0154f7a92314fbcc29",
+      "provenance": "project regression tests for SDF, dense sampling, degeneracy filtering and exact SAT",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "part of the combined 30-test CPU regression; no scene/video claim"
+    },
+    {
+      "id": "robot_004_mano21_kai_contact_gate_protocol",
+      "path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/PROTOCOL.json",
+      "bytes": 2366,
+      "sha256": "894d4bd1112fe859a7f9cfc2e2193ebf65b112bfe5c467034c084a26ac9dacae",
+      "provenance": "frozen-before-execution 004 f345/f402 MANO21/KaiHand CPU gate protocol",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "two frames, one mapped physical hand, CPU only; no window/full/cross-session promotion"
+    },
+    {
+      "id": "robot_004_mano21_kai_contact_gate_runner",
+      "path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/run_gate.py",
+      "bytes": 43178,
+      "sha256": "3bd0bd56efd0d3abd9235617952aeece9b74e528d89540a0a45093f4201c513e",
+      "provenance": "frozen CPU-only f345/f402 producer using corrected order, shape retarget, contact, dense nonpenetration and self-collision gates",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "historical root-bound runner; do not rerun in place; result only authorizes CPU window expansion"
+    },
+    {
+      "id": "robot_004_event_dp_runner",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_bilateral_bidirectional_event_dp_cpu_20260901_v1/run_event_dp.py",
+      "bytes": 20314,
+      "sha256": "ad7f55cddb2cc2703d8192b86936830b31e936f08a1adadb19e788d92afe9229",
+      "provenance": "frozen finite branch-bank, backward-continuation and second-order DP producer",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "004 bounded event windows only"
+    },
+    {
+      "id": "robot_cycles_preview_runner",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_event_windows_cycles_preview_20260902_v1/render_event_preview_cycles.py",
+      "bytes": 4445,
+      "sha256": "9bd1f14ee70ad6dad03ea227337ff60ae3ecb744618b19394041b94c03c61dd8",
+      "provenance": "fresh Cycles/OPTIX successor to failed EGL/GLX EEVEE preview",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "42-frame review visualization, not numerical authority"
+    },
+    {
+      "id": "robot_cross_session_runner",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_keyframes_cpu_20260902_v1/run_cross_session.py",
+      "bytes": 22278,
+      "sha256": "42b2f15b709af59694c5247ca746673304219dc9bcdf07a8db1fdafa638d0bb3",
+      "provenance": "frozen non-blind 002/068/139 CPU diagnostic producer",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "cross-session diagnostic only; source contact aggregate superseded"
+    },
+    {
+      "id": "robot_contact_successor_audit",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_contact_audit_cpu_20260902_v1/audit_contact.py",
+      "bytes": 7103,
+      "sha256": "f71d86db3af6f6c483213de8b4345bfe8a35802c3f2a0d43824650a79dc5fe5c",
+      "provenance": "immutable successor correcting only source contact aggregation",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "corrected contact proxy gate; overall cross-session remains HOLD"
+    },
+    {
+      "id": "robot_cross_session_window_initializer_runner",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_window_initializer_dp_cpu_20260902_v1/run_window_init_dp.py",
+      "bytes": 29522,
+      "sha256": "7145eede6e9a4fea8af72f77e9886bfd14782c1b4cf0b8095e428a54458f4c68",
+      "provenance": "frozen CPU successor implementing one opening-window initializer per session and fixed downstream DP",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "non-blind cross-session window diagnostic only; no sealed/full-video/grasp claim"
+    },
+    {
+      "id": "robot_cross_session_temporal_audit_runner",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_temporal_blocker_audit_cpu_20260902_v1/audit_temporal.py",
+      "bytes": 11356,
+      "sha256": "93d3fb7933b5296877ca9507cf1ee2ad83dae589c184605f217599a22232899e",
+      "provenance": "frozen CPU audit of the first temporal failure with original thresholds, seeds, base and inputs",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "068 and 139 temporal blocker diagnosis; source HOLD preserved"
+    },
+    {
+      "id": "robot_cross_session_event_rescue_runner",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_cpu_20260902_v1/run_event_rescue.py",
+      "bytes": 24706,
+      "sha256": "53e40d5f999a84015817266796f6101231f5bb35f8d112284599f2cda24405c2",
+      "provenance": "frozen CPU-only first/event/last multi-branch bidirectional rescue with unchanged predecessor gates",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "three bounded non-blind 12-frame downstream windows; TrackerState holds and no-grasp scope preserved"
+    },
+    {
+      "id": "robot_cross_session_event_rescue_independent_qa_runner",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_independent_qa_20260902_v1/run_independent_qa.py",
+      "bytes": 17475,
+      "sha256": "f66fe6508d669d321fab90d41b735d5748888818ae12dab5e67c4aeb3f4669f0",
+      "provenance": "independent read-only recomputation from pinned predecessor/rescue JSON and NPZ plus pinned URDF limits",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "88-check verification of transform, gate, q, pose, limits, tracker, contact-denominator and CPU-only claims"
+    },
+    {
+      "id": "newtask_object_firewall",
+      "path": "/mnt/workspace/code/chaoyang/pipeline/newtask_object_firewall.py",
+      "bytes": 30965,
+      "sha256": "f9c2aeb96e9f7366dc0a645246c65e78b3bf0cf976b6c945c5a8f852d8c4a128",
+      "provenance": "contract v2.2 successor closing signature-only R1",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "decoded-file and schema authority; manual scene review remains required"
+    },
+    {
+      "id": "newtask_parametric_geometry",
+      "path": "/mnt/workspace/code/chaoyang/pipeline/newtask_parametric_geometry.py",
+      "bytes": 30119,
+      "sha256": "340bbe438dc2c0605db9ff1617805f4d6a14160420da9b797f5b706e6563e4d9",
+      "provenance": "project new-task geometry adapter v2",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "synthetic approximate development geometry only"
+    },
+    {
+      "id": "newtask_geometry_runner",
+      "path": "/mnt/workspace/code/chaoyang/tools/run_newtask_geometry_prep_v2.py",
+      "bytes": 34447,
+      "sha256": "6d74351d1d37f3ebf745b9917e12bc709a8f3d90def620eaa96ed04220f80f6d",
+      "provenance": "CPU deterministic geometry/depth/protect producer",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "development pack only; formal PICO inputs pending"
+    }
+  ],
+  "authority_artifacts": [
+    {
+      "id": "mask_generalization_matrix",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_mask_probe_20260901_v1/GENERALIZATION_MATRIX.md",
+      "bytes": 9396,
+      "sha256": "e742681ab730c0b0c117e2c712fc85ecf511dcae112d5f0f55a9df394b4faa47",
+      "provenance": "sealed integration of static/action phone probes and frozen non-blind 10-session diagnostic",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "development diagnostics; object PASS, human/wearable HOLD"
+    },
+    {
+      "id": "mask_source_freeze",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_mask_probe_20260901_v1/SOURCE_FREEZE.json",
+      "bytes": 4964,
+      "sha256": "25a9938a42fbdc889531d4376ca770e9642f3b4e01771b44c815b58b89041e74",
+      "provenance": "six user-authorized baseline_background inputs frozen before inference",
+      "license_ref": "PHONE_DATA_LICENSE_HOLD",
+      "claim_scope": "algorithm-preparation source identity only"
+    },
+    {
+      "id": "mask_assisted_bilateral_frame0_anchors",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/FRAME0_ANCHORS.json",
+      "bytes": 2015,
+      "sha256": "028b6b2e1d0e309d4688addf43fc150bbf42e8d7237d9bf814b539860d4762e6",
+      "provenance": "source-specific natural-display upper/lower human, tracker, cuff and protected-object registration points",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "assisted source registration; not generic parameters, labels or zero-click authority"
+    },
+    {
+      "id": "mask_assisted_bilateral_chips_v4_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/RESULT.json",
+      "bytes": 863325,
+      "sha256": "c54f786a72a0ebcd3c43ab5d750a74ae176bfc9edda81a4f653491e22e77142a",
+      "provenance": "machine result from frozen v4 producer/protocol over 360 decoded chips action frames",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "PASS_CANARY12_FULL_ARTIFACTS_EMITTED; chips phone-development only; consumption_authorized=true"
+    },
+    {
+      "id": "mask_assisted_bilateral_chips_v4_final_qa",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/FINAL_QA.md",
+      "bytes": 1445,
+      "sha256": "afbd11cffab1e6b36de0acf6e5b80ce2c0dff2b661dc51ab8d9f51430a7119e8",
+      "provenance": "post-run inventory, binary-value, role-to-union, anchor, object-overlap and full-video decode audit",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "chips v4 artifact integrity and exact union audit; downstream Clean donor/unsupported remains separate"
+    },
+    {
+      "id": "mask_assisted_bilateral_poker_v4_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_poker_20260902_v4/RESULT.json",
+      "bytes": 1647300,
+      "sha256": "d25203ad71eef2a802372d4a008f5573500c486a2236cec55d20e53f33f05b67",
+      "provenance": "machine result from byte-identical v4 producer/protocol over 480 decoded poker action frames",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "HOLD_CANARY12_NO_FULL_ARTIFACT_PROMOTION; no full union; consumption_authorized=false"
+    },
+    {
+      "id": "mask_assisted_bilateral_v4_generalization_matrix",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/GENERALIZATION_MATRIX_V4.md",
+      "bytes": 1806,
+      "sha256": "59bc864979cb5307e315841fed71b967494a6650b188a1c9a54763ca0e165088",
+      "provenance": "chips PASS versus poker HOLD scope matrix under byte-identical v4 parameters",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "human transfers across two phone videos; end-to-end tracker transfer not proven"
+    },
+    {
+      "id": "mask_assisted_bilateral_poker_offline_label_plan",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/POKER_OFFLINE_LABEL_PLAN.md",
+      "bytes": 2058,
+      "sha256": "f583cb4dd3b408058c96d1ffb6cd341693ba5a6ada110d35bb7753b0306e101d",
+      "provenance": "evidence-led recovery plan derived from frozen poker v4 rejected refresh and flow intervals",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "annotation plan only; 8-frame minimum and 11-frame robust recommendation are not completed labels"
+    },
+    {
+      "id": "mask_wearable_semantic_rescue_report",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3/REPORT.md",
+      "bytes": 3659,
+      "sha256": "b748634918b278e09b0f6663bd0ec1495ac143520ae4248a53aea39fc5083515",
+      "provenance": "sealed human/sleeve/tracker neutral-prompt canary and nonblind smoke report",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "HOLD_GENERIC_MODEL_CLASS_INSTANCE_UNSTABLE_NO_FULL_PROPAGATION; object masks untouched"
+    },
+    {
+      "id": "mask_wearable_semantic_rescue_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3/RESULT.json",
+      "bytes": 4406,
+      "sha256": "3ae8477071a7fc0d3158ca0b3e782b18fd467b402be54513c18245359310a7f6",
+      "provenance": "machine canary counts, smoke firewall, resource replay and execution pins",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "development semantic capability diagnosis only; no propagation, union, production Mask, Clean donor or generalization PASS"
+    },
+    {
+      "id": "mask_wearable_label_training_interface_status",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3/LABEL_TRAINING_INTERFACE_STATUS.md",
+      "bytes": 3833,
+      "sha256": "66668da6918746a71eea4a47320c3cdd19a56ddbcb78ebb70fc43ac0ca003609",
+      "provenance": "nine-class annotation, dataset admission, training consumer and model-output contract",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "tool ready; multi-session label authority, production trainer and resulting weights remain HOLD"
+    },
+    {
+      "id": "clean_l2_report",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_20260901_233238/REPORT.md",
+      "bytes": 7336,
+      "sha256": "02701ff12c8b1fa300de6871bdee2e26bf9882d87988d5a4b750f505288ad0c5",
+      "provenance": "CPU L2 source-readiness run over six frozen phone inputs",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "route/source readiness; no CLEAN_RGB"
+    },
+    {
+      "id": "clean_l2_machine_readiness",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_20260901_233238/READINESS.json",
+      "bytes": 2487,
+      "sha256": "bf0a58ca508f1431fc34ace9bf47f08c4200e4cd158b58249bf68460fe9762aa",
+      "provenance": "machine-readable L2 terminal summary",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "fixed route algorithm-ready/input-not-formal; moving route missing K/c2w"
+    },
+    {
+      "id": "clean_l3_report",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/REPORT.md",
+      "bytes": 2365,
+      "sha256": "ad073bd4c4181ca8629d4ae72ae1d9e989484e66631fd6103702f8190cc0de37",
+      "provenance": "CPU same-MOV donor run over 5 chips and 5 poker target frames",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "artifact integrity PASS, policy HOLD retained; phone diagnostic only"
+    },
+    {
+      "id": "clean_l3_validation",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/VALIDATION.json",
+      "bytes": 3153,
+      "sha256": "37137eb9e08082a37b7b5dce1c12f8c701d7737582921c790c953faa0370bc5a",
+      "provenance": "per-target source-map/unsupported and video full-decode validator",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "10 target frames, 61202 copied pixels byte-identical, cross-video donor=0, semantic missing points never filled"
+    },
+    {
+      "id": "clean_l3_machine_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/RUN.json",
+      "bytes": 169027,
+      "sha256": "d367594161f81bf19c76ba3c4af5ea066919bfc7d20945eeed4c5c122164f6ac",
+      "provenance": "sealed machine-readable L3 run result",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "HOLD_HUMAN_SEMANTIC_CLOSURE_UNRESOLVED; PHONE_DIAGNOSTIC_ONLY"
+    },
+    {
+      "id": "clean_l3_checksums",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/SHA256SUMS",
+      "bytes": 10650,
+      "sha256": "78e154eb91ac5b928a0ae6013208defe37693415e8a538dc751a25b861f3baa4",
+      "provenance": "sealed 108-entry L3 artifact checksum list; sha256sum -c passed",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "artifact identity only"
+    },
+    {
+      "id": "clean_l3_contact_sheet",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/L3_POKER_CHIPS_CONTACT.png",
+      "bytes": 1666569,
+      "sha256": "87470a8271e6b8aae78ecd5aad56d31bf7f7d61700d855f670880eb13a03030e",
+      "provenance": "combined visual review of sealed L3 phone-development outputs",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "visual diagnostic only"
+    },
+    {
+      "id": "clean_chips_frame0_bounded_final_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/RESULTS.json",
+      "bytes": 8424,
+      "sha256": "81f4656978b911e3ae76029f0e07d5e013b046f93c84115d423c251f6af86f52",
+      "provenance": "machine-readable terminal frame0 candidates, geometry residuals, protection metrics and visual stop decision",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT; PHONE_DEV chips frame0 only; no 10-frame/full-video/formal Clean claim"
+    },
+    {
+      "id": "clean_chips_frame0_bounded_final_protocol",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/PROTOCOL.json",
+      "bytes": 2529,
+      "sha256": "bd5652644f09246ad1cf51b1592fb9f761aded3911c8b7d8b830fb7b88060888",
+      "provenance": "protocol frozen before execution with source pins, six independent correspondences, safety gates and stop rule",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "frame0 diagnostic protocol identity; does not authorize promotion"
+    },
+    {
+      "id": "clean_chips_frame0_bounded_final_review",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/FRAME0_BOUNDED_WHOLE_TABLE_A_B.png",
+      "bytes": 375275,
+      "sha256": "9d8076cfa8010ebd68b0af8f6a0cad7b202276a31a49635ec1f8ee35ef4752dc",
+      "provenance": "terminal side-by-side visual evidence for robust affine A and constrained homography B",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "visual duplicate-object and projective-distortion HOLD; frame0 only"
+    },
+    {
+      "id": "clean_chips_frame0_independent_anchors",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/INDEPENDENT_ANCHORS.png",
+      "bytes": 225027,
+      "sha256": "49cb7f65ca1f9abdba528ae62e20572c27b46720980712ce159af18718623d2f",
+      "provenance": "visual audit of six independently measured static/action anchor correspondences; no prior-H backprojection",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "PHONE_DEV geometry evidence only; residuals remain too large for Clean promotion"
+    },
+    {
+      "id": "robot_final_v3_mano_order_authority",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_final_v3_mano_order_authority_cpu_20260902_v1/ORDER_AUTHORITY_AUDIT.json",
+      "bytes": 40130,
+      "sha256": "ab6a280589a26c34e3c1c3e495911e00e26c66055b8199fb47fa1e128a7c29c1",
+      "provenance": "CPU order audit over 864 R2/final_v3 checkpoints and one explicit HumanEgo adapter comparison",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "authoritative final_v3 MANO21 wrist0/tips/MCP order; restores R2 joint0 root and revokes joint5-on-NPZ claims"
+    },
+    {
+      "id": "robot_004_mano21_artifact_process_audit",
+      "path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/ARTIFACT_PROCESS_AUDIT.json",
+      "bytes": 6235,
+      "sha256": "1cd0628891cadc6301b44cc2cb6e42f9cfba75766a5b0ebe20517857ea70256a",
+      "provenance": "read-only input, revoked-root, deployed self-collision pair and process-call audit",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "revokes ten wrong-order roots and records GPU/renderer zero; not a trajectory result"
+    },
+    {
+      "id": "robot_004_mano21_contact_intent_audit",
+      "path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/CONTACT_INTENT_AUDIT.json",
+      "bytes": 5818,
+      "sha256": "0faf84c9477670a9b4011f4174aaf9bcfa09d7c4b63b7b223034d39ffca036e8",
+      "provenance": "correct MANO all-bone 3D plus 2D projected-cylinder contact-intent evidence for f345/f402",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "human required-finger intent for two frames only; does not itself prove KaiHand contact"
+    },
+    {
+      "id": "robot_004_mano21_kai_contact_gate_result",
+      "path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/RESULTS.json",
+      "bytes": 31909,
+      "sha256": "01f792ccae11fd379ae6cb0379b7ce107f0b6e6500ea360938e92c7a59fd98c7",
+      "provenance": "terminal f345/f402 CPU arm, limits, correct-finger contact, dense full-visual nonpenetration and exact SAT result",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "PASS_F345_F402_CPU_READY_FOR_WINDOW_EXPANSION; one mapped physical side, two frames; no render/window/full/cross-session/grasp claim"
+    },
+    {
+      "id": "robot_004_mano21_kai_contact_gate_keyframes",
+      "path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/KEYFRAMES_CPU.npz",
+      "bytes": 2493,
+      "sha256": "d6f944d4af8c987591f2441dac87596f60b1510675304a185c33310b24c40554",
+      "provenance": "compressed f345/f402 q_arm, q_hand, target/corrected/actual roots and root delta arrays",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "two CPU keyframes only; machine RESULTS remains verdict authority"
+    },
+    {
+      "id": "robot_004_correct_mano21_contact_timeline",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_mano21_contact_timeline_cpu_20260902_v1/CONTACT_TIMELINE.json",
+      "bytes": 1468150,
+      "sha256": "258f32b5fd6e8a3cf804633bdbcba4ee3eb4d9d2776678cc72079b335a7c7ae2",
+      "provenance": "CPU audit of correct MANO21 human required-finger intent over all 460 frames",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "251 human-intent active frames and intervals; not Robot physical contact or full460 solution"
+    },
+    {
+      "id": "robot_004_correct_mano21_label_timeline_visual",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_mano21_contact_timeline_cpu_20260902_v1/CORRECT_LABEL_TIMELINE.png",
+      "bytes": 27665,
+      "sha256": "3b1fb1590cd3096b39df0858f526bc7c3a4f27c904b6330fbf2a9d7d58cc6a9f",
+      "provenance": "compact visualization of correct MANO21 human-intent intervals",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "label timeline visualization only; no Robot contact pass"
+    },
+    {
+      "id": "robot_004_correct_mano21_ten_frame_raw_evidence",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_mano21_contact_timeline_cpu_20260902_v1/TEN_FRAME_CPU_CONTACT_SHEET.png",
+      "bytes": 2245691,
+      "sha256": "ae94fdb33b6b97113d821af1d7511793b7af788f5c687389126ba6d805eb6119",
+      "provenance": "ten selected raw-frame overlays for correct MANO human-intent label review",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "raw human-label evidence at frames 0/59/108/143/251/331/367/402/438/459; not ten Robot CAD/contact solutions"
+    },
+    {
+      "id": "robot_004_event_dp_report",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_bilateral_bidirectional_event_dp_cpu_20260901_v1/REPORT.md",
+      "bytes": 1216,
+      "sha256": "4969eef9f7297ee478f1dbeb88a07946339985f9d10a7057d62750ac98d71363",
+      "provenance": "CPU bilateral bounded-window solver verdict",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "f155..175 and f205..225 only; no contact or outside-window claim"
+    },
+    {
+      "id": "robot_004_window_terminal",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_event_windows_cycles_preview_20260902_v1/render/TERMINAL_QA.json",
+      "bytes": 2027,
+      "sha256": "b26932c3b5424433dbd1773dd79f0f4429f259e8f08d91a57601e19bf2da1062",
+      "provenance": "Cycles/OPTIX successor render terminal QA",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "42-frame preview PASS; f176..204 cut; full460 pending"
+    },
+    {
+      "id": "robot_004_window_overlay",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_event_windows_cycles_preview_20260902_v1/render/ROBOT_004_WINDOW_PASS_OVERLAY.mp4",
+      "bytes": 280266,
+      "sha256": "17dcd5e6d95ceb7883e61ed9ca860d8a529ba0e9a9112cc6b7554a7687c61cc5",
+      "provenance": "Cycles/OPTIX 4spp overlay encoded H264/yuv420p 640x480 30fps 42 frames",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "review video for two event windows only"
+    },
+    {
+      "id": "robot_cross_session_index",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_keyframes_cpu_20260902_v1/INDEX.md",
+      "bytes": 4976,
+      "sha256": "afe89a77d70389809fb344f2ee25daf5f433dd3ebfc059d18e36c95ec475e1c1",
+      "provenance": "sealed Robot cross-session entry including corrected contact addendum",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "non-blind diagnostic HOLD; 002/139 corrected contact PASS, 068 HOLD"
+    },
+    {
+      "id": "robot_cross_session_machine_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_keyframes_cpu_20260902_v1/RESULTS.json",
+      "bytes": 119856,
+      "sha256": "37e13412200cf39f387cfede8bbd2ceceb7e2185b93cb6f6658ef91a8db1cb25",
+      "provenance": "source CPU result with complete global/session input pins; contact aggregate superseded",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "use for poses/limits/temporal/bend/input provenance, not final contact aggregate"
+    },
+    {
+      "id": "robot_contact_audit_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_contact_audit_cpu_20260902_v1/CONTACT_AUDIT_RESULTS.json",
+      "bytes": 29536,
+      "sha256": "362c34e9f56b152dc5bae3d57a084cd5db89a0fa786c12843a3d04c5cc5b7fef",
+      "provenance": "successor recomputation of 54 contact rows without changing q/poses/inputs/thresholds",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "corrected contact proxy only; not a grasp proof"
+    },
+    {
+      "id": "robot_cross_session_window_initializer_index",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_window_initializer_dp_cpu_20260902_v1/INDEX.md",
+      "bytes": 1023,
+      "sha256": "a679aa3b564e0f86535f1d77a3fb086858356a5490b2c86e0e3574803816b0ad",
+      "provenance": "sealed entrypoint for the one-base-per-session window initializer successor",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "overall HOLD; 002 data and downstream PASS; 035/065 downstream-only PASS; 068/139 temporal blockers"
+    },
+    {
+      "id": "robot_cross_session_window_initializer_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_window_initializer_dp_cpu_20260902_v1/RESULTS.json",
+      "bytes": 288947,
+      "sha256": "5d96bd8aebfcfe42c86b1d6ec2742420587bbf4d33b45b3f90d55a67ddac82f5",
+      "provenance": "machine result with environment, commands, protocol, inputs and session/side outcomes",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "HOLD_CROSS_SESSION_WINDOW_DIAGNOSTIC; passing opening windows have contact_required_frames=0"
+    },
+    {
+      "id": "robot_cross_session_temporal_audit_report",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_temporal_blocker_audit_cpu_20260902_v1/REPORT.md",
+      "bytes": 866,
+      "sha256": "6dc8dde084c13482bcb933b914684bf15877ebc0c8ee20e424d65363c93be124",
+      "provenance": "human-readable temporal blocker audit summary",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "068 bilateral velocity and 139 side0 acceleration blockers; no threshold waiver"
+    },
+    {
+      "id": "robot_cross_session_temporal_audit_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_temporal_blocker_audit_cpu_20260902_v1/RESULTS.json",
+      "bytes": 11254,
+      "sha256": "e0b130e9724de4ebe04c89d6ad2cd4a11a28d51f35c963eacc33fde46f1d245a",
+      "provenance": "machine-readable first-failure temporal audit retaining source thresholds and HOLD",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "COMPLETE_SOURCE_HOLD_PRESERVED; 068 side0/1 and 139 side0 only"
+    },
+    {
+      "id": "robot_cross_session_event_rescue_index",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_cpu_20260902_v1/INDEX.md",
+      "bytes": 2408,
+      "sha256": "687cdc17084e9fef2491c552f0369d5cf5f83c1ac424274815907a957b27542c",
+      "provenance": "sealed event-rescue entry with producer QA and explicit downstream-only scope",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "PASS_DOWNSTREAM_EVENT_RESCUE_TRACKER_HOLDS_PRESERVED; no grasp or formal cross-session claim"
+    },
+    {
+      "id": "robot_cross_session_event_rescue_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_cpu_20260902_v1/RESULTS.json",
+      "bytes": 113711,
+      "sha256": "ac49051ab010bd967dcb6f842ad65831a165ae9017e170ea5971cd86682b3d85",
+      "provenance": "machine event-rescue result pinning predecessor/audit and selected q windows",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "068 side0/1 and 139 side0 bounded downstream PASS; 002/035/065 protection; Tracker holds preserved; contact_required=0"
+    },
+    {
+      "id": "robot_cross_session_event_rescue_independent_qa_index",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_independent_qa_20260902_v1/INDEX.md",
+      "bytes": 698,
+      "sha256": "bc8ef5935f4ea16df8b99f17a3601d2563a7a2d86d73a802d80ccd329519cbdd",
+      "provenance": "fresh independent QA entrypoint generated without running or mutating producer roots",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "88/88 independent checks; bounded downstream only, Tracker holds and no-grasp scope retained"
+    },
+    {
+      "id": "robot_cross_session_event_rescue_independent_qa_result",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_independent_qa_20260902_v1/RESULTS.json",
+      "bytes": 29638,
+      "sha256": "8646c775c4af16d01b4514aaded7393b9e0f331429d251456b3a5261b873108b",
+      "provenance": "machine-readable independent recomputation with 88 named checks and exact input identities",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "PASS_INDEPENDENT_EVENT_RESCUE_QA_TRACKER_HOLDS_PRESERVED_NO_GRASP"
+    },
+    {
+      "id": "newtask_contract_artifact_manifest",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_contract_v2_2/ARTIFACTS.json",
+      "bytes": 2819,
+      "sha256": "cdd7723ad61e8264ae1c920bdd18b4c0cbf787ca48250f3cdcbb374f21c998fb",
+      "provenance": "contract v2.2 self-excluding artifact manifest",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "object firewall/schema successor evidence"
+    },
+    {
+      "id": "newtask_contract_qa",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_contract_v2_2/QA_REPORT.md",
+      "bytes": 2026,
+      "sha256": "a931041ccde8d2aa42ee73a0ac45ad61e7b2e26b08d0f13de75cfaddcda29f44",
+      "provenance": "R1 successor independent regression summary",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "decoded file authority; manual content gate remains"
+    },
+    {
+      "id": "newtask_geometry_index",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_geometry_prep_v2/INDEX.md",
+      "bytes": 845,
+      "sha256": "b7c296503a07e539a7b3e9fda6c52fd9a302e0c58c7f0a5e927e3a1dada1be0e",
+      "provenance": "geometry prep v2 evidence entry",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "development approximate geometry; formal_session=false"
+    },
+    {
+      "id": "newtask_geometry_reproduce",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_geometry_prep_v2/REPRODUCE.md",
+      "bytes": 2217,
+      "sha256": "3d8441c98bf1fa267f0cf581fe5a7fb9a1663cc23ba16420ded450b7cbdc6198",
+      "provenance": "from-zero CPU reproduction and recovery guide",
+      "license_ref": "PROJECT_INTERNAL_LICENSE_HOLD",
+      "claim_scope": "safe replay instructions for development geometry root"
+    },
+    {
+      "id": "newtask_geometry_code_asset_pins",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_geometry_prep_v2/CODE_ASSET_SHA256.json",
+      "bytes": 6196,
+      "sha256": "9bebd893c1798e5707a6ce92b4341024f7e4cbfe6ad2fcc945d213c665070b79",
+      "provenance": "input/code/generated-asset hash registry",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "identity manifest; no formal metric authority"
+    },
+    {
+      "id": "newtask_geometry_manifest",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_geometry_prep_v2/GEOMETRY_MANIFEST.json",
+      "bytes": 14823,
+      "sha256": "65dffad7fc6ec25c7abede682612543665ee5957de793e8acf884b058dc7bf18",
+      "provenance": "generated analytic/mesh geometry registry and depth/protect metadata",
+      "license_ref": "GENERATED_DERIVATIVE_HOLD",
+      "claim_scope": "synthetic approximate geometry only"
+    }
+  ],
+  "unresolved_holds": [
+    "HOLD_MASK_HUMAN_WEARABLE_MULTISESSION_LABEL_AUTHORITY_PRODUCTION_TRAINER_AND_CLASS_CONDITIONED_WEIGHT",
+    "HOLD_MASK_FROM_SOURCE_ACTION_FRAME_MATERIALIZER_AND_PARAMETERIZED_INTEGRATOR",
+    "HOLD_CLEAN_FORMAL_INPUT_AND_MOVING_CAMERA_K_C2W_TABLE_PLANE",
+    "HOLD_CLEAN_L3_POLICY_DUE_TO_UPSTREAM_HUMAN_WEARABLE_GAPS",
+    "HOLD_CLEAN_CHIPS_FRAME0_CROSS_CAMERA_STATIC_INSUFFICIENT; NEED SAME_CAMERA_SAME_POSE_2_3S_CLEAN_PLATE_OR_AT_LEAST_FOUR_INDEPENDENT_TABLE_PERIMETER_CORRESPONDENCES",
+    "PENDING_ROBOT_004_CORRECT_MANO21_SMALL_WINDOW_CPU_PHYSICAL_CONTINUITY_10FRAME_CAD_AND_NEW_FULL460_SCENE_VIDEO; ONLY_F345_F402_CPU_PASS",
+    "HOLD_ROBOT_FORMAL_CROSS_SESSION_TRACKERSTATE_SEALED_FULL_VIDEO_AND_CORRECT_MANO21_KAI_CONTACT_GATE; NEW_GATE_NOT_RUN_ON_002_035_065_OR_OTHER_SESSIONS",
+    "HOLD_NEW_TASK_FORMAL_MEASUREMENT_MANUAL_REVIEW_AND_PICO_INPUTS",
+    "HOLD_PROJECT_PHONE_CAPTURE_AND_ROBOT_ASSET_REDISTRIBUTION_RIGHTS"
+  ]
+}

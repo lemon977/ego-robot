@@ -1,0 +1,64 @@
+{
+  "schema_version": "tianji-kai-robot-baseline-session-spec-v1",
+  "session": {
+    "task": "chips",
+    "session_id": "get_potato_chips_0902_034",
+    "frame_count": 293,
+    "fps": 30.0
+  },
+  "inputs": {
+    "raw_video": {"path": "/ABSOLUTE/PATH/RAW.mp4", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+    "raw_frame_root": "/ABSOLUTE/PATH/HAWOR_SEQUENCE_ROOT",
+    "raw_frame_tree_sha256": "0000000000000000000000000000000000000000000000000000000000000000",
+    "hawor": {
+      "result": {"path": "/ABSOLUTE/PATH/HAWOR/RESULT.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "agent_review": {"path": "/ABSOLUTE/PATH/HAWOR/AGENT_REVIEW.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "npz": {"path": "/ABSOLUTE/PATH/HAWOR/HAWOR_WORLD_CONSISTENT_MANO21.npz", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"}
+    },
+    "mask": {
+      "result": {"path": "/ABSOLUTE/PATH/MASK/RESULT.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "agent_review": {"path": "/ABSOLUTE/PATH/MASK/AGENT_REVIEW.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "frame_manifest": {"path": "/ABSOLUTE/PATH/MASK/FRAME_MANIFEST.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"}
+    },
+    "object6d": {
+      "result": {"path": "/ABSOLUTE/PATH/OBJECT6D/RESULT.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "agent_review": {"path": "/ABSOLUTE/PATH/OBJECT6D/AGENT_REVIEW.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "npz": {"path": "/ABSOLUTE/PATH/OBJECT6D/VISUAL_FIXED_INSTANCE_OBJECT6D.npz", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "frame_manifest": {"path": "/ABSOLUTE/PATH/OBJECT6D/FRAME_MANIFEST.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"}
+    },
+    "clean": {
+      "result": {"path": "/ABSOLUTE/PATH/CLEAN/RESULT.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "agent_review": {"path": "/ABSOLUTE/PATH/CLEAN/AGENT_REVIEW.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "source_map_manifest": {"path": "/ABSOLUTE/PATH/CLEAN/SOURCE_MAP_MANIFEST.json", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"},
+      "video": {"path": "/ABSOLUTE/PATH/CLEAN/CLEAN_FULLSESSION.mp4", "bytes": 1, "sha256": "0000000000000000000000000000000000000000000000000000000000000000"}
+    }
+  },
+  "assets": {
+    "asset_pin": {"path": "/mnt/workspace/code/chaoyang/assets/robot/ROBOT_ASSET_PIN.json", "bytes": 37840, "sha256": "4bc508a45fd460610a73bc9fb6bf194d97a5cfdef5e863bd1069683921cd1330"},
+    "tianji_urdf": {"path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf", "bytes": 17957, "sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309"},
+    "kaihand_left_urdf": {"path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf", "bytes": 29480, "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74"},
+    "kaihand_right_urdf": {"path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf", "bytes": 29568, "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586"},
+    "naturalv2_stl": {"path": "/mnt/workspace/code/chaoyang/assets/robot/V2相机固定法兰PRO版本.STL", "bytes": 337084, "sha256": "d47925eb8687a9ed9f20020e0f244878a05b37d2f882ec111c4ee277916dccc3"},
+    "mount_authority": {"path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/robot/20260903_shared_adapter_successor_v1/PINNED_KAIHAND_MOUNT_AUTHORITY_V1.json", "bytes": 2277, "sha256": "dee0de8cc6bc64d9a6417f0b8578a32f8b37c070a4cfb2a9b581f2627c21f218"},
+    "thumb_adapter": {"path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/robot/20260903_shared_adapter_successor_v1/calibration_v1/SHARED_THUMB_AXIS_ADAPTER.npz", "bytes": 1065, "sha256": "89d121a8ca869e9c3e37318e9e10e4a1eb3ef731a996554e00f32f7e73b01132"},
+    "pbr_palette": {"path": "/mnt/workspace/code/chaoyang/systems/robot/configs/robot_pbr_palette_004ref_v1.json", "bytes": 3488, "sha256": "fbacbe617d49ee8b8a060afd21672ae7776d9d6835cde18c8f01e01acd79c543"}
+  },
+  "solver": {
+    "arm_step_limit_rad": 0.12,
+    "hand_step_limit_rad": 0.08,
+    "later_frame_seed": "PREVIOUS_ACCEPTED_ONLY",
+    "first_frame_policy": "STATIC_IK_FULL_URDF_LIMITS",
+    "human_to_physical": {"left": "right", "right": "left"},
+    "require_urdf_limits": true,
+    "require_branch_jump_false": true,
+    "collision_denominator": "FRAME_X_SIDE_X_LINK_FIXED",
+    "pad_names": ["thumb", "index", "middle", "ring", "pinky"]
+  },
+  "review": {
+    "language": "zh-CN",
+    "full_session": true,
+    "panels": ["raw", "clean", "robot", "contact_collision"],
+    "video_name": "GET_POTATO_CHIPS_0902_034_TIANJI_KAI_ROBOT_BASELINE_中文全片.mp4"
+  },
+  "output_root": "/mnt/workspace/code/chaoyang/data/processed/chips/get_potato_chips_0902_034/robot/20260908_tianji_kai_baseline_v1"
+}

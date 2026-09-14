@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "object6d-constrained-mask-batch-plan-input-v2",
+  "title": "Fail-closed Mask batch input with frozen 0903 partition",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "status", "dataset_partition_contract", "rows"],
+  "properties": {
+    "schema_version": {"const": "object6d-constrained-mask-batch-plan-input-v2"},
+    "status": {"const": "PLANNING_INPUT"},
+    "dataset_partition_contract": {
+      "const": {
+        "schema_version": "chips-poker-0903-frozen-partition-v1",
+        "authority": "USER_CONFIRMED_AND_INDEPENDENTLY_INVENTORIED",
+        "chips": {"start_index": 1, "end_index": 183, "count": 183},
+        "poker": {"start_index": 184, "end_index": 249, "count": 66},
+        "excluded_entry_names": [".pico_editor_trash"]
+      }
+    },
+    "rows": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["task", "session", "recommended_split", "classification_status", "object6d_status", "input_manifest"],
+        "properties": {
+          "task": {"type": "string", "minLength": 1},
+          "session": {"type": "string", "minLength": 1},
+          "recommended_split": {"enum": ["FIT", "EVAL", "PENDING_CLASSIFICATION"]},
+          "classification_status": {"enum": ["READY", "PENDING"]},
+          "object6d_status": {"enum": ["READY", "PENDING"]},
+          "input_manifest": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref"}]}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

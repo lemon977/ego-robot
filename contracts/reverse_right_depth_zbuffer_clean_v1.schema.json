@@ -1,0 +1,103 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "reverse_right_depth_zbuffer_clean_v1.schema.json",
+  "title": "Two-session reverse-right-depth plus calibrated z-buffer Clean",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "recovery_snapshot", "method_contract",
+    "geometry", "quality_gates", "sessions", "output_root", "no_clobber"
+  ],
+  "properties": {
+    "schema_version": {"const": "reverse-right-depth-zbuffer-clean-input-v1"},
+    "run_id": {"const": "20260908_two_task_e2e_baseline_v1"},
+    "recovery_snapshot": {"$ref": "#/$defs/artifact"},
+    "method_contract": {
+      "type": "object",
+      "required": [
+        "reverse_inference", "right_boundary", "projection", "rasterization",
+        "donor_exclusion", "background_order", "published_rgb", "unsupported",
+        "object_policy", "cross_clip", "generative_fill", "attempts_per_session"
+      ],
+      "additionalProperties": true
+    },
+    "geometry": {
+      "type": "object",
+      "required": ["depth_grid", "selected_grid", "depth_intrinsics", "baseline_m"],
+      "additionalProperties": false,
+      "properties": {
+        "depth_grid": {"const": [640, 480]},
+        "selected_grid": {"const": [1280, 960]},
+        "depth_intrinsics": {"type": "array", "minItems": 3, "maxItems": 3},
+        "baseline_m": {"type": "number", "minimum": 0.06, "maximum": 0.07}
+      }
+    },
+    "quality_gates": {
+      "type": "object",
+      "required": [
+        "minimum_selected_bidirectional_within_2px_fraction",
+        "minimum_stable_depth_consistency_fraction",
+        "minimum_total_supported_fraction", "minimum_left_human_supported_fraction",
+        "minimum_right_human_supported_fraction", "minimum_tracker_supported_fraction",
+        "minimum_free_vram_mib", "foreground_behind_abs_m", "foreground_behind_rel"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "minimum_selected_bidirectional_within_2px_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "minimum_stable_depth_consistency_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "minimum_total_supported_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "minimum_left_human_supported_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "minimum_right_human_supported_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "minimum_tracker_supported_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "minimum_free_vram_mib": {"type": "integer", "minimum": 61440},
+        "foreground_behind_abs_m": {"type": "number", "minimum": 0},
+        "foreground_behind_rel": {"type": "number", "minimum": 0}
+      }
+    },
+    "sessions": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {"$ref": "#/$defs/session"}
+    },
+    "output_root": {"type": "string", "minLength": 1},
+    "no_clobber": {"const": true}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task", "session", "frame_count", "fps", "source_resolution",
+        "canary_frames", "inputs", "stereo_inputs", "output_name",
+        "clean_master_name", "review_name"
+      ],
+      "properties": {
+        "task": {"enum": ["chips", "poker"]},
+        "session": {"type": "string", "minLength": 1},
+        "frame_count": {"type": "integer", "minimum": 1},
+        "fps": {"const": 30.0},
+        "source_resolution": {"const": [1280, 960]},
+        "canary_frames": {
+          "type": "array", "minItems": 3, "maxItems": 3,
+          "uniqueItems": true, "items": {"type": "integer", "minimum": 0}
+        },
+        "inputs": {"type": "object", "minProperties": 12, "additionalProperties": {"$ref": "#/$defs/artifact"}},
+        "stereo_inputs": {"type": "object", "minProperties": 6, "additionalProperties": {"$ref": "#/$defs/artifact"}},
+        "output_name": {"type": "string", "minLength": 1},
+        "clean_master_name": {"const": "CLEAN_MASTER.mp4"},
+        "review_name": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

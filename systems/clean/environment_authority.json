@@ -1,0 +1,87 @@
+{
+  "schema_version": "chaoyang-clean-environment-authority-v1",
+  "status": "PASS_LOCAL_CLEAN_ENVIRONMENT_PROMOTED",
+  "canonical_runtime_authorized": true,
+  "environment_id": "clean-track4world-py311-v1",
+  "claim_limit": "Clean CPU runtime only; this authority does not authorize Mask, SAM, archive reads, raw decoding, GPU work, or Clean production",
+  "launch": {
+    "command": ["tools/clean_python.sh"],
+    "activation_required": false,
+    "fallback_to_external_conda_forbidden": true,
+    "inherited_pythonpath_forbidden": true,
+    "project_relative_environment_root": "assets/environments/clean-track4world-py311-v1",
+    "project_relative_python": "assets/environments/clean-track4world-py311-v1/bin/python",
+    "absolute_python": "/mnt/workspace/code/chaoyang/assets/environments/clean-track4world-py311-v1/bin/python",
+    "snapshot_manifest": "assets/environments/clean-track4world-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz"
+  },
+  "runtime": {
+    "python_version": "3.11.15",
+    "python_sha256": "3677e6bac60e591703e50b976e663bddeb451986ad53ebf241b0e26f0c6a5197",
+    "opencv_version": "4.11.0",
+    "opencv_init_sha256": "936bd94c5a5debf0212fc751af79d3a163652f3e850259df2159db6aa3ed8ad8",
+    "numpy_version": "1.26.4",
+    "scipy_version": "1.16.2",
+    "pillow_version": "11.3.0",
+    "torch_version": "2.5.1+cu121",
+    "cuda_hidden_by_launcher": true
+  },
+  "snapshot": {
+    "snapshot_id": "c25ecab199264bdfa30cce148ca35767",
+    "method": "NO_CLOBBER_SAME_FILESYSTEM_HARDLINK",
+    "publish_method": "owned_empty_directory_reservation_then_rename",
+    "source_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "source_path": "/mnt/workspace/miniconda3/envs/track4world",
+    "device": 102,
+    "counts": {"directories": 7638, "regular_files": 67676, "special": 0, "symlinks": 1382},
+    "logical_bytes": 8097135393,
+    "unique_regular_bytes": 8097135393,
+    "manifest_bytes": 4385562,
+    "manifest_sha256": "67d04c9bdb58f932fa270a077b1f8d638fd90219163d238c1ba0b5523c252278",
+    "tree_content_sha256": "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64",
+    "post_publish_full_content_verify": "PASS_67676_UNIQUE_INODES"
+  },
+  "promotion_evidence": {
+    "preflight": {
+      "path": "archive/audits/CLEAN_LOCAL_ENVIRONMENT_PREFLIGHT_20260903_V1.json",
+      "sha256": "de15bf23db2384c71f7ca60cb93852c92ebdb4d26bbc9b4c63fab979c3da0048",
+      "status": "PASS_CLEAN_ONLY_SNAPSHOT_ELIGIBLE"
+    },
+    "capacity_release": {
+      "path": "archive/audits/CLEAN_LOCAL_ENVIRONMENT_SNAPSHOT_CAPACITY_RELEASE_V1.json",
+      "sha256": "cbfd56560d6be1195a1d89845486cc33df5d1fcdaca3529591661e54329f4475",
+      "status": "RELEASED_NOT_AUTHORITY"
+    },
+    "local_probe": {
+      "path": "tasks/control/runs/20260903_clean_local_environment_migration_v1/LOCAL_ENV_PROBE.json",
+      "sha256": "9a174b696be946e0550a3fe7627d1d796123f55dfd34b0338a6c7c766c036a58",
+      "status": "PASS",
+      "loaded_file_origins_checked": 1032
+    },
+    "replay_comparison": {
+      "path": "tasks/control/runs/20260903_clean_local_environment_migration_v1/REPLAY_COMPARISON.json",
+      "sha256": "2cf0db078da4b8faf97e08c9ba3ac986e3d36ba15047c3630457ee5e338655a4",
+      "status": "PASS_SYNTHETIC_BITWISE_AND_FROZEN_20_TESTS"
+    },
+    "rollback": {
+      "path": "systems/clean/local_environment_rollback.json",
+      "sha256": "4e3d431aa8d918e20c5c2751768000cc500cf1bedd26f5cb2b2b17f4624b2d4d",
+      "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE"
+    }
+  },
+  "tools": {
+    "launcher": {"path": "tools/clean_python.sh", "sha256": "f7bb28ad4918bc479ca584030bc0f1f3f78e9ff54dcbee7b40134cc46c9a71cf"},
+    "verifier": {"path": "tools/verify_clean_environment_migration.py", "sha256": "a69cd5b89a65ab68fd8d5ea812b19049f4bc0ba15e4c9b7496d4b3851982bd49"},
+    "snapshot": {"path": "tools/no_clobber_hardlink_snapshot.py", "sha256": "9ec43f2a1cd12d6d44c631f7902813b8f8148d6e0f4251b632810e6dbd1e541e"},
+    "capacity": {"path": "tools/project_capacity_reservation.py", "sha256": "51570e2a18b965e9eccadba07de99d4a54f4b3cb31771e588041c61c539a87c8"}
+  },
+  "frozen_v3_v4_unchanged": {
+    "v3_runner": {"path": "tools/run_clean_spatial12_bounded.py", "sha256": "c75c0ba7271c1de436c8251590addbc54fa281742f6e1d74d11ad56daea6db72"},
+    "v4_launcher": {"path": "tools/launch_clean_spatial12_bounded_v4.py", "sha256": "bc6c187b349464d33206a9ef77e1ac5b9ab1689d19cdbf04440c580707063792"}
+  },
+  "mask_environment": {
+    "status": "PENDING_SEPARATE_LOCALIZATION",
+    "this_authority_must_not_be_consumed_by_mask": true,
+    "reason": "Canonical SAM imports require packages borrowed from /usr/local that are absent from the track4world snapshot"
+  },
+  "next_consumer": "A fresh Clean V5 launcher/manifest may pin this authority; frozen V4 must not be edited or run"
+}

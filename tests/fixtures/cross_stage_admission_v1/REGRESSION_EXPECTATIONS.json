@@ -1,0 +1,27 @@
+{
+  "chips001_current_hold.json": {
+    "humanego_train_eligible": false,
+    "primary_category": "upstream_capture",
+    "hawor_rgb_execution_allowed": true,
+    "mask_execution_allowed": true,
+    "mask_semantic": "FAIL",
+    "mask_temporal": "FAIL",
+    "clean_donor": "FAIL",
+    "clean_photometric": "FAIL",
+    "robot_authority": "HOLD"
+  },
+  "poker001_current_hold.json": {
+    "humanego_train_eligible": false,
+    "primary_category": "upstream_capture",
+    "hawor_rgb_execution_allowed": true,
+    "mask_execution_allowed": true,
+    "hawor_algorithm": "NOT_EVALUATED",
+    "robot_geometry": "FAIL"
+  },
+  "clean_synthetic_not_formal.json": {
+    "humanego_train_eligible": false,
+    "clean_formal_ready": false,
+    "clean_donor": "HOLD",
+    "clean_photometric": "HOLD"
+  }
+}

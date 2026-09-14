@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>离线 Mask 标注器</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header>
+    <div>
+      <h1>离线 Mask 标注器</h1>
+      <div id="sessionLine" class="subtle">正在读取项目…</div>
+    </div>
+    <div class="headerActions">
+      <button id="saveButton">保存 Ctrl+S</button>
+      <button id="validateButton">校验</button>
+      <button id="exportButton" class="primary">导出</button>
+    </div>
+  </header>
+
+  <main>
+    <aside>
+      <section>
+        <h2>帧</h2>
+        <div class="row">
+          <button id="prevButton">← 上一帧</button>
+          <button id="nextButton">下一帧 →</button>
+        </div>
+        <select id="frameSelect"></select>
+        <div id="frameMeta" class="meta"></div>
+        <label class="completeLine"><input id="completeCheck" type="checkbox"> 本帧已完整检查 <kbd>C</kbd></label>
+      </section>
+
+      <section>
+        <h2>工具</h2>
+        <div class="toolGrid">
+          <button id="polygonTool" class="tool active">多边形 <kbd>P</kbd></button>
+          <button id="brushTool" class="tool">画笔 <kbd>B</kbd></button>
+          <button id="undoButton">撤销</button>
+          <button id="redoButton">重做</button>
+        </div>
+        <label>画笔半径 <span id="brushValue">18</span> px</label>
+        <input id="brushRadius" type="range" min="1" max="120" value="18">
+        <div class="hint">多边形：单击加点，双击或 Enter 闭合，Esc 取消。背景类就是橡皮。</div>
+      </section>
+
+      <section>
+        <h2>类别</h2>
+        <div id="classButtons" class="classButtons"></div>
+        <div class="hint">左侧 Q/W/E；右侧 A/S/D；物体 O；不确定 U；背景 X。数字 0–8 也可选。</div>
+      </section>
+
+      <section>
+        <h2>显示</h2>
+        <label>Mask 透明度 <span id="alphaValue">48</span>%</label>
+        <input id="alphaSlider" type="range" min="0" max="90" value="48">
+        <label>缩放 <span id="zoomValue">100</span>%</label>
+        <input id="zoomSlider" type="range" min="25" max="200" step="5" value="100">
+        <label><input id="rawOnlyCheck" type="checkbox"> 临时只看原图 <kbd>Tab</kbd></label>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <div id="statusBar">准备中…</div>
+      <div id="canvasScroller">
+        <canvas id="canvas"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

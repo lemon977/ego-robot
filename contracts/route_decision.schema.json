@@ -1,0 +1,366 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/route_decision.schema.json",
+  "title": "Ego Robot Standard Route Decision",
+  "description": "DRAFT finite-route schema. No implicit fallback or session-specific route is representable.",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_document_status",
+    "session_id",
+    "product_line",
+    "diagnostic_track",
+    "execution_mode",
+    "context_ref",
+    "profile_ref",
+    "task_card_ref",
+    "calibration_overlay_ref",
+    "verified_reveal_policy_ref",
+    "donor_manifest_refs",
+    "formal_pass_claim_allowed",
+    "raw_authority_verified",
+    "outcome",
+    "route_assignments",
+    "next_standard_route_id",
+    "prerequisites",
+    "normalized_metrics",
+    "manual_review",
+    "fallback_used",
+    "hold_or_retry_reason",
+    "decision_evidence_refs",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "route-decision-v1"},
+    "contract_document_status": {"const": "DRAFT"},
+    "session_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"},
+    "product_line": {"enum": ["004_CONTACT_GOLD", "EXACT78_R2_VISUAL_DOMAIN"]},
+    "diagnostic_track": {"enum": ["HAND_ONLY_DIAGNOSTIC", "HAND_ARM_FINAL"]},
+    "execution_mode": {"enum": ["G2_CALIBRATION", "FORMAL_PRODUCTION"]},
+    "context_ref": {"$ref": "#/$defs/digestRef"},
+    "profile_ref": {"$ref": "#/$defs/digestRef"},
+    "task_card_ref": {"$ref": "#/$defs/digestRef"},
+    "calibration_overlay_ref": {
+      "anyOf": [{"$ref": "#/$defs/digestRef"}, {"type": "null"}]
+    },
+    "verified_reveal_policy_ref": {
+      "anyOf": [{"$ref": "#/$defs/verifiedRevealPolicyRef"}, {"type": "null"}]
+    },
+    "donor_manifest_refs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/donorManifestRef"}
+    },
+    "formal_pass_claim_allowed": {"type": "boolean"},
+    "raw_authority_verified": {"type": "boolean"},
+    "outcome": {"enum": ["PASS_FULL_SESSION", "RETRY_STANDARD_ROUTE", "HOLD_UNSUPPORTED"]},
+    "route_assignments": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/routeAssignment"}
+    },
+    "next_standard_route_id": {
+      "anyOf": [
+        {"$ref": "#/$defs/standardRouteId"},
+        {"type": "null"}
+      ]
+    },
+    "prerequisites": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["name", "passed", "evidence_refs"],
+        "properties": {
+          "name": {
+            "enum": [
+              "RAW_AUTHORITY",
+              "SOURCE_MANIFEST",
+              "SESSION_CONTEXT",
+              "MODEL_AND_WEIGHT_DIGESTS",
+              "PROFILE_THRESHOLDS",
+              "MASK_EVIDENCE",
+              "OBJECT_EVIDENCE",
+              "REVEAL_IDENTITY",
+              "DONOR_COVERAGE",
+              "PRODUCT_LINE_ISOLATION"
+            ]
+          },
+          "passed": {"type": "boolean"},
+          "evidence_refs": {
+            "type": "array",
+            "items": {"$ref": "#/$defs/digestRef"}
+          },
+          "failure_reason": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "normalized_metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arm_area_ratio", "contact_ratio", "motion", "blur", "object6d_valid_ratio", "donor_coverage"],
+      "properties": {
+        "arm_area_ratio": {"$ref": "#/$defs/metricDecision"},
+        "contact_ratio": {"$ref": "#/$defs/metricDecision"},
+        "motion": {"$ref": "#/$defs/metricDecision"},
+        "blur": {"$ref": "#/$defs/metricDecision"},
+        "object6d_valid_ratio": {"$ref": "#/$defs/metricDecision"},
+        "donor_coverage": {"$ref": "#/$defs/metricDecision"}
+      }
+    },
+    "manual_review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["required", "review_state", "review_ref"],
+      "properties": {
+        "required": {"type": "boolean"},
+        "review_state": {"enum": ["NOT_REQUIRED", "PENDING", "APPROVED", "REJECTED"]},
+        "review_ref": {
+          "anyOf": [{"$ref": "#/$defs/digestRef"}, {"type": "null"}]
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"required": {"const": true}}, "required": ["required"]},
+          "then": {"properties": {"review_state": {"enum": ["PENDING", "APPROVED", "REJECTED"]}}},
+          "else": {"properties": {"review_state": {"const": "NOT_REQUIRED"}, "review_ref": {"type": "null"}}}
+        },
+        {
+          "if": {"properties": {"review_state": {"enum": ["APPROVED", "REJECTED"]}}, "required": ["review_state"]},
+          "then": {"properties": {"review_ref": {"$ref": "#/$defs/digestRef"}}}
+        }
+      ]
+    },
+    "fallback_used": {"const": false},
+    "hold_or_retry_reason": {"type": ["string", "null"]},
+    "decision_evidence_refs": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/digestRef"}
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "digestRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "standardRouteId": {
+      "enum": [
+        "OBJECT6D_GEOMETRY_TEXTURE",
+        "CAD_GEOMETRY_TEXTURE",
+        "ANALYTIC_GEOMETRY_TEXTURE",
+        "TEMPORAL_DONOR_ATLAS",
+        "PROPAINTER_BACKGROUND"
+      ]
+    },
+    "verifiedRevealPolicyRef": {
+      "allOf": [
+        {"$ref": "#/$defs/digestRef"},
+        {
+          "required": ["producer", "schema_version", "bytes"],
+          "properties": {
+            "producer": {"const": "reveal_policy_owner"},
+            "schema_version": {"const": "reveal-policy-v1"}
+          }
+        }
+      ]
+    },
+    "donorManifestRef": {
+      "oneOf": [
+        {
+          "allOf": [
+            {"$ref": "#/$defs/digestRef"},
+            {
+              "required": ["producer", "schema_version", "bytes"],
+              "properties": {
+                "producer": {"const": "object_geometry_producer"},
+                "schema_version": {"const": "object-texture-donor-v1"}
+              }
+            }
+          ]
+        },
+        {
+          "allOf": [
+            {"$ref": "#/$defs/digestRef"},
+            {
+              "required": ["producer", "schema_version", "bytes"],
+              "properties": {
+                "producer": {"const": "temporal_donor_atlas"},
+                "schema_version": {"const": "temporal-background-donor-v1"}
+              }
+            }
+          ]
+        }
+      ]
+    },
+    "routeAssignment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reveal_class", "standard_route_id", "route_enabled_for_execution_mode", "evidence_refs", "selection_reason"],
+      "properties": {
+        "reveal_class": {"enum": ["REVEAL_OBJECT", "REVEAL_BACKGROUND"]},
+        "standard_route_id": {"$ref": "#/$defs/standardRouteId"},
+        "route_enabled_for_execution_mode": {"type": "boolean"},
+        "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/digestRef"}},
+        "selection_reason": {"type": "string", "minLength": 1},
+        "rejected_route_reasons": {
+          "type": "object",
+          "additionalProperties": {"type": "string", "minLength": 1}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"standard_route_id": {"enum": ["OBJECT6D_GEOMETRY_TEXTURE", "CAD_GEOMETRY_TEXTURE", "ANALYTIC_GEOMETRY_TEXTURE"]}}, "required": ["standard_route_id"]},
+          "then": {"properties": {"reveal_class": {"const": "REVEAL_OBJECT"}}}
+        },
+        {
+          "if": {"properties": {"standard_route_id": {"enum": ["TEMPORAL_DONOR_ATLAS", "PROPAINTER_BACKGROUND"]}}, "required": ["standard_route_id"]},
+          "then": {"properties": {"reveal_class": {"const": "REVEAL_BACKGROUND"}}}
+        }
+      ]
+    },
+    "metricDecision": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["measurement_ref", "value", "threshold_ref", "decision"],
+      "properties": {
+        "measurement_ref": {"$ref": "#/$defs/digestRef"},
+        "value": {"type": ["number", "null"]},
+        "threshold_ref": {"anyOf": [{"$ref": "#/$defs/digestRef"}, {"type": "null"}]},
+        "decision": {"enum": ["PASS", "FAIL", "UNKNOWN"]}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"raw_authority_verified": {"const": false}}, "required": ["raw_authority_verified"]},
+      "then": {
+        "properties": {
+          "outcome": {"const": "HOLD_UNSUPPORTED"},
+          "route_assignments": {"maxItems": 0},
+          "next_standard_route_id": {"type": "null"},
+          "hold_or_retry_reason": {"type": "string", "minLength": 1}
+        },
+        "required": ["hold_or_retry_reason"]
+      }
+    },
+    {
+      "if": {"properties": {"outcome": {"const": "PASS_FULL_SESSION"}}, "required": ["outcome"]},
+      "then": {
+        "properties": {
+          "raw_authority_verified": {"const": true},
+          "route_assignments": {
+            "minItems": 1,
+            "items": {
+              "allOf": [
+                {"$ref": "#/$defs/routeAssignment"},
+                {"properties": {"route_enabled_for_execution_mode": {"const": true}}}
+              ]
+            }
+          },
+          "verified_reveal_policy_ref": {"$ref": "#/$defs/verifiedRevealPolicyRef"},
+          "donor_manifest_refs": {"minItems": 1},
+          "next_standard_route_id": {"type": "null"},
+          "hold_or_retry_reason": {"type": "null"},
+          "manual_review": {
+            "properties": {"review_state": {"enum": ["NOT_REQUIRED", "APPROVED"]}}
+          },
+          "prerequisites": {
+            "allOf": [
+              {"not": {"contains": {"properties": {"passed": {"const": false}}, "required": ["passed"]}}},
+              {"contains": {"properties": {"name": {"const": "RAW_AUTHORITY"}, "passed": {"const": true}}, "required": ["name", "passed"]}},
+              {"contains": {"properties": {"name": {"const": "SOURCE_MANIFEST"}, "passed": {"const": true}}, "required": ["name", "passed"]}},
+              {"contains": {"properties": {"name": {"const": "SESSION_CONTEXT"}, "passed": {"const": true}}, "required": ["name", "passed"]}},
+              {"contains": {"properties": {"name": {"const": "MODEL_AND_WEIGHT_DIGESTS"}, "passed": {"const": true}}, "required": ["name", "passed"]}},
+              {"contains": {"properties": {"name": {"const": "PROFILE_THRESHOLDS"}, "passed": {"const": true}}, "required": ["name", "passed"]}},
+              {"contains": {"properties": {"name": {"const": "PRODUCT_LINE_ISOLATION"}, "passed": {"const": true}}, "required": ["name", "passed"]}}
+            ]
+          },
+          "normalized_metrics": {
+            "properties": {
+              "arm_area_ratio": {"properties": {"value": {"type": "number"}, "threshold_ref": {"$ref": "#/$defs/digestRef"}, "decision": {"enum": ["PASS", "FAIL"]}}},
+              "contact_ratio": {"properties": {"value": {"type": "number"}, "threshold_ref": {"$ref": "#/$defs/digestRef"}, "decision": {"enum": ["PASS", "FAIL"]}}},
+              "motion": {"properties": {"value": {"type": "number"}, "threshold_ref": {"$ref": "#/$defs/digestRef"}, "decision": {"enum": ["PASS", "FAIL"]}}},
+              "blur": {"properties": {"value": {"type": "number"}, "threshold_ref": {"$ref": "#/$defs/digestRef"}, "decision": {"enum": ["PASS", "FAIL"]}}},
+              "object6d_valid_ratio": {"properties": {"value": {"type": "number"}, "threshold_ref": {"$ref": "#/$defs/digestRef"}, "decision": {"enum": ["PASS", "FAIL"]}}},
+              "donor_coverage": {"properties": {"value": {"type": "number"}, "threshold_ref": {"$ref": "#/$defs/digestRef"}, "decision": {"enum": ["PASS", "FAIL"]}}}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"outcome": {"const": "RETRY_STANDARD_ROUTE"}}, "required": ["outcome"]},
+      "then": {
+        "properties": {
+          "next_standard_route_id": {"$ref": "#/$defs/standardRouteId"},
+          "hold_or_retry_reason": {"type": "string", "minLength": 1}
+        },
+        "required": ["next_standard_route_id", "hold_or_retry_reason"]
+      }
+    },
+    {
+      "if": {"properties": {"outcome": {"const": "HOLD_UNSUPPORTED"}}, "required": ["outcome"]},
+      "then": {
+        "properties": {
+          "next_standard_route_id": {"type": "null"},
+          "hold_or_retry_reason": {"type": "string", "minLength": 1}
+        },
+        "required": ["hold_or_retry_reason"]
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "manual_review": {
+            "properties": {"review_state": {"enum": ["PENDING", "REJECTED"]}},
+            "required": ["review_state"]
+          }
+        }
+      },
+      "then": {
+        "properties": {"outcome": {"const": "HOLD_UNSUPPORTED"}}
+      }
+    },
+    {
+      "if": {"properties": {"execution_mode": {"const": "G2_CALIBRATION"}}, "required": ["execution_mode"]},
+      "then": {
+        "properties": {
+          "session_id": {"const": "grap_a_cap_004"},
+          "product_line": {"const": "004_CONTACT_GOLD"},
+          "calibration_overlay_ref": {"$ref": "#/$defs/digestRef"},
+          "formal_pass_claim_allowed": {"const": false},
+          "route_assignments": {
+            "items": {
+              "allOf": [
+                {"$ref": "#/$defs/routeAssignment"},
+                {"properties": {"standard_route_id": {"enum": ["ANALYTIC_GEOMETRY_TEXTURE", "TEMPORAL_DONOR_ATLAS"]}}}
+              ]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"execution_mode": {"const": "FORMAL_PRODUCTION"}}, "required": ["execution_mode"]},
+      "then": {
+        "properties": {
+          "calibration_overlay_ref": {"type": "null"}
+        }
+      }
+    }
+  ]
+}

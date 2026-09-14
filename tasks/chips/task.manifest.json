@@ -1,0 +1,162 @@
+{
+  "$schema": "../schema/task_manifest.schema.json",
+  "schema_version": "chaoyang-task-manifest-v1",
+  "task_id": "chips",
+  "display_name": "拿薯片",
+  "legacy_aliases": ["shupian", "newtask_shupian_v2"],
+  "run_root_templates": {
+    "mask": "tasks/chips/runs/mask/{run_id}",
+    "clean": "tasks/chips/runs/clean/{run_id}",
+    "robot": "tasks/chips/runs/robot/{run_id}",
+    "pipeline": "tasks/chips/runs/pipeline/{pipeline_run_id}"
+  },
+  "system_refs": {
+    "mask": {
+      "path": "systems/mask/system.manifest.json",
+      "manifest_sha256": "9bb8bdf3c930b034c16430f26077647bd9485d56081fdcddaa2d076a337bb0c2",
+      "algorithm_id": "mask.sam31.pico_geometry_independent_object_authority.v1",
+      "weight_ids": ["sam31.multiplex.0567debe"]
+    },
+    "clean": {
+      "path": "systems/clean/system.manifest.json",
+      "manifest_sha256": "0d75b323dc6cb7e004b8feb367154e2cc53c93f13b6fd38813422ff28c93a79f",
+      "algorithm_id": "clean.real_pixel_bilateral_phone_dev.v1",
+      "weight_ids": []
+    },
+    "robot": {
+      "path": "systems/robot/system.manifest.json",
+      "manifest_sha256": "2a73b954dc10760698bafd34d850a005b01eb8a836d13e30a7e093281ef023cc",
+      "algorithm_id": "robot.actual_fk_task_geometry.v1",
+      "weight_ids": []
+    }
+  },
+  "weight_override_policy": "FORBIDDEN_UNLESS_REGISTERED_IN_REFERENCED_SYSTEM_MANIFEST",
+  "input_views": [
+    {
+      "input_id": "phone_action_reference",
+      "path": "data/inputs/baseline_background/test/file_v3_00154_0ad2df2f-91ff-483f-9efa-7214c7a556cg.mov",
+      "bytes": 5835275,
+      "sha256": "6ec1040488e3eeebf68298e187d767285f61871455559f1e7d13914dcf0e20e5",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["phone_mask_development", "same_MOV_clean_diagnostic", "action_layout_reference"],
+      "forbidden_uses": ["formal_PICO_input", "formal_cross_session_claim", "metric_camera_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "phone_object_reference",
+      "path": "data/inputs/baseline_background/shupian.mp4",
+      "bytes": 2345185,
+      "sha256": "645340e3e85e3d46b8c3ee58432fc1ab26798b67e6e31082db67a5da315b34b0",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["object_appearance_reference", "layout_reference"],
+      "forbidden_uses": ["formal_Clean_donor", "metric_geometry_authority", "formal_RobotRGB"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "shared_phone_empty_static",
+      "path": "data/inputs/baseline_background/jingzhizhuomian.mp4",
+      "bytes": 3501129,
+      "sha256": "40299466ffde64ddbf327f3e3898cdd12aa22f10b12751229c25dbea5dfcc9ec",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["cross_camera_registration_diagnostic", "capture_planning"],
+      "forbidden_uses": ["formal_Clean_donor", "formal_camera_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "shared_phone_empty_sweep",
+      "path": "data/inputs/baseline_background/yidongzhuomian.mp4",
+      "bytes": 7342303,
+      "sha256": "5e667de01c67454378f34786f4edd8bcc5ef7d1dd05a0c85ebcab686896b6e9d",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["cross_camera_registration_diagnostic", "capture_planning"],
+      "forbidden_uses": ["formal_Clean_donor", "formal_camera_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "formal_pico_batch_0901_canonical",
+      "path": "tasks/chips/inputs/raw_source_manifest.json",
+      "bytes": 7849,
+      "sha256": "d242eef64a67d441f1b8cd1fd1e376ac2f038f1821459e530a79d9dce56c6cef",
+      "source_class": "FORMAL_CAPTURE",
+      "allowed_uses": ["formal_source_gate", "hawor_preprocess", "mask_clean_robot_after_stage_gates"],
+      "forbidden_uses": ["bypass_per_session_source_gate", "treat_finished_frames_field_as_completion_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    }
+  ],
+  "task_config": {
+    "mask": {
+      "label_schema": ["L_SKIN", "R_SKIN", "L_SLEEVE", "R_SLEEVE", "L_TRACKER", "R_TRACKER", "O_TASK_OBJECT", "U_UNCERTAIN", "B_BACKGROUND"],
+      "phone_dev_visible_role_inventory": ["upper_human_core", "lower_human_core", "upper_tracker_wearable", "lower_tracker_wearable"],
+      "formal_identity_rule": "map upper/lower display roles to anatomical left/right from capture manifest before promotion",
+      "task_object_ids": ["chip_0", "chip_1", "chip_2"],
+      "protected_fixture_ids": ["bowl"],
+      "frame0_anchor_authority": "_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/FRAME0_ANCHORS.json",
+      "offline_annotation_plan": "Current phone v4 needs no recovery labels; formal sessions still require frozen 24-frame canary labels and independent review"
+    },
+    "clean": {
+      "remove_role_ids": ["L_SKIN", "R_SKIN", "L_SLEEVE", "R_SLEEVE", "L_TRACKER", "R_TRACKER"],
+      "preserve_object_ids": ["chip_0", "chip_1", "chip_2", "bowl", "mat_plane"],
+      "formal_donor_policy": "SAME_SESSION_SAME_CAMERA_SAME_POSE_REAL_PIXELS_ONLY",
+      "phone_static_policy": "DIAGNOSTIC_ONLY_DIFFERENT_CAMERA_VIEW",
+      "required_capture": "2-3 second same-session clean plate plus view sweep when camera moves"
+    },
+    "robot": {
+      "object_geometry_types": {
+        "chip_0": "CHIP_SADDLE",
+        "chip_1": "CHIP_SADDLE",
+        "chip_2": "CHIP_SADDLE",
+        "bowl": "BOWL_REVOLVE",
+        "mat_plane": "SUPPORT_PLANE"
+      },
+      "depth_adapters": ["mask_depth"],
+      "session_initialization": "THIS_SESSION_ONLY",
+      "anatomical_side_mapping_required": true,
+      "contact_rule": "chip/bowl depth may occlude fingers; non-designated hand/object penetration must pass metric geometry gate"
+    },
+    "object_contract": {
+      "contract_version": "newtask-object-contract-v2.2",
+      "object_ids": ["chip_0", "chip_1", "chip_2", "bowl", "mat_plane"],
+      "geometry_types": ["CHIP_SADDLE", "BOWL_REVOLVE", "SUPPORT_PLANE"],
+      "state_vocabulary": ["ON_MAT", "IN_HAND", "AIRBORNE", "IN_BOWL", "ON_BOWL_RIM", "OUT_OF_VIEW", "UNKNOWN_TRANSIENT"]
+    }
+  },
+  "current_evidence": [
+    {
+      "stage": "mask",
+      "path": "_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/RESULT.json",
+      "bytes": 863325,
+      "sha256": "c54f786a72a0ebcd3c43ab5d750a74ae176bfc9edda81a4f653491e22e77142a",
+      "status": "PASS_CANARY12_FULL_ARTIFACTS_EMITTED",
+      "consumption_authorized": true,
+      "claim_limit": "Phone baseline chips only; four roles 360/360 and protected-object overlap zero."
+    },
+    {
+      "stage": "clean",
+      "path": "_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/RESULTS.json",
+      "bytes": 8424,
+      "sha256": "81f4656978b911e3ae76029f0e07d5e013b046f93c84115d423c251f6af86f52",
+      "status": "HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT",
+      "consumption_authorized": false,
+      "claim_limit": "Mask is consumable, but cross-camera static creates duplicate/distorted objects; frame0 only."
+    },
+    {
+      "stage": "object_geometry",
+      "path": "_run/newtask_geometry_prep_v2/GEOMETRY_MANIFEST.json",
+      "bytes": 14823,
+      "sha256": "65dffad7fc6ec25c7abede682612543665ee5957de793e8acf884b058dc7bf18",
+      "status": "COMPLETE_APPROX_GEOMETRY",
+      "consumption_authorized": false,
+      "claim_limit": "Synthetic illustrative dimensions; formal_session=false."
+    }
+  ],
+  "formal_readiness": {
+    "status": "HOLD_PER_SESSION_SOURCE_GATE_AND_CLEAN_PLATE_PENDING",
+    "missing_inputs": [
+      "per-session source gate PASS for formal PICO batch",
+      "same-session clean plate and optional view sweep",
+      "decoded measurement photos and metric object dimensions",
+      "formal frozen canary labels and independent review",
+      "formal anatomical left/right mapping"
+    ]
+  }
+}

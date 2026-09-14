@@ -1,0 +1,36 @@
+{
+  "schema_version": "task-mask-pico-geometry-roles-v1",
+  "task_id": "poker",
+  "shared_successor": "systems/mask/configs/pico_raw_point_geometry_successor_v1.json",
+  "remove_roles": ["L_SKIN", "R_SKIN", "L_WRISTBAND", "R_WRISTBAND", "L_TRACKER", "R_TRACKER"],
+  "protect_roles": ["card_visible_union", "rack", "mat_plane", "rack_top_plane"],
+  "setup_geometry_normalized_xy": {
+    "card_slot_0": [0.5859, 0.5208],
+    "card_slot_1": [0.6641, 0.5260],
+    "card_slot_2": [0.7500, 0.5365],
+    "rack": [0.6641, 0.6458]
+  },
+  "dynamic_object_candidates": ["left_thumb_index_pinch_midpoint", "right_thumb_index_pinch_midpoint"],
+  "role_groups": {
+    "task_object": {
+      "published_role": "card_visible_union",
+      "setup_roles": ["card_slot_0", "card_slot_1", "card_slot_2"],
+      "include_dynamic_pinch_candidates": true,
+      "setup_anchor_scope": "INITIAL_SLOT_ONLY_THROUGH_BOUND_CONTACT_FRAME",
+      "post_contact_static_anchor_forbidden": true,
+      "post_contact_authority": "INDEPENDENT_OBJECT_INSTANCE_PROPAGATION_OR_OBJECT6D"
+    },
+    "fixture": {
+      "published_role": "rack",
+      "setup_roles": ["rack"],
+      "include_dynamic_pinch_candidates": false,
+      "session_static": true
+    }
+  },
+  "raw_point_role_limits": {
+    "card_visible_union": {"frame_area_fraction_min": 0.00003, "frame_area_fraction_max": 0.03, "maximum_instances": 6},
+    "rack": {"frame_area_fraction_min": 0.003, "frame_area_fraction_max": 0.15, "maximum_instances": 1}
+  },
+  "object_identity_claim": "Initial card slots are static evidence only through each bound contact frame. After pickup, only a contact-bound same-instance raw propagation/flow stream or Object6D may prove the moving card; unresolved post-release frames HOLD.",
+  "threshold_override": null
+}

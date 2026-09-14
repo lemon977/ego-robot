@@ -1,0 +1,325 @@
+{
+  "schema_version": "chaoyang-cross-stage-evidence-v1",
+  "session_id": "play_cards_0901_001",
+  "task_id": "poker",
+  "training_profile": "RAW_RGB_KAI22",
+  "image_variant": "RAW",
+  "stages": {
+    "capture": {
+      "scope": "FULL_SESSION",
+      "reported_status": "SOURCE_DIAGNOSTIC_COMPLETE",
+      "claim_limit": "Source-route diagnostics only; static-base and object authority remain separate.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/poker/runs/pipeline/20260903_source_gate_full43_v3/play_cards_0901_001/SOURCE_GATE.json",
+          "sha256": "41c2efe8d3f64ba3f5abea1e50bc5edeca85a1a01a32d6eb5cbac96680d5de22",
+          "role": "source_gate_v3"
+        }
+      ],
+      "gate_contract": {
+        "id": "newtask-source-gate-v3-runner",
+        "path": "/mnt/workspace/code/chaoyang/tools/audit_newtask_source_sessions.py",
+        "sha256": "2819cd4548be8f96b3d5d636aa9837500616100474bbd33d9ed0691408ba0130",
+        "frozen_before_evaluation": true
+      },
+      "gates": {
+        "media_integrity": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "timeline_integrity": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "camera_intrinsics": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "camera_world": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "pico21_diagnostic": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "pico21_left_provider": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["SIDE_SPECIFIC_PICO_PROVIDER_NOT_PREAUTHORIZED"]
+        },
+        "pico21_right_provider": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["SIDE_SPECIFIC_PICO_PROVIDER_NOT_PREAUTHORIZED"]
+        },
+        "task_interval_defined": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "segment_contract": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["NINE_SEGMENT_CAPTURE_CONTRACT_NOT_PRESENT"]
+        },
+        "clean_donor_authority": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["SAME_SESSION_CLEAN_PLATE_NOT_VERIFIED"]
+        },
+        "static_setup_anchor_authority": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["STATIC_SETUP_ANCHOR_NOT_SEPARATELY_AUTHORIZED"]
+        },
+        "object6d_authority": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["OBJECT6D_NOT_PRESENT"]
+        },
+        "session_static_base": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["VISUAL_SURROGATE_NOT_CALIBRATION_AUTHORITY"]
+        }
+      }
+    },
+    "hawor": {
+      "scope": "FULL_SESSION",
+      "reported_status": "COMPLETE_CANARY_NEEDS_VISUAL_IDENTITY_CONTACT_AUTHORITY",
+      "claim_limit": "Full timeline numeric output; independent identity/contour is still missing.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/poker/runs/pipeline/20260903_hawor_full_compact_v1/play_cards_0901_001/RESULT.json",
+          "sha256": "fd3cb6a387ceefb6337b0b9de1471a04f27df1a65ff86eff119a36b813e2a119",
+          "role": "full_hawor_numeric_result"
+        }
+      ],
+      "gate_contract": {
+        "id": "newtask-hawor-mano21-canary-v1-runner",
+        "path": "/mnt/workspace/code/chaoyang/tools/run_hawor_newtask_canary.py",
+        "sha256": "baaf856cad6e6275436deb405f4539d821252f779af3b8def34d0235265448df",
+        "frozen_before_evaluation": true
+      },
+      "gates": {
+        "execution": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "mano21_structure": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "numeric_mask_seed": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "numeric_robot_seed": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "anatomical_identity": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["INDEPENDENT_IDENTITY_REVIEW_MISSING"]
+        },
+        "independent_contour": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["FROZEN_CONTOUR_LABELS_MISSING"]
+        },
+        "direct_provenance": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "contact_direct_observation": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["OBJECT_CONTACT_TIMELINE_MISSING"]
+        }
+      }
+    },
+    "mask": {
+      "scope": "CANARY",
+      "seed_route": "MANUAL",
+      "provider_routes": {
+        "human_core": {
+          "left": {
+            "provider": "MANUAL",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["POKER001_EVAL_PROVIDER_NOT_FIT_AUTHORITY"]
+            }
+          },
+          "right": {
+            "provider": "MANUAL",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["POKER001_EVAL_PROVIDER_NOT_FIT_AUTHORITY"]
+            }
+          }
+        },
+        "wearable_tracker": {
+          "left": {
+            "provider": "VISUAL_INSTANCE",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["LEFT_TRACKER_FULL_SESSION_IDENTITY_NOT_PROVEN"]
+            }
+          },
+          "right": {
+            "provider": "VISUAL_INSTANCE",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["RIGHT_TRACKER_FULL_SESSION_IDENTITY_NOT_PROVEN"]
+            }
+          }
+        },
+        "moving_task_object": {
+          "global": {
+            "provider": "VISUAL_INSTANCE",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["MOVING_CARD_INSTANCE_IDENTITY_NOT_PROVEN"]
+            }
+          }
+        },
+        "static_setup_anchor": {
+          "global": {
+            "provider": "NOT_USED",
+            "eligibility": {
+              "status": "PASS",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": []
+            }
+          }
+        }
+      },
+      "consumption_authorized": false,
+      "reported_status": "FAIL_STOP_BEFORE_FULL",
+      "claim_limit": "Twelve-frame sampled Mask canary only; no full-session consumption authority.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/poker/runs/mask/20260903_poker001_formal_sharedckpt_canary12_v1/gpu_sampled12/RESULT.json",
+          "sha256": "b95d03f8d093dd3e2a7885dbbd37ab4e8dbbd28fffdde14de091f50ea168f27e",
+          "role": "mask_automatic_result"
+        },
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/poker/runs/mask/20260903_poker001_formal_sharedckpt_canary12_v1/gpu_sampled12/MASK_VISUAL_REVIEW.json",
+          "sha256": "c9b6831290e7c065981da4504ce468c3f00f5e30fe8bfe5aba5d4a2a98d95bc2",
+          "role": "mask_visual_review"
+        }
+      ],
+      "gate_contract": {
+        "id": "poker-formal-pico-canary-contract-v1",
+        "path": "/mnt/workspace/code/chaoyang/tasks/poker/runs/mask/20260903_formal_pico_canary_contract_v1/CANARY_CONTRACT.json",
+        "sha256": "25aef9cbbd61c4e9ec29fe6bd0dc84a41ed66b80bced3f1178089289ed48dafc",
+        "frozen_before_evaluation": true
+      },
+      "gates": {
+        "input_authority": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "semantic_roles": {
+          "status": "FAIL",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["TRACKER_IDENTITY_AND_EXTENT_REJECTED"]
+        },
+        "moving_task_object_identity": {
+          "status": "HOLD",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["MOVING_OBJECT_IDENTITY_NOT_PROVEN_FULL_SESSION"]
+        },
+        "static_setup_anchor_scope": {
+          "status": "HOLD",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["STATIC_SETUP_ANCHOR_SCOPE_NOT_REVIEWED"]
+        },
+        "prompt_provider_lineage": {
+          "status": "HOLD",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["ROLE_SIDE_PROVIDER_LINEAGE_NOT_FROZEN"]
+        },
+        "temporal_identity": {
+          "status": "FAIL",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["DISCONTINUOUS_SAMPLE_PROPAGATION_INVALID"]
+        },
+        "full_session_coverage": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["FULL_PROPAGATION_STOPPED"]
+        },
+        "object_protection": {"status": "PASS", "authority": "INDEPENDENT_QA", "reason_codes": []},
+        "lineage_integrity": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "manual_review": {
+          "status": "FAIL",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["VISUAL_REVIEW_REJECTED"]
+        }
+      }
+    },
+    "robot": {
+      "scope": "CANARY",
+      "consumption_authorized": false,
+      "sidecar_consumption_authorized": false,
+      "reported_status": "HOLD_NO_OBJECT6D_CONTACT_MASK_CLEAN_AUTHORITY",
+      "claim_limit": "Kinematic canary only; no formal composite, contact, or training authority.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/poker/runs/robot/20260903_poker001_generic_kinematic_successor_v2_blind_eval_retry_stable/RESULT.json",
+          "sha256": "2e46388e5e48772fe14d89c599eddeb999b19743d9ecb0bcaa110b8ad36f5b6b",
+          "role": "robot_kinematic_canary"
+        }
+      ],
+      "gate_contract": {
+        "id": "shared-robot-adapter-successor-v2",
+        "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/robot/20260903_shared_adapter_successor_v1/PROTOCOL_V2.json",
+        "sha256": "9d7adf3145929a4f7ef3e828b490662c134de954adcc2dbf1505c58c0e967950",
+        "frozen_before_evaluation": true
+      },
+      "gates": {
+        "input_hawor_authority": {
+          "status": "HOLD",
+          "authority": "NONE",
+          "reason_codes": ["HAWOR_INDEPENDENT_IDENTITY_CONTOUR_MISSING"]
+        },
+        "input_clean_authority": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["CLEAN_NOT_RUN"]
+        },
+        "mount_calibration": {
+          "status": "HOLD",
+          "authority": "PRODUCER",
+          "reason_codes": ["DEVELOPMENT_ONLY_MOUNT"]
+        },
+        "session_static_base": {
+          "status": "HOLD",
+          "authority": "PRODUCER",
+          "reason_codes": ["VISUAL_SURROGATE_NOT_CALIBRATION_AUTHORITY"]
+        },
+        "object6d": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["OBJECT6D_NOT_PRESENT"]
+        },
+        "retarget_schema": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "mano_reorder": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "pose": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "joint_limits": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "temporal": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "hand_morphology": {
+          "status": "FAIL",
+          "authority": "PRODUCER",
+          "reason_codes": ["KAIHAND_SHAPE_GATE_FAILED"]
+        },
+        "retarget_independent_qa": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["INDEPENDENT_RECOMPUTE_MISSING"]
+        },
+        "functional_retarget_authority": {
+          "status": "HOLD",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["DEVELOPMENT_RETARGET_NOT_FUNCTIONALLY_AUTHORIZED"]
+        },
+        "contact": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["OBJECT6D_CONTACT_MISSING"]
+        },
+        "nonpenetration": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["OBJECT6D_MISSING"]
+        },
+        "self_collision": {
+          "status": "HOLD",
+          "authority": "PRODUCER",
+          "reason_codes": ["HAND_SELF_COLLISION_GATE_HOLD"]
+        },
+        "depth_occlusion": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["OBJECT_DEPTH_MISSING"]
+        },
+        "manual_review": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["FORMAL_ROBOT_REVIEW_NOT_RUN"]
+        }
+      }
+    }
+  }
+}

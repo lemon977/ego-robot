@@ -1,0 +1,451 @@
+{
+  "schema_version": "chaoyang-reproducibility-artifact-index-v1",
+  "sealed_at_local": "2026-09-02T01:32:01+08:00",
+  "last_incremental_update_local": "2026-09-02T14:25:00+08:00",
+  "project_root": "/mnt/workspace/code/chaoyang",
+  "status": "SEALED_WITH_EXPLICIT_HOLDS",
+  "self_excluded_from_hash_list": true,
+  "self_exclusion_reason": "A file cannot contain its own stable digest without a circular definition",
+  "algorithm_and_weight_manifest": {
+    "path": "/mnt/workspace/code/chaoyang/docs/reproducibility/2026-09-02/ALGORITHM_AND_WEIGHT_MANIFEST.json",
+    "bytes": 61084,
+    "sha256": "4b58b94492d41de502b0ebfa61238dc42a88e697fc224ceee8cd587238b132be",
+    "verified_algorithm_artifacts": 29,
+    "verified_authority_artifacts": 50,
+    "verified_learned_weights": 1,
+    "license_and_claim_scope_authority": true
+  },
+  "generated_documents": [
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/reproducibility/2026-09-02/SYSTEM_REPRODUCTION_GUIDE_ZH.md",
+      "bytes": 27109,
+      "sha256": "032e5b6761a2197682f929b3535b9037e43e6e09e266857ec249e86f0eafdf88",
+      "role": "environment, commands, configuration layers and recovery order"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/reproducibility/2026-09-02/QUALITY_GATES_AND_RATIONALE_ZH.md",
+      "bytes": 16220,
+      "sha256": "cb4dd5ca97c693bfa47ce6b735b25ef511fd33046ddc3031020e1d725746fdd2",
+      "role": "quality gates and rationale"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/reproducibility/2026-09-02/FAILURES_AND_FIXES_ZH.md",
+      "bytes": 17052,
+      "sha256": "9e38a328a9390ee5c4fac26334059044415a32b5fd7d6fb0c2a22b97a3cd8788",
+      "role": "failure lineage, fixed successors and open holds"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/reproducibility/2026-09-02/ARTIFACT_INDEX.md",
+      "bytes": 16158,
+      "sha256": "38eb1330c4ca1c2c309106e3b3d41e5636fc38b829e34f1a4cd269b9bd381b45",
+      "role": "human-readable entrypoint"
+    }
+  ],
+  "primary_authorities": [
+    {
+      "system": "mask",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_mask_probe_20260901_v1/GENERALIZATION_MATRIX.md",
+      "bytes": 9396,
+      "sha256": "e742681ab730c0b0c117e2c712fc85ecf511dcae112d5f0f55a9df394b4faa47",
+      "status": "OBJECT_PASS_HUMAN_WEARABLE_HOLD",
+      "claim_scope": "phone development and frozen non-blind diagnostics only"
+    },
+    {
+      "system": "mask_assisted_bilateral_chips_v4",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/RESULT.json",
+      "bytes": 863325,
+      "sha256": "c54f786a72a0ebcd3c43ab5d750a74ae176bfc9edda81a4f653491e22e77142a",
+      "status": "PASS_CANARY12_FULL_ARTIFACTS_EMITTED",
+      "claim_scope": "chips phone-development assisted run; four roles 360/360; exact protected union; consumption_authorized=true"
+    },
+    {
+      "system": "mask_assisted_bilateral_poker_v4",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_poker_20260902_v4/RESULT.json",
+      "bytes": 1647300,
+      "sha256": "d25203ad71eef2a802372d4a008f5573500c486a2236cec55d20e53f33f05b67",
+      "status": "HOLD_CANARY12_NO_FULL_ARTIFACT_PROMOTION",
+      "claim_scope": "byte-identical v4 parameters; human and lower cuff pass but trackers fail; no full union; consumption_authorized=false"
+    },
+    {
+      "system": "mask_assisted_bilateral_v4_generalization",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/GENERALIZATION_MATRIX_V4.md",
+      "bytes": 1806,
+      "sha256": "59bc864979cb5307e315841fed71b967494a6650b188a1c9a54763ca0e165088",
+      "status": "CHIPS_PASS_POKER_HOLD_SCOPE_FROZEN",
+      "claim_scope": "human transfer observed across two phone videos; end-to-end tracker transfer not proven"
+    },
+    {
+      "system": "mask_assisted_bilateral_poker_label_recovery",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/POKER_OFFLINE_LABEL_PLAN.md",
+      "bytes": 2058,
+      "sha256": "f583cb4dd3b408058c96d1ffb6cd341693ba5a6ada110d35bb7753b0306e101d",
+      "status": "PLAN_READY_LABELS_NOT_YET_PRODUCED",
+      "claim_scope": "minimum 8 frames/16 tracker instances; robust 11 frames/22 instances; not completed labels"
+    },
+    {
+      "system": "mask_wearable_semantic_rescue",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3/RESULT.json",
+      "bytes": 4406,
+      "sha256": "3ae8477071a7fc0d3158ca0b3e782b18fd467b402be54513c18245359310a7f6",
+      "status": "HOLD_GENERIC_MODEL_CLASS_INSTANCE_UNSTABLE_NO_FULL_PROPAGATION",
+      "claim_scope": "12-canary development diagnosis; no propagation/union; object masks untouched; 032/051/sealed004 reads zero"
+    },
+    {
+      "system": "mask_wearable_label_training_interface",
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3/LABEL_TRAINING_INTERFACE_STATUS.md",
+      "bytes": 3833,
+      "sha256": "66668da6918746a71eea4a47320c3cdd19a56ddbcb78ebb70fc43ac0ca003609",
+      "status": "ANNOTATION_TOOL_READY_LABELS_TRAINER_WEIGHT_HOLD",
+      "claim_scope": "nine-class dataset/training contract only; no real multi-session label or model authority"
+    },
+    {
+      "system": "clean_l2",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_20260901_233238/REPORT.md",
+      "bytes": 7336,
+      "sha256": "02701ff12c8b1fa300de6871bdee2e26bf9882d87988d5a4b750f505288ad0c5",
+      "status": "SOURCE_READINESS_COMPLETE",
+      "claim_scope": "route and source readiness; no CLEAN_RGB"
+    },
+    {
+      "system": "clean_l3",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/RUN.json",
+      "bytes": 169027,
+      "sha256": "d367594161f81bf19c76ba3c4af5ea066919bfc7d20945eeed4c5c122164f6ac",
+      "status": "HOLD_HUMAN_SEMANTIC_CLOSURE_UNRESOLVED",
+      "claim_scope": "PHONE_DIAGNOSTIC_ONLY; ORB is not K/c2w; no formal CLEAN/PICO/blind claim"
+    },
+    {
+      "system": "clean_l3_integrity",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/VALIDATION.json",
+      "bytes": 3153,
+      "sha256": "37137eb9e08082a37b7b5dce1c12f8c701d7737582921c790c953faa0370bc5a",
+      "status": "PASS_ARTIFACT_INTEGRITY_POLICY_HOLD_RETAINED",
+      "claim_scope": "10 targets; 61202 copied pixels byte-identical; cross-video donor 0"
+    },
+    {
+      "system": "clean_chips_frame0_whole_table_bounded_final",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/RESULTS.json",
+      "bytes": 8424,
+      "sha256": "81f4656978b911e3ae76029f0e07d5e013b046f93c84115d423c251f6af86f52",
+      "status": "HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT",
+      "claim_scope": "PHONE_DEV chips frame0 only; authorized bilateral Mask consumed; visible geometry/duplicate-object gate failed; 10-frame/full-video not started"
+    },
+    {
+      "system": "robot_final_v3_mano_order_authority",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_final_v3_mano_order_authority_cpu_20260902_v1/ORDER_AUTHORITY_AUDIT.json",
+      "bytes": 40130,
+      "sha256": "ab6a280589a26c34e3c1c3e495911e00e26c66055b8199fb47fa1e128a7c29c1",
+      "status": "PASS_FINAL_V3_IS_MANO21_WRIST0",
+      "claim_scope": "864 checkpoints; joint0 root restored; joint5-on-final_v3 and points-first5 fingertip lineages revoked"
+    },
+    {
+      "system": "robot_004_mano21_kai_contact_gate",
+      "path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_004_mano21_kai_contact_gate_cpu_20260902_v1/RESULTS.json",
+      "bytes": 31909,
+      "sha256": "01f792ccae11fd379ae6cb0379b7ce107f0b6e6500ea360938e92c7a59fd98c7",
+      "status": "PASS_F345_F402_CPU_READY_FOR_WINDOW_EXPANSION",
+      "claim_scope": "004 one mapped physical side, frames345/402 only; no 10-frame CAD/full460/render/cross-session/grasp claim"
+    },
+    {
+      "system": "robot_004_correct_mano21_contact_timeline",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_mano21_contact_timeline_cpu_20260902_v1/CONTACT_TIMELINE.json",
+      "bytes": 1468150,
+      "sha256": "258f32b5fd6e8a3cf804633bdbcba4ee3eb4d9d2776678cc72079b335a7c7ae2",
+      "status": "PASS_HUMAN_CONTACT_INTENT_LABEL_TIMELINE_ONLY",
+      "claim_scope": "251 active frames are correct MANO human required-finger labels, not Robot physical contact solutions"
+    },
+    {
+      "system": "robot_004_cpu",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_bilateral_bidirectional_event_dp_cpu_20260901_v1/RESULTS.json",
+      "bytes": 75044,
+      "sha256": "337b4887523c5fa7c9a657cbf261ff04a2af4a892fd5f1fd7154d6350048bc9d",
+      "status": "PASS_BOUNDED_BILATERAL_EVENT_WINDOWS_CPU",
+      "claim_scope": "f155..175 and f205..225; no outside-window or grasp claim"
+    },
+    {
+      "system": "robot_004_video",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_event_windows_cycles_preview_20260902_v1/render/TERMINAL_QA.json",
+      "bytes": 2027,
+      "sha256": "b26932c3b5424433dbd1773dd79f0f4429f259e8f08d91a57601e19bf2da1062",
+      "status": "PASS_WINDOW_PREVIEW_FINAL",
+      "claim_scope": "42-frame Cycles preview for two windows; FULL460 PENDING"
+    },
+    {
+      "system": "robot_cross_session",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_keyframes_cpu_20260902_v1/INDEX.md",
+      "bytes": 4976,
+      "sha256": "afe89a77d70389809fb344f2ee25daf5f433dd3ebfc059d18e36c95ec475e1c1",
+      "status": "HOLD_NOT_FORMAL_CROSS_SESSION_PASS",
+      "claim_scope": "non-blind 002/068/139 diagnostic; corrected contact successor required"
+    },
+    {
+      "system": "robot_contact_successor",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_contact_audit_cpu_20260902_v1/CONTACT_AUDIT_RESULTS.json",
+      "bytes": 29536,
+      "sha256": "362c34e9f56b152dc5bae3d57a084cd5db89a0fa786c12843a3d04c5cc5b7fef",
+      "status": "HOLD_SOURCE_CROSS_SESSION_AND_CONTACT_CORRECTED",
+      "claim_scope": "002 and 139 contact proxy PASS; 068 HOLD; not a grasp proof"
+    },
+    {
+      "system": "robot_cross_session_window_initializer",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_window_initializer_dp_cpu_20260902_v1/INDEX.md",
+      "bytes": 1023,
+      "sha256": "a679aa3b564e0f86535f1d77a3fb086858356a5490b2c86e0e3574803816b0ad",
+      "status": "HOLD_CROSS_SESSION_WINDOW_DIAGNOSTIC",
+      "claim_scope": "002 data+bilateral downstream PASS; 035/065 downstream-only PASS but TrackerState HOLD; 068/139 temporal blockers"
+    },
+    {
+      "system": "robot_cross_session_window_initializer_machine",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_window_initializer_dp_cpu_20260902_v1/RESULTS.json",
+      "bytes": 288947,
+      "sha256": "5d96bd8aebfcfe42c86b1d6ec2742420587bbf4d33b45b3f90d55a67ddac82f5",
+      "status": "HOLD_CROSS_SESSION_WINDOW_DIAGNOSTIC",
+      "claim_scope": "machine authority; all passing opening windows have contact_required_frames=0, therefore no grasp claim"
+    },
+    {
+      "system": "robot_cross_session_temporal_audit",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_temporal_blocker_audit_cpu_20260902_v1/RESULTS.json",
+      "bytes": 11254,
+      "sha256": "e0b130e9724de4ebe04c89d6ad2cd4a11a28d51f35c963eacc33fde46f1d245a",
+      "status": "COMPLETE_SOURCE_HOLD_PRESERVED",
+      "claim_scope": "068 side0/1 velocity and 139 side0 acceleration blockers under unchanged gates"
+    },
+    {
+      "system": "robot_cross_session_event_rescue",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_cpu_20260902_v1/RESULTS.json",
+      "bytes": 113711,
+      "sha256": "ac49051ab010bd967dcb6f842ad65831a165ae9017e170ea5971cd86682b3d85",
+      "status": "PASS_DOWNSTREAM_EVENT_RESCUE_TRACKER_HOLDS_PRESERVED",
+      "claim_scope": "three bounded non-blind downstream windows; 002/035/065 protection unchanged; Tracker holds and no-grasp scope preserved"
+    },
+    {
+      "system": "robot_cross_session_event_rescue_independent_qa",
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_independent_qa_20260902_v1/RESULTS.json",
+      "bytes": 29638,
+      "sha256": "8646c775c4af16d01b4514aaded7393b9e0f331429d251456b3a5261b873108b",
+      "status": "PASS_INDEPENDENT_EVENT_RESCUE_QA_TRACKER_HOLDS_PRESERVED_NO_GRASP",
+      "claim_scope": "88/88 read-only recomputation checks; bounded downstream only"
+    },
+    {
+      "system": "newtask_contract",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_contract_v2_2/QA_REPORT.md",
+      "bytes": 2026,
+      "sha256": "a931041ccde8d2aa42ee73a0ac45ad61e7b2e26b08d0f13de75cfaddcda29f44",
+      "status": "COMPLETE_FULL",
+      "claim_scope": "decoded-file authority; manual same-frame scene review required"
+    },
+    {
+      "system": "newtask_geometry",
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_geometry_prep_v2/INDEX.md",
+      "bytes": 845,
+      "sha256": "b7c296503a07e539a7b3e9fda6c52fd9a302e0c58c7f0a5e927e3a1dada1be0e",
+      "status": "COMPLETE_APPROX_GEOMETRY",
+      "claim_scope": "development synthetic approximate geometry; formal_session=false"
+    }
+  ],
+  "visual_outputs": [
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/BASELINE_BILATERAL_CHIPS_PASS_VS_POKER_HOLD.png",
+      "bytes": 1102649,
+      "sha256": "d92a1257d816f378cbc82111ef23b6f96421b67817acd28a6a21be5a664bef98",
+      "media_gate": "PNG decode 1080x1440 PASS",
+      "claim_scope": "unified chips PASS versus poker HOLD visual; machine RESULT files remain authority"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/CHIPS_10FRAME_OVERVIEW.png",
+      "bytes": 2018174,
+      "sha256": "9cc0a4a137cff370d3f2d42cfdeec2858cf437f458521b101853e5cc155e293e",
+      "media_gate": "PNG decode 2700x960 PASS",
+      "claim_scope": "ten-frame chips v4 visual review"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/chips_RAW_VS_BILATERAL_CLASSES.mp4",
+      "bytes": 2656046,
+      "sha256": "6e62715b457d93195ce8ab86bc0836ba241cae95a00171a4f273bdc4def7b9f0",
+      "media_gate": "H264/yuv420p/540x480/30fps/360frames/full_decode PASS",
+      "claim_scope": "chips raw versus class overlay review"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/chips_RAW_UNION_OVERLAY.mp4",
+      "bytes": 3444480,
+      "sha256": "0d21a4b9c9c842e135830a9566b9a116b6f209c7a3e73b80d96a459791ecbee0",
+      "media_gate": "H264/yuv420p/540x960/30fps/360frames/full_decode PASS",
+      "claim_scope": "chips published binary-union overlay; protected object overlap zero"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_assisted_bilateral_flow_refresh_poker_20260902_v4/POKER_FLOW_REFRESH_CANARY12_HOLD.png",
+      "bytes": 3375798,
+      "sha256": "8879da2c383cc6d3b054f33ef1f7b64a64dae81ceb14cffc17e8b4a11cf534af",
+      "media_gate": "PNG decode 1080x2880 PASS",
+      "claim_scope": "poker 12-canary HOLD visual; no full artifact or consumption authority"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3/baseline/chips/sleeve_cuff/CHIPS_SLEEVE_CUFF_BEST_FAILED_CANARY12.png",
+      "bytes": 1302906,
+      "sha256": "e462a1258104406b58071216bc4a50ab6f669375e24df8939d9c637a4ce2c760",
+      "media_gate": "PNG decode 1620x1920 PASS",
+      "claim_scope": "chips sleeve neutral-prompt failure, 0/12 canaries"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_mask_wearable_semantic_rescue_20260902_v3/baseline/poker/wrist_wearable/POKER_WRIST_WEARABLE_CANARY12.png",
+      "bytes": 1313246,
+      "sha256": "c0e197e4e9d5bdd2511818dcd516918e9b4143c92558491bc7e321ae64124f7d",
+      "media_gate": "PNG decode 1620x1920 PASS",
+      "claim_scope": "poker tracker class presence 12/12 but unstable target-wrist identity"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_event_windows_cycles_preview_20260902_v1/render/ROBOT_004_WINDOW_PASS_OVERLAY.mp4",
+      "bytes": 280266,
+      "sha256": "17dcd5e6d95ceb7883e61ed9ca860d8a529ba0e9a9112cc6b7554a7687c61cc5",
+      "media_gate": "H264/yuv420p/640x480/30fps/42frames/full_decode_rc0",
+      "claim_scope": "two Robot event windows only"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_event_windows_cycles_preview_20260902_v1/render/ROBOT_004_WINDOW_PASS_OPAQUE.mp4",
+      "bytes": 101640,
+      "sha256": "5d6276491ef6f3f70e098d3987819a1212afd3c61d54fd3e75825c049e17e20e",
+      "media_gate": "H264/yuv420p/640x480/30fps/42frames/full_decode_rc0",
+      "claim_scope": "two Robot event windows only"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_human_origin_keyframes_cpu_20260902_v1/CROSS_SESSION_27_KEYFRAME_CONTACT_SHEET.png",
+      "bytes": 5434254,
+      "sha256": "9321938638ef48d410bff0380c12ea416517c1867085011b0905eb816fcaf7b7",
+      "media_gate": "PNG decode 1440x3240 PASS",
+      "claim_scope": "non-blind diagnostic contact sheet"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_window_initializer_dp_cpu_20260902_v1/CROSS_SESSION_WINDOW_INIT_CONTACT_SHEET.png",
+      "bytes": 2517469,
+      "sha256": "c2ede6205d93546ab48cbe816c65489a457428bd9396676fe4e4b379c5c43561",
+      "media_gate": "PNG decode 1440x1800 PASS",
+      "claim_scope": "non-blind cross-session opening-window diagnostic; overall HOLD and no grasp claim"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_cross_session_event_rescue_cpu_20260902_v1/CROSS_SESSION_EVENT_RESCUE_CONTACT_SHEET.png",
+      "bytes": 2558590,
+      "sha256": "89b620b461c2f638328d46ac25a127357d5cfcda9805d165239ce7b30a202964",
+      "media_gate": "PNG decode 1440x1800 PASS",
+      "claim_scope": "three bounded non-blind event-rescue windows; Tracker holds and no grasp claim"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/L3_POKER_CHIPS_CONTACT.png",
+      "bytes": 1666569,
+      "sha256": "87470a8271e6b8aae78ecd5aad56d31bf7f7d61700d855f670880eb13a03030e",
+      "media_gate": "PNG decode PASS",
+      "claim_scope": "phone Clean L3 diagnostic HOLD"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/chips/CHIPS_L3_DIAGNOSTIC.mp4",
+      "bytes": 282300,
+      "sha256": "f1b9a29d7e45a077339854fe17eda74644440796109201dc376759dbbc8c09a0",
+      "media_gate": "H264/yuv420p/48frames/full_decode PASS",
+      "claim_scope": "chips phone Clean L3 diagnostic HOLD"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_baseline_clean_l3_20260902_v1/poker/POKER_L3_DIAGNOSTIC.mp4",
+      "bytes": 268950,
+      "sha256": "b4479235039ebcb66cf2d04e019f26dd6df53382bc37a5b99841df28ceb9222e",
+      "media_gate": "H264/yuv420p/48frames/full_decode PASS",
+      "claim_scope": "poker phone Clean L3 diagnostic HOLD"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/FRAME0_BOUNDED_WHOLE_TABLE_A_B.png",
+      "bytes": 375275,
+      "sha256": "9d8076cfa8010ebd68b0af8f6a0cad7b202276a31a49635ec1f8ee35ef4752dc",
+      "media_gate": "PNG decode 1080x480 PASS",
+      "claim_scope": "terminal frame0 A/B visual HOLD; duplicate static objects and table distortion; no promotion"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/INDEPENDENT_ANCHORS.png",
+      "bytes": 225027,
+      "sha256": "49cb7f65ca1f9abdba528ae62e20572c27b46720980712ce159af18718623d2f",
+      "media_gate": "PNG decode 540x480 PASS",
+      "claim_scope": "six independently measured frame0 anchor correspondences; no prior-H backprojection"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_narrow_seam_candidates_20260902_v1/FRAME0_THREE_CANDIDATES.png",
+      "bytes": 203290,
+      "sha256": "78ab4c6250e1e668beb999551641fc57e290ea020b17313ab484c0867ee32738",
+      "media_gate": "PNG decode 1620x480 PASS",
+      "claim_scope": "historical frame0 narrow donor/multiband/Poisson failure diagnostic"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_pure_donor_ab_20260902_v2/FRAME0_PURE_DONOR_A_B.png",
+      "bytes": 194756,
+      "sha256": "34b207a0b4d42fed50200c7fa62bf8a5b3150886036b041323359655b7abc104",
+      "media_gate": "PNG decode 1890x480 PASS",
+      "claim_scope": "historical frame0 pure-donor proof of Poisson target-gradient boundary reinjection"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_graphcut_seam_ab_20260902_v1/FRAME0_GRAPHCUT_A_B.png",
+      "bytes": 204516,
+      "sha256": "3a87220b609460f313c3f4a9f577a99f37059153f6bded1ad5792cc1a4d14a56",
+      "media_gate": "PNG decode 1890x480 PASS",
+      "claim_scope": "historical frame0 source-driven graph-cut seam/shadow diagnostic"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_patchmatch_graphcut_ab_20260902_v1/FRAME0_PATCHMATCH_A_B.png",
+      "bytes": 219270,
+      "sha256": "3c85f6167f901cdbc61f5266fb7fbb45c67d03ebf1de07f56dd32ba866151900",
+      "media_gate": "PNG decode 1890x480 PASS",
+      "claim_scope": "historical frame0 target-frame PatchMatch translated/repeated-texture diagnostic"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_quilting_inpaint_ab_20260902_v2/FRAME0_QUILTING_VS_INPAINT.png",
+      "bytes": 201807,
+      "sha256": "5ed7964e0b7e498ed545825d4e837af138702edfafe62a8332a48b1047a2cc94",
+      "media_gate": "PNG decode 1620x480 PASS",
+      "claim_scope": "historical frame0 real-pixel quilting versus GENERATED_CLASSICAL controls"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/newtask_clean_chips_frame0_whole_table_plate_ab_20260902_v2/FRAME0_WHOLE_TABLE_A_B.png",
+      "bytes": 416756,
+      "sha256": "682946eaf30a458c6db31078ca1d25103e6718367701375e31a2e4a4197f6dae",
+      "media_gate": "PNG decode 1350x480 PASS",
+      "claim_scope": "historical frame0 unconstrained whole-table projective-pole/ECC failure diagnostic"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_mano21_contact_timeline_cpu_20260902_v1/CORRECT_LABEL_TIMELINE.png",
+      "bytes": 27665,
+      "sha256": "3b1fb1590cd3096b39df0858f526bc7c3a4f27c904b6330fbf2a9d7d58cc6a9f",
+      "media_gate": "PNG decode 1380x240 PASS",
+      "claim_scope": "correct MANO21 human required-finger interval visualization; not Robot contact"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/_run/robot_004_mano21_contact_timeline_cpu_20260902_v1/TEN_FRAME_CPU_CONTACT_SHEET.png",
+      "bytes": 2245691,
+      "sha256": "ae94fdb33b6b97113d821af1d7511793b7af788f5c687389126ba6d805eb6119",
+      "media_gate": "PNG decode 2400x720 PASS",
+      "claim_scope": "ten raw human-intent evidence frames; not ten Robot CAD/contact solutions"
+    }
+  ],
+  "short_entries": [
+    "/mnt/workspace/code/chaoyang/NOW/docs/reproducibility_20260902",
+    "/mnt/workspace/code/chaoyang/NOW/mask/README.md",
+    "/mnt/workspace/code/chaoyang/NOW/mask/bilateral_pass_vs_hold.png",
+    "/mnt/workspace/code/chaoyang/NOW/mask/bilateral_chips_union.mp4",
+    "/mnt/workspace/code/chaoyang/NOW/mask/bilateral_chips_qa.md",
+    "/mnt/workspace/code/chaoyang/NOW/mask/bilateral_poker_hold.png",
+    "/mnt/workspace/code/chaoyang/NOW/mask/poker_tracker_label_plan.md",
+    "/mnt/workspace/code/chaoyang/NOW/mask/WEARABLE_SEMANTIC_RESCUE_STATUS.md",
+    "/mnt/workspace/code/chaoyang/NOW/robot/robot_window_pass_overlay.mp4",
+    "/mnt/workspace/code/chaoyang/NOW/robot/cross_session_contact_report.md",
+    "/mnt/workspace/code/chaoyang/NOW/robot/CROSS_SESSION_WINDOW_INITIALIZER_STATUS.md",
+    "/mnt/workspace/code/chaoyang/NOW/robot/CROSS_SESSION_EVENT_RESCUE_STATUS.md",
+    "/mnt/workspace/code/chaoyang/NOW/newtask/BASELINE_CLEAN_L3_STATUS.md",
+    "/mnt/workspace/code/chaoyang/NOW/clean/README.md",
+    "/mnt/workspace/code/chaoyang/NOW/clean/cross_camera_final_hold.md",
+    "/mnt/workspace/code/chaoyang/NOW/robot/README.md"
+  ],
+  "open_holds": [
+    "Mask poker tracker closure and end-to-end cross-task validation; minimum offline labels are planned but not yet produced",
+    "Mask formal PICO, blind/zero-click generalization, real multi-session nine-class label authority, production trainer and class-conditioned weight",
+    "Clean formal same-session PICO authority and moving-camera K/c2w/table plane",
+    "Clean chips frame0 cross-camera static is insufficient; need a same-camera same-pose 2-3s clean plate or at least four independent table-perimeter correspondences before 10-frame/full promotion",
+    "Robot 004 correct-MANO21 small-window CPU physical continuity, 10-frame CAD/contact review and new FULL460 scene/video; only f345/f402 single-side CPU currently pass",
+    "Robot formal cross-session TrackerState, sealed full-video closure and correct-MANO21/KaiHand gate; new physical gate has not run on 002/035/065 or other sessions",
+    "New-task formal measurement/manual review/PICO inputs",
+    "Project, phone/capture and Robot-asset redistribution rights"
+  ]
+}

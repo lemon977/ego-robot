@@ -1,0 +1,45 @@
+{
+  "canonical_documents": {
+    "baseline_registry": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_BASELINE_REGISTRY_V2.json",
+    "current_status": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
+    "depth_report": "/mnt/workspace/code/chaoyang/docs/reports/depth_accuracy/20260911",
+    "end_to_end": "/mnt/workspace/code/chaoyang/docs/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+    "stage_baselines": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STAGE_BASELINES_ZH.md"
+  },
+  "claim_limit": "Layout contract only. Historical snapshot paths are resolved through PATH_REDIRECTS.json.",
+  "forbidden_top_level_after_cleanup": [
+    "NOW",
+    "DEPTH_ACCURACY_PACKAGE_20260911",
+    "RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md"
+  ],
+  "generated_at": "2026-09-14T19:12:16+08:00",
+  "generation_id": "gov-005869-1eff2016fad2",
+  "governance_revision": 5869,
+  "protected_external": [
+    "/mnt/data/egodata",
+    "/nas/chenxianchi/egosteertouch",
+    "/nas/chenxianchi/egoverse_piper",
+    "/nas/chenxianchi/openpi",
+    "/nas/chenxianchi/tactiel_pretrain_outputs"
+  ],
+  "repository_root": "/mnt/workspace/code/chaoyang",
+  "retained_top_level": [
+    "README.md",
+    "AGENTS.md",
+    "THIRD_PARTY_NOTICES.md",
+    "assets",
+    "contracts",
+    "data",
+    "docs",
+    "HumanEgo",
+    "pipeline",
+    "systems",
+    "tasks",
+    "tests",
+    "third_party",
+    "tools",
+    "archive",
+    "_run"
+  ],
+  "schema_version": "chaoyang-current-file-layout-v1"
+}

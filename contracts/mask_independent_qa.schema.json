@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/mask_independent_qa.schema.json",
+  "title": "Independent MASK QA Binding",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_state", "producer", "auditor_identity", "status", "session_id", "product_line",
+    "mask_manifest_ref", "mask_manifest_sha256", "source_manifest_ref", "canary_set_ref",
+    "benchmark_ref", "evaluation_protocol_ref", "coverage", "independence", "checks",
+    "comparison_eligible", "formal_review_package_input_allowed", "hold_reasons",
+    "upstream_mutation_permitted", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "mask-independent-qa-v1"},
+    "artifact_state": {"const": "G2_CALIBRATION_QA"},
+    "producer": {"const": "independent_mask_qa"},
+    "auditor_identity": {
+      "type": "object", "additionalProperties": false,
+      "required": ["component_id", "auditor_version", "freeze_state", "implementation_ref", "implementation_sha256", "threshold_profile_ref"],
+      "properties": {
+        "component_id": {"const": "independent_mask_qa"},
+        "auditor_version": {"const": "auditor_a1"},
+        "freeze_state": {"const": "FROZEN"},
+        "implementation_ref": {"type": "string", "minLength": 1},
+        "implementation_sha256": {"$ref": "#/$defs/sha256"},
+        "threshold_profile_ref": {"$ref": "#/$defs/ref"}
+      }
+    },
+    "status": {"enum": ["PASS", "HOLD", "REJECTED"]},
+    "session_id": {"const": "grap_a_cap_004"},
+    "product_line": {"const": "004_CONTACT_GOLD"},
+    "mask_manifest_ref": {"$ref": "#/$defs/maskEvidenceRef"},
+    "mask_manifest_sha256": {"$ref": "#/$defs/sha256"},
+    "source_manifest_ref": {"$ref": "#/$defs/ref"},
+    "canary_set_ref": {"$ref": "#/$defs/ref"},
+    "benchmark_ref": {
+      "allOf": [
+        {"$ref": "#/$defs/ref"},
+        {"properties": {"producer": {"const": "mask_benchmark_curator"}, "schema_version": {"const": "mask-benchmark-v1"}}, "required": ["schema_version"]}
+      ]
+    },
+    "evaluation_protocol_ref": {"$ref": "#/$defs/ref"},
+    "coverage": {
+      "type": "object", "additionalProperties": false,
+      "required": ["candidate_scope", "benchmark_frame_count", "evaluated_partitions", "all_benchmark_frames_evaluated"],
+      "properties": {
+        "candidate_scope": {"enum": ["FULL_SESSION_460", "DIAGNOSTIC_4_FRAME", "DIAGNOSTIC_15_FRAME", "OTHER_INCOMPLETE"]},
+        "benchmark_frame_count": {"type": "integer", "minimum": 0, "maximum": 60},
+        "evaluated_partitions": {
+          "type": "array", "uniqueItems": true,
+          "items": {"enum": ["DEVELOPMENT_004", "SAME_SESSION_BLIND", "CROSS_SESSION_BLIND"]}
+        },
+        "all_benchmark_frames_evaluated": {"type": "boolean"}
+      }
+    },
+    "independence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["not_mask_producer", "implementation_ref", "implementation_sha256"],
+      "properties": {
+        "not_mask_producer": {"const": true},
+        "implementation_ref": {"type": "string", "minLength": 1},
+        "implementation_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "checks": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "source_digest", "full_frame_count", "anatomy_coverage", "object_protection",
+        "table_false_positive", "temporal_stability", "hold_accounting",
+        "benchmark_human_miss", "benchmark_object_corruption", "benchmark_background_overmask",
+        "benchmark_boundary_excluding_u", "benchmark_temporal_flip"
+      ],
+      "properties": {
+        "source_digest": {"$ref": "#/$defs/gate"},
+        "full_frame_count": {"$ref": "#/$defs/gate"},
+        "anatomy_coverage": {"$ref": "#/$defs/gate"},
+        "object_protection": {"$ref": "#/$defs/gate"},
+        "table_false_positive": {"$ref": "#/$defs/gate"},
+        "temporal_stability": {"$ref": "#/$defs/gate"},
+        "hold_accounting": {"$ref": "#/$defs/gate"}
+        ,"benchmark_human_miss": {"$ref": "#/$defs/gate"}
+        ,"benchmark_object_corruption": {"$ref": "#/$defs/gate"}
+        ,"benchmark_background_overmask": {"$ref": "#/$defs/gate"}
+        ,"benchmark_boundary_excluding_u": {"$ref": "#/$defs/gate"}
+        ,"benchmark_temporal_flip": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "comparison_eligible": {"type": "boolean"},
+    "formal_review_package_input_allowed": {"type": "boolean"},
+    "hold_reasons": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "upstream_mutation_permitted": {"const": false},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "PASS"}}},
+      "then": {
+        "properties": {
+          "formal_review_package_input_allowed": {"const": true},
+          "comparison_eligible": {"const": true},
+          "hold_reasons": {"maxItems": 0},
+          "coverage": {
+            "properties": {
+              "candidate_scope": {"const": "FULL_SESSION_460"},
+              "benchmark_frame_count": {"minimum": 45, "maximum": 60},
+              "evaluated_partitions": {"minItems": 3, "maxItems": 3},
+              "all_benchmark_frames_evaluated": {"const": true}
+            }
+          },
+          "checks": {
+            "properties": {
+              "source_digest": {"properties": {"result": {"const": "PASS"}}},
+              "full_frame_count": {"properties": {"result": {"const": "PASS"}}},
+              "anatomy_coverage": {"properties": {"result": {"const": "PASS"}}},
+              "object_protection": {"properties": {"result": {"const": "PASS"}}},
+              "table_false_positive": {"properties": {"result": {"const": "PASS"}}},
+              "temporal_stability": {"properties": {"result": {"const": "PASS"}}},
+              "hold_accounting": {"properties": {"result": {"const": "PASS"}}}
+              ,"benchmark_human_miss": {"properties": {"result": {"const": "PASS"}}}
+              ,"benchmark_object_corruption": {"properties": {"result": {"const": "PASS"}}}
+              ,"benchmark_background_overmask": {"properties": {"result": {"const": "PASS"}}}
+              ,"benchmark_boundary_excluding_u": {"properties": {"result": {"const": "PASS"}}}
+              ,"benchmark_temporal_flip": {"properties": {"result": {"const": "PASS"}}}
+            }
+          }
+        }
+      },
+      "else": {
+        "properties": {
+          "formal_review_package_input_allowed": {"const": false},
+          "comparison_eligible": {"const": false},
+          "hold_reasons": {"minItems": 1}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "producer", "bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "maskEvidenceRef": {
+      "allOf": [
+        {"$ref": "#/$defs/ref"},
+        {"properties": {"producer": {"const": "mask_producer"}, "schema_version": {"const": "mask-evidence-v1"}}, "required": ["schema_version"]}
+      ]
+    },
+    "gate": {
+      "type": "object", "additionalProperties": false,
+      "required": ["result", "evidence_refs"],
+      "properties": {
+        "result": {"enum": ["PASS", "FAIL", "HOLD"]},
+        "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ref"}}
+      }
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "object6d-mask-box-adapter-v1",
+  "project_root": "/mnt/workspace/code/chaoyang",
+  "task_id": "FILL_chips_OR_poker",
+  "session_id": "FILL_SESSION_ID",
+  "frame_count": null,
+  "image_size": {
+    "width": null,
+    "height": null
+  },
+  "source_contracts": {
+    "functional_dropin_schema": {
+      "path": "tasks/chips/runs/robot/20260903_functional_retarget_devapprox_smoke_v2/TOMORROW_OBJECT6D_DROPIN.schema.json",
+      "bytes": 11090,
+      "sha256": "78fdd4b71e162da04b1381a8cafde6a024bd7aa859d9b2c2803d69d1021d2554"
+    },
+    "functional_dropin_manifest": {
+      "path": "FILL_SESSION_OBJECT6D_FUNCTIONAL_MANIFEST.json",
+      "bytes": null,
+      "sha256": "FILL_64_LOWERCASE_HEX"
+    },
+    "acquisition_manifest": {
+      "path": "FILL_INSTANTIATED_OBJECT6D_CAPTURE_MANIFEST.json",
+      "bytes": null,
+      "sha256": "FILL_64_LOWERCASE_HEX"
+    }
+  },
+  "role_mapping": {
+    "path": "FILL_INSTANTIATED_TASK_ROLE_MAPPING.json",
+    "bytes": null,
+    "sha256": "FILL_64_LOWERCASE_HEX"
+  },
+  "observation_bundle": {
+    "path": "FILL_SESSION_OBJECT6D_OBSERVATION_BUNDLE.npz",
+    "bytes": null,
+    "sha256": "FILL_64_LOWERCASE_HEX"
+  },
+  "provider": {
+    "producer": "FILL_OBJECT6D_PRODUCER",
+    "version": "FILL_VERSION",
+    "provider_family": "FILL_NON_SAM_OBJECT6D_PROVIDER",
+    "code_sha256": "FILL_64_LOWERCASE_HEX",
+    "config_sha256": "FILL_64_LOWERCASE_HEX",
+    "checkpoint_sha256": "FILL_64_LOWERCASE_HEX",
+    "license_sha256": "FILL_64_LOWERCASE_HEX",
+    "independent_from_sam3": true,
+    "temporal_policy": "PER_FRAME_DIRECT_OBSERVATION_CURRENT_FRAME_ONLY"
+  },
+  "functional_array_mapping": {
+    "T_world_object": "T_world_object",
+    "object_valid": "valid",
+    "object_confidence": "confidence",
+    "object_state": "provenance",
+    "direct_observation": "direct_observation",
+    "timestamp_s": "timestamp_s"
+  },
+  "gates": {
+    "max_timestamp_delta_ns": 5000000,
+    "min_confidence": 0.7,
+    "min_identity_score": 0.8,
+    "max_reprojection_rmse_px": 4.0,
+    "max_edge_clip_fraction": 0.05,
+    "min_depth_m": 0.05,
+    "se3_atol": 0.000001,
+    "pose_composition_atol": 0.000001,
+    "max_center_speed_px_per_s": 5000.0,
+    "adjacent_area_ratio_min": 0.5,
+    "adjacent_area_ratio_max": 2.0
+  },
+  "required_frame_indices": null,
+  "fallback_policy": "UNKNOWN_NO_STATIC_NO_PICO_NO_PROPAGATION"
+}

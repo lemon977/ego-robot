@@ -1,0 +1,17 @@
+{
+  "schema_version": "chaoyang-tasks-registry-v1",
+  "tasks": {
+    "cap004": {
+      "path": "tasks/cap004/task.manifest.json",
+      "sha256": "ac4971fe29f2898e669691c59c1a84823eff74ca1d71e75261feb5283bfee6a6"
+    },
+    "poker": {
+      "path": "tasks/poker/task.manifest.json",
+      "sha256": "32528149f010f56d2a76296b65eada05f2493371fca0e9d0cbf9a60bfd5a569c"
+    },
+    "chips": {
+      "path": "tasks/chips/task.manifest.json",
+      "sha256": "f4ec58e426317c8b61a8eb54156757cfc49ca856dadaf6248a14e021ea2b59fd"
+    }
+  }
+}

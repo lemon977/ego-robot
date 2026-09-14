@@ -1,0 +1,130 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/mask_benchmark.schema.json",
+  "title": "MASK H/O/U/B Benchmark",
+  "description": "DRAFT contract for the human-reviewed MASK benchmark. Until the artifact is FROZEN_HUMAN_REVIEWED, no producer ranking or MASK promotion claim is allowed.",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "contract_document_status", "artifact_state", "producer",
+    "benchmark_id", "source_manifest_ref", "label_policy", "partition_policy",
+    "partitions", "total_frame_count", "selection_protocol_ref", "human_review_ref",
+    "comparison_allowed", "producer_tuning_access", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "mask-benchmark-v1"},
+    "contract_document_status": {"const": "DRAFT"},
+    "artifact_state": {"enum": ["DRAFT_UNFROZEN", "FROZEN_HUMAN_REVIEWED"]},
+    "producer": {"const": "mask_benchmark_curator"},
+    "benchmark_id": {"type": "string", "pattern": "^mask_houb_benchmark_[A-Za-z0-9_.-]+$"},
+    "source_manifest_ref": {"$ref": "#/$defs/ref"},
+    "label_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classes", "partition_semantics", "u_excluded_from_hard_boundary_scoring"],
+      "properties": {
+        "classes": {"const": ["H", "O", "U", "B"]},
+        "partition_semantics": {"const": "EXHAUSTIVE_MUTUALLY_EXCLUSIVE_H_O_U_B"},
+        "u_excluded_from_hard_boundary_scoring": {"const": true}
+      }
+    },
+    "partition_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "development_004_disclosure", "same_session_blind_disclosure",
+        "cross_session_blind_disclosure", "blind_labels_hidden_from_mask_producer"
+      ],
+      "properties": {
+        "development_004_disclosure": {"const": "VISIBLE_FOR_DEVELOPMENT"},
+        "same_session_blind_disclosure": {"const": "SEALED_UNTIL_EVALUATION"},
+        "cross_session_blind_disclosure": {"const": "SEALED_UNTIL_EVALUATION"},
+        "blind_labels_hidden_from_mask_producer": {"const": true}
+      }
+    },
+    "partitions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["development_004", "same_session_blind", "cross_session_blind"],
+      "properties": {
+        "development_004": {
+          "type": "array", "minItems": 15, "maxItems": 20, "items": {"$ref": "#/$defs/developmentFrame"}
+        },
+        "same_session_blind": {
+          "type": "array", "minItems": 15, "maxItems": 20, "items": {"$ref": "#/$defs/sameSessionBlindFrame"}
+        },
+        "cross_session_blind": {
+          "type": "array", "minItems": 15, "maxItems": 20, "items": {"$ref": "#/$defs/crossSessionBlindFrame"}
+        }
+      }
+    },
+    "total_frame_count": {"type": "integer", "minimum": 45, "maximum": 60},
+    "selection_protocol_ref": {"$ref": "#/$defs/ref"},
+    "human_review_ref": {"anyOf": [{"$ref": "#/$defs/ref"}, {"type": "null"}]},
+    "comparison_allowed": {"type": "boolean"},
+    "producer_tuning_access": {"enum": ["DEVELOPMENT_PARTITION_ONLY", "NONE"]},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"artifact_state": {"const": "FROZEN_HUMAN_REVIEWED"}}, "required": ["artifact_state"]},
+      "then": {
+        "properties": {
+          "human_review_ref": {"$ref": "#/$defs/ref"},
+          "comparison_allowed": {"const": true},
+          "producer_tuning_access": {"const": "DEVELOPMENT_PARTITION_ONLY"}
+        }
+      },
+      "else": {
+        "properties": {
+          "human_review_ref": {"type": "null"},
+          "comparison_allowed": {"const": false}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "producer", "bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "session_id", "frame_index", "source_frame_sha256", "source_frame_ref",
+        "h_label_ref", "o_label_ref", "u_label_ref", "b_label_ref", "strata"
+      ],
+      "properties": {
+        "session_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"},
+        "frame_index": {"type": "integer", "minimum": 0},
+        "source_frame_sha256": {"$ref": "#/$defs/sha256"},
+        "source_frame_ref": {"$ref": "#/$defs/ref"},
+        "h_label_ref": {"$ref": "#/$defs/ref"},
+        "o_label_ref": {"$ref": "#/$defs/ref"},
+        "u_label_ref": {"$ref": "#/$defs/ref"},
+        "b_label_ref": {"$ref": "#/$defs/ref"},
+        "strata": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+      }
+    },
+    "developmentFrame": {
+      "allOf": [{"$ref": "#/$defs/frame"}, {"properties": {"session_id": {"const": "grap_a_cap_004"}}}]
+    },
+    "sameSessionBlindFrame": {
+      "allOf": [{"$ref": "#/$defs/frame"}, {"properties": {"session_id": {"const": "grap_a_cap_004"}}}]
+    },
+    "crossSessionBlindFrame": {
+      "allOf": [{"$ref": "#/$defs/frame"}, {"properties": {"session_id": {"not": {"const": "grap_a_cap_004"}}}}]
+    }
+  }
+}

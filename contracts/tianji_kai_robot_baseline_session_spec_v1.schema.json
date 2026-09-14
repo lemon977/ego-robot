@@ -1,0 +1,176 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "tianji_kai_robot_baseline_session_spec_v1.schema.json",
+  "title": "Full-session Tianji dual-arm and dual-KaiHand Robot baseline input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "session", "inputs", "assets", "solver", "review",
+    "output_root"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "tianji-kai-robot-baseline-session-spec-v1"
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task", "session_id", "frame_count", "fps"],
+      "properties": {
+        "task": {"enum": ["chips", "poker"]},
+        "session_id": {"type": "string", "minLength": 1},
+        "frame_count": {"type": "integer", "minimum": 24},
+        "fps": {"type": "number", "exclusiveMinimum": 0, "maximum": 240}
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_video", "raw_frame_root", "raw_frame_tree_sha256",
+        "hawor", "mask", "object6d", "clean"
+      ],
+      "properties": {
+        "raw_video": {"$ref": "#/$defs/artifact"},
+        "raw_frame_root": {"type": "string", "minLength": 1},
+        "raw_frame_tree_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "hawor": {"$ref": "#/$defs/npzStage"},
+        "mask": {"$ref": "#/$defs/maskStage"},
+        "object6d": {"$ref": "#/$defs/npzManifestStage"},
+        "clean": {"$ref": "#/$defs/cleanStage"}
+      }
+    },
+    "assets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "asset_pin", "tianji_urdf", "kaihand_left_urdf",
+        "kaihand_right_urdf", "naturalv2_stl", "mount_authority",
+        "thumb_adapter", "pbr_palette"
+      ],
+      "properties": {
+        "asset_pin": {"$ref": "#/$defs/artifact"},
+        "tianji_urdf": {"$ref": "#/$defs/artifact"},
+        "kaihand_left_urdf": {"$ref": "#/$defs/artifact"},
+        "kaihand_right_urdf": {"$ref": "#/$defs/artifact"},
+        "naturalv2_stl": {"$ref": "#/$defs/artifact"},
+        "mount_authority": {"$ref": "#/$defs/artifact"},
+        "thumb_adapter": {"$ref": "#/$defs/artifact"},
+        "pbr_palette": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "solver": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "arm_step_limit_rad", "hand_step_limit_rad", "later_frame_seed",
+        "first_frame_policy", "human_to_physical", "require_urdf_limits",
+        "require_branch_jump_false", "collision_denominator", "pad_names"
+      ],
+      "properties": {
+        "arm_step_limit_rad": {"const": 0.12},
+        "hand_step_limit_rad": {"const": 0.08},
+        "later_frame_seed": {"const": "PREVIOUS_ACCEPTED_ONLY"},
+        "first_frame_policy": {"const": "STATIC_IK_FULL_URDF_LIMITS"},
+        "human_to_physical": {
+          "const": {"left": "right", "right": "left"}
+        },
+        "require_urdf_limits": {"const": true},
+        "require_branch_jump_false": {"const": true},
+        "collision_denominator": {"const": "FRAME_X_SIDE_X_LINK_FIXED"},
+        "pad_names": {
+          "const": ["thumb", "index", "middle", "ring", "pinky"]
+        }
+      }
+    },
+    "review": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["language", "full_session", "panels", "video_name"],
+      "properties": {
+        "language": {"const": "zh-CN"},
+        "full_session": {"const": true},
+        "panels": {
+          "type": "array",
+          "items": {
+            "enum": ["raw", "clean", "robot", "contact_collision"]
+          },
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true
+        },
+        "video_name": {"type": "string", "pattern": "^[^/]+\\.mp4$"}
+      }
+    },
+    "output_root": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "baseStage": {
+      "type": "object",
+      "required": ["result", "agent_review"],
+      "properties": {
+        "result": {"$ref": "#/$defs/artifact"},
+        "agent_review": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "npzStage": {
+      "allOf": [
+        {"$ref": "#/$defs/baseStage"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["result", "agent_review", "npz"],
+          "properties": {
+            "result": {"$ref": "#/$defs/artifact"},
+            "agent_review": {"$ref": "#/$defs/artifact"},
+            "npz": {"$ref": "#/$defs/artifact"}
+          }
+        }
+      ]
+    },
+    "maskStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "agent_review", "frame_manifest"],
+      "properties": {
+        "result": {"$ref": "#/$defs/artifact"},
+        "agent_review": {"$ref": "#/$defs/artifact"},
+        "frame_manifest": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "npzManifestStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "agent_review", "npz", "frame_manifest"],
+      "properties": {
+        "result": {"$ref": "#/$defs/artifact"},
+        "agent_review": {"$ref": "#/$defs/artifact"},
+        "npz": {"$ref": "#/$defs/artifact"},
+        "frame_manifest": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "cleanStage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "result", "agent_review", "source_map_manifest", "video"
+      ],
+      "properties": {
+        "result": {"$ref": "#/$defs/artifact"},
+        "agent_review": {"$ref": "#/$defs/artifact"},
+        "source_map_manifest": {"$ref": "#/$defs/artifact"},
+        "video": {"$ref": "#/$defs/artifact"}
+      }
+    }
+  }
+}

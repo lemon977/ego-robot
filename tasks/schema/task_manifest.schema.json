@@ -1,0 +1,151 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang-task-manifest-v1",
+  "title": "Chaoyang task workspace manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "display_name",
+    "legacy_aliases",
+    "run_root_templates",
+    "system_refs",
+    "weight_override_policy",
+    "input_views",
+    "task_config",
+    "current_evidence",
+    "formal_readiness"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": "chaoyang-task-manifest-v1"},
+    "task_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]*$"},
+    "display_name": {"type": "string", "minLength": 1},
+    "legacy_aliases": {
+      "type": "array",
+      "items": {"type": "string"},
+      "uniqueItems": true
+    },
+    "run_root_templates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mask", "clean", "robot", "pipeline"],
+      "properties": {
+        "mask": {"type": "string", "pattern": "^tasks/[a-z][a-z0-9_-]*/runs/mask/\\{run_id\\}$"},
+        "clean": {"type": "string", "pattern": "^tasks/[a-z][a-z0-9_-]*/runs/clean/\\{run_id\\}$"},
+        "robot": {"type": "string", "pattern": "^tasks/[a-z][a-z0-9_-]*/runs/robot/\\{run_id\\}$"},
+        "pipeline": {"type": "string", "pattern": "^tasks/[a-z][a-z0-9_-]*/runs/pipeline/\\{pipeline_run_id\\}$"}
+      }
+    },
+    "system_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mask", "clean", "robot"],
+      "properties": {
+        "mask": {"$ref": "#/$defs/systemRef"},
+        "clean": {"$ref": "#/$defs/systemRef"},
+        "robot": {"$ref": "#/$defs/systemRef"}
+      }
+    },
+    "weight_override_policy": {
+      "const": "FORBIDDEN_UNLESS_REGISTERED_IN_REFERENCED_SYSTEM_MANIFEST"
+    },
+    "input_views": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/inputView"}
+    },
+    "task_config": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mask", "clean", "robot", "object_contract"],
+      "properties": {
+        "mask": {"type": "object"},
+        "clean": {"type": "object"},
+        "robot": {"type": "object"},
+        "object_contract": {"type": "object"}
+      }
+    },
+    "current_evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "formal_readiness": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "missing_inputs"],
+      "properties": {
+        "status": {"type": "string", "minLength": 1},
+        "missing_inputs": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "systemRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "manifest_sha256", "algorithm_id", "weight_ids"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^systems/(mask|clean|robot)/system\\.manifest\\.json$"},
+        "manifest_sha256": {"$ref": "#/$defs/sha256"},
+        "algorithm_id": {"type": "string", "minLength": 1},
+        "weight_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "inputView": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "input_id",
+        "path",
+        "bytes",
+        "sha256",
+        "source_class",
+        "allowed_uses",
+        "forbidden_uses",
+        "copy_policy"
+      ],
+      "properties": {
+        "input_id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "source_class": {"enum": ["PHONE_DEV_REFERENCE", "FORMAL_CAPTURE", "SYNTHETIC"]},
+        "allowed_uses": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "forbidden_uses": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "copy_policy": {"const": "REFERENCE_ONLY_DO_NOT_COPY"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["stage", "path", "bytes", "sha256", "status", "consumption_authorized", "claim_limit"],
+      "properties": {
+        "stage": {"enum": ["mask", "clean", "robot", "object_contract", "object_geometry"]},
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "status": {"type": "string", "minLength": 1},
+        "consumption_authorized": {"type": "boolean"},
+        "claim_limit": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

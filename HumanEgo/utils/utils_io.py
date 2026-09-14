@@ -2,39 +2,45 @@ import os
 import cv2
 import numpy as np
 import json
-from typing import Optional, Any
+from typing import Any
 
 
-def read_json(path: str) -> Optional[dict]:
-    if not path or (not os.path.exists(path)):
-        return None
+def read_json(path: str) -> dict:
+    """Read required JSON without fabricating a missing/invalid frame."""
+    if not path or not os.path.isfile(path):
+        raise FileNotFoundError(path)
     try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except Exception:
-        return None
+        with open(path, "r", encoding="utf-8") as stream:
+            value = json.load(stream)
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError(f"invalid required JSON: {path}") from error
+    if not isinstance(value, dict):
+        raise ValueError(f"required JSON is not an object: {path}")
+    return value
 
 
 def safe_imread_gray(path: str, h: int, w: int) -> np.ndarray:
-    """Read grayscale image safely and resize."""
-    if path and os.path.exists(path):
-        im = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
-        if im is not None:
-            if im.shape[0] != h or im.shape[1] != w:
-                im = cv2.resize(im, (w, h), interpolation=cv2.INTER_NEAREST)
-            return im
-    return np.zeros((h, w), dtype=np.uint8)
+    """Read a required grayscale image and resize; never return a blank fallback."""
+    if not path or not os.path.isfile(path):
+        raise FileNotFoundError(path)
+    im = cv2.imread(path, cv2.IMREAD_GRAYSCALE)
+    if im is None:
+        raise ValueError(f"OpenCV cannot decode required grayscale image: {path}")
+    if im.shape[0] != h or im.shape[1] != w:
+        im = cv2.resize(im, (w, h), interpolation=cv2.INTER_NEAREST)
+    return im
 
 
 def safe_imread_rgb(path: str, h: int, w: int) -> np.ndarray:
-    """Read RGB image safely and resize."""
-    if path and os.path.exists(path):
-        im = cv2.imread(path, cv2.IMREAD_COLOR)
-        if im is not None:
-            if im.shape[0] != h or im.shape[1] != w:
-                im = cv2.resize(im, (w, h), interpolation=cv2.INTER_LINEAR)
-            return im
-    return np.zeros((h, w, 3), dtype=np.uint8)
+    """Read a required color image and resize; never return a blank fallback."""
+    if not path or not os.path.isfile(path):
+        raise FileNotFoundError(path)
+    im = cv2.imread(path, cv2.IMREAD_COLOR)
+    if im is None:
+        raise ValueError(f"OpenCV cannot decode required color image: {path}")
+    if im.shape[0] != h or im.shape[1] != w:
+        im = cv2.resize(im, (w, h), interpolation=cv2.INTER_LINEAR)
+    return im
 
 
 def make_json_serializable(obj: Any) -> Any:

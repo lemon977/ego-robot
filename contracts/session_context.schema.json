@@ -1,0 +1,338 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/session_context.schema.json",
+  "title": "Ego Robot Session Context",
+  "description": "DRAFT schema. Missing RAW authority, measurements, evidence or calibration must keep execution_allowed=false.",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_document_status",
+    "session_id",
+    "product_line",
+    "diagnostic_track",
+    "execution_mode",
+    "profile_lifecycle_state",
+    "profile_ref",
+    "task_card_ref",
+    "calibration_overlay_ref",
+    "formal_pass_claim_allowed",
+    "execution_allowed",
+    "execution_blockers",
+    "source",
+    "frame_policy",
+    "measurements",
+    "canary_selection",
+    "evidence_refs",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "session-context-v1"},
+    "contract_document_status": {"const": "DRAFT"},
+    "session_id": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"
+    },
+    "product_line": {
+      "enum": ["004_CONTACT_GOLD", "EXACT78_R2_VISUAL_DOMAIN"]
+    },
+    "diagnostic_track": {
+      "enum": ["HAND_ONLY_DIAGNOSTIC", "HAND_ARM_FINAL"]
+    },
+    "execution_mode": {"enum": ["G2_CALIBRATION", "FORMAL_PRODUCTION"]},
+    "profile_lifecycle_state": {"enum": ["DRAFT", "CALIBRATION_LOCKED", "FROZEN"]},
+    "profile_ref": {"$ref": "#/$defs/digestRef"},
+    "task_card_ref": {"$ref": "#/$defs/digestRef"},
+    "calibration_overlay_ref": {
+      "anyOf": [{"$ref": "#/$defs/digestRef"}, {"type": "null"}]
+    },
+    "formal_pass_claim_allowed": {"type": "boolean"},
+    "execution_allowed": {"type": "boolean"},
+    "execution_blockers": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "source": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "authority_root",
+        "access",
+        "authority_readiness",
+        "source_manifest_ref",
+        "source_manifest_sha256",
+        "frame_count",
+        "width_px",
+        "height_px",
+        "fps"
+      ],
+      "properties": {
+        "authority_root": {"const": "/mnt/data/egodata"},
+        "access": {"const": "READ_ONLY"},
+        "authority_readiness": {"enum": ["VERIFIED", "BLOCKED_UNVERIFIED"]},
+        "source_manifest_ref": {"type": ["string", "null"], "minLength": 1},
+        "source_manifest_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "frame_count": {"$ref": "#/$defs/measurement"},
+        "width_px": {"$ref": "#/$defs/measurement"},
+        "height_px": {"$ref": "#/$defs/measurement"},
+        "fps": {"$ref": "#/$defs/measurement"},
+        "raw_identity": {
+          "type": ["object", "null"],
+          "additionalProperties": false,
+          "required": ["identity_method", "identity_digest"],
+          "properties": {
+            "identity_method": {"type": "string", "minLength": 1},
+            "identity_digest": {"$ref": "#/$defs/sha256"}
+          }
+        }
+      }
+    },
+    "frame_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame_order", "timestamp_policy", "timestamp_unit"],
+      "properties": {
+        "frame_order": {"enum": ["SOURCE_MANIFEST_ORDER"]},
+        "timestamp_policy": {"type": "string", "minLength": 1},
+        "timestamp_unit": {"type": "string", "minLength": 1}
+      }
+    },
+    "measurements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "hand_scale_px",
+        "wrist_width_px",
+        "forearm_width_px",
+        "object_scale_px",
+        "arm_area_ratio",
+        "contact_ratio",
+        "motion",
+        "blur",
+        "object6d_valid_ratio",
+        "donor_coverage",
+        "left_hand_visibility",
+        "right_hand_visibility"
+      ],
+      "properties": {
+        "hand_scale_px": {"$ref": "#/$defs/measurement"},
+        "wrist_width_px": {"$ref": "#/$defs/measurement"},
+        "forearm_width_px": {"$ref": "#/$defs/measurement"},
+        "object_scale_px": {"$ref": "#/$defs/measurement"},
+        "arm_area_ratio": {"$ref": "#/$defs/measurement"},
+        "contact_ratio": {"$ref": "#/$defs/measurement"},
+        "motion": {"$ref": "#/$defs/measurement"},
+        "blur": {"$ref": "#/$defs/measurement"},
+        "object6d_valid_ratio": {"$ref": "#/$defs/measurement"},
+        "donor_coverage": {"$ref": "#/$defs/measurement"},
+        "left_hand_visibility": {"$ref": "#/$defs/measurement"},
+        "right_hand_visibility": {"$ref": "#/$defs/measurement"}
+      }
+    },
+    "canary_selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm_ref", "algorithm_sha256", "frames", "covered_strata", "manual_review_required"],
+      "properties": {
+        "algorithm_ref": {"type": ["string", "null"], "minLength": 1},
+        "algorithm_sha256": {"anyOf": [{"$ref": "#/$defs/sha256"}, {"type": "null"}]},
+        "frames": {
+          "type": "array",
+          "minItems": 0,
+          "maxItems": 24,
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0}
+        },
+        "covered_strata": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "arm_area_low",
+              "arm_area_high",
+              "pre_contact",
+              "first_contact",
+              "stable_grasp",
+              "maximum_occlusion",
+              "release",
+              "high_motion",
+              "high_blur",
+              "object6d_invalid_or_low_confidence",
+              "donor_sparse"
+            ]
+          }
+        },
+        "manual_review_required": {"type": "boolean"}
+      }
+    },
+    "evidence_refs": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/digestRef"}
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "digestRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "measurement": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["measurement_status", "value", "unit", "method", "sample_count", "evidence_refs"],
+      "properties": {
+        "measurement_status": {"enum": ["MEASURED", "MISSING", "NOT_APPLICABLE"]},
+        "value": {"type": ["number", "null"]},
+        "unit": {"type": ["string", "null"]},
+        "method": {"type": ["string", "null"]},
+        "sample_count": {"type": ["integer", "null"], "minimum": 0},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/digestRef"}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"measurement_status": {"const": "MEASURED"}}, "required": ["measurement_status"]},
+          "then": {
+            "properties": {
+              "value": {"type": "number"},
+              "unit": {"type": "string", "minLength": 1},
+              "method": {"type": "string", "minLength": 1},
+              "sample_count": {"type": "integer", "minimum": 1},
+              "evidence_refs": {"minItems": 1}
+            }
+          },
+          "else": {
+            "properties": {
+              "value": {"type": "null"}
+            }
+          }
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"execution_allowed": {"const": true}},
+        "required": ["execution_allowed"]
+      },
+      "then": {
+        "properties": {
+          "execution_blockers": {"maxItems": 0},
+          "source": {
+            "required": ["raw_identity"],
+            "properties": {
+              "authority_readiness": {"const": "VERIFIED"},
+              "source_manifest_ref": {"type": "string", "minLength": 1},
+              "source_manifest_sha256": {"$ref": "#/$defs/sha256"},
+              "raw_identity": {"type": "object"},
+              "frame_count": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "width_px": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "height_px": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "fps": {"properties": {"measurement_status": {"const": "MEASURED"}}}
+            }
+          },
+          "measurements": {
+            "properties": {
+              "hand_scale_px": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "wrist_width_px": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "forearm_width_px": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "object_scale_px": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "arm_area_ratio": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "contact_ratio": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "motion": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "blur": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "object6d_valid_ratio": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "left_hand_visibility": {"properties": {"measurement_status": {"const": "MEASURED"}}},
+              "right_hand_visibility": {"properties": {"measurement_status": {"const": "MEASURED"}}}
+            }
+          },
+          "canary_selection": {
+            "properties": {
+              "algorithm_ref": {"type": "string", "minLength": 1},
+              "algorithm_sha256": {"$ref": "#/$defs/sha256"},
+              "frames": {"minItems": 12, "maxItems": 24}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "source": {
+            "properties": {"authority_readiness": {"const": "BLOCKED_UNVERIFIED"}},
+            "required": ["authority_readiness"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "execution_allowed": {"const": false},
+          "execution_blockers": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"product_line": {"const": "004_CONTACT_GOLD"}},
+        "required": ["product_line"]
+      },
+      "then": {
+        "properties": {
+          "canary_selection": {
+            "properties": {"manual_review_required": {"const": true}}
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"execution_mode": {"const": "G2_CALIBRATION"}},
+        "required": ["execution_mode"]
+      },
+      "then": {
+        "properties": {
+          "session_id": {"const": "grap_a_cap_004"},
+          "product_line": {"const": "004_CONTACT_GOLD"},
+          "profile_lifecycle_state": {"const": "DRAFT"},
+          "calibration_overlay_ref": {"$ref": "#/$defs/digestRef"},
+          "formal_pass_claim_allowed": {"const": false}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {"execution_mode": {"const": "FORMAL_PRODUCTION"}},
+        "required": ["execution_mode"]
+      },
+      "then": {
+        "properties": {
+          "profile_lifecycle_state": {"const": "FROZEN"},
+          "calibration_overlay_ref": {"type": "null"},
+          "measurements": {
+            "properties": {
+              "donor_coverage": {"properties": {"measurement_status": {"const": "MEASURED"}}}
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": "chaoyang-mask-local-environment-lock-v1",
+  "status": "CPU_PASS_GPU_REPLAY_PENDING",
+  "canonical_cpu_runtime_authorized": true,
+  "canonical_gpu_runtime_authorized": false,
+  "consumption_authorized": false,
+  "environment_id": "mask-sam3-py311-v1",
+  "environment_root": "assets/environments/mask-sam3-py311-v1",
+  "python": "assets/environments/mask-sam3-py311-v1/bin/python",
+  "launcher": [
+    "tools/mask_python.sh"
+  ],
+  "authority": {
+    "path": "systems/mask/environment_authority.json",
+    "bytes": 10470,
+    "sha256": "cfc2693c423a30f0ebd47dccb4e1961edb97ab9660a36b952354adcb99a03fda"
+  },
+  "base_snapshot": {
+    "snapshot_id": "b03d8217d01c4c7aa8f66223873d3d00",
+    "manifest": "assets/environments/mask-sam3-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "manifest_sha256": "1c06a3f8de646cfedf7e6743a42c899161a179f15c5c54ca93eb5af1b29811d5",
+    "tree_content_sha256": "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64",
+    "counts": {
+      "directories": 7638,
+      "regular_files": 67676,
+      "special": 0,
+      "symlinks": 1382
+    },
+    "logical_bytes": 8097135393
+  },
+  "import_closure": {
+    "manifest": "assets/environments/mask-sam3-py311-v1/.chaoyang-hardlink-snapshot/mask-sam3-import-closure-v1/MANIFEST.json",
+    "manifest_sha256": "b01832ce239477cb9eb040816337f7c8b2f5574c5b00f0d4beefbdb645a940fd",
+    "tree_content_sha256": "dea1000d28a38a47bde548994c38453a946058099d95bb031d24640b02e08eea",
+    "files": 2073,
+    "logical_bytes": 231506446,
+    "path_hook": {
+      "path": "assets/environments/mask-sam3-py311-v1/lib/python3.11/site-packages/chaoyang_mask_sam3_local_v1.pth",
+      "bytes": 213,
+      "sha256": "13d3ba3e560cd78ace9cc437bfdbadfdc46e7c946ee49b4733867cf9d2165a69"
+    }
+  },
+  "canonical_sam": {
+    "source_root": "third_party/SAM3",
+    "runtime_contract_sha256": "ce100807728eda716c4d1535fee3264c24078238751622518af8442eb48927e4",
+    "checkpoint_path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+    "checkpoint_bytes": 3502755717,
+    "checkpoint_existing_sha256_pin": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+    "checkpoint_loaded_during_localization": false
+  },
+  "verification": {
+    "path": "tasks/control/runs/20260903_mask_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+    "bytes": 793418,
+    "sha256": "2fe63e3913b6e163f3250bde254b6e5569d001c2d2c7a325d090d30ff148ebad",
+    "loaded_origins_checked": 3262,
+    "loaded_origins_outside_project_or_environment": 0,
+    "status": "CPU_PASS_GPU_REPLAY_PENDING"
+  },
+  "claim_limit": "CPU-only local Mask/SAM3 runtime. GPU replay and checkpoint load remain pending; production and downstream consumption are forbidden."
+}

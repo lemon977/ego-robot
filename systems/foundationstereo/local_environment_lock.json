@@ -1,0 +1,54 @@
+{
+  "schema_version": "chaoyang-foundationstereo-local-environment-lock-v1",
+  "status": "CPU_PASS_GPU_DEPTH_REPLAY_PENDING",
+  "canonical_cpu_runtime_authorized": true,
+  "canonical_gpu_runtime_authorized": false,
+  "consumption_authorized": false,
+  "environment_id": "foundationstereo-py311-v1",
+  "environment_root": "assets/environments/foundationstereo-py311-v1",
+  "python": "assets/environments/foundationstereo-py311-v1/bin/python",
+  "launcher": ["tools/foundationstereo_python.sh"],
+  "authority": {
+    "path": "systems/foundationstereo/environment_authority.json",
+    "bytes": 8857,
+    "sha256": "8542132d525f5b3385698446a5c7de50bbf54fa9e460bddf27c864e9b42520d2"
+  },
+  "snapshot": {
+    "snapshot_id": "b36d784428904038954ad618972727d8",
+    "manifest": "assets/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "manifest_bytes": 1926343,
+    "manifest_sha256": "eb21bb9eedfab20097c3b05a93ef87b4e86df7a3376d8a337c088e0c095a733e",
+    "tree_content_sha256": "dc08100b81b0a787607e1a5aa1760b49a8604d91b32cfc919f6d3e23b05b54f1",
+    "counts": {
+      "directories": 2496,
+      "regular_files": 30612,
+      "special": 0,
+      "symlinks": 1382
+    },
+    "logical_bytes": 5967308280
+  },
+  "source": {
+    "root": "third_party/FoundationStereo",
+    "runtime_tree_sha256": "77d30c541da776514174e53fb34ab61655d33e7ada73ff43127bba3cab3ddc76",
+    "upstream_commit": "6e8806816b533e4d13ddbb95ffa907b797060a62"
+  },
+  "checkpoint": {
+    "path": "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+    "bytes": 3298527334,
+    "sha256": "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1",
+    "config_path": "assets/models/checkpoints/foundationstereo/23-51-11/cfg.yaml",
+    "config_sha256": "a9d9dd2137c30edc2236194f62df14d222dad5fd3287a33c7540b543bb93853f",
+    "asset_pin": "assets/models/checkpoints/foundationstereo/23-51-11/ASSET_PIN.json"
+  },
+  "verification": {
+    "path": "tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE_V3.json",
+    "bytes": 805789,
+    "sha256": "e3f0a22d33cdae6758924b76c7f95a2a4f32f60e80edb830860ef1c1a89c32e8",
+    "loaded_origins_checked": 3682,
+    "loaded_origins_outside_project_or_environment": 0,
+    "strict_cpu_checkpoint_load": "PASS",
+    "depth_forward_executed": false,
+    "cuda_initialized": false
+  },
+  "claim_limit": "CPU-only local FoundationStereo runtime. A central-lease GPU depth replay remains mandatory before production or downstream consumption."
+}

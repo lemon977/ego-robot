@@ -1,0 +1,47 @@
+{
+  "schema_version": "chaoyang-object6d-capture-v1",
+  "task_id": "poker_or_chips",
+  "session_id": "replace_me",
+  "metric_unit": "meter",
+  "coordinate_convention": {
+    "pose_field": "T_object_to_camera",
+    "camera_axes": "+X right, +Y down, +Z forward",
+    "matrix_convention": "column vectors, p_camera = T_object_to_camera @ p_object"
+  },
+  "objects": [
+    {
+      "object_id": "replace_me",
+      "geometry_type": "CARD_THIN_BOX_or_CHIP_SADDLE_or_BOWL_MESH_or_RACK_MESH",
+      "visual_mesh": "models/replace_me.ply",
+      "collision_mesh": "models/replace_me_collision.ply",
+      "geometry_sha256": "replace_me",
+      "origin_definition": "replace_me",
+      "axis_definition": "replace_me",
+      "measurement_photo_ids": [],
+      "dimensions_m": {},
+      "static_in_session": false
+    }
+  ],
+  "task_pose_file": "sessions/replace_me/object6d.npz",
+  "required_pose_fields": [
+    "frame_id",
+    "timestamp_ns",
+    "object_ids",
+    "T_object_to_camera",
+    "valid",
+    "confidence",
+    "provenance",
+    "geometry_sha256"
+  ],
+  "allowed_provenance": [
+    "DIRECT_TRACKED",
+    "MODEL_FIT",
+    "INTERPOLATED",
+    "MISSING"
+  ],
+  "contact_canary_file": "sessions/replace_me/contact_canary.json",
+  "manual_ruler_and_object_same_frame_review_required": true,
+  "capture_operator": "replace_me",
+  "capture_utc": "replace_me",
+  "notes": ""
+}

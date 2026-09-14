@@ -1,0 +1,107 @@
+{
+  "$schema": "contracts/robot_clean_compositor_input_v1.schema.json",
+  "schema_version": "chaoyang-robot-clean-compositor-input-v1",
+  "mode": "FORMAL_CANDIDATE",
+  "task_id": "replace_with_canonical_task_id",
+  "session_id": "replace_with_canonical_session_id",
+  "frame_count": 1,
+  "fps": {
+    "numerator": 25,
+    "denominator": 1
+  },
+  "resolution": {
+    "width": 1280,
+    "height": 960
+  },
+  "coordinate_contract": {
+    "length_unit": "m",
+    "matrix_convention": "column_vectors_left_multiply",
+    "camera_axes": "+X_RIGHT_+Y_DOWN_+Z_FORWARD",
+    "object_pose_field": "T_object_to_camera",
+    "camera_pose_field": "T_camera_to_world",
+    "object_world_consistency": "T_world_object=T_camera_to_world@T_object_to_camera",
+    "robot_depth_field": "EUCLIDEAN_CAMERA_RANGE_M",
+    "object_depth_field": "OPTICAL_AXIS_CAMERA_Z_M",
+    "supersample": 2,
+    "occlusion_epsilon_m": 0.003,
+    "compositing_space": "LINEAR_REC709_FROM_SRGB"
+  },
+  "watermark": "NONE",
+  "artifacts": {
+    "task_manifest": {
+      "path": "tasks/replace_with_task/task.manifest.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "session_manifest": {
+      "path": "data/processed/replace_with_task/replace_with_session/robot/input/SESSION_MANIFEST.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "object6d": {
+      "path": "data/processed/replace_with_task/replace_with_session/object6d/current/OBJECT6D.npz",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "camera": {
+      "path": "data/processed/replace_with_task/replace_with_session/camera/current/CAMERA_K_C2W.npz",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "clean_master": {
+      "path": "data/processed/replace_with_task/replace_with_session/clean/current/CLEAN_MASTER_FFV1.mkv",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "clean_authority": {
+      "path": "data/processed/replace_with_task/replace_with_session/clean/current/CLEAN_AUTHORITY.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "clean_provenance_manifest": {
+      "path": "data/processed/replace_with_task/replace_with_session/clean/current/CLEAN_PROVENANCE_MANIFEST.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "mask_authority": {
+      "path": "data/processed/replace_with_task/replace_with_session/mask/current/MASK_AUTHORITY.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "object_depth_frames": {
+      "path": "data/processed/replace_with_task/replace_with_session/mask/current/OBJECT_DEPTH_FRAMES.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "robot_trajectory": {
+      "path": "data/processed/replace_with_task/replace_with_session/robot/input/ROBOT_TRAJECTORY.npz",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "robot_authority": {
+      "path": "data/processed/replace_with_task/replace_with_session/robot/input/ROBOT_AUTHORITY.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "robot_render_frames": {
+      "path": "data/processed/replace_with_task/replace_with_session/robot/input/ROBOT_RENDER_FRAMES.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "pbr_config": {
+      "path": "systems/robot/configs/robot_pbr_palette_004ref_v1.json",
+      "bytes": 3488,
+      "sha256": "fbacbe617d49ee8b8a060afd21672ae7776d9d6835cde18c8f01e01acd79c543"
+    },
+    "nonpenetration_result": {
+      "path": "data/processed/replace_with_task/replace_with_session/robot/input/NONPENETRATION_RESULT.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    },
+    "cross_stage_admission": {
+      "path": "data/processed/replace_with_task/replace_with_session/quality/CROSS_STAGE_ADMISSION.json",
+      "bytes": 1,
+      "sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+    }
+  }
+}

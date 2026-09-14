@@ -1,0 +1,128 @@
+{
+  "schema_version": "chaoyang-raw-source-view-v1",
+  "task_id": "chips",
+  "dataset_root": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901",
+  "canonical_parent": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips",
+  "task_input_view": "/mnt/workspace/code/chaoyang/tasks/chips/inputs/potato_chips",
+  "mapping_manifest": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v1/CANONICAL_MAPPING.json",
+  "mapping_sha256": "c3365566772c5dabb72de896128bfc2c2ce739f1bc07a002ae01348c6249595c",
+  "copy_policy": "REFERENCE_ONLY_NO_DATA_COPY",
+  "sessions": [
+    {
+      "session_id": "get_potato_chips_0901_001",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_001",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_001",
+      "legacy_session_id": "get_potato_chips_0901_001"
+    },
+    {
+      "session_id": "get_potato_chips_0901_002",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_002",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_002",
+      "legacy_session_id": "get_potato_chips_0901_002"
+    },
+    {
+      "session_id": "get_potato_chips_0901_003",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_003",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_003",
+      "legacy_session_id": "get_potato_chips_0901_003"
+    },
+    {
+      "session_id": "get_potato_chips_0901_004",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_004",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_004",
+      "legacy_session_id": "get_potato_chips_0901_004"
+    },
+    {
+      "session_id": "get_potato_chips_0901_005",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_005",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_005",
+      "legacy_session_id": "get_potato_chips_0901_005"
+    },
+    {
+      "session_id": "get_potato_chips_0901_006",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_006",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_006",
+      "legacy_session_id": "get_potato_chips_0901_006"
+    },
+    {
+      "session_id": "get_potato_chips_0901_007",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_007",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_007",
+      "legacy_session_id": "get_potato_chips_0901_007"
+    },
+    {
+      "session_id": "get_potato_chips_0901_008",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_008",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_008",
+      "legacy_session_id": "get_potato_chips_0901_008"
+    },
+    {
+      "session_id": "get_potato_chips_0901_009",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_009",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_009",
+      "legacy_session_id": "get_potato_chips_0901_009"
+    },
+    {
+      "session_id": "get_potato_chips_0901_010",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_010",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_010",
+      "legacy_session_id": "get_potato_chips_0901_010"
+    },
+    {
+      "session_id": "get_potato_chips_0901_011",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_011",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_011",
+      "legacy_session_id": "get_potato_chips_0901_011"
+    },
+    {
+      "session_id": "get_potato_chips_0901_012",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_012",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_012",
+      "legacy_session_id": "get_potato_chips_0901_012"
+    },
+    {
+      "session_id": "get_potato_chips_0901_013",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_013",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_013",
+      "legacy_session_id": "get_potato_chips_0901_013"
+    },
+    {
+      "session_id": "get_potato_chips_0901_014",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_014",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_014",
+      "legacy_session_id": "get_potato_chips_0901_014"
+    },
+    {
+      "session_id": "get_potato_chips_0901_015",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_015",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_015",
+      "legacy_session_id": "get_potato_chips_0901_015"
+    },
+    {
+      "session_id": "get_potato_chips_0901_016",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips/get_potato_chips_0901_016",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_016",
+      "legacy_session_id": "get_potato_chips_0901_016"
+    }
+  ],
+  "canonical_ready_evidence": {
+    "canonical_ready_marker": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/EXECUTION_RESULT.json",
+    "canonical_ready_sha256": "f649e5ef86ee1c4b0d924f9a04a725c14483457b6885cc00e5888907a0efcbca",
+    "mapping_manifest": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v1/CANONICAL_MAPPING.json",
+    "mapping_sha256": "c3365566772c5dabb72de896128bfc2c2ce739f1bc07a002ae01348c6249595c",
+    "inventory_manifest": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v1/PRE_MIGRATION_INVENTORY.jsonl",
+    "inventory_sha256": "a2c9e3cfb98d3a8fe65e6787a4a55d044a5cf5b3b0bad7c94072a443bb3d56b6",
+    "migration_journal": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/MIGRATION_JOURNAL.jsonl",
+    "migration_journal_sha256": "f7fb25b4ac3d1e313718b6ba66d6515394b7c00c75173696d24320ecfd488a49",
+    "verification": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/VERIFICATION.json",
+    "verification_sha256": "898f57cffc77b7568bcbf2b8bf70661ecae07424bb1f2fb61098ad54cff1b0ab",
+    "intake_catalog": "/mnt/workspace/code/chaoyang/tasks/chips/inputs/canonical_intake_catalog.json",
+    "intake_catalog_sha256": "6cf610620ad0aac7409e8a219559ed21433201a68589e545681026729a192cda",
+    "intake_status": "PASS_WITH_METADATA_WARNING"
+  },
+  "consumption_policy": {
+    "raw_source_reference": "AUTHORIZED_AFTER_CANONICAL_READY",
+    "hawor_humanego_admission": "REQUIRES_PER_SESSION_SOURCE_GATE_PASS",
+    "mask_clean_robot_admission": "REQUIRES_STAGE_SPECIFIC_GATES"
+  }
+}

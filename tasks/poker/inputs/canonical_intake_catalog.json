@@ -1,0 +1,5743 @@
+{
+  "schema_version": "chaoyang-canonical-intake-v1",
+  "task_id": "poker",
+  "status": "PASS_WITH_METADATA_WARNING",
+  "session_count": 43,
+  "migration_evidence": {
+    "canonical_ready_marker": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/EXECUTION_RESULT.json",
+    "canonical_ready_sha256": "f649e5ef86ee1c4b0d924f9a04a725c14483457b6885cc00e5888907a0efcbca",
+    "mapping_manifest": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v1/CANONICAL_MAPPING.json",
+    "mapping_sha256": "c3365566772c5dabb72de896128bfc2c2ce739f1bc07a002ae01348c6249595c",
+    "inventory_manifest": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v1/PRE_MIGRATION_INVENTORY.jsonl",
+    "inventory_sha256": "a2c9e3cfb98d3a8fe65e6787a4a55d044a5cf5b3b0bad7c94072a443bb3d56b6",
+    "migration_journal": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/MIGRATION_JOURNAL.jsonl",
+    "migration_journal_sha256": "f7fb25b4ac3d1e313718b6ba66d6515394b7c00c75173696d24320ecfd488a49",
+    "verification": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/VERIFICATION.json",
+    "verification_sha256": "898f57cffc77b7568bcbf2b8bf70661ecae07424bb1f2fb61098ad54cff1b0ab"
+  },
+  "intake_scope": "Manifest and required-path presence plus all_data directory cardinality; no media decode or HaWoR recompute.",
+  "issue_counts": {
+    "STALE_FINISHED_FRAMES_COUNTER": 43
+  },
+  "sessions": [
+    {
+      "canonical_id": "play_cards_0901_001",
+      "legacy_id": "play_cards_0901_001",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_001",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_001",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 20.552,
+        "run_end_s": 42.034,
+        "requested_duration_s": 21.482
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 21.5,
+          "frame_count": 645
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 21.5,
+          "frame_count": 645
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1934,
+        "slam_frame_count": 1934,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.36855328,-0.382419169,-3.11518574,-0.240304276,0.468276948,0.15547429,0.835941553",
+        "first_timestamp_ns": 1788275358408477000,
+        "last_timestamp_ns": 1788275379875766000,
+        "duration_s": 21.467289
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 645,
+        "all_data_frame_directories": 645,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 645,
+          "right": 645,
+          "both": 645
+        },
+        "max_tracking_sync_error_ms": 11.684,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_002",
+      "legacy_id": "play_cards_0901_002",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_002",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_002",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 46.5,
+        "run_end_s": 67.762,
+        "requested_duration_s": 21.262
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 21.266667,
+          "frame_count": 638
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 21.266667,
+          "frame_count": 638
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1924,
+        "slam_frame_count": 1924,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.38113332,-0.373420477,-3.101554,-0.205500782,0.4530277,0.143451512,0.855544865",
+        "first_timestamp_ns": 1788275384353237000,
+        "last_timestamp_ns": 1788275405601896000,
+        "duration_s": 21.248659
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 638,
+        "all_data_frame_directories": 638,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 638,
+          "right": 638,
+          "both": 638
+        },
+        "max_tracking_sync_error_ms": 32.009,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_003",
+      "legacy_id": "play_cards_0901_003",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_003",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_003",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 73.364,
+        "run_end_s": 95.256,
+        "requested_duration_s": 21.891999999999996
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 21.9,
+          "frame_count": 657
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 21.9,
+          "frame_count": 657
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1970,
+        "slam_frame_count": 1970,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37596714,-0.399923682,-3.121966,-0.267198265,0.455577433,0.175864443,0.8307382",
+        "first_timestamp_ns": 1788275411213298000,
+        "last_timestamp_ns": 1788275433092607000,
+        "duration_s": 21.879309
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 657,
+        "all_data_frame_directories": 657,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 657,
+          "right": 657,
+          "both": 657
+        },
+        "max_tracking_sync_error_ms": 11.052,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_004",
+      "legacy_id": "play_cards_0901_004",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_004",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_004",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 100.627,
+        "run_end_s": 118.327,
+        "requested_duration_s": 17.700000000000003
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 17.7,
+          "frame_count": 531
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 17.7,
+          "frame_count": 531
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1593,
+        "slam_frame_count": 1593,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.366817,-0.400933564,-3.110169,-0.249791175,0.460533947,0.184298635,0.831593",
+        "first_timestamp_ns": 1788275438480153000,
+        "last_timestamp_ns": 1788275456170027000,
+        "duration_s": 17.689874
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 531,
+        "all_data_frame_directories": 531,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 531,
+          "right": 531,
+          "both": 531
+        },
+        "max_tracking_sync_error_ms": 4.758,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_005",
+      "legacy_id": "play_cards_0901_005",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_005",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_005",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 121.67,
+        "run_end_s": 138.989,
+        "requested_duration_s": 17.319000000000003
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 17.333333,
+          "frame_count": 520
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 17.333333,
+          "frame_count": 520
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1558,
+        "slam_frame_count": 1558,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37552178,-0.387260377,-3.11158156,-0.207336873,0.44045347,0.159965232,0.858733535",
+        "first_timestamp_ns": 1788275459524479000,
+        "last_timestamp_ns": 1788275476825228000,
+        "duration_s": 17.300749
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 520,
+        "all_data_frame_directories": 520,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 520,
+          "right": 520,
+          "both": 520
+        },
+        "max_tracking_sync_error_ms": 11.190333,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_006",
+      "legacy_id": "play_cards_0901_006",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_006",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_006",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 144.815,
+        "run_end_s": 162.573,
+        "requested_duration_s": 17.75800000000001
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 17.766667,
+          "frame_count": 533
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 17.766667,
+          "frame_count": 533
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1598,
+        "slam_frame_count": 1598,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37080121,-0.3899957,-3.11692929,-0.212530822,0.441788554,0.159984574,0.8567721",
+        "first_timestamp_ns": 1788275482669542000,
+        "last_timestamp_ns": 1788275500415237000,
+        "duration_s": 17.745695
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 533,
+        "all_data_frame_directories": 533,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 533,
+          "right": 533,
+          "both": 533
+        },
+        "max_tracking_sync_error_ms": 9.527,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_007",
+      "legacy_id": "play_cards_0901_007",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_007",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_007",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 166.813,
+        "run_end_s": 185.425,
+        "requested_duration_s": 18.612000000000023
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 18.633333,
+          "frame_count": 559
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 18.633333,
+          "frame_count": 559
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1681,
+        "slam_frame_count": 1681,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37036753,-0.38959223,-3.11064219,-0.201366588,0.448600233,0.163134411,0.855334163",
+        "first_timestamp_ns": 1788275504671485000,
+        "last_timestamp_ns": 1788275523270379000,
+        "duration_s": 18.598894
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 559,
+        "all_data_frame_directories": 559,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 559,
+          "right": 559,
+          "both": 559
+        },
+        "max_tracking_sync_error_ms": 43.337667,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_008",
+      "legacy_id": "play_cards_0901_008",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_008",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_008",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 189.745,
+        "run_end_s": 208.987,
+        "requested_duration_s": 19.24199999999999
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 19.266667,
+          "frame_count": 578
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 19.266667,
+          "frame_count": 578
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1732,
+        "slam_frame_count": 1732,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37040353,-0.3917141,-3.11112142,-0.205102623,0.4516434,0.1684791,0.8518016",
+        "first_timestamp_ns": 1788275527592294000,
+        "last_timestamp_ns": 1788275546825214000,
+        "duration_s": 19.23292
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 578,
+        "all_data_frame_directories": 578,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 578,
+          "right": 578,
+          "both": 578
+        },
+        "max_tracking_sync_error_ms": 10.205,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_009",
+      "legacy_id": "play_cards_0901_009",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_009",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_009",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 215.578,
+        "run_end_s": 231.682,
+        "requested_duration_s": 16.103999999999985
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 16.133333,
+          "frame_count": 484
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 16.133333,
+          "frame_count": 484
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1450,
+        "slam_frame_count": 1450,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.370944,-0.394337833,-3.11398,-0.212564275,0.4507869,0.169185847,0.8502846",
+        "first_timestamp_ns": 1788275553425947000,
+        "last_timestamp_ns": 1788275569527172000,
+        "duration_s": 16.101225
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 484,
+        "all_data_frame_directories": 484,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 484,
+          "right": 484,
+          "both": 484
+        },
+        "max_tracking_sync_error_ms": 7.134333,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_010",
+      "legacy_id": "play_cards_0901_010",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_010",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_010",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 235.558,
+        "run_end_s": 250.292,
+        "requested_duration_s": 14.734000000000009
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 14.733333,
+          "frame_count": 442
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 14.733333,
+          "frame_count": 442
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1337,
+        "slam_frame_count": 1337,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37577558,-0.3920824,-3.11836,-0.19820863,0.4433019,0.157378137,0.859900534",
+        "first_timestamp_ns": 1788275573404835000,
+        "last_timestamp_ns": 1788275588138642000,
+        "duration_s": 14.733807
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 442,
+        "all_data_frame_directories": 442,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 442,
+          "right": 442,
+          "both": 442
+        },
+        "max_tracking_sync_error_ms": 10.431667,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_011",
+      "legacy_id": "play_cards_0901_011",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_011",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_011",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 253.779,
+        "run_end_s": 270.01,
+        "requested_duration_s": 16.230999999999995
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 16.233333,
+          "frame_count": 487
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 16.233333,
+          "frame_count": 487
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1461,
+        "slam_frame_count": 1461,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.36863351,-0.390769124,-3.121732,-0.187185884,0.444071978,0.151819587,0.8629672",
+        "first_timestamp_ns": 1788275591627775000,
+        "last_timestamp_ns": 1788275607850465000,
+        "duration_s": 16.22269
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 487,
+        "all_data_frame_directories": 487,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 487,
+          "right": 475,
+          "both": 475
+        },
+        "max_tracking_sync_error_ms": 11.127,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_012",
+      "legacy_id": "play_cards_0901_012",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_012",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_012",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 274.95,
+        "run_end_s": 289.526,
+        "requested_duration_s": 14.576000000000022
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 14.6,
+          "frame_count": 438
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 14.6,
+          "frame_count": 438
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1312,
+        "slam_frame_count": 1312,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.36554468,-0.39424938,-3.117084,-0.1932683,0.458518684,0.160435691,0.852448463",
+        "first_timestamp_ns": 1788275612804705000,
+        "last_timestamp_ns": 1788275627372687000,
+        "duration_s": 14.567982
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 438,
+        "all_data_frame_directories": 438,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 438,
+          "right": 438,
+          "both": 438
+        },
+        "max_tracking_sync_error_ms": 7.523667,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_013",
+      "legacy_id": "play_cards_0901_013",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_013",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_013",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 293.798,
+        "run_end_s": 306.888,
+        "requested_duration_s": 13.089999999999975
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 13.1,
+          "frame_count": 393
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 13.1,
+          "frame_count": 393
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1191,
+        "slam_frame_count": 1191,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.3685832,-0.392433524,-3.117631,-0.189188436,0.45755586,0.1602148,0.8539213",
+        "first_timestamp_ns": 1788275631648878000,
+        "last_timestamp_ns": 1788275644724279000,
+        "duration_s": 13.075401
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 393,
+        "all_data_frame_directories": 393,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 393,
+          "right": 393,
+          "both": 393
+        },
+        "max_tracking_sync_error_ms": 9.624667,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_014",
+      "legacy_id": "play_cards_0901_014",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_014",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_014",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 310.559,
+        "run_end_s": 324.911,
+        "requested_duration_s": 14.351999999999975
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 14.366667,
+          "frame_count": 431
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 14.366667,
+          "frame_count": 431
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1291,
+        "slam_frame_count": 1291,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37080252,-0.390139222,-3.113246,-0.17984587,0.45710066,0.156325936,0.8568995",
+        "first_timestamp_ns": 1788275648412666000,
+        "last_timestamp_ns": 1788275662747849000,
+        "duration_s": 14.335183
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 431,
+        "all_data_frame_directories": 431,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 431,
+          "right": 431,
+          "both": 431
+        },
+        "max_tracking_sync_error_ms": 5.709333,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_015",
+      "legacy_id": "play_cards_0901_015",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_015",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_015",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 328.864,
+        "run_end_s": 343.13,
+        "requested_duration_s": 14.26600000000002
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 14.266667,
+          "frame_count": 428
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 14.266667,
+          "frame_count": 428
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1284,
+        "slam_frame_count": 1284,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37407923,-0.3901996,-3.12065673,-0.185864776,0.44437775,0.150937662,0.863249958",
+        "first_timestamp_ns": 1788275666714896000,
+        "last_timestamp_ns": 1788275680970057000,
+        "duration_s": 14.255161
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 428,
+        "all_data_frame_directories": 428,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 428,
+          "right": 423,
+          "both": 423
+        },
+        "max_tracking_sync_error_ms": 8.353,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_016",
+      "legacy_id": "play_cards_0901_016",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_016",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/play_cards_0901_016",
+      "source_session": "play_cards_0901",
+      "source_run_id": "merged-00-20260901-230857",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 347.416,
+        "run_end_s": 360.673,
+        "requested_duration_s": 13.257000000000005
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 30.0,
+          "duration_s": 13.266667,
+          "frame_count": 398
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 30.0,
+          "duration_s": 13.266667,
+          "frame_count": 398
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1206,
+        "slam_frame_count": 1206,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "1.37770534,-0.387574255,-3.11560249,-0.177133247,0.444415927,0.14836216,0.8655096",
+        "first_timestamp_ns": 1788275685271019000,
+        "last_timestamp_ns": 1788275698519106000,
+        "duration_s": 13.248087
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 398,
+        "all_data_frame_directories": 398,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 398,
+          "right": 398,
+          "both": 398
+        },
+        "max_tracking_sync_error_ms": 11.802667,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_017",
+      "legacy_id": "get_potato_chips_0901_017",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_017",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_017",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 760.235,
+        "run_end_s": 769.859,
+        "requested_duration_s": 9.624000000000024
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.64,
+          "frame_count": 241
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.64,
+          "frame_count": 241
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 866,
+        "slam_frame_count": 866,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.223844633,0.0358668938,-0.0765804052,0.255972,0.449095339,0.109462157,-0.849005163",
+        "first_timestamp_ns": 1788270225414371000,
+        "last_timestamp_ns": 1788270235035375000,
+        "duration_s": 9.621004
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 241,
+        "all_data_frame_directories": 241,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 241,
+          "right": 241,
+          "both": 241
+        },
+        "max_tracking_sync_error_ms": 10.353,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_018",
+      "legacy_id": "get_potato_chips_0901_018",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_018",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_018",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 773.838,
+        "run_end_s": 786.375,
+        "requested_duration_s": 12.537000000000035
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 12.56,
+          "frame_count": 314
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 12.56,
+          "frame_count": 314
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1129,
+        "slam_frame_count": 1129,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.214664608,0.0393323824,-0.06865601,0.249015421,0.44550395,0.09551477,-0.8546312",
+        "first_timestamp_ns": 1788270239020495000,
+        "last_timestamp_ns": 1788270251548060000,
+        "duration_s": 12.527565
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 314,
+        "all_data_frame_directories": 314,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 314,
+          "right": 309,
+          "both": 309
+        },
+        "max_tracking_sync_error_ms": 6.89,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_019",
+      "legacy_id": "get_potato_chips_0901_019",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_019",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_019",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 790.09,
+        "run_end_s": 801.075,
+        "requested_duration_s": 10.985000000000014
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 11.0,
+          "frame_count": 275
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 11.0,
+          "frame_count": 275
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 988,
+        "slam_frame_count": 988,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.254498839,0.0294091236,-0.1070627,0.2686622,0.42166,0.101814814,-0.8600333",
+        "first_timestamp_ns": 1788270255268972000,
+        "last_timestamp_ns": 1788270266240489000,
+        "duration_s": 10.971517
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 275,
+        "all_data_frame_directories": 275,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 275,
+          "right": 275,
+          "both": 275
+        },
+        "max_tracking_sync_error_ms": 13.522,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_020",
+      "legacy_id": "get_potato_chips_0901_020",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_020",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_020",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 803.665,
+        "run_end_s": 815.275,
+        "requested_duration_s": 11.610000000000014
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 11.64,
+          "frame_count": 291
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 11.64,
+          "frame_count": 291
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1053,
+        "slam_frame_count": 1053,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.253587663,0.0258474369,-0.09262157,0.2774064,0.42184788,0.115113482,-0.855475843",
+        "first_timestamp_ns": 1788270268852846000,
+        "last_timestamp_ns": 1788270280448205000,
+        "duration_s": 11.595359
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 291,
+        "all_data_frame_directories": 291,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 291,
+          "right": 291,
+          "both": 291
+        },
+        "max_tracking_sync_error_ms": 21.592,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_021",
+      "legacy_id": "get_potato_chips_0901_021",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_021",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_021",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 818.357,
+        "run_end_s": 829.036,
+        "requested_duration_s": 10.678999999999974
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 10.68,
+          "frame_count": 267
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 10.68,
+          "frame_count": 267
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 961,
+        "slam_frame_count": 961,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.254054934,0.0243713763,-0.08768854,0.271739423,0.449350268,0.119957663,-0.8425273",
+        "first_timestamp_ns": 1788270283538953000,
+        "last_timestamp_ns": 1788270294204442000,
+        "duration_s": 10.665489
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 267,
+        "all_data_frame_directories": 267,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 267,
+          "right": 267,
+          "both": 267
+        },
+        "max_tracking_sync_error_ms": 13.503,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_022",
+      "legacy_id": "get_potato_chips_0901_022",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_022",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_022",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 832.277,
+        "run_end_s": 842.178,
+        "requested_duration_s": 9.900999999999954
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.92,
+          "frame_count": 248
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.92,
+          "frame_count": 248
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 892,
+        "slam_frame_count": 892,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.246244565,0.04254155,-0.08856148,0.223661259,0.4628044,0.08155073,-0.8538953",
+        "first_timestamp_ns": 1788270297455436000,
+        "last_timestamp_ns": 1788270307342618000,
+        "duration_s": 9.887182
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 248,
+        "all_data_frame_directories": 248,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 248,
+          "right": 236,
+          "both": 236
+        },
+        "max_tracking_sync_error_ms": 14.342,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_023",
+      "legacy_id": "get_potato_chips_0901_023",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_023",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_023",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 848.307,
+        "run_end_s": 858.014,
+        "requested_duration_s": 9.706999999999994
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.72,
+          "frame_count": 243
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.72,
+          "frame_count": 243
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 873,
+        "slam_frame_count": 873,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.251633883,0.02898652,-0.09696868,0.259430051,0.4345102,0.1000043,-0.856677353",
+        "first_timestamp_ns": 1788270313493493000,
+        "last_timestamp_ns": 1788270323188447000,
+        "duration_s": 9.694954
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 243,
+        "all_data_frame_directories": 243,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 243,
+          "right": 241,
+          "both": 241
+        },
+        "max_tracking_sync_error_ms": 13.217,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_024",
+      "legacy_id": "get_potato_chips_0901_024",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_024",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_024",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 860.658,
+        "run_end_s": 872.345,
+        "requested_duration_s": 11.687000000000012
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 11.72,
+          "frame_count": 293
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 11.72,
+          "frame_count": 293
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1053,
+        "slam_frame_count": 1053,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.247560114,0.0293906946,-0.09943837,0.264154077,0.40525946,0.0982524157,-0.8696746",
+        "first_timestamp_ns": 1788270325841407000,
+        "last_timestamp_ns": 1788270337521200000,
+        "duration_s": 11.679793
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 293,
+        "all_data_frame_directories": 293,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 293,
+          "right": 264,
+          "both": 264
+        },
+        "max_tracking_sync_error_ms": 13.05,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_025",
+      "legacy_id": "get_potato_chips_0901_025",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_025",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_025",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 875.529,
+        "run_end_s": 885.479,
+        "requested_duration_s": 9.950000000000045
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.96,
+          "frame_count": 249
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.96,
+          "frame_count": 249
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 896,
+        "slam_frame_count": 896,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.2791237,0.0286612678,-0.1352714,0.246425971,0.470837563,0.0867911354,-0.8426467",
+        "first_timestamp_ns": 1788270340708639000,
+        "last_timestamp_ns": 1788270350656254000,
+        "duration_s": 9.947615
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 249,
+        "all_data_frame_directories": 249,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 249,
+          "right": 221,
+          "both": 221
+        },
+        "max_tracking_sync_error_ms": 13.275,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_026",
+      "legacy_id": "get_potato_chips_0901_026",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_026",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_026",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 889.21,
+        "run_end_s": 899.037,
+        "requested_duration_s": 9.826999999999998
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.84,
+          "frame_count": 246
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.84,
+          "frame_count": 246
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 884,
+        "slam_frame_count": 884,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.271118045,0.03586796,-0.133911833,0.230912626,0.469389975,0.0802093148,-0.848480344",
+        "first_timestamp_ns": 1788270354395063000,
+        "last_timestamp_ns": 1788270364201282000,
+        "duration_s": 9.806219
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 246,
+        "all_data_frame_directories": 246,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 246,
+          "right": 218,
+          "both": 218
+        },
+        "max_tracking_sync_error_ms": 7.444,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_027",
+      "legacy_id": "get_potato_chips_0901_027",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_027",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_027",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 888.134,
+        "run_end_s": 899.018,
+        "requested_duration_s": 10.884000000000015
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 10.92,
+          "frame_count": 273
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 10.92,
+          "frame_count": 273
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 980,
+        "slam_frame_count": 980,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.273606271,0.0330847576,-0.1391951,0.237538889,0.454884,0.08368536,-0.854197",
+        "first_timestamp_ns": 1788270353316133000,
+        "last_timestamp_ns": 1788270364187017000,
+        "duration_s": 10.870884
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 273,
+        "all_data_frame_directories": 273,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 273,
+          "right": 245,
+          "both": 245
+        },
+        "max_tracking_sync_error_ms": 9.116,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_028",
+      "legacy_id": "get_potato_chips_0901_028",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_028",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_028",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 902.531,
+        "run_end_s": 913.384,
+        "requested_duration_s": 10.853000000000065
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 10.88,
+          "frame_count": 272
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 10.88,
+          "frame_count": 272
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 977,
+        "slam_frame_count": 977,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.269487828,0.03934721,-0.131724015,0.219363,0.4688151,0.07599139,-0.8522427",
+        "first_timestamp_ns": 1788270367713674000,
+        "last_timestamp_ns": 1788270378561371000,
+        "duration_s": 10.847697
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 272,
+        "all_data_frame_directories": 272,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 272,
+          "right": 265,
+          "both": 265
+        },
+        "max_tracking_sync_error_ms": 13.07,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_029",
+      "legacy_id": "get_potato_chips_0901_029",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_029",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_029",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 916.373,
+        "run_end_s": 926.139,
+        "requested_duration_s": 9.765999999999963
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.8,
+          "frame_count": 245
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.8,
+          "frame_count": 245
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 878,
+        "slam_frame_count": 878,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.258134663,0.0256079528,-0.146193311,0.268212438,0.4070522,0.09247257,-0.8682278",
+        "first_timestamp_ns": 1788270381560205000,
+        "last_timestamp_ns": 1788270391308968000,
+        "duration_s": 9.748763
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 245,
+        "all_data_frame_directories": 245,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 245,
+          "right": 217,
+          "both": 217
+        },
+        "max_tracking_sync_error_ms": 13.385,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_030",
+      "legacy_id": "get_potato_chips_0901_030",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_030",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_030",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 928.572,
+        "run_end_s": 938.694,
+        "requested_duration_s": 10.121999999999957
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 10.16,
+          "frame_count": 254
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 10.16,
+          "frame_count": 254
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 921,
+        "slam_frame_count": 921,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.267650485,0.0436634868,-0.118532971,0.205881432,0.50231874,0.07368789,-0.8365756",
+        "first_timestamp_ns": 1788270393755324000,
+        "last_timestamp_ns": 1788270403868639000,
+        "duration_s": 10.113315
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 254,
+        "all_data_frame_directories": 254,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 254,
+          "right": 247,
+          "both": 247
+        },
+        "max_tracking_sync_error_ms": 19.697,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_031",
+      "legacy_id": "get_potato_chips_0901_031",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_031",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_031",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 941.393,
+        "run_end_s": 955.028,
+        "requested_duration_s": 13.634999999999991
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 13.64,
+          "frame_count": 341
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 13.64,
+          "frame_count": 341
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1227,
+        "slam_frame_count": 1227,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.2526529,0.0346845165,-0.134950072,0.23065792,0.437739849,0.07702128,-0.8655914",
+        "first_timestamp_ns": 1788270406576823000,
+        "last_timestamp_ns": 1788270420201365000,
+        "duration_s": 13.624542
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 341,
+        "all_data_frame_directories": 341,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 341,
+          "right": 341,
+          "both": 341
+        },
+        "max_tracking_sync_error_ms": 13.028,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_032",
+      "legacy_id": "get_potato_chips_0901_032",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_032",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_032",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 957.995,
+        "run_end_s": 969.554,
+        "requested_duration_s": 11.558999999999969
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 11.56,
+          "frame_count": 289
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 11.56,
+          "frame_count": 289
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 1040,
+        "slam_frame_count": 1040,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.251380771,0.0132086109,-0.118458696,0.22835508,0.469370872,0.09247086,-0.8479352",
+        "first_timestamp_ns": 1788270423187225000,
+        "last_timestamp_ns": 1788270434727109000,
+        "duration_s": 11.539884
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 289,
+        "all_data_frame_directories": 289,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 289,
+          "right": 274,
+          "both": 274
+        },
+        "max_tracking_sync_error_ms": 12.834,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_033",
+      "legacy_id": "get_potato_chips_0901_033",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_033",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_033",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 973.63,
+        "run_end_s": 983.771,
+        "requested_duration_s": 10.140999999999963
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 10.16,
+          "frame_count": 254
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 10.16,
+          "frame_count": 254
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 913,
+        "slam_frame_count": 913,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.235327676,0.00771839358,-0.122275285,0.2844646,0.4570458,0.100419469,-0.836722732",
+        "first_timestamp_ns": 1788270438810157000,
+        "last_timestamp_ns": 1788270448948455000,
+        "duration_s": 10.138298
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 254,
+        "all_data_frame_directories": 254,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 254,
+          "right": 239,
+          "both": 239
+        },
+        "max_tracking_sync_error_ms": 8.449,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_034",
+      "legacy_id": "get_potato_chips_0901_034",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_034",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_034",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 993.067,
+        "run_end_s": 1004.028,
+        "requested_duration_s": 10.961000000000013
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 11.0,
+          "frame_count": 275
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 11.0,
+          "frame_count": 275
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 987,
+        "slam_frame_count": 987,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.231826544,0.0262025278,-0.119130991,0.270025581,0.436307639,0.10395395,-0.8520067",
+        "first_timestamp_ns": 1788270458246000000,
+        "last_timestamp_ns": 1788270469198370000,
+        "duration_s": 10.95237
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 275,
+        "all_data_frame_directories": 275,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 275,
+          "right": 275,
+          "both": 275
+        },
+        "max_tracking_sync_error_ms": 10.419,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_035",
+      "legacy_id": "get_potato_chips_0901_035",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_035",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_035",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1006.079,
+        "run_end_s": 1015.542,
+        "requested_duration_s": 9.46300000000008
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.48,
+          "frame_count": 237
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.48,
+          "frame_count": 237
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 852,
+        "slam_frame_count": 852,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.299474239,0.03694343,-0.09141575,0.240051165,0.450583667,0.09808832,-0.8542415",
+        "first_timestamp_ns": 1788270471264482000,
+        "last_timestamp_ns": 1788270480709124000,
+        "duration_s": 9.444642
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 237,
+        "all_data_frame_directories": 237,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 237,
+          "right": 237,
+          "both": 237
+        },
+        "max_tracking_sync_error_ms": 10.218,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_036",
+      "legacy_id": "get_potato_chips_0901_036",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_036",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_036",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1017.763,
+        "run_end_s": 1027.592,
+        "requested_duration_s": 9.829000000000065
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.84,
+          "frame_count": 246
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.84,
+          "frame_count": 246
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 884,
+        "slam_frame_count": 884,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.28723225,0.035416767,-0.100127235,0.240181908,0.436447561,0.0783285648,-0.8635339",
+        "first_timestamp_ns": 1788270482954114000,
+        "last_timestamp_ns": 1788270492769152000,
+        "duration_s": 9.815038
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 246,
+        "all_data_frame_directories": 246,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 246,
+          "right": 246,
+          "both": 246
+        },
+        "max_tracking_sync_error_ms": 9.261,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_037",
+      "legacy_id": "get_potato_chips_0901_037",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_037",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_037",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1030.82,
+        "run_end_s": 1040.993,
+        "requested_duration_s": 10.173000000000002
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 10.2,
+          "frame_count": 255
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 10.2,
+          "frame_count": 255
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 916,
+        "slam_frame_count": 916,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.292157471,0.0356289223,-0.09463072,0.21967122,0.4700931,0.0797845349,-0.8511119",
+        "first_timestamp_ns": 1788270495999510000,
+        "last_timestamp_ns": 1788270506164445000,
+        "duration_s": 10.164935
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 255,
+        "all_data_frame_directories": 255,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 255,
+          "right": 255,
+          "both": 255
+        },
+        "max_tracking_sync_error_ms": 6.974,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_038",
+      "legacy_id": "get_potato_chips_0901_038",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_038",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_038",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1043.117,
+        "run_end_s": 1052.027,
+        "requested_duration_s": 8.910000000000082
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 8.92,
+          "frame_count": 223
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 8.92,
+          "frame_count": 223
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 814,
+        "slam_frame_count": 814,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.271176249,0.0208601523,-0.0959968343,0.302126735,0.420183033,0.104968652,-0.8492039",
+        "first_timestamp_ns": 1788270508297912000,
+        "last_timestamp_ns": 1788270517203710000,
+        "duration_s": 8.905798
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 223,
+        "all_data_frame_directories": 223,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 223,
+          "right": 223,
+          "both": 223
+        },
+        "max_tracking_sync_error_ms": 20.448,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_039",
+      "legacy_id": "get_potato_chips_0901_039",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_039",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_039",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1055.139,
+        "run_end_s": 1064.947,
+        "requested_duration_s": 9.807999999999993
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.84,
+          "frame_count": 246
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.84,
+          "frame_count": 246
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 883,
+        "slam_frame_count": 883,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.272082269,0.0417573527,-0.08016293,0.235661834,0.470800549,0.08394202,-0.846028447",
+        "first_timestamp_ns": 1788270520320298000,
+        "last_timestamp_ns": 1788270530115655000,
+        "duration_s": 9.795357
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 246,
+        "all_data_frame_directories": 246,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 246,
+          "right": 246,
+          "both": 246
+        },
+        "max_tracking_sync_error_ms": 16.488,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_040",
+      "legacy_id": "get_potato_chips_0901_040",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_040",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_040",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1067.59,
+        "run_end_s": 1076.719,
+        "requested_duration_s": 9.129000000000133
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 9.16,
+          "frame_count": 229
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 9.16,
+          "frame_count": 229
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 821,
+        "slam_frame_count": 821,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.2708916,0.0328619778,-0.09017624,0.2661625,0.424607575,0.09324021,-0.8603326",
+        "first_timestamp_ns": 1788270532774213000,
+        "last_timestamp_ns": 1788270541872115000,
+        "duration_s": 9.097902
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 229,
+        "all_data_frame_directories": 229,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 229,
+          "right": 229,
+          "both": 229
+        },
+        "max_tracking_sync_error_ms": 22.098,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_041",
+      "legacy_id": "get_potato_chips_0901_041",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_041",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_041",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1078.979,
+        "run_end_s": 1087.18,
+        "requested_duration_s": 8.201000000000022
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 8.24,
+          "frame_count": 206
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 8.24,
+          "frame_count": 206
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 738,
+        "slam_frame_count": 738,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.273140073,0.0310156122,-0.08960654,0.265328765,0.425804138,0.0935201645,-0.8599683",
+        "first_timestamp_ns": 1788270544161673000,
+        "last_timestamp_ns": 1788270552357224000,
+        "duration_s": 8.195551
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 206,
+        "all_data_frame_directories": 206,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 206,
+          "right": 206,
+          "both": 206
+        },
+        "max_tracking_sync_error_ms": 7.733,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_042",
+      "legacy_id": "get_potato_chips_0901_042",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_042",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_042",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1089.456,
+        "run_end_s": 1097.273,
+        "requested_duration_s": 7.817000000000007
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 7.84,
+          "frame_count": 196
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 7.84,
+          "frame_count": 196
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 703,
+        "slam_frame_count": 703,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.272608042,0.0240995158,-0.09374383,0.28982234,0.4072195,0.09830733,-0.8605295",
+        "first_timestamp_ns": 1788270554640354000,
+        "last_timestamp_ns": 1788270562442819000,
+        "duration_s": 7.802465
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 196,
+        "all_data_frame_directories": 196,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 196,
+          "right": 196,
+          "both": 196
+        },
+        "max_tracking_sync_error_ms": 9.861,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    },
+    {
+      "canonical_id": "play_cards_0901_043",
+      "legacy_id": "get_potato_chips_0901_043",
+      "canonical_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards/play_cards_0901_043",
+      "legacy_path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/get_potato_chips_0901_043",
+      "source_session": "get_potato_chips_0901",
+      "source_run_id": "merged-00-20260901-213104",
+      "processing_status": "ready",
+      "selection": {
+        "run_start_s": 1099.684,
+        "run_end_s": 1108.211,
+        "requested_duration_s": 8.527000000000044
+      },
+      "media": {
+        "rectified": {
+          "width": 1280,
+          "height": 960,
+          "fps": 25.0,
+          "duration_s": 8.56,
+          "frame_count": 214
+        },
+        "stereo": {
+          "width": 4096,
+          "height": 1536,
+          "fps": 25.0,
+          "duration_s": 8.56,
+          "frame_count": 214
+        }
+      },
+      "tracking": {
+        "tracking_frame_count": 767,
+        "slam_frame_count": 767,
+        "coordinate_system": "clip_start_head_6dof",
+        "origin_head_pose_in_source_world": "0.275449336,0.0333526731,-0.08467084,0.2553269,0.4340228,0.0900682,-0.8592556",
+        "first_timestamp_ns": 1788270564870747000,
+        "last_timestamp_ns": 1788270573382833000,
+        "duration_s": 8.512086
+      },
+      "camera": {
+        "rectified": true,
+        "eye": "left",
+        "intrinsics": [
+          [
+            640.0000000000001,
+            0.0,
+            639.5
+          ],
+          [
+            0.0,
+            640.0000000000001,
+            479.5
+          ],
+          [
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "coordinate_system": "clip_start_head_6dof",
+        "pose_convention": "4x4 column-vector SE(3)"
+      },
+      "humanego_preprocess": {
+        "declared_frame_count": 214,
+        "all_data_frame_directories": 214,
+        "finished_frames_field": 30,
+        "active_frame_counts": {
+          "left": 214,
+          "right": 214,
+          "both": 214
+        },
+        "max_tracking_sync_error_ms": 9.291,
+        "hand_joint_names": [
+          "thumb_fingertip",
+          "index_fingertip",
+          "middle_fingertip",
+          "ring_fingertip",
+          "pinky_fingertip",
+          "wrist",
+          "thumb_intermediate",
+          "thumb_distal",
+          "index_proximal",
+          "index_intermediate",
+          "index_distal",
+          "middle_proximal",
+          "middle_intermediate",
+          "middle_distal",
+          "ring_proximal",
+          "ring_intermediate",
+          "ring_distal",
+          "pinky_proximal",
+          "pinky_intermediate",
+          "pinky_distal",
+          "palm_center"
+        ],
+        "pico_joint_indices": [
+          5,
+          10,
+          15,
+          20,
+          25,
+          1,
+          3,
+          4,
+          7,
+          8,
+          9,
+          12,
+          13,
+          14,
+          17,
+          18,
+          19,
+          22,
+          23,
+          24,
+          0
+        ]
+      },
+      "component_presence": {
+        "rectified_video": true,
+        "source_stereo_video": true,
+        "tracking": true,
+        "slam": true,
+        "camera_params": true,
+        "humanego_manifest": true,
+        "humanego_all_data": true
+      },
+      "intake_status": "PASS_WITH_METADATA_WARNING",
+      "issues": [
+        "STALE_FINISHED_FRAMES_COUNTER"
+      ],
+      "claim_limit": "Lightweight manifest/directory intake only; numerical K/c2w/timestamp/hand-motion gates are owned by SOURCE_GATE.json."
+    }
+  ]
+}

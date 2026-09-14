@@ -1,0 +1,17 @@
+{
+  "schema_version": "chaoyang-systems-registry-v1",
+  "systems": {
+    "mask": {
+      "path": "systems/mask/system.manifest.json",
+      "sha256": "9bb8bdf3c930b034c16430f26077647bd9485d56081fdcddaa2d076a337bb0c2"
+    },
+    "clean": {
+      "path": "systems/clean/system.manifest.json",
+      "sha256": "0d75b323dc6cb7e004b8feb367154e2cc53c93f13b6fd38813422ff28c93a79f"
+    },
+    "robot": {
+      "path": "systems/robot/system.manifest.json",
+      "sha256": "2a73b954dc10760698bafd34d850a005b01eb8a836d13e30a7e093281ef023cc"
+    }
+  }
+}

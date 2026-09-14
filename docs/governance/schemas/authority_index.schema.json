@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "governance_revision", "generation_id", "generated_at", "generator_code_sha", "repository", "data_root", "cohort", "waves", "stages", "claims", "decisions"],
+  "properties": {
+    "schema_version": {"const": "chaoyang-current-authority-index-v1"},
+    "governance_revision": {"type": "integer", "minimum": 1},
+    "generation_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generator_code_sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repository": {"type": "object", "required": ["commit", "branch"], "properties": {"commit": {"type": "string"}, "branch": {"type": "string"}}, "additionalProperties": false},
+    "data_root": {"type": "string"},
+    "cohort": {"type": "string"},
+    "waves": {"type": "object", "required": ["raw_total", "wave0_metric_ready", "wave0_clean_passed", "wave0_clean_pending", "wave1_delta", "wave2_delta", "raw_calibration_missing", "join_calibration_missing"], "additionalProperties": {"type": "integer", "minimum": 0}},
+    "stages": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["stage", "total", "passed", "grade_c", "running", "blocked", "authority_scope", "denominator_semantics", "evidence"], "properties": {"stage": {"type": "string"}, "total": {"type": "integer", "minimum": 0}, "passed": {"type": "integer", "minimum": 0}, "grade_c": {"type": "integer", "minimum": 0}, "running": {"type": "integer", "minimum": 0}, "blocked": {"type": "integer", "minimum": 0}, "authority_scope": {"type": "string"}, "denominator_semantics": {"type": "string"}, "evidence": {"type": "array", "items": {"$ref": "artifact_ref.schema.json"}}}}},
+    "claims": {"type": "array", "items": {"$ref": "claim.schema.json"}},
+    "decisions": {"type": "array", "items": {"type": "string", "minLength": 1}}
+  }
+}

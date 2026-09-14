@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "task_id", "objective", "read_set", "write_set", "prerequisites", "gates", "budgets", "attempt_max", "stop_condition", "output_contract", "claim_limit", "executor_epoch", "fencing"],
+  "properties": {
+    "schema_version": {"const": "exact78-task-packet-v1"},
+    "task_id": {"type": "string", "minLength": 1},
+    "objective": {"type": "string", "minLength": 1},
+    "read_set": {"type": "array", "maxItems": 8, "items": {"type": "string"}},
+    "write_set": {"type": "array", "items": {"type": "string"}},
+    "prerequisites": {"type": "array", "items": {"type": "string"}},
+    "gates": {"type": "array", "items": {"type": "string"}},
+    "budgets": {"type": "object", "required": ["cpu_seconds", "gpu_seconds", "wall_seconds"], "properties": {"cpu_seconds": {"type": "number", "minimum": 0}, "gpu_seconds": {"type": "number", "minimum": 0}, "wall_seconds": {"type": "number", "minimum": 0}}},
+    "attempt_max": {"type": "integer", "minimum": 1, "maximum": 3},
+    "executor_epoch": {"type": "integer", "minimum": 1},
+    "fencing": {"type": "object", "required": ["pid_startticks_required", "immutable_final"], "properties": {"pid_startticks_required": {"const": true}, "immutable_final": {"const": true}}}
+  }
+}

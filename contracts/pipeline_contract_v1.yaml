@@ -1,0 +1,653 @@
+schema_version: pipeline-contract-v1
+document_status: DRAFT
+calibration_execution_authorized: false
+calibration_execution_scope: B0A_B0B_FROZEN_B3_AND_BLIND_EVALUATION_HOLD
+formal_production_allowed: false
+formal_clean_enabled: false
+fail_closed: true
+
+authority:
+  project_root: /mnt/workspace/code/chaoyang
+  raw_root: /mnt/data/egodata
+  raw_access: READ_ONLY
+  raw_readiness: PASS_G0_SOURCE_READABLE
+  verified_source_manifest:
+    path: contracts/manifests/verified_source_manifest_v1.json
+    sha256: 1dc476360d567894ba629dd74dae608f5d8fd80b0991767611259e47929342a6
+    sessions:
+      grap_a_cap_004: 31cc7c227b74799feb0f587c330c33f1a13aaccf85e6244ac234a2b71ecd6840
+      grap_a_cap_025: 774a92dc709a0baa6b628aa45e2f7264cc84fd162f1e09dce702e75cdbba2c24
+      grap_a_cap_149: ce53f0c7e584c65357507a40558d1f9345c9facee768d9200f71c80357289eca
+    authorized_calibration_sessions: [grap_a_cap_004]
+  raw_substitutes_allowed: false
+  staging_root_template: /mnt/workspace/code/chaoyang/_run/{run_id}
+  processed_root_template: /mnt/workspace/code/chaoyang/data/processed/formal_legacy/{session_id}_v{version}
+  formal_consumer_entrypoint: cohort_manifest
+
+required_contracts:
+  project_profile: contracts/project_profile_v1.yaml
+  session_context_schema: contracts/session_context.schema.json
+  route_decision_schema: contracts/route_decision.schema.json
+  failure_attribution_schema: contracts/failure_attribution.schema.json
+  ownership: docs/architecture/COMPONENT_OWNERSHIP_v1.md
+  data_graph: docs/architecture/DATA_REFERENCE_GRAPH_v1.json
+  verified_source_manifest_schema: contracts/verified_source_manifest.schema.json
+  canary_set_schema: contracts/canary_set.schema.json
+  mask_evidence_schema: contracts/mask_evidence.schema.json
+  mask_benchmark_schema: contracts/mask_benchmark.schema.json
+  reveal_labels_schema: contracts/reveal_labels.schema.json
+  verified_reveal_policy_schema: contracts/verified_reveal_policy.schema.json
+  object_texture_donor_manifest_schema: contracts/object_texture_donor_manifest.schema.json
+  temporal_atlas_manifest_schema: contracts/temporal_atlas_manifest.schema.json
+  mask_independent_qa_schema: contracts/mask_independent_qa.schema.json
+  clean_layers_schema: contracts/clean_layers.schema.json
+  clean_coverage_schema: contracts/clean_coverage.schema.json
+  mask_clean_review_package_schema: contracts/mask_clean_review_package.schema.json
+
+contract_inputs:
+  authoritative_raw: {authority: external_read_only, readiness: PASS_G0_SOURCE_READABLE, missing_action: HOLD}
+  verified_source_manifest: {authority: contracts/manifests/verified_source_manifest_v1.json, sha256: 1dc476360d567894ba629dd74dae608f5d8fd80b0991767611259e47929342a6, missing_action: HOLD}
+  sam2_1_model_pin: {authority: model_pins.SAM2_1_HIERA_LARGE, missing_action: HOLD}
+  g2_task_card_calibration_overlay: {authority: explicit_G2_TASK_CARD_dimensionless_calibration_overlay, sha256_required: true, missing_action: HOLD}
+  source_manifest_request: {authority: G0_task_card, missing_action: HOLD}
+  project_profile: {authority: contracts/project_profile_v1.yaml, missing_action: HOLD}
+  pinned_object_model_refs: {authority: project_profile, missing_action: HOLD}
+  frozen_motion_or_r2: {authority: product_line_input_manifest, missing_action: HOLD}
+  pinned_robot_model: {authority: project_profile, missing_action: HOLD}
+  pinned_robot_assets: {authority: project_profile, missing_action: HOLD}
+  g2_004_analytic_object_evidence:
+    authority: frozen_compact_evidence_read_only
+    session_id: grap_a_cap_004
+    files:
+      object_6dof_v2_npz: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/object_6dof_v2.npz, sha256: 97fb5747411830b2caa9f34cc164dca39cd411227a8ffaa7229b6e523eaf6a13}
+      cylinder_geometry: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/cylinder_geometry.json, sha256: fea720ec2d1c0c8ef311bce5dd65e7f47e806da7bedee3f96c9a3ee9fe6f4631}
+      v2_summary: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/v2_summary.json, sha256: c6b6f27d2812e756789bcd73c9708250cd5c300d12d66fb8a39627e684749d91}
+    claim_limit: READ_ONLY_PROMPT_AND_ANALYTIC_GEOMETRY_EVIDENCE_NOT_VISUAL_PASS
+    missing_action: HOLD
+  mask_clean_human_review_reference: {authority: human_reviewer, missing_action_when_required: AWAITING_HUMAN_MASK_CLEAN_REVIEW}
+  human_review_reference: {authority: human_reviewer, missing_action_when_required: WAIT_FOR_HUMAN}
+  formal_clean_authorization: {authority: future_frozen_profile_and_explicit_task_card, available: false, missing_action: HOLD}
+  mask_benchmark:
+    authority: frozen_human_reviewed_mask_houb_benchmark_v2
+    schema: contracts/mask_benchmark.schema.json
+    available: true
+    required_state: FROZEN_HUMAN_REVIEWED
+    frozen_ref:
+      path: _run/g2_mask_benchmark_freeze_v1/8bdd4cb5e994a9a648adbc20bafb9a59e28a67a1118d1043501159da1888e7ac/BENCHMARK_FREEZE.json
+      sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b
+      state: FROZEN_HUMAN_REVIEWED
+      frames: 45
+      palette_png: 45
+      binary_0_255_png: 180
+      reverse_palette_exact_frames: 45
+    staging_v1:
+      path: _run/g2_mask_benchmark_v1/BENCHMARK_MANIFEST.json
+      sha256: 85f09ef99f3445350619a2f202f70c9182fc5ffd5f0297e32dfd32038f212a36
+      frame_count: 60
+      state: AWAITING_HUMAN_HOUB_ANNOTATION_NOT_FROZEN
+      pilot_review: {path: _run/g2_mask_benchmark_v1/human_labels/PILOT_5_REVIEW.json, sha256: 9d218c494dd6bdc67a8249c74ea0364c746247a607dfb4463dce02a383d50960, state: PASS_PILOT_ONLY_NOT_FROZEN}
+    staging_v2:
+      path: _run/g2_mask_benchmark_v2/BENCHMARK_MANIFEST.json
+      sha256: 60b9df265169bb2a4d575bfc3a836039c9ba0d618922a6f8b08dbf7b44b9fde1
+      run_manifest_path: _run/g2_mask_benchmark_v2/run_manifest.json
+      run_manifest_sha256: 0692d73123c8ad710367da3277d0a907620e8c76a9b8f21e1ae809de6d6c5ce4
+      frame_count: 45
+      partitions: {development_004: 15, same_session_blind_004: 15, cross_session_blind_025: 15}
+      held_out_final_blind_session: grap_a_cap_149
+      migration_provenance_sha256: 7d57cfcf4c7741ad43068acb693607b016d3d9dcd3df31190e1c4639d6be7b92
+      state: HUMAN_LABELS_VALIDATED_AND_T2_FROZEN_VIA_0_255_ADAPTER
+      live_label_counts: DERIVE_AT_RUNTIME_FROM_LABEL_FREEZER_INPUTS_NEVER_PIN_IN_CONTRACT
+      derived_t0_label_manifest:
+        path: _run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json
+        sha256: 3038770f20a36a1a31dff98ed4997e5db59d008c339753fc43321c76edb01d33
+        state: DERIVED_T0_NOT_FROZEN
+        freeze_ref_issued: true
+        consumer_allowed: false
+    missing_action: HOLD
+  benchmark_selection_protocol: {authority: future_explicit_benchmark_task_card, available: false, missing_action: HOLD}
+  auditor_a1_freeze_reference:
+    authority: frozen_independent_auditor_a1_human_review_policy
+    available: true
+    path: _run/g2_auditor_a1_freeze_v1/8e084d147cc4a0102a27ac5b6a9643125ec8a2472531de998086392baf110b1f/AUDITOR_FREEZE.json
+    sha256: d2cd400a5ffb7e30f365f1ae3af21fb916b31302e64034ca8ba75c36c001fd9c
+    state: FROZEN_HUMAN_REVIEW_POLICY
+    automatic_pass_allowed: false
+    blind_unsealed: false
+    missing_action: HOLD
+
+global_invariants:
+  - one_artifact_type_has_exactly_one_producer
+  - every_input_is_manifest_referenced_and_sha256_verified
+  - ordinary_files_only_for_formal_inputs
+  - no_legacy_raw_or_staging_fallback
+  - no_session_id_or_frame_id_conditionals
+  - no_per_frame_manual_thresholds
+  - no_hidden_fallback
+  - qa_never_mutates_or_reruns_upstream
+  - missing_model_weight_threshold_or_evidence_means_hold
+  - calibration_overlay_is_task_card_bound_dimensionless_and_never_formal
+  - lower_quality_gate_failure_cannot_be_hidden_by_higher_layer
+  - published_versions_are_immutable
+  - synthetic_test_only_artifacts_are_never_formal_inputs
+  - reveal_identity_requires_pre_and_post_object_overlap_accounting
+  - reject_or_hold_requires_central_evidence_registry_entry_before_human_review_closure
+  - mask_producer_and_mask_auditor_have_independent_version_identities
+  - candidate_ranking_requires_same_frozen_auditor_and_same_frozen_houb_benchmark
+  - historical_metrics_from_different_auditors_or_frame_scopes_are_not_rankable
+  - blind_benchmark_labels_are_never_read_by_mask_producer
+  - v9_is_terminal_for_the_current_heuristic_line_and_v10_heuristic_is_not_authorized
+
+execution_modes:
+  G2_CALIBRATION:
+    authorized: false
+    session_binding: VERIFIED_SOURCE_MANIFEST_SESSION
+    product_line_binding: REGISTERED_PRODUCT_LINE
+    allowed_stages: [session_context, canary_set, mask_evidence, mask_independent_qa, verified_reveal_policy, object_evidence_read_only_adapter, object_texture_donor, temporal_atlas_manifest, route_decision, reveal_labels, clean_layers, clean_coverage, mask_clean_review_package, machine_qa]
+    authorization_blockers: [B3_BLIND_EVALUATION_NOT_AUTHORIZED, UNIFORM_CANDIDATE_REEVALUATION_NOT_COMPLETE, HUMAN_CANDIDATE_REVIEW_NOT_COMPLETE]
+    required_terminal_state: HOLD_B3_AND_BLIND_EVALUATION_NOT_AUTHORIZED
+    task_card_required: true
+    dimensionless_calibration_overlay_required: true
+    output_artifact_state: G2_CALIBRATION_CANDIDATE
+    processed_write_allowed: false
+  FORMAL_PRODUCTION:
+    authorized: false
+    clean_enabled: false
+    profile_lifecycle_required: FROZEN
+    unreviewed_calibration_overlay_allowed: false
+    processed_write_allowed: false
+
+model_pins:
+  SAM2_1_HIERA_LARGE:
+    availability: AVAILABLE_PINNED_G2_CALIBRATION_ONLY
+    repository: https://github.com/IDEA-Research/Grounded-SAM-2.git
+    asset_pin_ref: assets/models/sam2_1_hiera_large/ASSET_PIN.json
+    asset_pin_sha256: 7b03a85cdecf5e71ef7b1d65dd38fdbf73deea0e9ddfc2bbe41ddc111d7b11c0
+    implementation_ref: assets/models/sam2_1_hiera_large/implementation
+    implementation_inventory_sha256: 97e9ab4200d741d5ea8c5c4e63b46793a6a9b886c87abea6954f21dc3520025c
+    commit: b7a9c29f196edff0eb54dbe14588d7ae5e3dde28
+    git_tree: 79b4104ff480263e3727d9f08c1d018829ddf545
+    config: sam2/configs/sam2.1/sam2.1_hiera_l.yaml
+    config_sha256: 545e4325aa5c19a1615d43c946b07276ed4c57214eacf1437e38fa3d9374f636
+    weight_path: assets/models/sam2_1_hiera_large/sam2.1_hiera_large.pt
+    weight_bytes: 898083611
+    weight_sha256: 2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318
+    allowed_artifact: mask_evidence
+  SAM3:
+    availability: UNAVAILABLE
+    implementation_ref: null
+    weight_ref: null
+    may_impersonate_with_sam2: false
+
+product_lines:
+  004_CONTACT_GOLD:
+    namespace: 004_CONTACT_GOLD
+    input_sidecar_policy: FROZEN_BASE_PLUS_SEPARATE_VERSIONED_REFINEMENT
+    may_refine:
+      - object6d
+      - object_geometry
+      - object_sdf
+      - contact_constraints
+      - non_penetration_constraints
+      - q_hand
+    may_overwrite_r2: false
+    may_read_other_product_mutable_outputs: false
+    iteration_branch_cardinality: 1
+    allowed_iteration_branches:
+      - OBJECT_GEOMETRY
+      - RETARGET_QHAND
+      - COMPOSITOR
+  EXACT78_R2_VISUAL_DOMAIN:
+    namespace: EXACT78_R2_VISUAL_DOMAIN
+    input_sidecar_policy: FROZEN_R2_READ_ONLY
+    frozen_fields:
+      - q_hand
+      - wrist_T_camera
+      - validity
+      - confidence
+      - failure_reason
+      - frame_order
+      - timestamp
+      - hand_order
+      - units
+      - split
+      - language
+      - state
+      - non_image_inputs
+    only_planned_variable: image_selector
+    refinement_allowed: false
+    render_time_ik_allowed: false
+    may_read_other_product_mutable_outputs: false
+
+diagnostic_tracks:
+  HAND_ONLY_DIAGNOSTIC:
+    purpose: geometry_contact_occlusion_diagnostics
+    required_outputs:
+      - full_hand_mesh
+      - object_layer
+      - per_link_id_depth
+      - object_sdf_metrics
+      - contact_non_penetration_metrics
+      - recommended_composite
+      - thumb_only_comparison
+    may_feed_formal_robot_rgb: false
+  HAND_ARM_FINAL:
+    purpose: complete_tianji_arm_and_kaihand_final_render
+    required_outputs:
+      - full_robot_rgba
+      - full_link_id_depth
+      - object_layer_depth
+      - final_robot_rgb
+    may_feed_formal_robot_rgb: true
+
+components:
+  source_resolver:
+    reads: [authoritative_raw, source_manifest_request]
+    writes: [verified_source_manifest]
+    forbidden: [write_raw, accept_raw_substitute, accept_symlink_as_formal_frame]
+  session_profiler:
+    reads: [verified_source_manifest, g2_task_card_calibration_overlay]
+    writes: [session_context, canary_set]
+    forbidden: [write_pixels, invent_missing_measurement, session_specific_override]
+  mask_benchmark_curator:
+    reads: [verified_source_manifest, canary_set, benchmark_selection_protocol]
+    writes: [mask_benchmark]
+    forbidden: [generate_candidate_mask, tune_mask_producer, tune_auditor_thresholds, expose_blind_labels_to_mask_producer, mark_unreviewed_benchmark_frozen]
+  mask_producer:
+    reads: [verified_source_manifest, session_context, sam2_1_model_pin, g2_task_card_calibration_overlay]
+    writes: [mask_evidence]
+    forbidden: [write_clean, repair_object, decide_donor_route, read_same_session_blind_labels, read_cross_session_blind_labels, omit_producer_version_identity]
+  object_geometry_producer:
+    reads: [verified_source_manifest, session_context, pinned_object_model_refs]
+    writes: [object_evidence, object_geometry, object_depth_sdf, object_texture_donor]
+    forbidden: [erase_hand, write_background, modify_q_hand, modify_wrist, invent_metric_scale, 004_refinement_before_mask_clean_human_approval]
+  reveal_policy_owner:
+    reads: [project_profile, g2_task_card_calibration_overlay, formal_clean_authorization]
+    writes: [verified_reveal_policy]
+    forbidden: [enable_unregistered_route, accept_absolute_pixel_threshold, mark_synthetic_as_formal, enable_formal_clean_without_frozen_profile_and_authorization]
+  temporal_donor_atlas:
+    reads: [verified_source_manifest, session_context, mask_evidence, object_evidence, object_geometry, verified_reveal_policy]
+    writes: [temporal_atlas_manifest]
+    forbidden: [write_clean_pixels, include_masked_source_pixels, overlap_protected_object, use_fixed_frame_window, hidden_inpaint_fallback]
+  independent_mask_qa:
+    reads: [verified_source_manifest, canary_set, mask_evidence, mask_benchmark, auditor_a1_freeze_reference]
+    writes: [mask_independent_qa]
+    forbidden: [write_mask, modify_mask, invoke_mask_producer, self_change_thresholds, fabricate_pass, compare_across_auditor_versions, rank_incomplete_candidate_coverage, evaluate_without_frozen_benchmark]
+  reveal_router:
+    reads: [session_context, mask_evidence, object_evidence, object_geometry, object_texture_donor, temporal_atlas_manifest, verified_reveal_policy, project_profile, g2_task_card_calibration_overlay]
+    writes: [route_decision, reveal_labels]
+    forbidden: [write_clean_pixels, unregistered_route, implicit_route_switch]
+    calibration_read_rule: G2_MAY_READ_G2_004_ANALYTIC_OBJECT_EVIDENCE_CONTRACT_INPUT_WITHOUT_OBJECT6D_REFINEMENT
+  clean_background_producer:
+    reads: [verified_source_manifest, route_decision, reveal_labels, verified_reveal_policy, object_texture_donor, temporal_atlas_manifest, g2_task_card_calibration_overlay, formal_clean_authorization]
+    writes: [clean_layers, clean_coverage]
+    forbidden: [render_robot, overwrite_object_with_background, modify_object_geometry, consume_synthetic_as_formal, run_formal_clean_while_formal_clean_enabled_false]
+  mask_clean_review_packager:
+    reads: [verified_source_manifest, canary_set, mask_evidence, mask_independent_qa, verified_reveal_policy, clean_layers, clean_coverage, g2_task_card_calibration_overlay]
+    writes: [mask_clean_review_package]
+    forbidden: [modify_mask, modify_clean, object6d_refinement, retarget, render_robot, composite_robot, write_final_robot_rgb]
+  retarget_producer:
+    reads: [frozen_motion_or_r2, object_depth_sdf, pinned_robot_model]
+    writes: [resolved_retarget, contact_gold_sidecar]
+    product_line_write_rules:
+      004_CONTACT_GOLD: [resolved_retarget, contact_gold_sidecar]
+      EXACT78_R2_VISUAL_DOMAIN: [resolved_retarget]
+    forbidden: [overwrite_r2, write_image, exact78_refinement, render_time_q_hand_change, 004_execution_before_mask_clean_human_approval]
+  base_ik_producer:
+    reads: [resolved_retarget, object_geometry, pinned_robot_model]
+    writes: [base_ik_solution]
+    forbidden: [move_frozen_wrist, per_frame_base_motion, hide_unreachable_link]
+  renderer:
+    reads: [resolved_retarget, base_ik_solution, object_geometry, pinned_robot_assets, session_context]
+    writes: [render_layers]
+    forbidden: [write_clean, modify_pose, hide_failed_link, formal_thumb_only_render]
+  compositor:
+    reads: [clean_layers, clean_coverage, reveal_labels, render_layers, object_depth_sdf]
+    writes: [geometry_composite, compositor_diagnostics, geometry_gate_result]
+    forbidden: [modify_geometry, modify_q_hand, link_name_occlusion_hack, write_harmonized_appearance, pass_uncalibrated_geometry_gate]
+  harmonizer:
+    reads: [geometry_composite, geometry_gate_result]
+    writes: [final_robot_rgb, harmonization_audit]
+    forbidden: [modify_alpha, modify_depth, modify_object, modify_background, hide_geometry_failure]
+  qa_evaluator:
+    reads: [all_manifested_artifacts, all_diagnostics, project_profile]
+    writes: [quality_report, failure_attribution, next_revision_advice]
+    forbidden: [write_upstream_artifact, automatic_producer_rerun, threshold_relaxation, self_approve_manual_gate]
+  promotion_manager:
+    reads: [staged_session, quality_report, failure_attribution, human_review_reference]
+    writes: [session_manifest, atomic_promoted_session, cohort_manifest]
+    forbidden: [copy_publish, overwrite_version, publish_hold, fill_missing_from_raw, fill_missing_from_legacy]
+
+artifacts:
+  verified_source_manifest: {producer: source_resolver, schema: contracts/verified_source_manifest.schema.json, namespace: source}
+  session_context: {producer: session_profiler, schema: contracts/session_context.schema.json, namespace: context}
+  canary_set: {producer: session_profiler, schema: contracts/canary_set.schema.json, namespace: context}
+  mask_benchmark: {producer: mask_benchmark_curator, schema: contracts/mask_benchmark.schema.json, namespace: qa/benchmark}
+  mask_evidence: {producer: mask_producer, schema: contracts/mask_evidence.schema.json, namespace: masks}
+  object_evidence: {producer: object_geometry_producer, schema: UNDEFINED_DRAFT, namespace: object}
+  object_geometry: {producer: object_geometry_producer, schema: UNDEFINED_DRAFT, namespace: object}
+  object_depth_sdf: {producer: object_geometry_producer, schema: UNDEFINED_DRAFT, namespace: object}
+  object_texture_donor: {producer: object_geometry_producer, schema: contracts/object_texture_donor_manifest.schema.json, namespace: object}
+  verified_reveal_policy: {producer: reveal_policy_owner, schema: contracts/verified_reveal_policy.schema.json, namespace: routing/policy}
+  temporal_atlas_manifest: {producer: temporal_donor_atlas, schema: contracts/temporal_atlas_manifest.schema.json, namespace: clean/donor}
+  mask_independent_qa: {producer: independent_mask_qa, schema: contracts/mask_independent_qa.schema.json, namespace: qa/prerequisite_review}
+  route_decision: {producer: reveal_router, schema: contracts/route_decision.schema.json, namespace: routing}
+  reveal_labels: {producer: reveal_router, schema: contracts/reveal_labels.schema.json, namespace: routing}
+  clean_layers: {producer: clean_background_producer, schema: contracts/clean_layers.schema.json, namespace: clean}
+  clean_coverage: {producer: clean_background_producer, schema: contracts/clean_coverage.schema.json, namespace: clean}
+  resolved_retarget: {producer: retarget_producer, schema: UNDEFINED_DRAFT, namespace: retarget}
+  contact_gold_sidecar: {producer: retarget_producer, schema: UNDEFINED_DRAFT, namespace: 004_CONTACT_GOLD/retarget}
+  mask_clean_review_package: {producer: mask_clean_review_packager, schema: contracts/mask_clean_review_package.schema.json, namespace: qa/prerequisite_review}
+  base_ik_solution: {producer: base_ik_producer, schema: UNDEFINED_DRAFT, namespace: retarget}
+  render_layers: {producer: renderer, schema: UNDEFINED_DRAFT, namespace: render}
+  geometry_composite: {producer: compositor, schema: UNDEFINED_DRAFT, namespace: composite}
+  compositor_diagnostics: {producer: compositor, schema: UNDEFINED_DRAFT, namespace: composite}
+  geometry_gate_result: {producer: compositor, schema: UNDEFINED_DRAFT, namespace: composite}
+  final_robot_rgb: {producer: harmonizer, schema: UNDEFINED_DRAFT, namespace: FINAL}
+  harmonization_audit: {producer: harmonizer, schema: UNDEFINED_DRAFT, namespace: FINAL}
+  quality_report: {producer: qa_evaluator, schema: UNDEFINED_DRAFT, namespace: qa}
+  failure_attribution: {producer: qa_evaluator, schema: contracts/failure_attribution.schema.json, namespace: qa}
+  next_revision_advice: {producer: qa_evaluator, schema: UNDEFINED_DRAFT, namespace: qa}
+  session_manifest: {producer: promotion_manager, schema: UNDEFINED_DRAFT, namespace: release}
+  cohort_manifest: {producer: promotion_manager, schema: UNDEFINED_DRAFT, namespace: release}
+
+artifact_schema_readiness:
+  value: DRAFT_INCOMPLETE
+  undefined_marker: UNDEFINED_DRAFT
+  undefined_schema_action: HOLD
+  g2_pre_review_schema_set_complete: true
+  g2_calibration_candidate_allowed: false
+  formal_production_allowed: false
+  formal_clean_enabled: false
+  synthetic_test_only_formal_consumer_allowed: false
+
+mask_experiment_governance:
+  current_state: B0A_B0B_FROZEN_B3_AND_BLIND_EVALUATION_HOLD
+  heuristic_line_terminal_version: v9
+  v10_heuristic_authorized: false
+  next_allowed_experiment_after_uniform_benchmark_failure: CONTROLLED_BACKBONE_AB_OR_HOLD_UNSUPPORTED
+  producer_identity_pattern: producer_pN
+  auditor_target_identity: auditor_a1
+  auditor_freeze_state: FROZEN_HUMAN_REVIEW_POLICY_DIAGNOSTIC_ONLY_NO_AUTOMATIC_PASS
+  auditor_implementation:
+    path: pipeline/auditor/mask_auditor_a1.py
+    sha256: 82d21b01a623093d2c89308ba7d1dd596f6d062d6273b8044db5df12356e9c7c
+    claim_limit: BENCHMARK_DIAGNOSTIC_RANKING_ONLY_NOT_PRODUCTION_PASS
+  threshold_profile_ref: {policy: HUMAN_REVIEW_POLICY, empirical_noise_floor: null, noise_floor_status: UNAVAILABLE_USER_WAIVED_0_OF_8, automatic_pass_thresholds: null}
+  advancement_decision_policy_ref: {policy: HUMAN_REVIEW_POLICY, automatic_pass_allowed: false, automatic_advancement_allowed: false, candidate_terminal_state: AWAITING_HUMAN_CANDIDATE_REVIEW}
+  side_identity_advancement_gate:
+    identities: [left, right]
+    independent_evidence_and_decision_required: true
+    no_target_in_frame_requires_raw_visual_confirmation: true
+    raw_instance_zero_or_seed_outside_image_is_not_sufficient: true
+    max_cross_session_vs_development_pass_rate_gap: 0.15
+    max_absolute_left_right_pass_rate_gap: 0.10
+    selector_rejected_recalled_instance_overlay_required: true
+    object_or_background_corruption: IMMEDIATE_HOLD
+  evidence_route_scope:
+    required_field: route_of_evidence
+    allowed_values: [A, B]
+    cross_route_inference_forbidden: true
+    route_A_pixel_chain: TEXT_OR_CONCEPT_TO_INSTANCE_RECALL_TO_EGO_SELECTOR_TO_MASK
+    route_B_pixel_chain: HAWOR_POINT_PROMPT_TO_SAM2_1_MASK_DECODER_TO_MASK
+    route_A_selector_or_recall_failure_is_route_B_evidence: false
+    route_B_point_prompt_failure_is_route_A_evidence: false
+    self_attested_boolean_or_free_form_lineage_is_sufficient: false
+    evidence_ref_requirements: [regular_file, no_symlink_in_any_path_component, root_contained, bytes, sha256, typed_source_kind]
+    route_B_point_evidence_required: [side, normalized_xy, in_bounds, quality_value, quality_policy_ref, quality_policy_sha256, verified_source_manifest_sha256, source_ref, source_bytes, source_sha256, label_independent_provenance_ref]
+    route_B_point_quality_policy: {path: contracts/hawor_point_quality_policy_v1.json, sha256: 0754ec83a22c84e39df1783b435f9693801adcb871b2b2da733c6d5895856506, minimum_quality_rule: STRICTLY_GREATER_THAN_ZERO}
+    boundary_supported_role: DIAGNOSTIC_ONLY_NOT_REJECTION
+    one_side_authority_outside_action: HOLD_THAT_SIDE_ONLY_OTHER_SIDE_CONTINUES
+    route_A_raw_instance_identity_required: [source_ref, source_bytes, source_sha256, instance_id, frame_id]
+    cross_pool_same_raw_instance_action: HOLD_BOTH_SIDES
+    gpu_admission_must_execute_real_o_excl_owner_marker_and_sha_checks: true
+    gpu_admission_independent_qa_binding: EXACT_TASK_MODULE_TESTS_IMPLEMENTATION_SHA_AND_CANONICAL_QA_IDENTITY
+    boolean_claim_of_o_excl_is_sufficient: false
+  route_b_scope_gate:
+    state: UNTESTED_REQUIRED_BEFORE_ADVANCEMENT
+    hypothesis: ONE_LABEL_INDEPENDENT_HAWOR_POINT_EXPANDS_TO_COMPLETE_HAND_WRIST_CUFF_SLEEVE_AND_FOREARM_TO_IMAGE_BOUNDARY
+    report_separately_from_left_right_identity: true
+    systematic_short_mask_reason: SYSTEMATIC_SCOPE_TOO_SMALL
+    aggregate_coverage_may_hide_failure: false
+  official_sam31_concept_training:
+    state: HOLD_CONDITIONAL_ROUTE_A_ONLY
+    trigger: ROUTE_A_PER_SIDE_IDENTITY_FIXED_AND_RETESTED_AND_RECALL_REMAINS_BOTTLENECK
+    route_of_evidence: A
+    official_training_stack_available: true
+    project_U_pixel_zero_loss_supported_without_loss_change: false
+    requires_official_loss_modification_and_independent_audit: true
+    original_trainability_t0_claim_scope: ROUTE_B_PUBLIC_POINT_INTERFACE_ONLY_NOT_SAM31_UNTRAINABLE
+  auditor_freeze_ref: {path: _run/g2_auditor_a1_freeze_v1/8e084d147cc4a0102a27ac5b6a9643125ec8a2472531de998086392baf110b1f/AUDITOR_FREEZE.json, sha256: d2cd400a5ffb7e30f365f1ae3af21fb916b31302e64034ca8ba75c36c001fd9c}
+  benchmark:
+    schema: contracts/mask_benchmark.schema.json
+    label_classes: [H, O, U, B]
+    required_total_frames: {min: 45, max: 60}
+    partitions: [DEVELOPMENT_004, SAME_SESSION_BLIND, CROSS_SESSION_BLIND]
+    staging_v1: {path: _run/g2_mask_benchmark_v1/BENCHMARK_MANIFEST.json, sha256: 85f09ef99f3445350619a2f202f70c9182fc5ffd5f0297e32dfd32038f212a36, frame_count: 60, state: AWAITING_HUMAN_NOT_FROZEN}
+    staging_v2: {path: _run/g2_mask_benchmark_v2/BENCHMARK_MANIFEST.json, sha256: 60b9df265169bb2a4d575bfc3a836039c9ba0d618922a6f8b08dbf7b44b9fde1, run_manifest_sha256: 0692d73123c8ad710367da3277d0a907620e8c76a9b8f21e1ae809de6d6c5ce4, frame_count: 45, state: HUMAN_LABELS_VALIDATED_AND_T2_FROZEN_VIA_0_255_ADAPTER, held_out_final_blind_session: grap_a_cap_149, live_label_counts: DERIVE_AT_RUNTIME}
+    frozen_ref: {path: _run/g2_mask_benchmark_freeze_v1/8bdd4cb5e994a9a648adbc20bafb9a59e28a67a1118d1043501159da1888e7ac/BENCHMARK_FREEZE.json, sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b, state: FROZEN_HUMAN_REVIEWED, binary_values: [0, 255], reverse_palette_exact_frames: 45}
+  label_interface:
+    ui_output: SINGLE_PALETTE_PNG_B0_H1_O2_U3
+    auditor_input: FOUR_MUTUALLY_EXCLUSIVE_BINARY_HOUB_MASKS
+    unique_atomic_label_freezer_state: T2_FROZEN_0_255_ADAPTER_ORIGINAL_T0_0_1_PRESERVED
+    derived_t0_manifest: {path: _run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json, sha256: 3038770f20a36a1a31dff98ed4997e5db59d008c339753fc43321c76edb01d33, freeze_ref_issued: true, original_binary_values: [0, 1], consumer_allowed: false}
+    frozen_adapter: {binary_values: [0, 255], binary_mask_count: 180, reverse_palette_exact_frames: 45, benchmark_freeze_sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b}
+    independent_second_pass: {path: _run/g2_mask_benchmark_v2/secondary_annotation_b1/SECONDARY_ANNOTATION_MANIFEST.json, sha256: 7f346743f9e2bdfca1cb200937722023b1c046b987d8383035bb813115f8f565, completed: 0, required: 8, state: USER_WAIVED_0_OF_8, noise_floor: UNAVAILABLE_USER_WAIVED, human_need_open: false}
+    round_trip_exactness_required: true
+    label_manifest_and_freeze_ref_required: true
+  ranking_requirements:
+    - same_auditor_identity_and_implementation_sha256
+    - same_threshold_profile_sha256
+    - same_frozen_benchmark_sha256
+    - all_three_partitions_complete
+    - producer_identity_and_pixel_semantics_sha256_bound
+  historical_evidence:
+    v3: {coverage: FULL_004_460, auditor: HISTORICAL_NON_A1, comparison_status: FORENSIC_ONLY_NOT_RANKABLE}
+    v8: {coverage: FOUR_FRAME_DIAGNOSTIC, auditor: FOREARM_V8_DIAGNOSTIC_QA, comparison_status: FORENSIC_ONLY_NOT_RANKABLE}
+    v9: {coverage: FIFTEEN_FRAME_DIAGNOSTIC, auditor: FOREARM_V9_DIAGNOSTIC_QA, comparison_status: HOLD_FORENSIC_ONLY_NOT_RANKABLE}
+    producer_p1_r3: {coverage: WINDOW_004_200_259_60_FRAMES, producer: producer_p1, manifest_sha256: d70afdf99fe45647cc8e42d2cb5434453f45c795c993dec277bbc2df859055b2, independent_qa_sha256: dd4e93a718e6000d66b83d79d8a02f8d90e9bd4cd6433ff757612bda816f38b8, comparison_status: HOLD_T1_FORENSIC_PIXEL_AND_SCHEMA_FAILURE, authoritative_mask_evidence_schema_valid: false, schema_error_count: 614, formal_consumer_allowed: false}
+  missing_noise_floor_policy:
+    state: HUMAN_REVIEW_POLICY_FROZEN
+    allowed_routes: [HUMAN_REVIEW_POLICY]
+    conservative_policy_requirement: BLIND_INDEPENDENT_THRESHOLDS_FORMULAS_CLAIM_LIMIT_AND_SHA_FROZEN_BEFORE_EVALUATION
+    human_review_policy_requirement: NO_AUTOMATIC_ADVANCEMENT_ALL_CANDIDATES_HOLD_FOR_HUMAN_REVIEW
+    b0a_freeze_issued: true
+    auditor_freeze_issued: true
+    blind_unsealed: false
+    t2_authorized: true
+    b3_authorized: false
+    automatic_pass_allowed: false
+
+reject_hold_evidence_registry:
+  state: IMPLEMENTED_REVIEW_ONLY_NOT_A_FORMAL_ARTIFACT
+  registry_ref: _run/rejected_visual_review_v1/MANIFEST.json
+  registry_sha256: 9ae293385f4f0f5cafec8f3d66d8a2ad5403759abc0f749f6d32413c3da5abcf
+  index_ref: _run/rejected_visual_review_v1/INDEX.html
+  index_sha256: edd14102eb994023fb1b0f54afa383bbea413d82748ea089218dbd3aa1abe888
+  asset_count: 13
+  coverage: MASK_V1_THROUGH_V9_AND_A2_REPRESENTATIVE_VISUAL_EVIDENCE
+  required_for: [REJECT, HOLD]
+  required_fields: [run_or_candidate_id, failed_stage, failed_frames, raw_refs_and_sha256, candidate_manifest_and_artifact_sha256, visualization_refs_and_sha256, independent_qa_ref_and_sha256, single_owner, human_review_status]
+  human_review_states: [UNREVIEWED, REVIEWED_ACKNOWLEDGED, REVIEWED_DISPUTED]
+  review_may_mutate_upstream_or_decision: false
+  formal_consumer_allowed: false
+  t2_or_blind_unsealed: false
+  b1_second_pass_required_by_registry: false
+  future_rule: CREATE_NEW_IMMUTABLE_REVIEW_PACK_VERSION_FOR_EACH_NEW_VISUAL_REJECT_OR_HOLD
+
+calibration_overlay_policy:
+  scope: G2_004_MASK_CLEAN_REVIEW_ONLY
+  source: EXPLICIT_TASK_CARD_SECTION
+  required_section: dimensionless_calibration_overlay
+  overlay_sha256_required: true
+  values_must_be_dimensionless: true
+  allowed_keys:
+    - k_dilate
+    - k_contact
+    - k_forearm
+    - dilation_min_image_ratio
+    - dilation_max_image_ratio
+    - contact_min_image_ratio
+    - contact_max_image_ratio
+    - temporal_window_session_duration_ratio
+    - mask_keypoint_recall_ratio
+    - mask_forward_backward_iou_ratio
+    - donor_coverage_ratio
+    - donor_flow_consistency_ratio
+    - donor_photometric_residual_normalized
+    - hand_box_padding_hand_scale
+    - forearm_half_width_hand_scale
+    - forearm_prompt_step_hand_scale
+    - wrist_device_radius_hand_scale
+    - object_core_erosion_object_scale
+    - object_visible_saturation_ratio
+    - object_visible_analytic_iou_ratio
+    - object_donor_coverage_ratio
+    - candidate_max_box_area_ratio
+    - forearm_prompt_recall_ratio
+    - temporal_validation_analysis_image_ratio
+  forbidden_keys: [session_id, frame_id, pixel_threshold, frame_count_threshold, hidden_fallback]
+  review_state: UNREVIEWED_CALIBRATION_OVERLAY
+  candidate_outputs_only: true
+  formal_gate_claim_allowed: false
+  formal_consumer_allowed: false
+
+phase_gates:
+  G0:
+    kind: MACHINE_CONSISTENCY_ONLY
+    checks: [raw_authority, source_identity, frame_readability, dimensions, fps, frame_order, timestamps, frozen_digests]
+    routine_human_visual_review: false
+  G1:
+    kind: MACHINE_CONTRACT_CONSISTENCY_ONLY
+    checks: [schema_parse, schema_meta_validation, unique_producer, reference_graph_closure, finite_route_registry, fail_closed_negative_tests]
+    routine_human_visual_review: false
+  G2_MASK_CLEAN_PREREQUISITE:
+    product_line: 004_CONTACT_GOLD
+    pre_review_allowed:
+      - generate_freeze_and_machine_validate_new_raw_mask_clean_candidate
+      - generate_automatic_stress_frames
+      - package_raw_mask_clean_comparisons
+      - generate_full_mask_clean_preview_video
+      - non_mutating_object_evidence_if_required_to_verify_existing_clean
+      - task_card_bound_dimensionless_calibration_overlay
+    required_review_package: mask_clean_review_package
+    waiting_state: AWAITING_HUMAN_MASK_CLEAN_REVIEW
+    approval_ref: mask_clean_human_review_reference
+    blocked_until_approved:
+      - object6d_refinement
+      - retarget_producer
+      - base_ik_producer
+      - renderer
+      - compositor
+      - harmonizer
+      - final_robot_rgb
+    rejected_action: HOLD_AND_ATTRIBUTE_SINGLE_OWNER
+    unrelated_machine_work_may_continue: true
+    additional_entry_requirements: [FROZEN_HOUB_BENCHMARK, FROZEN_AUDITOR_A1, UNIFIED_CANDIDATE_REEVALUATION]
+
+route_registry:
+  decision_outcomes:
+    - PASS_FULL_SESSION
+    - RETRY_STANDARD_ROUTE
+    - HOLD_UNSUPPORTED
+  routes:
+    OBJECT6D_GEOMETRY_TEXTURE:
+      reveal_class: REVEAL_OBJECT
+      enabled: false
+      enablement_blocker: MODEL_WEIGHT_THRESHOLDS_AND_EVIDENCE_NOT_PINNED
+    CAD_GEOMETRY_TEXTURE:
+      reveal_class: REVEAL_OBJECT
+      enabled: false
+      enablement_blocker: CAD_IDENTITY_SCALE_TEXTURE_AND_THRESHOLDS_NOT_PINNED
+    ANALYTIC_GEOMETRY_TEXTURE:
+      reveal_class: REVEAL_OBJECT
+      enabled: false
+      calibration_enabled: true
+      formal_enabled: false
+      calibration_requirements: [task_card_overlay_sha256, analytic_geometry_evidence_sha256, texture_donor_provenance]
+      enablement_blocker: FORMAL_THRESHOLDS_NOT_REVIEWED
+    TEMPORAL_DONOR_ATLAS:
+      reveal_class: REVEAL_BACKGROUND
+      enabled: false
+      calibration_enabled: true
+      formal_enabled: false
+      calibration_requirements: [task_card_overlay_sha256, source_unmasked_donor, forward_backward_consistency, donor_provenance]
+      enablement_blocker: FORMAL_THRESHOLDS_NOT_REVIEWED
+    PROPAINTER_BACKGROUND:
+      reveal_class: REVEAL_BACKGROUND
+      enabled: false
+      enablement_blocker: MODEL_WEIGHT_AND_THRESHOLDS_NOT_PINNED
+  switching_policy: EXPLICIT_NEW_ROUTE_DECISION_ONLY
+  fallback_on_error: false
+  unknown_route_action: HOLD_UNSUPPORTED
+
+quality_gates:
+  order: [L0, L1, L2, L3, L4]
+  L0:
+    scope: data_integrity
+    checks: [schema, ordinary_file, bytes, sha256, dimensions, frame_order, selector, manifest, raw_authority]
+    failure_action: HOLD
+  L1:
+    scope: pixels_and_regions
+    checks: [human_residue, object_damage, boundary, robot_coverage, color_anomaly]
+    failure_action: SINGLE_OWNER_ATTRIBUTION
+  L2:
+    scope: geometry_and_occlusion
+    checks: [per_link_id_depth, contact, sdf_penetration, object_robot_order]
+    failure_action: SINGLE_OWNER_ATTRIBUTION_AND_BLOCK_HARMONIZER
+  L3:
+    scope: temporal_and_session
+    checks: [flicker, pose_jump, session_constant_base, donor_coverage, failure_clustering]
+    failure_action: RETRY_REGISTERED_ROUTE_OR_HOLD
+  L4:
+    scope: human_and_optional_semantic_review
+    checks: [fixed_stress_frames, four_panel_video]
+    vlm_may_replace_l0_l3: false
+    failure_action: WAIT_FOR_HUMAN_OR_HOLD
+  threshold_source: project_profile_only
+  uncalibrated_threshold_action: HOLD
+
+qa_policy:
+  allowed_outputs:
+    - failure_attribution.json
+    - quality_report.json
+    - next_revision_advice.json
+  upstream_write_allowed: false
+  automatic_fix_allowed: false
+  automatic_rerun_allowed: false
+  primary_owner_cardinality: 1
+  human_review_when_required: WAIT
+  producer_ranking_requires_same_frozen_auditor_and_benchmark: true
+  historical_cross_auditor_ranking_allowed: false
+
+promotion:
+  source_root: _run/{run_id}/sessions/{session_id}
+  destination_root: data/processed/formal_legacy/{session_id}_v{version}
+  required_track: HAND_ARM_FINAL
+  required_decision: PASS_FULL_SESSION
+  failure_attribution_policy: REQUIRED_ON_FAILURE_AND_FORBIDDEN_ON_PASS
+  steps:
+    - close_all_writers
+    - validate_task_card_and_identity
+    - validate_all_schema_count_bytes_sha256_and_input_refs
+    - validate_l0_through_l4_and_human_review_if_required
+    - fsync_files_and_staging_directory
+    - assert_destination_absent_and_same_filesystem
+    - atomic_rename_once
+    - fsync_processed_parent
+    - bind_session_manifest_into_cohort_manifest
+  overwrite_allowed: false
+  partial_publish_allowed: false
+  failure_action: KEEP_STAGING_AND_HOLD
+
+formal_selector:
+  raw:
+    only_reference: verified_source_manifest
+    missing_action: FAIL
+  robot_rgb:
+    reference_chain: [cohort_manifest, session_manifest, final_robot_rgb]
+    required_track: HAND_ARM_FINAL
+    missing_action: FAIL
+  symmetric_paired_kept_filtering: true
+  legacy_fallback: false
+  staging_fallback: false
+  raw_fallback_for_robot_rgb: false

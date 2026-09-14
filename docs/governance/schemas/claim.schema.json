@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/schemas/claim.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["claim", "status", "scope", "evidence", "claim_limit"],
+  "properties": {
+    "claim": {"type": "string", "minLength": 1},
+    "status": {"enum": ["SUPPORTED_EXTERNAL_TRUTH", "SUPPORTED_INTERNAL_CONSISTENCY", "DEVELOPMENT_EVIDENCE", "HYPOTHESIS_ONLY", "UNSUPPORTED", "WITHDRAWN"]},
+    "scope": {"type": "string", "minLength": 1},
+    "evidence": {"type": "array", "items": {"$ref": "artifact_ref.schema.json"}},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "formal-object6d-constrained-mask-input-v1",
+  "title": "Formal Object6D-constrained full-session Mask input",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "production_input", "task", "session",
+    "frame_count", "source_resolution", "upstream_object6d_scope", "inputs", "output_root", "review_name",
+    "method_contract", "no_clobber"
+  ],
+  "properties": {
+    "schema_version": {"const": "formal-object6d-constrained-mask-input-v1"},
+    "status": {"const": "READY_FOR_FORMAL_OBJECT6D_CONSTRAINED_MASK"},
+    "production_input": {"const": true},
+    "task": {"enum": ["chips", "poker"]},
+    "session": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 24},
+    "source_resolution": {"const": [1280, 960]},
+    "upstream_object6d_scope": {"enum": ["CANDIDATE_VISUAL_ONLY", "NUMERIC_AUTHORITY_MASK_CANDIDATE", "FORMAL_CONSUMPTION"]},
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_video", "predecessor_result", "predecessor_mask_inventory",
+        "formal_object6d_result", "formal_object6d_trajectory",
+        "world_consistent_hawor", "world_consistent_hawor_result"
+      ],
+      "properties": {
+        "raw_video": {"$ref": "#/$defs/artifact"},
+        "predecessor_result": {"$ref": "#/$defs/artifact"},
+        "predecessor_mask_inventory": {"$ref": "#/$defs/artifact"},
+        "formal_object6d_result": {"$ref": "#/$defs/artifact"},
+        "formal_object6d_trajectory": {"$ref": "#/$defs/artifact"},
+        "object6d_numeric_authority": {"$ref": "#/$defs/artifact"},
+        "world_consistent_hawor": {"$ref": "#/$defs/artifact"},
+        "world_consistent_hawor_result": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "output_root": {"type": "string", "pattern": "^/"},
+    "review_name": {"type": "string", "pattern": "^[^/]+\\.mp4$"},
+    "method_contract": {
+      "const": {
+        "object_mask_source": "FORMAL_OBJECT6D_SELECTED_RGB_VISIBLE_MASK",
+        "object_optical_flow_used": false,
+        "predecessor_object_mask_consumed": false,
+        "tracker_current_frame_colour_classes": ["white", "grey", "green"],
+        "unsupported_object_policy": "NO_OBJECT_PROTECT_OUTSIDE_FORMAL_VISIBILITY",
+        "removal_object_overlap_allowed": false
+      }
+    },
+    "no_clobber": {"const": true}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"upstream_object6d_scope": {"const": "NUMERIC_AUTHORITY_MASK_CANDIDATE"}}},
+      "then": {"properties": {"inputs": {"required": ["object6d_numeric_authority"]}}}
+    }
+  ],
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

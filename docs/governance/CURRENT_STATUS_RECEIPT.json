@@ -1,0 +1,58 @@
+{
+  "files": {
+    "authority_index": {
+      "bytes": 35465,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_AUTHORITY_INDEX.json",
+      "sha256": "054360a6538b2d18c1a815878cfe8d4ec3812c380bfcdd126bec9ab591d9a841"
+    },
+    "baseline_registry_v2": {
+      "bytes": 48153,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_BASELINE_REGISTRY_V2.json",
+      "sha256": "439f5bf0584c453a7159cd4aadb37ac98825ffde978ec8a1fc72e375c1688dcd"
+    },
+    "file_layout": {
+      "bytes": 1523,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_FILE_LAYOUT.json",
+      "sha256": "efd37a65218bc33181bd16abe3988dead828853c28903ba27c2588bfa1240723"
+    },
+    "project_status": {
+      "bytes": 7957,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
+      "sha256": "03542652a290374558eff6089d85cb45e55267e9a8494533845c534c08e3b052"
+    },
+    "project_status_min": {
+      "bytes": 1925,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_MIN.json",
+      "sha256": "74524ce1a37e39750e78c3d985a7396162e1337a5e2e63b74ea24510ac1996bc"
+    },
+    "regression_manifest": {
+      "bytes": 3887,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_REGRESSION_MANIFEST.json",
+      "sha256": "000a076559b81c143d6f6a7cc0779df86982a6e73123b079514457ac384dcaa7"
+    },
+    "stage_baselines": {
+      "bytes": 4071,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STAGE_BASELINES_ZH.md",
+      "sha256": "f692010ac9073257e722c9dee892dad0324e6167d370e6dcea4eba0c82d2b8f5"
+    },
+    "task_queue": {
+      "bytes": 7422,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/TASK_QUEUE.json",
+      "sha256": "c2dcfee79868956a6be4a5d9e0debd00f4e4ac3f2ee4e9aa4e213ff8c6bee46c"
+    },
+    "task_state": {
+      "bytes": 70191,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/LONG_HORIZON_TASK_STATE.json",
+      "sha256": "cf0f350ed5a0ed2ce56e1a175553b0f7b70338a3ef6702fc879763f071bf28f8"
+    }
+  },
+  "freshness": {
+    "age_seconds": 1,
+    "reason": "active_task_heartbeat",
+    "status": "FRESH"
+  },
+  "generated_at": "2026-09-14T19:12:16+08:00",
+  "generation_id": "gov-005869-1eff2016fad2",
+  "governance_revision": 5869,
+  "schema_version": "chaoyang-current-status-receipt-v1"
+}

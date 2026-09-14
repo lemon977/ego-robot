@@ -1,0 +1,163 @@
+{
+  "$schema": "../schema/task_manifest.schema.json",
+  "schema_version": "chaoyang-task-manifest-v1",
+  "task_id": "poker",
+  "display_name": "拿扑克牌",
+  "legacy_aliases": ["puke", "newtask_puke_v2"],
+  "run_root_templates": {
+    "mask": "tasks/poker/runs/mask/{run_id}",
+    "clean": "tasks/poker/runs/clean/{run_id}",
+    "robot": "tasks/poker/runs/robot/{run_id}",
+    "pipeline": "tasks/poker/runs/pipeline/{pipeline_run_id}"
+  },
+  "system_refs": {
+    "mask": {
+      "path": "systems/mask/system.manifest.json",
+      "manifest_sha256": "9bb8bdf3c930b034c16430f26077647bd9485d56081fdcddaa2d076a337bb0c2",
+      "algorithm_id": "mask.sam31.pico_geometry_independent_object_authority.v1",
+      "weight_ids": ["sam31.multiplex.0567debe"]
+    },
+    "clean": {
+      "path": "systems/clean/system.manifest.json",
+      "manifest_sha256": "0d75b323dc6cb7e004b8feb367154e2cc53c93f13b6fd38813422ff28c93a79f",
+      "algorithm_id": "clean.real_pixel_bilateral_phone_dev.v1",
+      "weight_ids": []
+    },
+    "robot": {
+      "path": "systems/robot/system.manifest.json",
+      "manifest_sha256": "2a73b954dc10760698bafd34d850a005b01eb8a836d13e30a7e093281ef023cc",
+      "algorithm_id": "robot.actual_fk_task_geometry.v1",
+      "weight_ids": []
+    }
+  },
+  "weight_override_policy": "FORBIDDEN_UNLESS_REGISTERED_IN_REFERENCED_SYSTEM_MANIFEST",
+  "input_views": [
+    {
+      "input_id": "phone_action_reference",
+      "path": "data/inputs/baseline_background/test/file_v3_00154_2043de7d-2838-42cc-8c34-8b498a7c300g.mov",
+      "bytes": 4249765,
+      "sha256": "65e9372e2dcc4593d96866879c7c1345d8c616adbfebe5bfda55c3f8c695db7c",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["phone_mask_development", "same_MOV_clean_diagnostic", "action_layout_reference"],
+      "forbidden_uses": ["formal_PICO_input", "formal_cross_session_claim", "metric_camera_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "phone_object_reference",
+      "path": "data/inputs/baseline_background/puke.mp4",
+      "bytes": 2118085,
+      "sha256": "d041d3ce3b76b32c45b8ace7437e741567c297e4d6611e54d746b7c33f4013ec",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["object_appearance_reference", "layout_reference"],
+      "forbidden_uses": ["formal_Clean_donor", "metric_geometry_authority", "formal_RobotRGB"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "shared_phone_empty_static",
+      "path": "data/inputs/baseline_background/jingzhizhuomian.mp4",
+      "bytes": 3501129,
+      "sha256": "40299466ffde64ddbf327f3e3898cdd12aa22f10b12751229c25dbea5dfcc9ec",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["cross_camera_registration_diagnostic", "capture_planning"],
+      "forbidden_uses": ["formal_Clean_donor", "formal_camera_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "shared_phone_empty_sweep",
+      "path": "data/inputs/baseline_background/yidongzhuomian.mp4",
+      "bytes": 7342303,
+      "sha256": "5e667de01c67454378f34786f4edd8bcc5ef7d1dd05a0c85ebcab686896b6e9d",
+      "source_class": "PHONE_DEV_REFERENCE",
+      "allowed_uses": ["cross_camera_registration_diagnostic", "capture_planning"],
+      "forbidden_uses": ["formal_Clean_donor", "formal_camera_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    },
+    {
+      "input_id": "formal_pico_batch_0901_canonical",
+      "path": "tasks/poker/inputs/raw_source_manifest.json",
+      "bytes": 16501,
+      "sha256": "646ae2c8b43850d502020c6947756ac15c55a86ade1edd2a0b5949f7e0932679",
+      "source_class": "FORMAL_CAPTURE",
+      "allowed_uses": ["formal_source_gate", "hawor_preprocess", "mask_clean_robot_after_stage_gates"],
+      "forbidden_uses": ["bypass_per_session_source_gate", "treat_finished_frames_field_as_completion_authority"],
+      "copy_policy": "REFERENCE_ONLY_DO_NOT_COPY"
+    }
+  ],
+  "task_config": {
+    "mask": {
+      "label_schema": ["L_SKIN", "R_SKIN", "L_SLEEVE", "R_SLEEVE", "L_TRACKER", "R_TRACKER", "O_TASK_OBJECT", "U_UNCERTAIN", "B_BACKGROUND"],
+      "phone_dev_visible_role_inventory": ["upper_human_core", "lower_human_core", "upper_tracker_wearable", "lower_tracker_wearable", "lower_sleeve_cuff"],
+      "formal_identity_rule": "map upper/lower display roles to anatomical left/right from capture manifest before promotion",
+      "task_object_ids": ["card_0", "card_1", "card_2"],
+      "protected_fixture_ids": ["rack"],
+      "frame0_anchor_authority": "_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/FRAME0_ANCHORS.json",
+      "offline_annotation_plan": "8 frames/16 tracker instances minimum; 11 frames/22 instances recommended; see frozen plan"
+    },
+    "clean": {
+      "remove_role_ids": ["L_SKIN", "R_SKIN", "L_SLEEVE", "R_SLEEVE", "L_TRACKER", "R_TRACKER"],
+      "preserve_object_ids": ["card_0", "card_1", "card_2", "rack", "mat_plane", "rack_top_plane"],
+      "formal_donor_policy": "SAME_SESSION_SAME_CAMERA_SAME_POSE_REAL_PIXELS_ONLY",
+      "phone_static_policy": "DIAGNOSTIC_ONLY_DIFFERENT_CAMERA_VIEW",
+      "required_capture": "2-3 second same-session clean plate plus view sweep when camera moves"
+    },
+    "robot": {
+      "object_geometry_types": {
+        "card_0": "CARD_THIN_BOX",
+        "card_1": "CARD_THIN_BOX",
+        "card_2": "CARD_THIN_BOX",
+        "rack": "RACK_BOX",
+        "mat_plane": "SUPPORT_PLANE",
+        "rack_top_plane": "SUPPORT_PLANE"
+      },
+      "depth_adapters": ["box_xyz"],
+      "session_initialization": "THIS_SESSION_ONLY",
+      "anatomical_side_mapping_required": true,
+      "contact_rule": "card may occlude fingers; non-designated hand/card penetration must pass metric geometry gate"
+    },
+    "object_contract": {
+      "contract_version": "newtask-object-contract-v2.2",
+      "object_ids": ["card_0", "card_1", "card_2", "rack", "mat_plane", "rack_top_plane"],
+      "geometry_types": ["CARD_THIN_BOX", "RACK_BOX", "SUPPORT_PLANE"],
+      "state_vocabulary": ["ON_RACK", "IN_HAND", "AIRBORNE", "ON_MAT", "OUT_OF_VIEW", "UNKNOWN_TRANSIENT"]
+    }
+  },
+  "current_evidence": [
+    {
+      "stage": "mask",
+      "path": "_run/gpt_mask_assisted_bilateral_flow_refresh_poker_20260902_v4/RESULT.json",
+      "bytes": 1647300,
+      "sha256": "d25203ad71eef2a802372d4a008f5573500c486a2236cec55d20e53f33f05b67",
+      "status": "HOLD_CANARY12_NO_FULL_ARTIFACT_PROMOTION",
+      "consumption_authorized": false,
+      "claim_limit": "Phone baseline; both human streams and lower cuff pass, tracker temporal closure fails."
+    },
+    {
+      "stage": "clean",
+      "path": "_run/newtask_baseline_clean_l3_20260902_v1/RUN.json",
+      "bytes": 169027,
+      "sha256": "d367594161f81bf19c76ba3c4af5ea066919bfc7d20945eeed4c5c122164f6ac",
+      "status": "HOLD_HUMAN_SEMANTIC_CLOSURE_UNRESOLVED",
+      "consumption_authorized": false,
+      "claim_limit": "Phone diagnostic only; poker Mask v4 is not consumable and no same-camera clean plate exists."
+    },
+    {
+      "stage": "object_geometry",
+      "path": "_run/newtask_geometry_prep_v2/GEOMETRY_MANIFEST.json",
+      "bytes": 14823,
+      "sha256": "65dffad7fc6ec25c7abede682612543665ee5957de793e8acf884b058dc7bf18",
+      "status": "COMPLETE_APPROX_GEOMETRY",
+      "consumption_authorized": false,
+      "claim_limit": "Synthetic illustrative dimensions; formal_session=false."
+    }
+  ],
+  "formal_readiness": {
+    "status": "HOLD_PER_SESSION_SOURCE_GATE_AND_TRACKER_LABELS_PENDING",
+    "missing_inputs": [
+      "per-session source gate PASS for formal PICO batch",
+      "same-session clean plate and optional view sweep",
+      "decoded measurement photos and metric object dimensions",
+      "poker tracker offline labels",
+      "formal anatomical left/right mapping"
+    ]
+  }
+}

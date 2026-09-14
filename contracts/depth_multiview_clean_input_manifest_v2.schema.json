@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "depth-multiview-clean-input-manifest-v2",
+  "title": "Formal depth multiview Clean input with selected-RGB registration authority",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "production_input", "phase", "task", "session",
+    "frame_count", "source_resolution", "inputs", "gate_frames", "method_contract",
+    "output_root", "review_name", "no_clobber", "prior_canary_admission"
+  ],
+  "properties": {
+    "schema_version": {"const": "depth-multiview-clean-input-manifest-v2"},
+    "status": {"const": "READY_FOR_DEPTH_MULTIVIEW_CLEAN"},
+    "production_input": {"const": true},
+    "phase": {"enum": ["CANARY_GATE", "FULL_SESSION"]},
+    "task": {"enum": ["chips", "poker"]},
+    "session": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 36},
+    "source_resolution": {
+      "const": [1280, 960]
+    },
+    "inputs": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "raw_video", "dense_stereo_result", "dense_stereo_frame_manifest",
+        "selected_rgb_registration_result", "selected_rgb_registration_authority",
+        "camera_geometry", "camera_geometry_result", "mask_result",
+        "mask_visual_review", "mask_frame_manifest", "object6d_result",
+        "object6d_trajectory"
+      ],
+      "properties": {
+        "raw_video": {"$ref": "#/$defs/artifact"},
+        "dense_stereo_result": {"$ref": "#/$defs/artifact"},
+        "dense_stereo_frame_manifest": {"$ref": "#/$defs/artifact"},
+        "selected_rgb_registration_result": {"$ref": "#/$defs/artifact"},
+        "selected_rgb_registration_authority": {"$ref": "#/$defs/artifact"},
+        "camera_geometry": {"$ref": "#/$defs/artifact"},
+        "camera_geometry_result": {"$ref": "#/$defs/artifact"},
+        "mask_result": {"$ref": "#/$defs/artifact"},
+        "mask_visual_review": {"$ref": "#/$defs/artifact"},
+        "mask_frame_manifest": {"$ref": "#/$defs/artifact"},
+        "object6d_result": {"$ref": "#/$defs/artifact"},
+        "object6d_trajectory": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "gate_frames": {
+      "type": "object", "additionalProperties": false,
+      "required": ["spatial12", "temporal_3x12"],
+      "properties": {
+        "spatial12": {
+          "type": "array", "minItems": 12, "maxItems": 12,
+          "uniqueItems": true, "items": {"type": "integer", "minimum": 0}
+        },
+        "temporal_3x12": {
+          "type": "array", "minItems": 3, "maxItems": 3, "uniqueItems": true,
+          "items": {
+            "type": "array", "minItems": 12, "maxItems": 12,
+            "uniqueItems": true, "items": {"type": "integer", "minimum": 0}
+          }
+        }
+      }
+    },
+    "method_contract": {
+      "const": {
+        "depth_input_semantics": "STEREO_RECTIFIED_LEFT_OPTICAL_Z_METRES_FLOAT32_640X480",
+        "selected_rgb_registration": "PINNED_3D_REPROJECTION_TO_RECTIFIED_LEFT_1280X960_WITH_ZBUFFER",
+        "multiview_geometry": "SELECTED_RGB_C2W_FORWARD_PROJECT_NEAREST_ZBUFFER",
+        "donor_scope": "SAME_SESSION_SAME_SELECTED_RGB_CAMERA_ONLY",
+        "donor_exclusion": ["REMOVAL_MASK", "TRACKER_MASK", "OBJECT_PROTECT", "INVALID_DEPTH"],
+        "visibility": "TARGET_STABLE_DEPTH_CHECK_PLUS_CROSS_DONOR_NEAREST_SURFACE",
+        "fusion": "EXACT_REAL_DONOR_RGB_MEDOID_MINIMUM_TWO_VIEWS",
+        "unsupported_policy": "KEEP_RAW_AND_FAIL_COVERAGE_GATE",
+        "object_policy": "BYTE_EXACT_PROTECT_PREENCODE",
+        "direct_depth_resize": false,
+        "nearest_canvas_extrapolation": false,
+        "single_plane_homography_fill": false,
+        "generative_or_inpaint_fallback": false,
+        "per_pixel_source_map": true
+      }
+    },
+    "output_root": {"type": "string", "pattern": "^/"},
+    "review_name": {"type": "string", "pattern": "^[^/]+\\.mp4$"},
+    "no_clobber": {"const": true},
+    "prior_canary_admission": {
+      "oneOf": [{"type": "null"}, {"$ref": "#/$defs/artifact"}]
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"phase": {"const": "CANARY_GATE"}}},
+      "then": {"properties": {"prior_canary_admission": {"type": "null"}}}
+    },
+    {
+      "if": {"properties": {"phase": {"const": "FULL_SESSION"}}},
+      "then": {"properties": {"prior_canary_admission": {"$ref": "#/$defs/artifact"}}}
+    }
+  ],
+  "$defs": {
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

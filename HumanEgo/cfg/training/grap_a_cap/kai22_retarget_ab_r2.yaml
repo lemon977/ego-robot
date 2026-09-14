@@ -55,7 +55,7 @@ enable_aug_temporal_stride: false
 enable_aug_interpolation: false
 cache_json_in_memory: true
 cache_image_bytes_in_memory: true
-persistent_workers: true
+persistent_workers: false
 prefetch_factor: 4
 num_inference_steps: 20
 model_h_weighting: uniform
@@ -72,4 +72,3 @@ vis_eval_every: 100
 make_video: false
 device: cuda
 seed: 7
-

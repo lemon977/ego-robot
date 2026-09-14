@@ -1,0 +1,347 @@
+{
+  "claims": [
+    {
+      "claim": "FoundationStereo disparity-to-depth formula and registration chain are internally closed for the current visual Depth products.",
+      "claim_limit": "Not an external millimetre-accuracy measurement.",
+      "evidence": [
+        {
+          "bytes": 22674,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
+        },
+        {
+          "bytes": 2241,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        },
+        {
+          "bytes": 11608,
+          "path": "/mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+          "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+        }
+      ],
+      "scope": "exact78 metric-ready Depth",
+      "status": "SUPPORTED_INTERNAL_CONSISTENCY"
+    },
+    {
+      "claim": "Chips034 right hand shows a persistent negative HaWoR-versus-Stereo Z discrepancy.",
+      "claim_limit": "Cross-system surface difference; it does not establish which system is physically correct.",
+      "evidence": [
+        {
+          "bytes": 11608,
+          "path": "/mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+          "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+        }
+      ],
+      "scope": "get_potato_chips_0902_034/right",
+      "status": "SUPPORTED_INTERNAL_CONSISTENCY"
+    },
+    {
+      "claim": "The Chips034 discrepancy is primarily a HaWoR absolute-Z placement error.",
+      "claim_limit": "Median-Z correction is diagnostic and no external hand-depth truth exists.",
+      "evidence": [
+        {
+          "bytes": 11608,
+          "path": "/mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+          "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+        }
+      ],
+      "scope": "get_potato_chips_0902_034/right",
+      "status": "HYPOTHESIS_ONLY"
+    },
+    {
+      "claim": "Current Object6D poses are physical ground truth.",
+      "claim_limit": "Observed visible-surface geometry only; occluded frames stay invalid.",
+      "evidence": [
+        {
+          "bytes": 22674,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
+        },
+        {
+          "bytes": 2241,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        }
+      ],
+      "scope": "exact78",
+      "status": "UNSUPPORTED"
+    },
+    {
+      "claim": "Current visual Robot results are deployable or training-authorized.",
+      "claim_limit": "Central Robot authority and action sidecars are both absent.",
+      "evidence": [
+        {
+          "bytes": 12660,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
+        },
+        {
+          "bytes": 4164,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
+        }
+      ],
+      "scope": "exact78",
+      "status": "UNSUPPORTED"
+    }
+  ],
+  "cohort": "exact78-chips78-poker78-frozen",
+  "data_root": "/mnt/data/egodata/datasets/ego",
+  "decisions": [
+    "Wave0 is frozen at 58 metric-ready sessions; repairs publish immutable deltas.",
+    "Clean pixels never feed Depth, Object6D, contact geometry, or action truth.",
+    "Formal Object6D remains DIRECT_OBSERVED_ONLY and KEEP_INVALID.",
+    "FoundationStereo native confidence is absent and must not be fabricated.",
+    "Human-video 3D is auxiliary visual evidence, not real Robot action ground truth.",
+    "Visual Robot authority and physical deployment authority are separate."
+  ],
+  "generated_at": "2026-09-13T02:09:15+08:00",
+  "generation_id": "gov-000081-9e49d2b7f61e",
+  "generator_code_sha": "018ca559f797e23b3e352368930ec2a29fbf41869c08edfbcd2005567431a30b",
+  "governance_revision": 81,
+  "repository": {
+    "branch": "main",
+    "commit": "1f97e25f99723ec3a6c73dfe6f3fb963ca515db5"
+  },
+  "schema_version": "chaoyang-current-authority-index-v1",
+  "stages": [
+    {
+      "authority_scope": "FROZEN_EXACT78_COHORT",
+      "blocked": 0,
+      "denominator_semantics": "78 Chips + 78 Poker frozen raw sessions; calibrated routing is a separate denominator.",
+      "evidence": [
+        {
+          "bytes": 104108,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/EXACT78_BATCH_MANIFEST.json",
+          "sha256": "b6dcfec1fb41b9ffb0b9b19cc62d029f5cedf57f41552a611272cc9e5c6e43a8"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 156,
+      "running": 0,
+      "stage": "Raw",
+      "total": 156
+    },
+    {
+      "authority_scope": "BOUNDED_V2_TERMINALS",
+      "blocked": 0,
+      "denominator_semantics": "A/B terminals are downstream eligible; C remains terminal.",
+      "evidence": [
+        {
+          "bytes": 1360,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/HAWOR_BATCH_RESULT.json",
+          "sha256": "579175ef7dc92ea867b186d3569d1a70e4fad0fae489a1912578be581e49c6ab"
+        }
+      ],
+      "grade_c": 12,
+      "passed": 144,
+      "running": 0,
+      "stage": "HaWoR",
+      "total": 156
+    },
+    {
+      "authority_scope": "SAM31_ROLE_SUCCESSOR_V3",
+      "blocked": 0,
+      "denominator_semantics": "Four roles: human left/right and tracker left/right.",
+      "evidence": [
+        {
+          "bytes": 1189,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/RESULT.json",
+          "sha256": "f89c759e2fe90f1efe2fd25357518ed540eb55cd579cb178ace191432717d69f"
+        }
+      ],
+      "grade_c": 32,
+      "passed": 124,
+      "running": 0,
+      "stage": "Role Mask",
+      "total": 156
+    },
+    {
+      "authority_scope": "TASK_OBJECT_IDENTITY",
+      "blocked": 0,
+      "denominator_semantics": "Chips three independent physical instances; Poker action-conditioned same card.",
+      "evidence": [
+        {
+          "bytes": 5290,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/MASK_TASK_OBJECT_BATCH_RESULT.json",
+          "sha256": "8732b29b4eb7e9a50fd5cba102a5ab65e1729ce5fabbcc3e9976cc2f55e218b2"
+        }
+      ],
+      "grade_c": 35,
+      "passed": 121,
+      "running": 0,
+      "stage": "Object Mask",
+      "total": 156
+    },
+    {
+      "authority_scope": "VISUAL_OBJECT6D_CANDIDATE_INPUT",
+      "blocked": 0,
+      "denominator_semantics": "Only three-lane A/B sessions with verified metric calibration.",
+      "evidence": [
+        {
+          "bytes": 9691,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/MASK_JOIN_READY_STATE_V3.json",
+          "sha256": "3ee150e3289bb03489c3bf58b84fd77c521beb366c22dd3b13f947aafbcf6246"
+        },
+        {
+          "bytes": 22674,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
+        },
+        {
+          "bytes": 2241,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 58,
+      "running": 0,
+      "stage": "Depth",
+      "total": 58
+    },
+    {
+      "authority_scope": "OBSERVED_ONLY_KEEP_INVALID",
+      "blocked": 0,
+      "denominator_semantics": "Visible-surface geometric estimates, not contact or external pose truth.",
+      "evidence": [
+        {
+          "bytes": 22674,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
+        },
+        {
+          "bytes": 2241,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 58,
+      "running": 0,
+      "stage": "Object6D",
+      "total": 58
+    },
+    {
+      "authority_scope": "POKER4_EXPANDED_ROLE_V3_ONLY",
+      "blocked": 54,
+      "denominator_semantics": "Wave0 metric-ready denominator; four existing Poker B, 54 pending.",
+      "evidence": [
+        {
+          "bytes": 12660,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
+        },
+        {
+          "bytes": 149770,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
+          "sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 4,
+      "running": 0,
+      "stage": "Clean",
+      "total": 58
+    },
+    {
+      "authority_scope": "NO_CURRENT_CONTACT_AUTHORITY_INDEPENDENT_GATES_V2",
+      "blocked": 2,
+      "denominator_semantics": "Poker042 Human Contact input is ready only as HYPOTHESIS_ONLY; Retarget and compositor have separate prerequisites. Chips034 lacks formal Object6D.",
+      "evidence": [
+        {
+          "bytes": 12660,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
+        },
+        {
+          "bytes": 6676,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary/INPUT_CLOSURE_AND_4FRAME_GO_NO_GO.json",
+          "sha256": "a18993da2a9d9b1babecd67c39f451a81582118bdc737d50613fccfaa0c76a30"
+        },
+        {
+          "bytes": 8597,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v2/INPUT_CLOSURE_AND_4FRAME_GO_NO_GO.json",
+          "sha256": "bb3a715b263abf49c4b1b4c2a0259cbde262ac1dc60e12b419630ce05e03d5eb"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 0,
+      "running": 0,
+      "stage": "Contact",
+      "total": 2
+    },
+    {
+      "authority_scope": "NO_CURRENT_TASK_ROBOT_AUTHORITY",
+      "blocked": 156,
+      "denominator_semantics": "Development videos and withdrawn previews are not authority.",
+      "evidence": [
+        {
+          "bytes": 12660,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 0,
+      "running": 0,
+      "stage": "Robot Visual",
+      "total": 156
+    },
+    {
+      "authority_scope": "SCHEMA_READY_BUNDLES_BLOCKED_ROBOT_VISUAL",
+      "blocked": 4,
+      "denominator_semantics": "Four Raw/Robotized visual auxiliary checkpoints; H=50 schema implemented but no Robotized RGB authority or paired bundle exists.",
+      "evidence": [
+        {
+          "bytes": 4164,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
+        },
+        {
+          "bytes": 662,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+          "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 0,
+      "running": 0,
+      "stage": "HumanEgo Aux",
+      "total": 4
+    },
+    {
+      "authority_scope": "BLOCKED_EXTERNAL_REAL_ROBOT_ACTION",
+      "blocked": 4,
+      "denominator_semantics": "Four final policy checkpoints require synchronized real Robot actions; auxiliary outputs may not be renamed as policy checkpoints.",
+      "evidence": [
+        {
+          "bytes": 4164,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
+        },
+        {
+          "bytes": 662,
+          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+          "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
+        }
+      ],
+      "grade_c": 0,
+      "passed": 0,
+      "running": 0,
+      "stage": "HumanEgo Policy",
+      "total": 4
+    }
+  ],
+  "waves": {
+    "join_calibration_missing": 43,
+    "raw_calibration_missing": 59,
+    "raw_total": 156,
+    "wave0_clean_passed": 4,
+    "wave0_clean_pending": 54,
+    "wave0_metric_ready": 58,
+    "wave1_delta": 0,
+    "wave2_delta": 0
+  }
+}

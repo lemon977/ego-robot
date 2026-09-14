@@ -1,0 +1,223 @@
+{
+  "schema_version": "depth-accuracy-spatial-diagnostic-final-receipt-v1",
+  "status": "COMPLETE_VALIDATED",
+  "authority": false,
+  "external_ground_truth": false,
+  "claim_limit": "HaWoR-versus-Stereo cross-system diagnostic only; FoundationStereo remains VISUAL_OBJECT6D_CANDIDATE_INPUT, not millimeter physical or Robot contact truth.",
+  "counts": {
+    "artifacts": 19,
+    "videos": 3,
+    "images": 4,
+    "documents": 4,
+    "csv_rows": 36
+  },
+  "video_checks": {
+    "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_3D_Depth_Comparison.mp4": {
+      "codec_name": "h264",
+      "width": 1920,
+      "height": 720,
+      "pix_fmt": "yuv420p",
+      "r_frame_rate": "30/1",
+      "nb_read_frames": "293",
+      "full_decode": "PASS"
+    },
+    "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Before_After_Z_Alignment.mp4": {
+      "codec_name": "h264",
+      "width": 1920,
+      "height": 720,
+      "pix_fmt": "yuv420p",
+      "r_frame_rate": "30/1",
+      "nb_read_frames": "293",
+      "full_decode": "PASS"
+    },
+    "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.mp4": {
+      "codec_name": "h264",
+      "width": 1920,
+      "height": 720,
+      "pix_fmt": "yuv420p",
+      "r_frame_rate": "30/1",
+      "nb_read_frames": "293",
+      "full_decode": "PASS"
+    }
+  },
+  "image_checks": {
+    "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.png": {
+      "width": 1920,
+      "height": 1440,
+      "mode": "RGB",
+      "decode": "PASS"
+    },
+    "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.png": {
+      "width": 2200,
+      "height": 2500,
+      "mode": "RGB",
+      "decode": "PASS"
+    },
+    "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/DEPTH_TYPES_OVERVIEW_ZH.png": {
+      "width": 2400,
+      "height": 1600,
+      "mode": "RGB",
+      "decode": "PASS"
+    },
+    "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/INTERNAL_VS_EXTERNAL_ACCURACY_ZH.png": {
+      "width": 2400,
+      "height": 1700,
+      "mode": "RGB",
+      "decode": "PASS"
+    }
+  },
+  "markdown_link_checks": {
+    "status": "PASS",
+    "documents": 4,
+    "links": 36,
+    "resolved": {
+      "/mnt/workspace/code/chaoyang/docs/pipeline/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md": [
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/DEPTH_TYPES_OVERVIEW_ZH.png",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.csv",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.png",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/CHIPS034_RIGHT_THREE_WINDOW_REGIONAL_METRICS.json",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_3D_Depth_Comparison.mp4",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Before_After_Z_Alignment.mp4",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.mp4",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.png",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/INTERNAL_VS_EXTERNAL_ACCURACY_ZH.png",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_quantitative_accuracy_evidence_audit_v1/REPORT_ZH.md",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_hawor_stereo_surface_consistency_qa_v1/REPORT_ZH.md",
+        "/mnt/workspace/code/chaoyang/docs/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/TASK_STATUS_ZH.md"
+      ],
+      "/mnt/workspace/code/chaoyang/docs/pipeline/EXTERNAL_DEPTH_VALIDATION_PLAN_ZH.md": [],
+      "/mnt/workspace/code/chaoyang/docs/pipeline/C2W_ROBOT_COORDINATE_AUDIT.md": [
+        "/mnt/workspace/code/chaoyang/tools/render_development_robot_review_v1.py",
+        "/mnt/workspace/code/chaoyang/tools/render_same_side_world_temporal_review.py",
+        "/mnt/workspace/code/chaoyang/tools/render_poker_same_side_outward_frame0.py",
+        "/mnt/workspace/code/chaoyang/tools/derive_hawor_world_consistent.py",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_six_session_pipeline_video_review_v1/robot_development/RESULT.json",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_six_session_pipeline_video_review_v1/robot_development/play_cards_0903_243/RESULT.json",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+        "/mnt/workspace/code/chaoyang/tools/render_same_side_world_temporal_review.py",
+        "/mnt/workspace/code/chaoyang/tools/render_development_robot_review_v1.py",
+        "/mnt/workspace/code/chaoyang/tools/render_poker_same_side_outward_frame0.py"
+      ],
+      "/mnt/workspace/code/chaoyang/docs/pipeline/MEETING_DEPTH_SUMMARY_ZH.md": [
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_3D_Depth_Comparison.mp4",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Before_After_Z_Alignment.mp4",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.mp4",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.png",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.png",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/DEPTH_TYPES_OVERVIEW_ZH.png",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/INTERNAL_VS_EXTERNAL_ACCURACY_ZH.png",
+        "/mnt/workspace/code/chaoyang/docs/pipeline/EXTERNAL_DEPTH_VALIDATION_PLAN_ZH.md",
+        "/mnt/workspace/code/chaoyang/docs/pipeline/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+        "/mnt/workspace/code/chaoyang/docs/pipeline/C2W_ROBOT_COORDINATE_AUDIT.md",
+        "/mnt/workspace/code/chaoyang/docs/pipeline/EXTERNAL_DEPTH_VALIDATION_PLAN_ZH.md",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_quantitative_accuracy_evidence_audit_v1/REPORT_ZH.md",
+        "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_hawor_stereo_surface_consistency_qa_v1/REPORT_ZH.md"
+      ]
+    }
+  },
+  "json_parse": "PASS",
+  "csv_parse": "PASS",
+  "artifacts": [
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_3D_Depth_Comparison.mp4",
+      "bytes": 6675475,
+      "sha256": "fa25f76023dc633abaca8dbc0ad5c4e99fc5788d2e137c5d650f7be99ae48b85"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Before_After_Z_Alignment.mp4",
+      "bytes": 7396069,
+      "sha256": "0539db5d9f2d3ec2a03868c64599dc6420af75b640f0682434632e33daa677a1"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.mp4",
+      "bytes": 4319398,
+      "sha256": "dd7e4058889bb4dc295c32e9009f2f297c8cf558b335c496ba06ec12f5b51630"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.png",
+      "bytes": 1775845,
+      "sha256": "9925e359f2b1232d2f4111d9f5268b0c9831eb19055f50153c87e72df0332b67"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.png",
+      "bytes": 333373,
+      "sha256": "726e21616de73165fe858dae4c4b72b304406be1ee39ccd2fcaec1d351a9371f"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/DEPTH_TYPES_OVERVIEW_ZH.png",
+      "bytes": 383840,
+      "sha256": "7294edd03d16b8918f6ada2b3638a318168bb0d87b24531411335c525a68f360"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/INTERNAL_VS_EXTERNAL_ACCURACY_ZH.png",
+      "bytes": 367777,
+      "sha256": "ff475f5033c82bc700d170e652e9d6e386097be7a9fe4e63292961f5d5e70e7d"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/pipeline/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+      "bytes": 11608,
+      "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/pipeline/EXTERNAL_DEPTH_VALIDATION_PLAN_ZH.md",
+      "bytes": 7558,
+      "sha256": "5632c4c7c39a7c07322943bbe9405903089d5d66604c1cd9ed015680dc874929"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/pipeline/C2W_ROBOT_COORDINATE_AUDIT.md",
+      "bytes": 9979,
+      "sha256": "75e64fcd9a1a060d61629a48f31d9b50f2a9a55dc384ff46ec0f763fa86a9923"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/pipeline/MEETING_DEPTH_SUMMARY_ZH.md",
+      "bytes": 5149,
+      "sha256": "785fdcf2404a8c42735f7fa7882a221e6c99ce0ff7afe11b42b50a898661bbc9"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/MEDIA_DELIVERY_RECEIPT.json",
+      "bytes": 3417,
+      "sha256": "9f442fcb99b4760b8479637b0689f4520b068bd0f091b49d0ef74cfd090faf39"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.csv",
+      "bytes": 7122,
+      "sha256": "142201a89717f65ac81904d3973754cda885e6901ce40e2a7103d827a43c7a85"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/CHIPS034_RIGHT_THREE_WINDOW_REGIONAL_METRICS.json",
+      "bytes": 19678,
+      "sha256": "8a64ac34bb21f14b00599ffdcf77865fa6ffb683cf0663cc0da2aa95c2cf4128"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/RESULT.json",
+      "bytes": 1854,
+      "sha256": "7f893b2ec5533b1a2d2eeadd4ffa9b220af30abc050ed1b5f09f413dc5b30ea7"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/RESULT.json",
+      "bytes": 850,
+      "sha256": "e1c0e1e265651bf1527ce4d555f16bd862e51d4ed96a7c42e33ffa501ebc92c4"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/run_hawor_stereo_spatial_relation_video.py",
+      "bytes": 34198,
+      "sha256": "46358b2da685b5f64d514d8a44e005b78a8b6f898fd49ad59fb6491408cf9a00"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/build_hawor_stereo_difference_report.py",
+      "bytes": 22351,
+      "sha256": "be7c4fa6dc1a45e99c34c6c6eb924efd334fd6d59a05adc022d62c037aa4de82"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/build_depth_accuracy_meeting_diagrams.py",
+      "bytes": 10157,
+      "sha256": "fce30d143a2cb9f75ea320b359bcb9db67f316df816bd92d762442e9c26c1d06"
+    }
+  ],
+  "sha256sums": {
+    "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/SHA256SUMS.txt",
+    "bytes": 3421,
+    "sha256": "870a64943453cd97dd42046bb49362b13d730d7538cf7329f95956685a2b5574"
+  }
+}

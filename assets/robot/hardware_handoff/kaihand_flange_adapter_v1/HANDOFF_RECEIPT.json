@@ -1,0 +1,20 @@
+{
+  "schema_version": "kaihand-tianji-hardware-handoff-receipt-v1",
+  "created_at": "2026-09-14T18:54:00+08:00",
+  "status": "PASS_REFERENCE_PACKAGE_INCOMPLETE_FOR_PRINT_RELEASE",
+  "directory": "/mnt/workspace/code/chaoyang/assets/robot/hardware_handoff/kaihand_flange_adapter_v1",
+  "archive": {
+    "path": "/mnt/workspace/code/chaoyang/assets/robot/hardware_handoff/kaihand_flange_adapter_v1_REFERENCE_ONLY.tar.gz",
+    "bytes": 3593146,
+    "sha256": "c9a712ee0aa36cae798da37be69403f8b6ff59f95ff76a382e6f71652028b490"
+  },
+  "verification": {
+    "manifest_references": "PASS",
+    "sha256sums_check": "PASS",
+    "native_adapter_cad_present": false,
+    "dimensioned_mating_interface_drawings_present": false,
+    "measured_mount_present": false,
+    "tcp_calibration_present": false
+  },
+  "claim_limit": "Reference geometry and measurement checklist only. Not a released printable adapter, physical calibration or deployment authority."
+}

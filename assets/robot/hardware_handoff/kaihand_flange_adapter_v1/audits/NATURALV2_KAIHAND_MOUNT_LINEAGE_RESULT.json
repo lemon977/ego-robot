@@ -1,0 +1,184 @@
+{
+  "schema_version": "naturalv2-kaihand-mount-lineage-audit-v1",
+  "created_at": "2026-09-12T18:39:20.611478+00:00",
+  "status": "VISUAL_ONLY_CANDIDATE_CLOSED_PHYSICAL_BLOCKED",
+  "scope": "repository/archive/historical docs and runs available in project workspace",
+  "method": "content/receipt/SHA/user-decision audit; filenames never establish identity",
+  "candidates": [
+    {
+      "candidate_id": "TIANJI_URDF_PINNED",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+        "bytes": 17957,
+        "sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309"
+      },
+      "source": "current robot asset pin and manufacturer-style URDF export",
+      "classification": "ROBOT_KINEMATIC_AND_VISUAL_MODEL",
+      "true_cad_or_proxy": "REAL_EXPORTED_URDF_AND_MESH_REFERENCES_NOT_PROXY",
+      "historical_user_decision": "accepted only as part of Poker frame0/48-frame visual assembly",
+      "usable_for_visual_training": "YES_WITH_VISUAL_ONLY_CONTRACT",
+      "usable_for_physical": "NO_WITHOUT_MODEL_VALIDATION_AND_INSTALLATION_CALIBRATION",
+      "claim_limit": "Pinned geometry identity; not proof of current physical calibration."
+    },
+    {
+      "candidate_id": "KAIHAND_LEFT_URDF_PINNED",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+        "bytes": 29480,
+        "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74"
+      },
+      "source": "current robot asset pin and KaiHand export",
+      "classification": "LEFT_DEXTEROUS_HAND_MODEL",
+      "true_cad_or_proxy": "REAL_EXPORTED_URDF_AND_REFERENCED_MESHES_NOT_PROXY",
+      "historical_user_decision": "same-side left geometry accepted visually in frame0 and temporal v3",
+      "usable_for_visual_training": "YES_WITH_VISUAL_ONLY_CONTRACT",
+      "usable_for_physical": "NO_WITHOUT_JOINT/TCP/MOUNT_VALIDATION",
+      "claim_limit": "Digital FK/mesh and pad patches only; not a measured physical TCP."
+    },
+    {
+      "candidate_id": "KAIHAND_RIGHT_URDF_PINNED",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+        "bytes": 29568,
+        "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586"
+      },
+      "source": "current robot asset pin and KaiHand export",
+      "classification": "RIGHT_DEXTEROUS_HAND_MODEL",
+      "true_cad_or_proxy": "REAL_EXPORTED_URDF_AND_REFERENCED_MESHES_NOT_PROXY",
+      "historical_user_decision": "same-side right geometry accepted visually in frame0 and temporal v3",
+      "usable_for_visual_training": "YES_WITH_VISUAL_ONLY_CONTRACT",
+      "usable_for_physical": "NO_WITHOUT_JOINT/TCP/MOUNT_VALIDATION",
+      "claim_limit": "Digital FK/mesh and pad patches only; not a measured physical TCP."
+    },
+    {
+      "candidate_id": "NATURALV2_STL_IDENTIFIED",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/assets/robot/V2相机固定法兰PRO版本.STL",
+        "bytes": 337084,
+        "sha256": "d47925eb8687a9ed9f20020e0f244878a05b37d2f882ec111c4ee277916dccc3"
+      },
+      "source": "local STL plus historical lineage audit and user component clarification",
+      "classification": "REAL_WRIST_FLANGE_FOR_ANOTHER_HAND",
+      "true_cad_or_proxy": "REAL_IDENTIFIED_COMPONENT_CAD_NOT_PROCEDURAL_PROXY",
+      "historical_user_decision": "confirmed as NaturalV2 wrist flange for another hand, explicitly not Kai adapter",
+      "usable_for_visual_training": "YES_AS_LABELED_FLANGE_IN_ACCEPTED_VISUAL_ASSEMBLY",
+      "usable_for_physical": "NO_AS_KAIHAND_ADAPTER",
+      "claim_limit": "May be drawn at native scale; cannot prove bolt pattern or KaiHand connection."
+    },
+    {
+      "candidate_id": "CORRECTED_ROOT_PLANE_TOOL_TO_HAND",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/static_interface_closure_audit_v1/ASSEMBLY_CLOSURE_AUDIT.json",
+        "bytes": 13758,
+        "sha256": "83e14e42e0db26cef9645c28c4c0f33fef247664c354d828ca8b8270c6856e39"
+      },
+      "source": "NaturalV2 outlet/Kai root-plane geometry plus pinned Tianji tool joint",
+      "classification": "GEOMETRY_DERIVED_TOOL_TO_HAND_TRANSFORM",
+      "true_cad_or_proxy": "MATHEMATICAL_INTERFACE_CANDIDATE_NOT_MEASURED_MOUNT",
+      "historical_user_decision": "consumed by later frame0 v8 and temporal v3 candidates that user accepted",
+      "usable_for_visual_training": "YES_FOR_POKER042_VISUAL_DEVELOPMENT_ONLY",
+      "usable_for_physical": "NO",
+      "claim_limit": "Zero plane-gap does not establish adapter CAD, keyed clocking, manufacture, or installation."
+    },
+    {
+      "candidate_id": "POKER042_ACCEPTED_FIXED_WORLD_BASE",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_same_side_world_temporal48_v3/WORLD_FIRST_SAME_SIDE_48FRAME_STATES.npz",
+        "bytes": 53796,
+        "sha256": "a521b399e6a63ced53a4c94a4538bf001143f6811df29977ffd6b741e8e581ec"
+      },
+      "source": "user-accepted Poker042 world-first temporal v3",
+      "classification": "SESSION_FIXED_VISUAL_WORLD_TO_BASE_PLACEMENT",
+      "true_cad_or_proxy": "VISUAL_PLACEMENT_NOT_MEASURED_CALIBRATION",
+      "historical_user_decision": "ACCEPT; fresh full-session development explicitly authorized",
+      "usable_for_visual_training": "YES_FOR_POKER042_VISUAL_DEVELOPMENT_ONLY",
+      "usable_for_physical": "NO",
+      "claim_limit": "Fixed task-level placement; not camera/world-to-physical-base calibration."
+    },
+    {
+      "candidate_id": "FLANGE_RING_145MM_PROXY",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/FLANGE_RING_PROXY_CONTRACT_V1.json",
+        "bytes": 2956,
+        "sha256": "a23017464762d5525d0e6cedf5977b4ca753c390eefc3761ed75d834665cae9b"
+      },
+      "source": "procedural display contract from Tianji URDF length and link AABB",
+      "classification": "WITHDRAWN_OR_SUPERSEDED_VISUAL_PROXY",
+      "true_cad_or_proxy": "PROCEDURAL_PROXY_NOT_REAL_CAD",
+      "historical_user_decision": "not part of accepted frame0 v8/temporal v3 lineage",
+      "usable_for_visual_training": "NO",
+      "usable_for_physical": "NO",
+      "claim_limit": "Must remain watermarked NOT_REAL_CAD; superseded by NaturalV2/root-plane visual lineage."
+    },
+    {
+      "candidate_id": "GENERIC_MOUNT_PROXY",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/MOUNT_PROXY_CONTRACT.json",
+        "bytes": 5188,
+        "sha256": "c45b9818b14120f189e60f221fbcb2d7f6413400c0e79c822fbea0a7a5972310"
+      },
+      "source": "reproducible component-review proxy",
+      "classification": "VISUAL_PROXY",
+      "true_cad_or_proxy": "PROXY_NOT_MEASURED",
+      "historical_user_decision": "not the accepted Poker042 v8/v3 transform source",
+      "usable_for_visual_training": "NO",
+      "usable_for_physical": "NO",
+      "claim_limit": "Review-only proxy; cannot replace corrected accepted lineage."
+    },
+    {
+      "candidate_id": "NATURALV2_PBR_12MM_CLEARANCE",
+      "artifact": {
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260907_robot_naturalv2_pbr_renderer_preflight_v1/RESULT.json",
+        "bytes": 45405,
+        "sha256": "db374f2127d0a03973d5b85bb33f0e04ccaeae754566b32cb141f8e12341f60c"
+      },
+      "source": "CPU renderer preflight with scaled connector reach and chosen 12 mm clearance",
+      "classification": "RENDERER_DEVELOPMENT_PREFLIGHT",
+      "true_cad_or_proxy": "REAL_STL_WITH_DERIVED_SCALE/CLEARANCE_PLACEMENT",
+      "historical_user_decision": "no independent user acceptance located for this 12 mm rule",
+      "usable_for_visual_training": "NO_AS_ASSEMBLY_TRANSFORM_SOURCE",
+      "usable_for_physical": "NO",
+      "claim_limit": "PBR/material evidence only; 12 mm is not measured mount clearance."
+    }
+  ],
+  "conclusion": {
+    "visual_training_only_assembly_candidate_closed": true,
+    "visual_contract_components": [
+      "TIANJI_URDF_PINNED",
+      "KAIHAND_LEFT_URDF_PINNED",
+      "KAIHAND_RIGHT_URDF_PINNED",
+      "NATURALV2_STL_IDENTIFIED",
+      "CORRECTED_ROOT_PLANE_TOOL_TO_HAND",
+      "POKER042_ACCEPTED_FIXED_WORLD_BASE"
+    ],
+    "physical_assembly_closed": false,
+    "physical_eligible_candidates": [],
+    "physical_blockers": [
+      "verified Kai adapter CAD and bolt/key interface missing",
+      "measured flange/tool-to-KaiHand-root transform missing",
+      "measured camera/world-to-physical-base calibration missing",
+      "measured Robot TCP and installation validation missing"
+    ],
+    "digital_tcp_policy": "URDF FK plus named KaiHand distal pad patches only; never call it physical TCP"
+  },
+  "source_decisions": {
+    "frame0_v8": {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_same_side_outward_frame0_pose_v8/USER_VISUAL_DECISION.json",
+      "bytes": 2414,
+      "sha256": "a83deda2d1c79edaf7de3ab0f957429a2d1f8f2c6b0eb7076474e05c6718baea"
+    },
+    "temporal48_v3": {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_same_side_world_temporal48_v3/USER_VISUAL_DECISION.json",
+      "bytes": 2521,
+      "sha256": "b59164fb9c26a9e26724bc5a52071aa4967806b36de70593ba32dc467cf301bb"
+    },
+    "historical_lineage": {
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/historical_placement_lineage_audit_v1/RESULT.json",
+      "bytes": 5881,
+      "sha256": "d78368a3d4f4fd7a30487298f721c47e428bf6bb21d5ba51a4ca0f67b8c3452b"
+    }
+  },
+  "central_authority_modified": false,
+  "authority_promotable": false,
+  "claim_limit": "This audit closes a Poker042 visual-development assembly lineage only. It does not establish current physical assembly, calibration, TCP, contact truth, or deployment authority."
+}

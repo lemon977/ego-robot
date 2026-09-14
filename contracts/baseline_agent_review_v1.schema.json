@@ -1,0 +1,59 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "baseline_agent_review_v1.schema.json",
+  "title": "Two-task baseline automatic stage review",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "created_at", "run_id", "stage", "task", "session",
+    "grade", "downstream_authorized", "hard_gates", "soft_defects",
+    "inputs", "artifacts", "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "baseline-agent-stage-review-v1"},
+    "created_at": {"type": "string", "minLength": 20},
+    "run_id": {"const": "20260908_two_task_e2e_baseline_v1"},
+    "stage": {"enum": ["RAW_QA", "HAWOR", "DEPTH", "MASK", "OBJECT6D", "CLEAN", "ROBOT"]},
+    "task": {"enum": ["chips", "poker"]},
+    "session": {"type": "string", "minLength": 1},
+    "grade": {"enum": ["A", "B", "C"]},
+    "downstream_authorized": {"type": "boolean"},
+    "hard_gates": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"enum": ["PASS", "FAIL", "NOT_APPLICABLE"]}
+    },
+    "soft_defects": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "inputs": {"type": "object", "additionalProperties": {"$ref": "#/$defs/artifact"}},
+    "artifacts": {"type": "object", "minProperties": 1, "additionalProperties": {"$ref": "#/$defs/artifact"}},
+    "metrics": {"type": "object"},
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"grade": {"enum": ["A", "B"]}}},
+      "then": {
+        "properties": {
+          "downstream_authorized": {"const": true},
+          "hard_gates": {"additionalProperties": {"enum": ["PASS", "NOT_APPLICABLE"]}}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"grade": {"const": "C"}}},
+      "then": {"properties": {"downstream_authorized": {"const": false}}}
+    }
+  ]
+}

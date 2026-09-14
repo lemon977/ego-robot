@@ -1,0 +1,11 @@
+{
+  "claim_limit": "Immutable meeting snapshot index; current execution still requires CURRENT_STATUS_RECEIPT.json validation.",
+  "generation_id": "gov-005840-afa1846bff49",
+  "governance_revision": 5840,
+  "schema_version": "chaoyang-current-meeting-snapshot-v1",
+  "snapshot_receipt": {
+    "bytes": 1113,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/snapshots/20260914_1838_cleanup_v6_terminal_STATUS_RECEIPT.json",
+    "sha256": "d432691d1ed7a61560fc6e120e408c74b7d99e630bc7d383d5bfc26313f11fc4"
+  }
+}

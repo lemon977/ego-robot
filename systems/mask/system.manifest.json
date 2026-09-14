@@ -1,0 +1,184 @@
+{
+  "$schema": "../schema/system_manifest.schema.json",
+  "schema_version": "chaoyang-system-manifest-v1",
+  "system_id": "mask",
+  "manifest_version": "2026-09-03.2",
+  "status": "ACTIVE_DEVELOPMENT_CHIPS_PHONE_PASS_POKER_TRACKER_HOLD",
+  "claim_limit": "Shared algorithm and checkpoint identity are frozen. Chips phone baseline is consumable; poker tracker is HOLD. This is not a zero-click, blind, formal-PICO, or cross-task generalization PASS.",
+  "shared_by_default": true,
+  "algorithms": [
+    {
+      "algorithm_id": "mask.sam31.assisted_bilateral_flow_refresh.v4",
+      "stage": "mask",
+      "status": "SHARED_CANDIDATE_NOT_YET_CROSS_TASK_PASS",
+      "implementation_files": [
+        {
+          "path": "tools/run_assisted_bilateral_flow_refresh.py",
+          "bytes": 40385,
+          "sha256": "8074890050aa68b28ae4c1e4a7a6cf11a4e283e544c3c6e9103eb524801772d0"
+        },
+        {
+          "path": "systems/mask/configs/sam31_runtime_source_v1.json",
+          "bytes": 1948,
+          "sha256": "ce100807728eda716c4d1535fee3264c24078238751622518af8442eb48927e4"
+        },
+        {
+          "path": "_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/FLOW_REFRESH_PROTOCOL_V4.json",
+          "bytes": 3501,
+          "sha256": "ab52ed204cb5221a72df62db8b0cbf5759f71399c6d9191efac9639a734d57bd"
+        }
+      ],
+      "required_weight_ids": [
+        "sam31.multiplex.0567debe"
+      ],
+      "invariants": [
+        "separate bilateral human-core and wearable raw instances",
+        "task object remains a protected independent raw mask",
+        "union equals OR of accepted roles minus protected object",
+        "no color threshold, morphology, dilation, erosion, fill, or GrabCut repair",
+        "refresh, identity, cycle, edge, area, adjacency, and object-overlap gates fail closed"
+      ]
+    },
+    {
+      "algorithm_id": "mask.sam31.pico_geometry_independent_object_authority.v1",
+      "stage": "mask",
+      "status": "FROZEN_FIT_EVAL_PENDING",
+      "implementation_files": [
+        {
+          "path": "tools/run_contact_assisted_object_instance_authority.py",
+          "bytes": 24766,
+          "sha256": "ebd170f1ebe5b47251f43871c58aef2b31f1e570271871e8a64a349d7c36c465"
+        },
+        {
+          "path": "pipeline/contact_assisted_object_authority.py",
+          "bytes": 7923,
+          "sha256": "a5c73427a5a68ee176cd8ec7b6064f80c9c25a6626a32aa83d9905fb2c27e363"
+        },
+        {
+          "path": "pipeline/pico_geometry_mask_anchors.py",
+          "bytes": 31929,
+          "sha256": "9abffc9357fc0f4b198741c0b5bb8769cb7824fda3cd5576e71a9bea29863d64"
+        },
+        {
+          "path": "pipeline/pico_geometry_mask_protocol.py",
+          "bytes": 14279,
+          "sha256": "2e1ee362347a687bfa932f9b2cad662d48510b24c280eebee0c0492443f319f4"
+        },
+        {
+          "path": "pipeline/sam31_compat_adapter_v1.py",
+          "bytes": 36575,
+          "sha256": "32a4b2db7b3fcfa0e150d5552752dbb2727f78ee013901471a9b93683d4dce50"
+        },
+        {
+          "path": "tools/run_newtask_baseline_sam31_mask_probe.py",
+          "bytes": 23303,
+          "sha256": "ee0cd4778c9bf572c39c9bb0b62712a71bc18c5b82547773560c40f26969a8c8"
+        },
+        {
+          "path": "systems/mask/configs/pico_raw_point_geometry_successor_v1.json",
+          "bytes": 8583,
+          "sha256": "557ea5a607c5c38c360b5d44ec820023595d178d8ec8b9701c2544047c8b5245"
+        },
+        {
+          "path": "systems/mask/configs/sam31_runtime_source_v1.json",
+          "bytes": 1948,
+          "sha256": "ce100807728eda716c4d1535fee3264c24078238751622518af8442eb48927e4"
+        },
+        {
+          "path": "docs/organization/2026-09-03/SAM31_STABLE_SWITCH_EXECUTION.json",
+          "bytes": 540653,
+          "sha256": "16ffa9a30cc79d02005daa7f3fcd4677a50578093085f7c6a3cc68272050f621"
+        }
+      ],
+      "required_weight_ids": [
+        "sam31.multiplex.0567debe"
+      ],
+      "invariants": [
+        "canonical SAM source without nested git is authenticated by the FINAL switch receipt, runtime contract, official commit/tree, every tracked Git blob, and same-inode hardlink identity",
+        "the enclosing project repository HEAD is never accepted as the SAM repository commit",
+        "each moving chip or card owns an independent raw SAM state and object ID",
+        "contact-assisted reseeds are automatic preregistered PICO events, never manual per-frame points",
+        "object-authority PASS is required before human/tracker removal",
+        "FIT chips008 parameters remain unchanged for held-out chips011 and poker001"
+      ]
+    }
+  ],
+  "learned_weights": [
+    {
+      "weight_id": "sam31.multiplex.0567debe",
+      "origin": "external_pretrained",
+      "path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+      "bytes": 3502755717,
+      "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "scope": "shared",
+      "applicable_tasks": [
+        "*"
+      ],
+      "base_weight_id": null,
+      "license": {
+        "id": "SAM_LICENSE_LOCAL",
+        "status": "RECORDED_SUBJECT_TO_LICENSE_TERMS",
+        "path": "third_party/SAM3/LICENSE",
+        "bytes": 7353,
+        "sha256": "4dea99bfaa016e21bc860d73f344236bd1e5c4977d1a9a8fd32f822b500ae1be"
+      },
+      "provenance": {
+        "official_model_repository": "facebook/sam3.1",
+        "official_model_revision": "daa63191845a41281374e725f4c9e51c7a824460",
+        "mirror_repository": "Supbatomic/sam3-1-model",
+        "mirror_revision": "99cb53e9cb67e5660e6d19de43cec2ea14279401",
+        "official_code_repository": "https://github.com/facebookresearch/sam3.git",
+        "official_code_commit": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7",
+        "canonical_code_root": "third_party/SAM3",
+        "official_code_tree": "6bc2384dbbfb370fe28096d23955df9b7b0bcdd9",
+        "runtime_source_contract": "systems/mask/configs/sam31_runtime_source_v1.json"
+      },
+      "evaluation": {
+        "status": "PHONE_BASELINE_DEVELOPMENT_ONLY",
+        "claim_limit": "Chips assisted v4 PASS does not authorize poker, blind, formal PICO, or zero-click wearable claims."
+      }
+    }
+  ],
+  "task_specific_config_keys": [
+    "source_identity",
+    "display_rotation",
+    "anatomical_side_mapping",
+    "visible_role_inventory",
+    "frame0_instance_anchors",
+    "task_object_ids",
+    "protected_object_artifact",
+    "frozen_canary_frames",
+    "offline_annotation_plan"
+  ],
+  "weight_policy": {
+    "task_local_paths_allowed": false,
+    "new_weight_requires": [
+      "bytes_and_sha256",
+      "base_weight_id",
+      "training_data_manifest_sha256",
+      "training_code_sha256",
+      "session_level_split_manifest_sha256",
+      "evaluation_manifest_sha256_and_metrics",
+      "applicable_task_scope",
+      "license_id_and_status"
+    ]
+  },
+  "current_evidence": [
+    {
+      "id": "chips_assisted_v4_result",
+      "path": "_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/RESULT.json",
+      "bytes": 863325,
+      "sha256": "c54f786a72a0ebcd3c43ab5d750a74ae176bfc9edda81a4f653491e22e77142a",
+      "status": "PASS_CANARY12_FULL_ARTIFACTS_EMITTED",
+      "claim_limit": "Phone baseline chips only; consumption_authorized=true."
+    },
+    {
+      "id": "poker_assisted_v4_result",
+      "path": "_run/gpt_mask_assisted_bilateral_flow_refresh_poker_20260902_v4/RESULT.json",
+      "bytes": 1647300,
+      "sha256": "d25203ad71eef2a802372d4a008f5573500c486a2236cec55d20e53f33f05b67",
+      "status": "HOLD_CANARY12_NO_FULL_ARTIFACT_PROMOTION",
+      "claim_limit": "Human and lower cuff pass, but both tracker temporal gates do not; consumption_authorized=false."
+    }
+  ]
+}

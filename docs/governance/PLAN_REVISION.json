@@ -1,0 +1,17 @@
+{
+  "schema_version": "exact78-plan-revision-v1",
+  "plan_revision": "exact78-v5.2",
+  "approved_source": {
+    "bytes": 17318,
+    "lines": 694,
+    "sha256": "1055a0cb600c9ac512f6d7a16ea324691e8601595fd19bfb2c4968b20352980e"
+  },
+  "canonical_plan_path": "docs/governance/EXACT78_V5_2_EXECUTION_PLAN_ZH.md",
+  "wave0_selection_sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1",
+  "terminal_names": [
+    "EXACT78_TERMINAL_COMPLETE",
+    "EXACT78_WAVE0_CLEAN_COMPLETE",
+    "EXACT78_END_TO_END_COMPLETE"
+  ],
+  "status": "APPROVED_FOR_EXECUTION"
+}

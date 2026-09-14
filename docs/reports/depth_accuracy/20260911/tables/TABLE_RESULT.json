@@ -1,0 +1,34 @@
+{
+  "artifacts": {
+    "CHIPS034_RIGHT_THREE_WINDOW_REGIONAL_METRICS.json": {
+      "bytes": 19678,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/CHIPS034_RIGHT_THREE_WINDOW_REGIONAL_METRICS.json",
+      "sha256": "8a64ac34bb21f14b00599ffdcf77865fa6ffb683cf0663cc0da2aa95c2cf4128"
+    },
+    "HAWOR_STEREO_DIFFERENCE_TABLE.csv": {
+      "bytes": 7122,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.csv",
+      "sha256": "142201a89717f65ac81904d3973754cda885e6901ce40e2a7103d827a43c7a85"
+    },
+    "HAWOR_STEREO_DIFFERENCE_TABLE.png": {
+      "bytes": 333373,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/HAWOR_STEREO_DIFFERENCE_TABLE.png",
+      "sha256": "726e21616de73165fe858dae4c4b72b304406be1ee39ccd2fcaec1d351a9371f"
+    }
+  },
+  "claim_limit": "INTERNAL_CROSS_SENSOR_COMPARISON_ONLY_NO_EXTERNAL_GT. Region labels are MANO-surface proxies, not anatomical ground-truth segmentation.",
+  "inputs": {
+    "aggregate_result": {
+      "bytes": 4159,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_hawor_stereo_surface_consistency_qa_v1/RESULT.json",
+      "sha256": "53b57297f93de1d0a986cff9030de794266da30c3b2de433a4cd45a8108f47ab"
+    },
+    "frame_metrics": {
+      "bytes": 387000,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_hawor_stereo_surface_consistency_qa_v1/baseline_canary_v2/get_potato_chips_0902_034/FRAME_METRICS.json",
+      "sha256": "75b1a960b90a1a58ece03588af53bd0dfaa144a73d3c235248223a6562eef41e"
+    }
+  },
+  "schema_version": "hawor-stereo-difference-report-result-v1",
+  "status": "PASS_INTERNAL_DIAGNOSTIC_NO_EXTERNAL_GT"
+}

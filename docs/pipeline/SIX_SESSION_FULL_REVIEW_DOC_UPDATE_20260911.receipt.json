@@ -1,0 +1,43 @@
+{
+  "schema_version": "six-session-full-review-doc-update-receipt-v1",
+  "created_at": "2026-09-11T03:53:09+08:00",
+  "status": "PASS_REMOTE_LOCAL_DOCUMENTS_BYTE_IDENTICAL",
+  "documents": {
+    "pipeline_reproduction": {
+      "remote_path": "/mnt/workspace/code/chaoyang/docs/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+      "local_path": "/home/lemon/音乐/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+      "bytes": 98026,
+      "sha256": "5d587426e72c57d775dfcace81631d5428b7817af15eeed2447e26dc79650018"
+    },
+    "current_status_and_video_index": {
+      "remote_path": "/mnt/workspace/code/chaoyang/docs/pipeline/CURRENT_STATUS_AND_VIDEO_INDEX_ZH.md",
+      "local_path": "/home/lemon/音乐/CURRENT_STATUS_AND_VIDEO_INDEX_ZH.md",
+      "bytes": 19487,
+      "sha256": "bc0d52a7d8af2ffd5e12e6e79672d9d1a4c26d94dd2098c89758c1fb172a6cda"
+    }
+  },
+  "evidence": {
+    "hawor_temporal_successor_result": {
+      "path": "tasks/control/runs/20260911_six_session_hawor_temporal_successor_v1/RESULT.json",
+      "sha256": "a2fe131b4b7bbb8b28d90a43abcaf5867ab21642c6dd3a2ce2b5cdac6dea9991"
+    },
+    "robot_motion_transfer_result": {
+      "path": "tasks/control/runs/20260911_six_session_robot_motion_transfer_successor_v2/RESULT.json",
+      "sha256": "122684477e2b1a1e472f04567ac8ef1b60fa59dfaae0ea49da7124169bfcec01"
+    },
+    "full_session_review_result": {
+      "path": "tasks/control/runs/20260911_six_session_full_pipeline_video_review_v2/RESULT.json",
+      "sha256": "5733072912070d0a787dc5c6c6297ec6d40d4e00712a6fd26e5c07faa2f4ffe5"
+    },
+    "full_session_review_index": {
+      "path": "tasks/control/runs/20260911_six_session_full_pipeline_video_review_v2/INDEX_ZH.md",
+      "sha256": "247abee3fcb60e48dd77c13d2a367127389c0fc82eac3cb7310399eb654d31cb"
+    }
+  },
+  "supersession": {
+    "old_run": "tasks/control/runs/20260911_six_session_pipeline_video_review_v1",
+    "old_status": "SUPERSEDED_REVIEW_ONLY",
+    "reason": "15 fps plus 12-second trim plus stream_loop with a 48-frame Robot source; not a full-session review"
+  },
+  "claim_limit": "Documentation and review-media delivery receipt only. Chips182 Robot hand remains numeric HOLD; Robot authority and action sidecars remain false."
+}

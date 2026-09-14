@@ -1,0 +1,108 @@
+{
+  "schema_version": "object-authority-state-layout-performance-ab-v1",
+  "status": "FROZEN_CPU_READY_GPU_BLOCKED_SAM_SWITCH_AND_LEASE",
+  "benchmark_scope": {
+    "task_id": "chips",
+    "session_id": "get_potato_chips_0901_008",
+    "split": "FIT_PERFORMANCE_DIAGNOSTIC_ONLY",
+    "parameter_source": "UNCHANGED_FROZEN_OBJECT_AUTHORITY_CONFIG",
+    "other_sessions_forbidden_before_decision": true
+  },
+  "variant_a": {
+    "name": "ISOLATED_STATE_AUTHORITY",
+    "one_video_state_per_object_instance": true,
+    "fixed_raw_id_per_instance": true,
+    "instance_count": 4,
+    "authority_eligible_if_quality_gates_pass": true
+  },
+  "variant_b": {
+    "name": "JOINT_MULTI_OBJECT_STATE_DIAGNOSTIC",
+    "one_video_state_total": true,
+    "fixed_distinct_raw_id_per_instance": true,
+    "instance_count": 4,
+    "shared_decode_and_feature_cache": true,
+    "authority_eligible_before_ab": false,
+    "known_static_risk": "PINNED_HIGH_LEVEL_SAM_POSTPROCESS_CALLS_OBJECT_WISE_NON_OVERLAP_WHEN_MORE_THAN_ONE_MASK_IS_PRESENT",
+    "upstream_monkeypatch_forbidden": true,
+    "bypass_of_public_postprocess_forbidden": true
+  },
+  "execution": {
+    "order": [
+      "A_ISOLATED",
+      "B_JOINT"
+    ],
+    "same_process_and_model_load": true,
+    "same_checkpoint_and_code_snapshot": true,
+    "same_frame0_seeds": true,
+    "same_contact_frames_and_pico_reseeds": true,
+    "same_output_probability_threshold": true,
+    "same_quality_gates": true,
+    "same_full_source_frame_timeline": true,
+    "mask_retention": "IN_MEMORY_PACKBITS_FOR_COMPARE_ONLY",
+    "persistent_output": "COMPACT_JSON_PLUS_12_FRAME_DISAGREEMENT_SHEET_ONLY",
+    "full_mask_dump_for_performance_ab": false,
+    "source_video_copy_forbidden": true
+  },
+  "strict_equivalence_gate": {
+    "role_inventory_exact": true,
+    "raw_id_inventory_exact": true,
+    "frame_inventory_exact": true,
+    "per_role_per_frame_binary_mask_iou_min": 1.0,
+    "per_role_per_frame_area_ratio_min": 1.0,
+    "per_role_per_frame_area_ratio_max": 1.0,
+    "per_role_per_frame_centroid_delta_px_max": 0.0,
+    "per_role_gate_vector_exact": true,
+    "cross_instance_gate_vector_exact": true,
+    "a_and_b_final_status_exact": true,
+    "cross_id_bleed_frame_count_max": 0,
+    "internal_nonoverlap_or_suppression_applied": false,
+    "speedup_ratio_min": 1.25
+  },
+  "promotion_rule": {
+    "all_strict_equivalence_gates_required": true,
+    "resource_speedup_required": true,
+    "static_source_audit_must_not_show_cross_object_mask_modification": true,
+    "on_failure": "KEEP_VARIANT_A_AND_MARK_B_NOT_PROMOTABLE",
+    "diagnostic_b_may_never_be_consumed_as_object_authority": true,
+    "task_specific_exception_forbidden": true
+  },
+  "disk_and_memory_budget": {
+    "workspace_free_space_precondition_bytes_min": 67108864,
+    "persistent_output_bytes_hard_max": 33554432,
+    "temporary_workspace_bytes_hard_max": 0,
+    "packed_mask_ram_bytes_estimate": 402391040,
+    "abort_before_gpu_if_workspace_is_full": true
+  },
+  "static_source_audit": {
+    "status": "B_CPU_PRECHECK_NOT_PROMOTABLE_WITH_PINNED_PUBLIC_OUTPUT_PATH",
+    "evidence": [
+      {
+        "path": "_run/sam31_mirror_authorized_ready_preflight_v1/sam31_mirror_smoke/staging/code/sam3/sam3/model/sam3_multiplex_tracking.py",
+        "sha256": "65e1cea27ee243dad228fb05967a8be92c90ef304665ada76930b899aa034d24",
+        "lines": [
+          741,
+          750
+        ],
+        "finding": "Public postprocess applies _apply_object_wise_non_overlapping_constraints whenever more than one output mask is present."
+      },
+      {
+        "path": "_run/sam31_mirror_authorized_ready_preflight_v1/sam31_mirror_smoke/staging/code/sam3/sam3/model/video_tracking_multiplex_demo.py",
+        "sha256": "d57ac540b400d5cb37377fc84810f75c2721f1b6e6ee9c8f119b5d6af7a6a80c",
+        "finding": "The tracker consolidation path also contains explicit non-overlap processing for multi-object masks."
+      },
+      {
+        "path": "_run/sam31_mirror_authorized_ready_preflight_v1/sam31_mirror_smoke/staging/code/sam3/sam3/model_builder.py",
+        "sha256": "d71d6d3e485ec3eae48bbc2ba676f401b5853d65c4195a91d077b04da38121c2",
+        "finding": "Configured output flags do not remove the high-level postprocess branch above."
+      }
+    ],
+    "interpretation": "The real B timing may still be measured on chips008, but B cannot be promoted unless runtime evidence proves the branch is a no-op for every frame and the stricter no-modification requirement is independently resolved without changing upstream code."
+  },
+  "human_tracker_followup": {
+    "status": "DESIGN_ONLY_AFTER_OBJECT_AB",
+    "allowed_optimization": "SHARE_IMMUTABLE_IMAGE_DECODE_OR_BACKBONE_FEATURES",
+    "required_invariant": "HUMAN_LEFT_HUMAN_RIGHT_TRACKER_LEFT_TRACKER_RIGHT_REMAIN_SEPARATE_ROLE_OUTPUTS_AND_GATE_LINEAGES",
+    "same_strict_equivalence_gate": true
+  },
+  "claim_limit": "Performance experiment only. It cannot weaken independent object identity, alter masks, modify the pinned SAM implementation, or promote joint-state output by speed alone."
+}

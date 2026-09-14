@@ -1,0 +1,97 @@
+{
+  "schema_version": "tianji-dual-kaihand-mount-proxy-contract-v1",
+  "created_at": "2026-09-09T12:01:37+08:00",
+  "status": "FROZEN_VISUAL_REVIEW_PROXY_NOT_CALIBRATION",
+  "purpose": "Render the complete pinned Tianji global-base URDF and both real KaiHand URDFs in one reproducible neutral assembly while the physical adapter CAD identity and measured flange/tool-to-hand-root transforms are unavailable.",
+  "classification": "MOUNT_PROXY",
+  "development_only": true,
+  "real_robot_calibration": false,
+  "deployment_authorized": false,
+  "task_motion_authorized": false,
+  "training_authorized": false,
+  "contact_or_collision_authority": false,
+  "camera_or_ego_input_allowed": false,
+  "frame0_or_session_fit_allowed": false,
+  "procedural_connector_geometry_allowed": false,
+  "adapter_cad_rendered": false,
+  "missing_physical_authority": [
+    "vendor-or-project-verified KaiHand-to-Tianji adapter CAD identity",
+    "measured left flange/tool-to-hand_l_base_link transform",
+    "measured right flange/tool-to-hand_r_base_link transform"
+  ],
+  "assets": {
+    "tianji_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+      "bytes": 17957,
+      "sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309",
+      "required_root_link": "base_link",
+      "required_base_visual": "ZJ_Robot_link.STL"
+    },
+    "kaihand_left_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+      "bytes": 29480,
+      "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74",
+      "required_root_link": "hand_l_base_link"
+    },
+    "kaihand_right_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+      "bytes": 29568,
+      "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586",
+      "required_root_link": "hand_r_base_link"
+    }
+  },
+  "unverified_cad_excluded": {
+    "path": "/mnt/workspace/code/chaoyang/assets/robot/V2相机固定法兰PRO版本.STL",
+    "bytes": 337084,
+    "sha256": "d47925eb8687a9ed9f20020e0f244878a05b37d2f882ec111c4ee277916dccc3",
+    "measured_mesh_extents_mm": [72.1135139465332, 72.11376857757568, 75.66085040569305],
+    "exclusion_reason": "The filename identifies a camera fixing flange and no pinned drawing, mating-interface metadata, or project receipt proves that it is the installed Tianji-to-KaiHand adapter. It must not be rendered as a real hand flange."
+  },
+  "proxy_source": {
+    "numeric_materialization": {
+      "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/robot/20260903_shared_adapter_successor_v1/PINNED_KAIHAND_MOUNT_AUTHORITY_V1.json",
+      "sha256": "dee0de8cc6bc64d9a6417f0b8578a32f8b37c070a4cfb2a9b581f2627c21f218",
+      "source_status": "PINNED_DEVELOPMENT_ONLY_NOT_FORMAL_CALIBRATION_AUTHORITY"
+    },
+    "root_plane_geometry_preflight": {
+      "path": "/mnt/workspace/code/chaoyang/_run/gpt_robot_kaihand_rootplane_mount_cpu_successor_20260831_v1/CPU_PREFLIGHT.json",
+      "sha256": "424f7a708ee7fa01d24d37d3f1b0dce780a601b73a8075a31d2c307cf850cf25",
+      "source_claim": "CPU_STATIC_A_EXACT_KAI_ROOTPLANE_MOUNT_NO_GPU_NOT_FINAL"
+    },
+    "derivation": "Fixed root-plane geometry proxy from pinned Tianji flange/tool frames and KaiHand root/base mesh. No RGB, HaWoR, IK residual, session, frame, physical measurement, or vendor calibration selected this transform."
+  },
+  "proxy_transforms": {
+    "matrix_direction": "p_flange = T_flange_hand_root_proxy @ p_hand_root",
+    "units": "metres",
+    "scope": "GLOBAL_CONSTANT_BOTH_TASKS_NOT_PER_SESSION_NOT_PER_FRAME",
+    "left_flange_L_to_hand_l_base_link": [
+      [1.0, 0.0, 0.0, 0.0],
+      [0.0, -1.0, 0.0, 0.0],
+      [0.0, 0.0, -1.0, 0.07519998737695313],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "right_flange_R_to_hand_r_base_link": [
+      [1.0, 0.0, 0.0, 0.0],
+      [0.0, -1.0, 0.0, 0.0],
+      [0.0, 0.0, -1.0, 0.07519998737695313],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "proxy_offset_mm": 75.19998737695313,
+    "chirality_source": "Separate real left/right KaiHand URDF packages; no mirrored mesh synthesis."
+  },
+  "neutral_review_state": {
+    "tianji_arm_joint_count": 14,
+    "tianji_arm_joint_value_rad": 0.0,
+    "kaihand_joint_value_rad": 0.0,
+    "global_base_pose": "IDENTITY_WORLD_TO_TIANJI_base_link",
+    "camera": "SYNTHETIC_ORBIT_FOR_COMPONENT_REVIEW_ONLY"
+  },
+  "mandatory_watermarks": [
+    "MOUNT_PROXY",
+    "ADAPTER CAD MISSING",
+    "NOT MEASURED / NOT CALIBRATED / NOT DEPLOYABLE",
+    "NO EGO / NO IK / NO CONTACT CLAIM"
+  ],
+  "replacement_rule": "When verified adapter CAD and measured left/right transforms arrive, this proxy is void and must be replaced rather than averaged, fitted, or silently reused.",
+  "claim_limit": "This fixed transform is a reproducible component-review proxy only. Its low root-plane gap is not installation accuracy, IK accuracy, collision clearance, contact validity, or evidence of the real robot mount."
+}

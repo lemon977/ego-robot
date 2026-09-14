@@ -1,0 +1,288 @@
+{
+  "schema_version": "data-reference-graph-v1",
+  "document_status": "DRAFT",
+  "contract_ref": "contracts/pipeline_contract_v1.yaml",
+  "project_root": "/mnt/workspace/code/chaoyang",
+  "fail_closed": true,
+  "readiness": {
+    "authoritative_raw": "PASS_G0_SOURCE_READABLE",
+    "verified_source_manifest": "BOUND_SHA256",
+    "sam2_1_mask_model": "PINNED_G2_CALIBRATION_ONLY",
+    "sam3": "UNAVAILABLE_MUST_NOT_IMPERSONATE",
+    "profile_thresholds": "DRAFT_TASK_CARD_DIMENSIONLESS_OVERLAY_REQUIRED",
+    "calibration_execution_authorized": false,
+    "calibration_blocker": "MASK_BENCHMARK_AND_AUDITOR_A1_NOT_FROZEN",
+    "formal_production_allowed": false,
+    "formal_clean_enabled": false,
+    "synthetic_test_only_formal_consumer_allowed": false
+  },
+  "verified_source_binding": {
+    "path": "/mnt/workspace/code/chaoyang/manifests/verified_source_manifest_v1.json",
+    "sha256": "1dc476360d567894ba629dd74dae608f5d8fd80b0991767611259e47929342a6",
+    "sessions": {
+      "grap_a_cap_004": "31cc7c227b74799feb0f587c330c33f1a13aaccf85e6244ac234a2b71ecd6840",
+      "grap_a_cap_025": "774a92dc709a0baa6b628aa45e2f7264cc84fd162f1e09dce702e75cdbba2c24",
+      "grap_a_cap_149": "ce53f0c7e584c65357507a40558d1f9345c9facee768d9200f71c80357289eca"
+    },
+    "authorized_calibration_sessions": ["grap_a_cap_004"]
+  },
+  "model_pins": {
+    "sam2_1_hiera_large": {
+      "identity": "SAM2_1_HIERA_LARGE",
+      "repository": "https://github.com/IDEA-Research/Grounded-SAM-2.git",
+      "commit": "b7a9c29f196edff0eb54dbe14588d7ae5e3dde28",
+      "weight_sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+      "scope": "G2_004_MASK_CALIBRATION_ONLY"
+    },
+    "sam3": {
+      "availability": "UNAVAILABLE",
+      "may_impersonate_with_sam2": false
+    }
+  },
+  "g2_004_analytic_object_evidence": {
+    "access": "READ_ONLY",
+    "refinement_allowed": false,
+    "object_6dof_v2_sha256": "97fb5747411830b2caa9f34cc164dca39cd411227a8ffaa7229b6e523eaf6a13",
+    "cylinder_geometry_sha256": "fea720ec2d1c0c8ef311bce5dd65e7f47e806da7bedee3f96c9a3ee9fe6f4631",
+    "v2_summary_sha256": "c6b6f27d2812e756789bcd73c9708250cd5c300d12d66fb8a39627e684749d91",
+    "claim_limit": "READ_ONLY_PROMPT_AND_ANALYTIC_GEOMETRY_EVIDENCE_NOT_VISUAL_PASS"
+  },
+  "roots": {
+    "authoritative_raw": {
+      "path": "/mnt/data/egodata",
+      "access": "READ_ONLY",
+      "allowed_reference_kind": "verified_source_manifest_only",
+      "forbidden_substitute_roots": [
+        "/mnt/workspace/code/chaoyang/_run",
+        "/mnt/workspace/code/chaoyang/hand_benchmark",
+        "legacy_adapter_paths"
+      ]
+    },
+    "staging": {
+      "path_template": "/mnt/workspace/code/chaoyang/_run/{run_id}",
+      "formal_consumer_allowed": false
+    },
+    "formal": {
+      "path_template": "/mnt/workspace/code/chaoyang/processed/{session_id}_v{version}",
+      "write_method": "FSYNC_THEN_SAME_FILESYSTEM_ATOMIC_RENAME",
+      "overwrite_allowed": false
+    }
+  },
+  "product_lines": {
+    "004_CONTACT_GOLD": {
+      "namespace": "004_CONTACT_GOLD",
+      "may_write_contact_gold_sidecar": true,
+      "may_read_exact78_mutable_outputs": false,
+      "may_overwrite_r2": false
+    },
+    "EXACT78_R2_VISUAL_DOMAIN": {
+      "namespace": "EXACT78_R2_VISUAL_DOMAIN",
+      "may_write_contact_gold_sidecar": false,
+      "may_read_contact_gold_refinement": false,
+      "frozen_r2_fields": [
+        "q_hand",
+        "wrist_T_camera",
+        "validity",
+        "confidence",
+        "failure_reason",
+        "frame_order",
+        "timestamp",
+        "split",
+        "non_image_inputs"
+      ],
+      "only_planned_variable": "image_selector"
+    }
+  },
+  "diagnostic_tracks": {
+    "HAND_ONLY_DIAGNOSTIC": {
+      "formal_robot_rgb_allowed": false
+    },
+    "HAND_ARM_FINAL": {
+      "formal_robot_rgb_allowed": true
+    }
+  },
+  "components": [
+    {"id": "source_resolver", "kind": "PRODUCER"},
+    {"id": "session_profiler", "kind": "PRODUCER"},
+    {"id": "mask_benchmark_curator", "kind": "HUMAN_REVIEWED_BENCHMARK_PRODUCER"},
+    {"id": "mask_producer", "kind": "PRODUCER"},
+    {"id": "object_geometry_producer", "kind": "PRODUCER"},
+    {"id": "reveal_policy_owner", "kind": "CONFIG_POLICY_PRODUCER"},
+    {"id": "temporal_donor_atlas", "kind": "DONOR_MANIFEST_PRODUCER"},
+    {"id": "independent_mask_qa", "kind": "INDEPENDENT_QA_ONLY"},
+    {"id": "reveal_router", "kind": "PRODUCER"},
+    {"id": "clean_background_producer", "kind": "PRODUCER"},
+    {"id": "mask_clean_review_packager", "kind": "REVIEW_PACKAGE_ONLY"},
+    {"id": "human_mask_clean_reviewer", "kind": "EXTERNAL_HUMAN_GATE"},
+    {"id": "g2_004_analytic_object_evidence", "kind": "EXTERNAL_FROZEN_INPUT"},
+    {"id": "sam2_1_model_pin", "kind": "EXTERNAL_PINNED_MODEL"},
+    {"id": "g2_task_card_calibration_overlay", "kind": "EXTERNAL_TASK_CARD_INPUT"},
+    {"id": "retarget_producer", "kind": "PRODUCER"},
+    {"id": "base_ik_producer", "kind": "PRODUCER"},
+    {"id": "renderer", "kind": "PRODUCER"},
+    {"id": "compositor", "kind": "PRODUCER"},
+    {"id": "harmonizer", "kind": "PRODUCER"},
+    {"id": "qa_evaluator", "kind": "QA_ONLY"},
+    {"id": "promotion_manager", "kind": "RELEASE_ONLY"},
+    {"id": "formal_selector", "kind": "CONSUMER_ONLY"}
+  ],
+  "artifacts": [
+    {"id": "verified_source_manifest", "producer": "source_resolver", "namespace": "source", "schema": "contracts/verified_source_manifest.schema.json"},
+    {"id": "session_context", "producer": "session_profiler", "namespace": "context"},
+    {"id": "canary_set", "producer": "session_profiler", "namespace": "context", "schema": "contracts/canary_set.schema.json"},
+    {"id": "mask_benchmark", "producer": "mask_benchmark_curator", "namespace": "qa/benchmark", "schema": "contracts/mask_benchmark.schema.json"},
+    {"id": "mask_evidence", "producer": "mask_producer", "namespace": "masks", "schema": "contracts/mask_evidence.schema.json"},
+    {"id": "object_evidence", "producer": "object_geometry_producer", "namespace": "object"},
+    {"id": "object_geometry", "producer": "object_geometry_producer", "namespace": "object"},
+    {"id": "object_depth_sdf", "producer": "object_geometry_producer", "namespace": "object"},
+    {"id": "object_texture_donor", "producer": "object_geometry_producer", "namespace": "object", "schema": "contracts/object_texture_donor_manifest.schema.json"},
+    {"id": "verified_reveal_policy", "producer": "reveal_policy_owner", "namespace": "routing/policy", "schema": "contracts/verified_reveal_policy.schema.json"},
+    {"id": "temporal_atlas_manifest", "producer": "temporal_donor_atlas", "namespace": "clean/donor", "schema": "contracts/temporal_atlas_manifest.schema.json"},
+    {"id": "mask_independent_qa", "producer": "independent_mask_qa", "namespace": "qa/prerequisite_review", "schema": "contracts/mask_independent_qa.schema.json"},
+    {"id": "route_decision", "producer": "reveal_router", "namespace": "routing"},
+    {"id": "reveal_labels", "producer": "reveal_router", "namespace": "routing", "schema": "contracts/reveal_labels.schema.json"},
+    {"id": "clean_layers", "producer": "clean_background_producer", "namespace": "clean", "schema": "contracts/clean_layers.schema.json"},
+    {"id": "clean_coverage", "producer": "clean_background_producer", "namespace": "clean", "schema": "contracts/clean_coverage.schema.json"},
+    {"id": "mask_clean_review_package", "producer": "mask_clean_review_packager", "namespace": "qa/prerequisite_review", "schema": "contracts/mask_clean_review_package.schema.json"},
+    {"id": "resolved_retarget", "producer": "retarget_producer", "namespace": "retarget"},
+    {"id": "contact_gold_sidecar", "producer": "retarget_producer", "namespace": "004_CONTACT_GOLD/retarget"},
+    {"id": "base_ik_solution", "producer": "base_ik_producer", "namespace": "retarget"},
+    {"id": "render_layers", "producer": "renderer", "namespace": "render"},
+    {"id": "geometry_composite", "producer": "compositor", "namespace": "composite"},
+    {"id": "compositor_diagnostics", "producer": "compositor", "namespace": "composite"},
+    {"id": "geometry_gate_result", "producer": "compositor", "namespace": "composite"},
+    {"id": "final_robot_rgb", "producer": "harmonizer", "namespace": "FINAL"},
+    {"id": "harmonization_audit", "producer": "harmonizer", "namespace": "FINAL"},
+    {"id": "quality_report", "producer": "qa_evaluator", "namespace": "qa"},
+    {"id": "failure_attribution", "producer": "qa_evaluator", "namespace": "qa"},
+    {"id": "next_revision_advice", "producer": "qa_evaluator", "namespace": "qa"},
+    {"id": "session_manifest", "producer": "promotion_manager", "namespace": "release"},
+    {"id": "cohort_manifest", "producer": "promotion_manager", "namespace": "release"}
+  ],
+  "edges": [
+    {"from": "authoritative_raw", "to": "source_resolver", "mode": "READ_ONLY"},
+    {"from": "verified_source_manifest", "to": "session_profiler", "mode": "MANIFEST_AND_SHA"},
+    {"from": "g2_task_card_calibration_overlay", "to": "session_profiler", "mode": "DIMENSIONLESS_SHA_BOUND"},
+    {"from": "verified_source_manifest", "to": "mask_benchmark_curator", "mode": "READ_ONLY_SHA_BOUND"},
+    {"from": "canary_set", "to": "mask_benchmark_curator", "mode": "SELECTION_EVIDENCE_ONLY"},
+    {"from": "verified_source_manifest", "to": "mask_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "verified_source_manifest", "to": "object_geometry_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "verified_source_manifest", "to": "clean_background_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "session_context", "to": "mask_producer", "mode": "SCHEMA_AND_SHA"},
+    {"from": "sam2_1_model_pin", "to": "mask_producer", "mode": "CODE_CONFIG_WEIGHT_SHA_BOUND"},
+    {"from": "g2_task_card_calibration_overlay", "to": "mask_producer", "mode": "DIMENSIONLESS_SHA_BOUND"},
+    {"from": "session_context", "to": "object_geometry_producer", "mode": "SCHEMA_AND_SHA"},
+    {"from": "g2_task_card_calibration_overlay", "to": "reveal_policy_owner", "mode": "DIMENSIONLESS_SHA_BOUND"},
+    {"from": "verified_source_manifest", "to": "temporal_donor_atlas", "mode": "MANIFEST_AND_SHA"},
+    {"from": "session_context", "to": "temporal_donor_atlas", "mode": "SCHEMA_AND_SHA"},
+    {"from": "mask_evidence", "to": "temporal_donor_atlas", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_evidence", "to": "temporal_donor_atlas", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_geometry", "to": "temporal_donor_atlas", "mode": "MANIFEST_AND_SHA"},
+    {"from": "verified_reveal_policy", "to": "temporal_donor_atlas", "mode": "POLICY_AND_SHA"},
+    {"from": "verified_source_manifest", "to": "independent_mask_qa", "mode": "READ_ONLY_SHA_BOUND"},
+    {"from": "canary_set", "to": "independent_mask_qa", "mode": "READ_ONLY_SHA_BOUND"},
+    {"from": "mask_evidence", "to": "independent_mask_qa", "mode": "READ_ONLY_SHA_BOUND"},
+    {"from": "mask_benchmark", "to": "independent_mask_qa", "mode": "FROZEN_HUMAN_REVIEWED_SHA_BOUND"},
+    {"from": "session_context", "to": "reveal_router", "mode": "SCHEMA_AND_SHA"},
+    {"from": "mask_evidence", "to": "reveal_router", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_evidence", "to": "reveal_router", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_geometry", "to": "reveal_router", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_texture_donor", "to": "reveal_router", "mode": "MANIFEST_AND_SHA"},
+    {"from": "temporal_atlas_manifest", "to": "reveal_router", "mode": "MANIFEST_AND_SHA"},
+    {"from": "verified_reveal_policy", "to": "reveal_router", "mode": "POLICY_AND_SHA"},
+    {"from": "g2_task_card_calibration_overlay", "to": "reveal_router", "mode": "DIMENSIONLESS_SHA_BOUND"},
+    {"from": "g2_004_analytic_object_evidence", "to": "reveal_router", "mode": "G2_CALIBRATION_READ_ONLY_SHA_BOUND"},
+    {"from": "route_decision", "to": "clean_background_producer", "mode": "SCHEMA_AND_SHA"},
+    {"from": "reveal_labels", "to": "clean_background_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_texture_donor", "to": "clean_background_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "temporal_atlas_manifest", "to": "clean_background_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "verified_reveal_policy", "to": "clean_background_producer", "mode": "POLICY_AND_SHA"},
+    {"from": "g2_task_card_calibration_overlay", "to": "clean_background_producer", "mode": "DIMENSIONLESS_SHA_BOUND"},
+    {"from": "verified_source_manifest", "to": "mask_clean_review_packager", "mode": "004_RAW_READ_ONLY"},
+    {"from": "canary_set", "to": "mask_clean_review_packager", "mode": "STRESS_FRAME_SELECTION"},
+    {"from": "mask_evidence", "to": "mask_clean_review_packager", "mode": "READ_ONLY"},
+    {"from": "mask_independent_qa", "to": "mask_clean_review_packager", "mode": "PASS_AND_SHA_REQUIRED"},
+    {"from": "verified_reveal_policy", "to": "mask_clean_review_packager", "mode": "READ_ONLY_SHA_BOUND"},
+    {"from": "clean_layers", "to": "mask_clean_review_packager", "mode": "READ_ONLY"},
+    {"from": "clean_coverage", "to": "mask_clean_review_packager", "mode": "READ_ONLY"},
+    {"from": "g2_task_card_calibration_overlay", "to": "mask_clean_review_packager", "mode": "DIMENSIONLESS_SHA_BOUND"},
+    {"from": "mask_clean_review_package", "to": "human_mask_clean_reviewer", "mode": "FIRST_ROUTINE_VISUAL_REVIEW"},
+    {"from": "object_depth_sdf", "to": "retarget_producer", "mode": "PRODUCT_LINE_SCOPED"},
+    {"from": "resolved_retarget", "to": "base_ik_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_geometry", "to": "base_ik_producer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "resolved_retarget", "to": "renderer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "base_ik_solution", "to": "renderer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_geometry", "to": "renderer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "clean_layers", "to": "compositor", "mode": "MANIFEST_AND_SHA"},
+    {"from": "render_layers", "to": "compositor", "mode": "MANIFEST_AND_SHA"},
+    {"from": "object_depth_sdf", "to": "compositor", "mode": "MANIFEST_AND_SHA"},
+    {"from": "geometry_composite", "to": "harmonizer", "mode": "MANIFEST_AND_SHA"},
+    {"from": "geometry_gate_result", "to": "harmonizer", "mode": "PASS_AND_SHA_REQUIRED"},
+    {"from": "compositor_diagnostics", "to": "qa_evaluator", "mode": "READ_ONLY"},
+    {"from": "geometry_gate_result", "to": "qa_evaluator", "mode": "READ_ONLY_RECHECK"},
+    {"from": "final_robot_rgb", "to": "qa_evaluator", "mode": "READ_ONLY"},
+    {"from": "harmonization_audit", "to": "qa_evaluator", "mode": "READ_ONLY"},
+    {"from": "quality_report", "to": "promotion_manager", "mode": "PASS_AND_HUMAN_GATE_REQUIRED"},
+    {"from": "failure_attribution", "to": "promotion_manager", "mode": "REQUIRED_ON_FAILURE_AND_FORBIDDEN_ON_PASS"},
+    {"from": "session_manifest", "to": "cohort_manifest", "mode": "SHA_BOUND"},
+    {"from": "cohort_manifest", "to": "formal_selector", "mode": "ONLY_FORMAL_ENTRYPOINT"}
+  ],
+  "forbidden_edges": [
+    {"from": "qa_evaluator", "to": "any_producer_artifact", "reason": "QA may not overwrite upstream"},
+    {"from": "_run", "to": "formal_selector", "reason": "staging is never a formal source"},
+    {"from": "authoritative_raw", "to": "formal_robot_rgb_selector", "reason": "RobotRGB cannot silently fall back to RAW"},
+    {"from": "legacy", "to": "any_formal_consumer", "reason": "legacy fallback is forbidden"},
+    {"from": "004_CONTACT_GOLD/refinement", "to": "EXACT78_R2_VISUAL_DOMAIN", "reason": "product-line isolation"},
+    {"from": "HAND_ONLY_DIAGNOSTIC", "to": "formal_robot_rgb_selector", "reason": "diagnostic track is not a product line"},
+    {"from": "SYNTHETIC_TEST_ONLY", "to": "mask_clean_review_packager", "reason": "synthetic evidence cannot open a real human-review package"},
+    {"from": "SYNTHETIC_TEST_ONLY", "to": "any_formal_consumer", "reason": "synthetic evidence is never formal input"},
+    {"from": "clean_layers", "to": "temporal_donor_atlas", "reason": "donor construction cannot depend on CLEAN output"},
+    {"from": "mask_clean_review_package", "to": "any_upstream_producer", "reason": "review packaging is read-only and cannot create a cycle"},
+    {"from": "mask_benchmark", "to": "mask_producer", "reason": "blind benchmark labels cannot tune or enter the producer"}
+  ],
+  "formal_reference_chain": [
+    "cohort_manifest",
+    "session_manifest",
+    "final_robot_rgb"
+  ],
+  "phase_gates": {
+    "G0": {
+      "gate_kind": "MACHINE_CONSISTENCY_ONLY",
+      "routine_human_visual_review": false
+    },
+    "G1": {
+      "gate_kind": "MACHINE_CONTRACT_CONSISTENCY_ONLY",
+      "routine_human_visual_review": false
+    },
+    "G2_FIRST_ROUTINE_HUMAN_REVIEW": {
+      "required_product_line": "004_CONTACT_GOLD",
+      "required_package": "mask_clean_review_package",
+      "waiting_state": "AWAITING_HUMAN_MASK_CLEAN_REVIEW",
+      "required_contents": ["RAW_STRESS_FRAMES", "MASK_STRESS_FRAMES", "CLEAN_STRESS_FRAMES", "FULL_MASK_CLEAN_PREVIEW_VIDEO"],
+      "blocked_until_approved": ["OBJECT6D_REFINEMENT", "RETARGET", "BASE_IK", "RENDERER", "COMPOSITOR", "HARMONIZER", "FINAL_ROBOT"]
+    }
+  },
+  "calibration_overlay_policy": {
+    "scope": "G2_004_MASK_CLEAN_REVIEW_ONLY",
+    "location": "TASK_CARD_ONLY",
+    "values": "DIMENSIONLESS_ONLY",
+    "sha256_binding_required": true,
+    "review_state": "UNREVIEWED_CALIBRATION_OVERLAY",
+    "allowed_routes": ["ANALYTIC_GEOMETRY_TEXTURE", "TEMPORAL_DONOR_ATLAS"],
+    "formal_consumer_allowed": false
+  },
+  "validation_rules": {
+    "artifact_producer_cardinality": 1,
+    "all_references_require_sha256": true,
+    "ordinary_files_only": true,
+    "missing_reference_action": "HOLD",
+    "digest_mismatch_action": "STOP",
+    "manual_gate_unreviewed_action": "WAIT_FOR_HUMAN",
+    "fallback_allowed": false,
+    "formal_clean_enabled": false,
+    "synthetic_test_only_formal_consumer_allowed": false,
+    "pre_post_object_overlap_accounting_required": true,
+    "mask_candidate_ranking_requires_same_frozen_auditor_and_benchmark": true,
+    "v10_heuristic_authorized": false
+  }
+}

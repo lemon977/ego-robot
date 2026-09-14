@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/table_plane_static_candidate.schema.json",
+  "title": "Session-static Table Plane Plumbing Candidate",
+  "x-document-status": "DRAFT_T1_PLUMBING_ONLY",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "AUTH_TIER", "WHY_NOT_BLOCKED", "status", "artifact_state",
+    "producer", "session_id", "frames_used", "plane", "estimation_quality",
+    "source_support", "contact_reanchor_policy", "physical_gates_ref", "oracle_prep_ref",
+    "input_evidence_ref", "schema_ref", "object_atlas_status", "plumbing_only",
+    "is_clean_candidate", "formal_consumer_allowed", "candidate_requires_human_review",
+    "next_bucket_blocked", "fallback_used", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "table-plane-static-candidate-v1"},
+    "AUTH_TIER": {"const": "T1"},
+    "WHY_NOT_BLOCKED": {"type": "string", "minLength": 1},
+    "status": {"const": "PASS_STATIC_TABLE_PLANE_PLUMBING_ONLY_LOCAL_SUPPORT"},
+    "artifact_state": {"const": "PLUMBING_CANDIDATE_REQUIRES_HUMAN_REVIEW"},
+    "producer": {"const": "table_plane_static_producer"},
+    "session_id": {"const": "grap_a_cap_004"},
+    "frames_used": {
+      "type": "array", "minItems": 15, "maxItems": 15, "uniqueItems": true,
+      "items": {"type": "integer", "minimum": 228, "maximum": 242}
+    },
+    "plane": {
+      "type": "object", "additionalProperties": false,
+      "required": ["coordinate_frame", "normal", "offset_m", "cardinality", "orientation_policy", "fit_method", "anchor_point_count", "per_frame_offsets_present"],
+      "properties": {
+        "coordinate_frame": {"const": "FROZEN_RAW_WORLD_C2W"},
+        "normal": {"$ref": "#/$defs/unitVector3"},
+        "offset_m": {"type": "number"},
+        "cardinality": {"const": 1},
+        "orientation_policy": {"const": "NORMAL_WORLD_NEGATIVE_Y"},
+        "fit_method": {"const": "SVD_ALL_15_APRILTAG_CORNER_SETS_ONCE_PER_SESSION"},
+        "anchor_point_count": {"const": 60},
+        "per_frame_offsets_present": {"const": false}
+      }
+    },
+    "estimation_quality": {
+      "type": "object", "additionalProperties": false,
+      "required": ["pass", "confidence_consumed_by_physical_gates", "thresholds", "metrics", "per_frame_residuals"],
+      "properties": {
+        "pass": {"const": true},
+        "confidence_consumed_by_physical_gates": {"const": false},
+        "thresholds": {
+          "type": "object", "additionalProperties": false,
+          "required": ["required_anchor_frames", "required_anchor_points", "tag_corner_reprojection_max_px", "residual_p95_max_m", "residual_max_m"],
+          "properties": {
+            "required_anchor_frames": {"const": 15},
+            "required_anchor_points": {"const": 60},
+            "tag_corner_reprojection_max_px": {"const": 1.0},
+            "residual_p95_max_m": {"const": 0.01},
+            "residual_max_m": {"const": 0.015}
+          }
+        },
+        "metrics": {
+          "type": "object", "additionalProperties": false,
+          "required": ["tag_corner_reprojection_max_px", "residual_mean_abs_m", "residual_p95_abs_m", "residual_max_abs_m", "loo_normal_delta_max_deg", "loo_offset_delta_max_m"],
+          "properties": {
+            "tag_corner_reprojection_max_px": {"type": "number", "minimum": 0},
+            "residual_mean_abs_m": {"type": "number", "minimum": 0},
+            "residual_p95_abs_m": {"type": "number", "minimum": 0},
+            "residual_max_abs_m": {"type": "number", "minimum": 0},
+            "loo_normal_delta_max_deg": {"type": "number", "minimum": 0},
+            "loo_offset_delta_max_m": {"type": "number", "minimum": 0}
+          }
+        },
+        "per_frame_residuals": {
+          "type": "array", "minItems": 15, "maxItems": 15,
+          "items": {
+            "type": "object", "additionalProperties": false,
+            "required": ["frame_index", "corner_count", "signed_mean_m", "abs_max_m"],
+            "properties": {
+              "frame_index": {"type": "integer", "minimum": 228, "maximum": 242},
+              "corner_count": {"const": 4},
+              "signed_mean_m": {"type": "number"},
+              "abs_max_m": {"type": "number", "minimum": 0}
+            }
+          }
+        }
+      }
+    },
+    "source_support": {
+      "type": "object", "additionalProperties": false,
+      "required": ["semantics", "frame_count", "all_frames_pass", "geometry_certain", "support_expanded", "expansion_evidence_ref", "frame_support_refs"],
+      "properties": {
+        "semantics": {"const": "APRILTAG_QUAD_ERODED_3PX_ONLY"},
+        "frame_count": {"const": 15},
+        "all_frames_pass": {"const": true},
+        "geometry_certain": {"const": true},
+        "support_expanded": {"const": false},
+        "expansion_evidence_ref": {"type": "null"},
+        "frame_support_refs": {
+          "type": "array", "minItems": 15, "maxItems": 15,
+          "items": {"$ref": "#/$defs/ref"}
+        }
+      }
+    },
+    "contact_reanchor_policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contact_state", "independent_contact_valid_frames", "independent_contact_valid_count", "per_frame_reanchor_count", "reanchor_allowed_without_independent_contact", "object6d_confidence_is_contact_evidence"],
+      "properties": {
+        "contact_state": {"const": "UNRESOLVED"},
+        "independent_contact_valid_frames": {"type": "array", "maxItems": 0},
+        "independent_contact_valid_count": {"const": 0},
+        "per_frame_reanchor_count": {"const": 0},
+        "reanchor_allowed_without_independent_contact": {"const": false},
+        "object6d_confidence_is_contact_evidence": {"const": false}
+      }
+    },
+    "physical_gates_ref": {"$ref": "#/$defs/ref"},
+    "oracle_prep_ref": {"$ref": "#/$defs/ref"},
+    "input_evidence_ref": {"$ref": "#/$defs/ref"},
+    "schema_ref": {"$ref": "#/$defs/ref"},
+    "object_atlas_status": {"const": "SKIPPED_UNRESOLVED"},
+    "plumbing_only": {"const": true},
+    "is_clean_candidate": {"const": false},
+    "formal_consumer_allowed": {"const": false},
+    "candidate_requires_human_review": {"const": true},
+    "next_bucket_blocked": {"const": true},
+    "fallback_used": {"const": false},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "unitVector3": {
+      "type": "array", "minItems": 3, "maxItems": 3,
+      "items": {"type": "number", "minimum": -1, "maximum": 1}
+    },
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

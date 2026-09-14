@@ -1,0 +1,63 @@
+{
+  "schema_version": "object6d-mask-role-mapping-v1",
+  "task_id": "poker",
+  "template_only": true,
+  "instances": [
+    {
+      "object_id": "card_0",
+      "mask_role": "card_slot_0",
+      "published_union_role": "card_visible_union",
+      "geometry_id": "FILL_FROM_OBJECT6D_GEOMETRY_REGISTRY",
+      "mesh_scale_to_m": null,
+      "origin_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "axis_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "bounds_center_object_m": null,
+      "metric_dimensions_m": null,
+      "session_static": false,
+      "area_fraction_min": 0.00003,
+      "area_fraction_max": 0.03
+    },
+    {
+      "object_id": "card_1",
+      "mask_role": "card_slot_1",
+      "published_union_role": "card_visible_union",
+      "geometry_id": "FILL_FROM_OBJECT6D_GEOMETRY_REGISTRY",
+      "mesh_scale_to_m": null,
+      "origin_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "axis_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "bounds_center_object_m": null,
+      "metric_dimensions_m": null,
+      "session_static": false,
+      "area_fraction_min": 0.00003,
+      "area_fraction_max": 0.03
+    },
+    {
+      "object_id": "card_2",
+      "mask_role": "card_slot_2",
+      "published_union_role": "card_visible_union",
+      "geometry_id": "FILL_FROM_OBJECT6D_GEOMETRY_REGISTRY",
+      "mesh_scale_to_m": null,
+      "origin_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "axis_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "bounds_center_object_m": null,
+      "metric_dimensions_m": null,
+      "session_static": false,
+      "area_fraction_min": 0.00003,
+      "area_fraction_max": 0.03
+    },
+    {
+      "object_id": "rack",
+      "mask_role": "rack",
+      "published_union_role": "rack",
+      "geometry_id": "FILL_FROM_OBJECT6D_GEOMETRY_REGISTRY",
+      "mesh_scale_to_m": null,
+      "origin_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "axis_definition": "FILL_FROM_CAPTURE_MANIFEST",
+      "bounds_center_object_m": null,
+      "metric_dimensions_m": null,
+      "session_static": true,
+      "area_fraction_min": 0.003,
+      "area_fraction_max": 0.15
+    }
+  ]
+}

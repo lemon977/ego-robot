@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/mask_houb_labels_v1.schema.json",
+  "title": "Frozen Human H/O/U/B Labels",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_state", "producer", "benchmark_manifest_ref",
+    "completed_by_human", "frozen", "human_approval_ref", "frames", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "mask-houb-labels-v1"},
+    "artifact_state": {"enum": ["FROZEN", "SYNTHETIC_TEST_ONLY"]},
+    "producer": {"const": "human_label_curator"},
+    "benchmark_manifest_ref": {"$ref": "#/$defs/ref"},
+    "completed_by_human": {"type": "boolean"},
+    "frozen": {"type": "boolean"},
+    "human_approval_ref": {"$ref": "#/$defs/ref"},
+    "frames": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sample_id", "source_image_sha256", "h_mask", "o_mask", "u_mask", "b_mask"
+        ],
+        "properties": {
+          "sample_id": {"type": "string", "minLength": 1},
+          "source_image_sha256": {"$ref": "#/$defs/sha256"},
+          "h_mask": {"$ref": "#/$defs/ref"},
+          "o_mask": {"$ref": "#/$defs/ref"},
+          "u_mask": {"$ref": "#/$defs/ref"},
+          "b_mask": {"$ref": "#/$defs/ref"}
+        }
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "bytes", "producer", "schema_version"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "status": "DISABLED_WRONG_ICT_INPUT",
+  "written_at": "2026-09-07T10:52:00+08:00",
+  "reason": "User confirmed CK-poker must match the prior ICT-conditioned training contract. The current bundle supplies entities.hands while hand_tracking_method=hawor_v3 reads entities.hands_hawor_v3, producing zero_state_ratio=1.0. Do not restart CK-poker or start CK-chips until the adapter, bundle, and epoch-0 ICT gates pass.",
+  "affected_run": "HumanEgo/artifacts/newtask_robot_runs/ck_poker",
+  "restart_authority": "Remove this sentinel only after a reviewed corrected bundle preflight and explicit restart decision."
+}

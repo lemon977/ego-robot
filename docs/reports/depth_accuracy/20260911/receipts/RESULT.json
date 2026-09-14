@@ -1,0 +1,126 @@
+{
+  "aggregate": {
+    "frame_balanced_aligned_abs_mae_mm": 13.985923191798443,
+    "frame_balanced_aligned_abs_p95_mm": 43.43291310792753,
+    "frame_balanced_median_delta_mean_mm": -53.950899174659156,
+    "frame_balanced_raw_abs_mae_mm": 59.14764986637908,
+    "pixel_weighted_aligned_abs_mae_mm": 12.809246063232422,
+    "pixel_weighted_aligned_abs_p95_mm": 43.27000808715822,
+    "pixel_weighted_raw_abs_mae_mm": 52.36759567260742,
+    "proxy_key_joint_median_delta_mm": {
+      "index": -87.05005049705505,
+      "middle": -39.12392258644104,
+      "pinky": 48.901572823524475,
+      "ring": -72.76606559753418,
+      "thumb": -81.18939399719238,
+      "wrist": -2.8593242168426514
+    }
+  },
+  "artifacts": {
+    "Chips034_Right_3D_Depth_Comparison.mp4": {
+      "bytes": 6675475,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_3D_Depth_Comparison.mp4",
+      "sha256": "fa25f76023dc633abaca8dbc0ad5c4e99fc5788d2e137c5d650f7be99ae48b85"
+    },
+    "Chips034_Right_Median_Z_Aligned_Auxiliary.mp4": {
+      "bytes": 6134549,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Median_Z_Aligned_Auxiliary.mp4",
+      "sha256": "86cf029346307b7b7c6fe27b07c88dd141ffef97efc076e60078a38e3eaab89c"
+    },
+    "Chips034_Right_Proxy_Skeleton.mp4": {
+      "bytes": 4319398,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.mp4",
+      "sha256": "dd7e4058889bb4dc295c32e9009f2f297c8cf558b335c496ba06ec12f5b51630"
+    },
+    "Chips034_Right_Proxy_Skeleton.png": {
+      "bytes": 1775845,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/Chips034_Right_Proxy_Skeleton.png",
+      "sha256": "9925e359f2b1232d2f4111d9f5268b0c9831eb19055f50153c87e72df0332b67"
+    },
+    "FRAME_METRICS.json": {
+      "bytes": 220529,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/FRAME_METRICS.json",
+      "sha256": "431e5085d256e201bcf8eeb21a6302513950e1cd96e9c1f642b8c6195851b12b"
+    }
+  },
+  "authority": false,
+  "claim_limit": "DIAGNOSTIC_ONLY_NO_EXTERNAL_GT. Stereo proxy points are visible-surface depth sampled at HaWoR rays, not stereo joints or physical ground truth. Median-Z alignment is a per-frame visualization experiment, not a pose fix.",
+  "colors_bgr": {
+    "median_z_shifted_mano": [
+      70,
+      215,
+      80
+    ],
+    "original_hawor_mano": [
+      30,
+      145,
+      255
+    ],
+    "registered_stereo_visible_surface_proxy": [
+      255,
+      220,
+      40
+    ]
+  },
+  "external_ground_truth": false,
+  "fps": 30.0,
+  "frames": 293,
+  "inputs": {
+    "hawor_npz": {
+      "bytes": 721026,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/hawor_fresh_bounded_v2_v1/get_potato_chips_0902_034/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+      "sha256": "b569609aa1fe657c0ed98ac8554ac41e73eee629ed78df2fbea5e914a0560095"
+    },
+    "registration": {
+      "bytes": 2136947,
+      "path": "/mnt/workspace/code/chaoyang/data/processed/chips/get_potato_chips_0902_034/depth/20260908_foundationstereo_corrected_metric_batch_v1/REGISTRATION_AUTHORITY.npz",
+      "sha256": "b3a662bd488a32e82d16a6247eaa1006ee5fd489069772800666db4e15a2602e"
+    },
+    "rgb": {
+      "bytes": 12930550,
+      "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_034/CameraRecord_get_potato_chips_0902_034.mp4",
+      "sha256": "289135c9c8ecb303313c099799a592671ff38e5da00bb5682cdeed1af63b0205"
+    },
+    "surface_cache": {
+      "bytes": 4913451,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_hawor_stereo_surface_consistency_qa_v1/baseline_canary_v2/get_potato_chips_0902_034/MANO_VISIBLE_SURFACE_CACHE.npz",
+      "sha256": "5d94e44c27496b681c9438abc654d592acf398c47b6fef4b2558677974f2d9cb"
+    }
+  },
+  "schema_version": "hawor-stereo-spatial-relation-result-v1",
+  "session": "get_potato_chips_0902_034",
+  "side": "right",
+  "status": "PASS_DIAGNOSTIC_RENDER_NO_EXTERNAL_GT",
+  "validation": {
+    "Chips034_Right_3D_Depth_Comparison.mp4": {
+      "avg_frame_rate": "30/1",
+      "codec_name": "h264",
+      "exact": true,
+      "ffmpeg_xerror": true,
+      "height": 720,
+      "nb_read_frames": "293",
+      "pix_fmt": "yuv420p",
+      "width": 1920
+    },
+    "Chips034_Right_Median_Z_Aligned_Auxiliary.mp4": {
+      "avg_frame_rate": "30/1",
+      "codec_name": "h264",
+      "exact": true,
+      "ffmpeg_xerror": true,
+      "height": 720,
+      "nb_read_frames": "293",
+      "pix_fmt": "yuv420p",
+      "width": 1920
+    },
+    "Chips034_Right_Proxy_Skeleton.mp4": {
+      "avg_frame_rate": "30/1",
+      "codec_name": "h264",
+      "exact": true,
+      "ffmpeg_xerror": true,
+      "height": 720,
+      "nb_read_frames": "293",
+      "pix_fmt": "yuv420p",
+      "width": 1920
+    }
+  }
+}

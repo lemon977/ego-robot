@@ -1,0 +1,508 @@
+{
+  "claim_limit": "INTERNAL_CROSS_SENSOR_COMPARISON_ONLY_NO_EXTERNAL_GT. Region labels are MANO-surface proxies, not anatomical ground-truth segmentation.",
+  "inputs": {
+    "hawor_npz": {
+      "bytes": 721026,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/hawor_fresh_bounded_v2_v1/get_potato_chips_0902_034/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+      "sha256": "b569609aa1fe657c0ed98ac8554ac41e73eee629ed78df2fbea5e914a0560095"
+    },
+    "registration": {
+      "bytes": 2136947,
+      "path": "/mnt/workspace/code/chaoyang/data/processed/chips/get_potato_chips_0902_034/depth/20260908_foundationstereo_corrected_metric_batch_v1/REGISTRATION_AUTHORITY.npz",
+      "sha256": "b3a662bd488a32e82d16a6247eaa1006ee5fd489069772800666db4e15a2602e"
+    },
+    "surface_cache": {
+      "bytes": 4913451,
+      "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_hawor_stereo_surface_consistency_qa_v1/baseline_canary_v2/get_potato_chips_0902_034/MANO_VISIBLE_SURFACE_CACHE.npz",
+      "sha256": "5d94e44c27496b681c9438abc654d592acf398c47b6fef4b2558677974f2d9cb"
+    }
+  },
+  "schema_version": "hawor-stereo-three-window-regional-analysis-v1",
+  "session": "get_potato_chips_0902_034",
+  "side": "right",
+  "windows": {
+    "020-060": {
+      "end_frame": 60,
+      "frame_count": 41,
+      "regions": {
+        "index": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 19.605252949439283,
+            "abs_p50_mm": 15.503978729248047,
+            "abs_p95_mm": 51.00821876525879,
+            "samples": 37051,
+            "signed_mean_mm": -19.592405288249818,
+            "signed_p50_mm": -15.503978729248047
+          },
+          "raw": {
+            "abs_mae_mm": 40.40894793151761,
+            "abs_p50_mm": 17.09779930114746,
+            "abs_p95_mm": 122.06587219238281,
+            "samples": 37051,
+            "signed_mean_mm": -40.40894793151761,
+            "signed_p50_mm": -17.09779930114746
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 37051,
+          "stereo_valid_coverage": 1.0,
+          "support_pixels": 37051
+        },
+        "middle": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 12.003912698093373,
+            "abs_p50_mm": 7.144758224487305,
+            "abs_p95_mm": 44.197642517089825,
+            "samples": 58907,
+            "signed_mean_mm": -10.89999598905623,
+            "signed_p50_mm": -6.665825366973877
+          },
+          "raw": {
+            "abs_mae_mm": 25.748841067307435,
+            "abs_p50_mm": 9.397903442382812,
+            "abs_p95_mm": 116.19849548339842,
+            "samples": 58907,
+            "signed_mean_mm": -25.207192859200102,
+            "signed_p50_mm": -9.390334129333496
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 58907,
+          "stereo_valid_coverage": 0.9995249003139052,
+          "support_pixels": 58935
+        },
+        "palm": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 6.320592803026056,
+            "abs_p50_mm": 4.361947298049927,
+            "abs_p95_mm": 16.25446395874023,
+            "samples": 441118,
+            "signed_mean_mm": -1.2933783366021028,
+            "signed_p50_mm": -0.9186478555202484
+          },
+          "raw": {
+            "abs_mae_mm": 19.633997794830808,
+            "abs_p50_mm": 8.17229413986206,
+            "abs_p95_mm": 76.68087196350098,
+            "samples": 441118,
+            "signed_mean_mm": -16.162529194834875,
+            "signed_p50_mm": -5.676687717437744
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 441118,
+          "stereo_valid_coverage": 0.9999501292106814,
+          "support_pixels": 441140
+        },
+        "pinky": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 9.354074145241876,
+            "abs_p50_mm": 8.604288578033447,
+            "abs_p95_mm": 14.979889869689941,
+            "samples": 14762,
+            "signed_mean_mm": 7.230833696248919,
+            "signed_p50_mm": 8.499025821685791
+          },
+          "raw": {
+            "abs_mae_mm": 9.284989453034106,
+            "abs_p50_mm": 7.072093486785889,
+            "abs_p95_mm": 16.098238372802726,
+            "samples": 14762,
+            "signed_mean_mm": 4.8613120689243745,
+            "signed_p50_mm": 6.653724908828735
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 14762,
+          "stereo_valid_coverage": 1.0,
+          "support_pixels": 14762
+        },
+        "ring": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 10.194996808845653,
+            "abs_p50_mm": 3.819337010383606,
+            "abs_p95_mm": 50.923644065856934,
+            "samples": 22676,
+            "signed_mean_mm": -6.656463999706325,
+            "signed_p50_mm": -0.16301605850458145
+          },
+          "raw": {
+            "abs_mae_mm": 21.633125083372775,
+            "abs_p50_mm": 4.829553842544556,
+            "abs_p95_mm": 123.04356384277344,
+            "samples": 22676,
+            "signed_mean_mm": -18.63566797973675,
+            "signed_p50_mm": -2.058010458946228
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 22676,
+          "stereo_valid_coverage": 0.9988107298594899,
+          "support_pixels": 22703
+        },
+        "thumb": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 7.560982304957629,
+            "abs_p50_mm": 5.644595623016357,
+            "abs_p95_mm": 22.984595775604248,
+            "samples": 402286,
+            "signed_mean_mm": -0.07300198304199401,
+            "signed_p50_mm": 2.858041286468506
+          },
+          "raw": {
+            "abs_mae_mm": 35.15143655052254,
+            "abs_p50_mm": 29.768613815307617,
+            "abs_p95_mm": 83.09663200378418,
+            "samples": 402286,
+            "signed_mean_mm": -30.92053078274022,
+            "signed_p50_mm": -29.768613815307617
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 402286,
+          "stereo_valid_coverage": 0.9999900569241095,
+          "support_pixels": 402290
+        }
+      },
+      "start_frame": 20,
+      "whole_hand_after_per_frame_median_z_correction": {
+        "abs_mae_mm": 7.813861472280034,
+        "abs_p50_mm": 5.3091044425964355,
+        "abs_p95_mm": 24.065604305267314,
+        "samples": 976800,
+        "signed_mean_mm": -2.059894372984103,
+        "signed_p50_mm": 0.0
+      },
+      "whole_hand_frame_median_offset_mm": {
+        "mean": -39.45545380953464,
+        "median": -49.792386240369716,
+        "p05": -78.59394919108148,
+        "p95": 3.4909083017679032
+      },
+      "whole_hand_raw": {
+        "abs_mae_mm": 27.0714960203547,
+        "abs_p50_mm": 12.19257402420044,
+        "abs_p95_mm": 83.83749008178707,
+        "samples": 976800,
+        "signed_mean_mm": -23.44530196329567,
+        "signed_p50_mm": -9.653179168701172
+      }
+    },
+    "090-120": {
+      "end_frame": 120,
+      "frame_count": 31,
+      "regions": {
+        "index": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 48.31261312767387,
+            "abs_p50_mm": 49.87455368041992,
+            "abs_p95_mm": 61.6102409362793,
+            "samples": 17741,
+            "signed_mean_mm": -48.31261312767387,
+            "signed_p50_mm": -49.87455368041992
+          },
+          "raw": {
+            "abs_mae_mm": 117.9250386124513,
+            "abs_p50_mm": 119.26715850830078,
+            "abs_p95_mm": 133.33363342285156,
+            "samples": 17741,
+            "signed_mean_mm": -117.9250386124513,
+            "signed_p50_mm": -119.26715850830078
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 17741,
+          "stereo_valid_coverage": 1.0,
+          "support_pixels": 17741
+        },
+        "middle": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 65.2714386091289,
+            "abs_p50_mm": 66.75341796875,
+            "abs_p95_mm": 89.43422317504883,
+            "samples": 13470,
+            "signed_mean_mm": -64.97403418363778,
+            "signed_p50_mm": -66.75341796875
+          },
+          "raw": {
+            "abs_mae_mm": 134.6118353825989,
+            "abs_p50_mm": 137.75250244140625,
+            "abs_p95_mm": 158.39994506835936,
+            "samples": 13470,
+            "signed_mean_mm": -134.6118353825989,
+            "signed_p50_mm": -137.75250244140625
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 13470,
+          "stereo_valid_coverage": 0.9987395269518796,
+          "support_pixels": 13487
+        },
+        "palm": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 16.69067850813681,
+            "abs_p50_mm": 10.657169818878174,
+            "abs_p95_mm": 59.91955509185794,
+            "samples": 144854,
+            "signed_mean_mm": -5.581437881907367,
+            "signed_p50_mm": -1.8495122790336609
+          },
+          "raw": {
+            "abs_mae_mm": 74.90587813770755,
+            "abs_p50_mm": 71.34940338134766,
+            "abs_p95_mm": 119.81467628479008,
+            "samples": 144854,
+            "signed_mean_mm": -74.90492295851199,
+            "signed_p50_mm": -71.34940338134766
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 144854,
+          "stereo_valid_coverage": 0.9995238850976036,
+          "support_pixels": 144923
+        },
+        "pinky": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 67.97438127512417,
+            "abs_p50_mm": 67.52738952636719,
+            "abs_p95_mm": 77.899698638916,
+            "samples": 1083,
+            "signed_mean_mm": -66.90719874303647,
+            "signed_p50_mm": -67.52738952636719
+          },
+          "raw": {
+            "abs_mae_mm": 135.6549886151089,
+            "abs_p50_mm": 136.1891326904297,
+            "abs_p95_mm": 146.0687744140625,
+            "samples": 1083,
+            "signed_mean_mm": -135.65437593841486,
+            "signed_p50_mm": -136.1891326904297
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 1083,
+          "stereo_valid_coverage": 0.9990774907749077,
+          "support_pixels": 1084
+        },
+        "ring": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 57.05328198953554,
+            "abs_p50_mm": 57.25757598876953,
+            "abs_p95_mm": 69.86019668579101,
+            "samples": 8803,
+            "signed_mean_mm": -56.97461072358979,
+            "signed_p50_mm": -57.25757598876953
+          },
+          "raw": {
+            "abs_mae_mm": 126.33195262511562,
+            "abs_p50_mm": 127.16899871826172,
+            "abs_p95_mm": 137.80459442138672,
+            "samples": 8803,
+            "signed_mean_mm": -126.33195262511562,
+            "signed_p50_mm": -127.16899871826172
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 8803,
+          "stereo_valid_coverage": 0.9997728563316297,
+          "support_pixels": 8805
+        },
+        "thumb": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 13.107254128530688,
+            "abs_p50_mm": 10.460521697998047,
+            "abs_p95_mm": 41.264930725097656,
+            "samples": 242166,
+            "signed_mean_mm": -0.32905269151127264,
+            "signed_p50_mm": 4.057271957397461
+          },
+          "raw": {
+            "abs_mae_mm": 69.6480271959187,
+            "abs_p50_mm": 65.33025360107422,
+            "abs_p95_mm": 110.62370681762695,
+            "samples": 242166,
+            "signed_mean_mm": -69.6480271959187,
+            "signed_p50_mm": -65.33025360107422
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 242166,
+          "stereo_valid_coverage": 1.0,
+          "support_pixels": 242166
+        }
+      },
+      "start_frame": 90,
+      "whole_hand_after_per_frame_median_z_correction": {
+        "abs_mae_mm": 18.46228832712852,
+        "abs_p50_mm": 11.935572624206543,
+        "abs_p95_mm": 60.197649383544906,
+        "samples": 428117,
+        "signed_mean_mm": -7.461748263742064,
+        "signed_p50_mm": 0.0
+      },
+      "whole_hand_frame_median_offset_mm": {
+        "mean": -69.26754840750742,
+        "median": -68.94278629043148,
+        "p05": -73.14096314878753,
+        "p95": -66.27094926504975
+      },
+      "whole_hand_raw": {
+        "abs_mae_mm": 76.80410796567877,
+        "abs_p50_mm": 69.5033187866211,
+        "abs_p95_mm": 128.58052673339841,
+        "samples": 428117,
+        "signed_mean_mm": -76.80378322955278,
+        "signed_p50_mm": -69.5033187866211
+      }
+    },
+    "180-210": {
+      "end_frame": 210,
+      "frame_count": 31,
+      "regions": {
+        "index": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 38.487877978059345,
+            "abs_p50_mm": 36.54650688171387,
+            "abs_p95_mm": 55.5439691543579,
+            "samples": 17928,
+            "signed_mean_mm": -38.487877978059345,
+            "signed_p50_mm": -36.54650688171387
+          },
+          "raw": {
+            "abs_mae_mm": 107.65367774716556,
+            "abs_p50_mm": 108.94028091430664,
+            "abs_p95_mm": 128.51713867187496,
+            "samples": 17928,
+            "signed_mean_mm": -107.65367774716556,
+            "signed_p50_mm": -108.94028091430664
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 17928,
+          "stereo_valid_coverage": 0.999888455103179,
+          "support_pixels": 17930
+        },
+        "middle": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 77.90550550619292,
+            "abs_p50_mm": 81.83145904541016,
+            "abs_p95_mm": 100.67902565002441,
+            "samples": 10610,
+            "signed_mean_mm": -77.50205560190204,
+            "signed_p50_mm": -81.83145904541016
+          },
+          "raw": {
+            "abs_mae_mm": 146.11921059683064,
+            "abs_p50_mm": 153.51001739501953,
+            "abs_p95_mm": 173.3267059326172,
+            "samples": 10610,
+            "signed_mean_mm": -146.11921059683064,
+            "signed_p50_mm": -153.51001739501953
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 10610,
+          "stereo_valid_coverage": 0.995776630689817,
+          "support_pixels": 10655
+        },
+        "palm": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 17.14193642352737,
+            "abs_p50_mm": 12.747751235961914,
+            "abs_p95_mm": 64.22565460205078,
+            "samples": 123901,
+            "signed_mean_mm": -5.143031054459043,
+            "signed_p50_mm": -3.329564094543457
+          },
+          "raw": {
+            "abs_mae_mm": 74.67472622481866,
+            "abs_p50_mm": 74.34400177001953,
+            "abs_p95_mm": 108.1353759765625,
+            "samples": 123901,
+            "signed_mean_mm": -74.67257473277348,
+            "signed_p50_mm": -74.34400177001953
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 123901,
+          "stereo_valid_coverage": 0.9995562941688987,
+          "support_pixels": 123956
+        },
+        "pinky": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": null,
+            "abs_p50_mm": null,
+            "abs_p95_mm": null,
+            "samples": 0,
+            "signed_mean_mm": null,
+            "signed_p50_mm": null
+          },
+          "raw": {
+            "abs_mae_mm": null,
+            "abs_p50_mm": null,
+            "abs_p95_mm": null,
+            "samples": 0,
+            "signed_mean_mm": null,
+            "signed_p50_mm": null
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 0,
+          "stereo_valid_coverage": 0.0,
+          "support_pixels": 0
+        },
+        "ring": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 69.74384426694999,
+            "abs_p50_mm": 74.57083892822266,
+            "abs_p95_mm": 86.16854248046874,
+            "samples": 1809,
+            "signed_mean_mm": -66.68935784554205,
+            "signed_p50_mm": -74.57083892822266
+          },
+          "raw": {
+            "abs_mae_mm": 138.527788094752,
+            "abs_p50_mm": 148.53338623046875,
+            "abs_p95_mm": 162.48712463378905,
+            "samples": 1809,
+            "signed_mean_mm": -138.527788094752,
+            "signed_p50_mm": -148.53338623046875
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 1809,
+          "stereo_valid_coverage": 0.9955971381397909,
+          "support_pixels": 1817
+        },
+        "thumb": {
+          "after_per_frame_median_z_correction": {
+            "abs_mae_mm": 11.959431052801468,
+            "abs_p50_mm": 9.746994018554688,
+            "abs_p95_mm": 34.69584579467772,
+            "samples": 235645,
+            "signed_mean_mm": -0.07088257342115,
+            "signed_p50_mm": 3.765861749649048
+          },
+          "raw": {
+            "abs_mae_mm": 69.69702145622351,
+            "abs_p50_mm": 67.24623107910156,
+            "abs_p95_mm": 106.80546112060546,
+            "samples": 235645,
+            "signed_mean_mm": -69.69702145622351,
+            "signed_p50_mm": -67.24623107910156
+          },
+          "region_semantics": "MANO surface proxy grouped by nearest posed MANO joint; not anatomical GT",
+          "retained_pixels": 235645,
+          "stereo_valid_coverage": 1.0,
+          "support_pixels": 235645
+        }
+      },
+      "start_frame": 180,
+      "whole_hand_after_per_frame_median_z_correction": {
+        "abs_mae_mm": 16.888833344889836,
+        "abs_p50_mm": 11.415044784545898,
+        "abs_p95_mm": 57.04008789062498,
+        "samples": 389893,
+        "signed_mean_mm": -5.86539986448018,
+        "signed_p50_mm": 0.0
+      },
+      "whole_hand_frame_median_offset_mm": {
+        "mean": -69.49550284266228,
+        "median": -71.23172425457314,
+        "p05": -78.05592045309982,
+        "p95": -52.51984706788578
+      },
+      "whole_hand_raw": {
+        "abs_mae_mm": 75.42316636302782,
+        "abs_p50_mm": 71.03724670410156,
+        "abs_p95_mm": 118.59613952636718,
+        "samples": 389893,
+        "signed_mean_mm": -75.4224826574576,
+        "signed_p50_mm": -71.03724670410156
+      }
+    }
+  }
+}

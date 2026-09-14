@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "created_at", "source_receipt", "files"],
+  "properties": {
+    "schema_version": {"const": "chaoyang-project-status-snapshot-receipt-v1"},
+    "created_at": {"type": "string"},
+    "source_receipt": {"$ref": "artifact_ref.schema.json"},
+    "files": {"type": "object", "additionalProperties": {"$ref": "artifact_ref.schema.json"}}
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "session_id": "replace_with_session_id",
+  "task_id": "chips",
+  "source": {
+    "decode_ok": true,
+    "same_session_clean_plate": true,
+    "metric_measurement_authority": true,
+    "peripheral_fiducials_visible": true,
+    "reset_count": 0,
+    "frame_count": 900,
+    "timestamp_count": 900,
+    "intrinsics_count": 1,
+    "intrinsics_session_constant": true,
+    "c2w_count": 900,
+    "segments": [
+      "EMPTY_TABLE_STATIC",
+      "EMPTY_TABLE_VIEW_SWEEP",
+      "OBJECT_CONTACT_FIT",
+      "OBJECT_LIFT_NEGATIVE",
+      "OBJECT_CONTACT_EVAL",
+      "SLEEVE_FOREGROUND_CALIBRATION",
+      "NORMAL_TASK_FIT",
+      "NORMAL_TASK_EVAL",
+      "END_EMPTY_TABLE"
+    ]
+  },
+  "hawor": {
+    "joint_order": "MANO21_WRIST0_TIPS_4_8_12_16_20_MCPS_2_5_9_13_17",
+    "identity_assignment_verified": true,
+    "dual_hand_collapse_frame_count": 0,
+    "required_sides": ["left", "right"],
+    "sides": {
+      "left": {
+        "expected_active_frame_count": 720,
+        "expected_active_definition_verified": true,
+        "visual_overlay_canary_verified": true,
+        "valid_fraction": 0.99,
+        "max_invalid_gap_frames": 2,
+        "confidence_median": 0.8,
+        "confidence_p05": 0.6,
+        "joint_overlay_p05_fraction": 0.95,
+        "reprojection_p95_px": 8.0,
+        "bone_length_cv_max": 0.03,
+        "positive_depth_fraction": 1.0,
+        "identity_switch_count": 0,
+        "duplicate_track_frame_count": 0,
+        "root_rotation_orthogonality_max": 0.000001,
+        "direct_observation_fraction": 0.95,
+        "contact_canary_direct_fraction": 1.0,
+        "contact_canary_frame_count": 24,
+        "contact_canary_definition_verified": true,
+        "wrist_step_p99_mm": 30.0,
+        "wrist_step_max_mm": 60.0,
+        "named_joint_mapping_verified": true
+      },
+      "right": {
+        "expected_active_frame_count": 720,
+        "expected_active_definition_verified": true,
+        "visual_overlay_canary_verified": true,
+        "valid_fraction": 0.99,
+        "max_invalid_gap_frames": 2,
+        "confidence_median": 0.8,
+        "confidence_p05": 0.6,
+        "joint_overlay_p05_fraction": 0.95,
+        "reprojection_p95_px": 8.0,
+        "bone_length_cv_max": 0.03,
+        "positive_depth_fraction": 1.0,
+        "identity_switch_count": 0,
+        "duplicate_track_frame_count": 0,
+        "root_rotation_orthogonality_max": 0.000001,
+        "direct_observation_fraction": 0.95,
+        "contact_canary_direct_fraction": 1.0,
+        "contact_canary_frame_count": 24,
+        "contact_canary_definition_verified": true,
+        "wrist_step_p99_mm": 30.0,
+        "wrist_step_max_mm": 60.0,
+        "named_joint_mapping_verified": true
+      }
+    }
+  },
+  "mask": {
+    "required_role_canary_recall": 1.0,
+    "human_object_overlap_pixels": 0,
+    "fixture_in_human_area_fraction": 0.0,
+    "flow_aligned_iou_median": 0.9,
+    "identity_switch_count": 0,
+    "published_frame_fraction": 1.0,
+    "object_protection_verified": true
+  },
+  "clean": {
+    "same_session_same_camera_donor": true,
+    "changed_pixels_outside_authorized_domain": 0,
+    "changed_protected_object_pixels": 0,
+    "source_map_known_fraction": 1.0,
+    "residual_area_fraction": 0.0,
+    "visual_review_no_human_or_seam": true
+  },
+  "robot": {
+    "session_constant_base": true,
+    "required_pose_position_max_mm": 9.0,
+    "required_pose_rotation_max_deg": 4.0,
+    "joint_velocity_max_rad_per_frame_30fps": 0.1,
+    "joint_acceleration_max_rad_per_frame2_30fps": 0.05,
+    "dense_signed_distance_min_mm": -0.5,
+    "required_contact_signed_distance_min_mm": 0.2,
+    "required_contact_signed_distance_max_mm": 2.0,
+    "exact_self_collision_count": 0,
+    "joint_limits_pass": true,
+    "object_depth_occlusion_pass": true
+  }
+}

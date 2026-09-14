@@ -40,23 +40,27 @@ from utils.utils_media import create_video_from_frames
 # =================================================================================================
 
 def safe_imread_rgb(path: str, fallback_hw=(640, 640)) -> np.ndarray:
-    """Safely reads an RGB image, resized to fallback_hw. Returns a blank image if path is invalid."""
-    if path and os.path.exists(path):
-        bgr = cv2.imread(path, cv2.IMREAD_COLOR)
-        if bgr is not None:
-            # Always resize to target panel size for consistent grid layout
-            if bgr.shape[0] != fallback_hw[0] or bgr.shape[1] != fallback_hw[1]:
-                bgr = cv2.resize(bgr, (fallback_hw[1], fallback_hw[0]), interpolation=cv2.INTER_LINEAR)
-            return cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
-    return np.zeros((fallback_hw[0], fallback_hw[1], 3), dtype=np.uint8)
+    """Read required RGB evidence; a blank fallback would invalidate visual QA."""
+    if not path or not os.path.isfile(path):
+        raise FileNotFoundError(path)
+    bgr = cv2.imread(path, cv2.IMREAD_COLOR)
+    if bgr is None:
+        raise ValueError(f"OpenCV cannot decode required visual evidence: {path}")
+    # Always resize to target panel size for consistent grid layout
+    if bgr.shape[0] != fallback_hw[0] or bgr.shape[1] != fallback_hw[1]:
+        bgr = cv2.resize(bgr, (fallback_hw[1], fallback_hw[0]), interpolation=cv2.INTER_LINEAR)
+    return cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
 
-def _read_json(path: str) -> Optional[dict]:
-    """Safely reads a JSON file."""
+def _read_json(path: str) -> dict:
+    """Read required frame metadata without silently skipping corrupt frames."""
     try:
-        with open(path, "r") as f:
-            return json.load(f)
-    except Exception:
-        return None
+        with open(path, "r", encoding="utf-8") as stream:
+            value = json.load(stream)
+    except (OSError, json.JSONDecodeError) as error:
+        raise ValueError(f"invalid required frame JSON: {path}") from error
+    if not isinstance(value, dict):
+        raise ValueError(f"required frame JSON is not an object: {path}")
+    return value
 
 def find_K(d: dict) -> Optional[np.ndarray]:
     """Extracts 3x3 Camera Intrinsics matrix."""

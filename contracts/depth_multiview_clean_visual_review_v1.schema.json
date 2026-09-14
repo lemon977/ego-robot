@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "depth-multiview-clean-visual-review-v1",
+  "title": "Human admission for depth multiview Clean canary",
+  "type": "object", "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "reviewed_at", "reviewer", "task", "session",
+    "input_manifest", "automatic_result", "review_video", "checks",
+    "consumption_authorized", "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "depth-multiview-clean-visual-review-v1"},
+    "status": {"enum": ["PASS", "HOLD"]},
+    "reviewed_at": {"type": "string", "minLength": 1},
+    "reviewer": {"type": "string", "minLength": 1},
+    "task": {"enum": ["chips", "poker"]},
+    "session": {"type": "string", "minLength": 1},
+    "input_manifest": {"$ref": "#/$defs/artifact"},
+    "automatic_result": {"$ref": "#/$defs/artifact"},
+    "review_video": {"$ref": "#/$defs/artifact"},
+    "checks": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "no_visible_hand_arm_tracker_or_strap", "no_ghost_seam_or_hallucinated_structure",
+        "protected_object_visually_intact", "source_map_matches_visible_donors",
+        "three_temporal_windows_stable", "review_video_full_decode_pass"
+      ],
+      "properties": {
+        "no_visible_hand_arm_tracker_or_strap": {"type": "boolean"},
+        "no_ghost_seam_or_hallucinated_structure": {"type": "boolean"},
+        "protected_object_visually_intact": {"type": "boolean"},
+        "source_map_matches_visible_donors": {"type": "boolean"},
+        "three_temporal_windows_stable": {"type": "boolean"},
+        "review_video_full_decode_pass": {"type": "boolean"}
+      }
+    },
+    "consumption_authorized": {"type": "boolean"},
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "PASS"}}},
+      "then": {
+        "properties": {
+          "checks": {
+            "properties": {
+              "no_visible_hand_arm_tracker_or_strap": {"const": true},
+              "no_ghost_seam_or_hallucinated_structure": {"const": true},
+              "protected_object_visually_intact": {"const": true},
+              "source_map_matches_visible_donors": {"const": true},
+              "three_temporal_windows_stable": {"const": true},
+              "review_video_full_decode_pass": {"const": true}
+            }
+          },
+          "consumption_authorized": {"const": true}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"status": {"const": "HOLD"}}},
+      "then": {"properties": {"consumption_authorized": {"const": false}}}
+    }
+  ],
+  "$defs": {
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

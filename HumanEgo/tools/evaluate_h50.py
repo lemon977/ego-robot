@@ -25,6 +25,24 @@ from inference.embodiment_policy import sample_h50  # noqa: E402
 from preprocess.retarget_labels.schema import EMBODIMENTS, validate_sidecar  # noqa: E402
 from training.FlowMatchingDataloader import FlowMatchingDataloader, MPSSessions  # noqa: E402
 from training.FlowMatchingModel import FlowMatchingModel  # noqa: E402
+from utils.atomic_io import atomic_write, atomic_write_json  # noqa: E402
+from utils.frozen_contract import (  # noqa: E402
+    file_reference,
+    load_frozen_checkpoint_payload,
+    validate_checkpoint_bundle,
+    validate_file_reference,
+    validate_formal_runtime_contract,
+)
+from utils.source_contract import (  # noqa: E402
+    FinalTestOutputLease,
+    authorize_evaluation_role,
+    claim_final_test_output,
+    load_eligible68_frozen_split,
+    require_manifest_selector_ready,
+    validate_frozen_adapters,
+    validate_training_run_role_contract,
+    verify_eligible68_split_phase2,
+)
 
 
 OBSERVATION_FIELDS = (
@@ -108,7 +126,16 @@ def make_model(cfg: dict) -> FlowMatchingModel:
     return FlowMatchingModel(**values)
 
 
-def make_dataset(cfg: dict, sessions: list[Path], sidecar_root: Path, stats: dict) -> FlowMatchingDataloader:
+def make_dataset(
+    cfg: dict,
+    sessions: list[Path],
+    sidecar_root: Path,
+    stats: dict,
+    allowed_window_starts=None,
+    selector_records=None,
+    selector_root=None,
+    sidecar_sha256_by_session=None,
+) -> FlowMatchingDataloader:
     return FlowMatchingDataloader(
         sessions=[MPSSessions(str(path)) for path in sessions],
         image_size=tuple(cfg["image_size"]), pred_horizon=50, single_hand=False,
@@ -121,6 +148,10 @@ def make_dataset(cfg: dict, sessions: list[Path], sidecar_root: Path, stats: dic
         use_aux_temporal_contrastive=False, enable_augmentation=False,
         hand_tracking_method="hawor_v3", use_legacy_image_loading=False,
         cache_json_in_memory=True, stats=stats, seed=cfg.get("seed", 7),
+        allowed_window_starts=allowed_window_starts,
+        selector_records=selector_records,
+        selector_root=selector_root,
+        sidecar_sha256_by_session=sidecar_sha256_by_session,
     )
 
 
@@ -132,45 +163,169 @@ def block_schedule(dataset: FlowMatchingDataloader) -> list[int]:
     return result
 
 
+def atomic_csv(
+    path: Path, fieldnames: list[str] | tuple[str, ...], rows: list[dict]
+) -> None:
+    def write(temporary: Path) -> None:
+        with temporary.open("w", newline="", encoding="utf-8") as stream:
+            writer = csv.DictWriter(stream, fieldnames=fieldnames)
+            writer.writeheader()
+            writer.writerows(rows)
+
+    atomic_write(path, write)
+
+
+def atomic_npz(path: Path, **arrays: np.ndarray) -> None:
+    def write(temporary: Path) -> None:
+        with temporary.open("wb") as stream:
+            np.savez_compressed(stream, **arrays)
+
+    atomic_write(path, write)
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--embodiment", required=True, choices=sorted(EMBODIMENTS))
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--split", type=Path, required=True)
+    parser.add_argument(
+        "--evaluation-role",
+        required=True,
+        choices=("dev", "final_test"),
+        help="dev is ordinary evaluation; final_test additionally requires a one-shot gate",
+    )
+    parser.add_argument(
+        "--final-test-gate",
+        type=Path,
+        help="Immutable gate binding both frozen twins and the one-shot output",
+    )
     parser.add_argument("--sidecar-root", type=Path, required=True)
-    parser.add_argument("--production-root", type=Path, default=Path(os.environ.get(
-        "HUMANEGO_PRODUCTION_ROOT", ROOT.parent / "hand_benchmark/production_runs/final_v3_grap_a_cap_0812"
-    )))
-    parser.add_argument("--output", type=Path)
+    parser.add_argument("--production-root", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--selector-manifest", type=Path, required=True)
+    parser.add_argument("--paired-kept-manifest", type=Path, required=True)
+    parser.add_argument("--artifact-root", type=Path, required=True)
     parser.add_argument(
         "--visualization-session",
         default="",
         help="also save strict-H50 blocks for final rendering; empty disables",
     )
     args = parser.parse_args()
+    if args.batch_size < 1:
+        parser.error("--batch-size must be positive")
+    if args.check_only and args.evaluation_role == "final_test":
+        parser.error("--check-only cannot consume the one-shot final-test role")
+    selector_binding = require_manifest_selector_ready(
+        file_reference(args.selector_manifest),
+        file_reference(args.paired_kept_manifest),
+        artifact_root=args.artifact_root,
+    )
     if not args.checkpoint.is_file():
         raise FileNotFoundError(f"formal best checkpoint is missing: {args.checkpoint}")
     if args.checkpoint.name != "best.pt":
         raise ValueError("formal H=50 evaluation accepts validation-selected best.pt only")
     if not args.split.is_file():
         raise FileNotFoundError(f"frozen shared split is missing: {args.split}")
-    payload = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
+    payload, checkpoint_reference, _ = load_frozen_checkpoint_payload(
+        args.checkpoint,
+        embodiment=args.embodiment,
+    )
     manifest = payload.get("run_manifest")
     if not manifest:
         raise ValueError("checkpoint has no frozen run_manifest")
     if manifest.get("embodiment") != args.embodiment:
         raise ValueError("checkpoint embodiment mismatch")
-    if manifest.get("split_sha256") != sha256(args.split):
+    split_path = validate_file_reference(
+        manifest.get("split_ref", {}),
+        allowed_roots=[ROOT / "data_manifests"],
+        label="frozen evaluation split",
+    )
+    if args.split.absolute() != split_path:
+        raise ValueError("CLI split path differs from checkpoint authority")
+    if manifest.get("split_sha256") != manifest["split_ref"].get("sha256"):
         raise ValueError("checkpoint/split hash mismatch")
-    split = json.loads(args.split.read_text(encoding="utf-8"))
-    session_ids = split.get("test") or split.get("validation")
-    if not session_ids:
-        raise ValueError("split has neither test nor validation sessions")
+    _, stats = validate_checkpoint_bundle(
+        args.checkpoint,
+        payload,
+        args.split,
+        args.embodiment,
+        return_dataset_stats=True,
+    )
+    split = load_eligible68_frozen_split(
+        args.split,
+        args.embodiment,
+        sidecar_root=args.sidecar_root,
+        verify_sidecars=False,
+    )
+    validate_training_run_role_contract(manifest, split)
+    gate_reference = (
+        file_reference(args.final_test_gate) if args.final_test_gate is not None else None
+    )
+    evaluation_authorization = authorize_evaluation_role(
+        split,
+        args.evaluation_role,
+        final_test_gate_reference=gate_reference,
+        split_reference=manifest.get("split_ref"),
+        checkpoint_reference=checkpoint_reference,
+        product_line=selector_binding["product_line"],
+        embodiment=args.embodiment,
+        evaluator="H50_BLOCK_OPEN_LOOP_V1",
+        output_directory=args.output,
+    )
+    validate_formal_runtime_contract(
+        payload.get("cfg", {}),
+        manifest,
+        split,
+        args.embodiment,
+        config_root=ROOT / "cfg" / "training",
+    )
+    session_ids = list(evaluation_authorization["sessions"])
+    if manifest.get("selector_manifest_ref") != selector_binding["selector_reference"]:
+        raise ValueError("checkpoint selector manifest differs from evaluation CLI")
+    if manifest.get("paired_kept_manifest_ref") != selector_binding["paired_kept_reference"]:
+        raise ValueError("checkpoint paired-kept manifest differs from evaluation CLI")
+    if manifest.get("artifact_root") != selector_binding["artifact_root"]:
+        raise ValueError("checkpoint artifact root differs from evaluation CLI")
+    if payload["cfg"].get("img_name") != selector_binding["image_name"]:
+        raise ValueError("checkpoint image selector differs from selector manifest")
+    expected_representation = EMBODIMENTS[args.embodiment].representation
+    if payload["cfg"].get("hand_action_representation") != expected_representation:
+        raise ValueError("checkpoint action representation mismatch")
+    declared_production_root = split.get("production_root")
+    if (
+        not isinstance(declared_production_root, str)
+        or Path(declared_production_root).resolve() != args.production_root.resolve()
+    ):
+        raise ValueError("evaluation production root differs from frozen split")
+    visualization_session = args.visualization_session.strip()
+    if visualization_session and visualization_session not in session_ids:
+        raise ValueError(
+            "visualization session must belong to the explicitly selected split role"
+        )
+    inference_contract = audit_inference_contract()
+
+    output_lease: FinalTestOutputLease | None = None
+    if evaluation_authorization["final_test_authorized"]:
+        claimed = claim_final_test_output(evaluation_authorization, hold=True)
+        if not isinstance(claimed, FinalTestOutputLease):
+            raise RuntimeError("final-test output claim did not return a held lease")
+        output_lease = claimed
+    split = verify_eligible68_split_phase2(
+        args.split,
+        split,
+        args.embodiment,
+        sidecar_root=args.sidecar_root,
+        verify_sidecars=True,
+        verify_roles=(str(evaluation_authorization["storage_role"]),),
+        allow_final_test=bool(evaluation_authorization["final_test_authorized"]),
+    )
+    source_reports = validate_frozen_adapters(
+        split, args.production_root, session_ids, selector_binding
+    )
     sidecars = {}
-    frozen_sessions = split.get("sessions", {})
     for session in session_ids:
         path = args.sidecar_root / args.embodiment / session / "sidecar.npz"
         digest = sha256(path)
@@ -178,41 +333,21 @@ def main() -> int:
         # sidecars are still immutably covered by the hash-verified shared
         # split, while newer manifests additionally duplicate them under
         # evaluation_sidecars for a self-contained checkpoint audit trail.
-        expected = manifest.get("evaluation_sidecars", {}).get(session)
-        if expected is None:
-            expected = (
-                frozen_sessions.get(session, {})
-                .get("embodiments", {})
-                .get(args.embodiment, {})
-                .get("sidecar_sha256")
-            )
+        lineage_field = (
+            "evaluation_sidecars"
+            if evaluation_authorization["final_test_authorized"]
+            else "sidecars"
+        )
+        expected = manifest.get(lineage_field, {}).get(session)
         if expected != digest:
             raise ValueError(f"frozen split/sidecar hash mismatch: {session}")
-        sidecars[session] = {**validate_sidecar(path, EMBODIMENTS[args.embodiment]), "sha256": digest}
-    visualization_session = args.visualization_session.strip()
-    visualization_sidecar = None
-    if visualization_session and visualization_session not in session_ids:
-        visualization_path = (
-            args.sidecar_root / args.embodiment / visualization_session / "sidecar.npz"
-        )
-        visualization_digest = sha256(visualization_path)
-        expected = (
-            frozen_sessions.get(visualization_session, {})
-            .get("embodiments", {})
-            .get(args.embodiment, {})
-            .get("sidecar_sha256")
-        )
-        if expected != visualization_digest:
-            raise ValueError(
-                f"frozen split/visualization sidecar hash mismatch: {visualization_session}"
-            )
-        visualization_sidecar = {
-            **validate_sidecar(
-                visualization_path, EMBODIMENTS[args.embodiment]
-            ),
-            "sha256": visualization_digest,
+        sidecars[session] = {
+            **validate_sidecar(path, EMBODIMENTS[args.embodiment]),
+            "sha256": expected,
         }
-    inference_contract = audit_inference_contract()
+    visualization_sidecar = None
+    if visualization_session:
+        visualization_sidecar = sidecars[visualization_session]
     preflight = {
         "protocol": "observe only at frames 0,50,100,...; one H50 action block per observation",
         "reobservation_period_frames": 50,
@@ -221,34 +356,52 @@ def main() -> int:
             "future action GT", "retargeting",
         ],
         "inference_contract": inference_contract,
-        "embodiment": args.embodiment, "checkpoint_sha256": sha256(args.checkpoint),
-        "split_sha256": sha256(args.split), "sessions": sidecars,
+        "embodiment": args.embodiment,
+        "checkpoint_sha256": checkpoint_reference["sha256"],
+        "split_sha256": manifest["split_ref"]["sha256"],
+        "evaluation_role": args.evaluation_role,
+        "final_test_authorized": evaluation_authorization["final_test_authorized"],
+        "sessions": sidecars, "source_reports": source_reports,
         "visualization_session": visualization_session or None,
         "visualization_sidecar": visualization_sidecar,
     }
-    output = args.output or ROOT / "reports/evaluation" / args.embodiment
-    output.mkdir(parents=True, exist_ok=True)
-    (output / "preflight.json").write_text(json.dumps(preflight, indent=2) + "\n", encoding="utf-8")
+    display_output = Path(
+        str(evaluation_authorization.get("output_directory", args.output.absolute()))
+    )
+    output = (
+        output_lease.bound_directory
+        if output_lease is not None
+        else display_output
+    )
+    if output_lease is not None:
+        expected_entries = {"FINAL_TEST_CLAIM.json"}
+        if not output.is_dir() or {path.name for path in output.iterdir()} != expected_entries:
+            raise RuntimeError("final-test output claim changed before evaluation")
+    else:
+        if output.exists() and (not output.is_dir() or any(output.iterdir())):
+            raise FileExistsError(f"evaluation output must be a new empty directory: {output}")
+        output.mkdir(parents=True, exist_ok=True)
+    atomic_write_json(output / "preflight.json", preflight)
     if args.check_only:
         print(json.dumps({**preflight, "status": "preflight_passed"}, indent=2))
         return 0
 
     cfg = payload["cfg"]
-    expected_representation = EMBODIMENTS[args.embodiment].representation
-    if cfg.get("hand_action_representation") != expected_representation:
-        raise ValueError("checkpoint action representation mismatch")
-    stats_path = args.checkpoint.parent / "dataset_stats.json"
-    if not stats_path.is_file():
-        raise FileNotFoundError(stats_path)
-    stats = json.loads(stats_path.read_text(encoding="utf-8"))
     dataset_session_ids = list(session_ids)
-    if visualization_session and visualization_session not in dataset_session_ids:
-        dataset_session_ids.append(visualization_session)
     sessions = [
         args.production_root / value / "09_humanego_adapter"
         for value in dataset_session_ids
     ]
-    dataset = make_dataset(cfg, sessions, args.sidecar_root, stats)
+    dataset = make_dataset(
+        cfg,
+        sessions,
+        args.sidecar_root,
+        stats,
+        selector_binding["window_starts"],
+        selector_binding["selector_records"],
+        selector_binding["selector_root"],
+        {session_id: row["sha256"] for session_id, row in sidecars.items()},
+    )
     indices = block_schedule(dataset)
     model = make_model(cfg).to(args.device)
     model.load_state_dict(payload["model"], strict=True)
@@ -331,16 +484,19 @@ def main() -> int:
                 fde.append(float(np.mean([value for horizon, value in block_pos if horizon == last_horizon])))
     rows = []
     active = horizons["count"] > 0
+    if not prediction_blocks:
+        raise RuntimeError("evaluation produced no H50 prediction blocks")
+    if not active.any() or float(horizons["count"].sum()) <= 0:
+        raise RuntimeError("evaluation produced no valid frozen-target observations")
     for horizon in range(50):
         count = horizons["count"][horizon]
         rows.append({"horizon": horizon + 1, "valid_hands": int(count),
                      "wrist_position_ade_mm": horizons["pos_sum"][horizon] / max(1, count) * 1000,
                      "wrist_rotation_ade_deg": horizons["rot_sum"][horizon] / max(1, count),
                      "q_normalized_mae": horizons["q_sum"][horizon] / max(1, count)})
-    with (output / "per_horizon.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(rows[0])); writer.writeheader(); writer.writerows(rows)
+    atomic_csv(output / "per_horizon.csv", list(rows[0]), rows)
     prediction_artifact = output / "h50_predictions.npz"
-    np.savez_compressed(
+    atomic_npz(
         prediction_artifact,
         predictions=np.stack(prediction_blocks),
         targets=np.stack(target_blocks),
@@ -368,7 +524,7 @@ def main() -> int:
         "normalized_acceleration": float(np.mean(acceleration_values)),
         "normalized_jerk": float(np.mean(jerk_values)),
     }, "prediction_artifact": {
-        "path": str(prediction_artifact.resolve()),
+        "path": str(display_output / prediction_artifact.name),
         "sha256": sha256(prediction_artifact),
         "contains_future_gt": True,
         "future_gt_usage": (
@@ -376,15 +532,14 @@ def main() -> int:
             "each complete H50 inference block"
         ),
     }, "limitations": ["FK palm/fingertip metrics require the frozen renderer/FK adapter and are not fabricated here"]}
-    (output / "evaluation.json").write_text(json.dumps(evaluation, indent=2) + "\n", encoding="utf-8")
+    atomic_write_json(output / "evaluation.json", evaluation)
     summary_rows = [
         {"metric": key, "value": value}
         for key, value in evaluation["metrics"].items()
     ]
-    with (output / "evaluation.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=("metric", "value"))
-        writer.writeheader()
-        writer.writerows(summary_rows)
+    atomic_csv(output / "evaluation.csv", ("metric", "value"), summary_rows)
+    if output_lease is not None:
+        output_lease.close()
     print(json.dumps(evaluation, indent=2))
     return 0
 

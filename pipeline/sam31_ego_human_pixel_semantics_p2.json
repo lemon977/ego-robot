@@ -1,0 +1,39 @@
+{
+  "schema_version": "sam31-ego-human-pixel-semantics-v1",
+  "producer_version": "producer_p2",
+  "not_a_v9_heuristic_patch": true,
+  "lineage": "Independent SAM3.1 multiplex candidate producer using the separately versioned compatibility adapter; no v9 pixel or heuristic inheritance.",
+  "output": {
+    "name": "candidate_human_mask",
+    "encoding": "uint8 PNG with values {0,255}",
+    "positive_semantics": "Pixels belonging to accepted ego hand, wrist, forearm, or sleeve instances emitted by the pinned SAM3.1 model.",
+    "negative_semantics": "All other pixels, including rejected background-person instances and the selected visible task-object SAM instance."
+  },
+  "fixed_prompts": {
+    "human": [
+      "a hand",
+      "a human forearm",
+      "a sleeve"
+    ],
+    "object_protect": "a beverage can"
+  },
+  "pixel_algebra": "candidate_human_mask = union(accepted current-frame or propagated SAM3.1 human instances) AND NOT(selected current-frame or propagated SAM3.1 object instance)",
+  "selection_evidence_only": [
+    "HaWoR projected ego hand seeds",
+    "closest-image-boundary evidence derived from the ego wrist",
+    "SAM3.1 instance score and identity",
+    "same-identity temporal IoU",
+    "Object6D analytic cylinder projection for selecting the task-object SAM instance"
+  ],
+  "forbidden_pixel_sources": [
+    "HaWoR or MANO raster fill",
+    "wrist-to-border corridor fill",
+    "PCA fill or hard crop",
+    "Object6D or CAD human fill",
+    "optical-flow warp used as output pixels",
+    "historical SAM2, v9, v11, or v12 masks",
+    "human H/O/U/B benchmark labels",
+    "auditor output"
+  ],
+  "fail_closed": "Missing ego seeds, missing valid Object6D protect evidence, missing prompt identity, insufficient seed/boundary/temporal evidence, or pixel-lineage violation yields HOLD; no fallback mask is generated."
+}

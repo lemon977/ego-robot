@@ -1,0 +1,195 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang-system-manifest-v1",
+  "title": "Chaoyang shared system manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "system_id",
+    "manifest_version",
+    "status",
+    "shared_by_default",
+    "algorithms",
+    "learned_weights",
+    "task_specific_config_keys",
+    "weight_policy",
+    "current_evidence"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schema_version": {"const": "chaoyang-system-manifest-v1"},
+    "system_id": {"enum": ["mask", "clean", "robot"]},
+    "manifest_version": {"type": "string", "minLength": 1},
+    "status": {"type": "string", "minLength": 1},
+    "claim_limit": {"type": "string"},
+    "shared_by_default": {"const": true},
+    "algorithms": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/algorithm"}
+    },
+    "learned_weights": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/weight"}
+    },
+    "task_specific_config_keys": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "weight_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_local_paths_allowed", "new_weight_requires"],
+      "properties": {
+        "task_local_paths_allowed": {"const": false},
+        "new_weight_requires": {
+          "type": "array",
+          "minItems": 7,
+          "items": {"type": "string"},
+          "uniqueItems": true
+        }
+      }
+    },
+    "current_evidence": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/artifact"}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "bytes", "sha256", "status", "claim_limit"],
+      "properties": {
+        "id": {"type": "string", "minLength": 1},
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "status": {"type": "string", "minLength": 1},
+        "claim_limit": {"type": "string", "minLength": 1}
+      }
+    },
+    "implementationFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "algorithm": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm_id",
+        "stage",
+        "status",
+        "implementation_files",
+        "required_weight_ids",
+        "invariants"
+      ],
+      "properties": {
+        "algorithm_id": {"type": "string", "pattern": "^[a-z0-9_.-]+$"},
+        "stage": {"enum": ["mask", "clean", "robot", "object_geometry"]},
+        "status": {"type": "string", "minLength": 1},
+        "implementation_files": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/implementationFile"}
+        },
+        "required_weight_ids": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "invariants": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"}
+        }
+      }
+    },
+    "weight": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "weight_id",
+        "origin",
+        "path",
+        "bytes",
+        "sha256",
+        "scope",
+        "applicable_tasks",
+        "license",
+        "provenance",
+        "evaluation"
+      ],
+      "properties": {
+        "weight_id": {"type": "string", "pattern": "^[a-z0-9_.-]+$"},
+        "origin": {"enum": ["external_pretrained", "project_finetuned"]},
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "scope": {"enum": ["shared", "task_scoped"]},
+        "applicable_tasks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "base_weight_id": {"type": ["string", "null"]},
+        "license": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "status", "path", "bytes", "sha256"],
+          "properties": {
+            "id": {"type": "string", "minLength": 1},
+            "status": {"type": "string", "minLength": 1},
+            "path": {"type": "string", "minLength": 1},
+            "bytes": {"type": "integer", "minimum": 1},
+            "sha256": {"$ref": "#/$defs/sha256"}
+          }
+        },
+        "provenance": {"type": "object", "minProperties": 1},
+        "training": {"type": "object"},
+        "evaluation": {
+          "type": "object",
+          "required": ["status", "claim_limit"],
+          "properties": {
+            "status": {"type": "string"},
+            "claim_limit": {"type": "string"}
+          }
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"origin": {"const": "project_finetuned"}}},
+          "then": {
+            "required": ["base_weight_id", "training"],
+            "properties": {
+              "training": {
+                "required": [
+                  "data_manifest_sha256",
+                  "code_sha256",
+                  "split_manifest_sha256",
+                  "command",
+                  "environment",
+                  "completed_at"
+                ]
+              },
+              "evaluation": {
+                "required": ["manifest_sha256", "metrics", "status", "claim_limit"]
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
+

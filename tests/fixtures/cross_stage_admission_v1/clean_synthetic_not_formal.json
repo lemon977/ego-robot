@@ -1,0 +1,46 @@
+{
+  "schema_version": "chaoyang-cross-stage-evidence-v1",
+  "session_id": "synthetic_clean_fixture_v1",
+  "task_id": "regression_fixture",
+  "training_profile": "CLEAN_RGB_KAI22",
+  "image_variant": "CLEAN",
+  "stages": {
+    "clean": {
+      "scope": "SYNTHETIC",
+      "consumption_authorized": false,
+      "reported_status": "PASS",
+      "claim_limit": "Synthetic algorithm plumbing only; not a real session.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/clean/20260903_clean_medoid_light_synthetic_fixture_v1/RESULT.json",
+          "sha256": "534fe8eb3564995fce6c20f4a5462c07a25d79459ef44f97b8d8e3dabdabdc72",
+          "role": "synthetic_clean_result"
+        }
+      ],
+      "gate_contract": {
+        "id": "general-clean-quality-gate-v1",
+        "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/clean/20260903_chips001_clean_v3_quality_audit_v1/GENERAL_CLEAN_QUALITY_GATE_V1.json",
+        "sha256": "6ac71daac463339188375eafe8e490bbfea2c79ec224c08b4ca53cb2b3aa3a86",
+        "frozen_before_evaluation": false
+      },
+      "gates": {
+        "input_mask_authority": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "donor_authority": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "donor_purity": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "source_map": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "spatial_residual": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "illumination": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "shadow": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "seam": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "temporal": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "object_protection": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "codec": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "manual_review": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["SYNTHETIC_FIXTURE_HAS_NO_REAL_VISUAL_REVIEW"]
+        }
+      }
+    }
+  }
+}

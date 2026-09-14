@@ -1,0 +1,46 @@
+{
+  "schema_version": "configurable-assisted-bilateral-mask-canary-config-v2",
+  "task_id": "chips",
+  "session_id": "get_potato_chips_0902_034",
+  "raw_all_data": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_034/preprocess/all_data",
+  "raw_video": {
+    "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_034/CameraRecord_get_potato_chips_0902_034.mp4",
+    "bytes": 12930550,
+    "sha256": "289135c9c8ecb303313c099799a592671ff38e5da00bb5682cdeed1af63b0205"
+  },
+  "hawor_npz": {
+    "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/pipeline/20260905_hawor_0902_v1/get_potato_chips_0902_034/output/HAWOR_RAW_MANO21_CANARY.npz",
+    "bytes": 726469,
+    "sha256": "3bb4cbb801bdf90dc3ecf4b1af1c69ae01cd5f93427fcc30ad1666081e4819d0"
+  },
+  "frame_indices": [67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78],
+  "anchor_slot": 5,
+  "fps": 30.0,
+  "human_anchors": {
+    "left_human": [430, 825],
+    "right_human": [880, 545]
+  },
+  "tracker_roles": {
+    "upper_tracker_wearable": {
+      "id": 201,
+      "name": "upper_tracker_wearable",
+      "positive": [[1045, 560], [1025, 555]],
+      "negative": [[880, 545], [430, 825]]
+    }
+  },
+  "tracker_anatomical": {
+    "upper_tracker_wearable": "right_tracker"
+  },
+  "tracker_human_internal": {
+    "upper_human_core": "right_human",
+    "lower_human_core": "left_human"
+  },
+  "tracker_prompt_contract": "SAME_ID_POSITIVE_BOOTSTRAP_THEN_FULL_REFINE",
+  "refresh_cadence_frames": 4,
+  "object_protection": {
+    "status": "PENDING_PARALLEL_DEPTH_OBJECT6D_LANE",
+    "mask_source": null,
+    "clean_authorized": false
+  },
+  "review_language": "zh-CN"
+}

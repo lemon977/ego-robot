@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/human_contact_hypothesis_v1.schema.json",
+  "title": "HUMAN_CONTACT_HYPOTHESIS_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "task_id", "frame_count", "fps", "object_ids", "formal_object6d", "inputs", "policy", "output"],
+  "properties": {
+    "schema_version": {"const": "HUMAN_CONTACT_HYPOTHESIS_V1"},
+    "session_id": {"type": "string", "minLength": 1},
+    "task_id": {"enum": ["chips", "poker"]},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "fps": {"type": "number", "exclusiveMinimum": 0},
+    "object_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+    "formal_object6d": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifact", "authority_mode", "occluded_frame_policy", "mutation_allowed"],
+      "properties": {
+        "artifact": {"$ref": "#/$defs/artifact"},
+        "authority_mode": {"const": "DIRECT_OBSERVED_ONLY"},
+        "occluded_frame_policy": {"const": "KEEP_INVALID"},
+        "mutation_allowed": {"const": false}
+      }
+    },
+    "inputs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["hawor", "object_identity_mask"],
+      "properties": {
+        "hawor": {"$ref": "#/$defs/artifact"},
+        "object_identity_mask": {"$ref": "#/$defs/artifact"},
+        "attachment_sidecar": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_gap_frames", "max_gap_seconds", "endpoint_translation_m", "endpoint_rotation_deg", "attachment_entry_distance_m", "attachment_translation_drift_m", "attachment_rotation_drift_deg", "chips_union_identity_allowed"],
+      "properties": {
+        "max_gap_frames": {"const": 15},
+        "max_gap_seconds": {"const": 0.5},
+        "endpoint_translation_m": {"const": 0.015},
+        "endpoint_rotation_deg": {"const": 10.0},
+        "attachment_entry_distance_m": {"const": 0.01},
+        "attachment_translation_drift_m": {"const": 0.015},
+        "attachment_rotation_drift_deg": {"const": 10.0},
+        "chips_union_identity_allowed": {"const": false}
+      }
+    },
+    "output": {
+      "type": "object", "additionalProperties": false,
+      "required": ["artifact", "sources", "is_formal_object6d", "authority_promotable"],
+      "properties": {
+        "artifact": {"$ref": "#/$defs/artifact"},
+        "sources": {"const": ["UNKNOWN", "DIRECT_OBJECT6D", "BIDIRECTIONAL_RIGID_HYPOTHESIS", "HAND_OBJECT_ATTACHMENT_HYPOTHESIS"]},
+        "is_formal_object6d": {"const": false},
+        "authority_promotable": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

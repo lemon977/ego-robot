@@ -1,0 +1,67 @@
+{
+  "schema_version": "chaoyang-mask-local-environment-rollback-v1",
+  "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE",
+  "claim_limit": "ROLLBACK PLAN ONLY; this file neither authorizes nor performs removal",
+  "environment": {
+    "environment_id": "mask-sam3-py311-v1",
+    "path": "assets/environments/mask-sam3-py311-v1",
+    "base_snapshot_id": "b03d8217d01c4c7aa8f66223873d3d00",
+    "base_tree_content_sha256": "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64"
+  },
+  "exact_composite_additions": {
+    "path_hook": {
+      "path": "assets/environments/mask-sam3-py311-v1/lib/python3.11/site-packages/chaoyang_mask_sam3_local_v1.pth",
+      "bytes": 213,
+      "sha256": "13d3ba3e560cd78ace9cc437bfdbadfdc46e7c946ee49b4733867cf9d2165a69"
+    },
+    "overlay": {
+      "path": "assets/environments/mask-sam3-py311-v1/.chaoyang-hardlink-snapshot/mask-sam3-import-closure-v1",
+      "manifest": "assets/environments/mask-sam3-py311-v1/.chaoyang-hardlink-snapshot/mask-sam3-import-closure-v1/MANIFEST.json",
+      "manifest_bytes": 1205364,
+      "manifest_sha256": "b01832ce239477cb9eb040816337f7c8b2f5574c5b00f0d4beefbdb645a940fd",
+      "files": 2073,
+      "logical_bytes": 231506446,
+      "tree_content_sha256": "dea1000d28a38a47bde548994c38453a946058099d95bb031d24640b02e08eea"
+    }
+  },
+  "dry_run": {
+    "overlay_full_readback": {
+      "path": "tasks/control/runs/20260903_mask_local_environment_v1/CLOSURE_VERIFY.json",
+      "bytes": 882,
+      "sha256": "42cd9320290b21fd50b20b4ea399bfa89d19f4102a6724eea00a861db5b7b0f0",
+      "status": "PASS"
+    },
+    "composite_inventory": {
+      "path": "tasks/control/runs/20260903_mask_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+      "bytes": 793418,
+      "sha256": "2fe63e3913b6e163f3250bde254b6e5569d001c2d2c7a325d090d30ff148ebad",
+      "status": "CPU_PASS_GPU_REPLAY_PENDING",
+      "base_snapshot_entries_metadata_checked": 76696,
+      "composite_hook_is_only_base_payload_addition": true
+    }
+  },
+  "restore_base_only_procedure": [
+    "Require fresh explicit operator authorization and re-run the overlay full-readback verifier.",
+    "Require the exact path-hook bytes/SHA and overlay manifest/tree SHA above; refuse symlinks, replacements, missing ownership metadata, or any extra target.",
+    "Withdraw the exact path hook first, then atomically rename the exact overlay to a fresh project-local quarantine name; do not recursively delete it.",
+    "Run tools/no_clobber_hardlink_snapshot.py verify against the base snapshot and require tree_content_sha256 9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64.",
+    "Retain quarantine until a separate reviewed deletion authorization."
+  ],
+  "full_environment_withdrawal_after_base_restore": {
+    "argv": [
+      "tools/clean_python.sh",
+      "tools/no_clobber_hardlink_snapshot.py",
+      "rollback",
+      "--snapshot",
+      "assets/environments/mask-sam3-py311-v1",
+      "--confirm-tree-sha",
+      "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64"
+    ],
+    "execute_suffix": [
+      "--execute"
+    ],
+    "requires_fresh_explicit_operator_authorization": true,
+    "status": "NOT_EXECUTED"
+  },
+  "deletion_or_withdrawal_performed": false
+}

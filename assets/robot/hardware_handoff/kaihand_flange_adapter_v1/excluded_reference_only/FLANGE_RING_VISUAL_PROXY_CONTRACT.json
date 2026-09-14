@@ -1,0 +1,63 @@
+{
+  "schema_version": "tianji-kaihand-flange-ring-proxy-contract-v1",
+  "status": "FROZEN_DEVELOPMENT_VISUALIZATION_ONLY",
+  "classification": "FLANGE_RING_PROXY",
+  "development_only": true,
+  "real_adapter_cad": false,
+  "measured_mount": false,
+  "calibrated_mount": false,
+  "deployment_authorized": false,
+  "training_authorized": false,
+  "sides": {
+    "left": {
+      "from_link": "flange_L",
+      "to_link": "left_tool"
+    },
+    "right": {
+      "from_link": "flange_R",
+      "to_link": "right_tool"
+    }
+  },
+  "geometry": {
+    "kind": "annular_cylinder",
+    "length_m": 0.145,
+    "length_source": "marvin_CCS_m6.urdf fixed left_tool_joint/right_tool_joint origin xyz z=0.145",
+    "outer_radius_m": 0.04100007,
+    "outer_radius_source": "0.5 * Link7 local mesh x AABB 0.08200014 m",
+    "inner_radius_m": 0.020500035,
+    "inner_radius_source": "visualization-only design choice 0.5 * outer radius; not hardware evidence",
+    "sections": 32,
+    "identical_left_right_geometry": true,
+    "render_color_bgr": [30, 165, 255],
+    "watermark": "FLANGE_RING_PROXY 145mm | NOT_REAL_CAD | NOT_MEASURED | NOT_CALIBRATED"
+  },
+  "assets": {
+    "tianji_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+      "sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309"
+    },
+    "link7_left_mesh": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/meshes/m6/Link7_L.STL",
+      "sha256": "126cc7d41c37049ce34d2636bfe2d460c21e3429ed080877d1c5e983109ef798"
+    },
+    "link7_right_mesh": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/meshes/m6/Link7_R.STL",
+      "sha256": "6eb75b059ff383e90a153be840bcce84b23d8f8afd074b1bc9dfec1b18c2351f"
+    },
+    "kaihand_left_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+      "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74"
+    },
+    "kaihand_right_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+      "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586"
+    }
+  },
+  "attachment_rule": {
+    "hand_root_parent_links": ["left_tool", "right_tool"],
+    "matrix_direction": "p_tool = T_tool_hand_root_proxy @ p_hand_root",
+    "same_attachment_frame_used_by_ik_and_renderer": true,
+    "old_flange_vs_tool_mixed_attachment_forbidden": true
+  },
+  "claim_limit": "The annular geometry makes the missing physical adapter span visible for review. Its length and outer envelope are reproducible from the pinned URDF/mesh, but it is not a vendor adapter CAD, mount measurement, calibration, collision model or deployable assembly."
+}

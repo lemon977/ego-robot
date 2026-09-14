@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import csv
 import json
+import sys
 from pathlib import Path
 
 import matplotlib
@@ -19,8 +20,8 @@ plt.rcParams["axes.unicode_minus"] = False
 
 
 ROOT = Path(__file__).resolve().parents[1]
-RUN = ROOT / "runs/grap_a_cap/kai22_retarget_ab_r2"
-OUTPUT = ROOT / "outputs/training_analysis/kai22_r2"
+sys.path.insert(0, str(ROOT))
+from utils.atomic_io import atomic_write_json  # noqa: E402
 
 
 def selection_score(row: dict) -> float:
@@ -33,11 +34,13 @@ def selection_score(row: dict) -> float:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--run", type=Path, default=RUN)
-    parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument("--run", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     run = args.run.resolve()
     output = args.output.resolve()
+    if output.exists() and any(output.iterdir()):
+        raise FileExistsError(f"analysis output must be a new empty directory: {output}")
     output.mkdir(parents=True, exist_ok=True)
 
     history = json.loads((run / "train_history.json").read_text(encoding="utf-8"))
@@ -154,7 +157,9 @@ def main() -> int:
     ax.set_title("验证集指标")
 
     figure.suptitle(
-        "Kai22 R2：78段数据训练审计｜第285轮早停｜验证集最优第225轮",
+        "Kai22 R2训练审计｜"
+        f"完成第{int(complete['completed_epoch'])}轮｜"
+        f"验证集最优第{int(best['epoch'])}轮",
         fontsize=15,
     )
     curve_path = output / "r2_training_loss_and_validation.png"
@@ -196,7 +201,10 @@ def main() -> int:
             "first": {key: first[key] for key in validation_fields},
             "best": {key: best[key] for key in validation_fields},
             "last": {key: last[key] for key in validation_fields},
-            "interpretation": "training loss kept decreasing after epoch 225 while the validation score stopped improving; best.pt correctly freezes epoch 225 EMA weights",
+            "interpretation": (
+                f"validation-selected epoch {int(best['epoch'])}; conclusions are "
+                "computed from the supplied immutable run rather than a hard-coded history"
+            ),
         },
         "outputs": {
             "curve": str(curve_path),
@@ -204,9 +212,7 @@ def main() -> int:
             "validation_csv": str(output / "validation_curve.csv"),
         },
     }
-    (output / "report.json").write_text(
-        json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8"
-    )
+    atomic_write_json(output / "report.json", report)
     print(json.dumps(report, ensure_ascii=False, indent=2))
     return 0
 

@@ -1,0 +1,187 @@
+{
+  "schema_version": "rejected-visual-review-v1",
+  "items": [
+    {
+      "asset_id": "mask_v1_representative_failures",
+      "version": "MASK v1",
+      "title": "v1 representative held-mask overlays",
+      "kind": "representative_mask_sheet",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v1/qa/failure_attribution.json",
+      "representative_frame_indices": [0, 94, 232, 236],
+      "raw_template": "/mnt/data/egodata/folder/grap_a_cap_0812/grap_a_cap_004/preprocess/all_data/{frame05}/rgb.png",
+      "mask_template": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v1/sessions/grap_a_cap_004/mask/frames/{frame05}/{mask_name}",
+      "frame_scope_label": "representative frames 0,94,232,236; QA scope SESSION; not all 353 held frames",
+      "rejection_reasons": [
+        "353/460 frames contain at least one held hand or forearm candidate.",
+        "Forearm prompt/crop-boundary support and 31 object-visible candidates fail the evidence gates."
+      ]
+    },
+    {
+      "asset_id": "mask_v2_representative_failures",
+      "version": "MASK v2",
+      "title": "v2 representative held-mask overlays",
+      "kind": "representative_mask_sheet",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v2/qa/failure_attribution.json",
+      "representative_frame_indices": [0, 94, 232, 236],
+      "raw_template": "/mnt/data/egodata/folder/grap_a_cap_0812/grap_a_cap_004/preprocess/all_data/{frame05}/rgb.png",
+      "mask_template": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v2/sessions/grap_a_cap_004/mask/frames/{frame05}/{mask_name}",
+      "frame_scope_label": "representative frames 0,94,232,236; QA scope SESSION; not all 236 held frames",
+      "rejection_reasons": [
+        "236/460 frames remain held by the human-mask evidence gate.",
+        "Connected-component regularization can retain an incomplete component choice and disconnected hand islands."
+      ]
+    },
+    {
+      "asset_id": "mask_v3_representative_failures",
+      "version": "MASK v3",
+      "title": "v3 representative residual-failure overlays",
+      "kind": "representative_mask_sheet",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v3/qa/failure_attribution.json",
+      "representative_frame_indices": [94, 223, 236, 239],
+      "raw_template": "/mnt/data/egodata/folder/grap_a_cap_0812/grap_a_cap_004/preprocess/all_data/{frame05}/rgb.png",
+      "mask_template": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v3/sessions/grap_a_cap_004/mask/frames/{frame05}/{mask_name}",
+      "frame_scope_label": "representative residual frames 94,223,236,239; QA scope SESSION; not all held frames",
+      "rejection_reasons": [
+        "The pre-composite gate holds 174 frames and does not match contact-aware final H/O/U semantics.",
+        "Final anatomy evidence still leaves 18 frames requiring temporal validation."
+      ]
+    },
+    {
+      "asset_id": "mask_v4_representative_failures",
+      "version": "MASK v4",
+      "title": "v4 audit-only residual failures (pixels reference v3)",
+      "kind": "representative_mask_sheet",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v4/qa/failure_attribution.json",
+      "representative_frame_indices": [236, 237, 239, 285],
+      "raw_template": "/mnt/data/egodata/folder/grap_a_cap_0812/grap_a_cap_004/preprocess/all_data/{frame05}/rgb.png",
+      "mask_template": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v3/sessions/grap_a_cap_004/mask/frames/{frame05}/{mask_name}",
+      "frame_scope_label": "representative 4 of 18 explicit QA frames; v4 pixel refs are byte-identical to v3",
+      "rejection_reasons": [
+        "18/460 frames remain held after final contact-aware anatomy evaluation.",
+        "Frames 236,237,239,285,289 remain below the frozen temporal-consistency threshold."
+      ]
+    },
+    {
+      "asset_id": "mask_v5_representative_failures",
+      "version": "MASK v5",
+      "title": "v5 audit-only table-blob failures (pixels reference v3)",
+      "kind": "representative_mask_sheet",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v5/qa/failure_attribution.json",
+      "representative_frame_indices": [235, 236, 237, 239],
+      "raw_template": "/mnt/data/egodata/folder/grap_a_cap_0812/grap_a_cap_004/preprocess/all_data/{frame05}/rgb.png",
+      "mask_template": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v3/sessions/grap_a_cap_004/mask/frames/{frame05}/{mask_name}",
+      "frame_scope_label": "representative frames 235-239; v5 changes audit logic and references v3 pixels",
+      "rejection_reasons": [
+        "The OR support rule accepts 71 frames below the frozen 0.75 temporal threshold.",
+        "Frames around 235-239 contain intermittent table/background components connected to the right hand."
+      ]
+    },
+    {
+      "asset_id": "mask_v6_representative_failures",
+      "version": "MASK v6",
+      "title": "v6 explicit 232-241 failure-window overlays",
+      "kind": "representative_mask_sheet",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v6/qa/failure_attribution.json",
+      "representative_frame_indices": [232, 236, 237, 239],
+      "raw_template": "/mnt/data/egodata/folder/grap_a_cap_0812/grap_a_cap_004/preprocess/all_data/{frame05}/rgb.png",
+      "mask_template": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v6/sessions/grap_a_cap_004/mask/frames/{frame05}/{mask_name}",
+      "frame_scope_label": "representative 4 frames from explicit QA window 232-241",
+      "rejection_reasons": [
+        "The left sleeve/forearm is incompletely selected and recall reaches only 0.50 on frames 236-239.",
+        "Seven frames in 232-241 contain a large right-hand-connected table/background component."
+      ]
+    },
+    {
+      "asset_id": "mask_v7_critical_comparison",
+      "version": "MASK v7",
+      "title": "critical frames 232-241 comparison",
+      "kind": "copy",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v7/qa/failure_attribution.json",
+      "source_path": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v7/sessions/grap_a_cap_004/review/critical_232_241_comparison.png",
+      "frame_scope_label": "curated critical comparison, frames 232-241",
+      "rejection_reasons": [
+        "Unconditional analytic forearm completion introduces large polygonal background masks.",
+        "Final anatomy HOLD regresses to 195 frames; v7 cannot be consumed by CLEAN."
+      ]
+    },
+    {
+      "asset_id": "mask_v7_stress16",
+      "version": "MASK v7",
+      "title": "frozen stress16 contact sheet",
+      "kind": "copy",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v7/qa/failure_attribution.json",
+      "source_path": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v7/sessions/grap_a_cap_004/review/stress16_v7_contact_sheet.png",
+      "frame_scope_label": "frozen canary frames 0,30,61,92,104,122,153,183,215,259,270,271,355,426,432,438",
+      "rejection_reasons": [
+        "8/16 frozen canary frames are independently held.",
+        "The analytic corridor repeatedly paints table/background rather than natural sleeve contours."
+      ]
+    },
+    {
+      "asset_id": "mask_v7_preview",
+      "version": "MASK v7",
+      "title": "session preview video",
+      "kind": "copy",
+      "qa_ref": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v7/qa/failure_attribution.json",
+      "source_path": "archive/legacy_runs/incomplete/g2_004_mask_clean_candidate_v7/sessions/grap_a_cap_004/review/MASK_V7_PREVIEW.mp4",
+      "frame_scope_label": "session preview; visual aid only",
+      "rejection_reasons": [
+        "The preview contains recurring polygonal corridor artifacts.",
+        "It is retained for human temporal review and is not a formal artifact."
+      ]
+    },
+    {
+      "asset_id": "mask_v8_offline_proxy",
+      "version": "MASK v8",
+      "title": "offline v6/v7 morphology proxy",
+      "kind": "copy",
+      "qa_ref": "_run/g2_004_mask_clean_candidate_v8/qa/failure_attribution.json",
+      "source_path": "_run/g2_004_mask_clean_candidate_v8/sessions/grap_a_cap_004/diagnostic/offline_proxy/v6_v7_proxy_morphology_232_236_239_240.png",
+      "frame_scope_label": "offline proxy only, frames 232,236,239,240",
+      "rejection_reasons": [
+        "This is an offline proxy and cannot establish true SAM candidate behavior.",
+        "The v8 path still hard-clips the forearm candidate with an analytic corridor."
+      ]
+    },
+    {
+      "asset_id": "mask_v8_true_sam",
+      "version": "MASK v8",
+      "title": "true-SAM four-frame diagnostic",
+      "kind": "copy",
+      "qa_ref": "_run/g2_004_mask_clean_candidate_v8/qa/failure_attribution.json",
+      "source_path": "_run/g2_004_mask_clean_candidate_v8/sessions/grap_a_cap_004/diagnostic/true_sam/TRUE_SAM_4FRAME_DIAGNOSTIC.png",
+      "frame_scope_label": "explicit QA frames 232,236,239,240",
+      "rejection_reasons": [
+        "Left observed forearm is not crop-boundary connected in all four diagnostic frames.",
+        "The persisted candidate violates the task-card prohibition on corridor hard crops."
+      ]
+    },
+    {
+      "asset_id": "mask_v9_critical4",
+      "version": "MASK v9",
+      "title": "critical four-frame short-window diagnostic",
+      "kind": "copy",
+      "qa_ref": "_run/g2_004_mask_clean_candidate_v9/qa/failure_attribution.json",
+      "source_path": "_run/g2_004_mask_clean_candidate_v9/sessions/grap_a_cap_004/diagnostic/short_window/V9_CRITICAL_4FRAME.png",
+      "frame_scope_label": "curated critical 4 frames within explicit QA window 228-242",
+      "rejection_reasons": [
+        "All 15 left forearms remain held because sleeve-prompt recall is 0.40 below the 0.60 gate.",
+        "No frame invokes the proposed second SAM query, so the unique v9 hypothesis is unevaluated."
+      ]
+    },
+    {
+      "asset_id": "a2_producer_p1_r3_contact_sheet",
+      "version": "A2 producer_p1 r3",
+      "title": "60-frame candidate forensic contact sheet",
+      "kind": "copy",
+      "qa_ref": "audits/A2_INDEPENDENT_QA.md",
+      "source_path": "audits/A2_CONTACT_SHEET.png",
+      "frame_scope": {"scope": "WINDOW", "start": 200, "end_inclusive": 259},
+      "frame_scope_label": "forensic candidate window 200-259; sheet is curated and not a per-failure exhaustive index",
+      "rejection_reasons": [
+        "Frames 200 and 201 select 49.2571% and 46.8527% of the image, visibly absorbing the table.",
+        "The claimed mask-evidence-v1 manifest has 614 schema errors and degraded:false is a false negative."
+      ]
+    }
+  ]
+}

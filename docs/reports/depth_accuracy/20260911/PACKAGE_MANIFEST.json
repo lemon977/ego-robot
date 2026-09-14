@@ -1,0 +1,170 @@
+{
+  "schema_version": "depth-accuracy-convenience-package-v1",
+  "status": "COPIED_SELF_CONTAINED_INDEX",
+  "copied_not_moved": true,
+  "source_project": "/mnt/workspace/code/chaoyang",
+  "original_final_receipt": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/FINAL_RECEIPT.json",
+  "authority": false,
+  "claim_limit": "Convenience copy only; original task receipts remain authoritative. No external ground truth or millimeter Robot-contact claim.",
+  "counts": {
+    "files": 31,
+    "bytes": 27682225
+  },
+  "files": [
+    {
+      "path": "README_ZH.md",
+      "bytes": 2699,
+      "sha256": "85a3d328ee4ad683e9f35882c790225770b040eec6cca424f69f9df2919c8c6a"
+    },
+    {
+      "path": "documents/C2W_ROBOT_COORDINATE_AUDIT.md",
+      "bytes": 9979,
+      "sha256": "75e64fcd9a1a060d61629a48f31d9b50f2a9a55dc384ff46ec0f763fa86a9923"
+    },
+    {
+      "path": "documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+      "bytes": 11608,
+      "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+    },
+    {
+      "path": "documents/EXTERNAL_DEPTH_VALIDATION_PLAN_ZH.md",
+      "bytes": 7558,
+      "sha256": "5632c4c7c39a7c07322943bbe9405903089d5d66604c1cd9ed015680dc874929"
+    },
+    {
+      "path": "documents/MEETING_DEPTH_SUMMARY_ZH.md",
+      "bytes": 5149,
+      "sha256": "785fdcf2404a8c42735f7fa7882a221e6c99ce0ff7afe11b42b50a898661bbc9"
+    },
+    {
+      "path": "documents/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+      "bytes": 98026,
+      "sha256": "5d587426e72c57d775dfcace81631d5428b7817af15eeed2447e26dc79650018"
+    },
+    {
+      "path": "evidence/HAWOR_STEREO_SURFACE_QA_REPORT_ZH.md",
+      "bytes": 3335,
+      "sha256": "1c8d381c9f74ef46043cffaf35c5b0d3681187f6f1eec85e21c78b0145d112b2"
+    },
+    {
+      "path": "evidence/HAWOR_STEREO_SURFACE_QA_RESULT.json",
+      "bytes": 4159,
+      "sha256": "53b57297f93de1d0a986cff9030de794266da30c3b2de433a4cd45a8108f47ab"
+    },
+    {
+      "path": "evidence/QUANTITATIVE_ACCURACY_EVIDENCE_AUDIT_REPORT_ZH.md",
+      "bytes": 7614,
+      "sha256": "110567ee130f18a9a607ed394042bc12e5a95837167a34daa2fc922f8e5973cf"
+    },
+    {
+      "path": "images/Chips034_Right_Proxy_Skeleton.png",
+      "bytes": 1775845,
+      "sha256": "9925e359f2b1232d2f4111d9f5268b0c9831eb19055f50153c87e72df0332b67"
+    },
+    {
+      "path": "images/DEPTH_TYPES_OVERVIEW_ZH.png",
+      "bytes": 383840,
+      "sha256": "7294edd03d16b8918f6ada2b3638a318168bb0d87b24531411335c525a68f360"
+    },
+    {
+      "path": "images/HAWOR_STEREO_DIFFERENCE_TABLE.png",
+      "bytes": 333373,
+      "sha256": "726e21616de73165fe858dae4c4b72b304406be1ee39ccd2fcaec1d351a9371f"
+    },
+    {
+      "path": "images/INTERNAL_VS_EXTERNAL_ACCURACY_ZH.png",
+      "bytes": 367777,
+      "sha256": "ff475f5033c82bc700d170e652e9d6e386097be7a9fe4e63292961f5d5e70e7d"
+    },
+    {
+      "path": "receipts/FINAL_RECEIPT.json",
+      "bytes": 12530,
+      "sha256": "a442f3a5936f67af9fcaf83306d8ffedcae3be6ebab99a42491fb5c63dac00f5"
+    },
+    {
+      "path": "receipts/MEDIA_DELIVERY_RECEIPT.json",
+      "bytes": 3417,
+      "sha256": "9f442fcb99b4760b8479637b0689f4520b068bd0f091b49d0ef74cfd090faf39"
+    },
+    {
+      "path": "receipts/RESULT.json",
+      "bytes": 5110,
+      "sha256": "debe76bda5ff8caa08fd528662773493c908d2fd54aa69a5c83fe6204a8ae590"
+    },
+    {
+      "path": "receipts/SHA256SUMS.txt",
+      "bytes": 3421,
+      "sha256": "870a64943453cd97dd42046bb49362b13d730d7538cf7329f95956685a2b5574"
+    },
+    {
+      "path": "receipts/TASK_STATE.json",
+      "bytes": 4370,
+      "sha256": "bc1a049b73cf015027adf70b9bbe33543b824907e8530c91724bf4175e6ee2fe"
+    },
+    {
+      "path": "receipts/TASK_STATUS_ZH.md",
+      "bytes": 9690,
+      "sha256": "6b571faf8eed7405d50f7e21d1376008441be0e357596040e300573b521c131b"
+    },
+    {
+      "path": "scripts/build_depth_accuracy_meeting_diagrams.py",
+      "bytes": 10157,
+      "sha256": "fce30d143a2cb9f75ea320b359bcb9db67f316df816bd92d762442e9c26c1d06"
+    },
+    {
+      "path": "scripts/build_hawor_stereo_difference_report.py",
+      "bytes": 22351,
+      "sha256": "be7c4fa6dc1a45e99c34c6c6eb924efd334fd6d59a05adc022d62c037aa4de82"
+    },
+    {
+      "path": "scripts/finalize_depth_accuracy_spatial_diagnostic.py",
+      "bytes": 7581,
+      "sha256": "fb934a141f9ff3a1d202c7272fe14b518fed9d6bb012d535d2a7e1ff6c30d8b2"
+    },
+    {
+      "path": "scripts/run_hawor_stereo_spatial_relation_video.py",
+      "bytes": 34198,
+      "sha256": "46358b2da685b5f64d514d8a44e005b78a8b6f898fd49ad59fb6491408cf9a00"
+    },
+    {
+      "path": "scripts/verify_package.py",
+      "bytes": 4293,
+      "sha256": "837cb446176611b16d28196da8a96347f648365dedfed7f5bfe9ab0ab8440be2"
+    },
+    {
+      "path": "tables/CHIPS034_RIGHT_THREE_WINDOW_REGIONAL_METRICS.json",
+      "bytes": 19678,
+      "sha256": "8a64ac34bb21f14b00599ffdcf77865fa6ffb683cf0663cc0da2aa95c2cf4128"
+    },
+    {
+      "path": "tables/HAWOR_STEREO_DIFFERENCE_TABLE.csv",
+      "bytes": 7122,
+      "sha256": "142201a89717f65ac81904d3973754cda885e6901ce40e2a7103d827a43c7a85"
+    },
+    {
+      "path": "tables/TABLE_RESULT.json",
+      "bytes": 1854,
+      "sha256": "7f893b2ec5533b1a2d2eeadd4ffa9b220af30abc050ed1b5f09f413dc5b30ea7"
+    },
+    {
+      "path": "videos/Chips034_Right_3D_Depth_Comparison.mp4",
+      "bytes": 6675475,
+      "sha256": "fa25f76023dc633abaca8dbc0ad5c4e99fc5788d2e137c5d650f7be99ae48b85"
+    },
+    {
+      "path": "videos/Chips034_Right_Before_After_Z_Alignment.mp4",
+      "bytes": 7396069,
+      "sha256": "0539db5d9f2d3ec2a03868c64599dc6420af75b640f0682434632e33daa677a1"
+    },
+    {
+      "path": "videos/Chips034_Right_Median_Z_Aligned_Auxiliary.mp4",
+      "bytes": 6134549,
+      "sha256": "86cf029346307b7b7c6fe27b07c88dd141ffef97efc076e60078a38e3eaab89c"
+    },
+    {
+      "path": "videos/Chips034_Right_Proxy_Skeleton.mp4",
+      "bytes": 4319398,
+      "sha256": "dd7e4058889bb4dc295c32e9009f2f297c8cf558b335c496ba06ec12f5b51630"
+    }
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/clean_layers.schema.json",
+  "title": "G2 Calibration Clean Layers",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_state", "producer", "session_id", "product_line",
+    "source_manifest_ref", "reveal_labels_ref", "verified_reveal_policy_ref",
+    "object_texture_donor_manifest_refs", "temporal_atlas_manifest_refs",
+    "task_card_ref", "calibration_overlay_ref", "execution_mode", "synthetic_test_only",
+    "formal_consumable", "formal_clean_enabled", "allowed_routes", "hidden_fallback_used",
+    "frame_count", "frames", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "clean-layers-v1"},
+    "artifact_state": {"const": "G2_CALIBRATION_CANDIDATE"},
+    "producer": {"const": "clean_background_producer"},
+    "session_id": {"const": "grap_a_cap_004"},
+    "product_line": {"const": "004_CONTACT_GOLD"},
+    "source_manifest_ref": {"$ref": "#/$defs/ref"},
+    "reveal_labels_ref": {"$ref": "#/$defs/ref"},
+    "verified_reveal_policy_ref": {"$ref": "#/$defs/revealPolicyRef"},
+    "object_texture_donor_manifest_refs": {
+      "type": "array", "uniqueItems": true,
+      "items": {"$ref": "#/$defs/objectTextureDonorRef"}
+    },
+    "temporal_atlas_manifest_refs": {
+      "type": "array", "uniqueItems": true,
+      "items": {"$ref": "#/$defs/temporalAtlasRef"}
+    },
+    "task_card_ref": {"$ref": "#/$defs/ref"},
+    "calibration_overlay_ref": {"$ref": "#/$defs/ref"},
+    "execution_mode": {"const": "G2_CALIBRATION"},
+    "synthetic_test_only": {"const": false},
+    "formal_consumable": {"const": false},
+    "formal_clean_enabled": {"const": false},
+    "allowed_routes": {"const": ["ANALYTIC_GEOMETRY_TEXTURE", "TEMPORAL_DONOR_ATLAS"]},
+    "hidden_fallback_used": {"const": false},
+    "frame_count": {"const": 460},
+    "frames": {
+      "type": "array",
+      "minItems": 460,
+      "maxItems": 460,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "frame_index", "source_frame_sha256", "clean_rgb", "object_reveal_rgb",
+          "background_reveal_rgb", "unsupported_mask", "object_donor_refs",
+          "background_donor_refs", "pre_route_overlap_ref", "post_route_overlap_ref",
+          "route_coverage_ref", "hold", "hold_reasons", "route_ids"
+        ],
+        "properties": {
+          "frame_index": {"type": "integer", "minimum": 0, "maximum": 459},
+          "source_frame_sha256": {"$ref": "#/$defs/sha256"},
+          "clean_rgb": {"$ref": "#/$defs/ref"},
+          "object_reveal_rgb": {"$ref": "#/$defs/ref"},
+          "background_reveal_rgb": {"$ref": "#/$defs/ref"},
+          "unsupported_mask": {"$ref": "#/$defs/ref"},
+          "object_donor_refs": {
+            "type": "array", "uniqueItems": true,
+            "items": {"$ref": "#/$defs/objectTextureDonorRef"}
+          },
+          "background_donor_refs": {
+            "type": "array", "uniqueItems": true,
+            "items": {"$ref": "#/$defs/temporalAtlasRef"}
+          },
+          "pre_route_overlap_ref": {"$ref": "#/$defs/ref"},
+          "post_route_overlap_ref": {"$ref": "#/$defs/ref"},
+          "route_coverage_ref": {"$ref": "#/$defs/ref"},
+          "hold": {"type": "boolean"},
+          "hold_reasons": {
+            "type": "array", "uniqueItems": true,
+            "items": {"type": "string", "minLength": 1}
+          },
+          "route_ids": {
+            "type": "array", "uniqueItems": true, "maxItems": 2,
+            "items": {"enum": ["ANALYTIC_GEOMETRY_TEXTURE", "TEMPORAL_DONOR_ATLAS"]}
+          }
+        },
+        "allOf": [
+          {
+            "if": {"properties": {"hold": {"const": true}}},
+            "then": {"properties": {"hold_reasons": {"minItems": 1}}},
+            "else": {"properties": {"hold_reasons": {"maxItems": 0}}}
+          }
+        ]
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "producer"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "revealPolicyRef": {
+      "allOf": [
+        {"$ref": "#/$defs/ref"},
+        {"required": ["schema_version", "bytes"], "properties": {"producer": {"const": "reveal_policy_owner"}, "schema_version": {"const": "reveal-policy-v1"}}}
+      ]
+    },
+    "objectTextureDonorRef": {
+      "allOf": [
+        {"$ref": "#/$defs/ref"},
+        {"required": ["schema_version", "bytes"], "properties": {"producer": {"const": "object_geometry_producer"}, "schema_version": {"const": "object-texture-donor-v1"}}}
+      ]
+    },
+    "temporalAtlasRef": {
+      "allOf": [
+        {"$ref": "#/$defs/ref"},
+        {"required": ["schema_version", "bytes"], "properties": {"producer": {"const": "temporal_donor_atlas"}, "schema_version": {"const": "temporal-background-donor-v1"}}}
+      ]
+    }
+  }
+}

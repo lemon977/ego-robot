@@ -1,0 +1,74 @@
+{
+  "schema_version": "rejected-visual-review-v1",
+  "review_pack_instance": "rejected_visual_review_v3",
+  "items": [
+    {
+      "asset_id": "producer_p3_frame_00228_empty_fail_closed_hold",
+      "version": "SAM3.1 producer_p3 geometric-box dev15 HOLD",
+      "title": "v3 representative frame 228 — box route yields no eligible complete limb",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P3_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00228.png",
+      "frame_scope": {
+        "scope": "FRAME_SET",
+        "frame_indices": [228]
+      },
+      "frame_scope_label": "representative first development frame 228; one of 15/15 held and 15/15 empty final MASK frames",
+      "rejection_reasons": [
+        "Both complete hand-wrist-cuff/sleeve-boundary forearm chains are absent from the final MASK; the empty output is fail-closed, not successful segmentation.",
+        "Independent QA SHA dde3901484ce3a7fed4ce52f8438ac56749427eeec437cc713d5fe12028d006a; execution report SHA ff24b7bc035a86dfc9255a82b16dfad8e07787b407f6e2a5a5f0b9db85d697aa."
+      ]
+    },
+    {
+      "asset_id": "producer_p3_frame_00235_fragmented_box_route_hold",
+      "version": "SAM3.1 producer_p3 geometric-box dev15 HOLD",
+      "title": "v3 representative frame 235 — high-score box instances still fail ownership",
+      "kind": "copy",
+      "qa_ref": "audits/SAM31_EGO_HUMAN_PRODUCER_P3_T1_REPORT.md",
+      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00235.png",
+      "frame_scope": {
+        "scope": "FRAME_SET",
+        "frame_indices": [235]
+      },
+      "frame_scope_label": "representative middle development frame 235; 0/30 raw box instances support an eligible side across the complete window",
+      "rejection_reasons": [
+        "The official box route returned nonempty high-score candidates, but none supported a complete single-side hand-wrist-boundary chain; accepting them would admit fragmented/background pixels.",
+        "Execution report SHA ff24b7bc035a86dfc9255a82b16dfad8e07787b407f6e2a5a5f0b9db85d697aa; independent QA SHA dde3901484ce3a7fed4ce52f8438ac56749427eeec437cc713d5fe12028d006a."
+      ]
+    },
+    {
+      "asset_id": "producer_p3_frame_00242_persistent_empty_hold",
+      "version": "SAM3.1 producer_p3 geometric-box dev15 HOLD",
+      "title": "v3 representative frame 242 — failure persists through final development frame",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P3_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00242.png",
+      "frame_scope": {
+        "scope": "FRAME_SET",
+        "frame_indices": [242]
+      },
+      "frame_scope_label": "representative final development frame 242; structural box-only failure persists",
+      "rejection_reasons": [
+        "The final frame remains empty for both human sides; the can is preserved only because no human instance passed the frozen ownership gate.",
+        "This is development HOLD evidence only and cannot be consumed by MASK, CLEAN, RobotRGB, or training."
+      ]
+    },
+    {
+      "asset_id": "producer_p3_dev15_full_review_video",
+      "version": "SAM3.1 producer_p3 geometric-box dev15 HOLD",
+      "title": "v3 complete 15-frame RAW/MASK/overlay review video",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P3_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/PREVIEW_RAW_MASK_OVERLAY.mp4",
+      "frame_scope": {
+        "scope": "FRAME_SET",
+        "frame_indices": [228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242]
+      },
+      "frame_scope_label": "complete public development window 228-242; 0/15 sufficient, 15/15 held, 15/15 empty final MASK",
+      "rejection_reasons": [
+        "Independent integrity and visual QA confirms the strict HOLD on every development frame; this is complete review coverage for this 15-frame window.",
+        "Independent QA SHA dde3901484ce3a7fed4ce52f8438ac56749427eeec437cc713d5fe12028d006a; execution report SHA ff24b7bc035a86dfc9255a82b16dfad8e07787b407f6e2a5a5f0b9db85d697aa; neither adjudicates formal PASS."
+      ]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "object6d-constrained-mask-input-manifest-v2",
+  "title": "Object6D-constrained Mask immutable production input with frozen 0903 partition",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "production_input", "task", "session",
+    "frame_count", "source_resolution", "object_profile", "predecessor_root",
+    "dataset_partition_contract", "inputs", "output_root", "review_name", "method_contract"
+  ],
+  "properties": {
+    "schema_version": {"const": "object6d-constrained-mask-input-manifest-v2"},
+    "status": {"const": "READY_FOR_OBJECT6D_CONSTRAINED_MASK"},
+    "production_input": {"const": true},
+    "task": {"type": "string", "minLength": 1},
+    "session": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "source_resolution": {
+      "type": "array", "prefixItems": [{"type": "integer", "minimum": 1}, {"type": "integer", "minimum": 1}], "items": false
+    },
+    "object_profile": {"enum": ["chips_yellow", "poker_white"]},
+    "predecessor_root": {"type": "string", "pattern": "^/"},
+    "dataset_partition_contract": {"$ref": "#/$defs/partition"},
+    "inputs": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "raw_video", "predecessor_result", "predecessor_mask_inventory",
+        "object6d_trajectory", "object6d_result", "world_consistent_hawor",
+        "world_consistent_hawor_result"
+      ],
+      "properties": {
+        "raw_video": {"$ref": "#/$defs/ref"},
+        "predecessor_result": {"$ref": "#/$defs/ref"},
+        "predecessor_mask_inventory": {"$ref": "#/$defs/ref"},
+        "object6d_trajectory": {"$ref": "#/$defs/ref"},
+        "object6d_result": {"$ref": "#/$defs/ref"},
+        "world_consistent_hawor": {"$ref": "#/$defs/ref"},
+        "world_consistent_hawor_result": {"$ref": "#/$defs/ref"}
+      }
+    },
+    "output_root": {"type": "string", "pattern": "^/"},
+    "review_name": {"type": "string", "pattern": "^[^/]+\\.mp4$"},
+    "method_contract": {
+      "const": {
+        "object_current_frame_direct": true,
+        "object_optical_flow_used": false,
+        "tracker_current_frame_colour_classes": ["white", "grey", "green"]
+      }
+    }
+  },
+  "$defs": {
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "partition": {
+      "const": {
+        "schema_version": "chips-poker-0903-frozen-partition-v1",
+        "authority": "USER_CONFIRMED_AND_INDEPENDENTLY_INVENTORIED",
+        "chips": {"start_index": 1, "end_index": 183, "count": 183},
+        "poker": {"start_index": 184, "end_index": 249, "count": 66},
+        "excluded_entry_names": [".pico_editor_trash"]
+      }
+    }
+  }
+}

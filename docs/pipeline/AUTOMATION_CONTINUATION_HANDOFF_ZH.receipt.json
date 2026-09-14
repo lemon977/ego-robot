@@ -1,0 +1,38 @@
+{
+  "schema_version": "two-task-automation-continuation-document-receipt-v1",
+  "created_at": "2026-09-09T17:17:00+08:00",
+  "status": "PASS_HANDOFF_LINKS_AND_IMPLEMENTATION_REFS_VALIDATED",
+  "document": {
+    "path": "/mnt/workspace/code/chaoyang/docs/pipeline/AUTOMATION_CONTINUATION_HANDOFF_ZH.md",
+    "bytes": 7309,
+    "sha256": "16770d2074d15a9f33d3923033c0cbce2652940d695b9d3f4b4cbfa156bc84c8"
+  },
+  "health_checker": {
+    "path": "/mnt/workspace/code/chaoyang/tools/check_two_task_pipeline_continuation.py",
+    "bytes": 13664,
+    "sha256": "32b602d5a088a89e5bb4efecdaaaf49d1acdf0c20ef78a977b1a903165266cdc",
+    "mode": "READ_ONLY_NO_RESTART_NO_PROMOTION_NO_LEASE_MUTATION"
+  },
+  "exact78_handoff": {
+    "machine_sha256": "06bd270ab530c418bfac40b56ec204851f3da27f71396240eacff9824e679a12",
+    "chinese_sha256": "6b5717b7957143e3d429787a03928acdb61782fbab2f9809455d3e120c03e4e2"
+  },
+  "training_handoff": {
+    "receipt_sha256": "11079255237465d4623079fbe86ea6d90c522d197b4ab830f2a846fb8e6092e5",
+    "chinese_sha256": "1775aad775ef6bb22b93100b8c6cf2756fd71d8384266b87affde205b195ce09"
+  },
+  "robot_handoff": {
+    "formalization_result_sha256": "8dd2649241929e4fac1043367ccb6eb67709865642afc9f93be0f427957d62f0",
+    "physical_left_append_sha256": "4c821e6a28d1c4cef2533cebbf701ca85d8609b751ed6b46cd7984d42f4a1380",
+    "whole_video_user_pass": false,
+    "current_authority": false
+  },
+  "validation": {
+    "local_markdown_links_checked": 12,
+    "missing_local_markdown_links": 0,
+    "health_checker_py_compile": "PASS",
+    "health_checker_ruff": "PASS",
+    "git_diff_check": "PASS"
+  },
+  "claim_limit": "PID values in the document are a timestamped snapshot. Live state and /proc identity take precedence. This receipt does not authorize Clean, Robot, training or checkpoint creation."
+}

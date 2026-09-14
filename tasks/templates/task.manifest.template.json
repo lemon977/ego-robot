@@ -1,0 +1,63 @@
+{
+  "$schema": "../schema/task_manifest.schema.json",
+  "schema_version": "chaoyang-task-manifest-v1",
+  "task_id": "replace_me",
+  "display_name": "替换为任务名",
+  "legacy_aliases": [],
+  "run_root_templates": {
+    "mask": "tasks/replace_me/runs/mask/{run_id}",
+    "clean": "tasks/replace_me/runs/clean/{run_id}",
+    "robot": "tasks/replace_me/runs/robot/{run_id}",
+    "pipeline": "tasks/replace_me/runs/pipeline/{pipeline_run_id}"
+  },
+  "system_refs": {
+    "mask": {
+      "path": "systems/mask/system.manifest.json",
+      "manifest_sha256": "REPLACE_FROM_SYSTEMS_REGISTRY",
+      "algorithm_id": "mask.sam31.assisted_bilateral_flow_refresh.v4",
+      "weight_ids": ["sam31.multiplex.0567debe"]
+    },
+    "clean": {
+      "path": "systems/clean/system.manifest.json",
+      "manifest_sha256": "REPLACE_FROM_SYSTEMS_REGISTRY",
+      "algorithm_id": "clean.real_pixel_bilateral_phone_dev.v1",
+      "weight_ids": []
+    },
+    "robot": {
+      "path": "systems/robot/system.manifest.json",
+      "manifest_sha256": "REPLACE_FROM_SYSTEMS_REGISTRY",
+      "algorithm_id": "robot.actual_fk_task_geometry.v1",
+      "weight_ids": []
+    }
+  },
+  "weight_override_policy": "FORBIDDEN_UNLESS_REGISTERED_IN_REFERENCED_SYSTEM_MANIFEST",
+  "input_views": [],
+  "task_config": {
+    "mask": {
+      "label_schema": ["L_SKIN", "R_SKIN", "L_SLEEVE", "R_SLEEVE", "L_TRACKER", "R_TRACKER", "O_TASK_OBJECT", "U_UNCERTAIN", "B_BACKGROUND"],
+      "visible_role_inventory": [],
+      "task_object_ids": [],
+      "offline_annotation_plan": "FREEZE_BEFORE_FIRST_RESULT"
+    },
+    "clean": {
+      "remove_role_ids": ["L_SKIN", "R_SKIN", "L_SLEEVE", "R_SLEEVE", "L_TRACKER", "R_TRACKER"],
+      "preserve_object_ids": [],
+      "formal_donor_policy": "SAME_SESSION_SAME_CAMERA_SAME_POSE_REAL_PIXELS_ONLY"
+    },
+    "robot": {
+      "object_geometry_types": {},
+      "session_initialization": "THIS_SESSION_ONLY",
+      "anatomical_side_mapping_required": true
+    },
+    "object_contract": {
+      "contract_version": "newtask-object-contract-v2.2",
+      "object_ids": [],
+      "geometry_types": []
+    }
+  },
+  "current_evidence": [],
+  "formal_readiness": {
+    "status": "HOLD_NEW_TASK_NOT_CAPTURED",
+    "missing_inputs": ["formal PICO session and manifests"]
+  }
+}

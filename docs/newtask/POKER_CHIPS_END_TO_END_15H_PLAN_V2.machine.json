@@ -1,0 +1,459 @@
+{
+  "schema_version": "poker-chips-end-to-end-15h-control-plan-v2-refresh-20260903",
+  "generated_at": "2026-09-03T07:37:35+08:00",
+  "timezone": "Asia/Shanghai",
+  "project_root": "/mnt/workspace/code/chaoyang",
+  "status": "CONTROL_PLAN_FAIL_CLOSED",
+  "claim_limit": "Execution control plane only. Readiness, synthetic, canary, window, structure-audit, DEV_APPROX and preview evidence are never promoted implicitly.",
+  "current_state": {
+    "canonical_raw": "COMPLETE_FULL_16_CHIPS_43_POKER",
+    "source_v3": "COMPLETE_ROUTE_SPECIFIC",
+    "hawor_full59": "COMPLETE_59_OF_59_EXECUTION_FAILURES_0_NUMERIC_PASS_58_FAIL_1",
+    "hawor_processed": "COMPLETE_59_RECORDS_177_HARDLINKED_FILES_NO_DATA_BLOCK_COPY",
+    "hawor_local_environment": "PASS_LOCAL_ENVIRONMENT_PROMOTED",
+    "hawor_pointer_policy": "COMPLIANT_NO_UNAUTHORIZED_CONSUMER_CURRENT",
+    "hawor_independent_gate": "COMPLETE_CPU_ONLY_FAIL_CLOSED_AUDIT_FORMAL_AUTHORITY_HOLD",
+    "sam31_stable_switch": "COMPLETE_QA_PASS",
+    "mask": "V4_HOLD_V5_HOLD_CLASSICAL_BOX_HOLD_NO_INDEPENDENT_OBJECT_BOX_AUTHORITY_OBJECT6D_BOX_CPU_PREPARED_ONLY",
+    "clean": "CPU_READY_HOLD_ARCHIVE_UPLOAD_AND_NONFORMAL_MASK",
+    "robot_compositor": "INTERFACE_READY_FORMAL_INPUTS_PENDING",
+    "humanego_profile_admission": "HOLD_ZERO_FORMAL_PROFILE_ELIGIBLE"
+  },
+  "forbidden_actions": [
+    "modify_active_task_or_system_manifests",
+    "move_canonical_raw_or_active_evidence",
+    "read_hash_or_extract_a_still_changing_upload_archive",
+    "restart_terminal_mask_v4_or_v5_or_start_a_gpu_job_without_a_fresh_manifest_and_lease",
+    "mix_PICO21_wrist5_and_MANO21_wrist0",
+    "tune_on_EVAL",
+    "treat_latest_terminal_as_consumption_authority",
+    "treat_visual_replication_as_geometry_or_contact_authority"
+  ],
+  "datasets": {
+    "chips": {
+      "canonical_root": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/potato_chips",
+      "session_pattern": "get_potato_chips_0901_001..016",
+      "session_count": 16,
+      "task_view": "tasks/chips/inputs/potato_chips"
+    },
+    "poker": {
+      "canonical_root": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/playing_cards",
+      "session_pattern": "play_cards_0901_001..043",
+      "session_count": 43,
+      "task_view": "tasks/poker/inputs/playing_cards"
+    },
+    "canonical_migration": {
+      "status": "COMPLETE_FULL",
+      "sessions": 59,
+      "moves": 59,
+      "files_byte_verified": 80887,
+      "binary_copies": 0,
+      "binary_writes": 0
+    }
+  },
+  "workspace_policy": {
+    "organization_v4": {
+      "entry": "docs/organization/2026-09-03/README.md",
+      "status": "V4A_COMPLETE_V4B_PARTIAL_FROZEN_QA_PASS_DELETE_0",
+      "manifest": "docs/organization/2026-09-03/V4_MIGRATION_MANIFEST.json"
+    },
+    "legacy_path_resolver_command": "python tools/resolve_legacy_path.py <legacy-path>",
+    "all_future_source_weight_config_environment_authorities_inside_chaoyang": true,
+    "historical_full59_external_interpreter_exception_closed": true,
+    "canonical_hawor_launcher": "tools/hawor_python.sh",
+    "raw_data_root": "/mnt/data",
+    "processed_pattern": "data/processed/<task>/<session>/<stage>/<version>/",
+    "task_run_pattern": "tasks/<task>/runs/<stage_or_pipeline>/<immutable_run_id>/",
+    "task_run_role": "evidence_control_plane_and_QA_only",
+    "materialization": {
+      "method": "same_filesystem_hardlink_no_data_block_copy",
+      "verify": [
+        "source_destination_device_and_inode",
+        "bytes",
+        "sha256",
+        "link_count",
+        "materialization_authority"
+      ]
+    },
+    "pointer_semantics": {
+      "latest_terminal": "latest_complete_execution_lineage_only_never_consumption_authority",
+      "current": "only_when_frozen_contract_explicitly_sets_consumption_authorized_true",
+      "hold_fail_not_evaluated_never_enter_consumer_current": true,
+      "hawor_latest_terminal_count": 59,
+      "unauthorized_consumer_current_count": 0,
+      "chips001_legacy_pose_seed_current_exception_count": 1
+    }
+  },
+  "authority_contract": {
+    "required_fields": [
+      "scope",
+      "task_id",
+      "session_id",
+      "provider",
+      "coordinate_convention",
+      "input_path_bytes_sha256",
+      "tool_config_gate_weight_sha256",
+      "output_path_bytes_sha256",
+      "independent_review",
+      "consumption_authorized"
+    ],
+    "default": "FAIL_CLOSED"
+  },
+  "route_specific_gate_dag": {
+    "rgb_to_hawor": [
+      "G0_MEDIA_TIMELINE_K",
+      "HAWOR_FULL_SESSION_NUMERIC_AND_PROVENANCE",
+      "INDEPENDENT_EXPECTED_ACTIVE_IDENTITY_CONTOUR_VISIBILITY"
+    ],
+    "pico_to_mask": [
+      "G0_MEDIA",
+      "APPLICABLE_G2_PER_PHYSICAL_SIDE",
+      "FROZEN_PROVIDER_PER_SESSION_SIDE_ROLE",
+      "FULL_TIMELINE_MOVING_OBJECT_INSTANCE_AUTHORITY",
+      "HUMAN_TRACKER_MASK_GATE"
+    ],
+    "clean": [
+      "FORMAL_MASK",
+      "SAME_SESSION_CAMERA_EXPOSURE_DONOR",
+      "STABLE_ARCHIVE_FULL_CRC_SHA",
+      "DIRECT_AND_POST_CODEC_CLEAN_GATE",
+      "HUMAN_REVIEW"
+    ],
+    "robot": [
+      "HAWOR_ROBOT_ROUTE",
+      "K_C2W_KAI_CAD_MOUNT_LIMITS",
+      "MEASURED_OBJECT6D_DIRECT_CONTACT_SIGNED_SDF",
+      "FORMAL_MASK_AND_CLEAN",
+      "FUNCTIONAL_RETARGET_NONPENETRATION_DEPTH_COMPOSITOR",
+      "HUMAN_REVIEW"
+    ],
+    "humanego_profiles": {
+      "RAW_RGB_KAI22": "G0+HAWOR_NUMERIC_PROVENANCE+PROCESSED+INDEPENDENT_IDENTITY_CONTOUR_VISIBILITY+KAI22",
+      "CLEAN_RGB_KAI22": "RAW_PROFILE+FORMAL_MASK+FORMAL_CLEAN",
+      "ROBOT_RGB_COMPOSITE_KAI22": "CLEAN_PROFILE+G1_WORLD+OBJECT6D+FUNCTIONAL_ROBOT+FORMAL_COMPOSITOR"
+    }
+  },
+  "stages": {
+    "source": {
+      "resource": "CPU_IO",
+      "status": "COMPLETE_ROUTE_SPECIFIC",
+      "input": "canonical_session_dir",
+      "output": "new_immutable_source_gate_root",
+      "provider": "capture_files_and_source_gate_v3",
+      "command": "python tools/audit_newtask_source_sessions.py --task-id <chips|poker> --stage-root <new_immutable_source_gate_root> --session <canonical_session_dir>",
+      "chips": {"sessions": 16, "g0_pass": 15, "g1_pass": 6, "g1_hold": 10, "g1_tracker_fail": 0, "g2_pass": 12, "g2_fail": 4},
+      "poker": {"sessions": 43, "g0_pass": 41, "g1_pass": 26, "g1_hold": 7, "g1_tracker_fail": 10, "g2_pass": 31, "g2_fail": 12}
+    },
+    "hawor": {
+      "resource": "COMPLETED_GPU_PLUS_CPU_POSTPROCESS",
+      "status": "COMPLETE_WITH_NUMERIC_CLASSIFICATION_INDEPENDENT_AUTHORITY_HOLD",
+      "execution": {"completed": 59, "failed": 0, "remaining": 0, "numeric_pass": 58, "numeric_fail": 1, "gpu_seconds": 14058.967305113445, "gpu_budget_upper_seconds": 15930.878687695018, "retained_bytes": 353689854},
+      "processed": {"records": 59, "linked_files": 177, "method": "SAME_FILESYSTEM_HARDLINK_NO_DATA_BLOCK_COPY", "latest_terminal": 59, "consumer_current": 1, "unauthorized_consumer_current": 0},
+      "environment": {
+        "status": "PASS_LOCAL_ENVIRONMENT_PROMOTED",
+        "authority": "systems/hawor/environment_authority.json",
+        "launcher": "tools/hawor_python.sh",
+        "root": "assets/environments/hawor-py310-v1",
+        "activation_required": false,
+        "external_fallback_forbidden": true,
+        "snapshot": {"directories": 5235, "files": 55160, "symlinks": 1156, "logical_bytes": 7138519539, "manifest_sha256": "0e469e8d8cfbbde720648f0e820d73060b7c382294094ff3b8d3c34c09951899", "tree_content_sha256": "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e"},
+        "replay_roles": ["chips016_FIT", "chips008_SAME_TASK_EVAL", "poker023_CROSS_TASK_EVAL"],
+        "replay_status": "PASS_THREE_ROLES_NPZ_AND_OVERLAY_BITWISE_SEMANTIC_PASS"
+      },
+      "weights": {
+        "hawor_checkpoint": {"path": "third_party/HaWoR/weights/hawor/checkpoints/hawor.ckpt", "sha256": "4d1cc43853c190d6f2c10d9b6295c73109f0faf9ef41ac817a2b31d94b4823f2"},
+        "detector": {"path": "third_party/HaWoR/weights/external/detector.pt", "sha256": "5ef3df44e42d2db52d4ffe91f83a22ce9925e2acc9abebf453f2c5d22e380033"},
+        "infiller_not_consumed_by_current_context": {"path": "third_party/HaWoR/weights/hawor/checkpoints/infiller.pt", "sha256": "30715e7e72e91d4e164bb762c7ea613dcff5448dbda5fabf40b4054e408cc5c2"}
+      },
+      "future_command": "tools/hawor_python.sh <hawor_entrypoint.py> <frozen_args...>",
+      "independent_gate": {
+        "status": "COMPLETE_CPU_ONLY_FAIL_CLOSED_AUDIT",
+        "formal_mask_robot_seed": "HOLD_MISSING_INDEPENDENT_FULL_TIMELINE_AUTHORITIES",
+        "poker031_numeric": "FAIL_RIGHT_HAND_DETECTOR_TRACK_GAP_16_FRAMES_30_TO_45",
+        "poker031_root_attribution": "AUTHORITY_NUMERIC_FAILURE_DENOMINATOR_OR_VISIBILITY_UNRESOLVED"
+      }
+    },
+    "mask": {
+      "resource": "GPU0_SERIAL_PLUS_CPU_CONTROL",
+      "stable_switch": "COMPLETE_QA_PASS",
+      "runtime_source_contract": "systems/mask/configs/sam31_runtime_source_v1.json",
+      "v4_queue_manifest": {"path": "tasks/chips/runs/mask/20260903_provider_contact_final_stable_v4/FINAL_CANONICAL_COMPAT_GPU_QUEUE_MANIFEST_V4.json", "bytes": 12530, "sha256": "d2d0153a0ade5dc98f53810e469b8375d51cfa7c474f6e40084557f12f54acf2", "status": "HISTORICAL_LAUNCH_TIME_AUTHORITY"},
+      "v4_chips008_launch_contract": {"path": "tasks/chips/runs/mask/20260903_provider_contact_final_stable_v4/CHIPS008_FIXED_CAPACITY_LAUNCH_CONTRACT_V2.json", "bytes": 5136, "sha256": "67e58341480357ab4aefa4c332f77a53278309478e99c67b363c13a7d666ea33", "status": "HISTORICAL_LAUNCH_TIME_AUTHORITY_DO_NOT_REPLAY"},
+      "v4_terminal": {
+        "status": "HOLD_2D_OBJECT_AUTHORITY",
+        "consumption_authorized": false,
+        "result": {"path": "tasks/chips/runs/mask/20260903_chips008_object_authority_stable_v4/RESULT.json", "bytes": 2025847, "sha256": "cb325b6277a12d06526a9ece4b1b1d08a6bd64d75388124a47802ff9f595717c"},
+        "first_failure": "bowl_present_1_of_652_chips_each_2_of_652_point_seed_propagation_empty_chip0_chip1_frame0_large_leak",
+        "human_tracker_started": false,
+        "heldout_eval_started": false,
+        "capacity_released": true
+      },
+      "v5_rootcause_terminal": {
+        "status": "HOLD_REQUIRES_INSTANCE_DETECTOR_OR_BOX_AUTHORITY",
+        "consumption_authorized": false,
+        "manifest": {"path": "tasks/chips/runs/mask/20260903_chips008_prompt_rootcause_v5/V5_ROOTCAUSE_GPU_MANIFEST.json", "bytes": 6556, "sha256": "8b051dee2c3674a3c401737df2bd5ad6bece4a5ac15110cc01ffab5fbdb884eb"},
+        "result": {"path": "tasks/chips/runs/mask/20260903_chips008_prompt_rootcause_v5/output/RESULT.json", "bytes": 190616, "sha256": "5846b417dd2a72eab03edf7b5780e99b32fce856b9534fbdef543a7cab2c302d"},
+        "ab_c_success_frames": {"A": "1/54", "B": "16/54", "C": "18/54"},
+        "conclusion": "OLD_PROPAGATION_LOST_STATE_AND_CHIP0_CHIP1_POINT_PROMPTS_REMAIN_INSTANCE_AMBIGUOUS",
+        "human_tracker_started": false,
+        "heldout_eval_started": false,
+        "full_expansion_started": false,
+        "capacity_and_lease_released": true,
+        "required_next_authority": "TASK_AGNOSTIC_INSTANCE_DETECTOR_OR_BOX_AUTHORITY"
+      },
+      "classical_box_canary": {
+        "status": "HOLD_NO_INDEPENDENT_OBJECT_BOX_AUTHORITY",
+        "consumption_authorized": false,
+        "resource": "CPU_ONLY_GPU_CALLS_0",
+        "local_independent_detector_inventory": {"GroundingDINO": "ABSENT", "OWL_ViT_or_OWLv2": "ABSENT", "YOLO_World": "ABSENT", "SAM31": "SELF_PROVIDER_NOT_INDEPENDENT", "HaWoR_detector": "HAND_ONLY"},
+        "method": "GRAYSCALE_KLT_FORWARD_BACKWARD_RANSAC_DIAGNOSTIC",
+        "unknown": {
+          "chip_slot_0": {"frame": 0, "reason": "INSUFFICIENT_INITIAL_CORNERS"},
+          "chip_slot_1": {"frame": 189, "reason": "PER_FRAME_TRANSLATION_GATE"},
+          "chip_slot_2": {"frame": 42, "reason": "RANSAC_INLIER_FRACTION_GATE"}
+        },
+        "box_to_sam_ran": false,
+        "heldout_eval_ran": false,
+        "all59_expansion_ran": false,
+        "seal": "tasks/chips/runs/mask/20260903_chips008_classical_box_canary_v1/CLASSICAL_BOX_CANARY_TERMINAL_SEAL_V1.json",
+        "review": "tasks/chips/runs/mask/20260903_chips008_classical_box_canary_v1/CLASSICAL_BOX_AUTHORITY_REVIEW_24.png"
+      },
+      "frozen_order": ["get_potato_chips_0901_008_FIT", "get_potato_chips_0901_011_EVAL", "play_cards_0901_001_EVAL"],
+      "gate_order": ["FULL_TIMELINE_2D_OBJECT_INSTANCE_AUTHORITY", "HUMAN_TRACKER_12_SPATIAL_PLUS_3X12_TEMPORAL"],
+      "providers": {"PICO21": {"wrist": 5, "requires_applicable_g2": true}, "HAWOR_MANO21": {"wrist": 0, "requires_independent_authority": true}, "MANUAL": {"requires_formal_authority": true}},
+      "weights": {"sam31": {"path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt", "bytes": 3502755717, "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6"}},
+      "v4_launch_argv_historical_audit_only_do_not_replay": "python tools/project_capacity_reservation.py --project-root /mnt/workspace/code/chaoyang run --profile mask-capacity-v2 --reservation /mnt/workspace/code/chaoyang/tasks/control/.mask-chips008-retry-128m-v2.reserve --authority /mnt/workspace/code/chaoyang/tasks/control/.mask-chips008-retry-128m-v2.LIVE_AUTHORITY.json --receipt /mnt/workspace/code/chaoyang/docs/organization/2026-09-03/MASK_CHIPS008_RETRY_128M_RELEASE_V2.json --bytes 134217728 --confirm-bytes 134217728 --chunk-bytes 1048576 -- python tools/launch_mask_chips008_fit_object_stable_v4.py --execute --confirm-final-manifest-sha d2d0153a0ade5dc98f53810e469b8375d51cfa7c474f6e40084557f12f54acf2",
+      "claim_limit": "Queue and launch readiness are not Mask PASS, current creation, or downstream consumption authority.",
+      "historical_superseded": ["MASK_V1_PROVIDER_INELIGIBLE", "PRE_SWITCH_V2_NOT_AN_EXECUTABLE_CURRENT_PIN"]
+    },
+    "clean": {
+      "resource": "CPU_IO_AFTER_ARCHIVE_AND_MASK",
+      "status": "CPU_READY_HOLD_ARCHIVE_UPLOAD_AND_NONFORMAL_MASK",
+      "archive_status": "UPLOAD_IN_PROGRESS_NO_READ_NO_SHA",
+      "dependencies": ["STABLE_ARCHIVE_180_SECONDS", "FULL_CRC_AND_SHA", "SAME_SESSION_CAMERA_EXPOSURE_DONOR", "FORMAL_MASK", "CLEAN_CAPACITY_PROFILE"],
+      "algorithm": "DETERMINISTIC_REGISTRATION_REAL_DONOR_MEDOID_LOW_FREQUENCY_LAB_ILLUMINATION",
+      "shared": ["registration_core", "medoid_core", "illumination_core", "direct_and_post_codec_gate"],
+      "task_local": ["donor", "camera_exposure", "protected_roles", "shadow_mask", "source_map", "review", "processed_namespace"],
+      "canary": {"spatial_frames": 12, "temporal_windows": 3, "frames_per_window": 12, "persistent_cap_bytes": 67108864, "reserve_bytes": 67108864, "work_root": "/dev/shm", "current_creation_forbidden": true},
+      "capacity_profile": "clean-capacity-v1",
+      "command_after_all_dependencies": "python tools/run_clean_spatial12_bounded.py --contract <new_immutable_contract.json> --archive-authority <stable_full_crc_sha_authority.json> --mask-authority <formal_mask_authority.json>"
+    },
+    "robot": {
+      "resource": "CPU_PREFLIGHT_THEN_OPTIONAL_FRESH_GPU_RENDER_LEASE",
+      "motion_strategy": "OBJECT6D_FUNCTIONAL_RETARGET_NOT_FULL_BONE_MORPHOLOGY_COPY",
+      "shared_v4_status": "STOPPED_AT_SHARED_MORPHOLOGY_LOWER_BOUND",
+      "general_compositor": {
+        "status": "INTERFACE_READY_FORMAL_INPUTS_PENDING",
+        "seal": "tasks/control/runs/20260903_robot_clean_compositor_contract_v1/SEAL.json",
+        "runner": "tools/compose_robot_clean_general.py",
+        "core": "pipeline/robot_clean_compositor.py",
+        "schema": "contracts/robot_clean_compositor_input_v1.schema.json",
+        "template": "tasks/templates/ROBOT_CLEAN_COMPOSITOR_INPUT.template.json",
+        "command": "python tools/compose_robot_clean_general.py --input-manifest <immutable_COMPOSITOR_INPUT.json> --output-root <new_immutable_robot_composite_root>",
+        "formal_inputs_required": ["MEASURED_OBJECT6D", "SIGNED_SDF", "DIRECT_CONTACT", "FORMAL_MASK", "FORMAL_CLEAN_FFV1", "FUNCTIONAL_RETARGET", "NONPENETRATION", "TRUE_RENDER_DEPTH", "CROSS_STAGE_ADMISSION"],
+        "synthetic_claim_limit": "DEV_SYNTHETIC_COMPLETE_NOT_FORMAL"
+      },
+      "historical_visual_only_forbidden_for_new_tasks": "tools/compose_robot_clean_full.py",
+      "palette": "systems/robot/configs/robot_pbr_palette_004ref_v1.json"
+    },
+    "humanego": {
+      "resource": "CPU_CHECK_THEN_FRESH_GPU_TRAIN_LEASE",
+      "status": "HOLD_ZERO_FORMAL_PROFILE_ELIGIBLE",
+      "authority": "tasks/control/runs/20260903_humanego_profile_admission_v2/ADMISSION_MATRIX.json",
+      "profiles": {
+        "RAW": {"not_evaluated": 52, "hold": 3, "fail": 4, "eligible": 0},
+        "CLEAN": {"not_evaluated": 52, "hold": 3, "fail": 4, "eligible": 0},
+        "ROBOT_COMPOSITE": {"not_evaluated": 0, "hold": 45, "fail": 14, "eligible": 0}
+      },
+      "split_policy": "FIT_TRAINS_DEV_SELECTS_EVAL_RUNS_ONCE_AFTER_FREEZE",
+      "training_allowed": false,
+      "pretrained": {"path": "HumanEgo/artifacts/pretrained_humanego/latest.pt", "bytes": 182252962, "sha256": "663f21b4350333fb852d0f19d042613d1e7bc5ead2577f9862d113ccea04b183"},
+      "frozen_kai22_baseline": {"path": "HumanEgo/artifacts/frozen_checkpoints/kai22/best.pt", "bytes": 182959506, "sha256": "5d8862d400b2e8eb2bdb5dfe1fdff389b7e5f39cf53ddab3600a8e4c4df08bc3"},
+      "check_only_command_after_nonzero_admission": "cd HumanEgo && python tools/train_embodiment.py --embodiment kai22 --config <reviewed_task_profile.yaml> --split <frozen_task_split.json> --selector-manifest <selector.json> --paired-kept-manifest <paired_kept.json> --artifact-root <approved_artifact_root> --run-root <canonical_run_root> --run-name <task_profile_check> --check-only",
+      "poker031_note": "Numeric FAIL remains recorded; independent V4 root attribution is AUTHORITY denominator-or-visibility unresolved, so formal training remains fail-closed without prematurely assigning algorithm blame."
+    }
+  },
+  "object6d_delivery": {
+    "raw_root": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/object6d_capture",
+    "tasks": {"chips": ["chip_0", "chip_1", "chip_2", "bowl_or_plate"], "poker": ["card_0", "card_1", "card_2", "rack"]},
+    "required": ["turntable_or_images", "mesh", "collision_mesh", "measurements", "model_authority", "per_frame_pose", "object_masks", "direct_contact", "calibration", "sha256sums"],
+    "pose_fields": ["frame_id", "timestamp_ns", "object_instance_id", "T_object_to_camera_or_world", "valid", "confidence", "provenance"],
+    "processed_target": "data/processed/<task>/<session>/object6d/<version>/",
+    "current_requires_consumption_authorized": true,
+    "dropin_schema": "tasks/chips/runs/robot/20260903_functional_retarget_devapprox_smoke_v2/TOMORROW_OBJECT6D_DROPIN.schema.json",
+    "mask_box_dropin": {
+      "status": "CPU_PREPARED_WAITING_FOR_REAL_OBJECT6D_INPUT",
+      "consumption_authorized": false,
+      "manifest": {"path": "tasks/chips/runs/mask/20260903_object6d_box_dropin_prepared_v1/CPU_PREPARED_MANIFEST.json", "bytes": 4852, "sha256": "230b50846e4f0d1e1723770165528e67c65be15260446837ffbb05321399f95d", "recursive_pins": "7/7_PASS"},
+      "required_geometry": ["byte_pinned_mesh", "metric_scale_and_bounds", "right_handed_axes_and_origin"],
+      "required_camera": ["rectified_K", "per_frame_T_world_camera", "camera_timestamps"],
+      "required_pose_identity": ["T_world_object", "T_object_to_camera", "valid", "visible", "object_id", "source_instance_id", "current_source_frame_index", "direct_provenance", "confidence", "identity_score", "reprojection_rmse"],
+      "required_provider": ["non_SAM_provider_family", "code_sha256", "config_sha256", "checkpoint_sha256", "license_sha256"],
+      "forbidden": ["neighbor_frame_pose", "interpolation", "PICO_or_hand_point_as_object_identity", "SAM_self_provider", "UNKNOWN_box_fallback"],
+      "command": "PYTHONPATH=/mnt/workspace/code/chaoyang PYTHONDONTWRITEBYTECODE=1 python -m pipeline.object6d_mask_box_authority --contract <instantiated_contract.json> --output tasks/<chips_or_poker>/runs/mask/<fresh_run>/OBJECT6D_BOX_AUTHORITY.json",
+      "test": "10 passed in 0.74s",
+      "downstream_rule": "Only PASS_OBJECT6D_INDEPENDENT_BOX_AUTHORITY rows with KNOWN_OBJECT6D_DIRECT may seed isolated box-to-SAM refinement; unchanged V5 spatial and duplicate-IoU gates still apply."
+    }
+  },
+  "resource_policy": {
+    "capacity_profiles": {
+      "mask-capacity-v2": {"role": "V4_LAUNCH_TIME_HISTORICAL_PIN", "zip_dependency": false, "chips008_reservation_bytes": 134217728, "capacity_tool_sha256": "228092be73741b8476dbcc7e5ca64f553f4a1d32f2bcb787de8d465a5cf9facd", "replay_forbidden_after_tool_version_change": true},
+      "mask-capacity-v3": {"role": "V5_SUCCESSOR_ONLY", "zip_dependency": false, "capacity_tool_sha256": "51570e2a18b965e9eccadba07de99d4a54f4b3cb31771e588041c61c539a87c8", "requires_fresh_manifest": true},
+      "clean-capacity-v1": {"requires_stable_full_crc_archive": true, "requires_formal_mask": true},
+      "hawor-zip-strict": {"optional": true, "never_required_for_mask": true}
+    },
+    "gpu_serialization": ["MASK_SAM", "ROBOT_RENDER", "HUMANEGO_TRAIN"],
+    "fresh_central_lease_each_stage": true,
+    "do_not_infer_idle_from_nvidia_smi": true
+  },
+  "timeline": [
+    {"window": "T+00:00-00:30", "work": "Rehash canonical/source/full59/materialization/local-env/SAM-switch/V4 queue and verify active holder without reading ZIP", "stop": "any pin or holder drift"},
+    {"window": "T+00:30-03:30", "work": "Build a task-agnostic instance detector or box authority contract from frozen V5 evidence", "stop": "no independent box authority means remain HOLD"},
+    {"window": "T+03:30-05:45", "work": "Freeze a new formal chips008 object FIT; only its PASS permits human-tracker then separate chips011 and poker001 EVAL", "stop": "any FIT or EVAL failure blocks expansion"},
+    {"window": "T+05:45-08:00", "work": "Reproject Mask budget from measured FIT and expand only admitted sessions", "stop": "lease or capacity cap"},
+    {"window": "T+08:00-10:15", "work": "Only after stable archive CRC/SHA and formal Mask run Clean FIT then held-out EVAL", "stop": "upload, donor, gate, or review HOLD"},
+    {"window": "T+10:15-12:30", "work": "Consume measured Object6D for functional retarget and signed-SDF contact gates", "stop": "missing measured geometry or direct contact"},
+    {"window": "T+12:30-13:45", "work": "Run formal Robot compositor only when every manifest dependency is frozen PASS", "stop": "any formal input missing"},
+    {"window": "T+13:45-14:30", "work": "Rebuild HumanEgo profile matrix; check-only and one FIT overfit only if admitted FIT is nonzero", "stop": "eligible FIT remains zero"},
+    {"window": "T+14:30-15:00", "work": "Seal matrices, review indexes, recovery commands, SHA, schema and no-cache tests", "stop": "never lower a gate for deadline"}
+  ],
+  "failure_attribution": {
+    "media_timeline_K": "CAPTURE",
+    "c2w_epoch_unproven": "CAPTURE_CALIBRATION_HOLD_ONLY_FOR_WORLD_ROUTE",
+    "pico_gap": "PICO_PROVIDER_SLOT_ONLY",
+    "hawor_numeric_gap": "RECORD_NUMERIC_NONPASS_THEN_REQUIRE_INDEPENDENT_VISIBILITY_DENOMINATOR_FOR_ROOT_BLAME",
+    "mask_leak_or_object_erasure": "CHECK_PROVIDER_ROLE_IDENTITY_LINEAGE_BEFORE_MODEL",
+    "clean_residual": "SEPARATE_MASK_DONOR_REGISTRATION_ALGORITHM_CODEC",
+    "robot_penetration_or_occlusion": "OBJECT6D_CONTACT_SIGNED_SDF_DEPTH",
+    "humanego_regression": "PROFILE_SPLIT_MODEL_AND_FROZEN_BASELINE"
+  },
+  "review_media_requirements": {
+    "hawor": ["full_session_coverage", "12_frame_overlay", "temporal_preview"],
+    "mask": ["per_role_contact_sheet", "union_source_map", "3x12_temporal_mp4", "tasks/chips/runs/mask/20260903_chips008_classical_box_canary_v1/CLASSICAL_BOX_AUTHORITY_REVIEW_24.png"],
+    "clean": ["raw_mask_clean_source_map_quad", "3x12_temporal_mp4", "full_preview"],
+    "robot": ["official_fk_geometry_sheet", "contact_closeup", "depth_id_debug", "full_mp4"],
+    "humanego": ["baseline_candidate_metrics", "trajectory_comparison"]
+  },
+  "dynamic_evidence": {
+    "mask_chips008_atomic_status": {
+      "stage": "V5_PROMPT_ROOTCAUSE_DIAGNOSTIC",
+      "status": "HOLD_REQUIRES_INSTANCE_DETECTOR_OR_BOX_AUTHORITY",
+      "manifest_path": "tasks/chips/runs/mask/20260903_chips008_prompt_rootcause_v5/V5_ROOTCAUSE_GPU_MANIFEST.json",
+      "manifest_bytes": 6556,
+      "manifest_sha256": "8b051dee2c3674a3c401737df2bd5ad6bece4a5ac15110cc01ffab5fbdb884eb",
+      "result_path": "tasks/chips/runs/mask/20260903_chips008_prompt_rootcause_v5/output/RESULT.json",
+      "result_bytes": 190616,
+      "result_sha256": "5846b417dd2a72eab03edf7b5780e99b32fce856b9534fbdef543a7cab2c302d",
+      "capacity_profile": "mask-capacity-v3",
+      "capacity_and_lease": "RELEASED",
+      "consumption_authorized": false,
+      "claim_limit": "Root-cause terminal status only; no formal PASS, current, or downstream authority."
+    },
+    "clean_archive": {
+      "path": "data/inputs/baseline_background/base_001.zip",
+      "status": "UPLOAD_IN_PROGRESS_NO_READ_NO_SHA",
+      "bytes": null,
+      "sha256": null
+    },
+    "clean_formal_gate": {
+      "status": "NOT_FROZEN",
+      "claim_limit": "Historical mutable gate is diagnostic only; freeze an immutable successor after archive and formal Mask."
+    }
+  },
+  "static_authorities": [
+    {"id": "canonical_mapping", "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v1/CANONICAL_MAPPING.json", "bytes": 29022, "sha256": "c3365566772c5dabb72de896128bfc2c2ce739f1bc07a002ae01348c6249595c"},
+    {"id": "canonical_execution_result", "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/EXECUTION_RESULT.json", "bytes": 1866, "sha256": "f649e5ef86ee1c4b0d924f9a04a725c14483457b6885cc00e5888907a0efcbca"},
+    {"id": "canonical_verification", "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0901/manifests/restructure_20260903_v2/VERIFICATION.json", "bytes": 1044, "sha256": "898f57cffc77b7568bcbf2b8bf70661ecae07424bb1f2fb61098ad54cff1b0ab"},
+    {"id": "organization_v4_manifest", "path": "docs/organization/2026-09-03/V4_MIGRATION_MANIFEST.json", "bytes": 14064, "sha256": "9070cc86b750b5608e877acab3ace5b7740a1e1c8ce301f55ec097903ae76125"},
+    {"id": "chips_source_v3", "path": "tasks/chips/runs/pipeline/20260903_source_gate_full16_v3/SOURCE_GATE_AGGREGATE.json", "bytes": 1165, "sha256": "a8f9b368b423889c549cbc09cab991bd082367f98fbceac91fddfd8a75064121"},
+    {"id": "poker_source_v3", "path": "tasks/poker/runs/pipeline/20260903_source_gate_full43_v3/SOURCE_GATE_AGGREGATE.json", "bytes": 1635, "sha256": "091c8136b6eb6c56f9108df96d1b090fb8cf13d15cbb61f33e9ea23f5a418dff"},
+    {"id": "cross_stage_result", "path": "tasks/control/runs/20260903_cross_stage_gate_audit_v1/RESULT.json", "bytes": 4474, "sha256": "056a75e34b689415c76be899450174f60ef058e0b88ec82dc426eadbbee2ca50"},
+    {"id": "cross_stage_matrix", "path": "tasks/control/runs/20260903_cross_stage_gate_audit_v1/AUDIT_MATRIX.json", "bytes": 27467, "sha256": "77ffbd95553841165a54ab095e909803b9c43adf4486e52f246e13b298f5f872"},
+    {"id": "cross_stage_library", "path": "pipeline/cross_stage_admission.py", "bytes": 66749, "sha256": "e50c6dad585f93a0636c38622620a8a6e72af382c17bb3ffe06bf8c775ddc3fd"},
+    {"id": "cross_stage_cli", "path": "tools/evaluate_cross_stage_admission.py", "bytes": 2003, "sha256": "ce5a0ac454c01a78805f2af03649b2e35599f1b53709baf341ae9c56a1dbbc92"},
+    {"id": "cross_stage_input_schema", "path": "contracts/quality/cross_stage_admission_input_v1.schema.json", "bytes": 16182, "sha256": "97c9040c5efcce1280c0a5c503eee66960b6996fdd8edcb1cfc4a4fd49adccd3"},
+    {"id": "cross_stage_output_schema", "path": "contracts/quality/cross_stage_admission_output_v1.schema.json", "bytes": 7707, "sha256": "96064efba90eb7c62621b3324b2545336d1105af74398793ba94a7508a232b57"},
+    {"id": "hawor_full59_checkpoint_terminal", "path": "tasks/chips/runs/pipeline/20260903_hawor_full_compact_v1/BATCH_GLOBAL_CHECKPOINT.json", "bytes": 44210, "sha256": "a2ffafa7d8e0b0c792a34287cc0812ce352ce7812e35e5ec6cc0cbae183393a8"},
+    {"id": "hawor_full59_terminal_matrix", "path": "tasks/chips/runs/pipeline/20260903_hawor_full_compact_v1/HAWOR_FULL59_TERMINAL_MATRIX.json", "bytes": 104992, "sha256": "bd2cf2521a84905923eaddab6db2ef6a350c6693554ebc185e4ec9ea5d2964ea"},
+    {"id": "hawor_processed_materialization", "path": "data/processed/_manifests/hawor/20260903_full_compact_v1.json", "bytes": 197744, "sha256": "3e8ed9f644d478a4a95258fbe494991739b69688ee9afb615ff924f9ebbd6c5a"},
+    {"id": "hawor_pointer_status_v2", "path": "data/processed/_manifests/hawor/20260903_full_compact_v1.pointer_status_v2.json", "bytes": 35552, "sha256": "a6cd26c61a5c9696f1236ac8baf0f102374606f22590241c1d77fb5c0977ec22"},
+    {"id": "hawor_pointer_transaction", "path": "data/processed/_manifests/hawor/20260903_full_compact_v1_pointer_repair_v2/TRANSACTION_RESULT.json", "bytes": 1324, "sha256": "1e3e16a6f3d0fd69362ee45f49141c2dcb1bc07014f32b02691180831e49bc5c"},
+    {"id": "chips001_stage_status", "path": "data/processed/chips/get_potato_chips_0901_001/CURRENT_STAGE_STATUS.json", "bytes": 2210, "sha256": "4ea878dc76dcda96476213109837a65aba390e528de26c9bcd479724d656bd4e"},
+    {"id": "hawor_environment_authority", "path": "systems/hawor/environment_authority.json", "bytes": 7611, "sha256": "3e4ab3a3b37bd80b6639afa95b027b50dd7dc4f6fd2d261966f32631392f34b2"},
+    {"id": "hawor_local_launcher", "path": "tools/hawor_python.sh", "bytes": 1967, "sha256": "7a879d356ce50f18e255aae54588f6b99a735c2ca3cf21b709caf85254164a88"},
+    {"id": "hawor_local_environment_lock", "path": "systems/hawor/local_environment_lock.json", "bytes": 2471, "sha256": "d453e4c8a0c36640276b9b57ec18665e668d37406f9750ac2d29e7dae41d9071"},
+    {"id": "hawor_local_environment_rollback", "path": "systems/hawor/local_environment_rollback.json", "bytes": 2212, "sha256": "a3cea2f2b9b01b1fa82015ad522b32006573bd7112c073fa03e2c3cdee80433f"},
+    {"id": "hawor_local_probe", "path": "tasks/control/runs/20260903_hawor_local_environment_migration_v1/LOCAL_ENV_PROBE.json", "bytes": 10539, "sha256": "c226c0978ac532a4f43a73b5a1f015b500b7d76a801ef27bb72bf0e2f1d867b7"},
+    {"id": "hawor_local_replay", "path": "tasks/control/runs/20260903_hawor_local_environment_migration_v1/REPLAY_COMPARISON.json", "bytes": 38690, "sha256": "8a78161223fbecfe1ae07cadadf563215fcaafdf9424ab56bbc6a607ff87ef0f"},
+    {"id": "hawor_runtime_pin", "path": "third_party/HaWoR/CHA0YANG_RUNTIME_PIN.json", "bytes": 10329, "sha256": "7c20034be0d80c76adbb8eb278f0d3a6605c0bf9099a44829c028692e8db4aed"},
+    {"id": "hawor_checkpoint_weight", "path": "third_party/HaWoR/weights/hawor/checkpoints/hawor.ckpt", "bytes": 3267481572, "sha256": "4d1cc43853c190d6f2c10d9b6295c73109f0faf9ef41ac817a2b31d94b4823f2"},
+    {"id": "hawor_detector_weight", "path": "third_party/HaWoR/weights/external/detector.pt", "bytes": 53582271, "sha256": "5ef3df44e42d2db52d4ffe91f83a22ce9925e2acc9abebf453f2c5d22e380033"},
+    {"id": "hawor_identity_v4_report", "path": "tasks/control/runs/20260903_hawor_identity_contour_gate_v4/REPORT_ZH.md", "bytes": 9630, "sha256": "1578e06bd36a517472df6ab948ca4ab7aa592e7cba97b1cfa7c7022c945cdc5a"},
+    {"id": "hawor_identity_v4_summary", "path": "tasks/control/runs/20260903_hawor_identity_contour_gate_v4/SUMMARY.json", "bytes": 2294, "sha256": "92c496bc12bfddf2a17280ab90928e5e33eefe241549d4e7ab59f3bd4f2585a2"},
+    {"id": "hawor_legacy_exact_replay", "path": "tasks/control/runs/20260903_hawor_identity_contour_gate_v4/LEGACY_157_78_REPLAY_VERIFICATION.json", "bytes": 3921, "sha256": "10a74fe7e7f64e0fa6d9a0cc10d52e2fead806c105307a76d903c9ab207a4acb"},
+    {"id": "hawor_independent_review_schema", "path": "contracts/quality/hawor_independent_review_v1.schema.json", "bytes": 7185, "sha256": "0f8cae9265e80f48ca6555afdcf451afd9b3122ce9aae8f5e0af337db21149c1"},
+    {"id": "hawor_independent_output_schema", "path": "contracts/quality/hawor_independent_gate_output_v1.schema.json", "bytes": 3675, "sha256": "54a63593c4555c3e3a186b6683c89f93be48281a120590137b18b495ba591ed0"},
+    {"id": "sam31_stable_switch", "path": "docs/organization/2026-09-03/SAM31_STABLE_SWITCH_EXECUTION.json", "bytes": 540653, "sha256": "16ffa9a30cc79d02005daa7f3fcd4677a50578093085f7c6a3cc68272050f621"},
+    {"id": "sam31_runtime_source", "path": "systems/mask/configs/sam31_runtime_source_v1.json", "bytes": 1948, "sha256": "ce100807728eda716c4d1535fee3264c24078238751622518af8442eb48927e4"},
+    {"id": "mask_v4_queue", "path": "tasks/chips/runs/mask/20260903_provider_contact_final_stable_v4/FINAL_CANONICAL_COMPAT_GPU_QUEUE_MANIFEST_V4.json", "bytes": 12530, "sha256": "d2d0153a0ade5dc98f53810e469b8375d51cfa7c474f6e40084557f12f54acf2"},
+    {"id": "mask_v4_chips008_launch", "path": "tasks/chips/runs/mask/20260903_provider_contact_final_stable_v4/CHIPS008_FIXED_CAPACITY_LAUNCH_CONTRACT_V2.json", "bytes": 5136, "sha256": "67e58341480357ab4aefa4c332f77a53278309478e99c67b363c13a7d666ea33"},
+    {"id": "mask_v4_terminal_result", "path": "tasks/chips/runs/mask/20260903_chips008_object_authority_stable_v4/RESULT.json", "bytes": 2025847, "sha256": "cb325b6277a12d06526a9ece4b1b1d08a6bd64d75388124a47802ff9f595717c"},
+    {"id": "mask_v4_first_failure_seal", "path": "tasks/chips/runs/mask/20260903_chips008_object_authority_stable_v4/V4_FIRST_FAILURE_SEAL_V1.json", "bytes": 2036, "sha256": "e5be720d36670b82a54b532d8e9c68519f1cbfd4f295165328d9ccca6cb0619c"},
+    {"id": "mask_v4_capacity_release", "path": "docs/organization/2026-09-03/MASK_CHIPS008_RETRY_128M_RELEASE_V2.json", "bytes": 3699, "sha256": "433ba3ab00d9283b8e700a94a4cce16b54a268bbb154f2135b5a6d3923786e73"},
+    {"id": "mask_v5_rootcause_manifest", "path": "tasks/chips/runs/mask/20260903_chips008_prompt_rootcause_v5/V5_ROOTCAUSE_GPU_MANIFEST.json", "bytes": 6556, "sha256": "8b051dee2c3674a3c401737df2bd5ad6bece4a5ac15110cc01ffab5fbdb884eb"},
+    {"id": "mask_v5_rootcause_result", "path": "tasks/chips/runs/mask/20260903_chips008_prompt_rootcause_v5/output/RESULT.json", "bytes": 190616, "sha256": "5846b417dd2a72eab03edf7b5780e99b32fce856b9534fbdef543a7cab2c302d"},
+    {"id": "mask_v5_capacity_release", "path": "docs/organization/2026-09-03/MASK_CHIPS008_ROOTCAUSE_128M_RELEASE_V3.json", "bytes": 3714, "sha256": "8b1541e8fe0f701d841a671bd5fea30b767a1434b50152c49a8e2386b44c9b2e"},
+    {"id": "mask_classical_box_seal", "path": "tasks/chips/runs/mask/20260903_chips008_classical_box_canary_v1/CLASSICAL_BOX_CANARY_TERMINAL_SEAL_V1.json", "bytes": 2125, "sha256": "08e8b32a7ed2ddfc6487178130beb2dda3d0393130b7f34a29d5261dac0acd16"},
+    {"id": "mask_classical_box_result", "path": "tasks/chips/runs/mask/20260903_chips008_classical_box_canary_v1/RESULT.json", "bytes": 532510, "sha256": "8c76f6363d72f4e986cd6391a1ec9fc539780cf403f5fe0418f995c0954c4a30"},
+    {"id": "mask_classical_box_review", "path": "tasks/chips/runs/mask/20260903_chips008_classical_box_canary_v1/CLASSICAL_BOX_AUTHORITY_REVIEW_24.png", "bytes": 3797147, "sha256": "97c9f2e8fa9a91a94a24e95e27979f94a3808292b0687a2bc185b079f4fb45cd"},
+    {"id": "mask_detector_inventory", "path": "tasks/chips/runs/mask/20260903_chips008_classical_box_canary_v1/DETECTOR_INVENTORY_AND_NEXT_AUTHORITY_V1.json", "bytes": 4546, "sha256": "af53cd94a71e29b8351e5e62b98a06e5399f365c52b9fad8dd7a917ebd48d314"},
+    {"id": "mask_classical_box_runner", "path": "tools/run_classical_object_box_authority_canary_v1.py", "bytes": 26211, "sha256": "105f949bd5cb0570b01fae56a6c3c347ddbc810c32f035028a7446a4feb62efd"},
+    {"id": "object6d_mask_box_prepared_manifest", "path": "tasks/chips/runs/mask/20260903_object6d_box_dropin_prepared_v1/CPU_PREPARED_MANIFEST.json", "bytes": 4852, "sha256": "230b50846e4f0d1e1723770165528e67c65be15260446837ffbb05321399f95d"},
+    {"id": "object6d_mask_box_core", "path": "pipeline/object6d_mask_box_authority.py", "bytes": 44762, "sha256": "6b0146d384f3627e6cf8291d6384f04e18995eefd735a548a71c13f7d089e7de"},
+    {"id": "object6d_mask_box_tests", "path": "tests/test_object6d_mask_box_authority.py", "bytes": 18461, "sha256": "5b4a399010f5842e6c0c23c61c64296d760f63c82ca4b4bfa1366d8f8e1e00be"},
+    {"id": "object6d_mask_box_template", "path": "tasks/templates/OBJECT6D_MASK_BOX_AUTHORITY.template.json", "bytes": 2372, "sha256": "6e3d8dfffdac0748c2dd07fb7e715b6f67c4d07fa9f4d5a9a434e7e7fd2734cb"},
+    {"id": "chips_object6d_mask_role_mapping_template", "path": "tasks/chips/config/object6d_mask_role_mapping_v1.template.json", "bytes": 2114, "sha256": "2291d506b8867d8cfcb9bf8bc1251b79d6ed294cc2493a99cd212bdf551de1e0"},
+    {"id": "poker_object6d_mask_role_mapping_template", "path": "tasks/poker/config/object6d_mask_role_mapping_v1.template.json", "bytes": 2114, "sha256": "bb19e61f40f637efb17bb7733e029ca17f7e91f7bf2a710299324e64e4daec27"},
+    {"id": "sam31_checkpoint", "path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt", "bytes": 3502755717, "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6"},
+    {"id": "mask_object_runner", "path": "tools/run_contact_assisted_object_instance_authority.py", "bytes": 24766, "sha256": "ebd170f1ebe5b47251f43871c58aef2b31f1e570271871e8a64a349d7c36c465"},
+    {"id": "mask_human_tracker_runner", "path": "tools/run_pico_geometry_raw_point_mask_canary.py", "bytes": 74505, "sha256": "2ca3c4ba852820fc6afeb1e5fd3a81db917e54267cad61343840db3ce5ac6e56"},
+    {"id": "capacity_tool_current_v3", "path": "tools/project_capacity_reservation.py", "bytes": 47750, "sha256": "51570e2a18b965e9eccadba07de99d4a54f4b3cb31771e588041c61c539a87c8"},
+    {"id": "capacity_profiles_doc", "path": "docs/organization/2026-09-03/PROJECT_CAPACITY_RESERVATION_V1.md", "bytes": 26426, "sha256": "b4d35f4a33a35d5c22f1325d67d3ca8fa99e75d6525c854a8d88099e9d3711b5"},
+    {"id": "clean_bounded_manifest", "path": "tasks/chips/runs/clean/20260903_chips001_clean_medoid_light_canary12_v3_bounded/CPU_PREPARED_RESOURCE_HOLD_V1.json", "bytes": 5885, "sha256": "d8eeb42eef157079dcd6de2b03b61eb6a4b44e010a18590c907358f34dcdb916"},
+    {"id": "clean_bounded_contract", "path": "tasks/chips/runs/clean/20260903_chips001_clean_medoid_light_canary12_v3_bounded/EXECUTION_CONTRACT.md", "bytes": 4607, "sha256": "9608fde4ce1ea5d5b7f617055cd58de8afd545ba53280e6818d130444dbdb808"},
+    {"id": "clean_core", "path": "pipeline/clean_medoid_light_successor.py", "bytes": 11324, "sha256": "49f9f87e91397ac9c3a5d9c44e943dc7b63fe9287fa442afd930693cce66de9a"},
+    {"id": "clean_bounded_runner", "path": "tools/run_clean_spatial12_bounded.py", "bytes": 12005, "sha256": "c75c0ba7271c1de436c8251590addbc54fa281742f6e1d74d11ad56daea6db72"},
+    {"id": "robot_compositor_seal", "path": "tasks/control/runs/20260903_robot_clean_compositor_contract_v1/SEAL.json", "bytes": 4815, "sha256": "a94d43abfd0b28e51a191ff6a2d47f4adfbe4c2f272b095929e0b53ae0601849"},
+    {"id": "robot_compositor_smoke", "path": "tasks/control/runs/20260903_robot_clean_compositor_contract_v1/smoke/RESULT.json", "bytes": 7301, "sha256": "ba888b2646ae36271c7c009f27cfe17f4a09e4ffff67263428ad99bdb4576e9a"},
+    {"id": "robot_compositor_runner", "path": "tools/compose_robot_clean_general.py", "bytes": 15552, "sha256": "28a4fbcafd05890e1f495b48319856389c19fd24240c655fc476978a53f8d010"},
+    {"id": "robot_compositor_core", "path": "pipeline/robot_clean_compositor.py", "bytes": 62375, "sha256": "0a9b79863fa7f9a09f4c790141b4b664aac1ec4c320bf34198aa648bda88ebfa"},
+    {"id": "robot_compositor_schema", "path": "contracts/robot_clean_compositor_input_v1.schema.json", "bytes": 5502, "sha256": "07d118f86cb91b653a50ea69c99ddb2814436704f1ec14693bcf418190d20a7d"},
+    {"id": "robot_compositor_template", "path": "tasks/templates/ROBOT_CLEAN_COMPOSITOR_INPUT.template.json", "bytes": 4523, "sha256": "a6f5578eae4154931a40596641a5a597743b036698688afde1b68326393a023b"},
+    {"id": "object6d_dropin_schema", "path": "tasks/chips/runs/robot/20260903_functional_retarget_devapprox_smoke_v2/TOMORROW_OBJECT6D_DROPIN.schema.json", "bytes": 11090, "sha256": "78fdd4b71e162da04b1381a8cafde6a024bd7aa859d9b2c2803d69d1021d2554"},
+    {"id": "object6d_capture_template", "path": "tasks/templates/OBJECT6D_CAPTURE_MANIFEST.template.json", "bytes": 1372, "sha256": "cedc81969dfa8ced3764eb4c911ae17bcc7e5755ee844806886b619cb0ed6386"},
+    {"id": "humanego_profile_v2_matrix", "path": "tasks/control/runs/20260903_humanego_profile_admission_v2/ADMISSION_MATRIX.json", "bytes": 1464994, "sha256": "3171bf9e53b4b609c5cf0d467965992302026f1371171ba74e49d5a01712abac"},
+    {"id": "humanego_profile_v2_split", "path": "tasks/control/runs/20260903_humanego_profile_admission_v2/SPLIT_CANDIDATES.json", "bytes": 24199, "sha256": "b3d58fe14b7f09e12bfe0da3e27fb478267f5a417364eb094827f4cabd4aafc6"},
+    {"id": "humanego_profile_v2_report", "path": "tasks/control/runs/20260903_humanego_profile_admission_v2/REPORT_ZH.md", "bytes": 3347, "sha256": "d345ce30f4c72edd4db72722140518ccc387ec730ee8b97089f335a65fee6756"},
+    {"id": "humanego_pretrained", "path": "HumanEgo/artifacts/pretrained_humanego/latest.pt", "bytes": 182252962, "sha256": "663f21b4350333fb852d0f19d042613d1e7bc5ead2577f9862d113ccea04b183"},
+    {"id": "humanego_frozen_kai22", "path": "HumanEgo/artifacts/frozen_checkpoints/kai22/best.pt", "bytes": 182959506, "sha256": "5d8862d400b2e8eb2bdb5dfe1fdff389b7e5f39cf53ddab3600a8e4c4df08bc3"},
+    {"id": "humanego_train_tool", "path": "HumanEgo/tools/train_embodiment.py", "bytes": 24582, "sha256": "49ec2345c75ec952ab9f05b81c4b3af81386d56a395ba4ca4a918c5dd3d502cb"},
+    {"id": "humanego_snapshot_evaluator", "path": "HumanEgo/tools/evaluate_training_snapshot.py", "bytes": 15294, "sha256": "12b0cfda5ed59acdf9a30aa599a55efb16aac5660c5b5d961c4f432b1ba6f6fb"},
+    {"id": "humanego_checkpoint_freezer", "path": "HumanEgo/tools/freeze_best_checkpoint.py", "bytes": 17964, "sha256": "d240160462a6dc7f4954021b769b4b322ac4d57c91af19e2b719968cd0b0b0dd"}
+  ],
+  "validation_results_at_freeze": {
+    "status": "PASS_CPU_ONLY_DOCUMENT_SEAL",
+    "machine_json_parse_and_duplicate_key_check": "PASS",
+    "static_authority_rehash": "78/78 path, bytes and sha256 PASS; 52 JSON parse and duplicate-key PASS",
+    "markdown_links": "47/47 local Markdown link occurrences resolve PASS (31 unique targets)",
+    "schemas": "6/6 Draft schema meta-validation PASS",
+    "py_compile": "PASS for cross-stage, HaWoR independent gate, Robot compositor, capacity control and Object6D-to-box modules",
+    "no_cache_pytest": "116 passed in 9.51s with -p no:cacheprovider",
+    "mask_terminal_refresh": "V4, V5 and classical-box immutable terminal evidence pinned; Object6D-to-box is CPU prepared only"
+  },
+  "validation_commands": [
+    "python -m json.tool docs/newtask/POKER_CHIPS_END_TO_END_15H_PLAN_V2.machine.json",
+    "rehash every static_authorities path and verify bytes plus sha256",
+    "resolve every local Markdown link in the top plan, DOC_DELTA, NOW/README.md and NOW/newtask/README.md",
+    "PYTHONPATH=. PYTHONDONTWRITEBYTECODE=1 pytest -q -p no:cacheprovider tests/test_cross_stage_admission.py tests/test_hawor_independent_gate.py tests/test_project_capacity_reservation.py tests/test_robot_clean_compositor.py tests/test_contact_assisted_object_authority.py tests/test_run_pico_geometry_raw_point_mask_canary.py tests/test_run_clean_spatial12_bounded.py tests/test_object6d_mask_box_authority.py"
+  ]
+}

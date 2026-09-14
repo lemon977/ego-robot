@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "horizon", "coordinate_contract", "pairing_contract", "sessions", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "edited-human-aux-manifest-v1"},
+    "status": {"enum": ["CANDIDATE", "PASS_PAIRED_VISUAL_AUX", "HOLD"]},
+    "horizon": {"const": 50},
+    "coordinate_contract": {"type": "object", "additionalProperties": false, "required": ["original_shape", "normalized_shape", "valid_shape", "normalization", "stabilization"], "properties": {
+      "original_shape": {"const": ["T", 50, 2, 2]},
+      "normalized_shape": {"const": ["T", 50, 2, 2]},
+      "valid_shape": {"const": ["T", 50, 2]},
+      "normalization": {"const": "x_over_width_minus_1_y_over_height_minus_1"},
+      "stabilization": {"const": "future_to_current_background_homography_fail_invalid"}
+    }},
+    "pairing_contract": {"type": "object", "additionalProperties": false, "required": ["only_variable", "same_sessions", "same_frames", "same_labels", "same_splits", "same_seed", "same_recipe"], "properties": {
+      "only_variable": {"const": "RGB_DOMAIN"},
+      "same_sessions": {"const": true}, "same_frames": {"const": true}, "same_labels": {"const": true}, "same_splits": {"const": true}, "same_seed": {"const": true}, "same_recipe": {"const": true}
+    }},
+    "sessions": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["session", "task", "split", "frame_count", "human_raw_rgb", "robotized_rgb", "future_2d_labels", "paired_frame_ledger"], "properties": {
+      "session": {"type": "string"}, "task": {"enum": ["chips", "poker"]}, "split": {"enum": ["train", "validation", "test", "heldout"]}, "frame_count": {"type": "integer", "minimum": 51},
+      "human_raw_rgb": {"$ref": "#/definitions/ref"}, "robotized_rgb": {"$ref": "#/definitions/ref"}, "future_2d_labels": {"$ref": "#/definitions/ref"}, "paired_frame_ledger": {"$ref": "#/definitions/ref"}
+    }}},
+    "claim_limit": {"type": "string"}
+  },
+  "definitions": {"ref": {"type": "object", "additionalProperties": false, "required": ["path", "bytes", "sha256"], "properties": {"path": {"type": "string", "pattern": "^/"}, "bytes": {"type": "integer", "minimum": 0}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}}
+}

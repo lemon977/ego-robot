@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "governance_revision", "generation_id", "generated_at", "generator_code_sha", "repository", "host", "tasks", "blockers", "recent_events", "next_task"],
+  "properties": {
+    "schema_version": {"const": "chaoyang-long-horizon-task-state-v1"},
+    "governance_revision": {"type": "integer", "minimum": 1},
+    "generation_id": {"type": "string"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "generator_code_sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "repository": {"type": "object", "required": ["commit", "branch"], "properties": {"commit": {"type": "string"}, "branch": {"type": "string"}}, "additionalProperties": false},
+    "host": {"type": "string"},
+    "tasks": {"type": "array", "items": {"type": "object", "additionalProperties": true, "required": ["task_id", "phase", "attempt", "status", "updated_at"], "properties": {"task_id": {"type": "string"}, "phase": {"type": "string"}, "attempt": {"type": "integer", "minimum": 0}, "status": {"type": "string"}, "updated_at": {"type": "string"}, "heartbeat_at": {"type": ["string", "null"]}, "session": {"type": ["string", "null"]}, "pid": {"type": ["integer", "null"]}, "proc_start_ticks": {"type": ["integer", "null"]}, "gpu_id": {"type": ["integer", "null"]}}}},
+    "blockers": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["name", "status", "scope", "resolution"], "properties": {"name": {"type": "string"}, "status": {"type": "string"}, "scope": {"type": "string"}, "resolution": {"type": "string"}}}},
+    "recent_events": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "next_task": {"type": ["object", "null"], "additionalProperties": true}
+  }
+}

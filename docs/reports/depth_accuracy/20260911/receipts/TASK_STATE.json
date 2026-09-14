@@ -1,0 +1,85 @@
+{
+  "schema_version": "depth-accuracy-spatial-diagnostic-task-state-v1",
+  "updated_at": "2026-09-11T03:55:00+08:00",
+  "status": "COMPLETE_VALIDATED",
+  "authority": false,
+  "external_ground_truth": false,
+  "constraints": {
+    "c2w_robot_code_modification_allowed": false,
+    "median_z_alignment_is_diagnostic_only": true,
+    "stereo_proxy_is_joint_ground_truth": false,
+    "foundationstereo_scope": "VISUAL_OBJECT6D_CANDIDATE_INPUT",
+    "update_task_document_after_each_completed_item": true
+  },
+  "items": {
+    "D01_3d_comparison_video": "COMPLETE",
+    "D02_before_after_video": "COMPLETE",
+    "D03_proxy_skeleton_video_png": "COMPLETE",
+    "D04_three_window_regional_analysis": "COMPLETE",
+    "D05_difference_table_csv_png": "COMPLETE",
+    "D06_depth_types_overview_png": "COMPLETE",
+    "D07_internal_external_accuracy_png": "COMPLETE",
+    "D08_current_status_md": "COMPLETE",
+    "D09_external_validation_plan_md": "COMPLETE",
+    "D10_c2w_robot_audit_md": "COMPLETE",
+    "D11_meeting_summary_md": "COMPLETE",
+    "D12_final_validation": "COMPLETE",
+    "D13_root_convenience_package": "COMPLETE"
+  },
+  "current_spatial_result": {
+    "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/media_v1/MEDIA_DELIVERY_RECEIPT.json",
+    "sha256": "9f442fcb99b4760b8479637b0689f4520b068bd0f091b49d0ef74cfd090faf39",
+    "frames": 293,
+    "raw_frame_balanced_abs_mae_mm": 59.14764986637908,
+    "aligned_frame_balanced_abs_mae_mm": 13.985923191798443,
+    "aligned_frame_balanced_abs_p95_mm": 43.43291310792753
+  },
+  "current_table_result": {
+    "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/tables_v1/RESULT.json",
+    "sha256": "7f893b2ec5533b1a2d2eeadd4ffa9b220af30abc050ed1b5f09f413dc5b30ea7"
+  },
+  "current_diagram_result": {
+    "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/diagrams_v1/RESULT.json",
+    "sha256": "e1c0e1e265651bf1527ce4d555f16bd862e51d4ed96a7c42e33ffa501ebc92c4",
+    "depth_types_overview_sha256": "7294edd03d16b8918f6ada2b3638a318168bb0d87b24531411335c525a68f360",
+    "internal_vs_external_sha256": "ff475f5033c82bc700d170e652e9d6e386097be7a9fe4e63292961f5d5e70e7d"
+  },
+  "current_status_document": {
+    "path": "/mnt/workspace/code/chaoyang/docs/pipeline/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+    "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+  },
+  "external_validation_plan": {
+    "path": "/mnt/workspace/code/chaoyang/docs/pipeline/EXTERNAL_DEPTH_VALIDATION_PLAN_ZH.md",
+    "sha256": "5632c4c7c39a7c07322943bbe9405903089d5d66604c1cd9ed015680dc874929",
+    "execution_status": "PLANNED_NOT_EXECUTED"
+  },
+  "c2w_robot_audit": {
+    "path": "/mnt/workspace/code/chaoyang/docs/pipeline/C2W_ROBOT_COORDINATE_AUDIT.md",
+    "sha256": "75e64fcd9a1a060d61629a48f31d9b50f2a9a55dc384ff46ec0f763fa86a9923",
+    "code_modified": false,
+    "finding": "CURRENT_SIX_SESSION_DEVELOPMENT_PATH_IS_WORLD_FIRST_BUT_NOT_ROBOT_AUTHORITY"
+  },
+  "meeting_summary": {
+    "path": "/mnt/workspace/code/chaoyang/docs/pipeline/MEETING_DEPTH_SUMMARY_ZH.md",
+    "sha256": "785fdcf2404a8c42735f7fa7882a221e6c99ce0ff7afe11b42b50a898661bbc9"
+  },
+  "final_validation": {
+    "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/FINAL_RECEIPT.json",
+    "sha256": "a442f3a5936f67af9fcaf83306d8ffedcae3be6ebab99a42491fb5c63dac00f5",
+    "sha256sums_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_depth_accuracy_spatial_diagnostic_v1/SHA256SUMS.txt",
+    "sha256sums_sha256": "870a64943453cd97dd42046bb49362b13d730d7538cf7329f95956685a2b5574",
+    "artifacts": 19,
+    "videos_full_decode_pass": 3,
+    "images_decode_pass": 4,
+    "csv_rows": 36,
+    "markdown_documents_checked": 4,
+    "json_parse": "PASS"
+  },
+  "root_convenience_package": {
+    "path": "/mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911",
+    "copy_policy": "COPIED_NOT_MOVED",
+    "entry": "/mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911/README_ZH.md",
+    "manifest": "/mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911/PACKAGE_MANIFEST.json",
+    "verification_command": "python /mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911/scripts/verify_package.py"
+  }
+}

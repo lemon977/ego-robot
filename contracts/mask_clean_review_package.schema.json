@@ -1,0 +1,95 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/mask_clean_review_package.schema.json",
+  "title": "004 RAW MASK CLEAN Human Review Package",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_state", "producer", "session_id", "product_line",
+    "source_manifest_ref", "canary_set_ref", "mask_evidence_ref", "mask_independent_qa_ref", "clean_layers_ref",
+    "clean_coverage_ref", "task_card_ref", "calibration_overlay_ref", "stress_frames",
+    "full_preview", "review_state", "approval_ref", "formal_pass_claim_allowed",
+    "blocked_stages", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "mask-clean-review-package-v1"},
+    "artifact_state": {"const": "G2_CALIBRATION_CANDIDATE"},
+    "producer": {"const": "mask_clean_review_packager"},
+    "session_id": {"const": "grap_a_cap_004"},
+    "product_line": {"const": "004_CONTACT_GOLD"},
+    "source_manifest_ref": {"$ref": "#/$defs/ref"},
+    "canary_set_ref": {"$ref": "#/$defs/ref"},
+    "mask_evidence_ref": {"$ref": "#/$defs/ref"},
+    "mask_independent_qa_ref": {"$ref": "#/$defs/maskIndependentQaRef"},
+    "clean_layers_ref": {"$ref": "#/$defs/ref"},
+    "clean_coverage_ref": {"$ref": "#/$defs/ref"},
+    "task_card_ref": {"$ref": "#/$defs/ref"},
+    "calibration_overlay_ref": {"$ref": "#/$defs/ref"},
+    "stress_frames": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 24,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["frame_index", "strata", "four_panel_image", "raw_ref", "overlay_ref", "clean_ref", "donor_diagnostic_ref"],
+        "properties": {
+          "frame_index": {"type": "integer", "minimum": 0, "maximum": 459},
+          "strata": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+          "four_panel_image": {"$ref": "#/$defs/ref"},
+          "raw_ref": {"$ref": "#/$defs/ref"},
+          "overlay_ref": {"$ref": "#/$defs/ref"},
+          "clean_ref": {"$ref": "#/$defs/ref"},
+          "donor_diagnostic_ref": {"$ref": "#/$defs/ref"}
+        }
+      }
+    },
+    "full_preview": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["video_ref", "layout", "frame_count", "fps", "contains_hold_overlay"],
+      "properties": {
+        "video_ref": {"$ref": "#/$defs/ref"},
+        "layout": {"const": ["RAW", "H_O_U_OVERLAY", "CLEAN", "DONOR_COVERAGE_DIFFERENCE"]},
+        "frame_count": {"const": 460},
+        "fps": {"const": 30},
+        "contains_hold_overlay": {"const": true}
+      }
+    },
+    "review_state": {"const": "AWAITING_HUMAN_MASK_CLEAN_REVIEW"},
+    "approval_ref": {"type": "null"},
+    "formal_pass_claim_allowed": {"const": false},
+    "blocked_stages": {
+      "const": ["OBJECT6D_REFINEMENT", "RETARGET", "BASE_IK", "RENDERER", "COMPOSITOR", "HARMONIZER", "FINAL_ROBOT"]
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "producer"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "maskIndependentQaRef": {
+      "allOf": [
+        {"$ref": "#/$defs/ref"},
+        {
+          "required": ["schema_version", "bytes"],
+          "properties": {
+            "producer": {"const": "independent_mask_qa"},
+            "schema_version": {"const": "mask-independent-qa-v1"}
+          }
+        }
+      ]
+    }
+  }
+}

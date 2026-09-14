@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/quality/hawor_independent_review_v1.schema.json",
+  "title": "Independent HaWoR identity, contour, and visibility review V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "task_id",
+    "session_id",
+    "frame_count",
+    "provider",
+    "evidence",
+    "expected_active",
+    "anatomical_identity",
+    "contour_projection",
+    "missing_visibility"
+  ],
+  "properties": {
+    "schema_version": {"const": "hawor-independent-review-v1"},
+    "task_id": {"type": "string", "minLength": 1},
+    "session_id": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "family", "provider_id", "independent_from_hawor"],
+      "properties": {
+        "authority": {"enum": ["INDEPENDENT_QA", "HUMAN_REVIEW"]},
+        "family": {"type": "string", "minLength": 1},
+        "provider_id": {"type": "string", "minLength": 1},
+        "independent_from_hawor": {"const": true}
+      }
+    },
+    "evidence": {
+      "type": "array",
+      "minItems": 5,
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "expected_active": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "authority", "reason_codes", "per_side_intervals"],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "authority": {"enum": ["CAPTURE", "INDEPENDENT_QA", "HUMAN_REVIEW", "NONE"]},
+        "reason_codes": {"$ref": "#/$defs/reasons"},
+        "per_side_intervals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["left", "right"],
+          "properties": {
+            "left": {"$ref": "#/$defs/intervals"},
+            "right": {"$ref": "#/$defs/intervals"}
+          }
+        }
+      }
+    },
+    "anatomical_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reason_codes",
+        "full_timeline_reviewed",
+        "reviewed_frame_count",
+        "identity_switch_frames",
+        "duplicate_track_frames",
+        "collapse_frames"
+      ],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "reason_codes": {"$ref": "#/$defs/reasons"},
+        "full_timeline_reviewed": {"type": "boolean"},
+        "reviewed_frame_count": {"type": "integer", "minimum": 0},
+        "identity_switch_frames": {"$ref": "#/$defs/frame_indices"},
+        "duplicate_track_frames": {"$ref": "#/$defs/frame_indices"},
+        "collapse_frames": {"$ref": "#/$defs/frame_indices"}
+      }
+    },
+    "contour_projection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reason_codes",
+        "method",
+        "mask_distance_threshold_px",
+        "robot_distance_threshold_px",
+        "sampled_frame_indices",
+        "per_side"
+      ],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "reason_codes": {"$ref": "#/$defs/reasons"},
+        "method": {
+          "enum": [
+            "FROZEN_HUMAN_SILHOUETTE_LABELS",
+            "INDEPENDENT_SEGMENTATION_SILHOUETTE_LABELS",
+            "NOT_EVALUATED"
+          ]
+        },
+        "mask_distance_threshold_px": {"const": 20},
+        "robot_distance_threshold_px": {"const": 12},
+        "sampled_frame_indices": {"$ref": "#/$defs/frame_indices"},
+        "per_side": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["left", "right"],
+          "properties": {
+            "left": {"$ref": "#/$defs/contour_side"},
+            "right": {"$ref": "#/$defs/contour_side"}
+          }
+        }
+      }
+    },
+    "missing_visibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "reason_codes",
+        "all_missing_frames_classified",
+        "classified_missing_frames",
+        "boundary_support_rule",
+        "per_side_visibility_intervals"
+      ],
+      "properties": {
+        "status": {"$ref": "#/$defs/status"},
+        "reason_codes": {"$ref": "#/$defs/reasons"},
+        "all_missing_frames_classified": {"type": "boolean"},
+        "classified_missing_frames": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["left", "right"],
+          "properties": {
+            "left": {"$ref": "#/$defs/frame_indices"},
+            "right": {"$ref": "#/$defs/frame_indices"}
+          }
+        },
+        "boundary_support_rule": {
+          "const": "INDEPENDENT_SILHOUETTE_AT_LEAST_19_OF_21_JOINTS_IN_FRAME"
+        },
+        "per_side_visibility_intervals": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["left", "right"],
+          "properties": {
+            "left": {"$ref": "#/$defs/visibility_side"},
+            "right": {"$ref": "#/$defs/visibility_side"}
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "status": {"enum": ["PASS", "FAIL", "HOLD", "NOT_EVALUATED"]},
+    "reasons": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "frame_indices": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 0},
+      "uniqueItems": true
+    },
+    "intervals": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {"type": "integer", "minimum": 0},
+          {"type": "integer", "minimum": 1}
+        ],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["role", "path", "sha256"],
+      "properties": {
+        "role": {
+          "enum": [
+            "FULL_TIMELINE_IDENTITY_REVIEW",
+            "HAND_SILHOUETTE_LABELS",
+            "CONTOUR_METRICS",
+            "EXPECTED_ACTIVE_LABELS",
+            "MISSING_VISIBILITY_LABELS"
+          ]
+        },
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "contour_side": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mask_coverage_fraction_p05_at_20px",
+        "robot_coverage_fraction_p05_at_12px"
+      ],
+      "properties": {
+        "mask_coverage_fraction_p05_at_20px": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "robot_coverage_fraction_p05_at_12px": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      }
+    },
+    "visibility_side": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "visible_required",
+        "boundary_supported",
+        "occluded_or_out_of_frame"
+      ],
+      "properties": {
+        "visible_required": {"$ref": "#/$defs/intervals"},
+        "boundary_supported": {"$ref": "#/$defs/intervals"},
+        "occluded_or_out_of_frame": {"$ref": "#/$defs/intervals"}
+      }
+    }
+  }
+}

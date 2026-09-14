@@ -1,0 +1,263 @@
+{
+  "schema_version": "robot-coordinate-install-calibration-audit-v1",
+  "created_at": "2026-09-13T02:44:47+08:00",
+  "status": "AUDIT_COMPLETE_NO_EXECUTION_GRADE_EXTRINSIC_MOUNT_OR_TCP_CALIBRATION_FOUND",
+  "mode": "READ_ONLY_HISTORICAL_AND_CODE_PATH_AUDIT",
+  "robot_was_run": false,
+  "central_authority_modified": false,
+  "claim_limit": "This is an evidence inventory and numerical consistency audit. It does not select or promote a Robot transform and does not authorize Robot rendering, retargeting, training, contact, deployment, or hardware execution.",
+  "transform_convention": {
+    "notation": "p_A = T_A_B @ p_B",
+    "current_development_chain": [
+      "T_world_hand(t) = c2w(t) @ T_camera_hand_HaWoR(t)",
+      "T_world_base is fixed for one task/session development review",
+      "T_world_base @ FK_base_tool(q(t)) @ T_tool_hand_root ~= T_world_hand(t)",
+      "T_camera_base(t) = inv(c2w(t)) @ T_world_base is render-only"
+    ],
+    "warning": "A valid SE(3) matrix is not evidence of physical calibration. Candidate comparisons across different sessions/world origins are numeric-only."
+  },
+  "highest_confidence_findings": [
+    {
+      "id": "F1",
+      "finding": "No measured ego-camera/world-to-Tianji-base extrinsic was found.",
+      "effect": "The current fixed T_world_base values are development visual placements, not physical installation calibration."
+    },
+    {
+      "id": "F2",
+      "finding": "No verified Tianji flange/tool-to-KaiHand installation transform, adapter CAD, keyed clocking, or bolt-pattern evidence was found.",
+      "effect": "The current T_tool_hand_root is a geometry proxy and cannot support physical contact claims."
+    },
+    {
+      "id": "F3",
+      "finding": "The Tianji URDF contains nominal fixed flange-to-tool joints with 0.145 m translation, but no measured TCP or installation calibration was found.",
+      "effect": "URDF FK is model-internal geometry, not a real TCP accuracy certificate."
+    },
+    {
+      "id": "F4",
+      "finding": "The current development temporal code is world-first; older camera-first/session-constant paths remain in the repository.",
+      "effect": "Older renderer outputs must not be treated as proof of the current coordinate chain."
+    },
+    {
+      "id": "F5",
+      "finding": "User visual acceptance is scoped to short development reviews and leaves current_robot_authority=false.",
+      "effect": "Visual acceptance does not promote any transform to execution-grade calibration."
+    }
+  ],
+  "camera_or_world_to_base_candidates": [
+    {
+      "id": "V2C03_HISTORICAL_VISUAL_PLACEMENT",
+      "direction": "p_camera = T_camera_base @ p_base",
+      "session_scope": "historical grap_a_cap-derived development review; not current-session metrology",
+      "classification": "VISUAL_PLACEMENT_NOT_CALIBRATION",
+      "user_scope": "Base direction and P3 arm posture were retained; old hand mount, size, and coverage were rejected.",
+      "formal_consumer_allowed": false,
+      "matrix": [[0.0,1.0,0.0,0.0],[-0.8660254037844386,0.0,-0.5,1.5],[-0.5,0.0,0.8660254037844386,0.25],[0.0,0.0,0.0,1.0]],
+      "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.1035250317325678e-17,"rotation_det":1.0,"translation_norm_m":1.5206906325745548},
+      "evidence_path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/incomplete/gpt_robot_static_posture_ab_cycles_scenes_20260831_v1/A/SCENE_STATE_STATIC_POSTURE.npz",
+      "evidence_sha256": "2b89c8e2eedc6cd0e984757582a4a82727955a10bca44bb98bad06f4789df673"
+    },
+    {
+      "id": "P2H_HOME_UNCALIBRATED_DIAGNOSTIC",
+      "direction": "p_camera = T_camera_base @ p_base",
+      "session_scope": "old grap_a_cap_002 diagnostic",
+      "classification": "UNCALIBRATED_EXTRINSIC_DIAGNOSTIC_NOT_CANDIDATE",
+      "formal_consumer_allowed": false,
+      "matrix": [[0.0,1.0,0.0,0.0],[-0.81915204,0.0,-0.57357644,1.45],[-0.57357644,0.0,0.81915204,-0.15],[0.0,0.0,0.0,1.0]],
+      "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.89650542759199e-17,"rotation_det":1.0,"translation_norm_m":1.4577379737113252},
+      "evidence_path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_home_extrinsic_audit_cpu_20260901_v1/A_CURRENT_P2H_HOME_SCENE_STATE.npz",
+      "evidence_sha256": "51a86a43332cfa93788edd149db2c1499b27eddfedf4f2636599a26b65632fb2"
+    },
+    {
+      "id": "FRAME0_PNP_REJECTED",
+      "direction": "p_camera = T_camera_base @ p_base",
+      "session_scope": "single-frame fit",
+      "classification": "REJECTED_HIGH_REPROJECTION_ERROR_NOT_CALIBRATION",
+      "formal_consumer_allowed": false,
+      "frame0_reprojection_rmse_px": 88.803,
+      "matrix": [[-0.8677394391,0.2591882408,-0.4240869269,0.6934408490],[0.3403156958,-0.3120251936,-0.8870318516,1.3022942604],[-0.3622340307,-0.9140359590,0.1825507400,0.9117773011],[0.0,0.0,0.0,1.0]],
+      "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":1.38593483284357e-10,"rotation_det":0.9999999999623566,"translation_norm_m":1.7344072181969907}
+    },
+    {
+      "id": "POKER042_TASK_TRANSLATION_V2_REJECTED",
+      "direction": "p_camera = T_camera_base @ p_base",
+      "session_scope": "play_cards_0902_042 only",
+      "classification": "TASK_FITTED_VISUAL_PLACEMENT_REJECTED",
+      "formal_consumer_allowed": false,
+      "matrix": [[0.0,1.0,0.0,0.05305128],[-0.8660254037844386,0.0,-0.5,1.11788651],[-0.5,0.0,0.8660254037844386,-0.52157635],[0.0,0.0,0.0,1.0]],
+      "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.1035250317325678e-17,"rotation_det":1.0,"translation_norm_m":1.2347172024946746},
+      "evidence_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_static_closure_task_translation_v2/ROBOT_STATES.npz"
+    },
+    {
+      "id": "POKER042_FRAME0_V8_VISUALLY_ACCEPTED",
+      "direction": "p_camera = T_camera_base @ p_base",
+      "session_scope": "play_cards_0902_042 frame0 and accepted 48-frame development lineage only",
+      "classification": "USER_ACCEPTED_DEVELOPMENT_VISUAL_PLACEMENT_NOT_CALIBRATION",
+      "formal_consumer_allowed": false,
+      "current_robot_authority": false,
+      "matrix": [[1.2246468e-16,-1.0,0.0,-0.0521179868],[0.8660254037844386,1.06057524e-16,-0.5,0.75581753],[0.5,6.123234e-17,0.8660254037844386,-1.14248481],[0.0,0.0,0.0,1.0]],
+      "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.1035250317325678e-17,"rotation_det":1.0,"translation_norm_m":1.370856656478651},
+      "evidence_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_same_side_outward_frame0_pose_v8/FRAME0_STATES.npz",
+      "evidence_sha256": "499fdf4b0380829bb23d7e20ee9886f95c09e3887684166aef7535d6a596f1cb"
+    },
+    {
+      "id": "CHIPS034_FRAME0_WORLD_V2_VISUALLY_ACCEPTED",
+      "direction": "p_world = T_world_base @ p_base",
+      "session_scope": "get_potato_chips_0902_034 frame0 and accepted 48-frame development lineage only",
+      "classification": "USER_ACCEPTED_DEVELOPMENT_VISUAL_PLACEMENT_NOT_CALIBRATION",
+      "formal_consumer_allowed": false,
+      "current_robot_authority": false,
+      "note": "c2w(0) is effectively identity, so the stored T_world_base and T_camera_base are nearly equal at frame0; this does not validate moving-camera cancellation.",
+      "matrix": [[1.21530223e-16,-1.0,9.61723657e-19,-0.000200007085],[0.8660254037844386,1.08893303e-16,-0.5,0.794181395],[0.5,6.16256507e-17,0.8660254037844386,-1.18782440],[0.0,0.0,0.0,1.0]],
+      "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.182955481090327e-17,"rotation_det":1.0,"translation_norm_m":1.4288635099641125},
+      "evidence_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/get_potato_chips_0902_034_same_side_outward_frame0_world_v2/FRAME0_STATES.npz",
+      "evidence_sha256": "c52c916a6ce8d306d389d1fc61f4d217f9b0d2573bea748a64fb0b5bb5826d6d"
+    }
+  ],
+  "camera_candidate_pairwise_numeric_differences": {
+    "warning": "Translation differences are in the stored coordinate frames. Cross-session values are not physical calibration error.",
+    "V2C03_vs_P2H": {"rotation_angle_deg":4.999999999999991,"translation_distance_m":0.4031128874149275},
+    "V2C03_vs_frame0_PnP_rejected": {"rotation_angle_deg":97.26182137441019,"translation_distance_m":0.9787221090707127},
+    "V2C03_vs_Poker_task_translation_v2": {"rotation_angle_deg":0.0,"translation_distance_m":0.8626443215042991},
+    "V2C03_vs_Poker_frame0_v8": {"rotation_angle_deg":180.0,"translation_distance_m":1.5797271250971718},
+    "P2H_vs_frame0_PnP_rejected": {"rotation_angle_deg":94.40165833620296,"translation_distance_m":1.2767334231169105},
+    "Poker_frame0_v8_vs_Chips_frame0_world_v2": {"rotation_angle_deg":0.0,"translation_distance_m":0.07888561792126565}
+  },
+  "tianji_nominal_model": {
+    "classification": "NOMINAL_URDF_KINEMATICS_NOT_PHYSICAL_CALIBRATION",
+    "urdf_path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+    "urdf_sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309",
+    "base_to_onboard_camera_fixed_joint": {"xyz_m":[0.0369887,0.0,0.48752],"rpy_rad":[0.0,0.785,0.0],"warning":"This is the Tianji onboard camera, not the human ego camera and must not be used as ego T_camera_base."},
+    "base_to_left_arm_base_fixed_joint": {"xyz_m":[0.0,0.026,1.121],"rpy_rad":[-1.57,0.0,0.0]},
+    "base_to_right_arm_base_fixed_joint": {"xyz_m":[0.0,-0.026,1.121],"rpy_rad":[1.57,0.0,0.0]},
+    "link7_to_flange_fixed_joint": {"xyz_m":[0.0,-0.088,0.0],"rpy_rad":[1.5708,-1.5708,0.0]},
+    "left_flange_to_tool_fixed_joint": {"xyz_m":[0.0,0.0,0.145],"rpy_rad":[3.14,-1.57,0.0]},
+    "right_flange_to_tool_fixed_joint": {"xyz_m":[0.0,0.0,0.145],"rpy_rad":[-3.14,-1.57,0.0]},
+    "calibration_directory": "/mnt/workspace/code/chaoyang/assets/robot/tianji/calibration",
+    "calibration_file_count": 0,
+    "measured_tcp_found": false
+  },
+  "tool_to_kaihand_candidates": {
+    "common_direction": "p_tool = T_tool_hand_root @ p_hand_root",
+    "selected_development_geometry_proxy": {
+      "classification": "GEOMETRY_PROXY_NOT_MEASUREMENT",
+      "left": [[0.0007963267107332546,1.3406869858052938e-20,-0.9999996829318346,-0.06979999049168491],[-0.00159265241150729,0.9999987317275395,-1.2682720583256207e-06,-8.85254059027187e-08],[0.9999984146597765,0.0015926529164868282,0.0007963257007739938,5.558354396613657e-05],[0.0,0.0,0.0,1.0]],
+      "right": [[0.0007963267107333152,-9.811020621140715e-20,-0.9999996829318348,-0.06979999049168495],[0.00159265241150729,0.9999987317275395,1.2682720583258615e-06,8.852540590264707e-08],[0.9999984146597765,-0.0015926529164868284,0.0007963257007741275,5.5583543966090385e-05],[0.0,0.0,0.0,1.0]],
+      "translation_norm_m": 0.0698000126230469,
+      "se3_valid": true,
+      "origin": "C1 flange-to-hand root plane proxy transformed through the Tianji URDF flange-to-tool transform",
+      "c1_conversion_max_abs_difference": {"left":0.0,"right":0.0},
+      "internal_closure_only": {"interface_position_gap_mm":0.0,"interface_rotation_closure_deg":0.0},
+      "limitations": ["no verified adapter CAD","no bolt-pattern evidence","no keyed tangent clocking","no measured installation transform","no collision proof","no deployment authority"]
+    },
+    "pairwise_to_selected_proxy": {
+      "C2_old_task_specific_left": {"rotation_angle_deg":119.92096268482186,"translation_distance_m":0.06980001262304684},
+      "C2_old_task_specific_right": {"rotation_angle_deg":179.9543738500209,"translation_distance_m":0.0698000126230469},
+      "C3_negative_43p282mm_visual_fit_left": {"rotation_angle_deg":89.9544101978136,"translation_distance_m":0.0821595083972475},
+      "C3_negative_43p282mm_visual_fit_right": {"rotation_angle_deg":89.95441019781359,"translation_distance_m":0.08215950839724752},
+      "V2C03_legacy_left": {"rotation_angle_deg":179.9543738500129,"translation_distance_m":0.10171800567846725},
+      "V2C03_legacy_right": {"rotation_angle_deg":179.9543738500209,"translation_distance_m":0.1017180056784673}
+    },
+    "proxy_sources": {
+      "candidate_inventory_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/MOUNT_CANDIDATE_MATRIX.json",
+      "candidate_inventory_sha256": "49efd304dde38aef1c5921f8d5866695db5e2b56c28e4f29337a2137e6e7ef92",
+      "closure_audit_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/static_interface_closure_audit_v1/ASSEMBLY_CLOSURE_AUDIT.json",
+      "closure_audit_sha256": "83e14e42e0db26cef9645c28c4c0f33fef247664c354d828ca8b8270c6856e39"
+    }
+  },
+  "user_decisions": [
+    {
+      "scope": "Poker042 frame0 V8",
+      "status": "SINGLE_FRAME_ACCEPTED_SHORT_VIDEO_AUTHORIZED",
+      "current_robot_authority": false,
+      "authorized": "one short world-first review video only",
+      "not_authorized": ["full-session Robot output","training","deployment","authority promotion"]
+    },
+    {
+      "scope": "Chips034 frame0 world V2",
+      "status": "SINGLE_FRAME_ACCEPTED_SHORT_VIDEO_AUTHORIZED",
+      "current_robot_authority": false,
+      "authorized": "one short world-first review video only",
+      "not_authorized": ["full-session Robot output","training","deployment","authority promotion"]
+    },
+    {
+      "scope": "Poker042 and Chips034 temporal48 V3",
+      "status": "SHORT_TEMPORAL_VIDEO_ACCEPTED_PARALLEL_CONTINUATION_AUTHORIZED",
+      "current_robot_authority": false,
+      "downstream_authorized_now": false,
+      "authorized": "dependency-gated development continuation",
+      "not_authorized": ["HumanEgo consumption now","deployment","Robot authority"]
+    }
+  ],
+  "current_code_path_evidence": [
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/render_same_side_world_temporal_review.py",
+      "sha256": "6228a8d724075a7771d8c751ad4b1c0c7c70a9aa672159ed7316912966c83b6f",
+      "role": "world-first short temporal development review",
+      "key_lines": [594,595,598,600,633,747,748,749,750]
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/run_same_side_world_fullsession_successor.py",
+      "sha256": "e89838684cc35dd7dc53c1c3c8d393aa8550c538a0e7bf59093efe7bf2ed067e",
+      "role": "world-first full-session development successor",
+      "key_lines": [315,316,319,320,335,432,433,434,435]
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/render_development_robot_review_v1.py",
+      "sha256": "e6b9ef58c9f6117bb7d9bff17ab95fd354035c9c5c70c8fb5e0e9c3005a22eb7",
+      "role": "six-session development review; reanchors accepted camera placement into each session world at c2w(0)",
+      "key_lines": [37,38,39,49,114,126]
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/run_robot_motion_transfer_arm_canary_v2.py",
+      "sha256": "e3a177f205ff648060f1d170a55117a9157646ba149f9d6bd3bcb652717bc74a",
+      "role": "development motion transfer with session-specific base adjustment",
+      "key_lines": [112,113,114,117,132,136,166,200]
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/run_robot_renderer_eevee_fullchain_t1.py",
+      "sha256": "bba0f3576e52a50130e35373d7317dfdd628be094b4e998d9ea21a34ed38a913",
+      "role": "older camera-first/session-constant renderer path; not current coordinate authority",
+      "key_lines": [930,954]
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/tools/audit_robot_contact_visual_two_session.py",
+      "sha256": "d6f968d0ca0ae309b813ba3335233a2f9e966ea0ece2e64018f2528b33dc9f4a",
+      "role": "contact visual audit reads T_camera_robot_base but no formal current trajectory is execution-authorized",
+      "key_lines": [297]
+    }
+  ],
+  "real_vs_sim_installation": {
+    "simulation_model_available": true,
+    "simulation_model_scope": "Tianji URDF nominal FK, KaiHand URDF/CAD, NaturalV2 STL and synthetic/development interface proxies",
+    "real_world_ego_camera_to_base_calibrated": false,
+    "real_world_world_to_base_calibrated": false,
+    "real_world_flange_to_kaihand_calibrated": false,
+    "real_world_tcp_calibrated": false,
+    "robot_fk_physical_error_measured": false,
+    "consequence": "No final contact precision in millimetres can be claimed."
+  },
+  "external_blockers": {
+    "source_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/BLOCKER_ROBOT_EXECUTION_CLOSURE.json",
+    "source_sha256": "242310b2e0b82b52d5b11f017e407f17a80ceccae59ca25aed6bd48cf2d14be3",
+    "status": "BLOCKED_EXTERNAL",
+    "required_before_robot": [
+      "verified NaturalV2 flange-to-KaiHand assembly transform or adapter CAD/measured installation transform",
+      "world-to-Tianji-base calibration",
+      "Robot TCP/installation calibration",
+      "rerun only the frozen four-frame retarget gate after the above; do not infer transforms from visual proxies"
+    ]
+  },
+  "unrecoverable_or_missing": [
+    "The old exact 004 calibration matrix was not recovered; historical reports say the original rendering/tianji/calibration.json and final_renderer.py are absent.",
+    "No files exist under assets/robot/tianji/calibration.",
+    "No verified physical KaiHand adapter CAD or measured left/right installation transform was found."
+  ],
+  "final_disposition": {
+    "development_coordinate_chain": "SUPPORTED_BY_CODE_AND_INTERNAL_CLOSURE_ONLY",
+    "physical_extrinsic_calibration": "MISSING",
+    "physical_mount_calibration": "MISSING",
+    "physical_tcp_calibration": "MISSING",
+    "robot_execution": "BLOCKED_EXTERNAL",
+    "current_robot_authority": false
+  }
+}

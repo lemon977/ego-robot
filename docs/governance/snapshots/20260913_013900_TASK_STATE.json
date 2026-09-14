@@ -1,0 +1,148 @@
+{
+  "blockers": [
+    {
+      "name": "KaiHand adapter CAD",
+      "resolution": "Verified adapter CAD and measured installation transform.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Robot TCP and installation calibration",
+      "resolution": "Measured TCP, mount and camera/world-to-base calibration.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Real Robot action demonstrations",
+      "resolution": "Synchronized action/state/RGB data satisfying the formal schema.",
+      "scope": "HumanEgo policy checkpoints",
+      "status": "BLOCKED_EXTERNAL"
+    }
+  ],
+  "generated_at": "2026-09-13T01:37:48+08:00",
+  "generation_id": "gov-000001-9abc9c81aa87",
+  "generator_code_sha": "04068a63aa571d0982d25a8cb17515bd08bb9c9d5456b37f9fe191d1398bab63",
+  "governance_revision": 1,
+  "host": "dsw-1019706-57c5b8df6-4vg6j",
+  "next_task": {
+    "expected_resource": "CPU/read-only evidence hashing",
+    "prerequisites": [
+      "governance_fact_ledger_v1"
+    ],
+    "session": null,
+    "stop_condition": "Any source artifact bytes/SHA mismatch or denominator conflict.",
+    "task_id": "exact78_wave0_freeze_v1"
+  },
+  "recent_events": [
+    {
+      "created_at": "2026-09-13T01:37:47+08:00",
+      "message": "Initial evidence-driven governance ledger published.",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_fact_ledger_v1"
+    }
+  ],
+  "repository": {
+    "branch": "main",
+    "commit": "1f97e25f99723ec3a6c73dfe6f3fb963ca515db5"
+  },
+  "schema_version": "chaoyang-long-horizon-task-state-v1",
+  "tasks": [
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "governance",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_fact_ledger_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "selection",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_wave0_freeze_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "clean",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PENDING",
+      "task_id": "exact78_wave0_clean_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "upstream_repair",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PENDING",
+      "task_id": "exact78_upstream_c_successors_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "contact",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PENDING",
+      "task_id": "contact_occlusion_canary_034_042_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "robot",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "robot_visual_canary_034_042_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "training",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "humanego_visual_aux_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "maintenance",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PENDING",
+      "task_id": "workspace_cleanup_v3",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "schema_version": "local-model-asset-pin-v1",
+  "document_status": "REGISTERED_PIN_EXECUTION_DISABLED",
+  "model_identifier": "SAM2_1_HIERA_LARGE",
+  "source": {
+    "repository": "https://github.com/IDEA-Research/Grounded-SAM-2.git",
+    "commit": "b7a9c29f196edff0eb54dbe14588d7ae5e3dde28",
+    "git_tree": "79b4104ff480263e3727d9f08c1d018829ddf545",
+    "copy_source_implementation": "/mnt/workspace/code/Track4World/submodules/sam2",
+    "copy_source_weight": "/mnt/workspace/code/Track4World/checkpoints/sam2.1_hiera_large.pt"
+  },
+  "local": {
+    "asset_root": "assets/models/sam2_1_hiera_large",
+    "implementation_ref": "assets/models/sam2_1_hiera_large/implementation",
+    "implementation_inventory_algorithm": "SHA256_UTF8_SORTED_ROWS_RELATIVE_PATH_NUL_KIND_NUL_BYTES_NUL_SHA256_NEWLINE_SYMLINK_ROWS_USE_RELATIVE_PATH_NUL_SYMLINK_NUL_TARGET_NEWLINE",
+    "implementation_inventory_entries": 38,
+    "implementation_regular_bytes": 1733828,
+    "implementation_inventory_sha256": "97e9ab4200d741d5ea8c5c4e63b46793a6a9b886c87abea6954f21dc3520025c",
+    "config_path": "sam2/configs/sam2.1/sam2.1_hiera_l.yaml",
+    "config_sha256": "545e4325aa5c19a1615d43c946b07276ed4c57214eacf1437e38fa3d9374f636",
+    "weight_path": "assets/models/sam2_1_hiera_large/sam2.1_hiera_large.pt",
+    "weight_bytes": 898083611,
+    "weight_sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+    "license_path": "assets/models/sam2_1_hiera_large/LICENSE_sam2",
+    "license_sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4"
+  },
+  "copy_policy": {
+    "source_mutated": false,
+    "python_cache_included": false,
+    "content_equality_required": true
+  },
+  "load_smoke": {
+    "status": "PASS_CPU_MODEL_INSTANTIATION_FROM_LOCAL_CODE_CONFIG_WEIGHT",
+    "python": "/mnt/workspace/miniconda3/envs/track4world/bin/python",
+    "pythonpath": "assets/models/sam2_1_hiera_large/implementation",
+    "builder": "sam2.build_sam.build_sam2",
+    "device": "cpu",
+    "parameter_count": 224446642
+  },
+  "execution": {
+    "calibration_execution_authorized": false,
+    "formal_production_allowed": false
+  }
+}

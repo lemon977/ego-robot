@@ -1,0 +1,19 @@
+{
+  "baseline_registry_at_validation": {
+    "bytes": 36842,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_BASELINE_REGISTRY_V2.json",
+    "sha256": "f136af4af99cc96121f05248ed1c782160f83030a228d45e7714d2e452ecb55a"
+  },
+  "claim_limit": "Technical-document validation only; no algorithm, contact, Robot or training authority promotion.",
+  "created_at": "2026-09-14T13:23:27+08:00",
+  "document": {
+    "bytes": 10101,
+    "path": "/mnt/workspace/code/chaoyang/docs/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+    "sha256": "5874b182a583c529c94ab59b503f28d8cf2ce6bb27e7114157943f3540915f59"
+  },
+  "governance_revision": 4726,
+  "mutable_runtime_counts_copied": false,
+  "required_tokens_missing": [],
+  "schema_version": "pipeline-technical-document-receipt-v3",
+  "status": "PASS_CURRENT_ONLY_DOCUMENT"
+}

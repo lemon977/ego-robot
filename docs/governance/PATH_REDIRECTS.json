@@ -1,0 +1,12 @@
+{
+  "generated_at": "2026-09-14T13:47:58+08:00",
+  "redirects": [
+    {
+      "content_merkle_sha256": "68a0c001f20d72815b331452a45beeb8dd4263dd3b42f9efc241bb6e55b3eb20",
+      "new_prefix": "/mnt/workspace/code/chaoyang/docs/reports/depth_accuracy/20260911",
+      "old_prefix": "/mnt/workspace/code/chaoyang/DEPTH_ACCURACY_PACKAGE_20260911",
+      "reason": "V6 root-directory convergence; content is byte-identical."
+    }
+  ],
+  "schema_version": "chaoyang-path-redirects-v1"
+}

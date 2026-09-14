@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "depth-multiview-clean-batch-plan-v1",
+  "title": "Fail-closed batch plan for depth multiview Clean",
+  "type": "object", "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "start_authorized", "generated_at",
+    "successor", "rows", "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "depth-multiview-clean-batch-plan-v1"},
+    "status": {"enum": ["CPU_READY_BLOCKED_UPSTREAM", "READY_FOR_CANARY_BATCH"]},
+    "start_authorized": {"type": "boolean"},
+    "generated_at": {"type": "string", "minLength": 1},
+    "successor": {
+      "type": "object", "additionalProperties": false,
+      "required": ["runner", "input_schema", "visual_review_schema", "cpu_only_preparation"],
+      "properties": {
+        "runner": {"$ref": "#/$defs/artifact"},
+        "input_schema": {"$ref": "#/$defs/artifact"},
+        "visual_review_schema": {"$ref": "#/$defs/artifact"},
+        "cpu_only_preparation": {"const": true}
+      }
+    },
+    "rows": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": [
+          "task", "session", "frame_count", "upstream", "blockers",
+          "input_manifest", "canary_start_authorized", "full_start_authorized"
+        ],
+        "properties": {
+          "task": {"enum": ["chips", "poker"]},
+          "session": {"type": "string", "minLength": 1},
+          "frame_count": {"type": "integer", "minimum": 1},
+          "upstream": {"type": "object"},
+          "blockers": {"type": "array", "items": {"type": "string", "minLength": 1}},
+          "input_manifest": {
+            "oneOf": [{"type": "null"}, {"$ref": "#/$defs/artifact"}]
+          },
+          "canary_start_authorized": {"type": "boolean"},
+          "full_start_authorized": {"type": "boolean"}
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

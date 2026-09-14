@@ -1,0 +1,52 @@
+{
+  "active_tasks": [
+    {
+      "attempt": 2,
+      "gpu_id": null,
+      "heartbeat_at": "2026-09-14T19:12:16+08:00",
+      "phase": "robot_067_finite_continuation",
+      "pid": 2593657,
+      "proc_start_ticks": 164921727,
+      "session": "get_potato_chips_0902_067",
+      "status": "RUNNING",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    }
+  ],
+  "authority_sources": {
+    "authority": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_AUTHORITY_INDEX.json",
+    "human_status": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
+    "receipt": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "task_state": "/mnt/workspace/code/chaoyang/docs/governance/LONG_HORIZON_TASK_STATE.json"
+  },
+  "claim_limit": "Derived bounded context only; validate CURRENT_STATUS_RECEIPT.json before use.",
+  "cohort": "exact78-chips78-poker78-frozen",
+  "freshness": {
+    "age_seconds": 0,
+    "reason": "active_task_heartbeat",
+    "status": "FRESH"
+  },
+  "generated_at": "2026-09-14T19:12:16+08:00",
+  "generation_id": "gov-005869-1eff2016fad2",
+  "governance_revision": 5869,
+  "next_task": {
+    "expected_resource": "CPU Robot retarget plus serialized GPU render when needed",
+    "prerequisites": [
+      "exact78_wave0_clean_v1",
+      "contact_geometry_v2_fixture"
+    ],
+    "session": null,
+    "stop_condition": "All 156 sessions receive METRIC_CONTACT_ROBOT, POSE_ONLY_VISUAL_ROBOT, FAILED_QUALITY_C, FAILED_RUNTIME_FINAL, or BLOCKED_PREREQ terminal; no physical authority promotion.",
+    "task_id": "exact78_v52_lane_c_contact_robot"
+  },
+  "schema_version": "chaoyang-current-project-status-min-v1",
+  "waves": {
+    "join_calibration_missing": 43,
+    "raw_calibration_missing": 59,
+    "raw_total": 156,
+    "wave0_clean_passed": 39,
+    "wave0_clean_pending": 0,
+    "wave0_metric_ready": 58,
+    "wave1_delta": 0,
+    "wave2_delta": 0
+  }
+}

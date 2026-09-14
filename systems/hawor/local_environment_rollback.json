@@ -1,0 +1,61 @@
+{
+  "claim_limit": "ROLLBACK_AUTHORITY_ONLY; THIS FILE DOES NOT EXECUTE OR AUTHORIZE AN UNCONFIRMED REMOVAL",
+  "created_at": "2026-09-03T06:37:59+08:00",
+  "dry_run": {
+    "argv": [
+      "tools/hawor_python.sh",
+      "tools/no_clobber_hardlink_snapshot.py",
+      "rollback",
+      "--snapshot",
+      "assets/environments/hawor-py310-v1",
+      "--confirm-tree-sha",
+      "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e"
+    ],
+    "argv_sha256": "7196e04aa7751bfef2e3958f2668c8cb032f8c68697ceb46a03e211a1c4f19a5",
+    "result": {
+      "counts": {
+        "directories": 5235,
+        "regular_files": 55160,
+        "special": 0,
+        "symlinks": 1156
+      },
+      "failures": [],
+      "hashed_unique_regular_inodes": 55160,
+      "logical_bytes": 7138519539,
+      "status": "DRY_RUN_PASS",
+      "tree_content_sha256": "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e",
+      "unique_regular_bytes": 7138519539
+    }
+  },
+  "execute": {
+    "argv": [
+      "tools/hawor_python.sh",
+      "tools/no_clobber_hardlink_snapshot.py",
+      "rollback",
+      "--snapshot",
+      "assets/environments/hawor-py310-v1",
+      "--confirm-tree-sha",
+      "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e",
+      "--execute"
+    ],
+    "argv_sha256": "d564ba0cb8861176da632c5b9c987b0de3beb70ad198a6da3b5ce6d872291b0b",
+    "requires_fresh_explicit_operator_authorization": true,
+    "status": "NOT_EXECUTED"
+  },
+  "manifest": {
+    "path": "assets/environments/hawor-py310-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "sha256": "0e469e8d8cfbbde720648f0e820d73060b7c382294094ff3b8d3c34c09951899"
+  },
+  "schema_version": "chaoyang-hawor-local-environment-rollback-v1",
+  "snapshot": {
+    "environment_id": "hawor-py310-v1",
+    "path": "assets/environments/hawor-py310-v1",
+    "snapshot_id": "10e7f31be497495c969903ee8fbb09ff",
+    "tree_content_sha256": "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e"
+  },
+  "snapshot_tool": {
+    "path": "tools/no_clobber_hardlink_snapshot.py",
+    "sha256": "9ec43f2a1cd12d6d44c631f7902813b8f8148d6e0f4251b632810e6dbd1e541e"
+  },
+  "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE"
+}

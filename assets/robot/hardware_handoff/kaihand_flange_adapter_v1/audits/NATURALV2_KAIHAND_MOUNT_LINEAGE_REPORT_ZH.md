@@ -1,0 +1,18 @@
+# NaturalV2—KaiHand 装配谱系审计
+结论：Poker042 可建立独立的 `VISUAL_TRAINING_ONLY` 数字装配候选；物理装配仍未闭合。文件名不作为身份依据。
+| 候选 | 分类 | 真实CAD/代理 | 历史用户裁决 | Visual | Physical |
+|---|---|---|---|---|---|
+| `TIANJI_URDF_PINNED` | ROBOT_KINEMATIC_AND_VISUAL_MODEL | REAL_EXPORTED_URDF_AND_MESH_REFERENCES_NOT_PROXY | accepted only as part of Poker frame0/48-frame visual assembly | YES_WITH_VISUAL_ONLY_CONTRACT | NO_WITHOUT_MODEL_VALIDATION_AND_INSTALLATION_CALIBRATION |
+| `KAIHAND_LEFT_URDF_PINNED` | LEFT_DEXTEROUS_HAND_MODEL | REAL_EXPORTED_URDF_AND_REFERENCED_MESHES_NOT_PROXY | same-side left geometry accepted visually in frame0 and temporal v3 | YES_WITH_VISUAL_ONLY_CONTRACT | NO_WITHOUT_JOINT/TCP/MOUNT_VALIDATION |
+| `KAIHAND_RIGHT_URDF_PINNED` | RIGHT_DEXTEROUS_HAND_MODEL | REAL_EXPORTED_URDF_AND_REFERENCED_MESHES_NOT_PROXY | same-side right geometry accepted visually in frame0 and temporal v3 | YES_WITH_VISUAL_ONLY_CONTRACT | NO_WITHOUT_JOINT/TCP/MOUNT_VALIDATION |
+| `NATURALV2_STL_IDENTIFIED` | REAL_WRIST_FLANGE_FOR_ANOTHER_HAND | REAL_IDENTIFIED_COMPONENT_CAD_NOT_PROCEDURAL_PROXY | confirmed as NaturalV2 wrist flange for another hand, explicitly not Kai adapter | YES_AS_LABELED_FLANGE_IN_ACCEPTED_VISUAL_ASSEMBLY | NO_AS_KAIHAND_ADAPTER |
+| `CORRECTED_ROOT_PLANE_TOOL_TO_HAND` | GEOMETRY_DERIVED_TOOL_TO_HAND_TRANSFORM | MATHEMATICAL_INTERFACE_CANDIDATE_NOT_MEASURED_MOUNT | consumed by later frame0 v8 and temporal v3 candidates that user accepted | YES_FOR_POKER042_VISUAL_DEVELOPMENT_ONLY | NO |
+| `POKER042_ACCEPTED_FIXED_WORLD_BASE` | SESSION_FIXED_VISUAL_WORLD_TO_BASE_PLACEMENT | VISUAL_PLACEMENT_NOT_MEASURED_CALIBRATION | ACCEPT; fresh full-session development explicitly authorized | YES_FOR_POKER042_VISUAL_DEVELOPMENT_ONLY | NO |
+| `FLANGE_RING_145MM_PROXY` | WITHDRAWN_OR_SUPERSEDED_VISUAL_PROXY | PROCEDURAL_PROXY_NOT_REAL_CAD | not part of accepted frame0 v8/temporal v3 lineage | NO | NO |
+| `GENERIC_MOUNT_PROXY` | VISUAL_PROXY | PROXY_NOT_MEASURED | not the accepted Poker042 v8/v3 transform source | NO | NO |
+| `NATURALV2_PBR_12MM_CLEARANCE` | RENDERER_DEVELOPMENT_PREFLIGHT | REAL_STL_WITH_DERIVED_SCALE/CLEARANCE_PLACEMENT | no independent user acceptance located for this 12 mm rule | NO_AS_ASSEMBLY_TRANSFORM_SOURCE | NO |
+
+## 边界
+NaturalV2 是另一种手的真实腕法兰，不是 Kai adapter。corrected root-plane 与固定 `T_world_base` 只因后续 Poker042 v8/v3 视觉候选获得用户接受，才可进入本 session 的视觉开发合同；它们仍不是安装测量。数字TCP只指 URDF FK 加命名指腹patch。
+
+本审计未修改中央authority。

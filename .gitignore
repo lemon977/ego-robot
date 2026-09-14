@@ -24,21 +24,42 @@ venv/
 # All runtime and promoted data stay local
 /_run/*
 !/_run/.gitkeep
-/processed/*
-!/processed/.gitkeep
-/hand_benchmark/production_runs/
+/data/processed/**
+!/data/processed/**/README.md
+!/data/processed/**/SOURCE_MANIFEST.json
+!/data/processed/**/STATUS.json
+/tasks/*/runs/*/*
+!/tasks/*/runs/*/README.md
+/tasks/*/annotations/*/*
+!/tasks/*/annotations/README.md
+/tasks/*/exports/*
+!/tasks/*/exports/README.md
+/data/benchmarks/hand/production_runs/
 /HumanEgo/runs/
 /HumanEgo/outputs/
 /HumanEgo/reports/
+/HumanEgo/artifacts/
+/archive/
+/docs/history/
+/docs/organization/
+/docs/collaboration/
 *.log
 *.lock
 *.tmp
+*.bak
+*.pre_*
 
 # Large numerical/model artifacts
 *.pt
 *.pth
 *.ckpt
+*.onnx
+/assets/environments/*-v1/
+/assets/calibration/pico_manus_legacy_20260914/config/*.mcal
 /HumanEgo/data_manifests/robot_sidecars_v4_candidate/**/*.npz
+/third_party/HaWoR/weights/
+/third_party/HaWoR/_DATA/data/mano/*.pkl
+/third_party/HaWoR/_DATA/data_left/mano_left/*.pkl
 
 # Media, archives and generated frames
 *.mp4

@@ -1,0 +1,44 @@
+{
+  "schema_version": "chaoyang-clean-local-environment-rollback-v1",
+  "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE",
+  "claim_limit": "ROLLBACK_AUTHORITY_ONLY; THIS FILE DOES NOT AUTHORIZE OR EXECUTE REMOVAL",
+  "snapshot": {
+    "environment_id": "clean-track4world-py311-v1",
+    "path": "assets/environments/clean-track4world-py311-v1",
+    "snapshot_id": "c25ecab199264bdfa30cce148ca35767",
+    "tree_content_sha256": "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64"
+  },
+  "manifest": {
+    "path": "assets/environments/clean-track4world-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "sha256": "67d04c9bdb58f932fa270a077b1f8d638fd90219163d238c1ba0b5523c252278"
+  },
+  "dry_run": {
+    "argv": [
+      "tools/clean_python.sh",
+      "tools/no_clobber_hardlink_snapshot.py",
+      "rollback",
+      "--snapshot",
+      "assets/environments/clean-track4world-py311-v1",
+      "--confirm-tree-sha",
+      "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64"
+    ],
+    "result": {
+      "status": "DRY_RUN_PASS",
+      "counts": {"directories": 7638, "regular_files": 67676, "special": 0, "symlinks": 1382},
+      "failures": [],
+      "hashed_unique_regular_inodes": 67676,
+      "logical_bytes": 8097135393,
+      "unique_regular_bytes": 8097135393,
+      "tree_content_sha256": "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64"
+    }
+  },
+  "execute": {
+    "argv_suffix": ["--execute"],
+    "requires_fresh_explicit_operator_authorization": true,
+    "status": "NOT_EXECUTED"
+  },
+  "snapshot_tool": {
+    "path": "tools/no_clobber_hardlink_snapshot.py",
+    "sha256": "9ec43f2a1cd12d6d44c631f7902813b8f8148d6e0f4251b632810e6dbd1e541e"
+  }
+}

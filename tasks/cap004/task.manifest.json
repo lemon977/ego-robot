@@ -1,0 +1,64 @@
+{
+  "$schema": "../schema/task_manifest.schema.json",
+  "schema_version": "chaoyang-task-manifest-v1",
+  "task_id": "cap004",
+  "display_name": "历史瓶罐抓取 Robot 004",
+  "legacy_aliases": ["grap_a_cap_004", "robot_004"],
+  "run_root_templates": {
+    "mask": "tasks/cap004/runs/mask/{run_id}",
+    "clean": "tasks/cap004/runs/clean/{run_id}",
+    "robot": "tasks/cap004/runs/robot/{run_id}",
+    "pipeline": "tasks/cap004/runs/pipeline/{pipeline_run_id}"
+  },
+  "system_refs": {
+    "mask": {
+      "path": "systems/mask/system.manifest.json",
+      "manifest_sha256": "9bb8bdf3c930b034c16430f26077647bd9485d56081fdcddaa2d076a337bb0c2",
+      "algorithm_id": "mask.sam31.assisted_bilateral_flow_refresh.v4",
+      "weight_ids": ["sam31.multiplex.0567debe"]
+    },
+    "clean": {
+      "path": "systems/clean/system.manifest.json",
+      "manifest_sha256": "0d75b323dc6cb7e004b8feb367154e2cc53c93f13b6fd38813422ff28c93a79f",
+      "algorithm_id": "clean.real_pixel_bilateral_phone_dev.v1",
+      "weight_ids": []
+    },
+    "robot": {
+      "path": "systems/robot/system.manifest.json",
+      "manifest_sha256": "2a73b954dc10760698bafd34d850a005b01eb8a836d13e30a7e093281ef023cc",
+      "algorithm_id": "robot.actual_fk_task_geometry.v1",
+      "weight_ids": []
+    }
+  },
+  "weight_override_policy": "FORBIDDEN_UNLESS_REGISTERED_IN_REFERENCED_SYSTEM_MANIFEST",
+  "input_views": [],
+  "task_config": {
+    "mask": {
+      "legacy_only": true,
+      "formal_identity_rule": "physical side and anatomical handedness are pinned by the corrected MANO21 authority before any Robot promotion",
+      "task_object_ids": ["cap"]
+    },
+    "clean": {
+      "legacy_only": true,
+      "preserve_object_ids": ["cap"]
+    },
+    "robot": {
+      "object_geometry_types": {"cap": "FINITE_Y_CYLINDER"},
+      "joint_order": "MANO21_WRIST0_TIPS_4_8_12_16_20_MCPS_2_5_9_13_17",
+      "hand_geometry": "KaiHand official visual CAD",
+      "connector": "NaturalV2",
+      "session_initialization": "CAP004_SESSION_ONLY",
+      "contact_rule": "named fingertip 0-3mm; noncontact dense SDF >= -1mm; exact distinct-finger SAT"
+    },
+    "object_contract": {
+      "object_ids": ["cap"],
+      "geometry_types": ["FINITE_Y_CYLINDER"],
+      "state_vocabulary": ["ON_TABLE", "IN_HAND", "AIRBORNE", "UNKNOWN_TRANSIENT"]
+    }
+  },
+  "current_evidence": [],
+  "formal_readiness": {
+    "status": "HOLD_F367_EXACT_SELF_COLLISION",
+    "missing_inputs": ["f367 all-distinct-finger SAT passing candidate", "fresh ten-frame terminal PASS"]
+  }
+}

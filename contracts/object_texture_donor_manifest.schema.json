@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/object_texture_donor_manifest.schema.json",
+  "title": "Object Texture Donor Manifest",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_state", "producer", "status", "execution_mode",
+    "formal_consumable", "session_id", "product_line", "frame_index", "route_id",
+    "reveal_class", "reveal_policy_ref", "object_geometry_ref", "source_refs",
+    "rgb_ref", "support_mask_ref", "rgb_sha256", "support_mask_sha256",
+    "coverage_ratio", "flow_consistency", "photometric_residual_normalized",
+    "identity_checks", "fallback_used", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "object-texture-donor-v1"},
+    "artifact_state": {
+      "enum": ["G2_CALIBRATION_CANDIDATE", "FORMAL_PRODUCTION_CANDIDATE", "SYNTHETIC_TEST_ONLY"]
+    },
+    "producer": {"const": "object_geometry_producer"},
+    "status": {"const": "VERIFIED"},
+    "execution_mode": {"enum": ["G2_CALIBRATION", "FORMAL_PRODUCTION", "SYNTHETIC_DRY_RUN"]},
+    "formal_consumable": {"type": "boolean"},
+    "session_id": {"type": "string", "minLength": 1},
+    "product_line": {"enum": ["004_CONTACT_GOLD", "EXACT78_R2_VISUAL_DOMAIN"]},
+    "frame_index": {"type": "integer", "minimum": 0},
+    "route_id": {
+      "enum": ["OBJECT6D_GEOMETRY_TEXTURE", "CAD_GEOMETRY_TEXTURE", "ANALYTIC_GEOMETRY_TEXTURE"]
+    },
+    "reveal_class": {"const": "REVEAL_OBJECT"},
+    "reveal_policy_ref": {"$ref": "#/$defs/revealPolicyRef"},
+    "object_geometry_ref": {"$ref": "#/$defs/ref"},
+    "source_refs": {
+      "type": "array", "minItems": 1, "uniqueItems": true,
+      "items": {"$ref": "#/$defs/ref"}
+    },
+    "rgb_ref": {"$ref": "#/$defs/ref"},
+    "support_mask_ref": {"$ref": "#/$defs/ref"},
+    "rgb_sha256": {"$ref": "#/$defs/sha256"},
+    "support_mask_sha256": {"$ref": "#/$defs/sha256"},
+    "coverage_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "flow_consistency": {"type": "number", "minimum": 0, "maximum": 1},
+    "photometric_residual_normalized": {"type": "number", "minimum": 0},
+    "identity_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "geometry_supported_pixel_count", "texture_supported_pixel_count",
+        "support_outside_geometry_pixel_count", "background_identity_overlap_pixel_count",
+        "visible_source_object_preserved", "evidence_ref"
+      ],
+      "properties": {
+        "geometry_supported_pixel_count": {"type": "integer", "minimum": 0},
+        "texture_supported_pixel_count": {"type": "integer", "minimum": 0},
+        "support_outside_geometry_pixel_count": {"const": 0},
+        "background_identity_overlap_pixel_count": {"const": 0},
+        "visible_source_object_preserved": {"const": true},
+        "evidence_ref": {"$ref": "#/$defs/ref"}
+      }
+    },
+    "formal_authorization_ref": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref"}]},
+    "fallback_used": {"const": false},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"execution_mode": {"const": "SYNTHETIC_DRY_RUN"}}},
+      "then": {
+        "properties": {
+          "artifact_state": {"const": "SYNTHETIC_TEST_ONLY"},
+          "formal_consumable": {"const": false},
+          "formal_authorization_ref": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"execution_mode": {"const": "G2_CALIBRATION"}}},
+      "then": {
+        "properties": {
+          "artifact_state": {"const": "G2_CALIBRATION_CANDIDATE"},
+          "formal_consumable": {"const": false},
+          "formal_authorization_ref": {"type": "null"}
+        }
+      }
+    },
+    {
+      "if": {"properties": {"execution_mode": {"const": "FORMAL_PRODUCTION"}}},
+      "then": {
+        "required": ["formal_authorization_ref"],
+        "properties": {
+          "artifact_state": {"const": "FORMAL_PRODUCTION_CANDIDATE"},
+          "formal_consumable": {"const": true},
+          "formal_authorization_ref": {"$ref": "#/$defs/ref"}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "producer", "bytes"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "revealPolicyRef": {
+      "allOf": [
+        {"$ref": "#/$defs/ref"},
+        {"properties": {"producer": {"const": "reveal_policy_owner"}, "schema_version": {"const": "reveal-policy-v1"}}, "required": ["schema_version"]}
+      ]
+    }
+  }
+}

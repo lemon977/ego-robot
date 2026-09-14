@@ -1,0 +1,1589 @@
+{
+  "blockers": [
+    {
+      "name": "KaiHand adapter CAD",
+      "resolution": "Verified adapter CAD and measured installation transform.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Robot TCP and installation calibration",
+      "resolution": "Measured TCP, mount and camera/world-to-base calibration.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Real Robot action demonstrations",
+      "resolution": "Synchronized action/state/RGB data satisfying the formal schema.",
+      "scope": "HumanEgo policy checkpoints",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Shared H20 occupied by external egotouch training",
+      "resolution": "Wait for the external egotouch process to exit, then re-run physical GPU, lease and disk preflight without preempting it.",
+      "scope": "Wave0 ProPainter Clean GPU batch",
+      "status": "BLOCKED_RESOURCE"
+    },
+    {
+      "name": "Contact-aware Robot execution closure",
+      "resolution": "Provide a verified NaturalV2 flange-to-KaiHand assembly transform or adapter CAD/measured installation transform, world-to-Tianji-base calibration, and Robot TCP/installation calibration. Then rerun only the frozen four-frame retarget gate before any 24-frame or full-session render; do not guess missing transforms from a prior visual proxy.",
+      "scope": "Poker042 contact-aware Robot retarget, Robot render, occlusion compositor and any Robot authority; Chips034 additionally remains BLOCKED_PREREQ upstream. Evidence: /mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json. Poker042 human-contact output is HYPOTHESIS_ONLY.",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Contact/Robot 034/042 formal prerequisites",
+      "resolution": "For Chips034, pass the frozen Role Mask successor and publish a fresh formal Depth/Object6D delta before contact inference. For Poker042, do not rerun contact inference; close the separately recorded Robot assembly/world-to-base/TCP prerequisites, then run only the frozen four-frame retarget gate. Clean and Robot render are required later for the compositor, not for contact inference.",
+      "scope": "Chips034 Human Contact remains blocked because its current Role Mask is Grade C and no formal Wave0 Depth/Object6D exists. Poker042 Human Contact is complete as HYPOTHESIS_ONLY; only its Robot retarget and compositor remain blocked.",
+      "status": "BLOCKED_PREREQ"
+    }
+  ],
+  "generated_at": "2026-09-14T18:37:33+08:00",
+  "generation_id": "gov-005840-afa1846bff49",
+  "generator_code_sha": "69b9dadc69e7d5ef34e1ef134353ac11204c4fadc618ee967e2327b65ece075f",
+  "governance_revision": 5840,
+  "host": "dsw-1019706-57c5b8df6-4vg6j",
+  "next_task": {
+    "expected_resource": "CPU Robot retarget plus serialized GPU render when needed",
+    "prerequisites": [
+      "exact78_wave0_clean_v1",
+      "contact_geometry_v2_fixture"
+    ],
+    "session": null,
+    "stop_condition": "All 156 sessions receive METRIC_CONTACT_ROBOT, POSE_ONLY_VISUAL_ROBOT, FAILED_QUALITY_C, FAILED_RUNTIME_FINAL, or BLOCKED_PREREQ terminal; no physical authority promotion.",
+    "task_id": "exact78_v52_lane_c_contact_robot"
+  },
+  "recent_events": [
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:51:25+08:00",
+      "message": "Safe cache-only cleanup completed: 65 cache paths, 1,030 files and 26,990,561 bytes removed; protected current artifacts and referenced _run/NOW/old runs were not moved.",
+      "result": {
+        "bytes": 1798,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_root_cleanup_v3_lane_a/CLEANUP_RECEIPT.json",
+        "sha256": "e00814b0b5c150595b7d1c9e621bbd71d26ad559645cec1d961b8cb4a499fdd7"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "workspace_cleanup_v3"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:56:25+08:00",
+      "message": "Lane C CPU closure complete; waiting physical GPU + central lease without queue lock.",
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T01:58:40+08:00",
+      "message": "CPU cluster manifests + bounded remediation selection frozen; waiting external GPU resource.",
+      "result": {
+        "bytes": 5173,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/REMEDIATION_SELECTION.json",
+        "sha256": "52e7ee5133915091b6beb04267160ac10bc65d3177c2fdcdfc9d6dd04338b8ff"
+      },
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-13T02:01:25+08:00",
+      "message": "Independent gates corrected: Poker042 Human Contact is READY_HYPOTHESIS_ONLY without Clean or Robot-contact authority; Retarget and compositor remain separately blocked. Chips034 still lacks formal Object6D because Role Mask is C.",
+      "result": {
+        "bytes": 8597,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v2/INPUT_CLOSURE_AND_4FRAME_GO_NO_GO.json",
+        "sha256": "bb3a715b263abf49c4b1b4c2a0259cbde262ac1dc60e12b419630ce05e03d5eb"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_PREREQ",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T02:13:54+08:00",
+      "message": "Poker042 HYPOTHESIS_ONLY complete; retarget stopped before solver on verified external assembly/world-to-base/TCP prerequisites. Chips034 remains upstream-prerequisite blocked.",
+      "result": {
+        "bytes": 9903,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T02:17:29+08:00",
+      "message": "Reconciled mixed blockers: Chips034 prerequisite-blocked; Poker042 contact complete and Robot execution externally blocked.",
+      "result": {
+        "bytes": 9903,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T02:22:04+08:00",
+      "message": "Lane C CPU closure complete; waiting physical GPU + central lease without queue lock.",
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T02:22:58+08:00",
+      "message": "Chinese 4-keyframe HYPOTHESIS_ONLY diagnostic and 80-frame video passed visual review; no Robot was drawn and solver remains unexecuted.",
+      "result": {
+        "bytes": 4424,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T02:26:49+08:00",
+      "message": "Old wait guardian exited because governance rejected a changed evidence SHA; no GPU/data job started.",
+      "result": {
+        "bytes": 1063,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/WAIT_GUARDIAN_RUNTIME_RECOVERY_20260913T0222.json",
+        "sha256": "74c74a644a99c43a3fd5f408dfa7c6d653b175246311f887bb9de1063087ef20"
+      },
+      "session": "get_potato_chips_0902_034",
+      "status": "FAILED_RUNTIME_RETRYABLE",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T02:27:07+08:00",
+      "message": "Recovered wait guardian is alive and revalidated; waiting without GPU lease.",
+      "result": {
+        "bytes": 1063,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/WAIT_GUARDIAN_RUNTIME_RECOVERY_20260913T0222.json",
+        "sha256": "74c74a644a99c43a3fd5f408dfa7c6d653b175246311f887bb9de1063087ef20"
+      },
+      "session": "get_potato_chips_0902_034",
+      "status": "CLAIMED",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T02:36:34+08:00",
+      "message": "Historical user-accepted frame0 and 48-frame world-first evidence closed into a visual-training-only assembly contract; physical deployment remains unsupported.",
+      "result": {
+        "bytes": 6830,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_robot_visual_training_closure_recovery_v1/VISUAL_TRAINING_ASSEMBLY_CONTRACT.json",
+        "sha256": "522bd91c4b02024f04f7b4ead35a78b6bafd1b58ee5f0432385a3542db7f06c1"
+      },
+      "session": "play_cards_0902_042",
+      "status": "PASSED",
+      "task_id": "robot_historical_closure_recovery_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T02:41:03+08:00",
+      "message": "Using the SHA-closed historical user-accepted world-first placement and geometric root-plane mount for visual-training-only four-frame retarget; physical authority remains blocked.",
+      "session": "play_cards_0902_042",
+      "status": "CLAIMED",
+      "task_id": "robot_contact_retarget_poker042_visual_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-13T03:08:06+08:00",
+      "message": "唯一successor v2严格止损：frame99活动食指链446个、frame114活动中指链36个三角形贯穿扑克牌反面；非活动相交已清零。NO_PROMOTE。",
+      "result": {
+        "bytes": 5262,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v2/RESULT.json",
+        "sha256": "001e2765ee5cf985aa29f72020382bbe4d4483373b55b95c43e3fad219efe9d2"
+      },
+      "session": "play_cards_0902_042",
+      "status": "FAILED_QUALITY_C",
+      "task_id": "robot_contact_retarget_poker042_visual_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T03:09:19+08:00",
+      "message": "第二轮且最终bounded successor：不放宽门，活动指非pad链增加双表面拓扑清理；四帧全过才B，否则冻结C。",
+      "session": "play_cards_0902_042",
+      "status": "CLAIMED",
+      "task_id": "robot_contact_retarget_poker042_visual_v1"
+    },
+    {
+      "attempt": 3,
+      "created_at": "2026-09-13T03:18:35+08:00",
+      "message": "FINAL_STOP：frame100/104通过；frame99活动非pad相交1383/贯穿446，frame114相交103/贯穿36。四帧pad指定面间隙1mm且非活动相交0；两轮successor预算耗尽，禁止继续调权重或晋升。",
+      "result": {
+        "bytes": 4722,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/RESULT.json",
+        "sha256": "bbc362b0911f20b0295604d8cc45fcbc3e43c12c1d65dc93b3c54c6e5ed4f24f"
+      },
+      "session": "play_cards_0902_042",
+      "status": "FAILED_QUALITY_C",
+      "task_id": "robot_contact_retarget_poker042_visual_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-13T23:45:42+08:00",
+      "message": "Dead guardian recovered by PID/startticks audit.",
+      "result": {
+        "bytes": 2596,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52_governance_recovery_v5/GOVERNANCE_RECOVERY_V5.json",
+        "sha256": "f40fa8963d2443d0242faf65e3e3966532a81977fa41ba0b7e2428273af8a2f4"
+      },
+      "session": "get_potato_chips_0903_052",
+      "status": "FAILED_RUNTIME",
+      "task_id": "exact78_wave0_clean_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T23:45:42+08:00",
+      "message": "Dead guardian recovered by PID/startticks audit.",
+      "result": {
+        "bytes": 2596,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52_governance_recovery_v5/GOVERNANCE_RECOVERY_V5.json",
+        "sha256": "f40fa8963d2443d0242faf65e3e3966532a81977fa41ba0b7e2428273af8a2f4"
+      },
+      "session": "get_potato_chips_0902_034",
+      "status": "FAILED_RUNTIME",
+      "task_id": "exact78_upstream_c_successors_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T23:45:42+08:00",
+      "message": "Recovered dead guardians and recounted Wave0 Clean=5/58.",
+      "result": {
+        "bytes": 2596,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52_governance_recovery_v5/GOVERNANCE_RECOVERY_V5.json",
+        "sha256": "f40fa8963d2443d0242faf65e3e3966532a81977fa41ba0b7e2428273af8a2f4"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_recovery_v5"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-13T23:45:53+08:00",
+      "message": "Task packets, fencing, immutable finals and fault injection passed.",
+      "result": {
+        "bytes": 846,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/stage0/STAGE0_RESULT.json",
+        "sha256": "b00b56c9ee071c64b3d4243aa7f7586e37eec2c9a64ee34308b3d810152bfaea"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_stage0"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T00:17:49+08:00",
+      "message": "guardian stopped on original role RESULT lacking reconciler wrapper; successor needed",
+      "result": {
+        "bytes": 777,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_a_clean/RUNNER_RESULT.json",
+        "sha256": "fb4187e6fda08c1c7396c31cce20a7f4a4a2dcab70e2e98086aa0deebd2a1eb0"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_RETRYABLE",
+      "task_id": "exact78_v52_lane_a_clean"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T00:17:56+08:00",
+      "message": "two Clean finals preserved; batch fail-forward successor required",
+      "result": {
+        "bytes": 1400,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/STATE.json",
+        "sha256": "1a06fbee990239e898fcd66d53ab43a86fc43d24ba288e156e38e8a53e604bf9"
+      },
+      "session": "get_potato_chips_0903_103",
+      "status": "FAILED_RUNTIME_RETRYABLE",
+      "task_id": "exact78_wave0_clean_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T00:23:42+08:00",
+      "message": "Recovered dead guardians and recounted Wave0 Clean=6/58.",
+      "result": {
+        "bytes": 2248,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52_governance_recovery_v5/GOVERNANCE_RECOVERY_V5.json",
+        "sha256": "47cde294b0b06430155c482b339a682daff414313da4484ca6c4ba76c6c924cf"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_recovery_v5"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T00:23:48+08:00",
+      "message": "fresh fenced successor after direct-role lineage bug; preserves 6 Clean passes",
+      "result": {
+        "bytes": 1299,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_a_clean_successor_v521/RECOVERY_DECISION.json",
+        "sha256": "0db676bd402f9f9719e64032949bd122dc403a63461c3e187257e68b8b909fa1"
+      },
+      "session": null,
+      "status": "PENDING",
+      "task_id": "exact78_v52_lane_a_clean_successor_v521"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T00:53:37+08:00",
+      "message": "V5.2 cluster preflight passed; old V3 waiter fenced; wait for higher-priority Lane A Clean GPU release.",
+      "result": {
+        "bytes": 805,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_b_upstream_c/preflight_v1/RESULT.json",
+        "sha256": "de013f9222da515613effd787d27ebcc0a13cad38350c05d8bfd9587e5bb9668"
+      },
+      "session": null,
+      "status": "BLOCKED_RESOURCE",
+      "task_id": "exact78_v52_lane_b_upstream_c"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T00:53:46+08:00",
+      "message": "Contact fixtures pass; 117-frame review pack awaits two independent human labels; 3 Poker pose-only candidates are review-ready and remain authority=false.",
+      "result": {
+        "bytes": 2356,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "92a68483341020b3edd03908664ef20addebc39a9ad8a1fb087196fff095f75b"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T01:02:36+08:00",
+      "message": "Visual-only label/pairing contract tests pass 4/4; 3 projection candidates yield 138 test-only H50 upper-bound windows; training admitted=0, checkpoints=0.",
+      "result": {
+        "bytes": 2206,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_d_visual_aux/RESULT_SUMMARY.json",
+        "sha256": "8ca16403614136789977f167883a84d3f5dd77be84d670ce935a1c20e828950e"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_d_visual_aux"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T01:39:37+08:00",
+      "message": "Contact fixtures pass; goldset awaits two human labels. Poker pose-only candidates=3; Chips107 exhausted forward+bidirectional numeric gates and is sealed FAILED_QUALITY_C. Safe Clean-gated Robot work continues.",
+      "result": {
+        "bytes": 3485,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "2279e2a4d14bf95f230f34586b691d5cc5751e3a7fef9d5c415f9a2b067be5f8"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T01:45:33+08:00",
+      "message": "Unique current baseline registry and current/history/obsolete classification validated; end-to-end document has 94 local links with zero missing and records Clean prefetch plus Chips107 C terminal. Final refresh remains after downstream closure.",
+      "result": {
+        "bytes": 2163,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_e_baseline_docs/RESULT_SUMMARY.json",
+        "sha256": "09bdd5600781451edf213d5f4d317c720023b7b2e01d48650677d72f3afe4a08"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_e_baseline_docs"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T01:56:22+08:00",
+      "message": "Chips140 Clean Grade B verified and adopted as fourth pose-only visual Robot review candidate; contact/occlusion truth remains blocked on two independent human labels; no action/contact/deployment authority.",
+      "result": {
+        "bytes": 3831,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "0105c79a04a9a03ccf287af780a5bc7ad8d9a92c4daf8878d22ba53938a94dec"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T02:01:12+08:00",
+      "message": "Current registry, document classification, end-to-end technical document, and receipt refreshed for Chips140 fourth pose-only candidate and explicit Robot C round/lineage contract.",
+      "result": {
+        "bytes": 2163,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_e_baseline_docs/RESULT_SUMMARY.json",
+        "sha256": "9224352503dc46bc3172374cb779f5a84a61ffb3914e7ec781cad85a5950f443"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_e_baseline_docs"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T02:03:13+08:00",
+      "message": "Chips140 added as fourth projection-only candidate; heldout H50 upper bound 233. Training admission remains zero; no optimizer/checkpoint authority.",
+      "result": {
+        "bytes": 2588,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_d_visual_aux/RESULT_SUMMARY.json",
+        "sha256": "51d5f863f7a5c1e4ee7444bd34053c67a68ac382f9e9246df24a2370818230e6"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_d_visual_aux"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T02:07:20+08:00",
+      "message": "Chips182 Clean Grade B joined; one actual forward Robot method round remains hand-numeric HOLD and is sealed as second explicit FAILED_QUALITY_C terminal. Four pose-only candidates remain non-authoritative.",
+      "result": {
+        "bytes": 4171,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "fb617f2ab4508f8943f2f68f3273d969757b725def81f27b554c4799ba3b8dde"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T02:07:20+08:00",
+      "message": "Registry, classification, technical document and receipt refreshed for Chips182 explicit one-round Robot quality-C terminal.",
+      "result": {
+        "bytes": 2163,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_e_baseline_docs/RESULT_SUMMARY.json",
+        "sha256": "37880f67110e2a982c8297213218fb6c889c9a6763ff542958a54ec9592e3edc"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_e_baseline_docs"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T02:13:43+08:00",
+      "message": "Protection snapshot/reference graph/candidates frozen. 12 bounded cache candidates only; no deletion or quarantine performed while Clean mutates protected tree.",
+      "result": {
+        "bytes": 1908,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_f_cleanup/RESULT_SUMMARY.json",
+        "sha256": "e05d2e3b6e721388e6773896db8d7c38dc53d56441a9d2aae5ff580abff087ed"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_f_cleanup"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T02:26:43+08:00",
+      "message": "Lane A successor is active through exact78_wave0_clean_v1; current evidence has 10 Clean passes, 1 current session, 47 pending, no Clean terminal failures. CPU prefetch collision was contained and the helper now requires a three-slot lead plus handoff recheck.",
+      "result": {
+        "bytes": 3337,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_a_clean/RESULT_SUMMARY.json",
+        "sha256": "db1822fc5249db2dd63c32c1ca8a3f7b71ae51366e26edde589b1aab3cae5800"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_a_clean"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T02:29:40+08:00",
+      "message": "Five pose-only visual Robot candidates and two explicit FAILED_QUALITY_C terminals are now evidenced. Goldset independent human review remains absent, so no contact/action/deployment authority is claimed.",
+      "result": {
+        "bytes": 4518,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "bed877b5e9ee68dcfcea8c05823a6a2a864f9f027121960476719e45d005c2e7"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T02:29:40+08:00",
+      "message": "Five projection candidates are audited, with zero training-admitted sessions and zero checkpoints. Training remains blocked on goldset-passed Robotized RGB, shared valid masks, and split eligibility.",
+      "result": {
+        "bytes": 2930,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_d_visual_aux/RESULT_SUMMARY.json",
+        "sha256": "b8529e9fcd486e3df9a09183af026603266a90f5d3df93b65753478fdb895980"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_d_visual_aux"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T02:29:40+08:00",
+      "message": "Baseline registry, document classification, technical document, and document receipt were refreshed for Chips050 and the five-current-candidate boundary; runtime counts remain sourced from governance.",
+      "result": {
+        "bytes": 2163,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_e_baseline_docs/RESULT_SUMMARY.json",
+        "sha256": "69356c7f240fcba2993023205066c7b58f152cc3c3d191bed0547640125f976d"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_e_baseline_docs"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T02:39:25+08:00",
+      "message": "Clean guardian is on Chips085 ProPainter; guarded CPU prefetch for Chips019 claimed four pending-order slots ahead. Heartbeat now reconciles generated Clean counts from immutable session terminals; two tests and live 10/48 update passed.",
+      "result": {
+        "bytes": 4556,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_a_clean/RESULT_SUMMARY.json",
+        "sha256": "8fce88c120c45c121a020389e0d37720e515581ac980b785e58dd6e3397a893f"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_a_clean"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T02:39:26+08:00",
+      "message": "Documentation classification was refreshed after adding the machine-readable dynamic Clean count protocol; technical receipt and baseline registry remain SHA-closed.",
+      "result": {
+        "bytes": 2389,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_e_baseline_docs/RESULT_SUMMARY.json",
+        "sha256": "f5f3d1bdf61eb688169dd45c159328ba97b0b680ef81aaefa7abf0795380ae44"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_e_baseline_docs"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T02:49:58+08:00",
+      "message": "Chips085 published Grade B; guardian advanced to Chips113. Chips019 CPU prefetch completed and independently validated. Generated governance counts now report 11 passed and 47 unfinished.",
+      "result": {
+        "bytes": 5190,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_a_clean/RESULT_SUMMARY.json",
+        "sha256": "a5c8bb3c522cd64d7c181e2d53f43b92b7cd5aa5c687eea73f37677a25cbbb20"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "exact78_v52_lane_a_clean"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T03:52:05+08:00",
+      "message": "Reconciled task state with immutable PASS task packet; prior PENDING status contradicted stage0_complete result.",
+      "result": {
+        "bytes": 846,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/stage0/STAGE0_RESULT.json",
+        "sha256": "b00b56c9ee071c64b3d4243aa7f7586e37eec2c9a64ee34308b3d810152bfaea"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_stage0"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:25:43+08:00",
+      "message": "User fixed no-human/no-external-calibration scope; frozen proxy manifest published; Chips066 hand round1 running.",
+      "result": {
+        "bytes": 9613,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "05a435b96b56d0871f77d6de17af06f394f9de42ed262c555d1237ceeb4f1620"
+      },
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:27:05+08:00",
+      "message": "Chips066 arm method1 PASS at 0.24m; hand round1 HOLD; final segment-local bidirectional hand method running without threshold relaxation.",
+      "result": {
+        "bytes": 9613,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "05a435b96b56d0871f77d6de17af06f394f9de42ed262c555d1237ceeb4f1620"
+      },
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:27:35+08:00",
+      "message": "Deleted 354 bounded external/cache/tmp targets (10,612,447,836 recorded bytes); removed empty processed_archive and processed_canary buckets; quarantined two superseded run-doc roots; current 0909/0910 releases unchanged.",
+      "result": {
+        "bytes": 2090,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_external_temp_cleanup_v52/RESULT_SUMMARY.json",
+        "sha256": "fde8bf9770f69fbe3bc20ca582351242842765198097f7875d50892e9bcf2d5a"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_lane_f_cleanup"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:28:09+08:00",
+      "message": "Chips066 arm PASS, hand two-method exhausted; rendering full-session quality-C evidence.",
+      "result": {
+        "bytes": 9613,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "05a435b96b56d0871f77d6de17af06f394f9de42ed262c555d1237ceeb4f1620"
+      },
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:35:01+08:00",
+      "message": "Chips066 full-session HOLD review RESULT published, but immutable robot terminal RESULT was not published before worker exit; preserve review artifacts and queue terminal-publication recovery without rerunning render.",
+      "result": {
+        "bytes": 5201,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/robot_visual_candidates_v1/batch_066_current_v2/chips/get_potato_chips_0902_066/fullsession_review/RESULT.json",
+        "sha256": "5ce17ac1f0cac79414e80ece6020ee44f32a4d8b728253890606ee7ba73ada6c"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_RETRYABLE",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:35:33+08:00",
+      "message": "No human/external truth supplied; adopting three strict numeric reviews as pose-only visual trajectories with contact UNKNOWN and control_ground_truth=false.",
+      "result": {
+        "bytes": 9613,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "05a435b96b56d0871f77d6de17af06f394f9de42ed262c555d1237ceeb4f1620"
+      },
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:38:15+08:00",
+      "message": "Three numerically gated full-session reviews adopted as pose-only visual candidates; current matrix refreshed to 8 pose-only, 15 quality-C, 2 ready. Documentation updates paused per user; automatic bounded computation may continue.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T09:41:33+08:00",
+      "message": "23个唯一Robot全片视频已复制到各自raw session的visualizations/robot_v52；3 strict、5 pose-only、15 C，bytes/SHA及全解码通过；不改变authority。",
+      "result": {
+        "bytes": 20283,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_publication_v1/RESULT_SUMMARY.json",
+        "sha256": "22b6172947d18c6bba53af362b5351cd83341499de9cbdc1392a2af1515b9ba1"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_robot_review_publication"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:08:25+08:00",
+      "message": "Paused by user. Robot067 placement sweep safely terminated: completed immutable candidates remain; interrupted 0.28 attempt is partial and never successor input. Clean guardian remains automatic.",
+      "session": "get_potato_chips_0902_067",
+      "status": "PENDING",
+      "task_id": "exact78_v52_lane_c_contact_robot"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:17:47+08:00",
+      "message": "用户要求清理仓库外派生副本；23个data-side Robot浏览副本和统一数据侧索引已永久删除，canonical run原件保留。",
+      "result": {
+        "bytes": 788,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_data_copy_cleanup_v1/RESULT_SUMMARY.json",
+        "sha256": "aa82e6d70cd01892609e1615c59fced11fee3b7c943d0a1ab4f939408d916f22"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "exact78_v52_robot_review_publication"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:18:03+08:00",
+      "message": "删除23个session下Robot浏览副本及数据侧统一索引，释放53,920,709字节视频副本；23个canonical原件删除后SHA复核通过；未删除raw或0909/0910正式processed release。",
+      "result": {
+        "bytes": 788,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_data_copy_cleanup_v1/RESULT_SUMMARY.json",
+        "sha256": "aa82e6d70cd01892609e1615c59fced11fee3b7c943d0a1ab4f939408d916f22"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_external_derived_copy_cleanup"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:25:59+08:00",
+      "message": "错误删除已完整撤销：23个数据侧Robot可视化副本及统一索引恢复，23/23 SHA一致且全片解码通过。",
+      "result": {
+        "bytes": 19313,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_data_copy_restore_v1/RESULT_SUMMARY.json",
+        "sha256": "dbb7e4e4ccff9fa8c5cf290e61e4b68b3dfce265a9e2aa4b439430adc75c49dd"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "exact78_v52_external_derived_copy_cleanup"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:26:07+08:00",
+      "message": "数据侧Robot可视化已恢复：23个session副本、统一索引和说明文档；23/23 SHA一致且全片解码通过。",
+      "result": {
+        "bytes": 19313,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_data_copy_restore_v1/RESULT_SUMMARY.json",
+        "sha256": "dbb7e4e4ccff9fa8c5cf290e61e4b68b3dfce265a9e2aa4b439430adc75c49dd"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_robot_review_publication"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:49:19+08:00",
+      "message": "已通过事实账本、白名单、空间、FD/CWD与符号链接预检；准备启动校验迁移。",
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:49:42+08:00",
+      "message": "正在逐根rsync复制、checksum dry-run、仓库内原子发布并清理NAS源。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:53:48+08:00",
+      "message": "第一个大根已完成复制，正在全内容checksum dry-run；尚未删除该源。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T10:58:32+08:00",
+      "message": "前三个根已迁移；正在迁移humanego并排除可再生.cache。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:02:55+08:00",
+      "message": "humanego迁移持续增长；已复制约2.77GB字符流，源仍保留待checksum。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:07:11+08:00",
+      "message": "humanego小文件迁移持续增长，累计约3.6GB字符流；source未删。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:14:05+08:00",
+      "message": "humanego checksum已过并发布；正在删除NAS源的小文件树，archive副本已存在。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:19:18+08:00",
+      "message": "humanego已完成并删除NAS源；正在迁移humanego_foundation_outputs及其3546个内部链接。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:24:39+08:00",
+      "message": "humanego与前三根已完成；humanego_foundation_outputs迁移中，约3.7GB字符流并增长。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:28:29+08:00",
+      "message": "humanego_foundation_outputs仍在传输，累计读取约6.9GB；唯一执行器健康。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:32:29+08:00",
+      "message": "humanego_foundation_outputs约10.4GB复制完成，正在全量checksum dry-run。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T11:35:00+08:00",
+      "message": "仅3546个symlink mtime不可在NAS/CPFS间稳定复现；内容与link target无差异，保留源和staging，使用官方omit-link-times重试。",
+      "result": {
+        "bytes": 556722,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_nas_chenxianchi_project_consolidation_v1/logs/humanego_foundation_outputs.verify.log",
+        "sha256": "6854d6d798454a73899604edcc3c108a001e19a612bb9ebc60aaa262af23704f"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_RETRYABLE",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T11:35:43+08:00",
+      "message": "Attempt2使用omit-link-times续验；仅忽略NAS不可复现的symlink mtime，内容和link target仍严格。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T11:42:26+08:00",
+      "message": "humanego_foundation_outputs checksum PASS并已发布；正在删除NAS原树，source逐目录减少。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T11:46:33+08:00",
+      "message": "humanego_foundation_outputs已安全发布；NAS源删除收缩至pick_place_001/002局部树。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T11:51:44+08:00",
+      "message": "humanego_foundation_outputs与mask_diagnostics已完成清源；official_data迁移中并排除.cache。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T11:55:45+08:00",
+      "message": "official_data传输约2.85GB并增长；此前6个根已正式归档。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T11:59:42+08:00",
+      "message": "official_data约4.84GB已复制且继续增长；运行根与current baseline隔离。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:03:39+08:00",
+      "message": "official_data约5.42GB后进入小文件尾部扫描；进程与状态新鲜。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:07:35+08:00",
+      "message": "official_data约5.4GB复制完成，正在checksum；尚无差异输出。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:11:31+08:00",
+      "message": "official_data checksum PASS并已原子发布；正在删除NAS源及排除的.cache。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:16:31+08:00",
+      "message": "official_data归档已PASS，NAS源仅剩serve_bread小文件树与visual_comparisons删除中。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:20:31+08:00",
+      "message": "official_data和pico_editor已完成清源；正在迁移约8.2GB pico_human_data_test。",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:24:48+08:00",
+      "message": "pico_human_data_test transfer at 8.45/8.78 GB; verified prior roots published; remaining pico_merge_new/pico_new and final delete/audit",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:32:24+08:00",
+      "message": "last move pico_new active; 4.04GB staged and growing; active FoundationStereo runtime paths migrated to repository-local assets/cache",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:38:52+08:00",
+      "message": "all 11 project roots checksum-published under repository archive; deleting verified pico_new NAS source, then rewrite 3546 symlinks/delete reproducible caches/final audit",
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 2,
+      "created_at": "2026-09-14T12:45:46+08:00",
+      "message": "11 project roots consolidated; 4 reproducible/duplicate roots deleted; 3546 symlinks rewritten with zero broken; protected other projects intact",
+      "result": {
+        "bytes": 1583594,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_nas_chenxianchi_project_consolidation_v1/RESULT_SUMMARY.json",
+        "sha256": "c0a90bba64a0624812def01d63b72b6209e6ad28fb3367f0fce6293bb27aa6bd"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "nas_chenxianchi_project_consolidation_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T13:06:24+08:00",
+      "message": "V6 cleanup executor claimed; only read-only graph and safe caches while Wave0 Clean is active.",
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T13:21:52+08:00",
+      "message": "No immutable terminal RESULT existed; stale no-PID CLAIMED task superseded by receipt-bound baseline registry V2 and explicitly terminalized.",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "exact78_v52_lane_e_baseline_docs"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T13:22:03+08:00",
+      "message": "Stale no-PID orchestration claim terminalized; authoritative Wave0 Clean remains exact78_wave0_clean_v1 plus active successor_v521.",
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "exact78_v52_lane_a_clean"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T13:44:25+08:00",
+      "message": "V6 reference graph PASS; regenerable cache batch permanently deleted; waiting for active Wave0 Clean terminal before directory migration and bulk deletion.",
+      "result": {
+        "bytes": 14127714,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/DELETION_CACHE_RECEIPT.json",
+        "sha256": "ec1fa4ec286ce7c17f12e6883c3079dfb7dd72929bac9edfe4f87a242a36312b"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T14:00:26+08:00",
+      "message": "补齐Robot v5.2真实代码闭包并继续等待Wave0 Clean终态；不触碰活动read/write set。",
+      "result": {
+        "bytes": 14127714,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/DELETION_CACHE_RECEIPT.json",
+        "sha256": "ec1fa4ec286ce7c17f12e6883c3079dfb7dd72929bac9edfe4f87a242a36312b"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T14:02:22+08:00",
+      "message": "Robot v5.2真实工具闭包、23条开发视频索引与goldset外部阻塞已写入同revision注册表。",
+      "result": {
+        "bytes": 20283,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_publication_v1/RESULT_SUMMARY.json",
+        "sha256": "22b6172947d18c6bba53af362b5351cd83341499de9cbdc1392a2af1515b9ba1"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T14:13:54+08:00",
+      "message": "旧工具源码胶囊已准备；扩展了repo内JSON证据的传递引用保护；终态前不删除。",
+      "result": {
+        "bytes": 218489,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/PRE_DELETE_TOOL_MANIFEST.json",
+        "sha256": "a625ed45bb420cddc481e893141bf67b16abdbc629bd47d8bdda340d277be1a7"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T14:18:34+08:00",
+      "message": "新增当前注册表回归：12阶段、Robot v5.2真实闭包、goldset不晋升与receipt绑定。",
+      "result": {
+        "bytes": 218489,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/PRE_DELETE_TOOL_MANIFEST.json",
+        "sha256": "a625ed45bb420cddc481e893141bf67b16abdbc629bd47d8bdda340d277be1a7"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T14:30:25+08:00",
+      "message": "V6 cleanup pre-delete work complete; permanent deletion remains gated on Wave0 Clean terminal. Diagnosing current Clean stage throughput without changing active baseline.",
+      "result": {
+        "bytes": 218489,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/PRE_DELETE_TOOL_MANIFEST.json",
+        "sha256": "a625ed45bb420cddc481e893141bf67b16abdbc629bd47d8bdda340d277be1a7"
+      },
+      "session": null,
+      "status": "CLAIMED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T14:40:31+08:00",
+      "message": "Removed blanket Wave0 terminal gate. Two Clean-independent duplicate project clones passed per-target SHA/current-reference/FD checks and were permanently deleted; continuing per-target cleanup.",
+      "result": {
+        "bytes": 588,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/DELETION_EXTERNAL_CLONES_RECEIPT.json",
+        "sha256": "c5c6a125948b4ee6b9bbbf8c5b4580fc278afa119acbd32830593f052099ac4f"
+      },
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T14:56:09+08:00",
+      "message": "Cleanup no longer waits for Wave0 globally. Restored 13 falsely nominated current regression dependencies byte-exact, fixed reference analysis and test isolation, and passed the current 98-test regression. Further deletion remains per-target and gated.",
+      "result": {
+        "bytes": 4508,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/DELETION_TOOLS_POSTCHECK_CORRECTION.json",
+        "sha256": "6aa65256211722e26454ca99d93d1e2cad55b6232034df254d5525d19cdf8a31"
+      },
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T15:31:12+08:00",
+      "message": "Per-target cleanup is independent of Wave0. NOW was permanently deleted after migrating two current HumanEgo references, sealing a 3336-entry Merkle capsule, and passing 99 current regression tests post-delete.",
+      "result": {
+        "bytes": 453,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/DELETION_NOW_RECEIPT.json",
+        "sha256": "2f01ce7f2da518f36fac622a0f9a0e824e7e9437bfb0bef15677193a5ec5259c"
+      },
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T16:24:01+08:00",
+      "message": "Wave0 reached bounded terminal coverage: 58/58 unique terminals, 39 Clean B and 19 FAILED_RUNTIME_FINAL; pending 0. This is terminal completeness, not 58/58 Clean success.",
+      "result": {
+        "bytes": 2342,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/TERMINAL_AUDIT_V52_1.json",
+        "sha256": "a5ab80ecc95aa9a899b5996aa4d1714706f099cabda72ccced90763e19e098d9"
+      },
+      "session": "play_cards_0902_042",
+      "status": "PASSED",
+      "task_id": "exact78_wave0_clean_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T16:24:01+08:00",
+      "message": "Wave0 reached bounded terminal coverage: 58/58 unique terminals, 39 Clean B and 19 FAILED_RUNTIME_FINAL; pending 0. This is terminal completeness, not 58/58 Clean success.",
+      "result": {
+        "bytes": 1007,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_a_clean_successor_v521/RUNNER_RESULT.json",
+        "sha256": "c342417593c4f5d5efaa0cd83b582629edf74e5372470f8303c5129e3f56a3b8"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_lane_a_clean_successor_v521"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T16:29:32+08:00",
+      "message": "_run per-target cleanup deleted 111 legacy children, 26,626 files and 11,505,202,710 bytes; permanent lease/locks and nine directly referenced entries retained. Post-delete governance PASS and 99 tests passed.",
+      "result": {
+        "bytes": 587,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/receipts/DELETION_RUNTIME_RECEIPT.json",
+        "sha256": "2791101f6d3467abfb6bf8f3aa3aa3665e18a0ad10d7dcc5f8327b16fe464c23"
+      },
+      "session": "workspace",
+      "status": "RUNNING",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-14T18:36:45+08:00",
+      "message": "Wave0 terminal audit remains authoritative: 58/58 unique terminals, 39 Clean B, 19 FAILED_RUNTIME_FINAL, pending 0.",
+      "result": {
+        "bytes": 2342,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/TERMINAL_AUDIT_V52_1.json",
+        "sha256": "a5ab80ecc95aa9a899b5996aa4d1714706f099cabda72ccced90763e19e098d9"
+      },
+      "session": "play_cards_0902_042",
+      "status": "PASSED",
+      "task_id": "exact78_wave0_clean_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T18:36:45+08:00",
+      "message": "V6 current-only cleanup completed; about 91.48 GB removed, current 100-test regression passed, raw/data-side visualization protected.",
+      "result": {
+        "bytes": 1014,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/FINAL_RESULT.json",
+        "sha256": "90edb7d358ad24eeeb680d80f18c14861fba15d8a8935d157c7cecf35a0a2576"
+      },
+      "session": "workspace",
+      "status": "PASSED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-14T18:37:33+08:00",
+      "message": "V6 current-only cleanup completed; about 91.48 GB removed, current 100-test regression passed, raw/data-side visualization protected.",
+      "result": {
+        "bytes": 1014,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/FINAL_RESULT.json",
+        "sha256": "90edb7d358ad24eeeb680d80f18c14861fba15d8a8935d157c7cecf35a0a2576"
+      },
+      "session": "workspace",
+      "status": "PASSED",
+      "task_id": "chaoyang_current_only_cleanup_v6"
+    }
+  ],
+  "repository": {
+    "branch": "main",
+    "commit": "1f97e25f99723ec3a6c73dfe6f3fb963ca515db5"
+  },
+  "schema_version": "chaoyang-long-horizon-task-state-v1",
+  "tasks": [
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "governance",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_fact_ledger_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "selection",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 149770,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
+        "sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_wave0_freeze_v1",
+      "updated_at": "2026-09-13T01:41:11+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "DEAD_WORKER_PID_IDENTITY_MISMATCH",
+      "last_attempt_terminal": "FAILED_RUNTIME",
+      "phase": "wave0_terminal_58_unique",
+      "pid": null,
+      "proc_start_ticks": null,
+      "recovery_receipt": {
+        "bytes": 2596,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52_governance_recovery_v5/GOVERNANCE_RECOVERY_V5.json",
+        "sha256": "f40fa8963d2443d0242faf65e3e3966532a81977fa41ba0b7e2428273af8a2f4"
+      },
+      "result": {
+        "bytes": 2342,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/TERMINAL_AUDIT_V52_1.json",
+        "sha256": "a5ab80ecc95aa9a899b5996aa4d1714706f099cabda72ccced90763e19e098d9"
+      },
+      "session": "play_cards_0902_042",
+      "status": "PASSED",
+      "task_id": "exact78_wave0_clean_v1",
+      "updated_at": "2026-09-14T18:36:45+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "DEAD_WORKER_PID_IDENTITY_MISMATCH",
+      "last_attempt_terminal": "FAILED_RUNTIME",
+      "phase": "recovered_after_dead_guardian",
+      "pid": null,
+      "proc_start_ticks": null,
+      "recovery_receipt": {
+        "bytes": 2596,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52_governance_recovery_v5/GOVERNANCE_RECOVERY_V5.json",
+        "sha256": "f40fa8963d2443d0242faf65e3e3966532a81977fa41ba0b7e2428273af8a2f4"
+      },
+      "result": {
+        "bytes": 1063,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/WAIT_GUARDIAN_RUNTIME_RECOVERY_20260913T0222.json",
+        "sha256": "74c74a644a99c43a3fd5f408dfa7c6d653b175246311f887bb9de1063087ef20"
+      },
+      "session": "get_potato_chips_0902_034",
+      "status": "PENDING",
+      "task_id": "exact78_upstream_c_successors_v1",
+      "updated_at": "2026-09-13T23:45:42+08:00"
+    },
+    {
+      "attempt": 3,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "poker042_visual_diagnostic_complete_retarget_no_go",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 4424,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+        "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
+      },
+      "session": "get_potato_chips_0902_034,play_cards_0902_042",
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "contact_occlusion_canary_034_042_v1",
+      "updated_at": "2026-09-13T02:22:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "robot",
+      "pid": null,
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "robot_visual_canary_034_042_v1",
+      "updated_at": "2026-09-13T01:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "training",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 662,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+        "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "humanego_visual_aux_v1",
+      "updated_at": "2026-09-13T01:43:33+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "maintenance",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1798,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_root_cleanup_v3_lane_a/CLEANUP_RECEIPT.json",
+        "sha256": "e00814b0b5c150595b7d1c9e621bbd71d26ad559645cec1d961b8cb4a499fdd7"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "workspace_cleanup_v3",
+      "updated_at": "2026-09-13T01:51:25+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "visual_training_contract_frozen",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 6830,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_robot_visual_training_closure_recovery_v1/VISUAL_TRAINING_ASSEMBLY_CONTRACT.json",
+        "sha256": "522bd91c4b02024f04f7b4ead35a78b6bafd1b58ee5f0432385a3542db7f06c1"
+      },
+      "session": "play_cards_0902_042",
+      "status": "PASSED",
+      "task_id": "robot_historical_closure_recovery_v1",
+      "updated_at": "2026-09-13T02:36:34+08:00"
+    },
+    {
+      "attempt": 3,
+      "gpu_id": null,
+      "heartbeat_at": "2026-09-13T03:09:19+08:00",
+      "phase": "final_bounded_active_chain_topology_successor_v3",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 4722,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/RESULT.json",
+        "sha256": "bbc362b0911f20b0295604d8cc45fcbc3e43c12c1d65dc93b3c54c6e5ed4f24f"
+      },
+      "session": "play_cards_0902_042",
+      "status": "FAILED_QUALITY_C",
+      "task_id": "robot_contact_retarget_poker042_visual_v1",
+      "updated_at": "2026-09-13T03:18:35+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "governance_recovery",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2248,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52_governance_recovery_v5/GOVERNANCE_RECOVERY_V5.json",
+        "sha256": "47cde294b0b06430155c482b339a682daff414313da4484ca6c4ba76c6c924cf"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "governance_recovery_v5",
+      "updated_at": "2026-09-14T00:23:42+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "stage0_complete",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 846,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/stage0/STAGE0_RESULT.json",
+        "sha256": "b00b56c9ee071c64b3d4243aa7f7586e37eec2c9a64ee34308b3d810152bfaea"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_stage0",
+      "updated_at": "2026-09-14T03:52:05+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "superseded_by_active_successor_v521",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5190,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_a_clean/RESULT_SUMMARY.json",
+        "sha256": "a5c8bb3c522cd64d7c181e2d53f43b92b7cd5aa5c687eea73f37677a25cbbb20"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "exact78_v52_lane_a_clean",
+      "updated_at": "2026-09-14T13:22:03+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "wait_lane_a_clean_priority",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 805,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_b_upstream_c/preflight_v1/RESULT.json",
+        "sha256": "de013f9222da515613effd787d27ebcc0a13cad38350c05d8bfd9587e5bb9668"
+      },
+      "session": null,
+      "status": "BLOCKED_RESOURCE",
+      "task_id": "exact78_v52_lane_b_upstream_c",
+      "updated_at": "2026-09-14T00:53:37+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "paused_by_user_robot_067_placement_partial",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 9613,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_c_contact_robot/RESULT_SUMMARY.json",
+        "sha256": "05a435b96b56d0871f77d6de17af06f394f9de42ed262c555d1237ceeb4f1620"
+      },
+      "session": "get_potato_chips_0902_067",
+      "status": "PENDING",
+      "task_id": "exact78_v52_lane_c_contact_robot",
+      "updated_at": "2026-09-14T10:08:25+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "wait_goldset_robotized_rgb_and_train_val_labels_5_projection",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2930,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_d_visual_aux/RESULT_SUMMARY.json",
+        "sha256": "b8529e9fcd486e3df9a09183af026603266a90f5d3df93b65753478fdb895980"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "exact78_v52_lane_d_visual_aux",
+      "updated_at": "2026-09-14T02:29:40+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "superseded_by_cleanup_v6_currentization",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2389,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/task_packets/exact78_v52_lane_e_baseline_docs/RESULT_SUMMARY.json",
+        "sha256": "f5f3d1bdf61eb688169dd45c159328ba97b0b680ef81aaefa7abf0795380ae44"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "exact78_v52_lane_e_baseline_docs",
+      "updated_at": "2026-09-14T13:21:52+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "external_temp_safe_cache_closed_old_run_docs_quarantined",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2090,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_external_temp_cleanup_v52/RESULT_SUMMARY.json",
+        "sha256": "fde8bf9770f69fbe3bc20ca582351242842765198097f7875d50892e9bcf2d5a"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_lane_f_cleanup",
+      "updated_at": "2026-09-14T09:27:35+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "runner_terminal",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1007,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_a_clean_successor_v521/RUNNER_RESULT.json",
+        "sha256": "c342417593c4f5d5efaa0cd83b582629edf74e5372470f8303c5129e3f56a3b8"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_lane_a_clean_successor_v521",
+      "updated_at": "2026-09-14T16:24:01+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "data_session_publication_23_restored_verified",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 19313,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_data_copy_restore_v1/RESULT_SUMMARY.json",
+        "sha256": "dbb7e4e4ccff9fa8c5cf290e61e4b68b3dfce265a9e2aa4b439430adc75c49dd"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "exact78_v52_robot_review_publication",
+      "updated_at": "2026-09-14T10:26:07+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "erroneous_robot_data_copy_cleanup_fully_reverted",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 19313,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_data_copy_restore_v1/RESULT_SUMMARY.json",
+        "sha256": "dbb7e4e4ccff9fa8c5cf290e61e4b68b3dfce265a9e2aa4b439430adc75c49dd"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "exact78_v52_external_derived_copy_cleanup",
+      "updated_at": "2026-09-14T10:25:59+08:00"
+    },
+    {
+      "attempt": 2,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "terminal_verified",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1583594,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_nas_chenxianchi_project_consolidation_v1/RESULT_SUMMARY.json",
+        "sha256": "c0a90bba64a0624812def01d63b72b6209e6ad28fb3367f0fce6293bb27aa6bd"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "nas_chenxianchi_project_consolidation_v1",
+      "updated_at": "2026-09-14T12:45:46+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "cleanup_v6_terminal",
+      "pid": null,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1014,
+        "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/FINAL_RESULT.json",
+        "sha256": "90edb7d358ad24eeeb680d80f18c14861fba15d8a8935d157c7cecf35a0a2576"
+      },
+      "session": "workspace",
+      "status": "PASSED",
+      "task_id": "chaoyang_current_only_cleanup_v6",
+      "updated_at": "2026-09-14T18:37:33+08:00"
+    }
+  ]
+}

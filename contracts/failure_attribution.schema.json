@@ -1,0 +1,221 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/failure_attribution.schema.json",
+  "title": "Ego Robot Failure Attribution",
+  "description": "DRAFT schema for one-primary-owner QA attribution. This artifact cannot authorize upstream mutation or rerun.",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_document_status",
+    "attribution_id",
+    "session_id",
+    "frame_scope",
+    "product_line",
+    "diagnostic_track",
+    "failed_gate",
+    "primary_owner",
+    "symptoms",
+    "evidence_refs",
+    "observations",
+    "recommended_action",
+    "claim_limit",
+    "upstream_mutation_permitted",
+    "automatic_rerun_permitted",
+    "automatic_promotion_permitted",
+    "human_review_required",
+    "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "failure-attribution-v1"},
+    "contract_document_status": {"const": "DRAFT"},
+    "attribution_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"},
+    "session_id": {"type": "string", "minLength": 1, "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"},
+    "frame_scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "frame_indices"],
+      "properties": {
+        "scope": {"enum": ["SESSION", "CANARY_SET", "FRAME_SET", "SINGLE_FRAME"]},
+        "frame_indices": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0}
+        }
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"scope": {"const": "SINGLE_FRAME"}}, "required": ["scope"]},
+          "then": {"properties": {"frame_indices": {"minItems": 1, "maxItems": 1}}}
+        },
+        {
+          "if": {"properties": {"scope": {"enum": ["CANARY_SET", "FRAME_SET"]}}, "required": ["scope"]},
+          "then": {"properties": {"frame_indices": {"minItems": 1}}}
+        }
+      ]
+    },
+    "product_line": {"enum": ["004_CONTACT_GOLD", "EXACT78_R2_VISUAL_DOMAIN"]},
+    "diagnostic_track": {"enum": ["HAND_ONLY_DIAGNOSTIC", "HAND_ARM_FINAL"]},
+    "failed_gate": {"enum": ["L0", "L1", "L2", "L3", "L4"]},
+    "primary_owner": {
+      "enum": [
+        "RAW_SOURCE",
+        "SESSION_CONTEXT",
+        "MASK",
+        "OBJECT_GEOMETRY",
+        "CLEAN_BACKGROUND",
+        "RETARGET_QHAND",
+        "BASE_IK",
+        "RENDERER",
+        "COMPOSITOR",
+        "HARMONIZER",
+        "MANIFEST"
+      ]
+    },
+    "secondary_evidence_domains": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "RAW_SOURCE",
+          "SESSION_CONTEXT",
+          "MASK",
+          "OBJECT_GEOMETRY",
+          "CLEAN_BACKGROUND",
+          "RETARGET_QHAND",
+          "BASE_IK",
+          "RENDERER",
+          "COMPOSITOR",
+          "HARMONIZER",
+          "MANIFEST"
+        ]
+      }
+    },
+    "symptoms": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "evidence_refs": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/digestRef"}
+    },
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/observation"}
+    },
+    "recommended_action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["disposition", "standard_route_id", "single_change_branch", "advice"],
+      "properties": {
+        "disposition": {"enum": ["HOLD", "RETRY_STANDARD_ROUTE", "WAIT_FOR_HUMAN", "CREATE_NEXT_TASK_CARD"]},
+        "standard_route_id": {
+          "anyOf": [{"$ref": "#/$defs/standardRouteId"}, {"type": "null"}]
+        },
+        "single_change_branch": {
+          "enum": ["OBJECT_GEOMETRY", "RETARGET_QHAND", "COMPOSITOR", "NONE"]
+        },
+        "advice": {"type": "string", "minLength": 1}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"disposition": {"const": "RETRY_STANDARD_ROUTE"}}, "required": ["disposition"]},
+          "then": {"properties": {"standard_route_id": {"$ref": "#/$defs/standardRouteId"}}},
+          "else": {"properties": {"standard_route_id": {"type": "null"}}}
+        }
+      ]
+    },
+    "task_card_ref": {
+      "anyOf": [{"$ref": "#/$defs/digestRef"}, {"type": "null"}]
+    },
+    "claim_limit": {"type": "string", "minLength": 1},
+    "upstream_mutation_permitted": {"const": false},
+    "automatic_rerun_permitted": {"const": false},
+    "automatic_promotion_permitted": {"const": false},
+    "human_review_required": {"type": "boolean"},
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "digestRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "producer"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1}
+      }
+    },
+    "standardRouteId": {
+      "enum": [
+        "OBJECT6D_GEOMETRY_TEXTURE",
+        "CAD_GEOMETRY_TEXTURE",
+        "ANALYTIC_GEOMETRY_TEXTURE",
+        "TEMPORAL_DONOR_ATLAS",
+        "PROPAINTER_BACKGROUND"
+      ]
+    },
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["metric", "observed", "unit", "threshold", "threshold_ref", "comparison", "evidence_refs"],
+      "properties": {
+        "metric": {"type": "string", "minLength": 1},
+        "observed": {"type": ["number", "string", "boolean", "null"]},
+        "unit": {"type": ["string", "null"]},
+        "threshold": {"type": ["number", "string", "boolean", "null"]},
+        "threshold_ref": {"anyOf": [{"$ref": "#/$defs/digestRef"}, {"type": "null"}]},
+        "comparison": {"enum": ["PASS", "FAIL", "NOT_EVALUABLE", "QUALITATIVE"]},
+        "evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/digestRef"}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"threshold_ref": {"type": "null"}}, "required": ["threshold_ref"]},
+          "then": {"properties": {"comparison": {"enum": ["NOT_EVALUABLE", "QUALITATIVE"]}}}
+        }
+      ]
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "recommended_action": {
+            "properties": {"disposition": {"const": "WAIT_FOR_HUMAN"}},
+            "required": ["disposition"]
+          }
+        }
+      },
+      "then": {"properties": {"human_review_required": {"const": true}}}
+    },
+    {
+      "if": {"properties": {"product_line": {"const": "EXACT78_R2_VISUAL_DOMAIN"}}, "required": ["product_line"]},
+      "then": {
+        "properties": {
+          "recommended_action": {
+            "properties": {
+              "single_change_branch": {"enum": ["OBJECT_GEOMETRY", "COMPOSITOR", "NONE"]}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"failed_gate": {"const": "L0"}}, "required": ["failed_gate"]},
+      "then": {
+        "properties": {
+          "recommended_action": {
+            "properties": {"disposition": {"enum": ["HOLD", "WAIT_FOR_HUMAN", "CREATE_NEXT_TASK_CARD"]}}
+          }
+        }
+      }
+    }
+  ]
+}

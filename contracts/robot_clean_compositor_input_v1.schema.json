@@ -1,0 +1,183 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/robot_clean_compositor_input_v1.schema.json",
+  "title": "Task-agnostic Robot-on-Clean compositor input V1",
+  "description": "Single immutable handoff for a full-session depth-aware compositor. There are deliberately no task, session, or frame-selection command-line overrides.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "schema_version",
+    "mode",
+    "task_id",
+    "session_id",
+    "frame_count",
+    "fps",
+    "resolution",
+    "coordinate_contract",
+    "watermark",
+    "artifacts"
+  ],
+  "properties": {
+    "$schema": {
+      "const": "contracts/robot_clean_compositor_input_v1.schema.json"
+    },
+    "schema_version": {
+      "const": "chaoyang-robot-clean-compositor-input-v1"
+    },
+    "mode": {
+      "enum": ["FORMAL_CANDIDATE", "DEV_SYNTHETIC"]
+    },
+    "task_id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9_-]*$"
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 256
+    },
+    "frame_count": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 200000
+    },
+    "fps": {
+      "$ref": "#/$defs/rational"
+    },
+    "resolution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["width", "height"],
+      "properties": {
+        "width": {"type": "integer", "minimum": 16, "maximum": 4096},
+        "height": {"type": "integer", "minimum": 16, "maximum": 2160}
+      }
+    },
+    "coordinate_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "length_unit",
+        "matrix_convention",
+        "camera_axes",
+        "object_pose_field",
+        "camera_pose_field",
+        "object_world_consistency",
+        "robot_depth_field",
+        "object_depth_field",
+        "supersample",
+        "occlusion_epsilon_m",
+        "compositing_space"
+      ],
+      "properties": {
+        "length_unit": {"const": "m"},
+        "matrix_convention": {"const": "column_vectors_left_multiply"},
+        "camera_axes": {"const": "+X_RIGHT_+Y_DOWN_+Z_FORWARD"},
+        "object_pose_field": {"const": "T_object_to_camera"},
+        "camera_pose_field": {"const": "T_camera_to_world"},
+        "object_world_consistency": {
+          "const": "T_world_object=T_camera_to_world@T_object_to_camera"
+        },
+        "robot_depth_field": {"const": "EUCLIDEAN_CAMERA_RANGE_M"},
+        "object_depth_field": {"const": "OPTICAL_AXIS_CAMERA_Z_M"},
+        "supersample": {"const": 2},
+        "occlusion_epsilon_m": {"const": 0.003},
+        "compositing_space": {"const": "LINEAR_REC709_FROM_SRGB"}
+      }
+    },
+    "watermark": {
+      "enum": ["NONE", "DEV_SYNTHETIC"]
+    },
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "task_manifest",
+        "session_manifest",
+        "object6d",
+        "camera",
+        "clean_master",
+        "clean_authority",
+        "clean_provenance_manifest",
+        "mask_authority",
+        "object_depth_frames",
+        "robot_trajectory",
+        "robot_authority",
+        "robot_render_frames",
+        "pbr_config",
+        "nonpenetration_result",
+        "cross_stage_admission"
+      ],
+      "properties": {
+        "task_manifest": {"$ref": "#/$defs/artifact"},
+        "session_manifest": {"$ref": "#/$defs/artifact"},
+        "object6d": {"$ref": "#/$defs/artifact"},
+        "camera": {"$ref": "#/$defs/artifact"},
+        "clean_master": {"$ref": "#/$defs/artifact"},
+        "clean_authority": {"$ref": "#/$defs/artifact"},
+        "clean_provenance_manifest": {"$ref": "#/$defs/artifact"},
+        "mask_authority": {"$ref": "#/$defs/artifact"},
+        "object_depth_frames": {"$ref": "#/$defs/artifact"},
+        "robot_trajectory": {"$ref": "#/$defs/artifact"},
+        "robot_authority": {"$ref": "#/$defs/artifact"},
+        "robot_render_frames": {"$ref": "#/$defs/artifact"},
+        "pbr_config": {"$ref": "#/$defs/artifact"},
+        "nonpenetration_result": {"$ref": "#/$defs/artifact"},
+        "cross_stage_admission": {"$ref": "#/$defs/artifact"}
+      }
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"mode": {"const": "FORMAL_CANDIDATE"}},
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": {"watermark": {"const": "NONE"}}
+      }
+    },
+    {
+      "if": {
+        "properties": {"mode": {"const": "DEV_SYNTHETIC"}},
+        "required": ["mode"]
+      },
+      "then": {
+        "properties": {
+          "watermark": {"const": "DEV_SYNTHETIC"},
+          "frame_count": {"maximum": 24}
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1,
+          "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))(?!.*(?:^|/)\\.(?:/|$)).+$"
+        },
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "rational": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["numerator", "denominator"],
+      "properties": {
+        "numerator": {"type": "integer", "minimum": 1},
+        "denominator": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

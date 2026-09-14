@@ -1,0 +1,146 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/verified_source_manifest.schema.json",
+  "title": "Verified G0 Source Manifest",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "document_status", "raw_readiness", "promotion_scope",
+    "formal_production_allowed", "immutable", "promoted_at", "promotion_method",
+    "candidate_ref", "g0_validation_ref", "raw_root", "source_root", "source_mode",
+    "mount_enforced_read_only", "project_enforced_read_only", "no_fallback",
+    "authorized_calibration_sessions", "validated_session_count", "validated_frame_count",
+    "session_digest_algorithm", "session_digests", "sessions"
+  ],
+  "properties": {
+    "schema_version": {"const": "verified-source-manifest-v1"},
+    "document_status": {"const": "VERIFIED_G0_CALIBRATION_INPUT"},
+    "raw_readiness": {"const": "PASS_G0_SOURCE_READABLE"},
+    "promotion_scope": {"const": "G2_004_MASK_CLEAN_CALIBRATION_ONLY"},
+    "formal_production_allowed": {"const": false},
+    "immutable": {"const": true},
+    "promoted_at": {"type": "string", "format": "date-time"},
+    "promotion_method": {"const": "MECHANICAL_COPY_AFTER_G0_DIGEST_AND_SESSION_CANONICAL_DIGEST_VALIDATION"},
+    "candidate_ref": {"$ref": "#/$defs/candidateRef"},
+    "g0_validation_ref": {"$ref": "#/$defs/validationRef"},
+    "raw_root": {"const": "/mnt/data/egodata"},
+    "source_root": {"type": "string", "pattern": "^/mnt/data/egodata(?:/|$)"},
+    "source_mode": {"const": "READ_ONLY_EXTERNAL_REFERENCE"},
+    "mount_enforced_read_only": {"type": "boolean"},
+    "project_enforced_read_only": {"const": true},
+    "no_fallback": {"const": true},
+    "authorized_calibration_sessions": {
+      "const": ["grap_a_cap_004"]
+    },
+    "validated_session_count": {"const": 3},
+    "validated_frame_count": {"const": 1365},
+    "session_digest_algorithm": {"const": "SHA256_CANONICAL_JSON_SORT_KEYS_COMPACT_UTF8_OF_CANDIDATE_SESSION_OBJECT"},
+    "session_digests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["grap_a_cap_004", "grap_a_cap_025", "grap_a_cap_149"],
+      "properties": {
+        "grap_a_cap_004": {"const": "31cc7c227b74799feb0f587c330c33f1a13aaccf85e6244ac234a2b71ecd6840"},
+        "grap_a_cap_025": {"const": "774a92dc709a0baa6b628aa45e2f7264cc84fd162f1e09dce702e75cdbba2c24"},
+        "grap_a_cap_149": {"const": "ce53f0c7e584c65357507a40558d1f9345c9facee768d9200f71c80357289eca"}
+      }
+    },
+    "sessions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/session"}
+    }
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "candidateRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "status"],
+      "properties": {
+        "path": {"const": "archive/legacy_runs/unclassified/g0_20260826_parallel_v1/raw/CANDIDATE_SOURCE_MANIFEST.json"},
+        "sha256": {"const": "d339e0890846a41da65a9424af2b8c799e8c0c4eb6715ffaafbd2e21706de268"},
+        "status": {"const": "CANDIDATE_NOT_FORMALLY_PROMOTED"}
+      }
+    },
+    "validationRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "verdict"],
+      "properties": {
+        "path": {"const": "archive/legacy_runs/unclassified/g0_20260826_parallel_v1/raw/RAW_VALIDATION.json"},
+        "sha256": {"const": "7a51145d94847367cc86b12aea3aaca3f74ed8c5f02833894ff097fc2d4b6d71"},
+        "verdict": {"const": "PASS_G0_SOURCE_READABLE"}
+      }
+    },
+    "fileDescriptor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "kind", "bytes", "mode_octal", "device", "inode", "mtime_ns"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/mnt/data/egodata/"},
+        "kind": {"const": "regular_file"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "mode_octal": {"type": "string", "pattern": "^0o[0-7]+$"},
+        "device": {"type": "integer", "minimum": 0},
+        "inode": {"type": "integer", "minimum": 1},
+        "mtime_ns": {"type": "integer", "minimum": 0},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "digestedFileDescriptor": {
+      "allOf": [
+        {"$ref": "#/$defs/fileDescriptor"},
+        {"required": ["sha256"]}
+      ]
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame_index", "timestamp_ns", "video_time_s", "tracking_index", "image", "metadata", "width", "height"],
+      "properties": {
+        "frame_index": {"type": "integer", "minimum": 0},
+        "timestamp_ns": {"type": "integer", "minimum": 0},
+        "video_time_s": {"type": "number", "minimum": 0},
+        "tracking_index": {"type": "integer", "minimum": 0},
+        "image": {"$ref": "#/$defs/digestedFileDescriptor"},
+        "metadata": {"$ref": "#/$defs/digestedFileDescriptor"},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1}
+      }
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "session_id", "source_session", "selector", "selector_policy", "frame_order_policy",
+        "timestamp_policy", "width", "height", "fps", "frame_count", "first_timestamp_ns",
+        "last_timestamp_ns", "first_video_time_s", "last_video_time_s", "frames", "source_artifacts"
+      ],
+      "properties": {
+        "session_id": {"enum": ["grap_a_cap_004", "grap_a_cap_025", "grap_a_cap_149"]},
+        "source_session": {"type": "string", "pattern": "^/mnt/data/egodata/"},
+        "selector": {"const": "preprocess/all_data/<frame_index:05d>/rgb.png"},
+        "selector_policy": {"const": "regular_file_only_no_symlink_no_fallback"},
+        "frame_order_policy": {"const": "ascending_zero_based_contiguous_frame_index"},
+        "timestamp_policy": {"type": "string", "minLength": 1},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "fps": {"type": "number", "exclusiveMinimum": 0},
+        "frame_count": {"type": "integer", "minimum": 1},
+        "first_timestamp_ns": {"type": "integer", "minimum": 0},
+        "last_timestamp_ns": {"type": "integer", "minimum": 0},
+        "first_video_time_s": {"type": "number", "minimum": 0},
+        "last_video_time_s": {"type": "number", "minimum": 0},
+        "frames": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/frame"}},
+        "source_artifacts": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/fileDescriptor"}
+        }
+      }
+    }
+  }
+}

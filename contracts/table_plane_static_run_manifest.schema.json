@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/table_plane_static_run_manifest.schema.json",
+  "title": "Static Table Plane T1 Run Manifest",
+  "x-document-status": "DRAFT_T1_PLUMBING_ONLY",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "AUTH_TIER", "WHY_NOT_BLOCKED", "status", "session_id",
+    "component", "plumbing_only", "is_clean_candidate", "formal_consumer_allowed",
+    "candidate_requires_human_review", "next_bucket_blocked", "advancement_authorized",
+    "candidate_ref", "physical_gates_ref", "oracle_prep_ref", "candidate_schema_ref",
+    "manifest_schema_ref", "input_evidence_ref", "task_ref", "scope", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "table-plane-static-run-manifest-v1"},
+    "AUTH_TIER": {"const": "T1"},
+    "WHY_NOT_BLOCKED": {"type": "string", "minLength": 1},
+    "status": {"const": "PASS_STATIC_TABLE_PLANE_PLUMBING_ONLY_LOCAL_SUPPORT"},
+    "session_id": {"const": "grap_a_cap_004"},
+    "component": {"const": "static_table_plane"},
+    "plumbing_only": {"const": true},
+    "is_clean_candidate": {"const": false},
+    "formal_consumer_allowed": {"const": false},
+    "candidate_requires_human_review": {"const": true},
+    "next_bucket_blocked": {"const": true},
+    "advancement_authorized": {"const": false},
+    "candidate_ref": {"$ref": "#/$defs/ref"},
+    "physical_gates_ref": {"$ref": "#/$defs/ref"},
+    "oracle_prep_ref": {"$ref": "#/$defs/ref"},
+    "candidate_schema_ref": {"$ref": "#/$defs/ref"},
+    "manifest_schema_ref": {"$ref": "#/$defs/ref"},
+    "input_evidence_ref": {"$ref": "#/$defs/ref"},
+    "task_ref": {"$ref": "#/$defs/ref"},
+    "scope": {
+      "type": "object", "additionalProperties": false,
+      "required": ["labels_read_splits", "025_opened", "149_opened", "blind_opened", "object6d_opened", "object_atlas_generated", "gpu_calls", "mask_calls", "clean_calls", "renderer_calls", "processed_writes"],
+      "properties": {
+        "labels_read_splits": {"type": "array", "maxItems": 0},
+        "025_opened": {"const": 0},
+        "149_opened": {"const": 0},
+        "blind_opened": {"const": 0},
+        "object6d_opened": {"const": 0},
+        "object_atlas_generated": {"const": false},
+        "gpu_calls": {"const": 0},
+        "mask_calls": {"const": 0},
+        "clean_calls": {"const": 0},
+        "renderer_calls": {"const": 0},
+        "processed_writes": {"const": 0}
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    }
+  }
+}

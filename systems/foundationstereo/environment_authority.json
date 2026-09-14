@@ -1,0 +1,189 @@
+{
+  "schema_version": "chaoyang-foundationstereo-environment-authority-v1",
+  "status": "CPU_PASS_GPU_DEPTH_REPLAY_PENDING",
+  "canonical_cpu_runtime_authorized": true,
+  "canonical_gpu_runtime_authorized": false,
+  "consumption_authorized": false,
+  "environment_id": "foundationstereo-py311-v1",
+  "claim_limit": "Project-local FoundationStereo CPU imports, model construction, and strict checkpoint compatibility only. No CUDA depth forward, metric-depth equivalence, production, Object6D authority, or downstream consumption is authorized.",
+  "launch": {
+    "command": ["tools/foundationstereo_python.sh"],
+    "activation_required": false,
+    "fallback_to_external_conda_forbidden": true,
+    "fallback_to_external_checkpoint_forbidden": true,
+    "fallback_to_external_cache_or_network_forbidden": true,
+    "inherited_pythonpath_forbidden": true,
+    "cuda_hidden": true,
+    "project_relative_environment_root": "assets/environments/foundationstereo-py311-v1",
+    "project_relative_python": "assets/environments/foundationstereo-py311-v1/bin/python",
+    "project_relative_checkpoint": "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+    "snapshot_manifest": "assets/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "project_local_cache": "_run/caches/foundationstereo-py311-v1"
+  },
+  "snapshot": {
+    "snapshot_id": "b36d784428904038954ad618972727d8",
+    "method": "NO_CLOBBER_SAME_FILESYSTEM_HARDLINK",
+    "publish_method": "owned_empty_directory_reservation_then_rename",
+    "source_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "source_path": "/mnt/workspace/miniconda3/envs/foundation_stereo",
+    "device": 102,
+    "counts": {
+      "directories": 2496,
+      "regular_files": 30612,
+      "special": 0,
+      "symlinks": 1382
+    },
+    "logical_bytes": 5967308280,
+    "unique_regular_bytes": 5967308280,
+    "manifest_bytes": 1926343,
+    "manifest_sha256": "eb21bb9eedfab20097c3b05a93ef87b4e86df7a3376d8a337c088e0c095a733e",
+    "tree_content_sha256": "dc08100b81b0a787607e1a5aa1760b49a8604d91b32cfc919f6d3e23b05b54f1",
+    "post_publish_full_content_verify": "PASS_30612_UNIQUE_INODES"
+  },
+  "runtime": {
+    "python_version": "3.11.15",
+    "torch_version": "2.4.1",
+    "torchvision_version": "0.19.1",
+    "xformers_version": "0.0.28.post1",
+    "omegaconf_version": "2.3.0",
+    "opencv_contrib_python_version": "4.10.0.84",
+    "numpy_version": "1.26.4",
+    "timm_version": "1.0.28",
+    "huggingface_hub_version": "1.25.1",
+    "einops_version": "0.8.2",
+    "scipy_version": "1.17.1",
+    "trimesh_version": "4.12.2",
+    "imageio_version": "2.37.4",
+    "joblib_version": "1.5.3",
+    "pandas_version": "3.0.5",
+    "cuda_initialized_during_probe": false
+  },
+  "source_authority": {
+    "repository": "third_party/FoundationStereo",
+    "upstream_origin": "https://github.com/NVlabs/FoundationStereo.git",
+    "upstream_commit_from_retained_historical_git_metadata": "6e8806816b533e4d13ddbb95ffa907b797060a62",
+    "historical_git_metadata_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "runtime_tree_pin": {
+      "algorithm": "sha256 over sorted non-pyc regular rows F\\0relative_path\\0bytes\\0content_sha256\\n; __pycache__ excluded",
+      "regular_files": 210,
+      "logical_bytes": 19904911,
+      "symlinks": 0,
+      "tree_sha256": "77d30c541da776514174e53fb34ab61655d33e7ada73ff43127bba3cab3ddc76"
+    },
+    "license": {
+      "path": "third_party/FoundationStereo/LICENSE",
+      "sha256": "edc216df7d9ed4825550f0881ab6fca31ba79dd5694cd64c776e312821488e16"
+    },
+    "runtime_files": {
+      "model": {
+        "path": "third_party/FoundationStereo/core/foundation_stereo.py",
+        "sha256": "ad303fa4e8c22c1fe527f377ebfcb6ce1efa8858b99b75c62c6639e5c4cb04ae"
+      },
+      "extractor_local_no_download": {
+        "path": "third_party/FoundationStereo/core/extractor.py",
+        "sha256": "1d14ea1731ed952db5574834e6495c7bb37121497472a1bbbf617608abfb5c4b"
+      },
+      "vendored_dinov2_loader": {
+        "path": "third_party/FoundationStereo/depth_anything/dpt.py",
+        "sha256": "9ce8c4b117a23fdd55c81f8b53ddc712b16b72ecfb6015986f5c92f08d80ffd9"
+      },
+      "pico_runner": {
+        "path": "third_party/FoundationStereo/scripts/pico_stereo_depth.py",
+        "sha256": "a3dd48f22508c603d2ae689ed17af25ff49393d5d440f00de8ae87fbaa4d9284"
+      }
+    },
+    "closure_policy": {
+      "dinov2_source": "vendored third_party/FoundationStereo/dinov2 with torch.hub source=local",
+      "edgenext_initialization": "pretrained=false; strict formal FoundationStereo checkpoint supplies every tensor",
+      "network_connect_denied_during_model_construction_smoke": true
+    }
+  },
+  "checkpoint": {
+    "path": "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+    "bytes": 3298527334,
+    "sha256": "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1",
+    "config_path": "assets/models/checkpoints/foundationstereo/23-51-11/cfg.yaml",
+    "config_bytes": 499,
+    "config_sha256": "a9d9dd2137c30edc2236194f62df14d222dad5fd3287a33c7540b543bb93853f",
+    "asset_pin": {
+      "path": "assets/models/checkpoints/foundationstereo/23-51-11/ASSET_PIN.json",
+      "bytes": 1402,
+      "sha256": "dea0fe13b7c5fe4b59e54375d7ed96d1d26ab5be731c47aa7ac56b88368d8ee7"
+    },
+    "materialization": "CROSS_FILESYSTEM_STREAM_COPY_SOURCE_STABILITY_FSYNC_DESTINATION_FULL_READBACK_ATOMIC_DIRECTORY_PUBLISH",
+    "nas_source_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "strict_cpu_state_dict_load": "PASS_1360_TENSORS_374517067_PARAMETERS",
+    "gpu_or_depth_forward_during_validation": false
+  },
+  "verification": {
+    "local_probe": {
+      "path": "tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE_V3.json",
+      "bytes": 805789,
+      "sha256": "e3f0a22d33cdae6758924b76c7f95a2a4f32f60e80edb830860ef1c1a89c32e8",
+      "status": "CPU_PASS_GPU_DEPTH_REPLAY_PENDING",
+      "loaded_file_origins_checked": 3682,
+      "loaded_origins_outside_project_or_environment": 0,
+      "runner_smoke": "PASS_IMPORT_GEOMETRY_MODEL_CONSTRUCTION_STRICT_CPU_WEIGHT_LOAD"
+    },
+    "snapshot_content": {
+      "path": "tasks/control/runs/20260907_foundationstereo_local_environment_v1/SNAPSHOT_CONTENT_VERIFY.json",
+      "bytes": 851,
+      "sha256": "6a3e3b81b356e4c0c1e2fea4fa4e72f88f6556a402e975771e14d943825645bd",
+      "status": "PASS"
+    },
+    "runner_static_preflight": {
+      "path": "tasks/control/runs/20260907_foundationstereo_local_environment_v1/RUNNER_STATIC_PREFLIGHT.json",
+      "bytes": 1515,
+      "sha256": "616983de316f6f52b0685b21373356bc10f8ad775bedd9c2637bb78358ce0004",
+      "status": "PASS_STATIC_PREFLIGHT",
+      "gpu_lease_acquired": false,
+      "gpu_depth_executed": false
+    },
+    "historical_failed_probes": [
+      {
+        "path": "tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE.json",
+        "status": "HOLD_RUNNER_GEOMETRY_EXACT_FLOAT_COMPARISON",
+        "authority": false
+      },
+      {
+        "path": "tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+        "status": "HOLD_PYTORCH_RESTRICTED_UNPICKLER_REJECTED_HISTORICAL_NUMPY_METADATA",
+        "authority": false
+      }
+    ]
+  },
+  "tools": {
+    "launcher": {
+      "path": "tools/foundationstereo_python.sh",
+      "sha256": "d7d43454903736ddcf90280b4568783fd278f221f9faf308515bdcbd22e3040f"
+    },
+    "snapshot": {
+      "path": "tools/no_clobber_hardlink_snapshot.py",
+      "sha256": "9ec43f2a1cd12d6d44c631f7902813b8f8148d6e0f4251b632810e6dbd1e541e"
+    },
+    "checkpoint_materializer": {
+      "path": "tools/materialize_foundationstereo_checkpoint.py",
+      "sha256": "3959ed04d9f1b92386e36f19e24d625cfc3981245d9df0ca8c29397bef9e04db"
+    },
+    "verifier": {
+      "path": "tools/verify_foundationstereo_environment.py",
+      "sha256": "53f66bfa4e2bf914b9cd54dd5761cf06d68ab01006203a2b9e49634a27a42c85"
+    },
+    "bounded_runner": {
+      "path": "tools/run_foundationstereo_two_session_canary.py",
+      "sha256": "b369b2a177914a1f92996154ee1223fad3574b8fa2ce52def6fcaaf37cefd909"
+    }
+  },
+  "local_environment_lock": {
+    "path": "systems/foundationstereo/local_environment_lock.json",
+    "status": "CPU_PASS_GPU_DEPTH_REPLAY_PENDING"
+  },
+  "rollback": {
+    "path": "systems/foundationstereo/local_environment_rollback.json",
+    "bytes": 2367,
+    "sha256": "12de47569e19e0a0c3d2e2bd64579b0ba423d9dcb9ae727b5de1904ef3b07234",
+    "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE",
+    "executed": false
+  },
+  "next_gate": "Under the central GPU lease, run a bounded project-local checkpoint depth replay against frozen historical outputs; publish a successor authority only if numeric/visual equivalence and loaded-origin checks pass."
+}

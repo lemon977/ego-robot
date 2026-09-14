@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/contact_aware_robot_retarget_v1.schema.json",
+  "title": "CONTACT_AWARE_ROBOT_RETARGET_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "task_id", "session_id", "inputs", "stage_order", "budget", "hard_constraints", "digital_geometry_gates", "authority"],
+  "properties": {
+    "schema_version": {"const": "CONTACT_AWARE_ROBOT_RETARGET_V1"},
+    "task_id": {"enum": ["chips", "poker"]},
+    "session_id": {"type": "string", "minLength": 1},
+    "inputs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["human_contact_hypothesis", "robot_asset_pin", "coordinate_chain"],
+      "properties": {
+        "human_contact_hypothesis": {"$ref": "#/$defs/artifact"},
+        "robot_asset_pin": {"$ref": "#/$defs/artifact"},
+        "coordinate_chain": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "stage_order": {"const": ["WRIST_ARM_IK", "HUMAN_POSE_HAND_RETARGET", "CONTACT_FINGER_REFINEMENT", "COLLISION_CLEANUP", "TEMPORAL_REFINEMENT", "FINAL_AUDIT"]},
+    "budget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_initializations_per_stage", "max_iterations_per_stage", "frame_timeout_s", "session_canary_timeout_s"],
+      "properties": {
+        "max_initializations_per_stage": {"type": "integer", "minimum": 1, "maximum": 2},
+        "max_iterations_per_stage": {"type": "integer", "minimum": 1, "maximum": 200},
+        "frame_timeout_s": {"type": "number", "exclusiveMinimum": 0, "maximum": 30},
+        "session_canary_timeout_s": {"type": "number", "exclusiveMinimum": 0, "maximum": 1800}
+      }
+    },
+    "hard_constraints": {
+      "const": ["FINITE", "PROPER_ROTATION", "CHIRALITY_FIXED", "ROBOT_STRUCTURE_CLOSED", "JOINT_LIMITS", "ARM_REACHABLE", "GROSS_PENETRATION_LIMIT", "NONCONTACT_PENETRATION_LIMIT", "COORDINATE_CHAIN_COMPLETE"]
+    },
+    "digital_geometry_gates": {
+      "oneOf": [
+        {"$ref": "#/$defs/poker_gates"},
+        {"$ref": "#/$defs/chips_gates"}
+      ]
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["scope", "physical_accuracy_claimed", "automatic_promotion_allowed"],
+      "properties": {
+        "scope": {"const": "DIAGNOSTIC_CANDIDATE_ONLY"},
+        "physical_accuracy_claimed": {"const": false},
+        "automatic_promotion_allowed": {"const": false}
+      }
+    }
+  },
+  "allOf": [
+    {"if": {"properties": {"task_id": {"const": "poker"}}}, "then": {"properties": {"digital_geometry_gates": {"$ref": "#/$defs/poker_gates"}}}},
+    {"if": {"properties": {"task_id": {"const": "chips"}}}, "then": {"properties": {"digital_geometry_gates": {"$ref": "#/$defs/chips_gates"}}}}
+  ],
+  "$defs": {
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {"path": {"type": "string", "minLength": 1}, "bytes": {"type": "integer", "minimum": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "poker_gates": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contact_target_m", "contact_penetration_p95_max_m", "gross_penetration_max_m", "noncontact_penetration_over_1mm_count_max"],
+      "properties": {"contact_target_m": {"const": [0.0, 0.002]}, "contact_penetration_p95_max_m": {"const": 0.0015}, "gross_penetration_max_m": {"const": 0.003}, "noncontact_penetration_over_1mm_count_max": {"const": 0}}
+    },
+    "chips_gates": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contact_target_m", "contact_penetration_p95_max_m", "gross_penetration_max_m", "noncontact_penetration_over_1mm_count_max"],
+      "properties": {"contact_target_m": {"const": [0.0, 0.003]}, "contact_penetration_p95_max_m": {"const": 0.003}, "gross_penetration_max_m": {"const": 0.006}, "noncontact_penetration_over_1mm_count_max": {"const": 0}}
+    }
+  }
+}

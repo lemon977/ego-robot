@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "governance_revision", "generation_id", "generated_at", "freshness", "files"],
+  "properties": {
+    "schema_version": {"const": "chaoyang-current-status-receipt-v1"},
+    "governance_revision": {"type": "integer", "minimum": 1},
+    "generation_id": {"type": "string"},
+    "generated_at": {"type": "string"},
+    "freshness": {"type": "object"},
+    "files": {"type": "object", "additionalProperties": false, "required": ["authority_index", "task_state", "project_status", "project_status_min", "task_queue", "baseline_registry_v2", "stage_baselines", "file_layout", "regression_manifest"], "properties": {"authority_index": {"$ref": "artifact_ref.schema.json"}, "task_state": {"$ref": "artifact_ref.schema.json"}, "project_status": {"$ref": "artifact_ref.schema.json"}, "project_status_min": {"$ref": "artifact_ref.schema.json"}, "task_queue": {"$ref": "artifact_ref.schema.json"}, "baseline_registry_v2": {"$ref": "artifact_ref.schema.json"}, "stage_baselines": {"$ref": "artifact_ref.schema.json"}, "file_layout": {"$ref": "artifact_ref.schema.json"}, "regression_manifest": {"$ref": "artifact_ref.schema.json"}}}
+  }
+}

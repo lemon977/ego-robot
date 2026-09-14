@@ -1,0 +1,533 @@
+schema_version: project-profile-v1
+document_status: DRAFT
+lifecycle_state: DRAFT
+execution_ready: false
+calibration_execution_ready: false
+calibration_execution_scope: B0A_B0B_FROZEN_B3_AND_BLIND_EVALUATION_HOLD
+formal_production_allowed: false
+formal_clean_enabled: false
+fail_closed: true
+profile_id: ego_robot_visual_replacement_v1
+created_at: "2026-08-26T00:00:00+08:00"
+
+lifecycle:
+  allowed_transitions:
+    DRAFT: [CALIBRATION_LOCKED]
+    CALIBRATION_LOCKED: [FROZEN]
+    FROZEN: []
+  calibration_sessions:
+    contact_gold: grap_a_cap_004
+    blind_validation: [grap_a_cap_025, grap_a_cap_149]
+  transition_requirements:
+    CALIBRATION_LOCKED:
+      - authoritative_raw_verified
+      - all_models_and_weights_pinned_by_digest
+      - all_thresholds_calibrated_with_evidence
+      - 004_contact_gold_human_approved
+    FROZEN:
+      - same_code_and_profile_blind_pass_025
+      - same_code_and_profile_blind_pass_149
+      - no_session_specific_override
+      - all_required_contracts_approved
+
+frozen_inputs:
+  exact78_manifest:
+    path: HumanEgo/data_manifests/retarget_ab/kai22_r2.json
+    sha256: 4378c6011e5af39ed0e6bc0fd3e8a054ce1d1ceb5279cb513b6be17375984e6c
+    sessions: 78
+    frames: 32318
+    split: {train: 62, validation: 8, test: 8}
+  exact78_r2_sidecars:
+    root: HumanEgo/data_manifests/robot_sidecars_v4_candidate/r2_robust24_confidence_temporal/kai22
+    expected_verified_count: 78
+    mutable: false
+  raw:
+    root: /mnt/data/egodata
+    access: READ_ONLY
+    readiness: PASS_G0_SOURCE_READABLE
+    source_manifest_path: contracts/manifests/verified_source_manifest_v1.json
+    source_manifest_sha256: 1dc476360d567894ba629dd74dae608f5d8fd80b0991767611259e47929342a6
+    validated_sessions:
+      grap_a_cap_004: 31cc7c227b74799feb0f587c330c33f1a13aaccf85e6244ac234a2b71ecd6840
+      grap_a_cap_025: 774a92dc709a0baa6b628aa45e2f7264cc84fd162f1e09dce702e75cdbba2c24
+      grap_a_cap_149: ce53f0c7e584c65357507a40558d1f9345c9facee768d9200f71c80357289eca
+    authorized_calibration_sessions: [grap_a_cap_004]
+
+product_lines:
+  004_CONTACT_GOLD:
+    isolated_namespace: true
+    may_overwrite_r2: false
+    allowed_single_change_branches: [OBJECT_GEOMETRY, RETARGET_QHAND, COMPOSITOR]
+  EXACT78_R2_VISUAL_DOMAIN:
+    isolated_namespace: true
+    r2_read_only: true
+    only_planned_variable: image_selector
+
+diagnostic_tracks:
+  HAND_ONLY_DIAGNOSTIC:
+    formal_selector_eligible: false
+  HAND_ARM_FINAL:
+    formal_selector_eligible: true
+
+dependencies:
+  sam2_1_mask_evidence:
+    availability: AVAILABLE_PINNED_G2_CALIBRATION_ONLY
+    asset_pin_ref: assets/models/sam2_1_hiera_large/ASSET_PIN.json
+    asset_pin_sha256: 7b03a85cdecf5e71ef7b1d65dd38fdbf73deea0e9ddfc2bbe41ddc111d7b11c0
+    implementation_ref: assets/models/sam2_1_hiera_large/implementation
+    implementation_inventory_sha256: 97e9ab4200d741d5ea8c5c4e63b46793a6a9b886c87abea6954f21dc3520025c
+    repository: https://github.com/IDEA-Research/Grounded-SAM-2.git
+    commit: b7a9c29f196edff0eb54dbe14588d7ae5e3dde28
+    git_tree: 79b4104ff480263e3727d9f08c1d018829ddf545
+    model_identifier: SAM2_1_HIERA_LARGE
+    config_path: sam2/configs/sam2.1/sam2.1_hiera_l.yaml
+    config_sha256: 545e4325aa5c19a1615d43c946b07276ed4c57214eacf1437e38fa3d9374f636
+    weight_path: assets/models/sam2_1_hiera_large/sam2.1_hiera_large.pt
+    weight_bytes: 898083611
+    weight_sha256: 2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318
+    pinned: true
+    allowed_semantics: [H_core, U_contact]
+    formal_production_allowed: false
+  sam3_mask_evidence:
+    availability: UNAVAILABLE
+    implementation_ref: null
+    model_identifier: null
+    weight_path: null
+    weight_sha256: null
+    pinned: false
+    may_impersonate_with_sam2: false
+    formal_production_allowed: false
+  object6d:
+    implementation_ref: null
+    model_identifier: null
+    weight_path: null
+    weight_sha256: null
+    pinned: false
+  propainter_background:
+    implementation_ref: null
+    model_identifier: null
+    weight_path: null
+    weight_sha256: null
+    pinned: false
+    allowed_reveal_class: REVEAL_BACKGROUND
+  robot_model:
+    urdf_or_model_ref: null
+    asset_manifest_ref: null
+    asset_manifest_sha256: null
+    pinned: false
+  renderer:
+    implementation_ref: null
+    version_or_commit: null
+    environment_digest: null
+    pinned: false
+
+normalization:
+  spatial_reference_fields:
+    - image_width_px
+    - image_height_px
+    - hand_scale_px
+    - wrist_width_px
+    - forearm_width_px
+    - object_scale_px
+  temporal_reference_fields:
+    - measured_fps
+  formulas:
+    dilation_px: "clamp(round(k_dilate * hand_scale_px), dilation_min_image_ratio * min(width_px,height_px), dilation_max_image_ratio * min(width_px,height_px))"
+    contact_band_px: "clamp(round(k_contact * object_scale_px), contact_min_image_ratio * min(width_px,height_px), contact_max_image_ratio * min(width_px,height_px))"
+    expected_forearm_width_px: "k_forearm * wrist_width_px"
+    temporal_window_frames: "round(temporal_window_seconds * measured_fps)"
+  coefficients:
+    k_dilate: null
+    k_contact: null
+    k_forearm: null
+    temporal_window_seconds: null
+  bounds:
+    dilation_min_image_ratio: null
+    dilation_max_image_ratio: null
+    contact_min_image_ratio: null
+    contact_max_image_ratio: null
+  readiness: DRAFT_BASE_TASK_CARD_DIMENSIONLESS_OVERLAY_REQUIRED
+  missing_measurement_action: HOLD_UNSUPPORTED
+
+calibration_overlay_policy:
+  allowed: true
+  scope: G2_004_MASK_CLEAN_REVIEW_ONLY
+  location: TASK_CARD_ONLY
+  section: dimensionless_calibration_overlay
+  sha256_binding_required: true
+  values_must_be_dimensionless: true
+  base_profile_lifecycle_must_remain: DRAFT
+  review_state: UNREVIEWED_CALIBRATION_OVERLAY
+  candidate_artifact_state: G2_CALIBRATION_CANDIDATE
+  allowed_keys:
+    - k_dilate
+    - k_contact
+    - k_forearm
+    - dilation_min_image_ratio
+    - dilation_max_image_ratio
+    - contact_min_image_ratio
+    - contact_max_image_ratio
+    - temporal_window_session_duration_ratio
+    - mask_keypoint_recall_ratio
+    - mask_forward_backward_iou_ratio
+    - donor_coverage_ratio
+    - donor_flow_consistency_ratio
+    - donor_photometric_residual_normalized
+    - hand_box_padding_hand_scale
+    - forearm_half_width_hand_scale
+    - forearm_prompt_step_hand_scale
+    - wrist_device_radius_hand_scale
+    - object_core_erosion_object_scale
+    - object_visible_saturation_ratio
+    - object_visible_analytic_iou_ratio
+    - object_donor_coverage_ratio
+    - candidate_max_box_area_ratio
+    - forearm_prompt_recall_ratio
+    - temporal_validation_analysis_image_ratio
+  session_or_frame_specific_keys_allowed: false
+  formal_gate_claim_allowed: false
+  formal_consumer_allowed: false
+
+mask_experiment_governance:
+  state: B0A_B0B_FROZEN_B3_AND_BLIND_EVALUATION_HOLD
+  heuristic_line_terminal_version: v9
+  v10_heuristic_authorized: false
+  producer_identity_required: true
+  producer_identity_pattern: producer_pN
+  auditor:
+    target_identity: auditor_a1
+    freeze_state: FROZEN_HUMAN_REVIEW_POLICY_DIAGNOSTIC_ONLY_NO_AUTOMATIC_PASS
+    implementation_ref: pipeline/auditor/mask_auditor_a1.py
+    implementation_sha256: 82d21b01a623093d2c89308ba7d1dd596f6d062d6273b8044db5df12356e9c7c
+    claim_limit: BENCHMARK_DIAGNOSTIC_RANKING_ONLY_NOT_PRODUCTION_PASS
+    threshold_profile_ref: {policy: HUMAN_REVIEW_POLICY, empirical_noise_floor: null, noise_floor_status: UNAVAILABLE_USER_WAIVED_0_OF_8, automatic_pass_thresholds: null}
+    advancement_decision_policy_ref: {policy: HUMAN_REVIEW_POLICY, automatic_pass_allowed: false, automatic_advancement_allowed: false, candidate_terminal_state: AWAITING_HUMAN_CANDIDATE_REVIEW}
+    side_identity_advancement_gate:
+      identities: [left, right]
+      independent_evidence_and_decision_required: true
+      no_target_in_frame_requires_raw_visual_confirmation: true
+      raw_instance_zero_or_seed_outside_image_is_not_sufficient: true
+      max_cross_session_vs_development_pass_rate_gap: 0.15
+      max_absolute_left_right_pass_rate_gap: 0.10
+      selector_rejected_recalled_instance_overlay_required: true
+      object_or_background_corruption: IMMEDIATE_HOLD
+    evidence_route_scope:
+      required_field: route_of_evidence
+      allowed_values: [A, B]
+      cross_route_inference_forbidden: true
+      route_A_pixel_chain: TEXT_OR_CONCEPT_TO_INSTANCE_RECALL_TO_EGO_SELECTOR_TO_MASK
+      route_B_pixel_chain: HAWOR_POINT_PROMPT_TO_SAM2_1_MASK_DECODER_TO_MASK
+      route_A_selector_or_recall_failure_is_route_B_evidence: false
+      route_B_point_prompt_failure_is_route_A_evidence: false
+      self_attested_boolean_or_free_form_lineage_is_sufficient: false
+      evidence_ref_requirements: [regular_file, no_symlink_in_any_path_component, root_contained, bytes, sha256, typed_source_kind]
+      route_B_point_evidence_required: [side, normalized_xy, in_bounds, quality_value, quality_policy_ref, quality_policy_sha256, verified_source_manifest_sha256, source_ref, source_bytes, source_sha256, label_independent_provenance_ref]
+      route_B_point_quality_policy: {path: contracts/hawor_point_quality_policy_v1.json, sha256: 0754ec83a22c84e39df1783b435f9693801adcb871b2b2da733c6d5895856506, minimum_quality_rule: STRICTLY_GREATER_THAN_ZERO}
+      boundary_supported_role: DIAGNOSTIC_ONLY_NOT_REJECTION
+      one_side_authority_outside_action: HOLD_THAT_SIDE_ONLY_OTHER_SIDE_CONTINUES
+      route_A_raw_instance_identity_required: [source_ref, source_bytes, source_sha256, instance_id, frame_id]
+      cross_pool_same_raw_instance_action: HOLD_BOTH_SIDES
+      gpu_admission_must_execute_real_o_excl_owner_marker_and_sha_checks: true
+      gpu_admission_independent_qa_binding: EXACT_TASK_MODULE_TESTS_IMPLEMENTATION_SHA_AND_CANONICAL_QA_IDENTITY
+      boolean_claim_of_o_excl_is_sufficient: false
+    route_b_scope_gate:
+      state: UNTESTED_REQUIRED_BEFORE_ADVANCEMENT
+      hypothesis: ONE_LABEL_INDEPENDENT_HAWOR_POINT_EXPANDS_TO_COMPLETE_HAND_WRIST_CUFF_SLEEVE_AND_FOREARM_TO_IMAGE_BOUNDARY
+      report_separately_from_left_right_identity: true
+      systematic_short_mask_reason: SYSTEMATIC_SCOPE_TOO_SMALL
+      aggregate_coverage_may_hide_failure: false
+    official_sam31_concept_training:
+      state: HOLD_CONDITIONAL_ROUTE_A_ONLY
+      trigger: ROUTE_A_PER_SIDE_IDENTITY_FIXED_AND_RETESTED_AND_RECALL_REMAINS_BOTTLENECK
+      route_of_evidence: A
+      official_training_stack_available: true
+      project_U_pixel_zero_loss_supported_without_loss_change: false
+      requires_official_loss_modification_and_independent_audit: true
+      original_trainability_t0_claim_scope: ROUTE_B_PUBLIC_POINT_INTERFACE_ONLY_NOT_SAM31_UNTRAINABLE
+    freeze_ref: {ref: _run/g2_auditor_a1_freeze_v1/8e084d147cc4a0102a27ac5b6a9643125ec8a2472531de998086392baf110b1f/AUDITOR_FREEZE.json, sha256: d2cd400a5ffb7e30f365f1ae3af21fb916b31302e64034ca8ba75c36c001fd9c}
+  benchmark:
+    schema: contracts/mask_benchmark.schema.json
+    state: V2_FROZEN_HUMAN_REVIEWED_WITH_0_255_ADAPTER
+    staging_v1:
+      manifest_ref: _run/g2_mask_benchmark_v1/BENCHMARK_MANIFEST.json
+      manifest_sha256: 85f09ef99f3445350619a2f202f70c9182fc5ffd5f0297e32dfd32038f212a36
+      frame_count: 60
+      pilot_review: {ref: _run/g2_mask_benchmark_v1/human_labels/PILOT_5_REVIEW.json, sha256: 9d218c494dd6bdc67a8249c74ea0364c746247a607dfb4463dce02a383d50960, state: PASS_PILOT_ONLY_NOT_FROZEN}
+    staging_v2:
+      manifest_ref: _run/g2_mask_benchmark_v2/BENCHMARK_MANIFEST.json
+      manifest_sha256: 60b9df265169bb2a4d575bfc3a836039c9ba0d618922a6f8b08dbf7b44b9fde1
+      run_manifest_ref: _run/g2_mask_benchmark_v2/run_manifest.json
+      run_manifest_sha256: 0692d73123c8ad710367da3277d0a907620e8c76a9b8f21e1ae809de6d6c5ce4
+      frame_count: 45
+      partitions: {development_004: 15, same_session_blind_004: 15, cross_session_blind_025: 15}
+      held_out_final_blind_session: grap_a_cap_149
+      migration_provenance_sha256: 7d57cfcf4c7741ad43068acb693607b016d3d9dcd3df31190e1c4639d6be7b92
+      state: HUMAN_LABELS_VALIDATED_AND_T2_FROZEN_VIA_0_255_ADAPTER
+      live_label_counts: DERIVE_AT_RUNTIME_FROM_LABEL_FREEZER_INPUTS_NEVER_PIN_IN_PROFILE
+      derived_t0_label_manifest:
+        ref: _run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json
+        sha256: 3038770f20a36a1a31dff98ed4997e5db59d008c339753fc43321c76edb01d33
+        state: DERIVED_T0_NOT_FROZEN
+        freeze_ref_issued: true
+        original_binary_values: [0, 1]
+        consumer_allowed: false
+    frozen_ref: {ref: _run/g2_mask_benchmark_freeze_v1/8bdd4cb5e994a9a648adbc20bafb9a59e28a67a1118d1043501159da1888e7ac/BENCHMARK_FREEZE.json, sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b, state: FROZEN_HUMAN_REVIEWED, binary_values: [0, 255], binary_mask_count: 180, reverse_palette_exact_frames: 45}
+    frame_count_min: 45
+    frame_count_max: 60
+    label_classes: [H, O, U, B]
+    u_training_semantics: ASYMMETRIC_FALSE_NEGATIVE_ONLY
+    u_zero_weight_forbidden: true
+    u_hard_positive_merge_forbidden: true
+    u_metric_variants_required: [u_as_h, u_excluded]
+    u_gap_human_review_flag_required: true
+    partitions:
+      development_004: {count_min: 15, count_max: 20, tuning_visible: true}
+      same_session_blind: {count_min: 15, count_max: 20, tuning_visible: false}
+      cross_session_blind: {count_min: 15, count_max: 20, tuning_visible: false}
+  label_interface:
+    ui_output: SINGLE_PALETTE_PNG_B0_H1_O2_U3
+    auditor_input: FOUR_MUTUALLY_EXCLUSIVE_BINARY_HOUB_MASKS
+    unique_atomic_label_freezer_state: T2_FROZEN_0_255_ADAPTER_ORIGINAL_T0_0_1_PRESERVED
+    derived_t0_manifest: {ref: _run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json, sha256: 3038770f20a36a1a31dff98ed4997e5db59d008c339753fc43321c76edb01d33, freeze_ref_issued: true, original_binary_values: [0, 1], consumer_allowed: false}
+    frozen_adapter: {binary_values: [0, 255], binary_mask_count: 180, reverse_palette_exact_frames: 45, benchmark_freeze_sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b}
+    independent_second_pass: {ref: _run/g2_mask_benchmark_v2/secondary_annotation_b1/SECONDARY_ANNOTATION_MANIFEST.json, sha256: 7f346743f9e2bdfca1cb200937722023b1c046b987d8383035bb813115f8f565, completed: 0, required: 8, state: USER_WAIVED_0_OF_8, noise_floor: UNAVAILABLE_USER_WAIVED, human_need_open: false}
+    round_trip_exactness_required: true
+    label_manifest_and_freeze_ref_required: true
+  fixed_metrics: [human_miss, object_corruption, background_overmask, boundary_excluding_u, temporal_flip]
+  metric_priority: [human_miss, object_corruption, large_background_overmask, boundary_excluding_u, temporal_flip]
+  historical_comparison_policy: FORENSIC_ONLY_UNTIL_UNIFORM_REEVALUATION
+  historical_candidates:
+    v3: {coverage: FULL_004_460, auditor_identity: HISTORICAL_NON_A1, rankable: false}
+    v8: {coverage: FOUR_FRAME_DIAGNOSTIC, auditor_identity: FOREARM_V8_DIAGNOSTIC_QA, rankable: false}
+    v9: {coverage: FIFTEEN_FRAME_DIAGNOSTIC, auditor_identity: FOREARM_V9_DIAGNOSTIC_QA, rankable: false, decision: DIAGNOSTIC_HOLD}
+    producer_p1_r3: {coverage: WINDOW_004_200_259_60_FRAMES, producer_identity: producer_p1, manifest_sha256: d70afdf99fe45647cc8e42d2cb5434453f45c795c993dec277bbc2df859055b2, independent_qa_sha256: dd4e93a718e6000d66b83d79d8a02f8d90e9bd4cd6433ff757612bda816f38b8, rankable: false, decision: HOLD_T1_FORENSIC_PIXEL_AND_SCHEMA_FAILURE, authoritative_mask_evidence_schema_valid: false, schema_error_count: 614, formal_consumer_allowed: false}
+  ranking_requirements: [same_frozen_benchmark_sha256, same_frozen_auditor_a1_sha256, all_partitions_complete, producer_identity_bound]
+  missing_noise_floor_policy:
+    state: HUMAN_REVIEW_POLICY_FROZEN
+    allowed_routes: [HUMAN_REVIEW_POLICY]
+    conservative_policy_requirement: BLIND_INDEPENDENT_THRESHOLDS_FORMULAS_CLAIM_LIMIT_AND_SHA_FROZEN_BEFORE_EVALUATION
+    human_review_policy_requirement: NO_AUTOMATIC_ADVANCEMENT_ALL_CANDIDATES_HOLD_FOR_HUMAN_REVIEW
+    b0a_freeze_issued: true
+    auditor_freeze_issued: true
+    blind_unsealed: false
+    t2_authorized: true
+    b3_authorized: false
+    automatic_pass_allowed: false
+  second_sam_policy: DIFFICULT_WINDOW_TRIGGER_ONLY_AFTER_UNIFORM_BENCHMARK_SUPPORT
+  geometry_role: PROMPT_AND_AUDIT_ONLY_NEVER_FILL_UNION_OR_HARD_CROP
+
+reject_hold_evidence_registry:
+  state: IMPLEMENTED_REVIEW_ONLY_NOT_A_FORMAL_ARTIFACT
+  registry_ref: _run/rejected_visual_review_v1/MANIFEST.json
+  registry_sha256: 9ae293385f4f0f5cafec8f3d66d8a2ad5403759abc0f749f6d32413c3da5abcf
+  index_ref: _run/rejected_visual_review_v1/INDEX.html
+  index_sha256: edd14102eb994023fb1b0f54afa383bbea413d82748ea089218dbd3aa1abe888
+  asset_count: 13
+  coverage: MASK_V1_THROUGH_V9_AND_A2_REPRESENTATIVE_VISUAL_EVIDENCE
+  required_for: [REJECT, HOLD]
+  required_fields: [run_or_candidate_id, failed_stage, failed_frames, raw_refs_and_sha256, candidate_manifest_and_artifact_sha256, visualization_refs_and_sha256, independent_qa_ref_and_sha256, single_owner, human_review_status]
+  human_review_states: [UNREVIEWED, REVIEWED_ACKNOWLEDGED, REVIEWED_DISPUTED]
+  review_may_mutate_upstream_or_decision: false
+  formal_consumer_allowed: false
+  t2_or_blind_unsealed: false
+  b1_second_pass_required_by_registry: false
+  future_rule: CREATE_NEW_IMMUTABLE_REVIEW_PACK_VERSION_FOR_EACH_NEW_VISUAL_REJECT_OR_HOLD
+
+calibration_object_evidence:
+  session_id: grap_a_cap_004
+  access: READ_ONLY
+  refinement_allowed_before_human_mask_clean_review: false
+  files:
+    object_6dof_v2_npz: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/object_6dof_v2.npz, sha256: 97fb5747411830b2caa9f34cc164dca39cd411227a8ffaa7229b6e523eaf6a13}
+    cylinder_geometry: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/cylinder_geometry.json, sha256: fea720ec2d1c0c8ef311bce5dd65e7f47e806da7bedee3f96c9a3ee9fe6f4631}
+    v2_summary: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/v2_summary.json, sha256: c6b6f27d2812e756789bcd73c9708250cd5c300d12d66fb8a39627e684749d91}
+  claim_limit: READ_ONLY_PROMPT_AND_ANALYTIC_GEOMETRY_EVIDENCE_NOT_VISUAL_PASS
+
+canary_selection:
+  count_min: 12
+  count_max: 24
+  algorithm_ref: null
+  algorithm_digest: null
+  required_strata:
+    - arm_area_low
+    - arm_area_high
+    - pre_contact
+    - first_contact
+    - stable_grasp
+    - maximum_occlusion
+    - release
+    - high_motion
+    - high_blur
+    - object6d_invalid_or_low_confidence
+    - donor_sparse
+  selection_must_be_automatic: true
+  manual_review_required_for_004: true
+  session_id_based_selection_allowed: false
+
+human_review_gates:
+  G0:
+    kind: MACHINE_CONSISTENCY_ONLY
+    routine_human_visual_review: false
+  G1:
+    kind: MACHINE_CONTRACT_CONSISTENCY_ONLY
+    routine_human_visual_review: false
+  G2_FIRST_ROUTINE_VISUAL_REVIEW:
+    product_line: 004_CONTACT_GOLD
+    input_scope: [RAW, MASK, CLEAN]
+    review_frames: AUTOMATIC_12_TO_24_STRESS_FRAMES
+    full_preview_video_required: true
+    waiting_state: AWAITING_HUMAN_MASK_CLEAN_REVIEW
+    approval_ref: null
+    approval_ref_sha256: null
+    before_approval_allowed: [FREEZE, MACHINE_VALIDATE, PACKAGE_REVIEW_EVIDENCE]
+    before_approval_forbidden: [OBJECT6D_REFINEMENT, RETARGET, BASE_IK, RENDERER, COMPOSITOR, HARMONIZER, FINAL_ROBOT]
+    missing_or_pending_action: WAIT_FOR_HUMAN
+
+route_registry:
+  outcomes: [PASS_FULL_SESSION, RETRY_STANDARD_ROUTE, HOLD_UNSUPPORTED]
+  routes:
+    OBJECT6D_GEOMETRY_TEXTURE:
+      reveal_class: REVEAL_OBJECT
+      enabled: false
+      required_evidence: [object6d_pose, metric_geometry, object_depth_sdf, texture_donor]
+      enablement_blocker: REQUIRED_REFERENCES_AND_THRESHOLDS_UNSET
+    CAD_GEOMETRY_TEXTURE:
+      reveal_class: REVEAL_OBJECT
+      enabled: false
+      required_evidence: [cad_identity, metric_scale, object_pose, texture_donor]
+      enablement_blocker: REQUIRED_REFERENCES_AND_THRESHOLDS_UNSET
+    ANALYTIC_GEOMETRY_TEXTURE:
+      reveal_class: REVEAL_OBJECT
+      enabled: false
+      calibration_enabled: true
+      formal_enabled: false
+      required_evidence: [analytic_shape_identity, metric_scale, object_pose, texture_donor]
+      enablement_blocker: FORMAL_THRESHOLDS_NOT_REVIEWED
+    TEMPORAL_DONOR_ATLAS:
+      reveal_class: REVEAL_BACKGROUND
+      enabled: false
+      calibration_enabled: true
+      formal_enabled: false
+      required_evidence: [verified_temporal_donor, donor_coverage, occlusion_free_support]
+      enablement_blocker: FORMAL_THRESHOLDS_NOT_REVIEWED
+    PROPAINTER_BACKGROUND:
+      reveal_class: REVEAL_BACKGROUND
+      enabled: false
+      required_evidence: [pinned_model_weight, verified_background_reveal, temporal_support]
+      enablement_blocker: REQUIRED_REFERENCES_AND_THRESHOLDS_UNSET
+  implicit_fallback_allowed: false
+  unknown_route_action: HOLD_UNSUPPORTED
+
+reveal_and_clean_contract:
+  verified_reveal_policy_schema: contracts/verified_reveal_policy.schema.json
+  object_texture_donor_manifest_schema: contracts/object_texture_donor_manifest.schema.json
+  temporal_atlas_manifest_schema: contracts/temporal_atlas_manifest.schema.json
+  mask_independent_qa_schema: contracts/mask_independent_qa.schema.json
+  review_package_schema: contracts/mask_clean_review_package.schema.json
+  reveal_target: H_CORE_UNION_U_CONTACT
+  protected_o_visible_core_action: HOLD_UNSUPPORTED
+  contradictory_identity_action: HOLD_UNSUPPORTED
+  insufficient_identity_or_coverage_action: HOLD_UNSUPPORTED
+  pre_post_object_overlap_accounting_required: true
+  background_route_may_fill_object_reveal: false
+  object_route_may_fill_background_reveal: false
+  formal_clean_enabled: false
+  formal_clean_authorization_ref: null
+  synthetic_test_only_formal_consumer_allowed: false
+  independent_mask_qa_required_before_review_packaging: true
+  frozen_mask_benchmark_required_before_mask_qa_pass: true
+
+route_metrics:
+  arm_area_ratio:
+    aggregation: null
+    pass_threshold: null
+  contact_ratio:
+    aggregation: null
+    pass_threshold: null
+  motion:
+    aggregation: null
+    pass_threshold: null
+  blur:
+    aggregation: null
+    pass_threshold: null
+  object6d_valid_ratio:
+    aggregation: null
+    pass_threshold: null
+  donor_coverage:
+    aggregation: null
+    pass_threshold: null
+  readiness: UNREVIEWED_TASK_CARD_OVERLAY_ALLOWED_FOR_G2_CANDIDATES
+  unset_action: HOLD_UNSUPPORTED
+
+quality_gates:
+  order: [L0, L1, L2, L3, L4]
+  L0:
+    checks: [schema, ordinary_file, bytes, sha256, dimensions, frame_order, selector, manifest, raw_authority]
+    thresholds: null
+    failure_action: HOLD
+  L1:
+    checks: [human_residue, object_damage, boundary, robot_coverage, color_anomaly]
+    thresholds: null
+    failure_action: SINGLE_OWNER_ATTRIBUTION
+  L2:
+    checks: [per_link_id_depth, contact, sdf_penetration, object_robot_order]
+    thresholds: null
+    failure_action: BLOCK_HARMONIZER_AND_ATTRIBUTE
+  L3:
+    checks: [flicker, pose_jump, session_constant_base, donor_coverage, failure_clustering]
+    thresholds: null
+    failure_action: RETRY_REGISTERED_ROUTE_OR_HOLD
+  L4:
+    checks: [fixed_stress_frames, four_panel_video]
+    thresholds: null
+    human_review_policy: REQUIRED_WHEN_TASK_CARD_SAYS_REQUIRED
+    failure_action: WAIT_FOR_HUMAN_OR_HOLD
+  readiness: UNCALIBRATED
+  unset_action: HOLD
+
+harmonization:
+  enabled: false
+  prerequisite: L2_PASS
+  allowed_regions: [robot_rgb, narrow_boundary_band]
+  forbidden_channels_or_regions: [alpha, depth, object, background, geometry]
+  boundary_band_formula_ref: normalization.contact_band_px
+  appearance_parameters: null
+  audit_required: true
+
+promotion:
+  enabled: false
+  source_template: _run/{run_id}/sessions/{session_id}
+  destination_template: data/processed/formal_legacy/{session_id}_v{version}
+  method: FSYNC_THEN_SAME_FILESYSTEM_ATOMIC_RENAME
+  overwrite_allowed: false
+  required_track: HAND_ARM_FINAL
+  required_gates: [L0, L1, L2, L3, L4]
+  unreviewed_human_gate_action: WAIT_FOR_HUMAN
+
+forbidden_overrides:
+  session_ids: []
+  frame_ids: []
+  session_specific_parameters: {}
+  per_frame_thresholds: {}
+  hidden_fallbacks: []
+
+draft_blockers_apply_to: FORMAL_PRODUCTION_ONLY
+draft_blockers:
+  - MODELS_AND_WEIGHTS_NOT_PINNED
+  - NORMALIZATION_COEFFICIENTS_NOT_CALIBRATED
+  - ROUTE_THRESHOLDS_NOT_CALIBRATED
+  - QUALITY_THRESHOLDS_NOT_CALIBRATED
+  - HUMAN_APPROVAL_NOT_RECORDED
+  - ARTIFACT_SCHEMAS_STILL_MARKED_UNDEFINED_DRAFT
+
+calibration_start_requirements:
+  - FROZEN_HOUB_BENCHMARK_SHA_MATCH
+  - FROZEN_AUDITOR_A1_CODE_PROTOCOL_THRESHOLD_SHA_MATCH
+  - UNIFORM_CANDIDATE_COVERAGE_AND_REEVALUATION_COMPLETE
+  - G2_TASK_CARD_WITH_UNIQUE_ASSUMPTION_AND_SHA
+  - VERIFIED_SOURCE_MANIFEST_SHA_MATCH
+  - SAM2_1_CODE_CONFIG_WEIGHT_SHA_MATCH
+  - DIMENSIONLESS_CALIBRATION_OVERLAY_SHA_MATCH
+  - SEVEN_G2_PRE_REVIEW_ARTIFACT_SCHEMAS_VALIDATE
+  - OUTPUTS_STAY_IN_RUN_STAGING
+  - TERMINAL_STATE_AWAITING_HUMAN_MASK_CLEAN_REVIEW

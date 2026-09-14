@@ -1,0 +1,26 @@
+{
+  "created_at": "2026-09-13T02:25:40+08:00",
+  "files": {
+    "authority": {
+      "bytes": 20197,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/snapshots/20260913_0230_AUTHORITY_INDEX.json",
+      "sha256": "71ab88340011761fab9f7f9a65fbda01f73ee1c07bef01d46b4dfb88bd58e3e6"
+    },
+    "status": {
+      "bytes": 8824,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/snapshots/20260913_0230_MEETING_STATUS_ZH.md",
+      "sha256": "cdf09f37f1368901a396552c04d19dc078028a834022a9fd970f00727a02cd63"
+    },
+    "task_state": {
+      "bytes": 15111,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/snapshots/20260913_0230_TASK_STATE.json",
+      "sha256": "3b7ce9f69f5c929640261f01d9e99679d57a2a949736b51c2d58500550e23a15"
+    }
+  },
+  "schema_version": "chaoyang-project-status-snapshot-receipt-v1",
+  "source_receipt": {
+    "bytes": 983,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "sha256": "b40734c917d391b7a452da7e430032cd8ee51b8cc9e9e2f11f87360de30cee44"
+  }
+}

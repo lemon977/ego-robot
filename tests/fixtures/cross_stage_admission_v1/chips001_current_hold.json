@@ -1,0 +1,370 @@
+{
+  "schema_version": "chaoyang-cross-stage-evidence-v1",
+  "session_id": "get_potato_chips_0901_001",
+  "task_id": "chips",
+  "training_profile": "ROBOT_RGB_COMPOSITE_KAI22",
+  "image_variant": "ROBOT_COMPOSITE",
+  "stages": {
+    "capture": {
+      "scope": "FULL_SESSION",
+      "reported_status": "SOURCE_DIAGNOSTIC_COMPLETE_DOWNSTREAM_HOLD",
+      "claim_limit": "Source/PICO diagnostic; PICO21 is not MANO21 and Object6D/static-base/clean-plate authority is absent.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/pipeline/20260903_source_gate_full16_v3/get_potato_chips_0901_001/SOURCE_GATE.json",
+          "sha256": "fcd6f1c3e4239bc4f6af170bc79fcb4c1df8553ab429d856e652eea7a44541e1",
+          "role": "source_gate_v3"
+        }
+      ],
+      "gate_contract": {
+        "id": "newtask-source-gate-v3-runner",
+        "path": "/mnt/workspace/code/chaoyang/tools/audit_newtask_source_sessions.py",
+        "sha256": "2819cd4548be8f96b3d5d636aa9837500616100474bbd33d9ed0691408ba0130",
+        "frozen_before_evaluation": true
+      },
+      "gates": {
+        "media_integrity": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "timeline_integrity": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "camera_intrinsics": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "camera_world": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "pico21_diagnostic": {
+          "status": "FAIL",
+          "authority": "CAPTURE",
+          "reason_codes": ["PICO21_WRIST_STEP_OUTLIER_NOT_HAWOR_MANO21"]
+        },
+        "pico21_left_provider": {
+          "status": "FAIL",
+          "authority": "CAPTURE",
+          "reason_codes": ["PICO_LEFT_WRIST_STEP_313MM"]
+        },
+        "pico21_right_provider": {
+          "status": "PASS",
+          "authority": "CAPTURE",
+          "reason_codes": []
+        },
+        "task_interval_defined": {"status": "PASS", "authority": "CAPTURE", "reason_codes": []},
+        "segment_contract": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["NINE_SEGMENT_CAPTURE_CONTRACT_NOT_PRESENT"]
+        },
+        "clean_donor_authority": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["COMPLETE_SAME_SESSION_DONOR_ARCHIVE_NOT_VERIFIED"]
+        },
+        "static_setup_anchor_authority": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["STATIC_SETUP_ANCHOR_NOT_SEPARATELY_AUTHORIZED"]
+        },
+        "object6d_authority": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["OBJECT6D_NOT_PRESENT"]
+        },
+        "session_static_base": {
+          "status": "HOLD",
+          "authority": "CAPTURE",
+          "reason_codes": ["NO_FIDUCIAL_OR_CALIBRATED_ROBOT_BASE"]
+        }
+      }
+    },
+    "hawor": {
+      "scope": "CANARY",
+      "reported_status": "COMPLETE_CANARY_NEEDS_VISUAL_IDENTITY_CONTACT_AUTHORITY",
+      "claim_limit": "36-frame numeric canary only.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/pipeline/20260903_hawor_chips001_canary_v1/RESULT.json",
+          "sha256": "34292c2b8fabb08c458598b7ec196d2954566790a6cb8ed14dc53daafabd80b1",
+          "role": "hawor_canary_result"
+        }
+      ],
+      "gate_contract": {
+        "id": "newtask-hawor-mano21-canary-v1-runner",
+        "path": "/mnt/workspace/code/chaoyang/tools/run_hawor_newtask_canary.py",
+        "sha256": "baaf856cad6e6275436deb405f4539d821252f779af3b8def34d0235265448df",
+        "frozen_before_evaluation": true
+      },
+      "gates": {
+        "execution": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "mano21_structure": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "numeric_mask_seed": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "numeric_robot_seed": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "anatomical_identity": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["INDEPENDENT_IDENTITY_REVIEW_MISSING"]
+        },
+        "independent_contour": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["FROZEN_CONTOUR_LABELS_MISSING"]
+        },
+        "direct_provenance": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "contact_direct_observation": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["OBJECT_STATE_CONTACT_TIMELINE_MISSING"]
+        }
+      }
+    },
+    "mask": {
+      "scope": "CANARY",
+      "seed_route": "PICO_RAW_POINT",
+      "provider_routes": {
+        "human_core": {
+          "left": {
+            "provider": "PICO_OPENXR21",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["PICO_LEFT_G2_WRIST_STEP_313MM"]
+            }
+          },
+          "right": {
+            "provider": "PICO_OPENXR21",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["CHIPS001_NOT_REGISTERED_FORMAL_MASK_PROVIDER"]
+            }
+          }
+        },
+        "wearable_tracker": {
+          "left": {
+            "provider": "VISUAL_INSTANCE",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["LEFT_TRACKER_FULL_SESSION_IDENTITY_NOT_PROVEN"]
+            }
+          },
+          "right": {
+            "provider": "VISUAL_INSTANCE",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["RIGHT_TRACKER_FULL_SESSION_IDENTITY_NOT_PROVEN"]
+            }
+          }
+        },
+        "moving_task_object": {
+          "global": {
+            "provider": "VISUAL_INSTANCE",
+            "eligibility": {
+              "status": "HOLD",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": ["MOVING_CHIPS_INSTANCE_IDENTITY_NOT_PROVEN"]
+            }
+          }
+        },
+        "static_setup_anchor": {
+          "global": {
+            "provider": "NOT_USED",
+            "eligibility": {
+              "status": "PASS",
+              "authority": "INDEPENDENT_QA",
+              "reason_codes": []
+            }
+          }
+        }
+      },
+      "consumption_authorized": false,
+      "reported_status": "FAIL_STOP_BEFORE_FULL",
+      "claim_limit": "Discontinuous 12-frame visual canary only.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/mask/20260903_chips001_formal_sharedckpt_canary12_v1/gpu_sampled12/MASK_VISUAL_REVIEW.json",
+          "sha256": "267c0371f4a0c8b7667a6e42bc452fc2ebfc906e3cafc698ec357049a79cf753",
+          "role": "independent_visual_review"
+        }
+      ],
+      "gate_contract": {
+        "id": "chips-formal-pico-canary-contract-v1",
+        "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/mask/20260903_formal_pico_canary_contract_v1/CANARY_CONTRACT.json",
+        "sha256": "b714a64eeb2466a46a96e24ed22dafa9345cb03f9f00eaf3a92ae9e12de38cc5",
+        "frozen_before_evaluation": true
+      },
+      "gates": {
+        "input_authority": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "semantic_roles": {
+          "status": "FAIL",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["RIGHT_TRACKER_LEAKS_TO_BACKGROUND"]
+        },
+        "moving_task_object_identity": {
+          "status": "HOLD",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["MOVING_OBJECT_IDENTITY_NOT_PROVEN_FULL_SESSION"]
+        },
+        "static_setup_anchor_scope": {
+          "status": "HOLD",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["STATIC_SETUP_ANCHOR_SCOPE_NOT_REVIEWED"]
+        },
+        "prompt_provider_lineage": {
+          "status": "HOLD",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["ROLE_SIDE_PROVIDER_LINEAGE_NOT_FROZEN"]
+        },
+        "temporal_identity": {
+          "status": "FAIL",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["DISCONTINUOUS_SAMPLE_PROPAGATION_INVALID"]
+        },
+        "full_session_coverage": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["FULL_PROPAGATION_STOPPED"]
+        },
+        "object_protection": {"status": "PASS", "authority": "INDEPENDENT_QA", "reason_codes": []},
+        "lineage_integrity": {"status": "PASS", "authority": "PRODUCER", "reason_codes": []},
+        "manual_review": {
+          "status": "FAIL",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["VISUAL_REVIEW_REJECTED"]
+        }
+      }
+    },
+    "clean": {
+      "scope": "CANARY",
+      "consumption_authorized": false,
+      "reported_status": "FAIL_STOP_BEFORE_FULL",
+      "claim_limit": "Twelve-frame old Clean v3 audit only.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/clean/20260903_chips001_clean_v3_quality_audit_v1/QUALITY_GATE.json",
+          "sha256": "651e9fa14857f0dfe702c969595e31a57c30343de3d0db6a6e1b2c812c893ace",
+          "role": "clean_quality_audit"
+        }
+      ],
+      "gate_contract": {
+        "id": "general-clean-quality-gate-v1",
+        "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/clean/20260903_chips001_clean_v3_quality_audit_v1/GENERAL_CLEAN_QUALITY_GATE_V1.json",
+        "sha256": "6ac71daac463339188375eafe8e490bbfea2c79ec224c08b4ca53cb2b3aa3a86",
+        "frozen_before_evaluation": false
+      },
+      "gates": {
+        "input_mask_authority": {
+          "status": "HOLD",
+          "authority": "NONE",
+          "reason_codes": ["FORMAL_MASK_NOT_AUTHORIZED"]
+        },
+        "donor_authority": {
+          "status": "HOLD",
+          "authority": "NONE",
+          "reason_codes": ["DONOR_ARCHIVE_CRC_NOT_VERIFIED"]
+        },
+        "donor_purity": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["HUMAN_AND_TRACKER_GHOST_RESIDUAL"]
+        },
+        "source_map": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["PER_PIXEL_SOURCE_MAP_MISSING"]
+        },
+        "spatial_residual": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["HUMAN_TRACKER_RESIDUAL_EXCEEDS_GATE"]
+        },
+        "illumination": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["STABLE_BACKGROUND_OVERWRITE_EXCESSIVE"]
+        },
+        "shadow": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["SHADOW_RESIDUAL_EXCEEDS_GATE"]
+        },
+        "seam": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["BOUNDARY_GRADIENT_EXCEEDS_GATE"]
+        },
+        "temporal": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["FLOW_STABILIZED_FLICKER_EXCEEDS_GATE"]
+        },
+        "object_protection": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["PROTECTED_OBJECT_CHANGED_AFTER_CODEC"]
+        },
+        "codec": {
+          "status": "FAIL",
+          "authority": "INDEPENDENT_QA",
+          "reason_codes": ["CODEC_P99_ERROR_EXCEEDS_GATE"]
+        },
+        "manual_review": {
+          "status": "FAIL",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["VISIBLE_HUMAN_OR_SEAM_REMAINS"]
+        }
+      }
+    },
+    "robot": {
+      "scope": "CANARY",
+      "consumption_authorized": false,
+      "sidecar_consumption_authorized": false,
+      "reported_status": "PASS_MATERIAL_CANARY_ONLY",
+      "claim_limit": "Palette A/B only; no motion/contact/collision authority.",
+      "evidence": [
+        {
+          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/robot/20260903_chips001_palette_004ref_canary12_v1/PALETTE_GATE.json",
+          "sha256": "467373a85229d5ba7349fe1da97d931f2a9b5a5b58d8a5cdb6063f965c4e735d",
+          "role": "palette_canary"
+        }
+      ],
+      "gate_contract": {
+        "id": "robot-pbr-palette-004ref-v1",
+        "path": "/mnt/workspace/code/chaoyang/systems/robot/configs/robot_pbr_palette_004ref_v1.json",
+        "sha256": "fbacbe617d49ee8b8a060afd21672ae7776d9d6835cde18c8f01e01acd79c543",
+        "frozen_before_evaluation": false
+      },
+      "gates": {
+        "input_hawor_authority": {
+          "status": "HOLD",
+          "authority": "NONE",
+          "reason_codes": ["FORMAL_HAWOR_MOTION_NOT_AUTHORIZED"]
+        },
+        "input_clean_authority": {
+          "status": "HOLD",
+          "authority": "NONE",
+          "reason_codes": ["FORMAL_CLEAN_NOT_AUTHORIZED"]
+        },
+        "mount_calibration": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["PALETTE_CANARY_HAS_NO_MOUNT_CLAIM"]
+        },
+        "session_static_base": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["PALETTE_CANARY_HAS_NO_BASE_CLAIM"]
+        },
+        "functional_retarget_authority": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["FUNCTIONAL_RETARGET_REVIEW_NOT_RUN"]
+        },
+        "object6d": {
+          "status": "NOT_EVALUATED",
+          "authority": "NONE",
+          "reason_codes": ["OBJECT6D_NOT_PRESENT"]
+        },
+        "manual_review": {
+          "status": "HOLD",
+          "authority": "HUMAN_REVIEW",
+          "reason_codes": ["PALETTE_ONLY_REVIEW_CANNOT_APPROVE_ROBOT"]
+        }
+      }
+    }
+  }
+}

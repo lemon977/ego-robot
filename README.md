@@ -1,57 +1,50 @@
-# Ego Robot Visual Replacement
+# Chaoyang Ego-to-Robot Pipeline
 
-更新时间：2026-08-26（Asia/Shanghai）
+本仓库实现第一视角数据的 Raw → HaWoR / Mask → Stereo Depth → Object6D → Clean → Contact → Robot Visual → HumanEgo 流水线。
 
-## 当前状态
+## 当前唯一入口
 
-`STOPPED_AWAITING_USER_TASK_REVIEW`
+执行或回答状态问题前，按顺序读取：
 
-仓库清理和任务文档定稿已获授权；RAW 恢复、MASK/CLEAN、Object6D、retarget、渲染、合成、训练和评测均未获开工授权。用户审核 `CURRENT_TASK.md` 并明确开始后，才创建 G0 任务卡。
+1. [当前状态 receipt](docs/governance/CURRENT_STATUS_RECEIPT.json)：绑定同一 revision 的全部 current 文件。
+2. [最小事实页](docs/governance/CURRENT_PROJECT_STATUS_MIN.json)：计数、活动任务与下一任务。
+3. [当前基线注册表 V2](docs/governance/CURRENT_BASELINE_REGISTRY_V2.json)：12 阶段算法、代码、权重、schema、质量门、authority 和限制。
+4. [当前阶段说明](docs/governance/CURRENT_STAGE_BASELINES_ZH.md)：给人看的算法与整改需求。
+5. [端到端复现文档](docs/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md)：稳定技术接口与复现顺序。
 
-## 项目目标
+旧 README、聊天、目录名中的 `current/latest/final`、未绑定 SHA 的视频都不是当前事实。
 
-用一个代码主干、一个项目级 profile、自动 session context 和有限标准路由，将 ego RAW 中的真人手、手腕和前臂替换为 Tianji 机械臂与 KaiHand 灵巧手，同时保持物体身份、轨迹、纹理、正确遮挡和时序稳定性。
-
-项目有两条严格隔离的产物线：
-
-- `004_CONTACT_GOLD`：允许在新 sidecar 中 refinement Object6D、物体 SDF、接触/非穿透和 `q_hand`，但绝不覆盖 R2。
-- `EXACT78_R2_VISUAL_DOMAIN`：冻结 R2 的 `q_hand / wrist / validity / frame order / split / 非图像输入`，只替换最终图像。
-
-`HAND_ONLY_DIAGNOSTIC` 与 `HAND_ARM_FINAL` 是诊断/渲染轨道，不是额外训练产物线。正式 RobotRGB 只能来自后者。
-
-## 权威入口
-
-按以下顺序阅读，禁止根据旧目录名中的 `final/pass/latest` 猜测状态：
-
-1. `README.md`：状态、目标和仓库边界。
-2. `CURRENT_TASK.md`：最终任务、阶段门和审核项。
-3. `TECHNICAL.md`：组件所有权、算法边界和质量门。
-4. `DATA_SPEC.md`：现存冻结数据和计划 I/O 合同。
-5. `DATA_CATALOG.json`：机器可读状态与路径。
-6. `CLEANUP_REPORT.md`：本轮删除、保留和校验证据。
-
-## 当前目录
+## 目录职责
 
 ```text
 chaoyang/
-├── HumanEgo/          # 保留的模型/训练主干与冻结 R2 数值资产
-├── assets/robot/      # 本地机器人资产；大型 mesh/CAD 不提交 Git
-├── hand_benchmark/    # exact78 紧凑冻结证据；整体不提交 Git
-├── _run/              # 新流水线可删除 staging（当前为空）
-├── processed/         # 原子晋级的正式结果（当前为空）
-└── *.md / *.json      # 权威项目文档与机器索引
+├── assets/       # 权重、Robot URDF/CAD与固定资产
+├── contracts/    # 当前机器合同和schema
+├── data/         # 小型manifest、fixture和必要项目内派生数据
+├── docs/         # current治理、技术文档、报告和历史胶囊
+├── HumanEgo/     # 视觉辅助/策略模型代码
+├── pipeline/     # 可复用阶段实现
+├── systems/      # 注册表驱动的阶段入口说明
+├── tasks/        # current与不可变证据run
+├── tests/        # 当前回归
+├── third_party/  # 固定第三方实现及许可证
+├── tools/        # current入口与治理/清理工具
+├── archive/      # 尚未完成删除证明的历史胶囊
+└── _run/         # GPU lease、lock和当前executor控制面
 ```
 
-HaWoR 与 ProPainter 不再以内嵌、修改过的平行仓库存在；后续按审核后的锁定版本作为外部依赖接入。详见 `THIRD_PARTY_NOTICES.md`。
+V6 已移除重复端到端文档和顶层深度专题包。清理采用逐目标门：与活动 Clean 无传递依赖、无 current 引用、无活动 FD/CWD且胶囊闭合的旧资产可立即删除；只有活动依赖本身需要等待。`NOW/` 已完成证据胶囊，剩余硬编码引用正在与对应旧工具一起退休。历史路径通过 `docs/governance/PATH_REDIRECTS.json` 解析。
 
-## 不可破坏的 I/O 规则
+## 不可破坏规则
 
-- `/mnt/data/egodata` 是唯一权威 RAW，只读引用，不复制进仓库；当前不可读是正式出图的硬阻塞。
-- 所有新状态和产物都写在本项目下。
-- `_run/` 不是正式数据源；正式结果只能校验后原子晋级到 `processed/<session>_vN/`。
-- 正式 consumer 只读冻结 manifest 与 `processed/`，找不到即失败，禁止从 legacy、RAW 或 staging 静默补齐。
-- 每个组件只有一个 producer；QA 只写归因和建议，不能覆盖上游正式结果。
+- `/mnt/data/egodata` 的原始数据、0909/0910 release 与数据侧可视化永久保护；`/nas/chenxianchi` 的其他项目不触碰。
+- current authority 只由 receipt 绑定的机器文件解释；生成的 current Markdown 禁止手改。
+- 已有 final 不覆盖；不同输入、代码、权重、标定或 schema 签名不得静默复用。
+- HaWoR 单目三维、Stereo/Object6D 内部残差、Robot 数字接触距离和视觉审核都不是物理真实精度。
+- `visual_robot_trajectory_sidecar` 不是 `real_robot_action_sidecar`；Visual Aux checkpoint 不是最终 Policy checkpoint。
+- Clean 合成像素不得反喂 Depth、Object6D、Contact 几何或动作真值。
+- 永久删除前必须有 dry-run 清单、零 current 引用、零活动 FD/CWD、Git保护快照和删除收据。
 
-## Git 边界
+第三方版本与许可证见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
 
-首次仓库只提交代码、配置、文档和小型 provenance。RAW、运行产物、exact78 帧级数据、checkpoint、视频、机器人运行资产、密钥与缓存由 `.gitignore` 排除。仓库级身份为 `lemonwu977 <1850764377@qq.com>`。
+KaiHand—Tianji 法兰连接件的当前硬件参考包见 [assets/robot/hardware_handoff/kaihand_flange_adapter_v1/README_ZH.md](assets/robot/hardware_handoff/kaihand_flange_adapter_v1/README_ZH.md)。该包只有经 SHA 核验的参考几何与测量清单，当前没有可直接打印的连接件 STEP/STL。

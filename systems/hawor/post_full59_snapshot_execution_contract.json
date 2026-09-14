@@ -1,0 +1,127 @@
+{
+  "capacity": {
+    "allocation_proof": "SEQUENTIAL_HIGH_ENTROPY_WRITE_FSYNC_ST_BLOCKS_AND_FULL_READBACK",
+    "held_bytes": 134217728,
+    "hold_scope": "FROM_BEFORE_HELD_CHILD_POPEN_UNTIL_AFTER_CHILD_REAP",
+    "metadata_caveat": "THE_128_MIB_DATA_RESERVATION_DOES_NOT_PROVE_CPFS_NAMESPACE_QUOTA; CREATE_REMAINS_FAIL_ATOMIC_WITH_RETAINED_FAILURE_EVIDENCE",
+    "statvfs_policy": "OBSERVATION_ONLY; ZERO_REPORTED_FREE_BYTES_REQUIRES_THIS_HELD_WRAPPER"
+  },
+  "claim_limit": "POST_FULL59_EXECUTION_CONTRACT_ONLY; NO_SNAPSHOT_IS AUTHORIZED UNTIL EVERY LIVE GATE PASSES AND THE OPERATOR SUPPLIES BOTH EXACT CONFIRMATIONS",
+  "commands": {
+    "gpu_idle_query": {
+      "argv": [
+        "nvidia-smi",
+        "--query-compute-apps=pid",
+        "--format=csv,noheader,nounits"
+      ],
+      "argv_sha256": "656f1a7f0f4fcc512562aa4320a3e6dfbb39e43a8efbe616712ae72fd98e4183"
+    },
+    "held_child": {
+      "argv": [
+        "/usr/bin/python3.10",
+        "/mnt/workspace/code/chaoyang/tools/run_hawor_post_full59_snapshot.py",
+        "--held-child"
+      ],
+      "argv_sha256": "4a8fda39242218fcef01b3f0aa2b1b369ccaea4f3783fada23055f4e715466a7"
+    },
+    "snapshot_create": {
+      "argv": [
+        "/usr/bin/python3.10",
+        "/mnt/workspace/code/chaoyang/tools/no_clobber_hardlink_snapshot.py",
+        "create",
+        "--source",
+        "/mnt/workspace/miniconda3/envs/hawor",
+        "--target",
+        "/mnt/workspace/code/chaoyang/assets/environments/hawor-py310-v1",
+        "--acknowledge-metadata-risk"
+      ],
+      "argv_sha256": "f7e17ce92d42fca076ec161a15b95ab770a020fe415889304e2415aaf709f9b3"
+    }
+  },
+  "execution_confirmations": {
+    "confirm_contract_sha256": "MUST_EQUAL_THE_CURRENT_CONTRACT_FILE_SHA256_AT_INVOCATION",
+    "confirm_post_full59_state": "FULL59_COMPLETE_59_UNIQUE_LEASE_RELEASED_GPU_IDLE_SOURCE_RETIRED"
+  },
+  "full59": {
+    "checkpoints": [
+      "tasks/chips/runs/pipeline/20260903_hawor_full_compact_v1/BATCH_GLOBAL_CHECKPOINT.json",
+      "tasks/poker/runs/pipeline/20260903_hawor_full_compact_v1/BATCH_GLOBAL_CHECKPOINT.json"
+    ],
+    "gpu_lease": "_run/GPU_LEASE.json",
+    "required": {
+      "checkpoint_bytes_identical": true,
+      "completed_exactly_matches_plan": true,
+      "completed_unique_task_session_pairs": 59,
+      "failed": 0,
+      "gpu_compute_processes": 0,
+      "gpu_lease_status": "RELEASED",
+      "hold_budget": 0,
+      "live_full59_producer_processes": 0,
+      "plan_unique_session_ids": 59,
+      "remaining": 0,
+      "source_environment_writable_fds": 0,
+      "status": "COMPLETE"
+    }
+  },
+  "paths": {
+    "capacity_release_receipt": "/mnt/workspace/code/chaoyang/archive/audits/HAWOR_LOCAL_ENVIRONMENT_SNAPSHOT_CAPACITY_RELEASE_V1.json",
+    "execution_gate_authority": "/mnt/workspace/code/chaoyang/archive/audits/HAWOR_POST_FULL59_SNAPSHOT_EXECUTION_GATE_V1.json",
+    "live_capacity_authority": "/mnt/workspace/code/chaoyang/tasks/control/.hawor-local-environment-snapshot-128m-v1.LIVE_AUTHORITY.json",
+    "reservation": "/mnt/workspace/code/chaoyang/tasks/control/.hawor-local-environment-snapshot-128m-v1.reserve",
+    "source": "/mnt/workspace/miniconda3/envs/hawor",
+    "target": "/mnt/workspace/code/chaoyang/assets/environments/hawor-py310-v1"
+  },
+  "post_create_required_before_promotion": [
+    "SNAPSHOT_VERIFY_COUNTS_LINKS_LOGICAL_BYTES_AND_TREE_CONTENT_SHA256_PASS",
+    "LOCAL_PYTHON_SYS_EXECUTABLE_PREFIX_BASE_PREFIX_AND_IMPORT_ORIGINS_PASS",
+    "THREE_FROZEN_12_FRAME_REPLAYS_PASS_WITH_BITWISE_STATUS_AND_ZERO_RTOL_1E_6_ATOL_NUMERIC_FALLBACK",
+    "LOCAL_ENVIRONMENT_LOCK_WRITTEN_NO_CLOBBER",
+    "HISTORICAL_ENVIRONMENT_LOCK_AND_RUNTIME_PIN_SHA256_UNCHANGED"
+  ],
+  "project_root": "/mnt/workspace/code/chaoyang",
+  "runners": {
+    "capacity_wrapper": {
+      "path": "tools/project_capacity_reservation.py",
+      "sha256": "753eb2ef6d43529eefed0ab188154a9ef3a0d6c61bd866b5b1e944adae2d6b0e"
+    },
+    "gate_and_held_child": {
+      "path": "tools/run_hawor_post_full59_snapshot.py",
+      "sha256": "26dbfc3d891fd7575b3083cd09557c1da2d20c633ff16e12377a68a9ff42a7a6"
+    },
+    "python": {
+      "path": "/usr/bin/python3.10",
+      "sha256": "f54854453331ddc3cb58abb15d4d24cd4964d9474fc31c3932348351b991b398"
+    },
+    "snapshot": {
+      "path": "tools/no_clobber_hardlink_snapshot.py",
+      "sha256": "9ec43f2a1cd12d6d44c631f7902813b8f8148d6e0f4251b632810e6dbd1e541e"
+    }
+  },
+  "schema_version": "chaoyang-hawor-post-full59-snapshot-execution-v1",
+  "static_authorities": {
+    "capacity_design": {
+      "path": "docs/organization/2026-09-03/PROJECT_CAPACITY_RESERVATION_V1.md",
+      "sha256": "b4d35f4a33a35d5c22f1325d67d3ca8fa99e75d6525c854a8d88099e9d3711b5"
+    },
+    "environment_authority": {
+      "path": "systems/hawor/environment_authority.json",
+      "sha256": "b1c1012184d2162d7c93307274eb5584648d3e39c3c5b7c8dc81c78bb48fefd2"
+    },
+    "full59_plan": {
+      "path": "tasks/chips/runs/pipeline/20260903_hawor_context_successor_v2/HAWOR_FULL59_PHASE_PLAN_V3.json",
+      "sha256": "e4815a11eeb3d495e615fd21ba6565c9a8f6a2201228c430c0f91e7146244a54"
+    },
+    "historical_environment_lock": {
+      "path": "third_party/HaWoR/CHA0YANG_ENVIRONMENT_LOCK.txt",
+      "sha256": "08fc213dc968fabe78bf682b13078b75a2c83854adc76ab659bcf57df12de6ac"
+    },
+    "historical_runtime_pin": {
+      "path": "third_party/HaWoR/CHA0YANG_RUNTIME_PIN.json",
+      "sha256": "7c20034be0d80c76adbb8eb278f0d3a6605c0bf9099a44829c028692e8db4aed"
+    },
+    "preflight": {
+      "path": "archive/audits/HAWOR_LOCAL_ENVIRONMENT_PREFLIGHT_20260903_V1.json",
+      "sha256": "40fbbe3d8beb5abd7e8a13c32d4d5cb761aaaa0efff0786a10e8483e41f95c01"
+    }
+  }
+}

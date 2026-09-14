@@ -1,0 +1,23 @@
+{
+  "task_id": "chips",
+  "session_id": "get_potato_chips_0901_001",
+  "baseline_session_id": "base_001",
+  "baseline_frame": 0,
+  "baseline_frame_review": "decoded left eye contains no hand, forearm, wrist tracker, bowl, or task chips on the black table",
+  "baseline_table_quad": [
+    [0.0, 566.0],
+    [1105.0, 530.0],
+    [0.0, 959.0],
+    [1279.0, 959.0]
+  ],
+  "action_reference_table_quad": [
+    [0.0, 443.0],
+    [1103.0, 425.0],
+    [0.0, 959.0],
+    [1279.0, 959.0]
+  ],
+  "calibration_scope": "one session-level table homography; no per-frame manual correction",
+  "feature_min_y": 380,
+  "rear_edge_feather_px": 15,
+  "review_frames": [0, 79, 160, 239, 320, 399, 480, 559, 640, 719, 760, 798]
+}
