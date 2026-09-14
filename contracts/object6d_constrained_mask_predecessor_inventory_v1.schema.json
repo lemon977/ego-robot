@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "object6d-constrained-mask-predecessor-inventory-v1",
+  "title": "SHA-bound predecessor role-mask inventory",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "task", "session", "frame_count", "resolution", "roles"],
+  "properties": {
+    "schema_version": {"const": "object6d-constrained-mask-predecessor-inventory-v1"},
+    "status": {"const": "COMPLETE"},
+    "task": {"type": "string", "minLength": 1},
+    "session": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "resolution": {
+      "type": "array", "prefixItems": [{"type": "integer", "minimum": 1}, {"type": "integer", "minimum": 1}], "items": false
+    },
+    "roles": {
+      "type": "object", "additionalProperties": false,
+      "required": ["left_human", "right_human", "left_tracker", "right_tracker"],
+      "properties": {
+        "left_human": {"$ref": "#/$defs/role"},
+        "right_human": {"$ref": "#/$defs/role"},
+        "left_tracker": {"$ref": "#/$defs/role"},
+        "right_tracker": {"$ref": "#/$defs/role"}
+      }
+    }
+  },
+  "$defs": {
+    "role": {"type": "array", "items": {"$ref": "#/$defs/frameRef"}},
+    "frameRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["frame", "path", "sha256"],
+      "properties": {
+        "frame": {"type": "integer", "minimum": 0},
+        "path": {"type": "string", "pattern": "^/"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

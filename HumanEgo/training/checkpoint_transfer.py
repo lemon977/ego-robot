@@ -1,12 +1,13 @@
 """Auditable shared-weight transfer from the legacy HumanEgo checkpoint."""
 from __future__ import annotations
 
-import hashlib
-import json
 from pathlib import Path
 from typing import Any
 
 import torch
+
+from utils.atomic_io import atomic_write_json
+from utils.frozen_contract import file_reference, load_verified_torch_checkpoint
 
 
 EXCLUDED_PREFIXES = (
@@ -19,22 +20,23 @@ EXCLUDED_PREFIXES = (
 )
 
 
-def _sha256(path: Path) -> str:
-    digest = hashlib.sha256()
-    with path.open("rb") as stream:
-        for block in iter(lambda: stream.read(1024 * 1024), b""):
-            digest.update(block)
-    return digest.hexdigest()
-
-
 def load_compatible_pretrained(
     model: torch.nn.Module,
     checkpoint_path: str | Path,
     report_path: str | Path,
+    *,
+    expected_sha256: str | None = None,
 ) -> dict[str, Any]:
     """Load only explicitly shared, shape-compatible layers and report all keys."""
-    checkpoint_path = Path(checkpoint_path).resolve()
-    payload = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
+    checkpoint_path = Path(checkpoint_path).absolute()
+    reference = file_reference(checkpoint_path)
+    if expected_sha256 is not None and reference["sha256"] != expected_sha256:
+        raise ValueError("pretrained checkpoint differs from frozen run authority")
+    checkpoint_path, payload = load_verified_torch_checkpoint(
+        reference,
+        allowed_roots=[checkpoint_path.parent],
+        label="pretrained shared-weight checkpoint",
+    )
     source = payload.get("model", payload)
     destination = model.state_dict()
     loaded = {}
@@ -60,7 +62,7 @@ def load_compatible_pretrained(
     report = {
         "policy": "shared layers only; state encoder and action head always reinitialized",
         "checkpoint": str(checkpoint_path),
-        "checkpoint_sha256": _sha256(checkpoint_path),
+        "checkpoint_sha256": reference["sha256"],
         "loaded_keys": sorted(loaded),
         "loaded_key_count": len(loaded),
         "loaded_parameter_elements": loaded_elements,
@@ -74,7 +76,5 @@ def load_compatible_pretrained(
     }
     report_path = Path(report_path)
     report_path.parent.mkdir(parents=True, exist_ok=True)
-    temporary = report_path.with_suffix(report_path.suffix + ".tmp")
-    temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    temporary.replace(report_path)
+    atomic_write_json(report_path, report)
     return report

@@ -1,0 +1,49 @@
+{
+  "schema_version": "offline-mask-annotator-smoke-result-v1",
+  "status": "PASS",
+  "synthetic_only": true,
+  "project_or_blind_data_read": false,
+  "python_unit_tests": {
+    "status": "PASS",
+    "count": 5,
+    "coverage": [
+      "deterministic rounded-linspace sampling",
+      "explicit VFR timestamp-to-nearest-unique-PTS resolution",
+      "polygon overwrite semantics",
+      "brush/background eraser semantics",
+      "binary mask value semantics"
+    ]
+  },
+  "synthetic_end_to_end": {
+    "status": "PASS",
+    "source": "ffmpeg lavfi testsrc2 320x240 10fps 3s",
+    "decoded_indices": [0, 6, 12, 17, 23, 29],
+    "pts_time": ["0.000000", "0.600000", "1.200000", "1.700000", "2.300000", "2.900000"],
+    "sampled_frames": 6,
+    "exported_frames": 6,
+    "class_ids_seen": [0, 1, 2, 3, 4, 5, 6, 7, 8],
+    "validation_status": "PASS",
+    "explicit_timestamp_csv_integration": {
+      "status": "PASS",
+      "decoded_indices": [0, 5, 10, 15, 20, 27],
+      "resolved_pts_time": ["0.000000", "0.500000", "1.000000", "1.500000", "2.000000", "2.700000"]
+    }
+  },
+  "local_http_smoke": {
+    "status": "PASS",
+    "project_api": "200; 6 frames; 9 classes",
+    "image_api": "200; PNG decoded 320x240 RGB",
+    "annotation_api": "200; JSON operation list loaded",
+    "save_api": "200; revision advanced 1 to 2; draft PNG refreshed",
+    "stale_revision_api": "409 fail-closed",
+    "export_api": "200 EXPORTED",
+    "validation_api": "200 PASS"
+  },
+  "static_checks": {
+    "python_compile": "PASS",
+    "javascript_syntax": "PASS",
+    "packaged_project_media_files": 0,
+    "packaged_project_pixel_files": 0,
+    "absolute_project_dataset_paths": 0
+  }
+}

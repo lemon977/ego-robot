@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/canary_set.schema.json",
+  "title": "G2 Calibration Canary Set",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_state", "producer", "session_id", "product_line",
+    "source_manifest_ref", "session_context_ref", "task_card_ref", "calibration_overlay_ref",
+    "selection_algorithm_ref", "selection_algorithm_sha256", "frame_count", "frames", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "canary-set-v1"},
+    "artifact_state": {"const": "G2_CALIBRATION_CANDIDATE"},
+    "producer": {"const": "session_profiler"},
+    "session_id": {"const": "grap_a_cap_004"},
+    "product_line": {"const": "004_CONTACT_GOLD"},
+    "source_manifest_ref": {"$ref": "#/$defs/ref"},
+    "session_context_ref": {"$ref": "#/$defs/ref"},
+    "task_card_ref": {"$ref": "#/$defs/ref"},
+    "calibration_overlay_ref": {"$ref": "#/$defs/ref"},
+    "selection_algorithm_ref": {"type": "string", "minLength": 1},
+    "selection_algorithm_sha256": {"$ref": "#/$defs/sha256"},
+    "frame_count": {"type": "integer", "minimum": 12, "maximum": 24},
+    "frames": {
+      "type": "array",
+      "minItems": 12,
+      "maxItems": 24,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["frame_index", "timestamp_ns", "video_time_s", "strata", "metric_evidence_refs"],
+        "properties": {
+          "frame_index": {"type": "integer", "minimum": 0, "maximum": 459},
+          "timestamp_ns": {"type": "integer", "minimum": 0},
+          "video_time_s": {"type": "number", "minimum": 0},
+          "strata": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "enum": [
+                "arm_area_low", "arm_area_high", "pre_contact", "first_contact", "stable_grasp",
+                "maximum_occlusion", "release", "high_motion", "high_blur",
+                "object6d_invalid_or_low_confidence", "donor_sparse", "mask_disagreement", "session_boundary"
+              ]
+            }
+          },
+          "metric_evidence_refs": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ref"}}
+        }
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "producer"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

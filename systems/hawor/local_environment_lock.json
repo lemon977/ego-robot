@@ -1,0 +1,60 @@
+{
+  "authority": {
+    "path": "systems/hawor/environment_authority.json",
+    "sha256": "3e4ab3a3b37bd80b6639afa95b027b50dd7dc4f6fd2d261966f32631392f34b2"
+  },
+  "claim_limit": "Local HaWoR execution environment only; algorithm and downstream authorities remain separately pinned.",
+  "created_at": "2026-09-02T22:36:40+00:00",
+  "environment_id": "hawor-py310-v1",
+  "environment_root": "assets/environments/hawor-py310-v1",
+  "historical_records_unchanged": {
+    "environment_lock": {
+      "path": "third_party/HaWoR/CHA0YANG_ENVIRONMENT_LOCK.txt",
+      "sha256": "08fc213dc968fabe78bf682b13078b75a2c83854adc76ab659bcf57df12de6ac"
+    },
+    "runtime_pin": {
+      "path": "third_party/HaWoR/CHA0YANG_RUNTIME_PIN.json",
+      "sha256": "7c20034be0d80c76adbb8eb278f0d3a6605c0bf9099a44829c028692e8db4aed"
+    }
+  },
+  "launcher": [
+    "tools/hawor_python.sh"
+  ],
+  "python": "assets/environments/hawor-py310-v1/bin/python",
+  "promotion_transaction": {
+    "final_authority_sha256": "3e4ab3a3b37bd80b6639afa95b027b50dd7dc4f6fd2d261966f32631392f34b2",
+    "pre_promotion_authority_sha256": "b1c1012184d2162d7c93307274eb5584648d3e39c3c5b7c8dc81c78bb48fefd2",
+    "reason": "ONE_TIME_PENDING_TO_PROMOTED_AUTHORITY_CLOSURE_AFTER_NO_CLOBBER_LOCK_CREATION"
+  },
+  "schema_version": "chaoyang-hawor-local-environment-lock-v1",
+  "snapshot": {
+    "counts": {
+      "directories": 5235,
+      "regular_files": 55160,
+      "special": 0,
+      "symlinks": 1156
+    },
+    "logical_bytes": 7138519539,
+    "manifest": "assets/environments/hawor-py310-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "manifest_bytes": 3463645,
+    "manifest_sha256": "0e469e8d8cfbbde720648f0e820d73060b7c382294094ff3b8d3c34c09951899",
+    "tree_content_sha256": "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e",
+    "unique_regular_bytes": 7138519539
+  },
+  "status": "PASS_LOCAL_ENVIRONMENT_PROMOTED",
+  "verification": {
+    "probe": {
+      "path": "tasks/control/runs/20260903_hawor_local_environment_migration_v1/LOCAL_ENV_PROBE.json",
+      "sha256": "c226c0978ac532a4f43a73b5a1f015b500b7d76a801ef27bb72bf0e2f1d867b7"
+    },
+    "replay_comparison": {
+      "path": "tasks/control/runs/20260903_hawor_local_environment_migration_v1/REPLAY_COMPARISON.json",
+      "roles": [
+        "FIT",
+        "HELD_OUT_SAME_TASK_EVAL",
+        "HELD_OUT_CROSS_TASK_EVAL"
+      ],
+      "sha256": "8a78161223fbecfe1ae07cadadf563215fcaafdf9424ab56bbc6a607ff87ef0f"
+    }
+  }
+}

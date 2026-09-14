@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1080" viewBox="0 0 1600 1080">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f7fafc"/>
+      <stop offset="1" stop-color="#edf2f7"/>
+    </linearGradient>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 z" fill="#4a5568"/>
+    </marker>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#2d3748" flood-opacity="0.13"/>
+    </filter>
+    <style>
+      .title { font: 700 38px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#1a202c; }
+      .sub { font: 500 20px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#4a5568; }
+      .h { font: 700 23px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#1a202c; }
+      .t { font: 500 18px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#2d3748; }
+      .small { font: 500 15px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#4a5568; }
+      .tag { font: 700 15px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:white; }
+      .arrow { stroke:#4a5568; stroke-width:3; fill:none; marker-end:url(#arrow); }
+      .dash { stroke:#718096; stroke-width:2.5; stroke-dasharray:9 7; fill:none; marker-end:url(#arrow); }
+    </style>
+  </defs>
+
+  <rect width="1600" height="1080" fill="url(#bg)"/>
+  <text x="70" y="66" class="title">当前深度与三维手动作：我们真正有的、能比较的、仍缺的</text>
+  <text x="70" y="102" class="sub">参考 MINT 与 RGB-only Hand-Action Pipeline；本图严格区分“估计 / 一致性参考 / 独立真值”</text>
+
+  <!-- inputs -->
+  <g>
+    <rect x="70" y="145" width="290" height="150" rx="18" fill="#ffffff" stroke="#3182ce" stroke-width="3"/>
+    <rect x="88" y="163" width="76" height="27" rx="13" fill="#3182ce"/>
+    <text x="126" y="182" text-anchor="middle" class="tag">输入</text>
+    <text x="95" y="222" class="h">双目 RGB 视频</text>
+    <text x="95" y="252" class="t">左/右画面 + 相机参数</text>
+    <text x="95" y="278" class="small">0902/0903：97 条具公制标定</text>
+  </g>
+  <g>
+    <rect x="70" y="320" width="290" height="132" rx="18" fill="#fffaf0" stroke="#dd6b20" stroke-width="3"/>
+    <text x="95" y="357" class="h">0901：59 条</text>
+    <text x="95" y="387" class="t">缺可靠左右外参</text>
+    <text x="95" y="416" class="small">不能直接套用 0902 标定</text>
+    <text x="95" y="439" class="small">当前：CALIBRATION_MISSING</text>
+  </g>
+
+  <!-- three depth branches -->
+  <path d="M360 220 C410 220 420 220 465 220" class="arrow"/>
+  <path d="M360 220 C410 220 420 405 465 405" class="arrow"/>
+  <path d="M360 220 C410 220 420 590 465 590" class="arrow"/>
+
+  <g>
+    <rect x="475" y="135" width="390" height="175" rx="18" fill="#ebf8ff" stroke="#3182ce" stroke-width="3"/>
+    <text x="500" y="174" class="h">① 校正双目稠密深度</text>
+    <text x="500" y="207" class="t">每个可见表面像素的相机 Z</text>
+    <text x="500" y="238" class="t">测到的是“皮肤/桌面/物体表面”</text>
+    <text x="500" y="270" class="small">当前仅诊断会话已做；exact78 中完整闭包仅 1 条</text>
+    <rect x="700" y="280" width="140" height="24" rx="12" fill="#2b6cb0"/>
+    <text x="770" y="297" text-anchor="middle" class="tag">不是关节真值</text>
+  </g>
+
+  <g>
+    <rect x="475" y="330" width="390" height="175" rx="18" fill="#f0fff4" stroke="#38a169" stroke-width="3"/>
+    <text x="500" y="369" class="h">② HaWoR / MANO 手深度</text>
+    <text x="500" y="402" class="t">单目估计 wrist + 20 个手指关节</text>
+    <text x="500" y="433" class="t">再与相机轨迹融合到共享世界坐标</text>
+    <text x="500" y="465" class="small">156/156 已产出；B154 / C2</text>
+    <rect x="695" y="475" width="145" height="24" rx="12" fill="#2f855a"/>
+    <text x="767" y="492" text-anchor="middle" class="tag">模型估计 / 伪标签</text>
+  </g>
+
+  <g>
+    <rect x="475" y="525" width="390" height="175" rx="18" fill="#faf5ff" stroke="#805ad5" stroke-width="3"/>
+    <text x="500" y="564" class="h">③ PICO / Body wrist</text>
+    <text x="500" y="597" class="t">设备同源的腕部姿态参考</text>
+    <text x="500" y="628" class="t">可检查厘米级偏差与时间趋势</text>
+    <text x="500" y="660" class="small">与当前视觉链不独立，不能作为金标准</text>
+    <rect x="695" y="670" width="145" height="24" rx="12" fill="#6b46c1"/>
+    <text x="767" y="687" text-anchor="middle" class="tag">一致性参考</text>
+  </g>
+
+  <!-- comparison -->
+  <path d="M865 220 C930 220 930 342 985 342" class="arrow"/>
+  <path d="M865 415 C930 415 930 376 985 376" class="arrow"/>
+  <path d="M865 610 C930 610 930 410 985 410" class="arrow"/>
+  <g>
+    <rect x="995" y="235" width="535" height="278" rx="20" fill="#ffffff" stroke="#4a5568" stroke-width="3"/>
+    <text x="1025" y="277" class="h">当前深度对比视频在看什么？</text>
+    <circle cx="1038" cy="319" r="10" fill="#ecc94b"/>
+    <text x="1060" y="326" class="t">黄色框：双目在该可见表面的 Z</text>
+    <rect x="1028" y="352" width="20" height="20" transform="rotate(45 1038 362)" fill="#38b2ac"/>
+    <text x="1060" y="369" class="t">青色菱形：PICO wrist Z</text>
+    <circle cx="1038" cy="405" r="10" fill="#9f7aea"/>
+    <text x="1060" y="412" class="t">紫色圆：HaWoR wrist / tip Z</text>
+    <text x="1025" y="453" class="small">它们常位于不同物理点：表面 ≠ 解剖腕中心 ≠ MANO 关节。</text>
+    <text x="1025" y="478" class="small">因此“Z 差”只能叫偏差/一致性诊断，不能叫真值误差。</text>
+  </g>
+
+  <!-- object branch -->
+  <path d="M1260 513 L1260 570" class="dash"/>
+  <g>
+    <rect x="995" y="580" width="535" height="188" rx="20" fill="#fff5f5" stroke="#e53e3e" stroke-width="3"/>
+    <text x="1025" y="620" class="h">Robot 接触真正还缺什么？</text>
+    <text x="1025" y="655" class="t">RGB 固定实例 Mask + 校正深度 near/far</text>
+    <text x="1025" y="687" class="t">+ c2w + 每帧 SHA → 独立视觉 Object6D</text>
+    <text x="1025" y="719" class="small">当前 Robot-contact 级视觉 Object6D：0 / 156</text>
+    <rect x="1320" y="731" width="180" height="25" rx="12" fill="#c53030"/>
+    <text x="1410" y="749" text-anchor="middle" class="tag">接触仍未解决</text>
+  </g>
+
+  <!-- bottom comparison -->
+  <g>
+    <rect x="70" y="805" width="1460" height="205" rx="22" fill="#1a202c"/>
+    <text x="102" y="850" class="h" fill="#ffffff" style="fill:#fff">与两篇文章的关系</text>
+    <text x="102" y="893" class="t" fill="#e2e8f0" style="fill:#e2e8f0">MINT：部署时从单目 RGB 直接预测相机 + 双手 MANO；没有稠密深度/点云，训练监督仍是伪标签。</text>
+    <text x="102" y="930" class="t" fill="#e2e8f0" style="fill:#e2e8f0">RGB-only Pipeline：用单目深度恢复尺度；独立 HOT3D 光学 mocap 才能计算 Action MPJPE，并指出深度是最大误差源。</text>
+    <text x="102" y="967" class="t" fill="#bee3f8" style="fill:#bee3f8">我们：有双目潜力，但必须先完成 97 条公制深度闭包和视觉 Object6D；不能把 PICO、HaWoR 或安全控制器当真值。</text>
+  </g>
+
+  <text x="70" y="1050" class="small">状态快照：2026-09-08｜证据闭包 PASS；Mask/Clean 含 B/C；Robot C156；两 checkpoint heldout 能力均 HOLD</text>
+</svg>

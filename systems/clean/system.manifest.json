@@ -1,0 +1,81 @@
+{
+  "$schema": "../schema/system_manifest.schema.json",
+  "schema_version": "chaoyang-system-manifest-v1",
+  "system_id": "clean",
+  "manifest_version": "2026-09-02.1",
+  "status": "ACTIVE_DEVELOPMENT_DONOR_AUTHORITY_HOLD",
+  "claim_limit": "The deterministic source-mapped algorithm is shared. Current phone static footage is cross-camera and insufficient for a deliverable Clean result; no formal Clean claim.",
+  "shared_by_default": true,
+  "algorithms": [
+    {
+      "algorithm_id": "clean.real_pixel_bilateral_phone_dev.v1",
+      "stage": "clean",
+      "status": "SHARED_ALGORITHM_INPUT_AUTHORITY_HOLD",
+      "implementation_files": [
+        {
+          "path": "tools/run_newtask_clean_bilateral_phone_dev.py",
+          "bytes": 51267,
+          "sha256": "fa1ce2fa012440cbfa0c01a6eb2cf0df7c123c80f7bd5d09ab3b656099a5aa33"
+        },
+        {
+          "path": "pipeline/newtask_object_firewall.py",
+          "bytes": 30965,
+          "sha256": "f9c2aeb96e9f7366dc0a645246c65e78b3bf0cf976b6c945c5a8f852d8c4a128"
+        }
+      ],
+      "required_weight_ids": [],
+      "invariants": [
+        "consume only a Mask result with consumption_authorized=true",
+        "prefer same-MOV or same-session real observed donor pixels",
+        "preserve task objects, fixtures, and support authorities",
+        "write per-pixel source identity and unsupported mask",
+        "unsupported pixels remain raw rather than invented",
+        "cross-camera phone static is diagnostic only, never formal donor authority"
+      ]
+    }
+  ],
+  "learned_weights": [],
+  "task_specific_config_keys": [
+    "source_identity",
+    "authorized_mask_result",
+    "remove_role_ids",
+    "preserve_object_ids",
+    "fixture_ids",
+    "same_session_clean_plate",
+    "donor_bank",
+    "table_support",
+    "camera_intrinsics_and_poses",
+    "exposure_profile"
+  ],
+  "weight_policy": {
+    "task_local_paths_allowed": false,
+    "new_weight_requires": [
+      "bytes_and_sha256",
+      "base_weight_id",
+      "training_data_manifest_sha256",
+      "training_code_sha256",
+      "session_level_split_manifest_sha256",
+      "evaluation_manifest_sha256_and_metrics",
+      "applicable_task_scope",
+      "license_id_and_status"
+    ]
+  },
+  "current_evidence": [
+    {
+      "id": "phone_l3_result",
+      "path": "_run/newtask_baseline_clean_l3_20260902_v1/RUN.json",
+      "bytes": 169027,
+      "sha256": "d367594161f81bf19c76ba3c4af5ea066919bfc7d20945eeed4c5c122164f6ac",
+      "status": "HOLD_HUMAN_SEMANTIC_CLOSURE_UNRESOLVED",
+      "claim_limit": "Ten phone-development frames; not a formal Clean result."
+    },
+    {
+      "id": "chips_frame0_cross_camera_final",
+      "path": "_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/RESULTS.json",
+      "bytes": 8424,
+      "sha256": "81f4656978b911e3ae76029f0e07d5e013b046f93c84115d423c251f6af86f52",
+      "status": "HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT",
+      "claim_limit": "Frame 0 PHONE_DEV only; no 10-frame/full-video Clean."
+    }
+  ]
+}

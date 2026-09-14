@@ -456,6 +456,41 @@ class FlowMatchingModel(nn.Module):
         v_pred = preds["v_pred"].float()
         v_target = targets["v_target"].float()
 
+        # A/B training authority is carried per sample.  Grade A is 1.0,
+        # bounded Grade B is strictly between 0 and 1, and 0 excludes a sample
+        # (Grade C must normally be removed before it reaches the loader).  We
+        # use a normalized weighted mean, so changing the mixture changes the
+        # relative contribution of samples without silently changing the
+        # optimizer's global learning-rate scale:
+        #
+        #     L = sum_b(w_b * numerator_b) / sum_b(w_b * denominator_b)
+        #
+        # The explicit all-zero rejection prevents a nominally successful
+        # training step with no admitted authority.
+        sample_weight = targets.get("sample_weight")
+        if sample_weight is None:
+            sample_weight = torch.ones(
+                (v_pred.shape[0],), device=v_pred.device, dtype=torch.float32
+            )
+        else:
+            sample_weight = sample_weight.to(
+                device=v_pred.device, dtype=torch.float32
+            ).reshape(-1)
+            if sample_weight.shape != (v_pred.shape[0],):
+                raise ValueError(
+                    f"sample_weight={tuple(sample_weight.shape)}, expected "
+                    f"{(v_pred.shape[0],)}"
+                )
+            if (
+                not torch.isfinite(sample_weight).all()
+                or bool((sample_weight < 0.0).any())
+                or bool((sample_weight > 1.0).any())
+            ):
+                raise ValueError("sample_weight must be finite in [0, 1]")
+        if float(sample_weight.sum().detach().cpu()) <= 0.0:
+            raise ValueError("sample_weight cannot be all zero")
+        sample_weight_3d = sample_weight.view(-1, 1, 1)
+
         w_time = self.horizon_weights.to(v_pred.device).view(1, -1, 1).float()
         w_p, w_r, w_g = (weights.get(k, 1.0) for k in ["w_pos", "w_rot", "w_g"]) if weights else (1.0, 1.0, 1.0)
         w_command = (
@@ -512,10 +547,12 @@ class FlowMatchingModel(nn.Module):
                 raise ValueError(
                     f"action_valid_mask={tuple(valid.shape)}, expected {tuple(diff.shape)}"
                 )
-        weighted = diff * w_time * w_dim * valid
+        weighted = diff * w_time * w_dim * valid * sample_weight_3d
         # Normalize by active weighted elements rather than batch size.  A
         # missing hand therefore contributes exactly zero gradient.
-        denominator = (w_time * w_dim * valid).sum().clamp(min=1.0)
+        denominator = (
+            w_time * w_dim * valid * sample_weight_3d
+        ).sum().clamp(min=1.0e-12)
         loss_flow = weighted.sum() / denominator
 
         active_denominator = valid.sum().clamp(min=1.0)
@@ -523,6 +560,7 @@ class FlowMatchingModel(nn.Module):
             "loss_flow": loss_flow.detach(),
             "loss_unweighted": (diff * valid).sum().detach() / active_denominator.detach(),
             "active_action_fraction": valid.mean().detach(),
+            "effective_sample_weight_mean": sample_weight.mean().detach(),
         }
         total_loss = w_flow * loss_flow
 
@@ -545,16 +583,20 @@ class FlowMatchingModel(nn.Module):
                 + torch.relu(predicted_q - upper_flat)
             ) / range_flat
             loss_limit = (
-                violation.square() * q_valid
-            ).sum() / q_valid.sum().clamp(min=1.0)
+                violation.square() * q_valid * sample_weight_3d
+            ).sum() / (
+                q_valid * sample_weight_3d
+            ).sum().clamp(min=1.0e-12)
             velocity_valid = q_valid[:, 1:] * q_valid[:, :-1]
             velocity_error = (
                 (predicted_q[:, 1:] - predicted_q[:, :-1])
                 - (target_q[:, 1:] - target_q[:, :-1])
             ) / range_flat
             loss_velocity = (
-                velocity_error.square() * velocity_valid
-            ).sum() / velocity_valid.sum().clamp(min=1.0)
+                velocity_error.square() * velocity_valid * sample_weight_3d
+            ).sum() / (
+                velocity_valid * sample_weight_3d
+            ).sum().clamp(min=1.0e-12)
             lambda_limit = (
                 loss_lambdas.get("lambda_joint_limit", 0.0)
                 if loss_lambdas else 0.0
@@ -583,7 +625,10 @@ class FlowMatchingModel(nn.Module):
         def _masked_component(parts, mask_parts):
             values = torch.cat(parts, dim=-1)
             masks = torch.cat(mask_parts, dim=-1)
-            return ((values * masks).sum() / masks.sum().clamp(min=1.0)).detach()
+            return (
+                (values * masks * sample_weight_3d).sum()
+                / (masks * sample_weight_3d).sum().clamp(min=1.0e-12)
+            ).detach()
         pos_masks = [valid[..., 0 : nh*3]]
         rot_masks = [valid[..., nh*3 : nh*9]]
         g_masks = [valid[..., nh*9 : command_end]]
@@ -598,12 +643,26 @@ class FlowMatchingModel(nn.Module):
         # --- Done Loss ---
         if self.use_done_in_flow:
             # Done is already inside flow matching loss via w_dim, just log it
-            loss_dict["loss_done"] = diff[..., -1:].mean().detach()
+            done_values = diff[..., -1:]
+            loss_dict["loss_done"] = (
+                (done_values * sample_weight_3d).sum()
+                / (
+                    torch.ones_like(done_values) * sample_weight_3d
+                ).sum().clamp(min=1.0e-12)
+            ).detach()
         elif "done_logit" in preds and "y_done" in targets:
             # Independent BCE head
             w_done = weights.get("w_done", 1.0) if weights else 1.0
-            loss_done = F.binary_cross_entropy_with_logits(
-                preds["done_logit"].float(), targets["y_done"].float()
+            done_values = F.binary_cross_entropy_with_logits(
+                preds["done_logit"].float(), targets["y_done"].float(),
+                reduction="none",
+            )
+            sample_weight_2d = sample_weight.view(-1, 1)
+            loss_done = (
+                (done_values * sample_weight_2d).sum()
+                / (
+                    torch.ones_like(done_values) * sample_weight_2d
+                ).sum().clamp(min=1.0e-12)
             )
             total_loss = total_loss + w_done * loss_done
             loss_dict["loss_done"] = loss_done.detach()
@@ -612,7 +671,19 @@ class FlowMatchingModel(nn.Module):
         if self.use_aux_visual_foresight and "trace_pred" in preds and "y_2d_trace" in targets:
             lam_hf = loss_lambdas.get("lambda_foresight", 1.0) if loss_lambdas else 1.0
             # Coordinates are directly in [0, 1] range, no sigmoid needed
-            loss_trace = F.mse_loss(preds["trace_pred"].float(), targets["y_2d_trace"].float())
+            trace_values = F.mse_loss(
+                preds["trace_pred"].float(), targets["y_2d_trace"].float(),
+                reduction="none",
+            )
+            trace_weight = sample_weight.view(
+                -1, *([1] * (trace_values.ndim - 1))
+            )
+            loss_trace = (
+                (trace_values * trace_weight).sum()
+                / (
+                    torch.ones_like(trace_values) * trace_weight
+                ).sum().clamp(min=1.0e-12)
+            )
             total_loss = total_loss + lam_hf * loss_trace
             loss_dict["loss_foresight"] = loss_trace.detach()
 
@@ -628,7 +699,12 @@ class FlowMatchingModel(nn.Module):
 
             # Penalize only the deviation of future hand features, effectively removing
             # interference/noise from environmental objects in the latent space.
-            loss_tc = (F.mse_loss(s_pred_hand, s_target_hand, reduction="none") * s_mask_hand).sum() / s_mask_hand.sum().clamp(min=1.0)
+            loss_tc = (
+                F.mse_loss(s_pred_hand, s_target_hand, reduction="none")
+                * s_mask_hand * sample_weight_3d
+            ).sum() / (
+                s_mask_hand * sample_weight_3d
+            ).sum().clamp(min=1.0e-12)
             total_loss = total_loss + lam_tc * loss_tc
             loss_dict["loss_contrastive"] = loss_tc.detach()
 

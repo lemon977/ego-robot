@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "action_contract", "sessions", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "real-robot-policy-manifest-v1"},
+    "status": {"enum": ["CANDIDATE", "PASS_REAL_ROBOT_ACTION", "BLOCKED_EXTERNAL", "HOLD"]},
+    "action_contract": {"type": "object", "additionalProperties": false, "required": ["source", "synchronized", "required_arrays", "human_video_action_forbidden"], "properties": {
+      "source": {"const": "REAL_ROBOT_DEMONSTRATION"},
+      "synchronized": {"const": true},
+      "required_arrays": {"const": ["timestamp_s", "action", "robot_state", "frame_index"]},
+      "human_video_action_forbidden": {"const": true}
+    }},
+    "sessions": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["session", "task", "split", "rgb", "action", "robot_state", "timestamp", "frame_ledger"], "properties": {
+      "session": {"type": "string"}, "task": {"enum": ["chips", "poker"]}, "split": {"enum": ["train", "validation", "test", "heldout"]},
+      "rgb": {"$ref": "#/definitions/ref"}, "action": {"$ref": "#/definitions/ref"}, "robot_state": {"$ref": "#/definitions/ref"}, "timestamp": {"$ref": "#/definitions/ref"}, "frame_ledger": {"$ref": "#/definitions/ref"}
+    }}},
+    "claim_limit": {"type": "string"}
+  },
+  "definitions": {"ref": {"type": "object", "additionalProperties": false, "required": ["path", "bytes", "sha256"], "properties": {"path": {"type": "string", "pattern": "^/"}, "bytes": {"type": "integer", "minimum": 0}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}}
+}

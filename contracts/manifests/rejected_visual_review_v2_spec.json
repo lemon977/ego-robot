@@ -1,0 +1,76 @@
+{
+  "schema_version": "rejected-visual-review-v1",
+  "review_pack_instance": "rejected_visual_review_v2",
+  "items": [
+    {
+      "asset_id": "producer_p2_frame_00228_left_sleeve_hold",
+      "version": "SAM3.1 producer_p2 dev15 HOLD",
+      "title": "v2 representative frame 228 — left sleeve/forearm absent",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00228.png",
+      "frame_scope": {"scope": "FRAME_SET", "frame_indices": [228]},
+      "frame_scope_label": "representative frame 228; one of 15/15 held development frames",
+      "rejection_reasons": [
+        "Strict gate: final left boundary support and seeded left boundary arm/sleeve are missing.",
+        "Independent visual review: both hands and the can are retained, but the left foreground sleeve/forearm is omitted."
+      ]
+    },
+    {
+      "asset_id": "producer_p2_frame_00233_bilateral_sleeve_hold",
+      "version": "SAM3.1 producer_p2 dev15 HOLD",
+      "title": "v2 representative frame 233 — bilateral sleeve/forearm omission",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00233.png",
+      "frame_scope": {"scope": "FRAME_SET", "frame_indices": [233]},
+      "frame_scope_label": "representative frame 233; last frame before abrupt left-sleeve recovery",
+      "rejection_reasons": [
+        "Strict gate: left final boundary support and both seeded boundary arm/sleeve routes are missing.",
+        "Independent visual review: the masks are hand-dominant and omit both required sleeve/forearm regions."
+      ]
+    },
+    {
+      "asset_id": "producer_p2_frame_00234_transition_hold",
+      "version": "SAM3.1 producer_p2 dev15 HOLD",
+      "title": "v2 representative frame 234 — abrupt left-sleeve recovery, right sleeve absent",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00234.png",
+      "frame_scope": {"scope": "FRAME_SET", "frame_indices": [234]},
+      "frame_scope_label": "representative frame 234; 61,851 to 146,094-pixel temporal transition",
+      "rejection_reasons": [
+        "Strict gate: right seeded boundary arm/sleeve is missing and temporal IoU is below the frozen limit.",
+        "Independent visual review: the left black sleeve appears abruptly while the right grey sleeve remains omitted."
+      ]
+    },
+    {
+      "asset_id": "producer_p2_frame_00242_right_sleeve_hold",
+      "version": "SAM3.1 producer_p2 dev15 HOLD",
+      "title": "v2 representative frame 242 — persistent right sleeve/forearm omission",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00242.png",
+      "frame_scope": {"scope": "FRAME_SET", "frame_indices": [242]},
+      "frame_scope_label": "representative final development frame 242",
+      "rejection_reasons": [
+        "Strict gate: the right seeded boundary arm/sleeve route remains missing.",
+        "Independent visual review: hands, left sleeve, can and table remain stable, but the right grey sleeve is still omitted."
+      ]
+    },
+    {
+      "asset_id": "producer_p2_dev15_full_review_video",
+      "version": "SAM3.1 producer_p2 dev15 HOLD",
+      "title": "v2 complete 15-frame RAW/MASK/overlay review video",
+      "kind": "copy",
+      "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
+      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/PREVIEW_RAW_MASK_OVERLAY.mp4",
+      "frame_scope": {"scope": "FRAME_SET", "frame_indices": [228,229,230,231,232,233,234,235,236,237,238,239,240,241,242]},
+      "frame_scope_label": "complete public development window 228-242; all 15 frames held",
+      "rejection_reasons": [
+        "Independent pixel and visual QA confirms 0/15 sufficient and 15/15 held.",
+        "This video is complete for the development window but is not a benchmark, formal artifact, or production input."
+      ]
+    }
+  ]
+}

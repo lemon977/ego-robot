@@ -17,6 +17,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT))
 from preprocess.retarget_labels.schema import EMBODIMENTS  # noqa: E402
 from training.FlowMatchingModel import FlowMatchingModel  # noqa: E402
+from utils.atomic_io import atomic_write_json  # noqa: E402
 
 
 def sha256(path: Path) -> str:
@@ -94,16 +95,26 @@ def benchmark(config: dict, batch: int, steps: int) -> dict[str, object]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--embodiment", required=True, choices=sorted(EMBODIMENTS))
-    parser.add_argument("--config", type=Path)
+    parser.add_argument("--config", type=Path, required=True)
     parser.add_argument("--candidates", type=int, nargs="+", default=[8, 16, 32, 64, 96, 128, 192, 256])
     parser.add_argument("--steps", type=int, default=3)
     parser.add_argument("--max-memory-fraction", type=float, default=0.88)
     parser.add_argument("--output", type=Path)
     parser.add_argument("--worker-candidate", type=int, help=argparse.SUPPRESS)
     args = parser.parse_args()
+    if args.worker_candidate is None and args.output is None:
+        parser.error("--output is required for the autotune orchestrator")
+    if args.steps < 1:
+        parser.error("--steps must be positive")
+    if not 0 < args.max_memory_fraction < 1:
+        parser.error("--max-memory-fraction must lie in (0, 1)")
+    if any(value < 1 for value in args.candidates):
+        parser.error("all batch candidates must be positive")
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA is not available in this execution container")
-    config_path = args.config or ROOT / "cfg/training/grap_a_cap" / f"dual_{args.embodiment}.yaml"
+    config_path = args.config.resolve()
+    if not config_path.is_relative_to((ROOT / "cfg" / "training").resolve()):
+        raise ValueError("autotune config must be a reviewed versioned training config")
     config = yaml.safe_load(config_path.read_text(encoding="utf-8"))
     if config["hand_action_representation"] != EMBODIMENTS[args.embodiment].representation:
         raise ValueError("config/embodiment mismatch")
@@ -153,11 +164,9 @@ def main() -> int:
         "selected_batch_size": int(selected["batch_size"]),
         "selected_samples_per_second": float(selected["samples_per_second"]),
     }
-    output = args.output or ROOT / "reports/performance" / f"{args.embodiment}_cuda_autotune.json"
+    output = args.output
     output.parent.mkdir(parents=True, exist_ok=True)
-    temporary = output.with_suffix(output.suffix + ".tmp")
-    temporary.write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8")
-    temporary.replace(output)
+    atomic_write_json(output, report)
     print(json.dumps(report, indent=2))
     return 0
 

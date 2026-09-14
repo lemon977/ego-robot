@@ -1,0 +1,670 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/quality/cross_stage_admission_input_v1.schema.json",
+  "title": "Chaoyang cross-stage normalized evidence V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_id",
+    "task_id",
+    "training_profile",
+    "image_variant",
+    "stages"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "chaoyang-cross-stage-evidence-v1"
+    },
+    "session_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "task_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "training_profile": {
+      "enum": [
+        "RAW_RGB_KAI22",
+        "CLEAN_RGB_KAI22",
+        "ROBOT_RGB_COMPOSITE_KAI22"
+      ]
+    },
+    "image_variant": {
+      "enum": [
+        "RAW",
+        "CLEAN",
+        "ROBOT_COMPOSITE"
+      ]
+    },
+    "stages": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capture": {
+          "$ref": "#/$defs/capture_stage"
+        },
+        "hawor": {
+          "$ref": "#/$defs/hawor_stage"
+        },
+        "mask": {
+          "$ref": "#/$defs/mask_stage"
+        },
+        "clean": {
+          "$ref": "#/$defs/clean_stage"
+        },
+        "robot": {
+          "$ref": "#/$defs/robot_stage"
+        },
+        "training": {
+          "$ref": "#/$defs/training_stage"
+        }
+      }
+    }
+  },
+  "$defs": {
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "HOLD",
+        "NOT_EVALUATED"
+      ]
+    },
+    "authority": {
+      "enum": [
+        "CAPTURE",
+        "PRODUCER",
+        "INDEPENDENT_QA",
+        "HUMAN_REVIEW",
+        "NONE"
+      ]
+    },
+    "scope": {
+      "enum": [
+        "FULL_SESSION",
+        "CANARY",
+        "WINDOW",
+        "SYNTHETIC",
+        "READINESS_ONLY",
+        "UNKNOWN"
+      ]
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "authority",
+        "reason_codes"
+      ],
+      "properties": {
+        "status": {
+          "$ref": "#/$defs/status"
+        },
+        "authority": {
+          "$ref": "#/$defs/authority"
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 1
+          },
+          "uniqueItems": true
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {
+              "status": {
+                "enum": [
+                  "FAIL",
+                  "HOLD",
+                  "NOT_EVALUATED"
+                ]
+              }
+            },
+            "required": [
+              "status"
+            ]
+          },
+          "then": {
+            "properties": {
+              "reason_codes": {
+                "minItems": 1
+              }
+            }
+          }
+        }
+      ]
+    },
+    "human_core_provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "eligibility"],
+      "properties": {
+        "provider": {
+          "enum": ["HAWOR_MANO21", "PICO_OPENXR21", "MANUAL", "NOT_USED"]
+        },
+        "eligibility": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "wearable_tracker_provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "eligibility"],
+      "properties": {
+        "provider": {
+          "enum": ["PICO_OPENXR21", "VISUAL_INSTANCE", "MANUAL", "NOT_USED"]
+        },
+        "eligibility": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "moving_task_object_provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "eligibility"],
+      "properties": {
+        "provider": {
+          "enum": ["OBJECT6D_PROJECTED", "VISUAL_INSTANCE", "MANUAL", "NOT_USED"]
+        },
+        "eligibility": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "static_setup_anchor_provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["provider", "eligibility"],
+      "properties": {
+        "provider": {
+          "enum": ["CAPTURE_STATIC_SETUP", "PICO_REPROJECTED_SETUP", "MANUAL", "NOT_USED"]
+        },
+        "eligibility": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "role": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "gate_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "path",
+        "sha256",
+        "frozen_before_evaluation"
+      ],
+      "properties": {
+        "id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "frozen_before_evaluation": {
+          "type": "boolean"
+        }
+      }
+    },
+    "common_properties": {
+      "type": "object",
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "reported_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_limit": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "capture_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "reported_status",
+        "claim_limit",
+        "evidence",
+        "gate_contract",
+        "gates"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "gate_contract": {
+          "$ref": "#/$defs/gate_contract"
+        },
+        "reported_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_limit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gates": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "media_integrity",
+              "timeline_integrity",
+              "camera_intrinsics",
+              "camera_world",
+              "pico21_diagnostic",
+              "pico21_left_provider",
+              "pico21_right_provider",
+              "task_interval_defined",
+              "segment_contract",
+              "clean_donor_authority",
+              "static_setup_anchor_authority",
+              "object6d_authority",
+              "session_static_base"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/gate"
+          }
+        }
+      }
+    },
+    "hawor_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "reported_status",
+        "claim_limit",
+        "evidence",
+        "gate_contract",
+        "gates"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "gate_contract": {
+          "$ref": "#/$defs/gate_contract"
+        },
+        "reported_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_limit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gates": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "execution",
+              "mano21_structure",
+              "numeric_mask_seed",
+              "numeric_robot_seed",
+              "anatomical_identity",
+              "independent_contour",
+              "direct_provenance",
+              "contact_direct_observation"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/gate"
+          }
+        }
+      }
+    },
+    "mask_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "reported_status",
+        "claim_limit",
+        "evidence",
+        "gate_contract",
+        "gates",
+        "seed_route",
+        "provider_routes",
+        "consumption_authorized"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "gate_contract": {
+          "$ref": "#/$defs/gate_contract"
+        },
+        "reported_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_limit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "seed_route": {
+          "enum": [
+            "HAWOR",
+            "PICO_RAW_POINT",
+            "MANUAL",
+            "MIXED"
+          ]
+        },
+        "provider_routes": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "human_core",
+            "wearable_tracker",
+            "moving_task_object",
+            "static_setup_anchor"
+          ],
+          "properties": {
+            "human_core": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["left", "right"],
+              "properties": {
+                "left": {"$ref": "#/$defs/human_core_provider"},
+                "right": {"$ref": "#/$defs/human_core_provider"}
+              }
+            },
+            "wearable_tracker": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["left", "right"],
+              "properties": {
+                "left": {"$ref": "#/$defs/wearable_tracker_provider"},
+                "right": {"$ref": "#/$defs/wearable_tracker_provider"}
+              }
+            },
+            "moving_task_object": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["global"],
+              "properties": {
+                "global": {"$ref": "#/$defs/moving_task_object_provider"}
+              }
+            },
+            "static_setup_anchor": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["global"],
+              "properties": {
+                "global": {"$ref": "#/$defs/static_setup_anchor_provider"}
+              }
+            }
+          }
+        },
+        "consumption_authorized": {
+          "type": "boolean"
+        },
+        "gates": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "input_authority",
+              "semantic_roles",
+              "moving_task_object_identity",
+              "static_setup_anchor_scope",
+              "prompt_provider_lineage",
+              "temporal_identity",
+              "full_session_coverage",
+              "object_protection",
+              "lineage_integrity",
+              "manual_review"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/gate"
+          }
+        }
+      }
+    },
+    "clean_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "reported_status",
+        "claim_limit",
+        "evidence",
+        "gate_contract",
+        "gates",
+        "consumption_authorized"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "gate_contract": {
+          "$ref": "#/$defs/gate_contract"
+        },
+        "reported_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_limit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consumption_authorized": {
+          "type": "boolean"
+        },
+        "gates": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "input_mask_authority",
+              "donor_authority",
+              "donor_purity",
+              "source_map",
+              "spatial_residual",
+              "illumination",
+              "shadow",
+              "seam",
+              "temporal",
+              "object_protection",
+              "codec",
+              "manual_review"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/gate"
+          }
+        }
+      }
+    },
+    "robot_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "reported_status",
+        "claim_limit",
+        "evidence",
+        "gate_contract",
+        "gates",
+        "consumption_authorized",
+        "sidecar_consumption_authorized"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "gate_contract": {
+          "$ref": "#/$defs/gate_contract"
+        },
+        "reported_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_limit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "consumption_authorized": {
+          "type": "boolean"
+        },
+        "sidecar_consumption_authorized": {
+          "type": "boolean"
+        },
+        "gates": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "input_hawor_authority",
+              "input_clean_authority",
+              "mount_calibration",
+              "session_static_base",
+              "object6d",
+              "retarget_schema",
+              "mano_reorder",
+              "pose",
+              "joint_limits",
+              "temporal",
+              "hand_morphology",
+              "retarget_independent_qa",
+              "functional_retarget_authority",
+              "contact",
+              "nonpenetration",
+              "self_collision",
+              "depth_occlusion",
+              "manual_review"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/gate"
+          }
+        }
+      }
+    },
+    "training_stage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scope",
+        "reported_status",
+        "claim_limit",
+        "evidence",
+        "gate_contract",
+        "gates"
+      ],
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/scope"
+        },
+        "evidence": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/evidence"
+          }
+        },
+        "gate_contract": {
+          "$ref": "#/$defs/gate_contract"
+        },
+        "reported_status": {
+          "type": "string",
+          "minLength": 1
+        },
+        "claim_limit": {
+          "type": "string",
+          "minLength": 1
+        },
+        "gates": {
+          "type": "object",
+          "propertyNames": {
+            "enum": [
+              "split_frozen",
+              "eval_disjoint",
+              "task_isolated",
+              "image_variant_frozen",
+              "upstream_lineage_frozen",
+              "selector_reproducible"
+            ]
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/gate"
+          }
+        }
+      }
+    }
+  }
+}

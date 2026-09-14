@@ -1,0 +1,198 @@
+{
+  "schema_version": "pico-raw-point-geometry-mask-successor-v1",
+  "algorithm_id": "mask.sam31.pico_geometry_raw_point.v1",
+  "status": "FROZEN_PENDING_GPU_FIT_EVAL",
+  "shared_model": {
+    "weight_id": "sam31.multiplex.0567debe",
+    "weight_sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+    "checkpoint_write_forbidden": true
+  },
+  "spatial_execution": {
+    "sample_count": 12,
+    "one_independent_model_state_per_frame": true,
+    "cross_sample_flow_forbidden": true
+  },
+  "temporal_execution": {
+    "window_count": 3,
+    "frames_per_window": 12,
+    "unit_stride_required": true,
+    "independent_state_per_window": true
+  },
+  "setup_world_anchor_generation": {
+    "authority": "task setup reference pixels lifted by nearby PICO thumb-index metric depth, then projected with per-frame PICO c2w/K",
+    "reference_frame_index": 0,
+    "full_session_pico_scan": true,
+    "open_pinch_penalty_px_per_m": 150.0,
+    "closed_pinch_reference_m": 0.06,
+    "reference_match_distance_px_max": 160.0,
+    "exact_task_setup_reference_ray_preserved": true,
+    "manual_per_frame_points_forbidden": true,
+    "image_colour_or_intensity_used": false
+  },
+  "hand_anchor_provider_contract": {
+    "selection_scope": "PER_SESSION_PER_PHYSICAL_SIDE",
+    "session_side_constant_required": true,
+    "silent_provider_mixing_forbidden": true,
+    "provider_fallback_forbidden": true,
+    "ineligible_session_action": "NOT_RUN_HOLD_PROVIDER_AUTHORITY",
+    "providers": {
+      "PICO21": {
+        "joint_count": 21,
+        "wrist_index": 5,
+        "required_applicability_gate": "G2_PICO21_PRELIMINARY",
+        "accepted_applicability_values": ["PASS_NUMERIC_NOT_MANO21"],
+        "claim_limit": "geometry anchors only; not MANO21 or independent object identity"
+      },
+      "HAWOR_MANO21": {
+        "joint_count": 21,
+        "wrist_index": 0,
+        "numeric_gate_required": true,
+        "independent_identity_gate_required": true,
+        "contour_gate_required_for_mask_use": true,
+        "claim_limit": "eligible only after numeric plus independent anatomical identity and contour gates"
+      }
+    }
+  },
+  "task_object_contact_binding": {
+    "static_fixture_anchor_scope": "SESSION_STATIC_REPROJECTABLE_ALL_FRAMES",
+    "static_setup_anchor_scope": "INITIAL_SLOT_ONLY_THROUGH_BOUND_CONTACT_FRAME",
+    "post_contact_static_anchor_forbidden": true,
+    "post_contact_requires": "INDEPENDENT_OBJECT_INSTANCE_PROPAGATION_OR_OBJECT6D",
+    "contact_pre_post_same_raw_id_gate_required": true,
+    "thumb_index_distance_m_max": 0.085,
+    "reference_distance_px_max": 60.0,
+    "active_pinch_distance_m_max": 0.1,
+    "active_reference_distance_px_max": 60.0,
+    "active_interval_max_gap_frames": 2,
+    "unresolved_post_release_action": "HOLD_NOT_MODEL_FAILURE"
+  },
+  "independent_2d_object_authority": {
+    "schema_version": "contact-assisted-independent-object-instance-authority-v1",
+    "one_independent_sam_state_per_instance": true,
+    "one_fixed_raw_id_per_instance": true,
+    "frame0_setup_seed_required": true,
+    "same_target_id_priming_output_discarded": true,
+    "contact_reseed_source": "PREREGISTERED_PICO_CONTACT_BINDING_ONLY",
+    "contact_reseed_label": "ASSISTED_HAND_CARRIED",
+    "manual_per_frame_reseed_forbidden": true,
+    "cross_instance_mask_subtraction_forbidden": true,
+    "cross_instance_mutual_exclusion_forbidden": true,
+    "task_instances": "all task_object setup_roles independently",
+    "fixture_instances": "all session-static fixture setup_roles independently",
+    "mat_authority": "SESSION_STATIC_BACKGROUND_REGION_NOT_AN_OBJECT_INSTANCE",
+    "full_source_frame_coverage_required": true,
+    "output_probability_threshold": 0.5,
+    "frame_gate": {
+      "present_fraction_min": 0.995,
+      "longest_missing_run_frames_max": 2,
+      "spatial_valid_fraction_min": 0.98,
+      "image_edge_contact_pixels_max": 0,
+      "connected_components_over_16px_max": 2,
+      "largest_component_area_fraction_min": 0.8,
+      "adjacent_area_ratio_min": 0.2,
+      "adjacent_area_ratio_max": 5.0
+    },
+    "identity_gate": {
+      "initial_seed_point_inside_required": true,
+      "contact_before_contact_after_presence_required": true,
+      "contact_reseed_point_to_mask_px_max": 24.0,
+      "fixed_raw_id_required": true,
+      "post_gap_same_raw_id_reappearance_required": true,
+      "cross_instance_duplicate_iou_max": 0.85,
+      "identity_collapse_frame_count_max": 0
+    },
+    "consumption_rule": "PASS authority required before human/tracker removal FIT or EVAL"
+  },
+  "tracker_anchor_generation": {
+    "authority": "PICO21 wrist and palm-center projections only",
+    "radii_px": [28, 48, 68, 88],
+    "angles_per_radius": 12,
+    "candidate_batch_size": 12,
+    "deterministic_radius_order": [48, 68, 28, 88],
+    "early_stop_only_after_a_candidate_passes_every_hard_gate": true,
+    "image_margin_px": 2,
+    "manual_per_frame_points_forbidden": true,
+    "image_colour_or_intensity_used": false,
+    "negative_points": "all valid same-hand PICO finger/palm joints plus opposing palm/wrist and protected task anchors",
+    "execution": "one_cached_single_frame_state_per_candidate_batch",
+    "multiplex_candidates_within_batch": true,
+    "discarded_first_object_priming_required": true,
+    "discarded_priming_output_consumed": false
+  },
+  "task_object_anchor_generation": {
+    "authority": "PICO-pose-projected task setup world geometry plus current PICO thumb-index pinch midpoints",
+    "static_anchor_search_offsets_px": [[0, 0], [-24, 0], [24, 0], [0, -24], [0, 24]],
+    "include_left_and_right_pinch_midpoint": true,
+    "manual_per_frame_points_forbidden": true,
+    "image_colour_or_intensity_used": false,
+    "candidate_batch_size": 12,
+    "execution": "one_cached_single_frame_state_per_candidate_batch",
+    "multiplex_candidates_within_batch": true,
+    "discarded_first_object_priming_required": true,
+    "discarded_priming_output_consumed": false
+  },
+  "tracker_mask_gate": {
+    "positive_candidate_point_inside": true,
+    "valid_pico_finger_or_palm_points_inside_max": 0,
+    "own_human_min_distance_px_max": 12.0,
+    "centroid_to_own_pico_wrist_px_max": 120.0,
+    "opposing_minus_own_wrist_centroid_px_min": 20.0,
+    "frame_area_fraction_min": 0.0002,
+    "frame_area_fraction_max": 0.02,
+    "connected_components_over_64px_max": 2,
+    "largest_component_area_fraction_min": 0.9,
+    "protected_object_overlap_pixels_max": 0,
+    "non_wrist_authorized_image_edge_contact_pixels_max": 0
+  },
+  "protected_object_mask_gate": {
+    "positive_candidate_point_inside": true,
+    "valid_pico_joint_points_inside_max": 2,
+    "connected_components_over_64px_max": 2,
+    "largest_component_area_fraction_min": 0.9,
+    "image_edge_contact_pixels_max": 0,
+    "duplicate_raw_mask_iou_max": 0.85,
+    "fixture_instance_required": true,
+    "task_object_instance_required": true
+  },
+  "human_mask_gate": {
+    "prompt": "a person's hand and forearm",
+    "pico21_visible_joint_recall_min": 1.0,
+    "selection_anchor_distance_px_max": 24.0,
+    "side_identity_cost_margin_px_min": 5.0
+  },
+  "temporal_gate": {
+    "every_frame_must_pass_spatial_gate": true,
+    "flow_aligned_iou_median_min": 0.85,
+    "flow_cycle_error_p90_px_half_max": 5.0,
+    "adjacent_area_ratio_min": 0.65,
+    "adjacent_area_ratio_max": 1.35,
+    "side_swap_count_max": 0,
+    "background_leak_frame_count_max": 0,
+    "unexplained_role_disappearance_count_max": 0
+  },
+  "candidate_ranking": [
+    "all hard gates pass",
+    "fewest PICO negative-point violations",
+    "smallest own-human boundary distance",
+    "smallest centroid-to-own-wrist distance",
+    "largest component fraction",
+    "smallest raw object overlap",
+    "stable candidate id"
+  ],
+  "forbidden": [
+    "HSV/RGB/colour thresholding",
+    "manual per-frame point placement",
+    "reusing frame-0 setup pixels without PICO camera-pose reprojection",
+    "using a setup-world slot anchor to prove a chip or card after its bound contact frame",
+    "switching PICO21 and HaWoR MANO21 providers within one session/physical-side lineage",
+    "flow between nonconsecutive samples",
+    "global morphology to conceal a failed raw mask",
+    "task-specific weights before frozen shared FIT and independent EVAL failure"
+  ],
+  "fit_eval_order": [
+    "chips:get_potato_chips_0901_008:FIT",
+    "chips:get_potato_chips_0901_011:EVAL",
+    "poker:play_cards_0901_001:EVAL"
+  ],
+  "claim_limit": "Frozen anchor, raw-candidate, and gate design only. GPU FIT/EVAL must pass before the 59-session compact batch may start."
+}

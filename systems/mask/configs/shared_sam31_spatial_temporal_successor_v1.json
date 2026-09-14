@@ -1,0 +1,89 @@
+{
+  "schema_version": "shared-mask-spatial-temporal-successor-v1",
+  "algorithm_id": "mask.sam31.independent_spatial_contiguous_temporal.v1",
+  "status": "FROZEN_PROTOCOL_PENDING_GPU_FIT_EVAL",
+  "shared_model": {
+    "weight_id": "sam31.multiplex.0567debe",
+    "weight_sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+    "checkpoint_write_forbidden": true,
+    "new_task_weight_forbidden_before_frozen_shared_fit_eval_failure": true
+  },
+  "evaluation_design": {
+    "fit": ["chips:get_potato_chips_0901_001"],
+    "independent_eval": [
+      "chips:get_potato_chips_0901_008",
+      "poker:play_cards_0901_001"
+    ],
+    "eval_feedback_may_not_change_frozen_thresholds": true,
+    "task_specific_adapter_allowed_only_after_shared_fit_and_both_independent_evals_fail_systematically": true
+  },
+  "spatial_canary": {
+    "frame_count": 12,
+    "sampling": "event_stratified_preregistered",
+    "execution": "one_independent_single_frame_model_state_per_source_frame",
+    "previous_or_next_sample_visible_to_model": false,
+    "cross_sample_flow_or_propagation_forbidden": true,
+    "manual_review_required": true
+  },
+  "temporal_canary": {
+    "window_count": 3,
+    "frames_per_window": 12,
+    "execution": "one_native_contiguous_video_state_per_window",
+    "source_indices_must_be_unit_stride": true,
+    "propagation_between_windows_forbidden": true,
+    "manual_review_required": true
+  },
+  "tracker_spatial_gate": {
+    "present": true,
+    "positive_anchor_coverage_fraction_min": 1.0,
+    "negative_anchor_exclusion_fraction_min": 1.0,
+    "own_pico_wrist_min_distance_px_max": 12.0,
+    "centroid_to_own_pico_wrist_px_max": 120.0,
+    "opposing_wrist_centroid_margin_px_min": 20.0,
+    "frame_area_fraction_min": 0.0002,
+    "frame_area_fraction_max": 0.02,
+    "connected_components_over_64px_max": 2,
+    "largest_component_area_fraction_min": 0.9,
+    "protected_object_overlap_pixels_max": 0,
+    "non_wrist_authorized_image_edge_contact_pixels_max": 0,
+    "same_wrist_adjacency_required": true
+  },
+  "human_spatial_gate": {
+    "pico21_visible_joint_recall_min": 1.0,
+    "anatomical_side_swap_count_max": 0,
+    "true_image_entry_or_visible_arm_endpoint_required": true,
+    "protected_object_overlap_pixels_max": 0
+  },
+  "protected_object_spatial_gate": {
+    "required_visible_role_recall_min": 1.0,
+    "positive_anchor_coverage_fraction_min": 1.0,
+    "negative_anchor_exclusion_fraction_min": 1.0,
+    "role_identity_swap_count_max": 0,
+    "support_plane_absorption_forbidden": true
+  },
+  "temporal_gate": {
+    "every_frame_must_pass_spatial_gate": true,
+    "flow_aligned_iou_median_min": 0.85,
+    "flow_cycle_error_p90_px_half_max": 5.0,
+    "adjacent_area_ratio_min": 0.65,
+    "adjacent_area_ratio_max": 1.35,
+    "side_swap_count_max": 0,
+    "background_leak_frame_count_max": 0,
+    "unexplained_role_disappearance_count_max": 0
+  },
+  "forbidden_repairs": [
+    "HSV/RGB/colour thresholding",
+    "task-specific colour tuning",
+    "global morphology or largest-component cleanup used to hide inference errors",
+    "flow across nonconsecutive sampled frames",
+    "using protected-object masks as priming outputs",
+    "changing thresholds after viewing independent EVAL"
+  ],
+  "promotion": {
+    "fit_pass_required": true,
+    "each_independent_eval_pass_required": true,
+    "automatic_and_manual_gates_both_required": true,
+    "full_video_forbidden_before_promotion": true
+  },
+  "claim_limit": "Protocol and frozen thresholds only. It authorizes no mask consumption and no full-video run until FIT plus both independent EVAL sessions pass."
+}

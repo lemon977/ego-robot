@@ -1,0 +1,25 @@
+{
+  "input_mp4": "CHANGE_ME/input.mp4",
+  "output_dir": "CHANGE_ME/output_annotations",
+  "session_id": "CHANGE_ME_SESSION",
+  "sampling": {
+    "frame_count": 24,
+    "timestamps_csv": ""
+  },
+  "server": {
+    "host": "127.0.0.1",
+    "port": 8765,
+    "open_browser": true
+  },
+  "validation": {
+    "require_complete": true,
+    "required_nonempty_classes": [
+      "L_SKIN",
+      "R_SKIN",
+      "L_SLEEVE",
+      "R_SLEEVE",
+      "O_TASK_OBJECT",
+      "B_BACKGROUND"
+    ]
+  }
+}

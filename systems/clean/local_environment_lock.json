@@ -1,0 +1,31 @@
+{
+  "schema_version": "chaoyang-clean-local-environment-lock-v1",
+  "status": "PASS_LOCAL_CLEAN_ENVIRONMENT_PROMOTED",
+  "environment_id": "clean-track4world-py311-v1",
+  "environment_root": "assets/environments/clean-track4world-py311-v1",
+  "python": "assets/environments/clean-track4world-py311-v1/bin/python",
+  "launcher": ["tools/clean_python.sh"],
+  "authority": {
+    "path": "systems/clean/environment_authority.json",
+    "sha256": "55b95bcd92154c7d1bc18d3ea8e5d92114436cf3b9f1f5a8b3eef1efb1b67bac"
+  },
+  "snapshot": {
+    "snapshot_id": "c25ecab199264bdfa30cce148ca35767",
+    "manifest": "assets/environments/clean-track4world-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "manifest_sha256": "67d04c9bdb58f932fa270a077b1f8d638fd90219163d238c1ba0b5523c252278",
+    "tree_content_sha256": "9804801f0db9a1c71f2f07eac7e98e7fed66f574e6765a3ca544191bdf8a2e64",
+    "counts": {"directories": 7638, "regular_files": 67676, "special": 0, "symlinks": 1382},
+    "logical_bytes": 8097135393
+  },
+  "verification": {
+    "local_probe": {
+      "path": "tasks/control/runs/20260903_clean_local_environment_migration_v1/LOCAL_ENV_PROBE.json",
+      "sha256": "9a174b696be946e0550a3fe7627d1d796123f55dfd34b0338a6c7c766c036a58"
+    },
+    "replay_comparison": {
+      "path": "tasks/control/runs/20260903_clean_local_environment_migration_v1/REPLAY_COMPARISON.json",
+      "sha256": "2cf0db078da4b8faf97e08c9ba3ac986e3d36ba15047c3630457ee5e338655a4"
+    }
+  },
+  "claim_limit": "Clean CPU runtime only; Mask/SAM remains pending and production execution remains separately gated"
+}

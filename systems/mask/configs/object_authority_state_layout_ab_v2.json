@@ -1,0 +1,61 @@
+{
+  "schema_version": "object-authority-state-layout-performance-ab-v2",
+  "status": "FROZEN_CPU_READY_GPU_BLOCKED_SAM_SWITCH_LEASE_AND_DISK",
+  "base_contract": {
+    "path": "systems/mask/configs/object_authority_state_layout_ab_v1.json",
+    "sha256": "4825644fdba053262d50a6813ff64cf65b35e0353ca0b24e7e3968c229dfc34c"
+  },
+  "benchmark_scope": {
+    "task_id": "chips",
+    "session_id": "get_potato_chips_0901_008",
+    "split": "FIT_PERFORMANCE_DIAGNOSTIC_ONLY",
+    "other_sessions_forbidden_before_decision": true
+  },
+  "execution_order": [
+    "A_FORMAL_ISOLATED_AUTHORITY_ONCE",
+    "B_JOINT_DIAGNOSTIC_CONSUMES_A_SHA_PINNED_ARTIFACTS"
+  ],
+  "variant_a_source": {
+    "required_schema": "contact-assisted-independent-object-instance-authority-v1",
+    "required_status": "PASS_OBJECT_INSTANCE_AUTHORITY",
+    "consumption_authorized_required": true,
+    "timed_region": "RESULT.resource.wall_seconds excluding model construction and checkpoint hashing"
+  },
+  "variant_b": {
+    "one_video_state_total": true,
+    "four_fixed_distinct_object_ids": true,
+    "frame0_seed_for_every_id": true,
+    "contact_reseed_same_id": true,
+    "same_frozen_thresholds_and_gates_as_a": true,
+    "timed_region": "wall time after model construction through final propagated frame",
+    "full_masks_persisted": false,
+    "twelve_review_masks_kept_in_memory_only": true,
+    "diagnostic_can_never_be_consumed_as_authority": true
+  },
+  "strict_equivalence_gate_source": "base_contract.strict_equivalence_gate",
+  "static_not_promotable_before_runtime": {
+    "value": true,
+    "reason": "Pinned public SAM postprocess invokes cross-object non-overlap whenever multiple masks are present.",
+    "runtime_measurement_purpose": "Quantify speed and divergence only; speed cannot override the no-modification gate."
+  },
+  "resource_limits": {
+    "workspace_free_bytes_before_start_min": 67108864,
+    "persistent_output_bytes_max": 33554432,
+    "temporary_workspace_bytes_max": 0,
+    "source_video_copy_forbidden": true,
+    "full_b_mask_dump_forbidden": true,
+    "abort_if_variant_a_artifact_pin_drift": true
+  },
+  "decision": {
+    "promote_b_only_if_every_base_strict_gate_passes": true,
+    "expected_from_static_audit": "B_NOT_PROMOTABLE_KEEP_A",
+    "upstream_monkeypatch_or_postprocess_bypass_forbidden": true,
+    "task_specific_exception_forbidden": true
+  },
+  "human_tracker_followup": {
+    "status": "AFTER_OBJECT_AB_ONLY",
+    "target": "reuse immutable decoded frames/backbone features while preserving separate role masks and gates",
+    "strict_binary_and_gate_equivalence_required": true
+  },
+  "claim_limit": "chips008-only performance diagnostic. It cannot create stage current, authorize joint-state masks, weaken quality gates, or alter the pinned checkpoint/code."
+}

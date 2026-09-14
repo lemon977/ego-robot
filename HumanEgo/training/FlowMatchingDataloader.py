@@ -16,13 +16,16 @@ Features & Ablations Supported:
 
 from __future__ import annotations
 
+import hashlib
+import io
 import os
 import json
 import random
 import time
 import concurrent.futures
 from dataclasses import dataclass
-from typing import List, Optional, Tuple, Any, Dict
+from pathlib import Path
+from typing import List, Optional, Tuple, Any, Dict, Mapping
 
 import numpy as np
 import cv2
@@ -36,7 +39,12 @@ from scipy.spatial.transform import Slerp
 cv2.setNumThreads(1)
 
 # --- Custom Unified Utils ---
-from utils.utils_io import read_json, safe_imread_gray, safe_imread_rgb
+from utils.utils_io import read_json, safe_imread_rgb
+from utils.frozen_contract import (
+    read_file_reference,
+    read_ordinary_file_bytes,
+    validate_directory_path,
+)
 from utils.utils_math import (
     clip01,
     rotmat_to_o6d,
@@ -152,6 +160,13 @@ class FlowMatchingDataloader(Dataset):
         action_mode: str = 'absolute',              # 'absolute' or 'delta'
         hand_action_representation: str = 'grasp_binary',
         robot_sidecar_root: Optional[str] = None,
+        hawor_v3_sidecar_root: Optional[str] = None,
+        hawor_v3_sha256_by_session: Optional[Mapping[str, str]] = None,
+        object_state_sidecar_root: Optional[str] = None,
+        object_state_npz_sha256_by_session: Optional[Mapping[str, str]] = None,
+        object_state_json_sha256_by_session: Optional[Mapping[str, str]] = None,
+        object_state_consumption_mode: str = "disabled",
+        object_state_confidence_thresholds: Optional[Mapping[str, float]] = None,
         use_pcd_features: bool = True,              # Explicit 3D Point Cloud Injection
 
         # --- Aux Switches ---
@@ -178,11 +193,29 @@ class FlowMatchingDataloader(Dataset):
         use_legacy_rng: bool = False,             # True: deterministic RNG per sample (seed + idx*N)
         cache_json_in_memory: bool = False,
         cache_image_bytes_in_memory: bool = False,
+        allowed_window_starts: Optional[Mapping[str, set[int] | frozenset[int]]] = None,
+        selector_records: Optional[Mapping[str, Mapping[str, Any]]] = None,
+        selector_root: Optional[str] = None,
+        sidecar_sha256_by_session: Optional[Mapping[str, str]] = None,
     ):
         super().__init__()
         assert pred_horizon >= 1, "pred_horizon must be >= 1"
 
         self.sessions = sessions
+        self.allowed_window_starts = (
+            None
+            if allowed_window_starts is None
+            else {
+                session_id: frozenset(int(frame) for frame in frames)
+                for session_id, frames in allowed_window_starts.items()
+            }
+        )
+        if self.allowed_window_starts is not None:
+            if not self.allowed_window_starts or any(
+                not frames or any(frame < 0 for frame in frames)
+                for frames in self.allowed_window_starts.values()
+            ):
+                raise ValueError("paired-kept window starts must be non-empty non-negative sets")
         self.H, self.W = image_size
         self.pred_horizon = pred_horizon
         self.single_hand = single_hand
@@ -190,6 +223,9 @@ class FlowMatchingDataloader(Dataset):
         self.max_ict = max_ict
 
         self.img_name = img_name
+        if isinstance(img_name, str) and not img_name.startswith("@"):
+            if img_name != os.path.basename(img_name) or img_name in {"", ".", ".."}:
+                raise ValueError("img_name must be a frame-local basename")
         self.centric_mode = centric_mode
         self.frame_mode = frame_mode
         self.action_mode = action_mode
@@ -213,6 +249,11 @@ class FlowMatchingDataloader(Dataset):
         self.robot_sidecar_root = (
             os.path.abspath(robot_sidecar_root) if robot_sidecar_root else None
         )
+        self.sidecar_sha256_by_session = (
+            None
+            if sidecar_sha256_by_session is None
+            else dict(sidecar_sha256_by_session)
+        )
         self.use_pcd_features = use_pcd_features
         self.use_object_tokens = (centric_mode != 'ego_centric')  # derived from centric_mode
 
@@ -228,14 +269,34 @@ class FlowMatchingDataloader(Dataset):
         self.enable_aug_temporal_stride = enable_aug_temporal_stride
         self.enable_aug_interpolation = enable_aug_interpolation
         self.seed = seed
+        self.epoch = 0
 
         self.disable_kinematic_latching = disable_kinematic_latching
         self.hand_tracking_method = hand_tracking_method
-        self.hand_entity_key = HAND_METHOD_ENTITY_KEY.get(hand_tracking_method, "hands")
+        try:
+            self.hand_entity_key = HAND_METHOD_ENTITY_KEY[hand_tracking_method]
+        except KeyError as error:
+            raise ValueError(f"unsupported hand tracking method: {hand_tracking_method}") from error
         self.use_legacy_image_loading = use_legacy_image_loading
         self.use_legacy_rng = use_legacy_rng
         self.cache_json_in_memory = cache_json_in_memory
         self.cache_image_bytes_in_memory = cache_image_bytes_in_memory
+        if (selector_records is None) != (selector_root is None):
+            raise ValueError("selector_records and selector_root must be supplied together")
+        self.selector_records = selector_records
+        self.selector_root = (
+            None
+            if selector_root is None
+            else validate_directory_path(
+                selector_root,
+                allowed_roots=[Path(selector_root).absolute().anchor],
+                label="dataloader selector root",
+            )
+        )
+        self._selector_image_paths: Dict[str, str] = {}
+        self._selector_image_references: Dict[str, Mapping[str, Any]] = {}
+        self._selector_image_owners: Dict[str, str] = {}
+        self._selector_metadata_owners: Dict[str, str] = {}
         # The stock loader opens K future JSON files for every sample.  On a
         # network filesystem this means roughly 1.4M small-file reads per epoch
         # for the grap_a_cap cohort.  Preloading keeps the exact parsed objects
@@ -250,6 +311,84 @@ class FlowMatchingDataloader(Dataset):
 
         # Token Dimension:[TypeID(1) + Pose_in_Ref(9) + HandL_in_This(9) + (Optional HandR_in_This(9)) + Flag(1)]
         self.ict_dim = 20 if self.single_hand else 29
+
+        # New-task adapters keep the immutable source JSON and inject the
+        # canonical HaWoR entity at read time from a frozen session sidecar.
+        # This is deliberately not an alias of the PICO ``entities.hands``
+        # record: the wrist pose is reconstructed from MANO21 camera geometry
+        # using the same physical wrist-frame convention as the legacy V3
+        # adapter, then transformed by the source c2w authority.
+        self.hawor_v3_sidecar_root = (
+            os.path.abspath(hawor_v3_sidecar_root)
+            if hawor_v3_sidecar_root else None
+        )
+        self.hawor_v3_sha256_by_session = (
+            None
+            if hawor_v3_sha256_by_session is None
+            else dict(hawor_v3_sha256_by_session)
+        )
+        self._hawor_v3_sources: Dict[str, Dict[str, Any]] = {}
+        if self.hawor_v3_sidecar_root is not None:
+            if self.hand_tracking_method != "hawor_v3":
+                raise ValueError(
+                    "HaWoR V3 entity sidecars require hand_tracking_method=hawor_v3"
+                )
+            self._load_hawor_v3_sources()
+
+        # Object overlays use a separate, explicit authority gate.  In
+        # particular, the review-only AUTO_ESTIMATED sidecars must never look
+        # like measured Object6D merely because they contain a 4x4 proxy pose.
+        # ``diagnostic_estimated`` is CPU/review only and applies an explicit
+        # per-provenance confidence policy. ``training_estimated_grade_b`` is a
+        # distinct low-weight authority for automatically estimated, non-formal
+        # object states; it cannot be confused with ``training_admitted``, which
+        # additionally requires per-frame formal Object6D validity.
+        if object_state_consumption_mode not in {
+            "disabled", "diagnostic_estimated", "training_estimated_grade_b",
+            "training_admitted",
+        }:
+            raise ValueError(
+                "object_state_consumption_mode must be disabled, "
+                "diagnostic_estimated, training_estimated_grade_b or "
+                "training_admitted"
+            )
+        self.object_state_consumption_mode = object_state_consumption_mode
+        self.object_state_sidecar_root = (
+            os.path.abspath(object_state_sidecar_root)
+            if object_state_sidecar_root else None
+        )
+        self.object_state_npz_sha256_by_session = (
+            None if object_state_npz_sha256_by_session is None
+            else dict(object_state_npz_sha256_by_session)
+        )
+        self.object_state_json_sha256_by_session = (
+            None if object_state_json_sha256_by_session is None
+            else dict(object_state_json_sha256_by_session)
+        )
+        self.object_state_confidence_thresholds = {
+            str(key): float(value)
+            for key, value in (object_state_confidence_thresholds or {}).items()
+        }
+        self._object_state_sources: Dict[str, Dict[str, Any]] = {}
+        if self.object_state_sidecar_root is not None:
+            if self.object_state_consumption_mode == "disabled":
+                raise ValueError(
+                    "object sidecar root requires an explicit consumption mode"
+                )
+            if not self.use_object_tokens:
+                raise ValueError(
+                    "object state sidecars require object-centric ICT tokens"
+                )
+            if not self.object_state_confidence_thresholds:
+                raise ValueError(
+                    "object sidecars require frozen per-provenance confidence "
+                    "thresholds"
+                )
+            self._load_object_state_sources()
+        elif self.object_state_consumption_mode != "disabled":
+            raise ValueError(
+                "object state consumption mode requires object sidecar root"
+            )
 
         # KaiHand supervision is intentionally kept as a session-level sidecar.
         # This preserves the stock HumanEgo JSON schema and avoids rewriting every
@@ -290,6 +429,31 @@ class FlowMatchingDataloader(Dataset):
     def __len__(self):
         return len(self.samples)
 
+    def set_epoch(self, epoch: int) -> None:
+        """Select a deterministic epoch-specific augmentation stream."""
+        if not isinstance(epoch, int) or epoch < 0:
+            raise ValueError("augmentation epoch must be a non-negative integer")
+        self.epoch = epoch
+
+    def _logical_sample_key(self, idx: int) -> str:
+        if hasattr(self, "samples") and 0 <= idx < len(self.samples):
+            json_path = self.samples[idx]
+            session_root = self._session_root_from_json_path(json_path)
+            return f"{os.path.basename(os.path.dirname(session_root))}/{os.path.basename(os.path.dirname(json_path))}"
+        return f"index:{idx}"
+
+    def _rng_for_sample(self, idx: int, salt: int) -> np.random.RandomState:
+        """Return a paired-key/epoch RNG stable across workers and image domains."""
+        if self.use_legacy_rng:
+            seed = self.seed + idx * salt
+        else:
+            material = (
+                f"humanego-augmentation-v2\0{self.seed}\0{self.epoch}\0"
+                f"{self._logical_sample_key(idx)}\0{salt}"
+            ).encode("utf-8")
+            seed = int.from_bytes(hashlib.sha256(material).digest()[:8], "big")
+        return np.random.RandomState(seed % (2**32))
+
     # ---------------------
     # Index Builder
     # ---------------------
@@ -298,12 +462,19 @@ class FlowMatchingDataloader(Dataset):
         all_data_dir = os.path.dirname(os.path.dirname(json_path))
         return os.path.dirname(os.path.dirname(all_data_dir))
 
+    @staticmethod
+    def _session_id_from_mps_path(mps_path: str) -> str:
+        root = os.path.abspath(mps_path)
+        if os.path.basename(root) == "09_humanego_adapter":
+            return os.path.basename(os.path.dirname(root))
+        return os.path.basename(root)
+
     def _load_robot_sources(self) -> None:
         expected_names: Dict[str, Tuple[str, ...]] = {}
         missing = []
         for spec in self.sessions:
             root = os.path.abspath(spec.mps_path)
-            session_id = os.path.basename(os.path.dirname(root))
+            session_id = self._session_id_from_mps_path(root)
             path = (
                 os.path.join(
                     self.robot_sidecar_root, self.embodiment, session_id,
@@ -311,15 +482,42 @@ class FlowMatchingDataloader(Dataset):
                 )
                 if self.robot_sidecar_root else ""
             )
-            if not os.path.isfile(path):
+            try:
+                _, encoded = read_ordinary_file_bytes(
+                    path,
+                    label=f"{session_id} robot sidecar",
+                )
+            except FileNotFoundError:
                 missing.append(path)
                 continue
-            with np.load(path, allow_pickle=False) as archive:
+            if self.selector_records is not None:
+                if self.sidecar_sha256_by_session is None:
+                    raise RuntimeError(
+                        "HOLD_FROZEN_SIDECAR_REFERENCE_REQUIRED: formal selector "
+                        "consumption requires sidecar digests"
+                    )
+                expected_digest = self.sidecar_sha256_by_session.get(session_id)
+                observed_digest = hashlib.sha256(encoded).hexdigest()
+                if expected_digest != observed_digest:
+                    raise ValueError(
+                        f"{session_id} robot sidecar differs from frozen authority"
+                    )
+            with np.load(io.BytesIO(encoded), allow_pickle=False) as archive:
                 schema = str(archive["schema_version"].item())
-                if schema != "humanego-robot-sidecar-v1":
+                if schema not in {
+                    "humanego-robot-sidecar-v1",
+                    "humanego-motion-label-grade-b-v1",
+                }:
                     raise ValueError(f"{path}: unsupported schema {schema}")
-                if str(archive["embodiment"].item()) != self.embodiment:
-                    raise ValueError(f"{path}: embodiment mismatch")
+                if schema == "humanego-robot-sidecar-v1":
+                    if str(archive["embodiment"].item()) != self.embodiment:
+                        raise ValueError(f"{path}: embodiment mismatch")
+                elif (
+                    "provenance_class" not in archive.files
+                    or str(archive["provenance_class"].item())
+                    != "MOTION_TRAINING_LABEL_GRADE_B"
+                ):
+                    raise ValueError(f"{path}: invalid motion-label provenance")
                 frame_names = [str(v) for v in archive["frame_names"]]
                 source: Dict[str, Any] = {
                     "path": path,
@@ -364,6 +562,512 @@ class FlowMatchingDataloader(Dataset):
             )
         self.robot_joint_names = expected_names
 
+    def _load_hawor_v3_sources(self) -> None:
+        """Load frozen HaWoR entity overlays without weakening JSON identity."""
+        missing = []
+        for spec in self.sessions:
+            root = os.path.abspath(spec.mps_path)
+            session_id = self._session_id_from_mps_path(root)
+            path = os.path.join(
+                self.hawor_v3_sidecar_root,
+                session_id,
+                "entities_hawor_v3.npz",
+            )
+            try:
+                _, encoded = read_ordinary_file_bytes(
+                    path, label=f"{session_id} HaWoR V3 entity sidecar"
+                )
+            except FileNotFoundError:
+                missing.append(path)
+                continue
+            if self.hawor_v3_sha256_by_session is None:
+                raise RuntimeError(
+                    "HOLD_FROZEN_HAWOR_V3_REFERENCE_REQUIRED: entity sidecar "
+                    "digests are mandatory"
+                )
+            observed_digest = hashlib.sha256(encoded).hexdigest()
+            expected_digest = self.hawor_v3_sha256_by_session.get(session_id)
+            if observed_digest != expected_digest:
+                raise ValueError(
+                    f"{session_id} HaWoR V3 entity sidecar differs from frozen authority"
+                )
+            with np.load(io.BytesIO(encoded), allow_pickle=False) as archive:
+                schema = str(archive["schema_version"].item())
+                if schema != "humanego-hawor-v3-entity-sidecar-v2":
+                    raise ValueError(f"{path}: unsupported schema {schema}")
+                if str(archive["translation_unit"].item()) != "metre":
+                    raise ValueError(f"{path}: HaWoR translation unit must be metre")
+                if str(archive["camera_coordinate_system"].item()) != "x_right_y_down_z_forward":
+                    raise ValueError(f"{path}: unexpected HaWoR camera coordinate system")
+                frame_names = tuple(str(value) for value in archive["frame_names"])
+                transforms = np.asarray(archive["T_hand_to_world"], dtype=np.float64)
+                transforms_camera = np.asarray(
+                    archive["T_hand_to_camera"], dtype=np.float64
+                )
+                valid = np.asarray(archive["valid"], dtype=bool)
+                grasp = np.asarray(archive["grasp"], dtype=np.float32)
+                confidence = np.asarray(archive["confidence"], dtype=np.float32)
+                expected_pose_shape = (len(frame_names), 2, 4, 4)
+                expected_side_shape = (len(frame_names), 2)
+                if transforms.shape != expected_pose_shape:
+                    raise ValueError(
+                        f"{path}: T_hand_to_world shape {transforms.shape}, "
+                        f"expected {expected_pose_shape}"
+                    )
+                if transforms_camera.shape != expected_pose_shape:
+                    raise ValueError(
+                        f"{path}: T_hand_to_camera shape {transforms_camera.shape}, "
+                        f"expected {expected_pose_shape}"
+                    )
+                for label, value in (
+                    ("valid", valid), ("grasp", grasp),
+                    ("confidence", confidence),
+                ):
+                    if value.shape != expected_side_shape:
+                        raise ValueError(
+                            f"{path}: {label} shape {value.shape}, "
+                            f"expected {expected_side_shape}"
+                        )
+                if len(set(frame_names)) != len(frame_names):
+                    raise ValueError(f"{path}: duplicate frame names")
+                if not np.isfinite(transforms[valid]).all():
+                    raise ValueError(f"{path}: non-finite valid HaWoR world pose")
+                if not np.isfinite(transforms_camera[valid]).all():
+                    raise ValueError(f"{path}: non-finite valid HaWoR camera pose")
+                source = {
+                    "path": path,
+                    "sha256": observed_digest,
+                    "frame_to_index": {
+                        name: index for index, name in enumerate(frame_names)
+                    },
+                    "T_hand_to_world": transforms,
+                    "T_hand_to_camera": transforms_camera,
+                    "valid": valid,
+                    "grasp": grasp,
+                    "confidence": confidence,
+                }
+                self._hawor_v3_sources[root] = source
+        if missing:
+            raise FileNotFoundError(
+                "hawor_v3 requested, but frozen entity sidecar is missing:\n  "
+                + "\n  ".join(missing)
+            )
+
+    def _inject_hawor_v3_entity(self, frame: dict, json_path: str) -> dict:
+        """Return a shallow copy with canonical ``hands_hawor_v3`` injected."""
+        if not self._hawor_v3_sources:
+            return frame
+        root = self._session_root_from_json_path(json_path)
+        source = self._hawor_v3_sources.get(root)
+        if source is None:
+            raise RuntimeError(f"no HaWoR V3 source bound to {root}")
+        frame_name = os.path.basename(os.path.dirname(json_path))
+        frame_index = source["frame_to_index"].get(frame_name)
+        if frame_index is None:
+            raise ValueError(f"HaWoR V3 sidecar has no frame {frame_name} for {root}")
+        hands = {}
+        for side_index, side in enumerate(("left", "right")):
+            if not source["valid"][frame_index, side_index]:
+                continue
+            hands[side] = {
+                "T_hand_to_world": source["T_hand_to_world"][
+                    frame_index, side_index
+                ].tolist(),
+                "T_wrist_to_world": source["T_hand_to_world"][
+                    frame_index, side_index
+                ].tolist(),
+                "T_wrist_to_camera": source["T_hand_to_camera"][
+                    frame_index, side_index
+                ].tolist(),
+                "grasp": float(source["grasp"][frame_index, side_index]),
+                "confidence": float(
+                    source["confidence"][frame_index, side_index]
+                ),
+                "pose_source": "canonical_hawor_optimized_mano21_v3",
+                "coordinate_source": (
+                    "mano21_camera_wrist_frame_transformed_by_source_c2w"
+                ),
+            }
+        payload = dict(frame)
+        entities = dict(frame.get("entities", {}))
+        entities["hands_hawor_v3"] = hands
+        payload["entities"] = entities
+        return payload
+
+    @staticmethod
+    def _validate_object_se3(
+        transforms: np.ndarray, valid: np.ndarray, path: str
+    ) -> None:
+        selected = transforms[valid]
+        if not np.isfinite(selected).all():
+            raise ValueError(f"{path}: valid object transforms must be finite")
+        if len(selected) == 0:
+            return
+        bottom = np.array([0.0, 0.0, 0.0, 1.0], dtype=np.float64)
+        if float(np.max(np.abs(selected[:, 3, :] - bottom))) > 1.0e-6:
+            raise ValueError(f"{path}: object transforms have invalid bottom row")
+        rotations = selected[:, :3, :3]
+        identity = np.eye(3, dtype=np.float64)
+        ortho_error = float(
+            np.max(np.abs(np.swapaxes(rotations, 1, 2) @ rotations - identity))
+        )
+        det_error = float(np.max(np.abs(np.linalg.det(rotations) - 1.0)))
+        if ortho_error > 1.0e-4 or det_error > 1.0e-4:
+            raise ValueError(
+                f"{path}: object transforms are not right-handed SE(3): "
+                f"orthogonal_error={ortho_error}, determinant_error={det_error}"
+            )
+
+    def _load_object_state_sources(self) -> None:
+        """Load digest-bound object overlays behind an explicit authority gate.
+
+        Review-only AUTO_ESTIMATED inputs can be exercised in
+        ``diagnostic_estimated`` mode, but are categorically rejected by the
+        training mode.  A valid-looking proxy matrix is not sufficient proof
+        of metric Object6D authority.
+        """
+        if (
+            self.object_state_npz_sha256_by_session is None
+            or self.object_state_json_sha256_by_session is None
+        ):
+            raise RuntimeError(
+                "HOLD_FROZEN_OBJECT_STATE_REFERENCES_REQUIRED: both JSON and "
+                "NPZ digests are mandatory"
+            )
+        for provenance, threshold in self.object_state_confidence_thresholds.items():
+            if provenance == "UNKNOWN" or not 0.0 <= threshold <= 1.0:
+                raise ValueError(
+                    f"invalid object confidence policy {provenance}={threshold}"
+                )
+
+        missing = []
+        for spec in self.sessions:
+            root = os.path.abspath(spec.mps_path)
+            session_id = self._session_id_from_mps_path(root)
+            sidecar_dir = os.path.join(self.object_state_sidecar_root, session_id)
+            npz_path = os.path.join(sidecar_dir, "AUTO_ESTIMATED_OBJECT_STATE.npz")
+            json_path = os.path.join(sidecar_dir, "AUTO_ESTIMATED_OBJECT_STATE.json")
+            try:
+                _, npz_encoded = read_ordinary_file_bytes(
+                    npz_path, label=f"{session_id} object state NPZ"
+                )
+                _, json_encoded = read_ordinary_file_bytes(
+                    json_path, label=f"{session_id} object state manifest"
+                )
+            except FileNotFoundError:
+                missing.extend([npz_path, json_path])
+                continue
+            npz_digest = hashlib.sha256(npz_encoded).hexdigest()
+            json_digest = hashlib.sha256(json_encoded).hexdigest()
+            if self.object_state_npz_sha256_by_session.get(session_id) != npz_digest:
+                raise ValueError(
+                    f"{session_id} object state NPZ differs from frozen authority"
+                )
+            if self.object_state_json_sha256_by_session.get(session_id) != json_digest:
+                raise ValueError(
+                    f"{session_id} object state manifest differs from frozen authority"
+                )
+            manifest = json.loads(json_encoded.decode("utf-8"))
+            schema = str(manifest.get("schema_version", ""))
+            training_weight = None
+            if schema == "auto-estimated-object-state-review-v2":
+                if self.object_state_consumption_mode in {
+                    "training_admitted", "training_estimated_grade_b",
+                }:
+                    raise RuntimeError(
+                        "HOLD_AUTO_ESTIMATED_OBJECT_NOT_TRAINING_AUTHORITY: "
+                        f"{session_id} is review-only"
+                    )
+                if bool(manifest.get("consumption_authorized")):
+                    raise ValueError(
+                        f"{json_path}: review schema cannot authorize consumption"
+                    )
+            elif schema == "humanego-auto-estimated-object-grade-b-v1":
+                if self.object_state_consumption_mode != "training_estimated_grade_b":
+                    raise RuntimeError(
+                        "HOLD_GRADE_B_OBJECT_WRONG_CONSUMPTION_MODE: "
+                        f"{session_id}"
+                    )
+                if (
+                    manifest.get("quality_grade") != "B"
+                    or not bool(manifest.get("consumption_authorized"))
+                    or bool(manifest.get("claims_formal_object6d", True))
+                ):
+                    raise ValueError(f"{json_path}: invalid grade-B authority contract")
+                training_weight = manifest.get("training_weight")
+                if (
+                    not isinstance(training_weight, (int, float))
+                    or not 0.0 < float(training_weight) < 1.0
+                ):
+                    raise ValueError(f"{json_path}: fixed grade-B training weight required")
+                if not isinstance(manifest.get("source_provenance"), dict):
+                    raise ValueError(f"{json_path}: source provenance is required")
+            elif schema != "humanego-object-state-sidecar-v3":
+                raise ValueError(f"{json_path}: unsupported object schema {schema}")
+            elif self.object_state_consumption_mode == "training_estimated_grade_b":
+                raise RuntimeError(
+                    f"HOLD_FORMAL_OBJECT_WRONG_GRADE_B_MODE: {session_id}"
+                )
+            if manifest.get("session") != session_id:
+                raise ValueError(f"{json_path}: session mismatch")
+            npz_reference = manifest.get("npz", {})
+            if npz_reference.get("sha256") != npz_digest:
+                raise ValueError(f"{json_path}: embedded NPZ digest mismatch")
+            array_contract = manifest.get("array_contract", {})
+            if (
+                array_contract.get("coordinate_frame")
+                != "current rectified left-camera optical frame"
+                or array_contract.get("units", {}).get("translation") != "metres"
+            ):
+                raise ValueError(f"{json_path}: unexpected object coordinate contract")
+            if self.object_state_consumption_mode in {
+                "training_admitted", "training_estimated_grade_b",
+            } and not bool(
+                manifest.get("consumption_authorized")
+            ):
+                raise RuntimeError(
+                    f"HOLD_OBJECT_STATE_CONSUMPTION_NOT_AUTHORIZED: {session_id}"
+                )
+
+            with np.load(io.BytesIO(npz_encoded), allow_pickle=False) as archive:
+                required = {
+                    "frame_names", "object_keys", "T_object_to_camera",
+                    "valid", "confidence", "provenance", "role", "anchor_key",
+                    "object_type_ids", "object_pose9_camera",
+                    "formal_object6d_valid",
+                }
+                absent = sorted(required - set(archive.files))
+                if absent:
+                    raise ValueError(f"{npz_path}: missing object arrays {absent}")
+                frame_names = tuple(str(value) for value in archive["frame_names"])
+                object_keys = tuple(str(value) for value in archive["object_keys"])
+                roles = tuple(str(value) for value in archive["role"])
+                anchor_key = str(archive["anchor_key"].item())
+                type_ids = np.asarray(archive["object_type_ids"], dtype=np.int8)
+                transforms = np.asarray(
+                    archive["T_object_to_camera"], dtype=np.float64
+                )
+                raw_valid = np.asarray(archive["valid"], dtype=bool)
+                confidence = np.asarray(archive["confidence"], dtype=np.float32)
+                provenance = np.asarray(archive["provenance"]).astype(str)
+                pose9 = np.asarray(archive["object_pose9_camera"], dtype=np.float32)
+                formal_valid = np.asarray(
+                    archive["formal_object6d_valid"], dtype=bool
+                )
+            count = len(frame_names)
+            if len(set(frame_names)) != count:
+                raise ValueError(f"{npz_path}: duplicate frame names")
+            if len(object_keys) != 2 or len(set(object_keys)) != 2:
+                raise ValueError(f"{npz_path}: expected two distinct object keys")
+            if anchor_key != object_keys[0] or type_ids.tolist() != [3, 4]:
+                raise ValueError(
+                    f"{npz_path}: anchor/type order must be [anchor=3, other=4]"
+                )
+            if roles != ("anchor_manipulated", "other_static_fixture"):
+                raise ValueError(f"{npz_path}: unexpected object roles {roles}")
+            expected_pose_shape = (count, 2, 4, 4)
+            expected_value_shape = (count, 2)
+            if transforms.shape != expected_pose_shape:
+                raise ValueError(
+                    f"{npz_path}: object pose shape {transforms.shape}, "
+                    f"expected {expected_pose_shape}"
+                )
+            for label, value in (
+                ("valid", raw_valid), ("confidence", confidence),
+                ("provenance", provenance), ("formal_object6d_valid", formal_valid),
+            ):
+                if value.shape != expected_value_shape:
+                    raise ValueError(
+                        f"{npz_path}: {label} shape {value.shape}, "
+                        f"expected {expected_value_shape}"
+                    )
+            if pose9.shape != (count, 2, 9):
+                raise ValueError(f"{npz_path}: object pose9 has shape {pose9.shape}")
+            if not np.isfinite(confidence).all() or not (
+                (confidence >= 0.0) & (confidence <= 1.0)
+            ).all():
+                raise ValueError(f"{npz_path}: object confidence outside [0,1]")
+            if np.any(raw_valid & (provenance == "UNKNOWN")):
+                raise ValueError(f"{npz_path}: UNKNOWN object marked valid")
+            if np.any((~raw_valid) & (provenance != "UNKNOWN")):
+                raise ValueError(f"{npz_path}: invalid object lacks UNKNOWN provenance")
+            if np.any(formal_valid & ~raw_valid):
+                raise ValueError(f"{npz_path}: formal mask exceeds source valid mask")
+            if (
+                schema.startswith("auto-estimated")
+                or schema == "humanego-auto-estimated-object-grade-b-v1"
+            ) and formal_valid.any():
+                raise ValueError(f"{npz_path}: AUTO_ESTIMATED cannot be formal Object6D")
+            self._validate_object_se3(transforms, raw_valid, npz_path)
+            if not np.isnan(transforms[~raw_valid]).all():
+                raise ValueError(f"{npz_path}: invalid object transforms must be NaN")
+            expected_pose9 = np.full_like(pose9, np.nan)
+            for frame_index, object_index in np.argwhere(raw_valid):
+                transform = transforms[frame_index, object_index]
+                expected_pose9[frame_index, object_index, :3] = transform[:3, 3]
+                expected_pose9[frame_index, object_index, 3:] = normalize_o6d(
+                    rotmat_to_o6d(transform[:3, :3])
+                )
+            if not np.allclose(
+                pose9[raw_valid], expected_pose9[raw_valid],
+                rtol=1.0e-5, atol=1.0e-5,
+            ):
+                raise ValueError(
+                    f"{npz_path}: camera xyz(m)+rotation6d pose9 mismatch"
+                )
+            if not np.isnan(pose9[~raw_valid]).all():
+                raise ValueError(f"{npz_path}: invalid object pose9 must be NaN")
+
+            admitted = np.zeros_like(raw_valid)
+            for prov, threshold in self.object_state_confidence_thresholds.items():
+                admitted |= raw_valid & (provenance == prov) & (confidence >= threshold)
+            if self.object_state_consumption_mode == "training_admitted":
+                admitted &= formal_valid
+            if self.object_state_consumption_mode == "training_estimated_grade_b":
+                # Grade B is permitted only when the manipulated object has a
+                # real estimated token on every frame. UNKNOWN remains PAD and
+                # is never replaced with identity/zero/fake geometry.
+                if not bool(admitted[:, 0].all()):
+                    missing_anchor = int((~admitted[:, 0]).sum())
+                    raise RuntimeError(
+                        "HOLD_GRADE_B_OBJECT_ANCHOR_NOT_PER_FRAME: "
+                        f"{session_id} missing={missing_anchor}/{count}"
+                    )
+            # The manipulated and static slots need independent evidence.  A
+            # propagated fixture is not evidence for a moving chip/card, and a
+            # hand-depth proxy is not evidence for the fixture.
+            if np.any(
+                admitted[:, 0]
+                & (np.char.find(provenance[:, 0], "STATIC") >= 0)
+            ):
+                raise ValueError(f"{npz_path}: static source used as moving anchor")
+            if np.any(
+                admitted[:, 1]
+                & (np.char.find(provenance[:, 1], "HAWOR") >= 0)
+            ):
+                raise ValueError(f"{npz_path}: hand-depth source used as fixture")
+
+            source: Dict[str, Any] = {
+                "npz_path": npz_path,
+                "json_path": json_path,
+                "npz_sha256": npz_digest,
+                "json_sha256": json_digest,
+                "schema_version": schema,
+                "frame_to_index": {
+                    name: index for index, name in enumerate(frame_names)
+                },
+                "object_keys": object_keys,
+                "roles": roles,
+                "anchor_key": anchor_key,
+                "T_object_to_camera": transforms,
+                "raw_valid": raw_valid,
+                "formal_valid": formal_valid,
+                "admitted": admitted,
+                "confidence": confidence,
+                "provenance": provenance,
+                "training_weight": (
+                    float(training_weight) if training_weight is not None else 1.0
+                ),
+            }
+            self._object_state_sources[root] = source
+        if missing:
+            raise FileNotFoundError(
+                "object state sidecar is missing:\n  " + "\n  ".join(missing)
+            )
+
+    def _inject_object_state(self, frame: dict, json_path: str) -> dict:
+        if not self._object_state_sources:
+            return frame
+        root = self._session_root_from_json_path(json_path)
+        source = self._object_state_sources.get(root)
+        if source is None:
+            raise RuntimeError(f"no object state source bound to {root}")
+        frame_name = os.path.basename(os.path.dirname(json_path))
+        frame_index = source["frame_to_index"].get(frame_name)
+        if frame_index is None:
+            raise ValueError(f"object state sidecar has no frame {frame_name} for {root}")
+        existing = frame.get("entities", {}).get("objects", {}) or {}
+        if existing:
+            raise RuntimeError(
+                f"HOLD_OBJECT_OVERLAY_COLLISION: {root}/{frame_name} already "
+                "contains object entities"
+            )
+        metadata_in = frame.get("metadata", {})
+        convention = metadata_in.get("camera_coordinate_system", {})
+        if (
+            convention.get("x"), convention.get("y"),
+            convention.get("z"), convention.get("units"),
+        ) != ("right", "down", "forward", "metres"):
+            raise ValueError(f"{root}/{frame_name}: unexpected camera convention")
+        c2w = np.asarray(metadata_in.get("c2w"), dtype=np.float64)
+        if c2w.shape != (4, 4) or not np.isfinite(c2w).all():
+            raise ValueError(f"{root}/{frame_name}: invalid c2w for object overlay")
+        objects = {}
+        for object_index, object_key in enumerate(source["object_keys"]):
+            if not source["admitted"][frame_index, object_index]:
+                continue
+            transform_camera = source["T_object_to_camera"][
+                frame_index, object_index
+            ]
+            transform_world = c2w @ transform_camera
+            objects[object_key] = {
+                "T_obj_to_world": transform_world.tolist(),
+                "T_obj_to_camera": transform_camera.tolist(),
+                "confidence": float(
+                    source["confidence"][frame_index, object_index]
+                ),
+                "valid": True,
+                "pose_source": str(
+                    source["provenance"][frame_index, object_index]
+                ),
+                "observation_source": (
+                    "auto_estimated_diagnostic"
+                    if self.object_state_consumption_mode == "diagnostic_estimated"
+                    else (
+                        "auto_estimated_grade_b"
+                        if self.object_state_consumption_mode
+                        == "training_estimated_grade_b"
+                        else "formal_object6d"
+                    )
+                ),
+                "semantic_role": source["roles"][object_index],
+            }
+        payload = dict(frame)
+        metadata = dict(metadata_in)
+        metadata["anchor_key"] = source["anchor_key"]
+        entities = dict(frame.get("entities", {}))
+        entities["objects"] = objects
+        payload["metadata"] = metadata
+        payload["entities"] = entities
+        return payload
+
+    def object_state_admission_report(self) -> dict:
+        sessions = {}
+        for root, source in self._object_state_sources.items():
+            provenance_counts = {}
+            for value in sorted(set(source["provenance"].reshape(-1))):
+                selected = source["provenance"] == value
+                provenance_counts[value] = {
+                    "rows": int(selected.sum()),
+                    "source_valid": int((source["raw_valid"] & selected).sum()),
+                    "formal_valid": int((source["formal_valid"] & selected).sum()),
+                    "admitted": int((source["admitted"] & selected).sum()),
+                }
+            sessions[self._session_id_from_mps_path(root)] = {
+                "frames": len(source["frame_to_index"]),
+                "source_valid_by_object": source["raw_valid"].sum(axis=0).tolist(),
+                "formal_valid_by_object": source["formal_valid"].sum(axis=0).tolist(),
+                "admitted_by_object": source["admitted"].sum(axis=0).tolist(),
+                "pad_by_object": (~source["admitted"]).sum(axis=0).tolist(),
+                "provenance": provenance_counts,
+                "training_weight": source["training_weight"],
+            }
+        return {
+            "mode": self.object_state_consumption_mode,
+            "confidence_thresholds": self.object_state_confidence_thresholds,
+            "sessions": sessions,
+        }
+
     def _get_robot_state(
         self, json_path: str, side: str
     ) -> Optional[Dict[str, Any]]:
@@ -388,18 +1092,30 @@ class FlowMatchingDataloader(Dataset):
     def _build_index(self):
         self.samples.clear()
         cache_started = time.time()
+        observed_window_starts: Dict[str, set[int]] = {}
         for spec in self.sessions:
+            session_id = os.path.basename(os.path.dirname(os.path.abspath(spec.mps_path)))
+            allowed_starts = None
+            if self.allowed_window_starts is not None:
+                if session_id not in self.allowed_window_starts:
+                    raise ValueError(
+                        f"paired-kept ledger has no session consumed by dataloader: {session_id}"
+                    )
+                allowed_starts = self.allowed_window_starts[session_id]
+                observed_window_starts[session_id] = set()
             all_data_dir = os.path.join(spec.mps_path, "preprocess", "all_data")
             if not os.path.isdir(all_data_dir):
                 continue
 
             frame_names = sorted([d for d in os.listdir(all_data_dir) if d.isdigit()])
             for fn in frame_names:
+                if allowed_starts is not None and int(fn) not in allowed_starts:
+                    continue
                 jpath = os.path.join(all_data_dir, fn, JSON_NAME)
                 if not os.path.exists(jpath):
                     continue
 
-                d0 = read_json(jpath)
+                d0 = self._read_frame(jpath)
                 if self.cache_json_in_memory and d0 is not None:
                     self._json_cache[jpath] = d0
                 if d0 is None or not self._frame_has_required_fields(d0):
@@ -423,6 +1139,20 @@ class FlowMatchingDataloader(Dataset):
                         continue
 
                 self.samples.append(jpath)
+                if allowed_starts is not None:
+                    observed_window_starts[session_id].add(int(fn))
+        if self.allowed_window_starts is not None:
+            expected_sessions = {
+                os.path.basename(os.path.dirname(os.path.abspath(spec.mps_path)))
+                for spec in self.sessions
+            }
+            for session_id in expected_sessions:
+                missing = self.allowed_window_starts[session_id] - observed_window_starts[session_id]
+                if missing:
+                    preview = sorted(missing)[:10]
+                    raise ValueError(
+                        f"paired-kept window starts are not consumable for {session_id}: {preview}"
+                    )
         if self.cache_json_in_memory:
             print(
                 f"[FlowMatchingDataloader] Preloaded {len(self._json_cache)} "
@@ -435,19 +1165,26 @@ class FlowMatchingDataloader(Dataset):
             cached = self._json_cache.get(json_path)
             if cached is not None:
                 return cached
-        return read_json(json_path)
+        if self.selector_records is not None:
+            payload = self._read_selector_metadata(json_path)
+        else:
+            payload = read_json(json_path)
+        if payload is None:
+            return None
+        payload = self._inject_hawor_v3_entity(payload, json_path)
+        return self._inject_object_state(payload, json_path)
 
     def _frame_exists(self, json_path: str) -> bool:
         if self.cache_json_in_memory and json_path in self._json_cache:
             return True
         return bool(json_path) and os.path.exists(json_path)
 
-    def _image_path_from_frame(self, frame: dict) -> str:
+    def _image_path_from_frame(self, frame: dict, json_path: str) -> str:
         if self.use_legacy_image_loading:
             return frame.get("obs", {}).get(
                 "rgb_WoArm_WArmObjKpts_path", ""
             )
-        return self._resolve_image_path(frame)
+        return self._resolve_image_path(frame, json_path=json_path)
 
     def _preload_image_bytes(self) -> None:
         if not self.cache_json_in_memory:
@@ -457,25 +1194,42 @@ class FlowMatchingDataloader(Dataset):
         started = time.time()
         paths = sorted({
             image_path
-            for frame in self._json_cache.values()
-            if (image_path := self._image_path_from_frame(frame))
+            for json_path, frame in self._json_cache.items()
+            if (image_path := self._image_path_from_frame(frame, json_path))
             and image_path not in self._image_bytes_cache
             and image_path not in self._image_array_cache
         })
 
         def read_cached(image_path: str) -> tuple[str, bytes | np.ndarray]:
-            try:
-                with open(image_path, "rb") as stream:
-                    encoded = stream.read()
-            except OSError:
-                return image_path, b""
             if self.use_legacy_image_loading:
+                try:
+                    with open(image_path, "rb") as stream:
+                        encoded = stream.read()
+                except OSError as error:
+                    raise FileNotFoundError(
+                        f"required selector target is unreadable: {image_path}"
+                    ) from error
+                if not encoded:
+                    raise ValueError(f"required selector target is empty: {image_path}")
                 return image_path, encoded
+            reference = self._selector_image_references.get(image_path)
+            if reference is None or self.selector_root is None:
+                raise RuntimeError(
+                    "HOLD_MANIFEST_SELECTOR_REQUIRED: image bytes lack a frame reference"
+                )
+            selected_path, encoded = read_file_reference(
+                reference,
+                allowed_roots=[self.selector_root],
+                label="preloaded selector image",
+            )
+            if str(selected_path) != image_path:
+                raise ValueError("preloaded selector image path changed")
+            self._verify_selector_image_bytes(image_path, encoded)
             bgr = cv2.imdecode(
                 np.frombuffer(encoded, dtype=np.uint8), cv2.IMREAD_COLOR
             )
             if bgr is None:
-                bgr = np.zeros((self.H, self.W, 3), dtype=np.uint8)
+                raise ValueError(f"OpenCV cannot decode selector target: {image_path}")
             elif bgr.shape[:2] != (self.H, self.W):
                 bgr = cv2.resize(
                     bgr, (self.W, self.H), interpolation=cv2.INTER_LINEAR
@@ -486,8 +1240,6 @@ class FlowMatchingDataloader(Dataset):
         workers = max(1, min(16, (os.cpu_count() or 2) - 4))
         with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
             for image_path, cached in executor.map(read_cached, paths):
-                if isinstance(cached, bytes) and not cached:
-                    continue
                 if isinstance(cached, bytes):
                     self._image_bytes_cache[image_path] = cached
                     total_bytes += len(cached)
@@ -555,7 +1307,8 @@ class FlowMatchingDataloader(Dataset):
             out[:] = pts[indices]
         else:
             out[:n] = pts
-            pad_indices = np.random.choice(n, MAX_PTS_PER_ENTITY - n, replace=True)
+            # Deterministic cyclic padding avoids a hidden global RNG dependency.
+            pad_indices = np.arange(MAX_PTS_PER_ENTITY - n) % n
             out[n:] = pts[pad_indices]
         return out
 
@@ -840,7 +1593,7 @@ class FlowMatchingDataloader(Dataset):
         # Jittering & Flattening
         # ---------------------------------------------
         if self.enable_augmentation and self.enable_aug_target_jittering:
-            rng = np.random.RandomState(self.seed + idx * 123) if self.use_legacy_rng else np.random.RandomState()
+            rng = self._rng_for_sample(idx, 123)
             y_pos += ((rng.randn(*y_pos.shape).astype(np.float32) * AUG_TARGET_POS_STD) / self.pos_std) * y_hand_valid[..., None]
             y_o6d += (rng.randn(*y_o6d.shape).astype(np.float32) * (AUG_TARGET_ROT_STD / 180.0)) * y_hand_valid[..., None]
 
@@ -888,15 +1641,141 @@ class FlowMatchingDataloader(Dataset):
     # ---------------------
     # Images Loader
     # ---------------------
-    def _resolve_image_path(self, d0: dict) -> str:
-        frame_dir = os.path.dirname(d0["obs"]["rgb_path"])
+    def _selector_frame_record(
+        self,
+        json_path: str,
+    ) -> tuple[Path, str, str, Mapping[str, Any]]:
+        if self.selector_records is None or self.selector_root is None:
+            raise RuntimeError(
+                "HOLD_MANIFEST_SELECTOR_REQUIRED: exact per-frame record is missing"
+            )
+        session_root = Path(self._session_root_from_json_path(json_path))
+        session_id = session_root.parent.name
+        frame_key = Path(json_path).parent.name
+        try:
+            record = self.selector_records[session_id][frame_key]
+        except KeyError as error:
+            raise ValueError(
+                f"selector has no exact frame record: {session_id}/{frame_key}"
+            ) from error
+        if not isinstance(record, Mapping):
+            raise ValueError(f"selector frame record is invalid: {session_id}/{frame_key}")
+        return session_root, session_id, frame_key, record
+
+    def _read_selector_metadata(self, json_path: str) -> dict:
+        session_root, session_id, frame_key, record = self._selector_frame_record(
+            json_path
+        )
+        metadata_path, encoded = read_file_reference(
+            record.get("metadata", {}),
+            allowed_roots=[session_root],
+            label=f"{session_id}/{frame_key} dataloader metadata",
+        )
+        expected_metadata = Path(json_path).resolve(strict=True)
+        if metadata_path != expected_metadata:
+            raise ValueError(
+                f"selector metadata path mismatch: {session_id}/{frame_key}"
+            )
+        selected = str(metadata_path)
+        logical_key = f"{session_id}/{frame_key}"
+        previous_owner = self._selector_metadata_owners.get(selected)
+        if previous_owner is not None and previous_owner != logical_key:
+            raise ValueError(
+                f"selector metadata path aliases frames: {previous_owner}, {logical_key}"
+            )
+        self._selector_metadata_owners[selected] = logical_key
+        try:
+            payload = json.loads(encoded)
+        except (UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise ValueError(f"invalid required JSON: {metadata_path}") from error
+        if not isinstance(payload, dict):
+            raise ValueError(f"required JSON must be an object: {metadata_path}")
+        return payload
+
+    def _selector_image_path(self, json_path: str) -> str:
+        cached = self._selector_image_paths.get(json_path)
+        if cached is not None:
+            return cached
+        session_root, session_id, frame_key, record = self._selector_frame_record(
+            json_path
+        )
+        metadata_path, _ = read_file_reference(
+            record.get("metadata", {}),
+            allowed_roots=[session_root],
+            label=f"{session_id}/{frame_key} dataloader metadata",
+        )
+        expected_metadata = Path(json_path).resolve(strict=True)
+        if metadata_path != expected_metadata:
+            raise ValueError(
+                f"selector metadata path mismatch: {session_id}/{frame_key}"
+            )
+        image_path, _ = read_file_reference(
+            record.get("image", {}),
+            allowed_roots=[self.selector_root],
+            label=f"{session_id}/{frame_key} dataloader image",
+        )
+        if image_path.name != self.img_name:
+            raise ValueError(
+                f"selector image basename mismatch: {session_id}/{frame_key}"
+            )
+        selected = str(image_path)
+        logical_key = f"{session_id}/{frame_key}"
+        previous_owner = self._selector_image_owners.get(selected)
+        if previous_owner is not None and previous_owner != logical_key:
+            raise ValueError(
+                f"selector image path aliases frames: {previous_owner}, {logical_key}"
+            )
+        self._selector_image_paths[json_path] = selected
+        self._selector_image_references[selected] = dict(record["image"])
+        self._selector_image_owners[selected] = logical_key
+        return selected
+
+    def _verify_selector_image_bytes(self, image_path: str, encoded: bytes) -> None:
+        reference = self._selector_image_references.get(image_path)
+        if reference is None:
+            raise RuntimeError(
+                "HOLD_MANIFEST_SELECTOR_REQUIRED: image bytes lack a frame reference"
+            )
+        if len(encoded) != reference.get("bytes"):
+            raise ValueError(f"selector image byte-size mismatch: {image_path}")
+        observed = hashlib.sha256(encoded).hexdigest()
+        if observed != reference.get("sha256"):
+            raise ValueError(f"selector image SHA256 mismatch: {image_path}")
+
+    def _read_selector_image(self, image_path: str) -> np.ndarray:
+        reference = self._selector_image_references.get(image_path)
+        if reference is None or self.selector_root is None:
+            raise RuntimeError(
+                "HOLD_MANIFEST_SELECTOR_REQUIRED: image bytes lack a frame reference"
+            )
+        selected_path, encoded = read_file_reference(
+            reference,
+            allowed_roots=[self.selector_root],
+            label="dataloader selector image",
+        )
+        if str(selected_path) != image_path:
+            raise ValueError("dataloader selector image path changed")
+        self._verify_selector_image_bytes(image_path, encoded)
+        bgr = cv2.imdecode(np.frombuffer(encoded, dtype=np.uint8), cv2.IMREAD_COLOR)
+        if bgr is None:
+            raise ValueError(f"OpenCV cannot decode selector target: {image_path}")
+        if bgr.shape[:2] != (self.H, self.W):
+            bgr = cv2.resize(bgr, (self.W, self.H), interpolation=cv2.INTER_LINEAR)
+        return bgr
+
+    def _resolve_image_path(self, d0: dict, *, json_path: str | None = None) -> str:
+        del d0
         if isinstance(self.img_name, str) and self.img_name.startswith("@"):
             raise ValueError(
                 "Legacy virtual image selectors were removed during repository cleanup. "
                 "A formal manifest-backed image selector must be implemented under "
                 "pipeline_contract_v1 before RobotRGB training is allowed."
             )
-        return os.path.join(frame_dir, self.img_name)
+        if json_path is None:
+            raise RuntimeError(
+                "HOLD_MANIFEST_SELECTOR_REQUIRED: exact sample identity is missing"
+            )
+        return self._selector_image_path(json_path)
 
     def _load_image_tensor(self, d0: dict, idx: int) -> torch.Tensor:
         if not self.img_name:
@@ -915,7 +1794,7 @@ class FlowMatchingDataloader(Dataset):
                     np.frombuffer(encoded, dtype=np.uint8), cv2.IMREAD_COLOR
                 )
                 if bgr is None:
-                    bgr = np.zeros((h0, w0, 3), dtype=np.uint8)
+                    raise ValueError(f"OpenCV cannot decode selector target: {img_path}")
                 elif bgr.shape[:2] != (h0, w0):
                     bgr = cv2.resize(
                         bgr, (w0, h0), interpolation=cv2.INTER_LINEAR
@@ -925,7 +1804,7 @@ class FlowMatchingDataloader(Dataset):
             rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
         else:
             # New: construct path from frame_dir + img_name, load at target resolution
-            img_path = self._resolve_image_path(d0)
+            img_path = self._resolve_image_path(d0, json_path=self.samples[idx])
             bgr = self._image_array_cache.get(img_path)
             encoded = self._image_bytes_cache.get(img_path)
             if bgr is not None:
@@ -935,20 +1814,18 @@ class FlowMatchingDataloader(Dataset):
                     np.frombuffer(encoded, dtype=np.uint8), cv2.IMREAD_COLOR
                 )
                 if bgr is None:
-                    bgr = np.zeros((self.H, self.W, 3), dtype=np.uint8)
+                    raise ValueError(f"OpenCV cannot decode selector target: {img_path}")
                 elif bgr.shape[:2] != (self.H, self.W):
                     bgr = cv2.resize(
                         bgr, (self.W, self.H), interpolation=cv2.INTER_LINEAR
                     )
             else:
-                bgr = safe_imread_rgb(img_path, self.H, self.W)
+                bgr = self._read_selector_image(img_path)
             rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
 
         # --- RNG Strategy ---
         def _make_rng(salt: int) -> np.random.RandomState:
-            if self.use_legacy_rng:
-                return np.random.RandomState(self.seed + idx * salt)
-            return np.random.RandomState()
+            return self._rng_for_sample(idx, salt)
 
         # --- Random Resized Crop (at current resolution, before final resize) ---
         if self.enable_augmentation and self.enable_aug_rrc:
@@ -984,7 +1861,7 @@ class FlowMatchingDataloader(Dataset):
         # 1. Temporal Speed Perturbation: Safe Dynamic Stride Sample
         stride = 1
         if self.enable_augmentation and self.enable_aug_temporal_stride:
-            rng = np.random.RandomState()
+            rng = self._rng_for_sample(idx, 31_337)
             max_s = AUG_STRIDE_RANGE[1]
 
             while max_s > 1:
@@ -1002,8 +1879,9 @@ class FlowMatchingDataloader(Dataset):
         exists_next = self._frame_exists(json_path1)
 
         if self.enable_augmentation and self.enable_aug_interpolation and exists_next:
-            if np.random.rand() < AUG_INTERP_PROB:
-                alpha = np.random.rand()
+            interpolation_rng = self._rng_for_sample(idx, 42_421)
+            if interpolation_rng.rand() < AUG_INTERP_PROB:
+                alpha = interpolation_rng.rand()
 
         d1 = self._read_frame(json_path1) if alpha > 0 else d0
         d_vis = d1 if alpha > 0.5 else d0  # Use visually closer frame for image
@@ -1085,6 +1963,14 @@ class FlowMatchingDataloader(Dataset):
             out["joint_upper"] = torch.from_numpy(np.stack([
                 source[f"{side}_joint_upper"] for side in state_sides
             ])).float()
+
+        if self._object_state_sources:
+            object_source = self._object_state_sources[
+                self._session_root_from_json_path(json_path0)
+            ]
+            out["object_training_weight"] = torch.tensor(
+                object_source["training_weight"], dtype=torch.float32
+            )
 
         # 6. Temporal Contrastive Target Extraction (t + K)
         if self.use_aux_temporal_contrastive:

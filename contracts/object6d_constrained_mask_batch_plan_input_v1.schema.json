@@ -1,0 +1,36 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "object6d-constrained-mask-batch-plan-input-v1",
+  "title": "Fail-closed Object6D-constrained Mask batch planning input",
+  "type": "object", "additionalProperties": false,
+  "required": ["schema_version", "status", "rows"],
+  "properties": {
+    "schema_version": {"const": "object6d-constrained-mask-batch-plan-input-v1"},
+    "status": {"const": "PLANNING_INPUT"},
+    "rows": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["task", "session", "recommended_split", "classification_status", "object6d_status", "input_manifest"],
+        "properties": {
+          "task": {"type": "string", "minLength": 1},
+          "session": {"type": "string", "minLength": 1},
+          "recommended_split": {"enum": ["FIT", "EVAL", "PENDING_CLASSIFICATION"]},
+          "classification_status": {"enum": ["READY", "PENDING"]},
+          "object6d_status": {"enum": ["READY", "PENDING"]},
+          "input_manifest": {"oneOf": [{"type": "null"}, {"$ref": "#/$defs/ref"}]}
+        }
+      }
+    }
+  },
+  "$defs": {
+    "ref": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

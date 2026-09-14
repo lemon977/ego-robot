@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/quality/hawor_independent_gate_output_v1.schema.json",
+  "title": "HaWoR independent identity/contour gate output V1",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "status",
+    "task_id",
+    "session_id",
+    "frame_count",
+    "claim_limit",
+    "input_validation",
+    "gates",
+    "diagnostics",
+    "routes",
+    "attribution"
+  ],
+  "properties": {
+    "schema_version": {"const": "hawor-independent-gate-v1"},
+    "status": {
+      "enum": [
+        "FAIL_HAWOR_OR_CAPTURE",
+        "HOLD_HUMAN_REVIEW_REQUIRED",
+        "PASS_FORMAL_HAWOR_SEED"
+      ]
+    },
+    "task_id": {"type": "string", "minLength": 1},
+    "session_id": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "claim_limit": {"type": "string", "minLength": 1},
+    "input_validation": {"type": "object"},
+    "gates": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "source_media_g0",
+        "world_camera_g1",
+        "pico21_g2_advisory",
+        "artifact_and_mano21_integrity",
+        "expected_active_scope",
+        "numeric_mask_seed",
+        "numeric_robot_seed",
+        "direct_vs_interpolated_provenance",
+        "anatomical_identity_continuity",
+        "independent_contour_mask",
+        "independent_contour_robot",
+        "occlusion_out_of_frame"
+      ],
+      "properties": {
+        "source_media_g0": {"$ref": "#/$defs/gate"},
+        "world_camera_g1": {"$ref": "#/$defs/gate"},
+        "pico21_g2_advisory": {"$ref": "#/$defs/gate"},
+        "artifact_and_mano21_integrity": {"$ref": "#/$defs/gate"},
+        "expected_active_scope": {"$ref": "#/$defs/gate"},
+        "numeric_mask_seed": {"$ref": "#/$defs/gate"},
+        "numeric_robot_seed": {"$ref": "#/$defs/gate"},
+        "direct_vs_interpolated_provenance": {"$ref": "#/$defs/gate"},
+        "anatomical_identity_continuity": {"$ref": "#/$defs/gate"},
+        "independent_contour_mask": {"$ref": "#/$defs/gate"},
+        "independent_contour_robot": {"$ref": "#/$defs/gate"},
+        "occlusion_out_of_frame": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "diagnostics": {"type": "object"},
+    "routes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "mask_numeric_candidate",
+        "mask_formal_seed_ready",
+        "robot_numeric_candidate",
+        "robot_world_route_ready",
+        "robot_formal_motion_seed_ready",
+        "human_review_required"
+      ],
+      "properties": {
+        "mask_numeric_candidate": {"type": "boolean"},
+        "mask_formal_seed_ready": {"type": "boolean"},
+        "robot_numeric_candidate": {"type": "boolean"},
+        "robot_world_route_ready": {"type": "boolean"},
+        "robot_formal_motion_seed_ready": {"type": "boolean"},
+        "human_review_required": {"type": "boolean"}
+      }
+    },
+    "attribution": {"type": "object"},
+    "inputs": {"type": "object"},
+    "review24_material": {"type": "object"}
+  },
+  "additionalProperties": false,
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "authority", "reason_codes", "metrics"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "HOLD", "NOT_EVALUATED"]},
+        "authority": {
+          "enum": ["CAPTURE", "PRODUCER", "INDEPENDENT_QA", "HUMAN_REVIEW", "NONE"]
+        },
+        "reason_codes": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        },
+        "metrics": {"type": "object"}
+      }
+    }
+  }
+}

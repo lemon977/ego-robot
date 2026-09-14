@@ -4,7 +4,6 @@ from __future__ import annotations
 
 import argparse
 import ast
-import csv
 import hashlib
 import inspect
 import json
@@ -32,12 +31,32 @@ from inference.receding_horizon import (  # noqa: E402
 from preprocess.retarget_labels.schema import EMBODIMENTS, validate_sidecar  # noqa: E402
 from tools.evaluate_h50 import (  # noqa: E402
     OBSERVATION_FIELDS,
+    atomic_csv,
+    atomic_npz,
     make_dataset,
     make_model,
     rotation_error_deg,
     sha256,
 )
 from utils.utils_math import o6d_to_rotmat, rotmat_to_o6d  # noqa: E402
+from utils.atomic_io import atomic_write_json  # noqa: E402
+from utils.frozen_contract import (  # noqa: E402
+    file_reference,
+    load_frozen_checkpoint_payload,
+    validate_checkpoint_bundle,
+    validate_file_reference,
+    validate_formal_runtime_contract,
+)
+from utils.source_contract import (  # noqa: E402
+    FinalTestOutputLease,
+    authorize_evaluation_role,
+    claim_final_test_output,
+    load_eligible68_frozen_split,
+    require_manifest_selector_ready,
+    validate_frozen_adapters,
+    validate_training_run_role_contract,
+    verify_eligible68_split_phase2,
+)
 
 
 def audit_contract() -> dict:
@@ -75,49 +94,80 @@ def audit_contract() -> dict:
 
 def validate_checkpoint_inputs(
     args: argparse.Namespace,
-) -> tuple[dict, dict, list[str], dict]:
+    selector_binding: dict,
+) -> tuple[dict, dict, list[str], dict, dict, dict]:
     if not args.checkpoint.is_file():
         raise FileNotFoundError(args.checkpoint)
     if args.checkpoint.name != "best.pt":
         raise ValueError("rolling H50 evaluation accepts validation-selected best.pt only")
     if not args.split.is_file():
         raise FileNotFoundError(args.split)
-    payload = torch.load(args.checkpoint, map_location="cpu", weights_only=False)
+    payload, checkpoint_reference, _ = load_frozen_checkpoint_payload(
+        args.checkpoint,
+        embodiment=args.embodiment,
+    )
     manifest = payload.get("run_manifest")
     if not manifest:
         raise ValueError("checkpoint has no frozen run_manifest")
     if manifest.get("embodiment") != args.embodiment:
         raise ValueError("checkpoint embodiment mismatch")
-    if manifest.get("split_sha256") != sha256(args.split):
+    split_path = validate_file_reference(
+        manifest.get("split_ref", {}),
+        allowed_roots=[ROOT / "data_manifests"],
+        label="frozen rolling-evaluation split",
+    )
+    if args.split.absolute() != split_path:
+        raise ValueError("CLI split path differs from checkpoint authority")
+    if manifest.get("split_sha256") != manifest["split_ref"].get("sha256"):
         raise ValueError("checkpoint/split hash mismatch")
-    split = json.loads(args.split.read_text(encoding="utf-8"))
-    session_ids = split.get("test") or split.get("validation")
-    if not session_ids:
-        raise ValueError("split has neither test nor validation sessions")
-    frozen_sessions = split.get("sessions", {})
-    sidecars = {}
-    for session in session_ids:
-        path = args.sidecar_root / args.embodiment / session / "sidecar.npz"
-        digest = sha256(path)
-        expected = manifest.get("evaluation_sidecars", {}).get(session)
-        if expected is None:
-            expected = (
-                frozen_sessions.get(session, {})
-                .get("embodiments", {})
-                .get(args.embodiment, {})
-                .get("sidecar_sha256")
-            )
-        if expected != digest:
-            raise ValueError(f"frozen split/sidecar hash mismatch: {session}")
-        sidecars[session] = {
-            **validate_sidecar(path, EMBODIMENTS[args.embodiment]),
-            "sha256": digest,
-        }
+    _, stats = validate_checkpoint_bundle(
+        args.checkpoint,
+        payload,
+        args.split,
+        args.embodiment,
+        return_dataset_stats=True,
+    )
+    split = load_eligible68_frozen_split(
+        args.split,
+        args.embodiment,
+        sidecar_root=args.sidecar_root,
+        verify_sidecars=False,
+    )
+    validate_training_run_role_contract(manifest, split)
+    gate_reference = (
+        file_reference(args.final_test_gate) if args.final_test_gate is not None else None
+    )
+    evaluation_authorization = authorize_evaluation_role(
+        split,
+        args.evaluation_role,
+        final_test_gate_reference=gate_reference,
+        split_reference=manifest.get("split_ref"),
+        checkpoint_reference=checkpoint_reference,
+        product_line=selector_binding["product_line"],
+        embodiment=args.embodiment,
+        evaluator="H50_ROLLING_CAUSAL_V1",
+        output_directory=args.output,
+    )
+    validate_formal_runtime_contract(
+        payload.get("cfg", {}),
+        manifest,
+        split,
+        args.embodiment,
+        config_root=ROOT / "cfg" / "training",
+    )
+    session_ids = list(evaluation_authorization["sessions"])
     cfg = payload["cfg"]
     expected_representation = EMBODIMENTS[args.embodiment].representation
     if cfg.get("hand_action_representation") != expected_representation:
         raise ValueError("checkpoint action representation mismatch")
-    return payload, split, list(session_ids), sidecars
+    return (
+        payload,
+        split,
+        list(session_ids),
+        evaluation_authorization,
+        checkpoint_reference,
+        stats,
+    )
 
 
 def schedule_indices(
@@ -160,21 +210,33 @@ def temporal_derivative(
     return float(np.mean(values)) if values else 0.0
 
 
+def read_bound_sample_metadata(dataset, sample_path: str | Path) -> dict:
+    """Consume the selector-verified metadata payload already owned by dataset."""
+    payload = dataset._read_frame(str(sample_path))
+    if not isinstance(payload, dict) or not isinstance(payload.get("metadata"), dict):
+        raise ValueError(f"selector-bound sample metadata is invalid: {sample_path}")
+    return payload["metadata"]
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--embodiment", required=True, choices=sorted(EMBODIMENTS))
     parser.add_argument("--checkpoint", type=Path, required=True)
     parser.add_argument("--split", type=Path, required=True)
-    parser.add_argument("--sidecar-root", type=Path, required=True)
     parser.add_argument(
-        "--production-root",
-        type=Path,
-        default=Path(os.environ.get(
-            "HUMANEGO_PRODUCTION_ROOT",
-            ROOT.parent / "hand_benchmark/production_runs/final_v3_grap_a_cap_0812",
-        )),
+        "--evaluation-role",
+        required=True,
+        choices=("dev", "final_test"),
+        help="dev is ordinary evaluation; final_test additionally requires a one-shot gate",
     )
-    parser.add_argument("--output", type=Path)
+    parser.add_argument(
+        "--final-test-gate",
+        type=Path,
+        help="Immutable gate binding both frozen twins and the one-shot output",
+    )
+    parser.add_argument("--sidecar-root", type=Path, required=True)
+    parser.add_argument("--production-root", type=Path, required=True)
+    parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--device", default="cuda" if torch.cuda.is_available() else "cpu")
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--execute-steps", type=int, default=5)
@@ -190,6 +252,9 @@ def main() -> int:
         help="also save rolling predictions for rendering; empty disables",
     )
     parser.add_argument("--check-only", action="store_true")
+    parser.add_argument("--selector-manifest", type=Path, required=True)
+    parser.add_argument("--paired-kept-manifest", type=Path, required=True)
+    parser.add_argument("--artifact-root", type=Path, required=True)
     args = parser.parse_args()
     if not 1 <= args.execute_steps <= 50:
         parser.error("--execute-steps must lie in [1, 50]")
@@ -197,45 +262,113 @@ def main() -> int:
         parser.error("--batch-size must be positive")
     if args.max_replans_per_session < 0:
         parser.error("--max-replans-per-session cannot be negative")
+    if not 0 < args.q_ensemble_decay <= 1:
+        parser.error("--q-ensemble-decay must lie in (0, 1]")
+    if args.max_q_step_deg is not None and args.max_q_step_deg <= 0:
+        parser.error("--max-q-step-deg must be positive")
     if args.max_wrist_step_mm <= 0 or args.max_wrist_rotation_step_deg <= 0:
         parser.error("wrist step limits must be positive")
     if not 0 < args.wrist_ema_alpha <= 1:
         parser.error("--wrist-ema-alpha must lie in (0, 1]")
+    if args.check_only and args.evaluation_role == "final_test":
+        parser.error("--check-only cannot consume the one-shot final-test role")
+    selector_binding = require_manifest_selector_ready(
+        file_reference(args.selector_manifest),
+        file_reference(args.paired_kept_manifest),
+        artifact_root=args.artifact_root,
+    )
 
-    payload, split, session_ids, sidecars = validate_checkpoint_inputs(args)
+    (
+        payload,
+        split,
+        session_ids,
+        evaluation_authorization,
+        checkpoint_reference,
+        stats,
+    ) = (
+        validate_checkpoint_inputs(args, selector_binding)
+    )
+    manifest = payload["run_manifest"]
+    if manifest.get("selector_manifest_ref") != selector_binding["selector_reference"]:
+        raise ValueError("checkpoint selector manifest differs from evaluation CLI")
+    if manifest.get("paired_kept_manifest_ref") != selector_binding["paired_kept_reference"]:
+        raise ValueError("checkpoint paired-kept manifest differs from evaluation CLI")
+    if manifest.get("artifact_root") != selector_binding["artifact_root"]:
+        raise ValueError("checkpoint artifact root differs from evaluation CLI")
+    if payload["cfg"].get("img_name") != selector_binding["image_name"]:
+        raise ValueError("checkpoint image selector differs from selector manifest")
+    declared_production_root = split.get("production_root")
+    if (
+        not isinstance(declared_production_root, str)
+        or Path(declared_production_root).resolve() != args.production_root.resolve()
+    ):
+        raise ValueError("evaluation production root differs from frozen split")
     evaluation_sessions = set(session_ids)
     visualization_session = args.visualization_session.strip()
+    if visualization_session and visualization_session not in evaluation_sessions:
+        raise ValueError(
+            "visualization session must belong to the explicitly selected split role"
+        )
+    inference_contract = audit_contract()
+
+    output_lease: FinalTestOutputLease | None = None
+    if evaluation_authorization["final_test_authorized"]:
+        claimed = claim_final_test_output(evaluation_authorization, hold=True)
+        if not isinstance(claimed, FinalTestOutputLease):
+            raise RuntimeError("final-test output claim did not return a held lease")
+        output_lease = claimed
+    split = verify_eligible68_split_phase2(
+        args.split,
+        split,
+        args.embodiment,
+        sidecar_root=args.sidecar_root,
+        verify_sidecars=True,
+        verify_roles=(str(evaluation_authorization["storage_role"]),),
+        allow_final_test=bool(evaluation_authorization["final_test_authorized"]),
+    )
+    source_reports = validate_frozen_adapters(
+        split, args.production_root, session_ids, selector_binding
+    )
+    sidecars = {}
+    for session in session_ids:
+        path = args.sidecar_root / args.embodiment / session / "sidecar.npz"
+        digest = sha256(path)
+        lineage_field = (
+            "evaluation_sidecars"
+            if evaluation_authorization["final_test_authorized"]
+            else "sidecars"
+        )
+        expected = manifest.get(lineage_field, {}).get(session)
+        if expected != digest:
+            raise ValueError(f"frozen split/sidecar hash mismatch: {session}")
+        sidecars[session] = {
+            **validate_sidecar(path, EMBODIMENTS[args.embodiment]),
+            "sha256": expected,
+        }
     visualization_sidecar = None
     dataset_session_ids = list(session_ids)
-    if visualization_session and visualization_session not in evaluation_sessions:
-        visualization_path = (
-            args.sidecar_root / args.embodiment / visualization_session / "sidecar.npz"
-        )
-        visualization_digest = sha256(visualization_path)
-        expected = (
-            split.get("sessions", {})
-            .get(visualization_session, {})
-            .get("embodiments", {})
-            .get(args.embodiment, {})
-            .get("sidecar_sha256")
-        )
-        if expected != visualization_digest:
-            raise ValueError(
-                f"frozen split/visualization sidecar hash mismatch: {visualization_session}"
-            )
-        visualization_sidecar = {
-            **validate_sidecar(
-                visualization_path, EMBODIMENTS[args.embodiment]
-            ),
-            "sha256": visualization_digest,
-        }
-        dataset_session_ids.append(visualization_session)
+    if visualization_session:
+        visualization_sidecar = sidecars[visualization_session]
     command_dim = EMBODIMENTS[args.embodiment].joint_count
     max_q_step_deg = args.max_q_step_deg
     if max_q_step_deg is None:
         max_q_step_deg = 10.0 if args.embodiment == "kai22" else 12.0
-    output = args.output or ROOT / "reports/evaluation_rolling_h50" / args.embodiment
-    output.mkdir(parents=True, exist_ok=True)
+    display_output = Path(
+        str(evaluation_authorization.get("output_directory", args.output.absolute()))
+    )
+    output = (
+        output_lease.bound_directory
+        if output_lease is not None
+        else display_output
+    )
+    if output_lease is not None:
+        expected_entries = {"FINAL_TEST_CLAIM.json"}
+        if not output.is_dir() or {path.name for path in output.iterdir()} != expected_entries:
+            raise RuntimeError("final-test output claim changed before evaluation")
+    else:
+        if output.exists() and (not output.is_dir() or any(output.iterdir())):
+            raise FileExistsError(f"evaluation output must be a new empty directory: {output}")
+        output.mkdir(parents=True, exist_ok=True)
     preflight = {
         "protocol": "H50 receding-horizon control with causal short-prefix execution",
         "prediction_horizon_frames": 50,
@@ -262,31 +395,37 @@ def main() -> int:
         "future_gt_usage": "offline scoring only after the complete H50 plan is returned",
         "forbidden_at_inference": ["future GT", "HaWoR", "PICO", "retargeting"],
         "embodiment": args.embodiment,
-        "checkpoint_sha256": sha256(args.checkpoint),
-        "split_sha256": sha256(args.split),
+        "checkpoint_sha256": checkpoint_reference["sha256"],
+        "split_sha256": manifest["split_ref"]["sha256"],
+        "evaluation_role": args.evaluation_role,
+        "final_test_authorized": evaluation_authorization["final_test_authorized"],
         "sessions": sidecars,
+        "source_reports": source_reports,
         "visualization_session": visualization_session or None,
         "visualization_sidecar": visualization_sidecar,
-        "inference_contract": audit_contract(),
+        "inference_contract": inference_contract,
         "status": "preflight_passed" if args.check_only else "running",
     }
-    (output / "preflight.json").write_text(
-        json.dumps(preflight, indent=2) + "\n", encoding="utf-8"
-    )
+    atomic_write_json(output / "preflight.json", preflight)
     if args.check_only:
         print(json.dumps(preflight, indent=2))
         return 0
 
     cfg = payload["cfg"]
-    stats_path = args.checkpoint.parent / "dataset_stats.json"
-    if not stats_path.is_file():
-        raise FileNotFoundError(stats_path)
-    stats = json.loads(stats_path.read_text(encoding="utf-8"))
     sessions = [
         args.production_root / session / "09_humanego_adapter"
         for session in dataset_session_ids
     ]
-    dataset = make_dataset(cfg, sessions, args.sidecar_root, stats)
+    dataset = make_dataset(
+        cfg,
+        sessions,
+        args.sidecar_root,
+        stats,
+        selector_binding["window_starts"],
+        selector_binding["selector_records"],
+        selector_binding["selector_root"],
+        {session_id: row["sha256"] for session_id, row in sidecars.items()},
+    )
     indices = schedule_indices(
         dataset,
         set(dataset_session_ids),
@@ -319,7 +458,7 @@ def main() -> int:
         predicted = result["plan_action"].cpu().numpy()
         for sample, plan, seed in zip(samples, predicted, seeds):
             path = Path(sample["json_path"])
-            metadata = json.loads(path.read_text(encoding="utf-8"))["metadata"]
+            metadata = read_bound_sample_metadata(dataset, path)
             plans.append({
                 "session": path.parents[4].name,
                 "frame": int(path.parent.name),
@@ -481,6 +620,8 @@ def main() -> int:
             ensemble_size.append(diagnostic["plans_in_ensemble"])
 
     per_step = []
+    if not any(item["role"] == "evaluation" for item in artifact_records):
+        raise RuntimeError("rolling evaluation produced no frozen-role replans")
     for offset in range(args.execute_steps):
         wrist_count = max(1, wrist_counts[offset])
         q_count = max(1, q_counts[offset])
@@ -493,13 +634,10 @@ def main() -> int:
             "raw_q_normalized_mae": raw_q_sum[offset] / q_count,
             "executed_q_normalized_mae": executed_q_sum[offset] / q_count,
         })
-    with (output / "per_executed_step.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=list(per_step[0]))
-        writer.writeheader()
-        writer.writerows(per_step)
+    atomic_csv(output / "per_executed_step.csv", list(per_step[0]), per_step)
 
     artifact = output / "rolling_h50_predictions.npz"
-    np.savez_compressed(
+    atomic_npz(
         artifact,
         full_plans=np.stack([item["plan"] for item in artifact_records]),
         raw_prefix=np.stack([
@@ -545,19 +683,20 @@ def main() -> int:
         "status": "rolling_h50_evaluated",
         "metrics": metrics,
         "prediction_artifact": {
-            "path": str(artifact.resolve()),
+            "path": str(display_output / artifact.name),
             "sha256": sha256(artifact),
             "contains_future_gt": True,
             "future_gt_usage": "offline scoring only",
         },
     }
-    (output / "evaluation.json").write_text(
-        json.dumps(evaluation, indent=2) + "\n", encoding="utf-8"
+    atomic_write_json(output / "evaluation.json", evaluation)
+    atomic_csv(
+        output / "evaluation.csv",
+        ("metric", "value"),
+        [{"metric": key, "value": value} for key, value in metrics.items()],
     )
-    with (output / "evaluation.csv").open("w", newline="", encoding="utf-8") as stream:
-        writer = csv.DictWriter(stream, fieldnames=("metric", "value"))
-        writer.writeheader()
-        writer.writerows({"metric": key, "value": value} for key, value in metrics.items())
+    if output_lease is not None:
+        output_lease.close()
     print(json.dumps(evaluation, indent=2))
     return 0
 

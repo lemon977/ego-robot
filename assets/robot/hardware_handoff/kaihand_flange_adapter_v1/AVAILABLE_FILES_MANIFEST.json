@@ -1,0 +1,28 @@
+{
+  "schema_version": "kaihand-tianji-hardware-handoff-v1",
+  "status": "REFERENCE_GEOMETRY_ONLY_NOT_READY_TO_PRINT",
+  "units_policy": "Do not infer manufacturing dimensions or units from tessellated STL alone; obtain native CAD/drawing and verify with physical measurements.",
+  "available": [
+    {"role":"tianji_robot_chain","path":"reference_geometry/tianji/marvin_CCS_m6.urdf","bytes":17957,"sha256":"3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309","use":"nominal coordinate/link reference only"},
+    {"role":"tianji_left_terminal_mesh","path":"reference_geometry/tianji/Link7_L.STL","bytes":2557184,"sha256":"126cc7d41c37049ce34d2636bfe2d460c21e3429ed080877d1c5e983109ef798","use":"envelope/reference only"},
+    {"role":"tianji_right_terminal_mesh","path":"reference_geometry/tianji/Link7_R.STL","bytes":2577384,"sha256":"6eb75b059ff383e90a153be840bcce84b23d8f8afd074b1bc9dfec1b18c2351f","use":"envelope/reference only"},
+    {"role":"kaihand_left_urdf","path":"reference_geometry/kaihand_left/kaihand_left.urdf","bytes":29480,"sha256":"dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74","use":"hand root and kinematic reference only"},
+    {"role":"kaihand_left_base_mesh","path":"reference_geometry/kaihand_left/hand_l_base_link.STL","bytes":1631084,"sha256":"07e848a6e8e133690ad5f216b3ba68ddda11c31ec6b61878399b5e67b792ee00","use":"envelope/reference only"},
+    {"role":"kaihand_right_urdf","path":"reference_geometry/kaihand_right/kaihand_right.urdf","bytes":29568,"sha256":"9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586","use":"hand root and kinematic reference only"},
+    {"role":"kaihand_right_base_mesh","path":"reference_geometry/kaihand_right/hand_r_base_link.STL","bytes":1630984,"sha256":"22d767c784aeeec9c243e8f6808a8f65076c3a213c74c9f527f9eaa57f58029b","use":"envelope/reference only"}
+  ],
+  "explicitly_excluded": [
+    {"path":"excluded_reference_only/NOT_KAIHAND_ADAPTER_V2_CAMERA_FLANGE_PRO.STL","bytes":337084,"sha256":"d47925eb8687a9ed9f20020e0f244878a05b37d2f882ec111c4ee277916dccc3","reason":"camera/other-hand flange reference; not a verified KaiHand adapter"},
+    {"path":"excluded_reference_only/FLANGE_RING_VISUAL_PROXY_CONTRACT.json","bytes":2956,"sha256":"a23017464762d5525d0e6cedf5977b4ca753c390eefc3761ed75d834665cae9b","reason":"visualization-only annular proxy; real_adapter_cad=false and measured_mount=false"},
+    {"path":"excluded_reference_only/MOUNT_VISUAL_PROXY_CONTRACT.json","bytes":5188,"sha256":"c45b9818b14120f189e60f221fbcb2d7f6413400c0e79c822fbea0a7a5972310","reason":"development visual mount proxy, not manufacturing evidence"}
+  ],
+  "missing_for_print_release": [
+    "native STEP/STP or dimensioned drawings for both mating interfaces",
+    "verified bolt circle, hole/thread, pilot, datum and clocking dimensions",
+    "left/right adapter decision and cable/connector keep-out",
+    "material, load, fastener, tolerance and printing-process requirements",
+    "physical fit-check and measured T_flange_kaihand_root",
+    "TCP and installed-system calibration"
+  ],
+  "claim_limit": "This handoff is a verified inventory and design-input checklist. It is not a printable adapter design and grants no physical deployment authority."
+}

@@ -12,6 +12,83 @@ class _Plan:
     q: np.ndarray
 
 
+def reexpress_absolute_camera_action_chunk(
+    action: "torch.Tensor",
+    *,
+    source_c2w: "torch.Tensor | np.ndarray",
+    target_c2w: "torch.Tensor | np.ndarray",
+    pos_mean: "torch.Tensor | np.ndarray",
+    pos_std: "torch.Tensor | np.ndarray",
+    hand_command_dim: int,
+) -> "torch.Tensor":
+    """Move dual-wrist absolute actions between observation camera frames.
+
+    HumanEgo action layout is modality-major:
+    ``[left/right position 6, left/right rotation-6D 12, robot q]``.
+    Camera motion changes the first 18 values while robot q remains invariant.
+    ``c2w`` must be the selector-bound camera-to-world authority for each
+    observation.  This function intentionally does not support delta actions.
+    """
+    import torch
+
+    values = torch.as_tensor(action)
+    if values.ndim != 3:
+        raise ValueError(f"action must have shape [B,H,A], got {tuple(values.shape)}")
+    expected = 18 + 2 * int(hand_command_dim)
+    if values.shape[-1] < expected:
+        raise ValueError(
+            f"action dimension {values.shape[-1]} is smaller than {expected}"
+        )
+    if hand_command_dim < 1:
+        raise ValueError("hand_command_dim must be positive")
+    if not torch.is_floating_point(values) or not torch.isfinite(values).all():
+        raise ValueError("action must contain finite floating-point values")
+
+    def camera_batch(value, label: str) -> torch.Tensor:
+        matrix = torch.as_tensor(value, dtype=values.dtype, device=values.device)
+        if matrix.ndim == 2:
+            matrix = matrix.unsqueeze(0)
+        if matrix.shape[-2:] != (4, 4) or matrix.shape[0] not in {1, values.shape[0]}:
+            raise ValueError(f"{label} must have shape [4,4] or [B,4,4]")
+        if matrix.shape[0] == 1 and values.shape[0] != 1:
+            matrix = matrix.expand(values.shape[0], -1, -1)
+        if not torch.isfinite(matrix).all():
+            raise ValueError(f"{label} contains non-finite values")
+        return matrix
+
+    source = camera_batch(source_c2w, "source_c2w")
+    target = camera_batch(target_c2w, "target_c2w")
+    try:
+        target_from_source = torch.linalg.solve(target, source)
+    except RuntimeError as error:
+        raise ValueError("target_c2w is not invertible") from error
+
+    mean = torch.as_tensor(pos_mean, dtype=values.dtype, device=values.device).reshape(3)
+    std = torch.as_tensor(pos_std, dtype=values.dtype, device=values.device).reshape(3)
+    if not torch.isfinite(mean).all() or not torch.isfinite(std).all():
+        raise ValueError("position statistics contain non-finite values")
+    if torch.any(std <= 0):
+        raise ValueError("position standard deviation must be positive")
+
+    output = values.clone()
+    position = values[..., :6].reshape(*values.shape[:2], 2, 3)
+    position = position * std + mean
+    rotation = target_from_source[:, None, None, :3, :3]
+    translation = target_from_source[:, None, None, :3, 3]
+    position = torch.matmul(rotation, position.unsqueeze(-1)).squeeze(-1) + translation
+    output[..., :6] = ((position - mean) / std).reshape(*values.shape[:2], 6)
+
+    raw_o6d = values[..., 6:18].reshape(*values.shape[:2], 2, 3, 2)
+    first = torch.nn.functional.normalize(raw_o6d[..., 0], dim=-1)
+    raw_second = raw_o6d[..., 1]
+    second = raw_second - (first * raw_second).sum(dim=-1, keepdim=True) * first
+    second = torch.nn.functional.normalize(second, dim=-1)
+    source_rotation = torch.stack((first, second, torch.cross(first, second, dim=-1)), dim=-1)
+    target_rotation = torch.matmul(rotation, source_rotation)
+    output[..., 6:18] = target_rotation[..., :2].reshape(*values.shape[:2], 12)
+    return output
+
+
 class RecedingH50QController:
     """Execute short prefixes while causally ensembling robot-q predictions.
 

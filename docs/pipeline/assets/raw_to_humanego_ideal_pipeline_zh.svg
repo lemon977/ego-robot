@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1120" viewBox="0 0 1800 1120" role="img" aria-labelledby="title desc">
+  <title id="title">Raw 到 HumanEgo 的理想端到端整改管线</title>
+  <desc id="desc">展示 Raw QA、HaWoR、双目深度、两条 Mask 语义线、Object6D、Clean、Robot 和 HumanEgo 严格视觉 A/B，以及 A/B/C 审核与隔离。</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f8fafc"/>
+      <stop offset="1" stop-color="#eef2ff"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#334155"/>
+    </marker>
+    <marker id="arrowBlue" viewBox="0 0 12 12" refX="10" refY="6" markerWidth="9" markerHeight="9" orient="auto-start-reverse">
+      <path d="M 0 0 L 12 6 L 0 12 z" fill="#2563eb"/>
+    </marker>
+    <style>
+      .title { font: 700 34px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#0f172a; }
+      .subtitle { font: 500 17px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#475569; }
+      .stageTitle { font: 700 22px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#0f172a; }
+      .body { font: 500 15px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#334155; }
+      .small { font: 500 13px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#475569; }
+      .tag { font: 700 13px 'Noto Sans CJK SC','Microsoft YaHei',sans-serif; fill:#ffffff; }
+      .edge { fill:none; stroke:#334155; stroke-width:3; marker-end:url(#arrow); }
+      .edgeBlue { fill:none; stroke:#2563eb; stroke-width:3.5; marker-end:url(#arrowBlue); }
+      .dash { fill:none; stroke:#64748b; stroke-width:2.5; stroke-dasharray:8 7; marker-end:url(#arrow); }
+      .box { filter:url(#shadow); stroke-width:2; rx:18; }
+    </style>
+  </defs>
+
+  <rect width="1800" height="1120" fill="url(#bg)"/>
+  <text x="70" y="62" class="title">Raw → HumanEgo：理想端到端整改管线</text>
+  <text x="70" y="94" class="subtitle">两条 Mask 语义线分离 · 几何不消费合成像素 · Robot action sidecar 驱动严格视觉 A/B</text>
+
+  <rect x="70" y="120" width="1660" height="70" rx="18" fill="#0f172a"/>
+  <text x="100" y="149" class="tag">全局治理</text>
+  <text x="100" y="174" class="tag">immutable snapshot + path/bytes/SHA256　|　validate-only　|　fresh staging → atomic final　|　Agent review + 中文全片视频　|　A/B 才下游，C 隔离且 fail-forward</text>
+
+  <!-- Main stages -->
+  <rect class="box" x="70" y="260" width="210" height="160" fill="#ffffff" stroke="#64748b"/>
+  <rect x="88" y="278" width="52" height="25" rx="12" fill="#475569"/>
+  <text x="104" y="296" class="tag">S0</text>
+  <text x="90" y="335" class="stageTitle">Raw QA</text>
+  <text x="90" y="365" class="body">Stereo / RGB / K / c2w</text>
+  <text x="90" y="391" class="small">帧身份、同步、完整解码</text>
+
+  <rect class="box" x="360" y="220" width="250" height="160" fill="#eff6ff" stroke="#2563eb"/>
+  <rect x="378" y="238" width="52" height="25" rx="12" fill="#2563eb"/>
+  <text x="394" y="256" class="tag">S1</text>
+  <text x="380" y="295" class="stageTitle">HaWoR bounded-v2</text>
+  <text x="380" y="326" class="body">MANO 参数空间时序拟合</text>
+  <text x="380" y="352" class="small">连续 observed 段 / SO(3)</text>
+
+  <rect class="box" x="360" y="410" width="250" height="160" fill="#ecfeff" stroke="#0891b2"/>
+  <rect x="378" y="428" width="52" height="25" rx="12" fill="#0891b2"/>
+  <text x="394" y="446" class="tag">S2</text>
+  <text x="380" y="485" class="stageTitle">FoundationStereo</text>
+  <text x="380" y="516" class="body">校正 disparity → metric Z</text>
+  <text x="380" y="542" class="small">640×480 → 注册到 1280×960</text>
+
+  <rect class="box" x="700" y="210" width="300" height="170" fill="#f5f3ff" stroke="#7c3aed"/>
+  <rect x="718" y="228" width="74" height="25" rx="12" fill="#7c3aed"/>
+  <text x="731" y="246" class="tag">S3-A</text>
+  <text x="720" y="285" class="stageTitle">SAM3.1 role-removal</text>
+  <text x="720" y="317" class="body">左右人手 + 左右 Tracker/腕带</text>
+  <text x="720" y="343" class="small">当前帧重锚 / 短程 memory</text>
+  <text x="720" y="365" class="small">ROI-bounded DIS / 离屏 empty</text>
+
+  <rect class="box" x="700" y="410" width="300" height="190" fill="#fff7ed" stroke="#ea580c"/>
+  <rect x="718" y="428" width="74" height="25" rx="12" fill="#ea580c"/>
+  <text x="731" y="446" class="tag">S3-B</text>
+  <text x="720" y="485" class="stageTitle">任务物体身份 Mask</text>
+  <text x="720" y="517" class="body">Chips：3 个物理实例</text>
+  <text x="720" y="543" class="body">Poker：动作前后同一张牌</text>
+  <text x="720" y="569" class="small">歧义/遮挡 → invalid，不猜、不 union</text>
+
+  <rect class="box" x="1090" y="395" width="260" height="190" fill="#f0fdf4" stroke="#16a34a"/>
+  <rect x="1108" y="413" width="52" height="25" rx="12" fill="#16a34a"/>
+  <text x="1124" y="431" class="tag">S4</text>
+  <text x="1110" y="470" class="stageTitle">Object6D</text>
+  <text x="1110" y="502" class="body">Mask + Depth + K/c2w</text>
+  <text x="1110" y="528" class="small">鲁棒中心 + PCA/SVD 轴</text>
+  <text x="1110" y="550" class="small">observed-only / KEEP_INVALID</text>
+
+  <rect class="box" x="1090" y="210" width="260" height="155" fill="#fdf2f8" stroke="#db2777"/>
+  <rect x="1108" y="228" width="52" height="25" rx="12" fill="#db2777"/>
+  <text x="1124" y="246" class="tag">S5</text>
+  <text x="1110" y="285" class="stageTitle">Clean V3</text>
+  <text x="1110" y="316" class="body">真实 donor 优先</text>
+  <text x="1110" y="342" class="small">UNKNOWN → ProPainter SYNTHETIC</text>
+
+  <rect class="box" x="1440" y="270" width="285" height="230" fill="#fefce8" stroke="#ca8a04"/>
+  <rect x="1458" y="288" width="52" height="25" rx="12" fill="#ca8a04"/>
+  <text x="1474" y="306" class="tag">S6</text>
+  <text x="1460" y="345" class="stageTitle">Robot</text>
+  <text x="1460" y="377" class="body">Tianji arm IK + KaiHand retarget</text>
+  <text x="1460" y="403" class="small">装配 / 可达 / 手性 / 时序</text>
+  <text x="1460" y="425" class="small">碰撞 / fingertip contact</text>
+  <text x="1460" y="447" class="small">Object6D z-buffer / Robot RGB</text>
+  <text x="1460" y="474" class="small">动作不依赖 synthetic Clean</text>
+
+  <!-- Edges -->
+  <path class="edgeBlue" d="M280 320 H360"/>
+  <path class="edgeBlue" d="M280 360 C320 360 320 490 360 490"/>
+  <path class="edgeBlue" d="M610 290 H700"/>
+  <path class="edge" d="M610 320 C650 320 650 480 700 480"/>
+  <path class="edgeBlue" d="M610 490 H700"/>
+  <path class="edgeBlue" d="M1000 500 H1090"/>
+  <path class="edge" d="M1000 300 H1090"/>
+  <path class="edge" d="M1000 470 C1040 470 1040 335 1090 335"/>
+  <path class="edgeBlue" d="M1350 480 C1395 480 1395 410 1440 410"/>
+  <path class="edge" d="M1350 290 C1395 290 1395 340 1440 340"/>
+  <path class="edge" d="M610 275 C950 105 1290 115 1450 280"/>
+
+  <text x="625" y="275" class="small">wrist/palm prompts</text>
+  <text x="1015" y="290" class="small">role union − object union</text>
+  <text x="1220" y="615" text-anchor="middle" class="small">物体 pose 只读原始 RGB/Depth，不读 Clean</text>
+
+  <!-- Review gate -->
+  <rect class="box" x="710" y="675" width="440" height="120" fill="#ffffff" stroke="#334155"/>
+  <text x="735" y="715" class="stageTitle">每阶段终态门</text>
+  <text x="735" y="746" class="body">RESULT + AGENT_REVIEW + full video + SHA</text>
+  <text x="735" y="773" class="small">A/B → 同会话下游　　C/用户否决 → quarantine，批量继续</text>
+  <path class="dash" d="M850 600 V675"/>
+  <path class="dash" d="M1220 585 C1220 650 1150 650 1110 675"/>
+  <path class="dash" d="M1580 500 C1580 640 1260 715 1150 725"/>
+
+  <!-- HumanEgo AB -->
+  <rect class="box" x="185" y="860" width="390" height="150" fill="#fff7ed" stroke="#f97316"/>
+  <text x="210" y="901" class="stageTitle">HUMAN_RAW_RGB</text>
+  <text x="210" y="935" class="body">原始 selected-left RGB</text>
+  <text x="210" y="965" class="small">同 action / split / ICT / seed / recipe</text>
+
+  <rect class="box" x="690" y="860" width="390" height="150" fill="#ecfdf5" stroke="#10b981"/>
+  <text x="715" y="901" class="stageTitle">ROBOT_VIEW_RGB</text>
+  <text x="715" y="935" class="body">背景 + 保护物体 + Robot RGBA/depth</text>
+  <text x="715" y="965" class="small">同 action / split / ICT / seed / recipe</text>
+
+  <rect class="box" x="1200" y="860" width="360" height="150" fill="#eff6ff" stroke="#2563eb"/>
+  <text x="1225" y="901" class="stageTitle">HumanEgo 严格 A/B</text>
+  <text x="1225" y="935" class="body">只比较视觉 RGB 的影响</text>
+  <text x="1225" y="965" class="small">4 checkpoints：两任务 × 两视觉分支</text>
+
+  <path class="edgeBlue" d="M1580 500 C1580 700 885 720 885 860"/>
+  <path class="edge" d="M1580 500 C1580 790 380 730 380 860"/>
+  <path class="edgeBlue" d="M575 935 H690"/>
+  <path class="edgeBlue" d="M1080 935 H1200"/>
+
+  <rect x="90" y="1042" width="1620" height="46" rx="14" fill="#ffffff" stroke="#cbd5e1"/>
+  <circle cx="122" cy="1065" r="9" fill="#2563eb"/><text x="140" y="1071" class="small">公制/几何数据流</text>
+  <circle cx="315" cy="1065" r="9" fill="#db2777"/><text x="333" y="1071" class="small">视觉生成路径</text>
+  <circle cx="493" cy="1065" r="9" fill="#ea580c"/><text x="511" y="1071" class="small">身份保护</text>
+  <circle cx="666" cy="1065" r="9" fill="#16a34a"/><text x="684" y="1071" class="small">可见物体几何</text>
+  <text x="940" y="1071" class="small">原则：SYNTHETIC 像素永不反喂几何；Robot action sidecar 在 A/B 两支间 byte-identical</text>
+</svg>

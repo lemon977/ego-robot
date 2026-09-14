@@ -22,6 +22,7 @@ from __future__ import annotations
 
 import os
 import glob
+import hashlib
 import json
 import sys
 import subprocess
@@ -37,7 +38,7 @@ os.environ.setdefault("TORCH_BLAS_PREFER_CUBLASLT", "0")
 
 from tqdm import tqdm
 from dataclasses import dataclass, field, asdict
-from typing import List, Dict, Tuple, Optional
+from typing import Any, Dict, List, Mapping, Optional, Tuple
 import numpy as np
 import scipy.spatial.distance
 from scipy.optimize import linear_sum_assignment
@@ -69,8 +70,44 @@ from training.FlowMatchingDataloader import (
 from training.FlowMatchingModel import FlowMatchingModel
 from training.checkpoint_transfer import load_compatible_pretrained
 from training.FlowMatchingEvaluator import run_teacher_forced_vis
+from utils.atomic_io import atomic_write, atomic_write_json
+from utils.frozen_contract import (
+    TRAINING_COMPLETE_SCHEMA,
+    ensure_runtime_checkpoint_authority,
+    file_reference,
+    load_verified_torch_checkpoint,
+    read_file_reference,
+    read_isolated_evaluation_metrics,
+    read_ordinary_file_bytes,
+    runtime_checkpoint_authority_path,
+    sha256_file,
+    validate_directory_path,
+    validate_file_reference,
+    validate_formal_runtime_contract,
+    validate_run_root_binding,
+    validate_session_paths,
+    write_runtime_checkpoint_authority,
+)
+from utils.source_contract import (
+    load_eligible68_frozen_split,
+    require_manifest_selector_ready,
+    validate_frozen_adapters,
+    validate_training_run_role_contract,
+)
 
 console = Console()
+HUMANEGO_ROOT = Path(__file__).resolve().parents[1]
+
+
+def require_formal_selector_for_trainer(
+    run_manifest: Mapping[str, Any],
+) -> dict[str, Any]:
+    """Revalidate both immutable selector inputs inside Trainer."""
+    return require_manifest_selector_ready(
+        run_manifest.get("selector_manifest_ref"),
+        run_manifest.get("paired_kept_manifest_ref"),
+        artifact_root=run_manifest.get("artifact_root"),
+    )
 
 # =========================================================
 # -------- Config ---------
@@ -150,6 +187,7 @@ def resolve_data_sources(data_sources: dict, data_root: str, task: str, eval_sou
 class TrainConfig:
     # --- Data & Paths ---
     out_dir: str = "./runs/YOUR_TASK/YOUR_JOB"
+    run_root: Optional[str] = None
     data_root: str = "./data"
     MPS_PATHS_TRAIN: list = field(default_factory=lambda:[f"./data/serve_bread/aria/mps_serve_bread_{i:03d}_vrs" for i in range(1, 43)])
     MPS_PATHS_EVAL: list = field(default_factory=lambda:["./data/serve_bread/aria/mps_serve_bread_000_vrs"])
@@ -297,7 +335,16 @@ def is_zero_state(x_ict: torch.Tensor, ict_mask: torch.Tensor, eps: float = 1e-6
     # Token layout index 1:4 is Position. Token 0 is Hand.
     return (x_ict[:, 0, 1:4].abs().sum(dim=1) <= eps)
 
-def get_dataset_stats(mps_paths: list, cfg: TrainConfig) -> dict:
+def get_dataset_stats(
+    mps_paths: list,
+    cfg: TrainConfig,
+    allowed_window_starts: Mapping[str, set[int] | frozenset[int]] | None = None,
+    selector_records: Mapping[str, Mapping[str, Any]] | None = None,
+    selector_root: str | None = None,
+    sidecar_sha256_by_session: Mapping[str, str] | None = None,
+    hawor_v3_sidecar_root: str | None = None,
+    hawor_v3_sha256_by_session: Mapping[str, str] | None = None,
+) -> dict:
     console.print(f"[bold yellow]Computing dataset statistics for {len(mps_paths)} sessions...[/]")
     tmp_ds = FlowMatchingDataloader(
         sessions=[MPSSessions(p) for p in mps_paths],
@@ -312,6 +359,12 @@ def get_dataset_stats(mps_paths: list, cfg: TrainConfig) -> dict:
         enable_augmentation=False,
         stats=None,
         cache_json_in_memory=cfg.cache_json_in_memory,
+        allowed_window_starts=allowed_window_starts,
+        selector_records=selector_records,
+        selector_root=selector_root,
+        sidecar_sha256_by_session=sidecar_sha256_by_session,
+        hawor_v3_sidecar_root=hawor_v3_sidecar_root,
+        hawor_v3_sha256_by_session=hawor_v3_sha256_by_session,
     )
     all_pos =[]
     num_samples = len(tmp_ds)
@@ -422,10 +475,29 @@ class EMAModel:
 
 
 def save_checkpoint_atomic(payload: dict, path: str) -> None:
-    """Never expose a partially written checkpoint to resume/watchdog code."""
-    temporary = path + ".tmp"
-    torch.save(payload, temporary)
-    os.replace(temporary, path)
+    """Write, fsync and replace a checkpoint on the same filesystem."""
+    atomic_write(path, lambda temporary: torch.save(payload, temporary))
+
+
+def load_dataset_stats_binding(
+    path: str | Path,
+    *,
+    expected: Mapping[str, Any] | None = None,
+) -> tuple[dict[str, Any], str]:
+    """Parse and hash dataset statistics from one verified byte snapshot."""
+    _, encoded = read_ordinary_file_bytes(
+        path,
+        label="formal dataset statistics",
+    )
+    try:
+        stats = json.loads(encoded)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError("formal dataset statistics are not valid JSON") from error
+    if not isinstance(stats, dict):
+        raise ValueError("formal dataset statistics must be a JSON object")
+    if expected is not None and stats != expected:
+        raise ValueError("published dataset statistics differ from computed values")
+    return stats, hashlib.sha256(encoded).hexdigest()
 
 
 # =========================================================
@@ -445,7 +517,7 @@ def train_one_epoch(
 
     model.train()
 
-    agg = {"loss": 0.0, "l_flow": 0.0, "l_pos": 0.0, "l_rot": 0.0, "l_g": 0.0, "l_done": 0.0, "l_foresight": 0.0, "l_contrastive": 0.0, "zero_ratio":[]}
+    agg = {"loss": 0.0, "l_flow": 0.0, "l_pos": 0.0, "l_rot": 0.0, "l_g": 0.0, "l_done": 0.0, "l_foresight": 0.0, "l_contrastive": 0.0, "zero_ratio":[], "sample_weight_mean": []}
     n = 0
 
     def _nan_guard(x: torch.Tensor, tag: str):
@@ -514,6 +586,36 @@ def train_one_epoch(
 
         B = x_1.shape[0]
 
+        # Automatically estimated Object6D is a bounded Grade-B input.  Its
+        # frozen per-session weight must affect optimization, not merely appear
+        # in a report.  A bundle without an object overlay defaults to 1 only
+        # for legacy/non-object training; the exact78 entrypoint rejects that
+        # legacy route before this function is called.
+        sample_weight = batch.get("object_training_weight")
+        if sample_weight is None:
+            sample_weight = torch.ones((B,), dtype=torch.float32)
+        sample_weight = sample_weight.to(
+            cfg.device, dtype=torch.float32, non_blocking=True
+        ).reshape(-1)
+        if sample_weight.shape != (B,):
+            raise RuntimeError(
+                f"object_training_weight={tuple(sample_weight.shape)}, "
+                f"expected {(B,)}"
+            )
+        if (
+            not torch.isfinite(sample_weight).all()
+            or bool((sample_weight < 0.0).any())
+            or bool((sample_weight > 1.0).any())
+            or float(sample_weight.sum().detach().cpu()) <= 0.0
+        ):
+            raise RuntimeError(
+                "object_training_weight must be finite in [0,1] with "
+                "positive batch sum"
+            )
+        agg["sample_weight_mean"].append(
+            float(sample_weight.mean().detach().cpu())
+        )
+
         if not torch.isfinite(x_1).all() or not torch.isfinite(x_ict).all():
             raise RuntimeError("NaN found in Dataloader outputs!")
 
@@ -544,6 +646,7 @@ def train_one_epoch(
             "v_target": v_target,
             "action_valid_mask": action_valid_mask,
             "y_action": y_action,
+            "sample_weight": sample_weight,
         }
         if "joint_lower" in batch:
             loss_targets["joint_lower"] = batch["joint_lower"].to(cfg.device)
@@ -625,6 +728,10 @@ def train_one_epoch(
         agg[k] /= max(1, n)
 
     agg["zero_state_ratio"] = float(np.mean(agg["zero_ratio"])) if agg["zero_ratio"] else 0.0
+    agg["sample_weight_mean"] = (
+        float(np.mean(agg["sample_weight_mean"]))
+        if agg["sample_weight_mean"] else 1.0
+    )
     agg["lr"] = float(opt.param_groups[0]["lr"])
 
     return agg, global_step
@@ -842,6 +949,8 @@ def eval_ode_inference_isolated(
     model: FlowMatchingModel,
     cfg: TrainConfig,
     epoch: int,
+    run_manifest: dict,
+    dataset_stats_sha256: str,
 ) -> Dict[str, float]:
     """Run CUDA validation in a fresh process.
 
@@ -852,13 +961,34 @@ def eval_ode_inference_isolated(
     run_dir = Path(cfg.out_dir).resolve()
     pending = run_dir / "eval_snapshots" / f".pending_ep_{epoch:04d}.pt"
     result = run_dir / "eval_snapshots" / f".isolated_ep_{epoch:04d}.json"
+    authority_path = runtime_checkpoint_authority_path(pending)
     pending.parent.mkdir(parents=True, exist_ok=True)
+    if os.path.lexists(pending) or os.path.lexists(authority_path):
+        raise FileExistsError("stale isolated-evaluation checkpoint authority exists")
+    run_manifest_reference = file_reference(run_dir / "run_manifest.json")
+    _, run_manifest_encoded = read_file_reference(
+        run_manifest_reference,
+        allowed_roots=[run_dir],
+        label="isolated-evaluation run manifest",
+    )
+    if json.loads(run_manifest_encoded) != run_manifest:
+        raise ValueError("isolated-evaluation run manifest changed")
+    dataset_stats_reference = file_reference(run_dir / "dataset_stats.json")
+    if dataset_stats_reference["sha256"] != dataset_stats_sha256:
+        raise ValueError("isolated-evaluation dataset statistics changed")
     save_checkpoint_atomic(
         {
             "model": {key: value.detach().cpu() for key, value in model.state_dict().items()},
             "cfg": asdict(cfg),
+            "run_manifest": run_manifest,
+            "dataset_stats_sha256": dataset_stats_sha256,
         },
         str(pending),
+    )
+    write_runtime_checkpoint_authority(
+        pending,
+        run_manifest_reference=run_manifest_reference,
+        dataset_stats_reference=dataset_stats_reference,
     )
     command = [
         sys.executable,
@@ -868,9 +998,13 @@ def eval_ode_inference_isolated(
     ]
     try:
         subprocess.run(command, cwd=Path(__file__).resolve().parents[1], check=True)
-        return json.loads(result.read_text(encoding="utf-8"))
+        return read_isolated_evaluation_metrics(
+            result,
+            label="isolated evaluation result",
+        )
     finally:
         pending.unlink(missing_ok=True)
+        authority_path.unlink(missing_ok=True)
         result.unlink(missing_ok=True)
 
 
@@ -935,12 +1069,130 @@ def main(cfg: TrainConfig):
         torch.backends.cuda.matmul.allow_tf32 = True
         torch.backends.cudnn.allow_tf32 = True
         torch.backends.cudnn.benchmark = True
-    os.makedirs(cfg.out_dir, exist_ok=True)
-    run_manifest_path = os.path.join(cfg.out_dir, "run_manifest.json")
-    run_manifest = None
-    if os.path.isfile(run_manifest_path):
-        with open(run_manifest_path, "r", encoding="utf-8") as stream:
-            run_manifest = json.load(stream)
+    if not cfg.run_root:
+        raise ValueError("formal training requires an explicit run_root")
+    if not Path(cfg.run_root).is_absolute():
+        raise ValueError("formal training run_root must be absolute")
+    caller_run_root = validate_directory_path(
+        cfg.run_root,
+        allowed_roots=[Path(cfg.run_root).absolute().anchor],
+        label="caller-approved formal run root",
+    )
+    run_directory = validate_directory_path(
+        cfg.out_dir,
+        allowed_roots=[caller_run_root],
+        label="formal training run directory",
+    )
+    run_manifest_path = run_directory / "run_manifest.json"
+    try:
+        _, run_manifest_encoded = read_ordinary_file_bytes(
+            run_manifest_path,
+            label="formal run manifest",
+        )
+    except FileNotFoundError as error:
+        raise RuntimeError(
+            "formal training requires run_manifest.json from tools/train_embodiment.py"
+        ) from error
+    try:
+        run_manifest = json.loads(run_manifest_encoded)
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError("run_manifest.json is not valid JSON") from error
+    if not isinstance(run_manifest, dict):
+        raise ValueError("run_manifest.json must be an object")
+    validate_run_root_binding(
+        run_directory,
+        run_manifest,
+        expected_run_root=caller_run_root,
+    )
+    if cfg.data_sources is not None:
+        raise ValueError("automatic data-source discovery is forbidden for formal runs")
+    if cfg.use_legacy_image_loading:
+        raise ValueError("legacy image loading is forbidden for formal runs")
+    if cfg.use_legacy_rng:
+        raise ValueError("legacy augmentation RNG is forbidden for formal runs")
+    if cfg.persistent_workers:
+        raise ValueError(
+            "formal epoch-derived augmentation requires persistent_workers=False"
+        )
+    if isinstance(cfg.img_name, str) and cfg.img_name.startswith("@"):
+        raise ValueError("virtual image selectors require the reviewed manifest selector")
+    split_path = validate_file_reference(
+        run_manifest.get("split_ref", {}),
+        allowed_roots=[HUMANEGO_ROOT / "data_manifests"],
+        label="formal split",
+    )
+    sidecar_root_value = Path(str(cfg.robot_sidecar_root))
+    sidecar_root = (
+        sidecar_root_value.resolve()
+        if sidecar_root_value.is_absolute()
+        else (HUMANEGO_ROOT / sidecar_root_value).resolve()
+    )
+    selector_binding = require_formal_selector_for_trainer(run_manifest)
+    split = load_eligible68_frozen_split(
+        split_path,
+        str(run_manifest.get("embodiment")),
+        sidecar_root=sidecar_root,
+        verify_sidecars=True,
+    )
+    validate_training_run_role_contract(run_manifest, split, allow_overfit=True)
+    validate_formal_runtime_contract(
+        asdict(cfg),
+        run_manifest,
+        split,
+        str(run_manifest.get("embodiment")),
+        config_root=HUMANEGO_ROOT / "cfg" / "training",
+    )
+    production_root_value = split.get("production_root")
+    if not isinstance(production_root_value, str):
+        raise ValueError("frozen split has no canonical production root")
+    production_root = Path(production_root_value).resolve(strict=True)
+    overfit_session = run_manifest.get("overfit_session")
+    runtime_train_sessions = (
+        [overfit_session]
+        if isinstance(overfit_session, str)
+        else list(run_manifest["train_sessions"])
+    )
+    runtime_validation_sessions = (
+        [overfit_session]
+        if isinstance(overfit_session, str)
+        else list(run_manifest["validation_sessions"])
+    )
+    expected_adapter_paths = {
+        session_id: run_manifest["adapter_paths"][session_id]
+        for session_id in runtime_train_sessions + runtime_validation_sessions
+    }
+    validate_session_paths(
+        cfg.MPS_PATHS_TRAIN,
+        runtime_train_sessions,
+        expected_paths=expected_adapter_paths,
+        allowed_root=production_root,
+    )
+    validate_session_paths(
+        cfg.MPS_PATHS_EVAL,
+        runtime_validation_sessions,
+        expected_paths=expected_adapter_paths,
+        allowed_root=production_root,
+    )
+    if not run_manifest.get("overfit_session") and any(
+        value is not None
+        for value in (cfg.data_num, cfg.max_train_batches, cfg.max_eval_batches)
+    ):
+        raise ValueError("formal full-cohort runs cannot silently limit data or batches")
+    for session_id, expected_sha256 in run_manifest["sidecars"].items():
+        observed = sha256_file(
+            sidecar_root / str(run_manifest.get("embodiment")) / session_id / "sidecar.npz"
+        )
+        if observed != expected_sha256:
+            raise ValueError(f"sidecar changed after launcher preflight: {session_id}")
+    # No code below this point may execute until the reviewed RAW/cohort frame
+    # selector exists.  This gate is intentionally repeated inside Trainer so
+    # direct module invocation cannot bypass the launcher HOLD.
+    validate_frozen_adapters(
+        split,
+        production_root,
+        list(dict.fromkeys(runtime_train_sessions + runtime_validation_sessions)),
+        selector_binding,
+    )
 
     # --- Data Search Logic ---
     if cfg.data_sources is not None:
@@ -998,18 +1250,26 @@ def main(cfg: TrainConfig):
 
     stats_path = os.path.join(cfg.out_dir, "dataset_stats.json")
     if os.path.exists(stats_path):
-        with open(stats_path, "r") as f:
-            stats = json.load(f)
+        stats, dataset_stats_sha256 = load_dataset_stats_binding(stats_path)
         console.print(f"[bold green]Loaded existing stats from:[/] {stats_path}")
     else:
-        stats = get_dataset_stats(cfg.MPS_PATHS_TRAIN, cfg)
-        with open(stats_path, "w") as f:
-            json.dump(stats, f, indent=4)
+        computed_stats = get_dataset_stats(
+            cfg.MPS_PATHS_TRAIN,
+            cfg,
+            selector_binding["window_starts"],
+            selector_binding["selector_records"],
+            selector_binding["selector_root"],
+            run_manifest["sidecars"],
+        )
+        atomic_write_json(stats_path, computed_stats)
+        stats, dataset_stats_sha256 = load_dataset_stats_binding(
+            stats_path,
+            expected=computed_stats,
+        )
         console.print(f"[bold green]Saved computed stats to:[/] {stats_path}")
 
     config_save_path = os.path.join(cfg.out_dir, "config.json")
-    with open(config_save_path, "w", encoding="utf-8") as f:
-        json.dump(asdict(cfg), f, indent=4, ensure_ascii=False)
+    atomic_write_json(config_save_path, asdict(cfg))
 
     console.print(_panel_cfg(cfg))
 
@@ -1040,6 +1300,10 @@ def main(cfg: TrainConfig):
         cache_json_in_memory=cfg.cache_json_in_memory,
         cache_image_bytes_in_memory=cfg.cache_image_bytes_in_memory,
         seed=cfg.seed, stats=stats,
+        allowed_window_starts=selector_binding["window_starts"],
+        selector_records=selector_binding["selector_records"],
+        selector_root=selector_binding["selector_root"],
+        sidecar_sha256_by_session=run_manifest["sidecars"],
     )
 
     ds_eval = FlowMatchingDataloader(
@@ -1063,6 +1327,10 @@ def main(cfg: TrainConfig):
         cache_json_in_memory=cfg.cache_json_in_memory,
         cache_image_bytes_in_memory=cfg.cache_image_bytes_in_memory,
         seed=cfg.seed, stats=stats,
+        allowed_window_starts=selector_binding["window_starts"],
+        selector_records=selector_binding["selector_records"],
+        selector_root=selector_binding["selector_root"],
+        sidecar_sha256_by_session=run_manifest["sidecars"],
     )
 
     console.print(Panel(f"train samples={len(ds_train)}  eval samples={len(ds_eval)}", title="DATASET", expand=False))
@@ -1115,6 +1383,7 @@ def main(cfg: TrainConfig):
             model,
             cfg.pretrained_checkpoint,
             os.path.join(cfg.out_dir, "pretrained_load_report.json"),
+            expected_sha256=run_manifest.get("pretrained_sha256"),
         )
         console.print(
             f"[bold green]Pretrained shared weights:[/] "
@@ -1150,7 +1419,17 @@ def main(cfg: TrainConfig):
     resume_ckpt_path = os.path.join(cfg.out_dir, "latest.pt")
     if os.path.exists(resume_ckpt_path):
         console.print(f"\n[bold yellow]🔄 Found checkpoint at {resume_ckpt_path}. Resuming training...[/]")
-        ckpt = torch.load(resume_ckpt_path, map_location=cfg.device, weights_only=False)
+        resume_reference = file_reference(resume_ckpt_path)
+        _, ckpt = load_verified_torch_checkpoint(
+            resume_reference,
+            allowed_roots=[Path(cfg.out_dir)],
+            label="formal resume checkpoint",
+            map_location=cfg.device,
+        )
+        if ckpt.get("run_manifest") != run_manifest:
+            raise ValueError("resume checkpoint/run manifest mismatch")
+        if ckpt.get("dataset_stats_sha256") != dataset_stats_sha256:
+            raise ValueError("resume checkpoint/dataset statistics hash mismatch")
         model.load_state_dict(ckpt["model"], strict=True)
         opt.load_state_dict(ckpt["opt"])
         start_epoch = ckpt["epoch"] + 1
@@ -1169,6 +1448,7 @@ def main(cfg: TrainConfig):
 
     completed_epoch = start_epoch - 1
     for ep in range(start_epoch, cfg.epochs + 1):
+        ds_train.set_epoch(ep)
         tr, global_step = train_one_epoch(model, dl_train, opt, scaler, cfg, ep, global_step, total_steps, ema)
 
         # Persist the just-completed training epoch before potentially expensive
@@ -1179,6 +1459,7 @@ def main(cfg: TrainConfig):
                 "epoch": ep, "model": model.state_dict(), "opt": opt.state_dict(),
                 "cfg": cfg.__dict__, "best": best, "global_step": global_step,
                 "run_manifest": run_manifest, "model_weights": "train",
+                "dataset_stats_sha256": dataset_stats_sha256,
                 "ema_shadow": ema.state_dict() if ema is not None else None,
             }
             save_checkpoint_atomic(
@@ -1190,7 +1471,13 @@ def main(cfg: TrainConfig):
                 ema.apply_shadow()
             try:
                 if os.environ.get("HUMANEGO_ISOLATED_EVAL") == "1":
-                    ev = eval_ode_inference_isolated(model, cfg, ep)
+                    ev = eval_ode_inference_isolated(
+                        model,
+                        cfg,
+                        ep,
+                        run_manifest,
+                        dataset_stats_sha256,
+                    )
                 else:
                     ev = eval_ode_inference(
                         model, dl_eval, cfg=cfg,
@@ -1201,8 +1488,10 @@ def main(cfg: TrainConfig):
                     ema.restore()
 
             os.makedirs(os.path.join(cfg.out_dir, "eval_snapshots"), exist_ok=True)
-            with open(os.path.join(cfg.out_dir, "eval_snapshots", f"eval_ep_{ep:04d}.json"), "w") as f:
-                json.dump({"epoch": ep, **ev}, f, indent=2)
+            atomic_write_json(
+                os.path.join(cfg.out_dir, "eval_snapshots", f"eval_ep_{ep:04d}.json"),
+                {"epoch": ep, **ev},
+            )
         else:
             ev = {}
 
@@ -1236,6 +1525,7 @@ def main(cfg: TrainConfig):
                     "global_step": global_step,
                     "selection_metric": "wrist_position_m + rotation_deg/100 + normalized_robot_q_term",
                     "run_manifest": run_manifest,
+                    "dataset_stats_sha256": dataset_stats_sha256,
                     "model_weights": "ema" if ema is not None else "train",
                 }
                 save_checkpoint_atomic(
@@ -1252,6 +1542,7 @@ def main(cfg: TrainConfig):
                 "epoch": ep, "model": model.state_dict(), "opt": opt.state_dict(),
                 "cfg": cfg.__dict__, "best": best, "global_step": global_step,
                 "run_manifest": run_manifest, "model_weights": "train",
+                "dataset_stats_sha256": dataset_stats_sha256,
                 "evaluations_without_improvement": evaluations_without_improvement,
                 "ema_shadow": ema.state_dict() if ema is not None else None,
             }
@@ -1331,10 +1622,7 @@ def main(cfg: TrainConfig):
         console.print("[dim]" + "-" * 75 + "[/]")
 
         history_path = os.path.join(cfg.out_dir, "train_history.json")
-        history_tmp = history_path + ".tmp"
-        with open(history_tmp, "w", encoding="utf-8") as stream:
-            json.dump(history, stream, indent=2)
-        os.replace(history_tmp, history_path)
+        atomic_write_json(history_path, history)
         completed_epoch = ep
 
         if ep % 5 == 0 or ep == cfg.epochs:
@@ -1364,11 +1652,15 @@ def main(cfg: TrainConfig):
             if ema is not None: ema.apply_shadow()
             console.print(f"\n[bold magenta]>>> Starting Professional Visualization Eval at Epoch {ep} <<<[/]")
 
-            current_ckpt = os.path.join(cfg.out_dir, "latest.pt")
-            ckpt_vis = {"epoch": ep, "model": model.state_dict(), "opt": opt.state_dict(), "cfg": cfg.__dict__, "best": best, "global_step": global_step}
-            torch.save(ckpt_vis, current_ckpt)
-
             epoch_render_dir = os.path.join(cfg.out_dir, "eval_render", f"epoch_{ep:04d}")
+            current_ckpt = os.path.join(epoch_render_dir, "visualization_snapshot.pt")
+            ckpt_vis = {
+                "epoch": ep, "model": model.state_dict(), "opt": opt.state_dict(),
+                "cfg": cfg.__dict__, "best": best, "global_step": global_step,
+                "run_manifest": run_manifest, "model_weights": "visualization_only",
+                "dataset_stats_sha256": dataset_stats_sha256,
+            }
+            save_checkpoint_atomic(ckpt_vis, current_ckpt)
 
             if run_teacher_forced_vis is not None:
                 for mps_path in cfg.MPS_PATHS_EVAL:
@@ -1402,12 +1694,46 @@ def main(cfg: TrainConfig):
                         import traceback
                         console.print(f"[bold red]Evaluator failed on {session_name}:[/] {e}")
                         console.print(traceback.format_exc())
+                        raise RuntimeError(
+                            f"visual evaluation failed for {session_name}; training is not complete"
+                        ) from e
             else:
                 console.print("[dim]Evaluator not available yet, skipping rendering...[/]")
 
             if ema is not None: ema.restore()
 
+    best_checkpoint_path = Path(cfg.out_dir) / "best.pt"
+    latest_checkpoint_path = Path(cfg.out_dir) / "latest.pt"
+    for checkpoint_path in (best_checkpoint_path, latest_checkpoint_path):
+        if not checkpoint_path.is_file():
+            raise RuntimeError(
+                f"formal training cannot complete without checkpoint: {checkpoint_path}"
+            )
+    run_manifest_reference = file_reference(run_manifest_path)
+    dataset_stats_reference = file_reference(stats_path)
+    if dataset_stats_reference["sha256"] != dataset_stats_sha256:
+        raise ValueError("dataset statistics changed before completion authority")
+    checkpoint_authority_paths = {
+        "best": runtime_checkpoint_authority_path(best_checkpoint_path),
+        "latest": runtime_checkpoint_authority_path(latest_checkpoint_path),
+    }
+    completion_path = os.path.join(cfg.out_dir, "training_complete.json")
+    if os.path.lexists(completion_path):
+        raise FileExistsError(f"formal training completion already exists: {completion_path}")
+    ensure_runtime_checkpoint_authority(
+        best_checkpoint_path,
+        run_manifest_reference=run_manifest_reference,
+        dataset_stats_reference=dataset_stats_reference,
+    )
+    ensure_runtime_checkpoint_authority(
+        latest_checkpoint_path,
+        run_manifest_reference=run_manifest_reference,
+        dataset_stats_reference=dataset_stats_reference,
+    )
     completion = {
+        "schema_version": TRAINING_COMPLETE_SCHEMA,
+        "immutable": True,
+        "no_fallback": True,
         "status": "complete",
         "termination_reason": termination_reason,
         "completed_epoch": int(completed_epoch),
@@ -1416,13 +1742,16 @@ def main(cfg: TrainConfig):
         "global_step": int(global_step),
         "elapsed_s": float(time.time() - t0),
         "run_manifest": run_manifest,
+        "run_manifest_ref": run_manifest_reference,
+        "dataset_stats_ref": dataset_stats_reference,
+        "best_checkpoint_authority_ref": file_reference(
+            checkpoint_authority_paths["best"]
+        ),
+        "latest_checkpoint_authority_ref": file_reference(
+            checkpoint_authority_paths["latest"]
+        ),
     }
-    completion_path = os.path.join(cfg.out_dir, "training_complete.json")
-    completion_tmp = completion_path + ".tmp"
-    with open(completion_tmp, "w", encoding="utf-8") as stream:
-        json.dump(completion, stream, indent=2)
-        stream.write("\n")
-    os.replace(completion_tmp, completion_path)
+    atomic_write_json(completion_path, completion)
     console.print(table)
     console.print(Panel(f"Elapsed: {time.time() - t0:.1f}s", title="DONE", expand=False))
 
@@ -1543,6 +1872,12 @@ if __name__ == "__main__":
         "--out_dir", type=str, default=None,
         help="Explicit run directory; used to isolate overfit gates from formal runs",
     )
+    parser.add_argument(
+        "--run_root",
+        type=str,
+        default=None,
+        help="Caller-approved root bound into run_manifest.json",
+    )
     parser.add_argument("--device", type=str, default=None)
     parser.add_argument("--seed", type=int, default=None)
     parser.add_argument(
@@ -1602,7 +1937,6 @@ if __name__ == "__main__":
     else:
         out_dir = os.path.join("./runs", cfg.task, args.job)
     cfg.out_dir = out_dir
-    os.makedirs(cfg.out_dir, exist_ok=True)
 
     if args.epochs is not None: cfg.epochs = args.epochs
     if args.batch_size is not None: cfg.batch_size = args.batch_size

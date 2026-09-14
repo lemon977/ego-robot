@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/occlusion_compositor_v1.schema.json",
+  "title": "OCCLUSION_COMPOSITOR_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "inputs", "depth_contract", "object_pixel_provenance", "ownership", "quality_gates", "feedback_to_retarget_allowed", "authority"],
+  "properties": {
+    "schema_version": {"const": "OCCLUSION_COMPOSITOR_V1"},
+    "session_id": {"type": "string", "minLength": 1},
+    "inputs": {
+      "type": "object", "additionalProperties": false,
+      "required": ["clean_rgb", "stereo_depth", "object_identity_mask", "object6d_or_hypothesis", "robot_render"],
+      "properties": {
+        "clean_rgb": {"$ref": "#/$defs/artifact"},
+        "stereo_depth": {"$ref": "#/$defs/artifact"},
+        "object_identity_mask": {"$ref": "#/$defs/artifact"},
+        "object6d_or_hypothesis": {"$ref": "#/$defs/artifact"},
+        "robot_render": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "depth_contract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["depth_field", "valid_field", "depth_confidence_present", "quality_evidence_fields"],
+      "properties": {
+        "depth_field": {"const": "depth_m"},
+        "valid_field": {"const": "depth_valid"},
+        "depth_confidence_present": {"const": false},
+        "quality_evidence_fields": {"const": ["disparity_finite", "registration_pass", "away_from_occlusion_edge", "texture_support", "local_consistency_pass", "in_valid_depth_range"]}
+      }
+    },
+    "object_pixel_provenance": {"const": ["RAW_VISIBLE", "TEMPORAL_OBJECT_DONOR", "TEXTURED_OBJECT_RENDERER", "NONE_UNKNOWN"]},
+    "ownership": {"const": ["BACKGROUND", "HUMAN_FRONT", "OBJECT_FRONT", "ROBOT_FRONT", "TIE_UNKNOWN"]},
+    "quality_gates": {
+      "type": "object", "additionalProperties": false,
+      "required": ["accuracy_on_known_min", "known_decision_coverage_min", "unknown_pixel_ratio_max", "unknown_contact_frame_ratio_max", "max_unknown_run", "max_wrong_known_run", "protected_retention_min"],
+      "properties": {
+        "accuracy_on_known_min": {"const": 0.95},
+        "known_decision_coverage_min": {"const": 0.70},
+        "unknown_pixel_ratio_max": {"const": 0.30},
+        "unknown_contact_frame_ratio_max": {"const": 0.20},
+        "max_unknown_run": {"const": 5},
+        "max_wrong_known_run": {"const": 2},
+        "protected_retention_min": {"const": 0.99}
+      }
+    },
+    "feedback_to_retarget_allowed": {"const": false},
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["automatic_promotion_allowed", "unknown_training_policy"],
+      "properties": {"automatic_promotion_allowed": {"const": false}, "unknown_training_policy": {"const": "TRAINING_VALID_MASK_FALSE_AND_PAIRED_FRAME_DROP_ABOVE_30_PERCENT"}}
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {"path": {"type": "string", "minLength": 1}, "bytes": {"type": "integer", "minimum": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    }
+  }
+}

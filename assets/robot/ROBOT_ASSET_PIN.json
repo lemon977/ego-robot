@@ -1,0 +1,861 @@
+{
+  "calibration": {
+    "file_count": 0,
+    "path": "assets/robot/tianji/calibration",
+    "present": true,
+    "status": "NEED_IF_FK_REQUIRES_CALIBRATION"
+  },
+  "files": [
+    {
+      "bytes": 318,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/CMakeLists.txt",
+      "sha256": "caf52cff2d405ba59acd5ba06abd7bda22a2ff08ed57bb2aac486fab89bf76c7"
+    },
+    {
+      "bytes": 532,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/config/joint_names_KaiBot-Dexhand shell-URDF-L-260624(1620).yaml",
+      "sha256": "8c91b93281f768326ccc1dab6d30589cd54e91575c68ab4c77991f17a8af9a18"
+    },
+    {
+      "bytes": 984,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/export.log",
+      "sha256": "5947f2c2d592cfc645bf5b07891ceddc878bb8085baf6cfefa262f426b44f3e8"
+    },
+    {
+      "bytes": 709,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/launch/display.launch",
+      "sha256": "19b735500ce8894bf794bf0f77796c45da70b3bdfbf99f87630b9d7deca55d3c"
+    },
+    {
+      "bytes": 648,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/launch/gazebo.launch",
+      "sha256": "2cf41f1f1033fe414b1089b12090ac870d599251dcac8ca8424408e8a47a42c5"
+    },
+    {
+      "bytes": 1631084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_base_link.STL",
+      "sha256": "07e848a6e8e133690ad5f216b3ba68ddda11c31ec6b61878399b5e67b792ee00"
+    },
+    {
+      "bytes": 220384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link1.STL",
+      "sha256": "9e471d50171bda9cd6c2d07481bf5de7d03f5b91264d2d62a9b997f4ebea0acd"
+    },
+    {
+      "bytes": 878084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link2.STL",
+      "sha256": "c2c75051cee8a30e5bbf41eb41755aa4f85ac7a6b6bdf8206bbbe4c2fe5b86f9"
+    },
+    {
+      "bytes": 858284,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link3.STL",
+      "sha256": "696792f5f01a13bdf2f7ca6ce2feb785fba4c59e0b1019f451d5c9a01212af0c"
+    },
+    {
+      "bytes": 452084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link4.STL",
+      "sha256": "6171dd452e992b06c2d910dd84e018381c1f9985f458175dbf503e62d248aa51"
+    },
+    {
+      "bytes": 220384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link1.STL",
+      "sha256": "46adcf9237c77270093d0a2f181038436d3d4fb1ad23c952d354cd29dccf5d5e"
+    },
+    {
+      "bytes": 878084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link2.STL",
+      "sha256": "fa7b03c0447dc284fe64c56847c555f3c604d7f3ed1ba1bfcaa53bb93d6f34d2"
+    },
+    {
+      "bytes": 858284,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link3.STL",
+      "sha256": "51ab81a6a1cf1a25014cddf8b6532516d8a72878a078450b1dea483232ca276e"
+    },
+    {
+      "bytes": 452084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link4.STL",
+      "sha256": "8226b7c69ac9f8113f877a05fd7ab74c098387085ff600824c0eadf9ee2e9ebf"
+    },
+    {
+      "bytes": 220384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link1.STL",
+      "sha256": "c4e6f420f192ff3aa54d2fdf6d3b22a0d11efae2d206a11c1a03d7cfdec07696"
+    },
+    {
+      "bytes": 878084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link2.STL",
+      "sha256": "75c59c7c514790fbea2389ca1e236fee0b284098940330ed7067034aeac725a1"
+    },
+    {
+      "bytes": 880534,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link3.STL",
+      "sha256": "88b82410fd983e22e263f856e4409c57f029907aeddab01209ed84fca4ef5b65"
+    },
+    {
+      "bytes": 452084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link4.STL",
+      "sha256": "07713a0736d24a506742a484748170ebd0685ab4474291e033b947445afa1921"
+    },
+    {
+      "bytes": 220384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link1.STL",
+      "sha256": "0ab401e3eb41a5e84bfe391a583ceef174e4bbd7ee0cf027f4308c0faf4a3b3f"
+    },
+    {
+      "bytes": 878084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link2.STL",
+      "sha256": "dd8d52dd76690e540eceefb03936b5702b20a63008d9a9695e07379e0e419fe2"
+    },
+    {
+      "bytes": 858284,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link3.STL",
+      "sha256": "f7941585f8ac8d8c468aa26d735b00d03126d056056223f14ebdb0a4e65967b0"
+    },
+    {
+      "bytes": 452084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link4.STL",
+      "sha256": "3d890fecedbd6f6bc7c29a90687b8a9b1c9f06f9eaf7892dcf2e07ab710d9e2a"
+    },
+    {
+      "bytes": 93984,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link1.STL",
+      "sha256": "191f71fa0f5ad330b2d4212488c397e27568baab6ce60cb6cad9ab47516a7f79"
+    },
+    {
+      "bytes": 281484,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link2.STL",
+      "sha256": "5bdce74c953b1163bff9aeb3a352031c72ee0a131e739153c0deb2e899b09fa3"
+    },
+    {
+      "bytes": 830084,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link3.STL",
+      "sha256": "14f3e7c23f7b32c3a1b222d4010ef2dd082ccd5761253d374b505caa7dc89e05"
+    },
+    {
+      "bytes": 230884,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link4.STL",
+      "sha256": "6f63b94380857294671f211d7c85c547fe230fe912caeb5fc24d9d8fb5ad2161"
+    },
+    {
+      "bytes": 782284,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link5.STL",
+      "sha256": "3c9a7b101793b11fda177fa9adfe98814fae5a53ef2f9f316737631dfff5a1e8"
+    },
+    {
+      "bytes": 308584,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link6.STL",
+      "sha256": "a8a8d7429c807d7d89df1d499d1c4fd792438122cd277a054aca17e05dbbd75d"
+    },
+    {
+      "bytes": 735,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/package.xml",
+      "sha256": "b63706c334e76d4057c63fa16ac876656fe1c128b02f7599941fdc717a0d93da"
+    },
+    {
+      "bytes": 11469,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).csv",
+      "sha256": "9e3b1783cb37c61aa7491854517c38e56bf871f874e4b6ed966ca9709885889f"
+    },
+    {
+      "bytes": 29480,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+      "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74"
+    },
+    {
+      "bytes": 318,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/CMakeLists.txt",
+      "sha256": "b2f73b0ee2e73ac55b9935662323184c1a8db34bb487079cecdd40c93f62848c"
+    },
+    {
+      "bytes": 538,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/config/joint_names_KaiBot-Dexhand shell-URDF-R-260424(1430).yaml",
+      "sha256": "51322cd4ff02bcd917ee7526718187547a5079c504f1e48a466242579952bf7b"
+    },
+    {
+      "bytes": 984,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/export.log",
+      "sha256": "f63ffa3d5f7b16ab08e8ff9337d9dc0d206aa411a2a0e849ca78041cf527ac7a"
+    },
+    {
+      "bytes": 581,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/launch/display.launch",
+      "sha256": "d3e6ca41746a92b24c7ef935b4ffb64274928a63fcd9d51442c2a3dee3f043e7"
+    },
+    {
+      "bytes": 648,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/launch/gazebo.launch",
+      "sha256": "6deb35881da41e7d1d098440faffc3d0e1f3b4eaa231ee0af5d313ae5bd04a1f"
+    },
+    {
+      "bytes": 1630984,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_base_link.STL",
+      "sha256": "22d767c784aeeec9c243e8f6808a8f65076c3a213c74c9f527f9eaa57f58029b"
+    },
+    {
+      "bytes": 221384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link1.STL",
+      "sha256": "c9c3a2004465cf6fe1085a4a5528b02ec2e6b50e16abebf107f2262cdeedf464"
+    },
+    {
+      "bytes": 878684,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link2.STL",
+      "sha256": "342537ea9787a132503f47eebb31f741dc9d4bf6a54f139ff8c1cbb690bc75b2"
+    },
+    {
+      "bytes": 862384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link3.STL",
+      "sha256": "6073a6ffbd9c4213e10aae869ddb4029810d2db7e7e3aa92b8e646d3cbd15ff8"
+    },
+    {
+      "bytes": 452784,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link4.STL",
+      "sha256": "fddc30b3ca4c54d6a9429ab87803f3423a7ab7697097fc24dbd68f466a437f56"
+    },
+    {
+      "bytes": 221384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link1.STL",
+      "sha256": "57a33b70ab3987f29075ad6f221977123704300db507e4e2c64d074bd7205bd9"
+    },
+    {
+      "bytes": 878684,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link2.STL",
+      "sha256": "da97a6e78fbba3db383ee6a77b7a03fe146b51ef235b59a464b472781a31cec1"
+    },
+    {
+      "bytes": 862384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link3.STL",
+      "sha256": "776ca20186ea5f5447790989cf0070996d6c52074546b1ca99e257e02e94b8d7"
+    },
+    {
+      "bytes": 452784,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link4.STL",
+      "sha256": "afd2f5d3d535ce1e50a98866e0616d9ab091ff007942a934b92911d9de883fd0"
+    },
+    {
+      "bytes": 221384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link1.STL",
+      "sha256": "7eb0dd17110d392f43bf4045276216e9182e681cb056eb41165b9fe73109c123"
+    },
+    {
+      "bytes": 878684,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link2.STL",
+      "sha256": "4fe456c6d7e40a35d58443ccde69b12a87726bd9d2bfee015a84eda0028b74ae"
+    },
+    {
+      "bytes": 881434,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link3.STL",
+      "sha256": "f993042debbf851014d7c0fcd05ed48df7424eef21f28934e57c3d64bc5f3787"
+    },
+    {
+      "bytes": 452784,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link4.STL",
+      "sha256": "ece7ab6e0053e3a8a7bc4e7c1ba59cec0ae23b68104e58e44325a0802e45c1c2"
+    },
+    {
+      "bytes": 221384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link1.STL",
+      "sha256": "4a7280b6592b278980d17af6a921e1b773c2eb204cb2b87c2a46e7d139b6c3a1"
+    },
+    {
+      "bytes": 878684,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link2.STL",
+      "sha256": "3b4a3671f26254631410b79b6f1121a399fa8e96afbd8e21016cf1cd2249c2bb"
+    },
+    {
+      "bytes": 862384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link3.STL",
+      "sha256": "3a78225fe545d16e43102a9e548860cbb312cc8a0053b6717538914495224082"
+    },
+    {
+      "bytes": 452784,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link4.STL",
+      "sha256": "a11c782aa3fed147f96dfd085b5dae006ff11665ac96c91abfad273558a2f1e4"
+    },
+    {
+      "bytes": 93984,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link1.STL",
+      "sha256": "29891195e3da815368de043bcf073e6d47397968a681bb1668b2dd3639804830"
+    },
+    {
+      "bytes": 281684,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link2.STL",
+      "sha256": "380e1cd188ad006e734fa52cc069a433dfc683104853bcccaa56a766e77e47ba"
+    },
+    {
+      "bytes": 827384,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link3.STL",
+      "sha256": "28142254d773b0563305584803c27525bad0fd5e71570bd6dbd7cfa76e1cd14b"
+    },
+    {
+      "bytes": 229784,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link4.STL",
+      "sha256": "8da7193823b502a103bb693272ebcb3b8d1072f18bc876479fb780f4424638cb"
+    },
+    {
+      "bytes": 781784,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link5.STL",
+      "sha256": "543e13f63c823282876e6c8c875e4076e784dd09f7ce2e3cfc49c86f79f95a53"
+    },
+    {
+      "bytes": 309584,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link6.STL",
+      "sha256": "2d36da6488c1584ae5c1b7697b812fbcd622b6b59410bf11ee4b42989df3045e"
+    },
+    {
+      "bytes": 735,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/package.xml",
+      "sha256": "9acf7ef14f54dd7e1b492d2d2db500ce43be401f5bb6c4a1bf390df0aec1e88d"
+    },
+    {
+      "bytes": 13356,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).csv",
+      "sha256": "67c6a8eb4792021031d1a6e792a20667afc068fa722ec164293dff62f1e147c1"
+    },
+    {
+      "bytes": 29568,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+      "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586"
+    },
+    {
+      "bytes": 7699734,
+      "path": "assets/robot/tianji/marvin_description/meshes/base/ZJ_Robot_link.STL",
+      "sha256": "5d4273499a047dd5c3b4d59e2b9374d68da7e332607932e118ca3a5cf9ca157e"
+    },
+    {
+      "bytes": 348984,
+      "path": "assets/robot/tianji/marvin_description/meshes/base/base_link.STL",
+      "sha256": "2385c27e73f5a86ddb85d6c0491cf6c26deaf30eeb351c22fb05e53fe93c966f"
+    },
+    {
+      "bytes": 7738584,
+      "path": "assets/robot/tianji/marvin_description/meshes/base/stand.STL",
+      "sha256": "0a9f193351137f937c099219ca02b4e3fe40c10f2cf31ef98276381493f9da3e"
+    },
+    {
+      "bytes": 689984,
+      "path": "assets/robot/tianji/marvin_description/meshes/base/support_link.STL",
+      "sha256": "b915194e0546fb7e174fba1dfb8993fac5bf492dfc6a34e73c908d514f48c158"
+    },
+    {
+      "bytes": 204584,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Base_L.STL",
+      "sha256": "f22c309ed8cacd2fc776e2f72a2fc5618d9da84315267377edd3205e91ebbcb5"
+    },
+    {
+      "bytes": 204584,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Base_R.STL",
+      "sha256": "f22c309ed8cacd2fc776e2f72a2fc5618d9da84315267377edd3205e91ebbcb5"
+    },
+    {
+      "bytes": 563584,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link1_L.STL",
+      "sha256": "d00097eec49600a4111ee5a124d6636f50ea09a7a1dc8486d98f4370dde7a932"
+    },
+    {
+      "bytes": 563584,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link1_R.STL",
+      "sha256": "fdb1075fe0b41e5c2cb7c2fe13c9d2e62ff4dd6eb540ea841b8603db28369dd0"
+    },
+    {
+      "bytes": 1278784,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link2_L.STL",
+      "sha256": "4776a6a2086ddc61b1643aff93386e545baccef2751db29d863fe027a76f325e"
+    },
+    {
+      "bytes": 1278784,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link2_R.STL",
+      "sha256": "53eb9fc69c939d2ebd4f32c1df341c1c42bc3d9d0911db0c9fcee70aa2701b34"
+    },
+    {
+      "bytes": 635484,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link3_L.STL",
+      "sha256": "d58f1039bd3eb2ccc1a1959b89d2de7ae714344ad8cb8b78ef97b92dcd317d26"
+    },
+    {
+      "bytes": 635484,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link3_R.STL",
+      "sha256": "122456d8fc3e81694f352fc1f29d0bc19066f7f3d7572857a1be1e7c030dec9c"
+    },
+    {
+      "bytes": 1263484,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link4_L.STL",
+      "sha256": "77f18566339f38acac1785fae517b05ff1e5247b95404ce26536d215bbed9cd7"
+    },
+    {
+      "bytes": 1263484,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link4_R.STL",
+      "sha256": "77f18566339f38acac1785fae517b05ff1e5247b95404ce26536d215bbed9cd7"
+    },
+    {
+      "bytes": 1176084,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link5_L.STL",
+      "sha256": "573f15ee62b0a9b2d62aceeb756800fd86969a685535e91416b73d51f1c57613"
+    },
+    {
+      "bytes": 1196684,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link5_R.STL",
+      "sha256": "2de51a340695c89b2fd58b1171dfacc4d85aa4e6cd50879e021a2d0bde8599a8"
+    },
+    {
+      "bytes": 310884,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link6_L.STL",
+      "sha256": "b6b7570d8ebf1d2acb01baf8941b892f5a5f72aaa05503ab8340da8a2a7b2c13"
+    },
+    {
+      "bytes": 310884,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link6_R.STL",
+      "sha256": "49722d14b9ac34a84a41c95f49bd0b2a8859d4a05f66b247822bf36b0a703cd5"
+    },
+    {
+      "bytes": 2557184,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link7_L.STL",
+      "sha256": "126cc7d41c37049ce34d2636bfe2d460c21e3429ed080877d1c5e983109ef798"
+    },
+    {
+      "bytes": 2577384,
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link7_R.STL",
+      "sha256": "6eb75b059ff383e90a153be840bcce84b23d8f8afd074b1bc9dfec1b18c2351f"
+    },
+    {
+      "bytes": 528,
+      "path": "assets/robot/tianji/marvin_description/package.xml",
+      "sha256": "9b1ca4394145ce0fa6cda42f43c7478c389a6e35e88e1c0f4b3e17628f164251"
+    },
+    {
+      "bytes": 17957,
+      "path": "assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+      "sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309"
+    }
+  ],
+  "meshes": [
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_base_link.STL",
+      "triangles": 32620,
+      "vertices": 97860
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link1.STL",
+      "triangles": 4406,
+      "vertices": 13218
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link2.STL",
+      "triangles": 17560,
+      "vertices": 52680
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link3.STL",
+      "triangles": 17164,
+      "vertices": 51492
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link4.STL",
+      "triangles": 9040,
+      "vertices": 27120
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link1.STL",
+      "triangles": 4406,
+      "vertices": 13218
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link2.STL",
+      "triangles": 17560,
+      "vertices": 52680
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link3.STL",
+      "triangles": 17164,
+      "vertices": 51492
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link4.STL",
+      "triangles": 9040,
+      "vertices": 27120
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link1.STL",
+      "triangles": 4406,
+      "vertices": 13218
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link2.STL",
+      "triangles": 17560,
+      "vertices": 52680
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link3.STL",
+      "triangles": 17609,
+      "vertices": 52827
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link4.STL",
+      "triangles": 9040,
+      "vertices": 27120
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link1.STL",
+      "triangles": 4406,
+      "vertices": 13218
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link2.STL",
+      "triangles": 17560,
+      "vertices": 52680
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link3.STL",
+      "triangles": 17164,
+      "vertices": 51492
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link4.STL",
+      "triangles": 9040,
+      "vertices": 27120
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link1.STL",
+      "triangles": 1878,
+      "vertices": 5634
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link2.STL",
+      "triangles": 5628,
+      "vertices": 16884
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link3.STL",
+      "triangles": 16600,
+      "vertices": 49800
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link4.STL",
+      "triangles": 4616,
+      "vertices": 13848
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link5.STL",
+      "triangles": 15644,
+      "vertices": 46932
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link6.STL",
+      "triangles": 6170,
+      "vertices": 18510
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_base_link.STL",
+      "triangles": 32618,
+      "vertices": 97854
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link1.STL",
+      "triangles": 4426,
+      "vertices": 13278
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link2.STL",
+      "triangles": 17572,
+      "vertices": 52716
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link3.STL",
+      "triangles": 17246,
+      "vertices": 51738
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link4.STL",
+      "triangles": 9054,
+      "vertices": 27162
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link1.STL",
+      "triangles": 4426,
+      "vertices": 13278
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link2.STL",
+      "triangles": 17572,
+      "vertices": 52716
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link3.STL",
+      "triangles": 17246,
+      "vertices": 51738
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link4.STL",
+      "triangles": 9054,
+      "vertices": 27162
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link1.STL",
+      "triangles": 4426,
+      "vertices": 13278
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link2.STL",
+      "triangles": 17572,
+      "vertices": 52716
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link3.STL",
+      "triangles": 17627,
+      "vertices": 52881
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link4.STL",
+      "triangles": 9054,
+      "vertices": 27162
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link1.STL",
+      "triangles": 4426,
+      "vertices": 13278
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link2.STL",
+      "triangles": 17572,
+      "vertices": 52716
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link3.STL",
+      "triangles": 17246,
+      "vertices": 51738
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link4.STL",
+      "triangles": 9054,
+      "vertices": 27162
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link1.STL",
+      "triangles": 1878,
+      "vertices": 5634
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link2.STL",
+      "triangles": 5632,
+      "vertices": 16896
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link3.STL",
+      "triangles": 16546,
+      "vertices": 49638
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link4.STL",
+      "triangles": 4594,
+      "vertices": 13782
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link5.STL",
+      "triangles": 15634,
+      "vertices": 46902
+    },
+    {
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link6.STL",
+      "triangles": 6190,
+      "vertices": 18570
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/base/ZJ_Robot_link.STL",
+      "triangles": 153993,
+      "vertices": 461979
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Base_L.STL",
+      "triangles": 4090,
+      "vertices": 12270
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Base_R.STL",
+      "triangles": 4090,
+      "vertices": 12270
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link1_L.STL",
+      "triangles": 11270,
+      "vertices": 33810
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link1_R.STL",
+      "triangles": 11270,
+      "vertices": 33810
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link2_L.STL",
+      "triangles": 25574,
+      "vertices": 76722
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link2_R.STL",
+      "triangles": 25574,
+      "vertices": 76722
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link3_L.STL",
+      "triangles": 12708,
+      "vertices": 38124
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link3_R.STL",
+      "triangles": 12708,
+      "vertices": 38124
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link4_L.STL",
+      "triangles": 25268,
+      "vertices": 75804
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link4_R.STL",
+      "triangles": 25268,
+      "vertices": 75804
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link5_L.STL",
+      "triangles": 23520,
+      "vertices": 70560
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link5_R.STL",
+      "triangles": 23932,
+      "vertices": 71796
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link6_L.STL",
+      "triangles": 6216,
+      "vertices": 18648
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link6_R.STL",
+      "triangles": 6216,
+      "vertices": 18648
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link7_L.STL",
+      "triangles": 51142,
+      "vertices": 153426
+    },
+    {
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link7_R.STL",
+      "triangles": 51546,
+      "vertices": 154638
+    }
+  ],
+  "schema_version": "robot-asset-pin-v1",
+  "scope": {
+    "mutation_permitted": false,
+    "roots": [
+      "assets/robot/tianji/marvin_description",
+      "assets/robot/kaihand/packages"
+    ],
+    "scale_topology_urdf_fk_frozen": true
+  },
+  "status": "T0_IDENTITY_PIN_NOT_EXECUTION_AUTHORIZATION",
+  "summary": {
+    "all_mesh_references_resolved": true,
+    "all_meshes_loaded_by_trimesh": true,
+    "file_count": 84,
+    "joint_count": 66,
+    "link_count": 69,
+    "total_bytes": 60259482,
+    "triangle_count": 1027331,
+    "unique_referenced_mesh_count": 63,
+    "urdf_count": 3,
+    "vertex_count": 3081993
+  },
+  "urdfs": [
+    {
+      "joint_count": 22,
+      "link_count": 23,
+      "mesh_reference_count": 17,
+      "path": "assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+      "resolved_meshes": [
+        "assets/robot/tianji/marvin_description/meshes/base/ZJ_Robot_link.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Base_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Base_R.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link1_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link1_R.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link2_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link2_R.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link3_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link3_R.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link4_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link4_R.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link5_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link5_R.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link6_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link6_R.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link7_L.STL",
+        "assets/robot/tianji/marvin_description/meshes/m6/Link7_R.STL"
+      ],
+      "robot_name": "marvin_robot"
+    },
+    {
+      "joint_count": 22,
+      "link_count": 23,
+      "mesh_reference_count": 23,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+      "resolved_meshes": [
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_base_link.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_index_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_middle_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_pinky_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_ring_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link5.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/meshes/hand_l_thumb_link6.STL"
+      ],
+      "robot_name": "KaiBot-Dexhand shell-URDF-L-260624(1620)"
+    },
+    {
+      "joint_count": 22,
+      "link_count": 23,
+      "mesh_reference_count": 23,
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+      "resolved_meshes": [
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_base_link.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_index_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_middle_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_pinky_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_ring_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link1.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link2.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link3.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link4.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link5.STL",
+        "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/meshes/hand_r_thumb_link6.STL"
+      ],
+      "robot_name": "KaiBot-Dexhand shell-URDF-R-260424(1430)"
+    }
+  ]
+}

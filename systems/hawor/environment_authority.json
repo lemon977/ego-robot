@@ -1,0 +1,168 @@
+{
+  "canonical_runtime_authorized": true,
+  "environment_id": "hawor-py310-v1",
+  "historical_records": {
+    "environment_lock": {
+      "immutable": true,
+      "path": "third_party/HaWoR/CHA0YANG_ENVIRONMENT_LOCK.txt",
+      "role": "HISTORICAL_SOURCE_ENVIRONMENT_PROVENANCE"
+    },
+    "runtime_pin": {
+      "immutable": true,
+      "path": "third_party/HaWoR/CHA0YANG_RUNTIME_PIN.json",
+      "role": "VENDORED_SOURCE_MODEL_MANO_PIN"
+    }
+  },
+  "launch": {
+    "activation_required": false,
+    "command": [
+      "tools/hawor_python.sh"
+    ],
+    "direct_environment_script_entrypoints_forbidden": true,
+    "fallback_to_external_conda_forbidden": true,
+    "inherited_pythonpath_forbidden": true,
+    "project_relative_environment_root": "assets/environments/hawor-py310-v1",
+    "project_relative_python": "assets/environments/hawor-py310-v1/bin/python",
+    "snapshot_manifest": "assets/environments/hawor-py310-v1/.chaoyang-hardlink-snapshot/manifest.json.gz"
+  },
+  "local_environment_lock": {
+    "path": "systems/hawor/local_environment_lock.json",
+    "status": "PASS_LOCAL_ENVIRONMENT_PROMOTED"
+  },
+  "promotion_evidence": {
+    "capacity_release": {
+      "path": "archive/audits/HAWOR_LOCAL_ENVIRONMENT_SNAPSHOT_CAPACITY_RELEASE_V1.json",
+      "sha256": "ae86d82400e18429129aff74690e87f5fd8a99e41a10d0a1cd11f2d79d513c9a",
+      "status": "RELEASED_NOT_AUTHORITY"
+    },
+    "execution_contract": {
+      "path": "systems/hawor/post_full59_snapshot_execution_contract.json",
+      "sha256": "96f186ec07f2136e2f262ac255e8f0cb2ea4865a1b54048a30b439f3c3887d21"
+    },
+    "execution_gate": {
+      "path": "archive/audits/HAWOR_POST_FULL59_SNAPSHOT_EXECUTION_GATE_V1.json",
+      "sha256": "d88fca148e0e0d9720329e9d2409f1ceda0e75eac5ed99fed28479bde024ab0e"
+    },
+    "gpu_replay_acquisition": {
+      "path": "_run/hawor_local_env_3point_replay_v1/GPU_LEASE_ACQUIRED.json",
+      "sha256": "ffd9991f87a52f31fb66bd6563fcb3f01672d59a5ff5734f852d42f0263b999f"
+    },
+    "gpu_replay_release": {
+      "path": "_run/hawor_local_env_3point_replay_v1/GPU_LEASE_RELEASED.json",
+      "sha256": "5a1b70b86e256f8607f99c169857cdbeaa215f90997282bf713c72e40f16eaaa",
+      "status": "RELEASED"
+    },
+    "local_probe": {
+      "path": "tasks/control/runs/20260903_hawor_local_environment_migration_v1/LOCAL_ENV_PROBE.json",
+      "sha256": "c226c0978ac532a4f43a73b5a1f015b500b7d76a801ef27bb72bf0e2f1d867b7",
+      "status": "PASS"
+    },
+    "pre_promotion_authority_sha256": "b1c1012184d2162d7c93307274eb5584648d3e39c3c5b7c8dc81c78bb48fefd2",
+    "replay_comparison": {
+      "path": "tasks/control/runs/20260903_hawor_local_environment_migration_v1/REPLAY_COMPARISON.json",
+      "sha256": "8a78161223fbecfe1ae07cadadf563215fcaafdf9424ab56bbc6a607ff87ef0f",
+      "status": "PASS_THREE_ROLES_NPZ_AND_OVERLAY_BITWISE_SEMANTIC_PASS"
+    },
+    "snapshot": {
+      "counts": {
+        "directories": 5235,
+        "regular_files": 55160,
+        "special": 0,
+        "symlinks": 1156
+      },
+      "logical_bytes": 7138519539,
+      "manifest_sha256": "0e469e8d8cfbbde720648f0e820d73060b7c382294094ff3b8d3c34c09951899",
+      "tree_content_sha256": "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e"
+    }
+  },
+  "promotion_gates": [
+    "FULL59_TERMINAL_STATE_CONFIRMED_BY_OWNER",
+    "FRESH_SNAPSHOT_PREFLIGHT_HAS_NO_FATAL_BLOCKER",
+    "CPFS_METADATA_CAPACITY_CONFIRMED_OR_EXPLICITLY_ACKNOWLEDGED",
+    "SNAPSHOT_CONTENT_VERIFY_PASS_COUNTS_LINKS_BYTES_TREE_SHA",
+    "SOURCE_ENVIRONMENT_RETIRED_FROM_IN_PLACE_MUTATION",
+    "LOCAL_PYTHON_EXECUTABLE_PREFIX_AND_IMPORT_ORIGINS_PASS",
+    "CHIPS016_FIT_12_FRAME_REPLAY_PASS",
+    "CHIPS008_SAME_TASK_EVAL_12_FRAME_REPLAY_PASS",
+    "POKER023_CROSS_TASK_EVAL_12_FRAME_REPLAY_PASS",
+    "ARRAY_BITWISE_STATUS_RECORDED_AND_FROZEN_NUMERIC_COMPARISON_PASS",
+    "NEW_LOCAL_ENVIRONMENT_LOCK_WRITTEN_WITHOUT_REWRITING_HISTORICAL_PIN"
+  ],
+  "replay_authority": {
+    "comparison_policy": {
+      "all_array_keys_shapes_and_dtypes_exact": true,
+      "discrete_arrays_bitwise_exact": true,
+      "float_array_bitwise_result_recorded": true,
+      "float_fallback_atol": 1e-06,
+      "float_fallback_rtol": 0.0,
+      "nan_positions_exact": true
+    },
+    "rows": [
+      {
+        "baseline_npz": "tasks/chips/runs/pipeline/20260903_hawor_context_successor_v2/fit_chips016/output/HAWOR_RAW_MANO21_TARGET36.npz",
+        "baseline_npz_sha256": "d3d6b53671e3b686ad10c2598791ec74bde80313eddb491255d44feb96edad76",
+        "baseline_overlay": "tasks/chips/runs/pipeline/20260903_hawor_context_successor_v2/fit_chips016/output/HAWOR_CONTEXT_V2_TARGET12_OVERLAY.png",
+        "baseline_overlay_sha256": "a14bb55a01d569c3717a8efa7c30adbc835f55097e551e639f3db92c5455f3f2",
+        "baseline_result": "tasks/chips/runs/pipeline/20260903_hawor_context_successor_v2/fit_chips016/RESULT.json",
+        "baseline_result_sha256": "705e2d8931daaec3bf1e9b35c12ab0dca5c8fe73c1f16b9f016c56c16184846f",
+        "context_interval": [
+          442,
+          494
+        ],
+        "role": "FIT",
+        "session_id": "get_potato_chips_0901_016",
+        "target_interval": [
+          458,
+          494
+        ],
+        "task_id": "chips"
+      },
+      {
+        "baseline_npz": "tasks/chips/runs/pipeline/20260903_hawor_context_successor_v2/eval_chips008/output/HAWOR_RAW_MANO21_TARGET36.npz",
+        "baseline_npz_sha256": "7cd821a533df938e0ff5b50b06a0f1927fb99a152a1ee85e72b9dc089783aa76",
+        "baseline_overlay": "tasks/chips/runs/pipeline/20260903_hawor_context_successor_v2/eval_chips008/output/HAWOR_CONTEXT_V2_TARGET12_OVERLAY.png",
+        "baseline_overlay_sha256": "171ff551a71a425a4274c94b105aeef7aecd30f98bd71869db57f3cecac22144",
+        "baseline_result": "tasks/chips/runs/pipeline/20260903_hawor_context_successor_v2/eval_chips008/RESULT.json",
+        "baseline_result_sha256": "dd638b0067291e2dc4b65876e75a9714c645f6003dc1ca3d16ba706d9ea9793f",
+        "context_interval": [
+          292,
+          344
+        ],
+        "role": "HELD_OUT_SAME_TASK_EVAL",
+        "session_id": "get_potato_chips_0901_008",
+        "target_interval": [
+          308,
+          344
+        ],
+        "task_id": "chips"
+      },
+      {
+        "baseline_npz": "tasks/poker/runs/pipeline/20260903_hawor_context_successor_v2/eval_poker023/output/HAWOR_RAW_MANO21_TARGET36.npz",
+        "baseline_npz_sha256": "358b233727e3986413a8976294547a301f931199f6fc80e23add0bde0444af35",
+        "baseline_overlay": "tasks/poker/runs/pipeline/20260903_hawor_context_successor_v2/eval_poker023/output/HAWOR_CONTEXT_V2_TARGET12_OVERLAY.png",
+        "baseline_overlay_sha256": "005fc267ddb44e0b177b637294c05c8e6b656ace3d2e4a81d5d8b3c81c91320a",
+        "baseline_result": "tasks/poker/runs/pipeline/20260903_hawor_context_successor_v2/eval_poker023/RESULT.json",
+        "baseline_result_sha256": "5af439b8d9a93a7e027e35d251ad4820214e2c839d51bbb0b9c499ffde305573",
+        "context_interval": [
+          87,
+          139
+        ],
+        "role": "HELD_OUT_CROSS_TASK_EVAL",
+        "session_id": "play_cards_0901_023",
+        "target_interval": [
+          103,
+          139
+        ],
+        "task_id": "poker"
+      }
+    ]
+  },
+  "rollback": {
+    "authority": "systems/hawor/local_environment_rollback.json",
+    "authority_sha256": "a3cea2f2b9b01b1fa82015ad522b32006573bd7112c073fa03e2c3cdee80433f",
+    "dry_run_status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE",
+    "execute_requires_fresh_explicit_operator_authorization": true
+  },
+  "schema_version": "chaoyang-hawor-environment-authority-v1",
+  "status": "PASS_LOCAL_ENVIRONMENT_PROMOTED"
+}

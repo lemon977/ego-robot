@@ -1,0 +1,92 @@
+{
+  "schema_version": "chaoyang-robot-pbr-palette-v1",
+  "config_id": "robot.pbr_palette.004ref.v1",
+  "status": "FROZEN_SHARED_AUTHORITY",
+  "scope": "robot material appearance only; never trajectory, pose, geometry, lighting fit, or per-frame tuning",
+  "reference": {
+    "path": "assets/robot/reference/004_reference.png",
+    "sha256": "c39311bafc5d38d292b7040e87e308483681a0b62f89925209263f029a4f4ee3",
+    "usage": "visual palette and material-class authority only",
+    "limitation": "The reference is not geometry, motion, contact, or metric color-chart authority. Values below are a frozen visual match pending a measured material capture."
+  },
+  "color_management": {
+    "ocio_authority": "Blender bundled OCIO config",
+    "scene_linear_role": "Linear Rec.709",
+    "base_color_input_space": "sRGB",
+    "display_device": "sRGB",
+    "view_transform": "AgX",
+    "look": "AgX - Medium High Contrast",
+    "exposure": 0.0,
+    "gamma": 1.0,
+    "output_display_space": "sRGB",
+    "view_settings_override_forbidden": true
+  },
+  "shader_model": {
+    "name": "Blender Principled BSDF",
+    "base_color_socket_encoding": "scene-linear RGBA",
+    "specular_parameter": "Specular IOR Level",
+    "alpha_mode": "OPAQUE"
+  },
+  "materials": {
+    "ARM_SHELL_MATTE_WHITE": {
+      "base_color_srgb": [0.901960784, 0.909803922, 0.909803922, 1.0],
+      "base_color_linear": [0.791297940, 0.806952258, 0.806952258, 1.0],
+      "roughness": 0.46,
+      "metallic": 0.0,
+      "specular_ior_level": 0.5,
+      "alpha": 1.0
+    },
+    "CONNECTOR_FLANGE_IVORY": {
+      "base_color_srgb": [0.933333333, 0.886274510, 0.847058824, 1.0],
+      "base_color_linear": [0.854992608, 0.760524505, 0.686685312, 1.0],
+      "roughness": 0.40,
+      "metallic": 0.0,
+      "specular_ior_level": 0.5,
+      "alpha": 1.0
+    },
+    "KAIHAND_SHELL_STEEL_BLUE": {
+      "base_color_srgb": [0.466666667, 0.592156863, 0.721568627, 1.0],
+      "base_color_linear": [0.184474995, 0.309468923, 0.479320183, 1.0],
+      "roughness": 0.34,
+      "metallic": 0.55,
+      "specular_ior_level": 0.5,
+      "alpha": 1.0
+    },
+    "JOINT_FASTENER_GRAPHITE": {
+      "base_color_srgb": [0.164705882, 0.149019608, 0.141176471, 1.0],
+      "base_color_linear": [0.023153366, 0.019382361, 0.017641954, 1.0],
+      "roughness": 0.30,
+      "metallic": 0.80,
+      "specular_ior_level": 0.5,
+      "alpha": 1.0
+    }
+  },
+  "assignments": {
+    "left_arm_shell": "ARM_SHELL_MATTE_WHITE",
+    "right_arm_shell": "ARM_SHELL_MATTE_WHITE",
+    "left_connector_flange": "CONNECTOR_FLANGE_IVORY",
+    "right_connector_flange": "CONNECTOR_FLANGE_IVORY",
+    "left_kaihand_shell": "KAIHAND_SHELL_STEEL_BLUE",
+    "right_kaihand_shell": "KAIHAND_SHELL_STEEL_BLUE",
+    "all_joint_fasteners": "JOINT_FASTENER_GRAPHITE"
+  },
+  "cpu_preview": {
+    "status": "DERIVED_NON_AUTHORITATIVE",
+    "derivation": "round(base_color_srgb.rgb * 255), RGB-to-BGR channel reversal for OpenCV",
+    "bgr_uint8": {
+      "ARM_SHELL_MATTE_WHITE": [232, 232, 230],
+      "CONNECTOR_FLANGE_IVORY": [216, 226, 238],
+      "KAIHAND_SHELL_STEEL_BLUE": [184, 151, 119],
+      "JOINT_FASTENER_GRAPHITE": [36, 38, 42]
+    }
+  },
+  "override_policy": {
+    "owner": "systems/robot",
+    "task_may_reference_config_id_only": true,
+    "task_material_override_forbidden": true,
+    "scene_material_override_forbidden": true,
+    "side_specific_override_forbidden": true,
+    "video_specific_override_forbidden": true,
+    "frame_specific_override_forbidden": true
+  }
+}

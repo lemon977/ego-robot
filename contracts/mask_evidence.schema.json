@@ -1,0 +1,110 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ego-robot.local/contracts/mask_evidence.schema.json",
+  "title": "Registered-model mask evidence bound to a verified source manifest",
+  "x-document-status": "DRAFT",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_state", "producer", "producer_identity", "session_id", "product_line",
+    "source_manifest_ref", "source_session_digest", "product_line_registry_ref",
+    "session_context_ref", "task_card_ref", "calibration_overlay_ref",
+    "model_pin_ref", "model", "sam3_used", "frame_count", "frames", "created_at"
+  ],
+  "properties": {
+    "schema_version": {"const": "mask-evidence-v1"},
+    "artifact_state": {"const": "G2_CALIBRATION_CANDIDATE"},
+    "producer": {"const": "mask_producer"},
+    "producer_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "component_id", "producer_version", "artifact_scope",
+        "pixel_semantics_sha256", "implementation_refs"
+      ],
+      "properties": {
+        "component_id": {"const": "mask_producer"},
+        "producer_version": {"type": "string", "pattern": "^producer_p[1-9][0-9]*$"},
+        "artifact_scope": {"const": "FULL_SESSION_MASK_CANDIDATE"},
+        "pixel_semantics_sha256": {"$ref": "#/$defs/sha256"},
+        "implementation_refs": {
+          "type": "array", "minItems": 1, "items": {"$ref": "#/$defs/ref"}
+        }
+      }
+    },
+    "session_id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.-]*$"},
+    "product_line": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9_]*$"},
+    "source_manifest_ref": {"$ref": "#/$defs/ref"},
+    "source_session_digest": {"$ref": "#/$defs/sha256"},
+    "product_line_registry_ref": {"type": "string", "pattern": "^product_lines\\.[A-Z0-9][A-Z0-9_]*$"},
+    "session_context_ref": {"$ref": "#/$defs/ref"},
+    "task_card_ref": {"$ref": "#/$defs/ref"},
+    "calibration_overlay_ref": {"$ref": "#/$defs/ref"},
+    "model_pin_ref": {"type": "string", "pattern": "^model_pins\\.[A-Z][A-Z0-9_]*$"},
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "identity", "repository", "commit", "implementation_ref",
+        "implementation_inventory_sha256", "config_path", "config_sha256",
+        "weight_path", "weight_sha256"
+      ],
+      "properties": {
+        "identity": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9_.-]*$"},
+        "repository": {"type": "string", "format": "uri"},
+        "commit": {"type": "string", "pattern": "^[a-f0-9]{40}$"},
+        "implementation_ref": {"type": "string", "minLength": 1},
+        "implementation_inventory_sha256": {"$ref": "#/$defs/sha256"},
+        "config_path": {"type": "string", "minLength": 1},
+        "config_sha256": {"$ref": "#/$defs/sha256"},
+        "weight_path": {"type": "string", "minLength": 1},
+        "weight_sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "sam3_used": {"type": "boolean"},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "frames": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "frame_index", "source_frame_sha256", "h_core", "o_visible_core", "u_contact", "instance_id",
+          "confidence", "prompt_provenance", "forward_backward_consistency", "calibration_metrics"
+        ],
+        "properties": {
+          "frame_index": {"type": "integer", "minimum": 0},
+          "source_frame_sha256": {"$ref": "#/$defs/sha256"},
+          "h_core": {"$ref": "#/$defs/ref"},
+          "o_visible_core": {"$ref": "#/$defs/ref"},
+          "u_contact": {"$ref": "#/$defs/ref"},
+          "instance_id": {"$ref": "#/$defs/ref"},
+          "confidence": {"$ref": "#/$defs/ref"},
+          "prompt_provenance": {"$ref": "#/$defs/ref"},
+          "forward_backward_consistency": {"type": "number", "minimum": 0, "maximum": 1},
+          "calibration_metrics": {
+            "type": "object",
+            "additionalProperties": {"type": "number"}
+          }
+        }
+      }
+    },
+    "created_at": {"type": "string", "format": "date-time"}
+  },
+  "$defs": {
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256", "producer"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "sha256": {"$ref": "#/$defs/sha256"},
+        "producer": {"type": "string", "minLength": 1},
+        "schema_version": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

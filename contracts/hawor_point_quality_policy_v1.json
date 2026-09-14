@@ -1,0 +1,14 @@
+{
+  "schema_version": "hawor-point-quality-policy-v1",
+  "document_status": "FROZEN_ROUTE_B_CPU_ADMISSION_POLICY",
+  "policy_id": "hawor-point-quality-v1",
+  "quality_domain": "FINITE_UNIT_INTERVAL",
+  "minimum_quality_rule": "STRICTLY_GREATER_THAN_ZERO",
+  "minimum_quality_exclusive": 0.0,
+  "label_independent_required": true,
+  "source_manifest_path": "manifests/verified_source_manifest_v1.json",
+  "source_manifest_sha256": "1dc476360d567894ba629dd74dae608f5d8fd80b0991767611259e47929342a6",
+  "route_of_evidence": "ROUTE_B_HAWOR_POINT_PROMPT_ONLY",
+  "a_prime_selector_evidence_allowed": false,
+  "advancement_authorized": false
+}

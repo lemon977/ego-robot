@@ -1,0 +1,36 @@
+{
+  "schema_version": "neutral-wearable-prompts-v1",
+  "status": "FROZEN_BEFORE_INFERENCE",
+  "identity": "wearable",
+  "appearance_neutral": true,
+  "prompt_count": 4,
+  "prompts": [
+    {
+      "prompt_id": "W1",
+      "text": "a wrist-worn object"
+    },
+    {
+      "prompt_id": "W2",
+      "text": "a wearable object around a wrist"
+    },
+    {
+      "prompt_id": "W3",
+      "text": "a wrist accessory"
+    },
+    {
+      "prompt_id": "W4",
+      "text": "an object worn on a wrist"
+    }
+  ],
+  "execution_rule": "EXECUTE_AND_PERSIST_ALL_PROMPTS_NO_RESULT_DRIVEN_CHOICE",
+  "forbidden_conditioning": [
+    "color",
+    "material",
+    "texture",
+    "brand",
+    "session",
+    "frame",
+    "side-specific appearance"
+  ],
+  "candidate_rule": "ONE_SEPARATE_FULL460_CANDIDATE_PER_PROMPT"
+}

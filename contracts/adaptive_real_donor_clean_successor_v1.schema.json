@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "adaptive-real-donor-clean-successor-v1",
+  "title": "Adaptive coherent same-session real-donor Clean successor",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "run_id", "task", "session", "frame_count",
+    "source_resolution", "fps", "recovery_snapshot", "inputs",
+    "method_contract", "parameters", "quality_gates", "output_root",
+    "review_name", "no_clobber"
+  ],
+  "properties": {
+    "schema_version": {"const": "adaptive-real-donor-clean-successor-input-v1"},
+    "run_id": {"const": "20260908_two_task_e2e_baseline_v1"},
+    "task": {"enum": ["chips", "poker"]},
+    "session": {"enum": ["get_potato_chips_0902_034", "play_cards_0902_042"]},
+    "frame_count": {"type": "integer", "minimum": 36},
+    "source_resolution": {
+      "type": "array",
+      "prefixItems": [{"const": 1280}, {"const": 960}],
+      "items": false
+    },
+    "fps": {"type": "number", "exclusiveMinimum": 0},
+    "recovery_snapshot": {"$ref": "#/$defs/artifact"},
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "raw_video", "depth_result", "depth_frame_manifest",
+        "registration_result", "registration_authority", "depth_agent_review",
+        "camera_geometry", "hawor_agent_review", "mask_result",
+        "mask_agent_review", "mask_frame_manifest", "object_mask_manifest",
+        "object6d_baseline_result"
+      ],
+      "properties": {
+        "raw_video": {"$ref": "#/$defs/artifact"},
+        "depth_result": {"$ref": "#/$defs/artifact"},
+        "depth_frame_manifest": {"$ref": "#/$defs/artifact"},
+        "registration_result": {"$ref": "#/$defs/artifact"},
+        "registration_authority": {"$ref": "#/$defs/artifact"},
+        "depth_agent_review": {"$ref": "#/$defs/artifact"},
+        "camera_geometry": {"$ref": "#/$defs/artifact"},
+        "hawor_agent_review": {"$ref": "#/$defs/artifact"},
+        "mask_result": {"$ref": "#/$defs/artifact"},
+        "mask_agent_review": {"$ref": "#/$defs/artifact"},
+        "mask_frame_manifest": {"$ref": "#/$defs/artifact"},
+        "object_mask_manifest": {"$ref": "#/$defs/artifact"},
+        "object6d_baseline_result": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "method_contract": {"type": "object"},
+    "parameters": {"type": "object"},
+    "quality_gates": {"type": "object"},
+    "output_root": {"type": "string", "pattern": "^/"},
+    "review_name": {"type": "string", "pattern": "\\.mp4$"},
+    "no_clobber": {"const": true}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

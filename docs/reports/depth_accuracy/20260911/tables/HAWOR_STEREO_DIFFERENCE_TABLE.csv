@@ -1,0 +1,37 @@
+﻿section,session,side,signed_bias_mm,abs_mae_mm,abs_p50_mm,abs_p95_mm,claim,frames,negative_frames,below_minus_30_frames,below_minus_50_frames,longest_below_minus_50,start_frame,end_frame,time_s,signed_p50_mm,window,median_offset_mm,aligned_abs_mae_mm,aligned_abs_p50_mm,aligned_abs_p95_mm,region,region_zh,aligned_signed_p50_mm,stereo_valid_coverage,samples
+four_hand_summary,Chips034,左,6.8675,14.1204,11.4569,23.9661,"HaWoR-vs-Stereo internal difference, not error vs GT",,,,,,,,,,,,,,,,,,,
+four_hand_summary,Chips034,右,-58.895,59.1476,56.7114,100.76,"HaWoR-vs-Stereo internal difference, not error vs GT",,,,,,,,,,,,,,,,,,,
+four_hand_summary,Poker042,左,-16.9376,23.4699,21.0867,46.3941,"HaWoR-vs-Stereo internal difference, not error vs GT",,,,,,,,,,,,,,,,,,,
+four_hand_summary,Poker042,右,4.3239,24.7073,21.2443,55.7629,"HaWoR-vs-Stereo internal difference, not error vs GT",,,,,,,,,,,,,,,,,,,
+chips_right_global_counts,Chips034,右,,,,,Counts use per-frame signed mean delta-Z,293,288,270,204,39-213 (175 frames),,,,,,,,,,,,,,
+chips_right_per_second,Chips034,右,-26.38451776889129,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,0,29,0.0-1.0,-38.89649694228858,,,,,,,,,,
+chips_right_per_second,Chips034,右,-56.24159890137958,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,30,59,1.0-2.0,-56.18857359581755,,,,,,,,,,
+chips_right_per_second,Chips034,右,-73.3447860378797,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,60,89,2.0-3.0,-73.40701940694218,,,,,,,,,,
+chips_right_per_second,Chips034,右,-76.81508991054292,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,90,119,3.0-4.0,-76.43932794821583,,,,,,,,,,
+chips_right_per_second,Chips034,右,-71.19020151985252,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,120,149,4.0-5.0,-72.11637195275668,,,,,,,,,,
+chips_right_per_second,Chips034,右,-64.02509521007015,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,150,179,5.0-6.0,-63.013170566510965,,,,,,,,,,
+chips_right_per_second,Chips034,右,-75.47526762247658,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,180,209,6.0-7.0,-77.58733045039128,,,,,,,,,,
+chips_right_per_second,Chips034,右,-44.16370765618312,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,210,239,7.0-8.0,-45.27787828180756,,,,,,,,,,
+chips_right_per_second,Chips034,右,-45.63899436328941,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,240,269,8.0-9.0,-46.19543342956662,,,,,,,,,,
+chips_right_per_second,Chips034,右,-54.69002502923402,,,,Frame-mean delta-Z averaged within one-second bin,,,,,,270,292,9.0-9.8,-53.564344040872776,,,,,,,,,,
+three_window_whole_hand,Chips034,右,,,,,Per-frame median-Z removed before pooling residuals,,,,,,,,,,020-060,-49.792386240369716,7.813861472280034,5.3091044425964355,24.065604305267314,,,,,
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,020-060,,6.320592803026056,4.361947298049927,16.25446395874023,palm,手掌,-0.9186478555202484,0.9999501292106814,441118
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,020-060,,7.560982304957629,5.644595623016357,22.984595775604248,thumb,拇指,2.858041286468506,0.9999900569241095,402286
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,020-060,,19.605252949439283,15.503978729248047,51.00821876525879,index,食指,-15.503978729248047,1.0,37051
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,020-060,,12.003912698093373,7.144758224487305,44.197642517089825,middle,中指,-6.665825366973877,0.9995249003139052,58907
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,020-060,,10.194996808845653,3.819337010383606,50.923644065856934,ring,无名指,-0.16301605850458145,0.9988107298594899,22676
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,020-060,,9.354074145241876,8.604288578033447,14.979889869689941,pinky,小指,8.499025821685791,1.0,14762
+three_window_whole_hand,Chips034,右,,,,,Per-frame median-Z removed before pooling residuals,,,,,,,,,,090-120,-68.94278629043148,18.46228832712852,11.935572624206543,60.197649383544906,,,,,
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,090-120,,16.69067850813681,10.657169818878174,59.91955509185794,palm,手掌,-1.8495122790336609,0.9995238850976036,144854
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,090-120,,13.107254128530688,10.460521697998047,41.264930725097656,thumb,拇指,4.057271957397461,1.0,242166
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,090-120,,48.31261312767387,49.87455368041992,61.6102409362793,index,食指,-49.87455368041992,1.0,17741
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,090-120,,65.2714386091289,66.75341796875,89.43422317504883,middle,中指,-66.75341796875,0.9987395269518796,13470
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,090-120,,57.05328198953554,57.25757598876953,69.86019668579101,ring,无名指,-57.25757598876953,0.9997728563316297,8803
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,090-120,,67.97438127512417,67.52738952636719,77.899698638916,pinky,小指,-67.52738952636719,0.9990774907749077,1083
+three_window_whole_hand,Chips034,右,,,,,Per-frame median-Z removed before pooling residuals,,,,,,,,,,180-210,-71.23172425457314,16.888833344889836,11.415044784545898,57.04008789062498,,,,,
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,180-210,,17.14193642352737,12.747751235961914,64.22565460205078,palm,手掌,-3.329564094543457,0.9995562941688987,123901
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,180-210,,11.959431052801468,9.746994018554688,34.69584579467772,thumb,拇指,3.765861749649048,1.0,235645
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,180-210,,38.487877978059345,36.54650688171387,55.5439691543579,index,食指,-36.54650688171387,0.999888455103179,17928
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,180-210,,77.90550550619292,81.83145904541016,100.67902565002441,middle,中指,-81.83145904541016,0.995776630689817,10610
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,180-210,,69.74384426694999,74.57083892822266,86.16854248046874,ring,无名指,-74.57083892822266,0.9955971381397909,1809
+three_window_region,Chips034,右,,,,,MANO nearest-joint surface region proxy; not anatomical GT,,,,,,,,,,180-210,,,,,pinky,小指,,0.0,0

@@ -1,0 +1,46 @@
+{
+  "T_tool_hand": {
+    "left": [
+      [1.0, 0.0, 0.0, 0.0],
+      [0.0, 1.0, 0.0, 0.0],
+      [0.0, 0.0, 1.0, 0.0],
+      [0.0, 0.0, 0.0, 1.0]
+    ],
+    "right": [
+      [1.0, 0.0, 0.0, 0.0],
+      [0.0, 1.0, 0.0, 0.0],
+      [0.0, 0.0, 1.0, 0.0],
+      [0.0, 0.0, 0.0, 1.0]
+    ]
+  },
+  "authority": {
+    "axes_convention": "RIGHT_HANDED_XYZ",
+    "coordinate_definition": "Tianji left/right tool link to corresponding KaiHand root link",
+    "evidence_by_side": {},
+    "independent_visual_evidence": false,
+    "matrix_direction": "p_target_link = T_tool_hand @ p_source_link",
+    "method": "EXPLICIT_SYNTHETIC_IDENTITY_TEST_FIXTURE_NOT_A_MEASUREMENT",
+    "provider": "GPT_CPU_DEVELOPMENT_SMOKE_FIXTURE",
+    "rotation_units": "radians",
+    "source_links": {
+      "left": "hand_l_base_link",
+      "right": "hand_r_base_link"
+    },
+    "synthetic_fixture": true,
+    "target_links": {
+      "left": "left_tool",
+      "right": "right_tool"
+    },
+    "translation_units": "metres"
+  },
+  "contact_infeasible": "UNMEASURED",
+  "development_only": true,
+  "formal_consumer_allowed": false,
+  "independent_of_r2_wrist_targets": true,
+  "mount_provenance": "PROVISIONAL_MOUNT_VISUAL_ONLY",
+  "per_frame_mount_forbidden": true,
+  "schema_version": "robot-explicit-visual-mount-input-v1",
+  "selected_by_ik_residual": false,
+  "session_constant": true,
+  "session_id": "grap_a_cap_004"
+}

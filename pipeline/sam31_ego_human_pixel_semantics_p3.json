@@ -1,0 +1,50 @@
+{
+  "schema_version": "sam31-ego-human-pixel-semantics-v1",
+  "producer_version": "producer_p3_geometric_box",
+  "not_a_p2_threshold_patch": true,
+  "not_a_v9_heuristic_patch": true,
+  "lineage": "Independent official SAM3.1 per-frame geometric-box candidate route through an explicit separately versioned adapter; no P2, v9, SAM2, corridor, geometry-fill, or historical-mask pixel inheritance.",
+  "human_prompt": {
+    "type": "official_sam31_positive_box",
+    "count_per_frame": 2,
+    "labels": [1, 1],
+    "coordinate_format": "normalized [xmin,ymin,width,height]",
+    "box_formula": "For each authoritative ego side, take the axis-aligned bounds of all 21 projected hand joints plus the closest image-boundary point to the wrist, pad by 1.25 times projected wrist width, and clamp only the prompt coordinates to the image.",
+    "wrist_width_definition": "Euclidean distance between projected joints 5 and 17.",
+    "pixel_effect": "The box is passed to the official SAM3.1 add_prompt API. The box, its corridor, and its raster are never unioned with or used to crop output pixels."
+  },
+  "object_prompt": {
+    "type": "text",
+    "value": "a beverage can",
+    "selection": "Object6D analytic cylinder may only select the returned current/propagated SAM object instance."
+  },
+  "output": {
+    "name": "candidate_human_mask",
+    "encoding": "uint8 PNG with values {0,255}",
+    "positive_semantics": "Pixels in whole current-frame SAM3.1 box-prompt instances that support exactly one authoritative ego side at hand, wrist, and image boundary.",
+    "negative_semantics": "All other pixels, including rejected background-person instances and the selected visible task-object SAM instance."
+  },
+  "pixel_algebra": "candidate_human_mask = union(accepted whole current-frame official SAM3.1 positive-box instances) AND NOT(selected current-frame or propagated SAM3.1 object instance)",
+  "selection_or_rejection_only": [
+    "HaWoR projected ego hand seeds",
+    "projected wrist width",
+    "closest-image-boundary point",
+    "SAM3.1 score and instance ID",
+    "adjacent-frame temporal IoU",
+    "Object6D analytic cylinder projection"
+  ],
+  "forbidden_pixel_sources": [
+    "box raster or box hard crop",
+    "HaWoR or MANO raster fill",
+    "wrist-to-border corridor fill",
+    "PCA or geometry fill",
+    "Object6D or CAD human fill",
+    "optical-flow output warp",
+    "P2 or historical candidate pixels",
+    "SAM2 point refinement",
+    "human H/O/U/B labels",
+    "auditor output"
+  ],
+  "raw_instance_evidence": "Every SAM3.1 box-prompt instance bitmap, score, ID, side support, prompt box, and selection decision must be serialized before union.",
+  "fail_closed": "Invalid or excessive prompt boxes, official signature drift, missing side-specific hand/wrist/boundary support, ambiguous two-side support, missing Object6D-selected visible object, temporal regression, or pixel-lineage failure yields HOLD with no fallback."
+}

@@ -1,0 +1,4 @@
+.venv/
+__pycache__/
+*.pyc
+SELF_TEST_RESULT.json

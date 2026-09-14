@@ -1,0 +1,77 @@
+{
+  "$schema": "../schema/system_manifest.schema.json",
+  "schema_version": "chaoyang-system-manifest-v1",
+  "system_id": "robot",
+  "manifest_version": "2026-09-02.1",
+  "status": "ACTIVE_DEVELOPMENT_PHYSICAL_NONPENETRATION_NOT_YET_CLOSED",
+  "claim_limit": "Reusable geometry and actual-FK components are registered, but the current 004 full video has a physical hand/object penetration HOLD. No general physical-grasp claim.",
+  "shared_by_default": true,
+  "algorithms": [
+    {
+      "algorithm_id": "robot.actual_fk_task_geometry.v1",
+      "stage": "robot",
+      "status": "SHARED_COMPONENTS_WITH_OPEN_COLLISION_GATE",
+      "implementation_files": [
+        {
+          "path": "pipeline/robot_contact_geometry.py",
+          "bytes": 11963,
+          "sha256": "a4b86485e59f09eb9c1d3f4724b376e32e7146f69d5d6f339208e210081bcfb1"
+        },
+        {
+          "path": "pipeline/object_occlusion_geometry.py",
+          "bytes": 6873,
+          "sha256": "33c3fc8bba063a5dc8878b80d1b3a81da2739bd0a801343a3e77ce5927f9e3ad"
+        },
+        {
+          "path": "pipeline/newtask_parametric_geometry.py",
+          "bytes": 30119,
+          "sha256": "340bbe438dc2c0605db9ff1617805f4d6a14160420da9b797f5b706e6563e4d9"
+        }
+      ],
+      "required_weight_ids": [],
+      "invariants": [
+        "one session-constant rig transform initialized from that session",
+        "actual FK from pinned robot assets and joint limits",
+        "anatomical left/right mapping is explicit and never inferred from image x order",
+        "task object geometry and metric depth are selected by registered geometry type",
+        "designated contact and all non-designated penetration are audited separately",
+        "visual depth compositing cannot substitute for physical nonpenetration"
+      ]
+    }
+  ],
+  "learned_weights": [],
+  "task_specific_config_keys": [
+    "object_registry",
+    "object_geometry_types",
+    "object_measurements",
+    "contact_roles",
+    "anatomical_side_mapping",
+    "session_initialization_block",
+    "camera_intrinsics_and_poses",
+    "task_object_pose_timeline"
+  ],
+  "weight_policy": {
+    "task_local_paths_allowed": false,
+    "new_weight_requires": [
+      "bytes_and_sha256",
+      "base_weight_id",
+      "training_data_manifest_sha256",
+      "training_code_sha256",
+      "session_level_split_manifest_sha256",
+      "evaluation_manifest_sha256_and_metrics",
+      "applicable_task_scope",
+      "license_id_and_status"
+    ]
+  },
+  "current_evidence": [
+    {
+      "id": "newtask_approx_geometry",
+      "path": "_run/newtask_geometry_prep_v2/GEOMETRY_MANIFEST.json",
+      "bytes": 14823,
+      "sha256": "65dffad7fc6ec25c7abede682612543665ee5957de793e8acf884b058dc7bf18",
+      "status": "COMPLETE_APPROX_GEOMETRY",
+      "claim_limit": "Synthetic/phone-development geometry; formal_session=false."
+    }
+  ]
+}
+

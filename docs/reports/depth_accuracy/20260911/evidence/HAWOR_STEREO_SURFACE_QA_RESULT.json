@@ -1,0 +1,58 @@
+{
+  "schema_version": "hawor-foundationstereo-visible-surface-consistency-aggregate-result-v1",
+  "created_at": "2026-09-11T02:18:44+08:00",
+  "status": "PASS_TWO_BASELINE_CANARIES_CROSS_SENSOR_PROXY_ONLY",
+  "authority": false,
+  "external_ground_truth": false,
+  "depth_or_contact_authority_promoted": false,
+  "claim_limit": "The status means both sessions passed diagnostic support/admission gates. It does not mean either estimator is accurate and is not a depth/contact/Robot authority.",
+  "definition": "Per visible MANO triangle pixel in the selected-left camera: delta-Z = MANO visible-surface optical-Z minus registered FoundationStereo optical-Z.",
+  "implementation": {
+    "tool": ["tools/run_hawor_stereo_surface_consistency_qa.py", "8060a308ec5728e0a46c2800e4850852ea5ae36417fd9200bf01ab80f81aaf34"],
+    "mano_helper": ["tools/materialize_hawor_mano_mesh_cpu.py", "44eeb9c136cd8a700d510c349df399f3186dc485c537cfd3395b8b4286b3182b"],
+    "test": ["tests/test_hawor_stereo_surface_consistency_qa.py", "8ed196b1f6c5de335ff5db5c48cdf8fd8b149f671c678ef5c6438b34aadce703"],
+    "mano_surface": "run_mano/run_mano_left rematerialization from root_orient, hand_pose, betas and root_translation; fixed faces; combined two-hand nearest triangle z-buffer",
+    "registration": "rectified optical-Z transformed by same-session REGISTRATION_AUTHORITY into selected-left camera; current authorities are pure rotation, but the transform is still applied",
+    "filters": "MANO contour erosion=3 px, role-mask erosion=3 px, valid finite depth 0.10..3.0 m, center/four-neighbour local consistency <=20 mm with >=3 valid samples",
+    "confidence": "ABSENT_IN_DEPTH_FRAME_SCHEMA_NOT_FABRICATED",
+    "occlusion": "Visible role-mask intersection plus nearest MANO surface; residual object/table occlusion state remains UNKNOWN"
+  },
+  "admission_gates": {
+    "meaning": "support sufficiency only, not accuracy",
+    "minimum_samples_per_usable_frame": 100,
+    "minimum_usable_frames": "max(10, ceil(0.20*session_frames)) per side",
+    "minimum_total_samples_per_side": 5000,
+    "minimum_mean_coverage_of_eroded_support": 0.05
+  },
+  "sessions": {
+    "get_potato_chips_0902_034": {
+      "result_sha256": "2498824b78c64bca065d6835ebe1fc47c732b61102fd71ab894e0acdeb188a77",
+      "status": "PASS_CROSS_SENSOR_INTERNAL_CONSISTENCY_PROXY_NO_EXTERNAL_GT",
+      "frames": 293,
+      "left_frame_balanced_mm": {"signed_bias": 6.8675, "abs_mae": 14.1204, "abs_p50": 11.4569, "abs_p95": 23.9661},
+      "right_frame_balanced_mm": {"signed_bias": -58.8950, "abs_mae": 59.1476, "abs_p50": 56.7114, "abs_p95": 100.7600},
+      "left_pixel_weighted_mm": {"signed_bias": 7.7144, "abs_mae": 14.1855, "abs_p50": 12.8707, "abs_p95": 30.9386, "samples": 3361637},
+      "right_pixel_weighted_mm": {"signed_bias": -51.6232, "abs_mae": 52.3676, "abs_p50": 50.7980, "abs_p95": 106.6079, "samples": 4780637}
+    },
+    "play_cards_0902_042": {
+      "result_sha256": "818d69940cbcc950f8477b5cd51c1a1b4ec121addda3fb9fc33fa2e865fc83b8",
+      "status": "PASS_CROSS_SENSOR_INTERNAL_CONSISTENCY_PROXY_NO_EXTERNAL_GT",
+      "frames": 171,
+      "mask_semantics": "current combined visible role-removal mask shared by both sides, then MANO side-label intersection; not a per-side observed mask",
+      "left_frame_balanced_mm": {"signed_bias": -16.9376, "abs_mae": 23.4699, "abs_p50": 21.0867, "abs_p95": 46.3941},
+      "right_frame_balanced_mm": {"signed_bias": 4.3239, "abs_mae": 24.7073, "abs_p50": 21.2443, "abs_p95": 55.7629},
+      "left_pixel_weighted_mm": {"signed_bias": -19.2014, "abs_mae": 24.1839, "abs_p50": 21.3731, "abs_p95": 46.5210, "samples": 7278559},
+      "right_pixel_weighted_mm": {"signed_bias": 7.3858, "abs_mae": 24.3910, "abs_p50": 20.5649, "abs_p95": 55.9100, "samples": 7770215}
+    }
+  },
+  "validation": {
+    "pytest": "4 passed",
+    "mano_joint_closure_max_mm": 0.0,
+    "artifact_sha_recompute": true,
+    "ffmpeg_xerror_decode": true,
+    "ffprobe_exact_frame_count_and_1920x480": true,
+    "visual_heatmap_review": "PASS_DIAGNOSTIC_LAYOUT_AND_SUPPORT_ONLY"
+  },
+  "six_session_inventory": "INVENTORY.json",
+  "six_session_qa_executed": false
+}

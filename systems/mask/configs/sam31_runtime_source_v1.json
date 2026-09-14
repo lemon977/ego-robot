@@ -1,0 +1,44 @@
+{
+  "schema_version": "chaoyang-sam31-runtime-source-v1",
+  "status": "CANONICAL_SOURCE_CONTRACT",
+  "weight": {
+    "weight_id": "sam31.multiplex.0567debe",
+    "path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+    "bytes": 3502755717,
+    "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+    "write_forbidden": true
+  },
+  "official_code": {
+    "canonical_root": "third_party/SAM3",
+    "source_root": "_run/sam31_mirror_authorized_ready_preflight_v1/sam31_mirror_smoke/staging/code/sam3",
+    "repository": "https://github.com/facebookresearch/sam3.git",
+    "commit": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7",
+    "git_tree": "6bc2384dbbfb370fe28096d23955df9b7b0bcdd9",
+    "tracked_regular_files": 525,
+    "tracked_regular_bytes": 73169481,
+    "source_git_status_required": "CLEAN",
+    "materialization": "SAME_FILESYSTEM_HARDLINK_EACH_GIT_TRACKED_REGULAR_FILE",
+    "preserve_git_mode": true,
+    "nested_git_directory_included": false,
+    "build_outputs_included": false,
+    "untracked_files_included": false,
+    "source_mutated_or_moved": false
+  },
+  "license": {
+    "path": "third_party/SAM3/LICENSE",
+    "bytes": 7353,
+    "sha256": "4dea99bfaa016e21bc860d73f344236bd1e5c4977d1a9a8fd32f822b500ae1be"
+  },
+  "legacy_source_retention": {
+    "root": "_run/sam31_mirror_authorized_ready_preflight_v1",
+    "policy": "HARD_KEEP_UNTIL_FROZEN_V2_AND_ALL_HISTORICAL_RUNTIME_CONSUMERS_ARE_RETIRED",
+    "reason": "The frozen V2 contract pins V1 static-audit source paths and hashes. Canonical activation must not rewrite that immutable evidence."
+  },
+  "activation": {
+    "required_gate": "FULL59_COMPLETE_AND_LEASE_RELEASED",
+    "system_manifest": "systems/mask/system.manifest.json",
+    "runtime_contract_destination": "systems/mask/configs/sam31_runtime_source_v1.json",
+    "active_tools_must_use_canonical_paths": true,
+    "historical_artifacts_or_run_pins_rewritten": false
+  }
+}
