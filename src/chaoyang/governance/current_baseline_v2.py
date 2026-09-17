@@ -143,7 +143,7 @@ SPECS: tuple[dict[str, Any], ...] = (
         "input_authority": "HAWOR_A_B", "output_schema": "exact78-role-mask-successor-finalize-result-v3",
         "quality_gates": ["human_left_right_independent", "tracker_left_right_independent", "visible_coverage", "reentry", "offscreen_empty"],
         "limitations": ["Four role masks are independent; C sessions are not downstream-authorized."],
-        "successor": "Freeze true four-role human-left/right and tracker-left/right prompts before any SAM2.1/Cutie role successor; current S1 object prompts are forbidden for this stage.", "superseded": ["metadata-only masks", "zero-reject full-session refresh gate"],
+        "successor": "SAM3.1 is user-locked as the only executable Mask model. Improve its prompts, temporal identity and fail-closed quality gates without registering an alternate model route; current S1 object prompts remain forbidden for this role stage.", "superseded": ["metadata-only masks", "zero-reject full-session refresh gate", "SAM2.1/Cutie challenger selection"],
         "related_evidence": ["archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/s1_semantic_audit/RESULT.json", "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json"],
     },
     {
@@ -153,13 +153,7 @@ SPECS: tuple[dict[str, Any], ...] = (
             "src/chaoyang/pipeline/causal_modal_mask_gpu_adapter_v71.py",
             "src/chaoyang/ops/evaluate_s1_modal_mask_canaries_v71.py",
             "src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
-        ], "weights": [
-            "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
-            "assets/models/cutie/cutie-base-mega.pth",
-            "assets/models/cutie/torch_home/hub/checkpoints/resnet50-19c8e357.pth",
-            "assets/models/cutie/torch_home/hub/checkpoints/resnet18-5c106cde.pth",
-            "assets/models/sam2_1_hiera_large/sam2.1_hiera_large.pt",
-        ],
+        ], "weights": ["assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"],
         "input_authority": "RAW_RGB_AND_HAWOR", "output_schema": "exact78-mask-lane-batch-result-v1",
         "quality_gates": [
             "same_physical_identity", "observed_empty_when_ambiguous",
@@ -169,9 +163,9 @@ SPECS: tuple[dict[str, Any], ...] = (
         "limitations": [
             "Chips physical instances may never be unioned to pass an identity gate.",
             "Predecessor-derived re-entry intervals support development coverage and stability only, not accuracy.",
-            "Every real Cutie/SAM2.1 attempt re-hashes the pinned large weights before GPU lease acquisition.",
+            "SAM3.1 is the only executable model for this Mask stage; no model-selection or challenger task is authorized.",
         ],
-        "successor": "Run the frozen causal SAM2.1/Cutie task-object occlusion/re-entry development canary after Clean closes, then publish a non-Gold comparison receipt before deciding whether to expand to one failure canary plus two A/B regressions.", "superseded": ["class-only union masks"],
+        "successor": "Improve SAM3.1 causal prompts, temporal identity, occlusion re-entry and object leakage gates on bounded canaries, then expand the same pinned SAM3.1 implementation only after those gates pass.", "superseded": ["class-only union masks", "SAM2.1/Cutie challenger selection"],
         "related_evidence": [
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/revisions/R7_3/RESULT.json",
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/s1_input_preflight/RESULT.json",
