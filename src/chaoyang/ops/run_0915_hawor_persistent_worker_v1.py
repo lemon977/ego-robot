@@ -29,6 +29,7 @@ HAWOR = ROOT / "vendor/HaWoR"
 UPSTREAM_PATH = ROOT / "src/chaoyang/ops/run_play_cards_0910_001_hawor_raw.py"
 HAWOR_WEIGHT = ROOT / "assets/models/vendor/hawor/hawor/checkpoints/hawor.ckpt"
 DETECTOR_WEIGHT = ROOT / "assets/models/vendor/hawor/external/detector.pt"
+BUNDLE = ROOT / "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
 HAWOR_SHA = "4d1cc43853c190d6f2c10d9b6295c73109f0faf9ef41ac817a2b31d94b4823f2"
 DETECTOR_SHA = "5ef3df44e42d2db52d4ffe91f83a22ce9925e2acc9abebf453f2c5d22e380033"
 CHAINS = ((0, 1, 2, 3, 4), (0, 5, 6, 7, 8), (0, 9, 10, 11, 12),
@@ -71,6 +72,34 @@ def atomic_json(path: Path, value: Any) -> None:
         stream.flush()
         os.fsync(stream.fileno())
     os.replace(temporary, path)
+
+
+def validate_logical_weight_bundle() -> dict[str, Any]:
+    value = json.loads(BUNDLE.read_text(encoding="utf-8"))
+    if (
+        value.get("schema_version") != "chaoyang-logical-weight-bundle-v1"
+        or value.get("bundle_id") != "HAWOR_INFERENCE_BUNDLE_V1"
+        or value.get("task_binding") != "ONE_TASK_ONE_LOGICAL_WEIGHT"
+    ):
+        raise RuntimeError("HaWoR logical weight bundle identity drift")
+    expected = {
+        str(HAWOR_WEIGHT.relative_to(ROOT)): (HAWOR_WEIGHT, HAWOR_SHA),
+        str(DETECTOR_WEIGHT.relative_to(ROOT)): (DETECTOR_WEIGHT, DETECTOR_SHA),
+    }
+    components = value.get("components", [])
+    if len(components) != len(expected):
+        raise RuntimeError("HaWoR logical weight bundle component count drift")
+    for component in components:
+        path, expected_sha = expected.pop(str(component.get("path")), (None, None))
+        if path is None:
+            raise RuntimeError("HaWoR logical weight bundle has an unknown component")
+        if component.get("bytes") != path.stat().st_size:
+            raise RuntimeError("HaWoR logical weight bundle size drift")
+        if component.get("sha256") != expected_sha or sha256(path) != expected_sha:
+            raise RuntimeError("HaWoR logical weight bundle SHA drift")
+    if expected:
+        raise RuntimeError("HaWoR logical weight bundle is incomplete")
+    return value
 
 
 def quality(npz_path: Path) -> dict[str, Any]:
@@ -267,8 +296,7 @@ def main() -> int:
     output.mkdir(parents=True, exist_ok=True)
     if not torch.cuda.is_available():
         raise RuntimeError("CUDA unavailable")
-    if sha256(HAWOR_WEIGHT) != HAWOR_SHA or sha256(DETECTOR_WEIGHT) != DETECTOR_SHA:
-        raise RuntimeError("HaWoR/detector weight pin drift")
+    weight_bundle = validate_logical_weight_bundle()
     manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
     if manifest.get("status") != "PASS" or manifest.get("session_count") != 220:
         raise RuntimeError("prepared manifest is not the frozen 220-session cohort")
@@ -328,6 +356,11 @@ def main() -> int:
                 "weights": {
                     "model": {"path": str(HAWOR_WEIGHT), "sha256": HAWOR_SHA},
                     "detector": {"path": str(DETECTOR_WEIGHT), "sha256": DETECTOR_SHA},
+                },
+                "logical_weight_bundle": {
+                    "path": str(BUNDLE),
+                    "sha256": sha256(BUNDLE),
+                    "bundle_id": weight_bundle["bundle_id"],
                 },
                 "model_load_policy": "ONE_PROCESS_PERSISTENT_CACHE",
                 "detector_tracker_policy": "WEIGHTS_CACHED_TRACKER_RESET_PER_SESSION",
