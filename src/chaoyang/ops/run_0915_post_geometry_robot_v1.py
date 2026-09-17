@@ -394,6 +394,60 @@ def process_robot_visual(*, session_id: str, hawor_npz: Path,
     return str(robot["status"])
 
 
+def process_clean_only(*, task: str, session_id: str, frame_count: int,
+                       prepared_video: Path, mask_root: Path,
+                       output: Path) -> str:
+    """Publish Clean from Raw+Mask when Depth/Object6D are independently blocked."""
+
+    manifest = load(mask_root / "ROLE_MANIFEST.json")
+    capture = cv2.VideoCapture(str(prepared_video))
+    if not capture.isOpened():
+        raise RuntimeError("prepared physical-left video failed to open")
+    packed_invalid: list[np.ndarray] = []
+    clean_rows: list[dict[str, Any]] = []
+    panels: list[np.ndarray] = []
+    sample_slots = _representative_slots(frame_count)
+    try:
+        for frame in range(frame_count):
+            ok, rgb = capture.read()
+            if not ok or rgb.shape[:2] != (960, 1280):
+                raise RuntimeError(f"prepared video ended or drifted at frame {frame}")
+            clean = compose_clean_visual(
+                rgb, _role_masks(mask_root, manifest, frame, (960, 1280)),
+            )
+            packed_invalid.append(np.packbits(
+                np.asarray(clean["invalid_mask"], bool).reshape(-1),
+            ))
+            clean_rows.append({"frame": frame, **clean["evidence"]})
+            if frame in sample_slots:
+                panels.append(np.concatenate(
+                    (rgb, np.asarray(clean["clean_rgb"], np.uint8)), axis=1,
+                ))
+    finally:
+        capture.release()
+    evidence = output / "CLEAN_EVIDENCE.jsonl"
+    write_jsonl(evidence, clean_rows)
+    atomic_npz(
+        output / "CLEAN_INVALID_MASKS.npz",
+        packed_invalid=np.stack(packed_invalid),
+        frame_shape=np.asarray((960, 1280), np.int32),
+        bitorder=np.asarray("big"),
+        hidden_pixels_synthesized=np.asarray(0, np.int32),
+    )
+    if not cv2.imwrite(str(output / "CLEAN_REVIEW6.png"), _review_sheet(panels)):
+        raise RuntimeError("failed to write Clean review sheet")
+    atomic_json(output / "CLEAN_RESULT.json", {
+        "schema_version": "0915-clean-visual-session-v1", "status": "PASS",
+        "task": task, "session_id": session_id, "frame_count": frame_count,
+        "invalid_masks": ref(output / "CLEAN_INVALID_MASKS.npz"),
+        "evidence": ref(evidence), "review": ref(output / "CLEAN_REVIEW6.png"),
+        "hidden_pixels_synthesized": 0,
+        "geometry_consumers_forbidden": ["Depth", "Object6D", "Contact"],
+        "claim_limit": "Visual-only invalidation independent of Depth/Object6D/Contact.",
+    })
+    return "PASS"
+
+
 def write_contact_aware_sidecar(*, session_id: str, output: Path,
                                 object_status: str, contact_status: str,
                                 robot_status: str) -> str:
@@ -528,14 +582,35 @@ def main() -> int:
                 if upstream[name] != "PASS"
             ) + "_NOT_PASS"
             post_status.update({
-                "Object6D": "BLOCKED_UPSTREAM", "Clean": "BLOCKED_UPSTREAM",
-                "Contact": "BLOCKED_UPSTREAM",
+                "Object6D": "BLOCKED_UPSTREAM", "Contact": "BLOCKED_UPSTREAM",
             })
             _write_terminal_sidecars(
                 session_output, session_id,
-                {key: post_status[key] for key in ("Object6D", "Clean", "Contact")},
+                {key: post_status[key] for key in ("Object6D", "Contact")},
                 geometry_reason,
             )
+            if upstream["Mask"] == "PASS":
+                try:
+                    post_status["Clean"] = process_clean_only(
+                        task=task, session_id=session_id,
+                        frame_count=int(prepared_by[identity]["frame_count"]),
+                        prepared_video=(prepared_path.parent / "sessions" / task / session_id
+                                        / prepared_by[identity]["output"]["video_relative"]),
+                        mask_root=MASK_ATTEMPT / "sessions" / task / session_id,
+                        output=session_output,
+                    )
+                except Exception as exc:  # noqa: BLE001
+                    post_status["Clean"] = "FAILED_RUNTIME"
+                    _write_terminal_sidecars(
+                        session_output, session_id,
+                        {"Clean": "FAILED_RUNTIME"}, repr(exc),
+                    )
+            else:
+                post_status["Clean"] = "BLOCKED_UPSTREAM"
+                _write_terminal_sidecars(
+                    session_output, session_id,
+                    {"Clean": "BLOCKED_UPSTREAM"}, "MASK_NOT_PASS",
+                )
 
         if upstream["HaWoR"] == "PASS":
             try:
