@@ -1,25 +1,25 @@
 {
-  "claim_limit": "Only rows with execution_allowed=true may dispatch; this terminal diagnostic leaves none.",
+  "claim_limit": "No task is currently executable; the 0915 rerun ended fail-closed at Object Mask quality C.",
   "classification_counts": {
     "CURRENT_LEDGER_ROUTABLE": 0
   },
   "execution_revision": "CLEAN_BASELINE_V1",
-  "generated_at": "2026-09-17T19:00:19+08:00",
-  "generation_id": "gov-011185-49bc4bf8042f",
-  "governance_revision": 11185,
+  "generated_at": "2026-09-17T20:08:33+08:00",
+  "generation_id": "gov-011188-3e8a6f0b50be",
+  "governance_revision": 11188,
   "historical_catalog": {
     "bytes": 55477,
     "path": "/mnt/workspace/code/chaoyang/tasks/receipts/HISTORICAL_TASK_CATALOG.json",
     "sha256": "d12883c3bc7e8d67dae7318cabfe4861981f0448b07fbaa4702c7694773bd11a"
   },
-  "packet_revision": "BASELINE_E2E_PAIR_V1_TERMINAL",
+  "packet_revision": "0915_LEFTMONO_E2E_V1_TERMINAL",
   "plan_revision": "clean-baseline-v1",
   "schema_version": "chaoyang-current-execution-index-v1",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1283,
+    "bytes": 1282,
     "path": "/mnt/workspace/code/chaoyang/tasks/current/INDEX.json",
-    "sha256": "4b788b532b1bebca1bcde5d60078769b9f5d9302aa314d9ed4557dc0da5b90ea"
+    "sha256": "1a874ffafb4302ef4ac7440c046d04b048e010098e21464917c8205b0f4536af"
   },
   "task_packets": []
 }

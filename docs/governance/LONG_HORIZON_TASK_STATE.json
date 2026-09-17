@@ -67,16 +67,16 @@
       "status": "BLOCKED_PREREQ"
     },
     {
-      "name": "Baseline pair diagnostic: get_potato_chips_0915_001 Depth prerequisites",
-      "resolution": "Provide reviewed same-session selected-eye/SBS rectification with vertical residual median <=2 px and P90 <=5 px, plus task-bound HaWoR and reviewed role/object identity prompts before rerunning dependent stages. Current frame-189 canary: median 1.903 px, P90 12.418 px across 42 matches.",
-      "scope": "New 0915 sample Depth/Object6D/Clean/Contact/Robot/HumanEgo only; old frozen baseline authority is unchanged.",
+      "name": "0915 left-mono chips instance identity propagation",
+      "resolution": "Supply reviewed task-specific three-instance temporal supervision or a pinned object tracker/segmentation weight that propagates the three correct frame-0 chips seeds. Do not synthesize missing tracker roles.",
+      "scope": "get_potato_chips_0915_001 Object Mask and dependent Object6D/Clean/Contact/Robot/HumanEgo only.",
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-17T19:00:19+08:00",
-  "generation_id": "gov-011185-49bc4bf8042f",
-  "generator_code_sha": "1d12b7c8980592b222258a0ab4abbd0b47e9df04e993955f397f0f4db9aaa306",
-  "governance_revision": 11185,
+  "generated_at": "2026-09-17T20:08:33+08:00",
+  "generation_id": "gov-011188-3e8a6f0b50be",
+  "generator_code_sha": "c6510e33db871c2a41c1f94db48c120f2d79a6bcb48fd18af0136021ea08635e",
+  "governance_revision": 11188,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -138,11 +138,41 @@
       "session": "get_potato_chips_0902_103+get_potato_chips_0915_001",
       "status": "PASSED",
       "task_id": "baseline_e2e_pair_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-17T19:27:58+08:00",
+      "message": "Registered one-hour physical-left-mono rerun; no authority promotion.",
+      "session": "get_potato_chips_0915_001",
+      "status": "PENDING",
+      "task_id": "0915_leftmono_e2e_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-17T19:31:06+08:00",
+      "message": "Physical-left input and pinned weights frozen; attempt running.",
+      "session": "get_potato_chips_0915_001",
+      "status": "RUNNING",
+      "task_id": "0915_leftmono_e2e_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-17T20:08:33+08:00",
+      "diagnostic_status": "COMPLETED_FAIL_CLOSED_OBJECT_MASK_QUALITY_C",
+      "message": "Physical-left mono rerun completed fail-closed; chips instance Mask propagation failed and dependent stages stayed absent.",
+      "result": {
+        "bytes": 4488,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_LEFTMONO_E2E_V1_COMPLETION.json",
+        "sha256": "7fd520ce65d15accc4f4f705a7f1dbd67a793c5aaf78d7ac993d5477570fda03"
+      },
+      "session": "get_potato_chips_0915_001",
+      "status": "FAILED_QUALITY_C",
+      "task_id": "0915_leftmono_e2e_v1"
     }
   ],
   "repository": {
-    "branch": "task/baseline-e2e-pair-v1",
-    "commit": "57cf78a532ff8cff05e9f14d2c1837d09852ccdc"
+    "branch": "task/0915-leftmono-e2e-v1",
+    "commit": "73f73443660476d79af2db457e43b904321af772"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": []

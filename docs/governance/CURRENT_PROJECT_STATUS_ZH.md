@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-17T19:00:19+08:00`
-- governance revision：`11185`
-- generation id：`gov-011185-49bc4bf8042f`
+- 状态生成时间：`2026-09-17T20:08:33+08:00`
+- governance revision：`11188`
+- generation id：`gov-011188-3e8a6f0b50be`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`1d12b7c8980592b222258a0ab4abbd0b47e9df04e993955f397f0f4db9aaa306`
-- repository：`57cf78a532ff8cff05e9f14d2c1837d09852ccdc` / `task/baseline-e2e-pair-v1`
+- generator code SHA：`c6510e33db871c2a41c1f94db48c120f2d79a6bcb48fd18af0136021ea08635e`
+- repository：`73f73443660476d79af2db457e43b904321af772` / `task/0915-leftmono-e2e-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -64,7 +64,7 @@
 | R2.2 Mask canary not executed | `BLOCKED_RESOURCE` | Poker and Chips independent SAM3.1 canaries | Acquire the serialized GPU lease and run the frozen candidate/reference canaries; absence of pixel gold limits results to development metrics. |
 | R2.2 causal Clean prerequisites incomplete | `BLOCKED_PREREQ` | Poker245 and Chips039 prefix-only Clean successor | Publish support-surface semantics and lossless successor RGB/source-map pairs; Poker also requires a pose-verified causal atlas warp. |
 | R2.2 same-session rectification gate failed | `BLOCKED_PREREQ` | play_cards_0910_001 FoundationStereo and Stereo wrist proxy | Provide a verified same-session selected-eye/SBS mapping and rectification whose vertical epipolar residual P90 is at most 5 px with the frozen coverage gate. |
-| Baseline pair diagnostic: get_potato_chips_0915_001 Depth prerequisites | `BLOCKED_PREREQ` | New 0915 sample Depth/Object6D/Clean/Contact/Robot/HumanEgo only; old frozen baseline authority is unchanged. | Provide reviewed same-session selected-eye/SBS rectification with vertical residual median <=2 px and P90 <=5 px, plus task-bound HaWoR and reviewed role/object identity prompts before rerunning dependent stages. Current frame-189 canary: median 1.903 px, P90 12.418 px across 42 matches. |
+| 0915 left-mono chips instance identity propagation | `BLOCKED_PREREQ` | get_potato_chips_0915_001 Object Mask and dependent Object6D/Clean/Contact/Robot/HumanEgo only. | Supply reviewed task-specific three-instance temporal supervision or a pinned object tracker/segmentation weight that propagates the three correct frame-0 chips seeds. Do not synthesize missing tracker roles. |
 
 ## F. 当前可支持的结论
 
@@ -103,7 +103,7 @@
 
 ### FAILED_QUALITY_C
 
-- 无。
+- `0915_leftmono_e2e_v1` / `get_potato_chips_0915_001` / `FAILED_QUALITY_C` / /mnt/workspace/code/chaoyang/tasks/receipts/0915_LEFTMONO_E2E_V1_COMPLETION.json / `2026-09-17T20:08:33+08:00`
 
 ### FAILED_RUNTIME
 

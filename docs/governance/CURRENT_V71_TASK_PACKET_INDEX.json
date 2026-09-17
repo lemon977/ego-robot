@@ -1,12 +1,12 @@
 {
   "execution_revision": "CLEAN_BASELINE_V1",
-  "generated_at": "2026-09-17T19:00:19+08:00",
-  "generation_id": "gov-011185-49bc4bf8042f",
-  "governance_revision": 11185,
-  "index_bytes": 979,
+  "generated_at": "2026-09-17T20:08:33+08:00",
+  "generation_id": "gov-011188-3e8a6f0b50be",
+  "governance_revision": 11188,
+  "index_bytes": 981,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "f7862f7ef93dddbefb48ec756d776f3d3f9a5cebcf474f9da0a10db630934a35",
-  "packet_revision": "BASELINE_E2E_PAIR_V1_TERMINAL",
+  "index_sha256": "56e100d5ebbb05ead3cbcc89a1bc27f9c84a8ceb3ba7c8f9f4c090bab9d8e67f",
+  "packet_revision": "0915_LEFTMONO_E2E_V1_TERMINAL",
   "plan_revision": "clean-baseline-v1",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }

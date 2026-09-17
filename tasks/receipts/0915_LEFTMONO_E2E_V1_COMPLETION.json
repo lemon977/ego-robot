@@ -1,0 +1,103 @@
+{
+  "artifact_receipt": {
+    "bytes": 9237,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/ARTIFACT_RECEIPT.json",
+    "sha256": "f8d30ba4947b05b06ade6daa3b4cdcae8aba80a364cd534568c2cc6dcc00f857"
+  },
+  "baseline_commit": "57cf78a532ff8cff05e9f14d2c1837d09852ccdc",
+  "branch": "task/0915-leftmono-e2e-v1",
+  "claim_limit": "One-session development evidence only. Physical-left mono HaWoR, bilateral human-role Mask and held-out-validated stereo Depth passed their development gates. Frozen SAM3.1 chips seeds were correct at frame 0 but instance identities did not propagate, so Object Mask is quality C and Object6D/Clean/Contact/Robot/HumanEgo remain absent by design.",
+  "completed_at": "2026-09-17T20:08:33+08:00",
+  "execution": {
+    "authority_promoted": false,
+    "downstream_fabricated": false,
+    "fresh_foundationstereo_inference": true,
+    "fresh_hawor_inference": true,
+    "fresh_sam31_inference": true,
+    "raw_data_modified": false,
+    "tracker_fabricated": false
+  },
+  "quality_metrics": {
+    "depth_frames_at_least_5000_valid_pixels": 379,
+    "depth_heldout_median_vertical_error_px": 0.6526965994640932,
+    "depth_heldout_p90_vertical_error_px": 1.4447777633784085,
+    "depth_heldout_robust_matches": 214,
+    "depth_median_valid_pixels": 104621,
+    "hawor_joint_in_frame_fraction": {
+      "left": 0.9124423963133641,
+      "right": 1.0
+    },
+    "hawor_observed_frames": {
+      "bilateral": 62,
+      "left": 62,
+      "right": 379
+    },
+    "human_mask_present_frames": {
+      "left_human": 379,
+      "right_human": 379
+    },
+    "object_mask_present_frames_by_id": {
+      "301": 1,
+      "302": 1,
+      "303": 1
+    }
+  },
+  "result": {
+    "bytes": 4279,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "25d556c3baeb934ca37a1135f3c42c3ec2c973415dd4a545b680b3e225fb6e2c"
+  },
+  "schema_version": "0915-leftmono-e2e-completion-v1",
+  "session": "get_potato_chips_0915_001",
+  "stage_matrix": {
+    "bytes": 4173,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/PIPELINE_STAGE_MATRIX.json",
+    "sha256": "06f2ec890ea4dd12e851c072805d66c335f02fd334b5eeddcfe64941c08998f3"
+  },
+  "stage_status": {
+    "Clean": "BLOCKED_PREREQ_OBJECT_PROTECTION_MASK",
+    "Contact": "BLOCKED_PREREQ_OBJECT6D",
+    "Depth": "PASS_DEVELOPMENT_DEPTH",
+    "HaWoR": "PASS_DEVELOPMENT",
+    "HumanEgo": "BLOCKED_EXTERNAL_REAL_ACTION_AND_ROBOT_RGB",
+    "Object Mask": "FAILED_QUALITY_C_ID_PROPAGATION",
+    "Object6D": "BLOCKED_PREREQ_OBJECT_MASK",
+    "Raw": "PASS_379_PHYSICAL_LEFT",
+    "Robot": "BLOCKED_PREREQ_CONTACT_AND_EXTERNAL_RIG",
+    "Role Mask": "PASS_DEVELOPMENT_379_BILATERAL"
+  },
+  "status": "COMPLETED_FAIL_CLOSED_OBJECT_MASK_QUALITY_C",
+  "task_id": "0915_leftmono_e2e_v1",
+  "task_packet": {
+    "bytes": 4131,
+    "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_leftmono_e2e_v1/TASK_PACKET.json",
+    "sha256": "ba28666881f5140219df60e9972bd4a2bc7dc79160def038a30538e2f1b0524f"
+  },
+  "visuals": {
+    "depth_review": {
+      "bytes": 8069829,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/depth/FOUNDATIONSTEREO_PHYSICAL_LEFT_DEPTH_REVIEW.mp4",
+      "sha256": "d354eabf58091928a1ab3197127f3e2c5794914fd52bac414e11a0dceceb25c9"
+    },
+    "hawor_review": {
+      "bytes": 8111127,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/hawor/HAWOR_LEFTMONO_REVIEW.mp4",
+      "sha256": "41a920395983ee206d61463ca1bb34c6521d0a4c2b90b6466ad3de3d0736c207"
+    },
+    "mask_review": {
+      "bytes": 7433358,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/mask/MASK_SAM31_LEFTMONO_REVIEW.mp4",
+      "sha256": "478f4ca3c990f46ca0557c3be6b8e756d7432ca95ad7f18f30cb752c162d8919"
+    },
+    "overview": {
+      "bytes": 3021870,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/PIPELINE_OVERVIEW.png",
+      "sha256": "05652c68e34bc58890ac3cced0cac551c1d41eeed2a59fe2861d8ab766fc9a45"
+    },
+    "overview_video": {
+      "bytes": 13322525,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/PIPELINE_OVERVIEW.mp4",
+      "sha256": "2a6fa3d923f10b7a718d23378b9a3b6ebcdf8ab0dc4e1f350ec10c471c324cb0"
+    }
+  }
+}

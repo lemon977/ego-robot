@@ -1,0 +1,79 @@
+{
+  "schema_version": "exact78-task-packet-v1",
+  "task_id": "0915_leftmono_e2e_v1",
+  "objective": "在一小时预算内，以 get_potato_chips_0915_001 的物理左目 sourceIndex=1 构造 1280x960 equiDis62 去畸变单目主输入，真实执行 HaWoR 并按门禁继续无 tracker Mask、Stereo Depth、Object6D、Clean、Contact、Robot/HumanEgo；所有无法满足前置条件的阶段必须明确阻断并生成可视化，不得伪造。",
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "tasks/receipts/BASELINE_E2E_PAIR_V1_COMPLETION.json",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/potato_chips/get_potato_chips_0915_001/camera_params.json",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/potato_chips/get_potato_chips_0915_001/preprocess/pico_humanego_manifest.json",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/potato_chips/get_potato_chips_0915_001/source_stereo/CameraRecord_get_potato_chips_0915_001_stereo.mp4",
+    "vendor/HaWoR/CHA0YANG_RUNTIME_PIN.json",
+    "assets/models/vendor/hawor/hawor/checkpoints/hawor.ckpt"
+  ],
+  "write_set": [
+    "src/chaoyang/ops/run_sensor_leftmono_hawor_v1.py",
+    "_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001/",
+    "tasks/receipts/0915_leftmono_e2e_v1/",
+    "docs/governance/ generated projections through CAS publication only"
+  ],
+  "prerequisites": [
+    "sourceIndex=1 is the physical left eye and sourceIndex=0 is the physical right eye",
+    "physical left mono is undistorted from equiDis62 to a 1280x960 90-degree pinhole image before HaWoR",
+    "HaWoR checkpoint, detector, MANO and runtime are pinned by SHA",
+    "raw and published dataset roots remain read-only",
+    "all GPU commands hold the V7.1 serialized lease"
+  ],
+  "gates": [
+    "LEFT_MONO_379_OF_379_FULL_DECODE",
+    "HAWOR_REAL_MODEL_RAN_AND_BOTH_SIDES_OBSERVED",
+    "HAWOR_2D_REPROJECTION_IN_FRAME",
+    "NO_TRACKER_ROLE_FABRICATION",
+    "REVIEWED_OR_GEOMETRICALLY_BOUND_MASK_IDENTITY",
+    "STEREO_RECTIFICATION_BEFORE_DEPTH",
+    "NO_OBJECT6D_WITHOUT_MASK_AND_VALID_DEPTH",
+    "NO_CLEAN_CONTACT_ROBOT_HUMANEGO_WITHOUT_UPSTREAM",
+    "FULL_VISUAL_DECODE_AND_SHA"
+  ],
+  "budgets": {
+    "cpu_seconds": 3600,
+    "gpu_seconds": 2700,
+    "wall_seconds": 3600
+  },
+  "attempt_max": 1,
+  "stop_condition": "Stop after one immutable attempt completes the legal chain or reaches a quality/prerequisite/resource terminal; do not automatically retry or weaken gates inside the one-hour objective.",
+  "output_contract": {
+    "root": "_run/current/0915_leftmono_e2e_v1/attempts/attempt_0001",
+    "required": [
+      "RESULT.json",
+      "PIPELINE_STAGE_MATRIX.json",
+      "ARTIFACT_RECEIPT.json",
+      "leftmono/LEFT_MONO_RECTIFIED.mp4",
+      "hawor/HAWOR_LEFTMONO_REVIEW.mp4",
+      "PIPELINE_OVERVIEW.png"
+    ],
+    "raw_mutation_allowed": false,
+    "authority_promoted": false
+  },
+  "input_bindings": {
+    "session": "get_potato_chips_0915_001",
+    "rgb_primary": "PHYSICAL_LEFT_SOURCE_INDEX_1_EQUIDIS62_TO_PINHOLE",
+    "depth_input": "SAME_SESSION_PHYSICAL_LEFT_RIGHT_STEREO",
+    "tracker_modality": "ABSENT_NOT_CAPTURED",
+    "hawor_checkpoint_sha256": "4d1cc43853c190d6f2c10d9b6295c73109f0faf9ef41ac817a2b31d94b4823f2",
+    "hawor_detector_sha256": "5ef3df44e42d2db52d4ffe91f83a22ce9925e2acc9abebf453f2c5d22e380033",
+    "foundationstereo_checkpoint_sha256": "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1"
+  },
+  "claim_limit": "One-session development rerun only. HaWoR and Depth are model observations, not external physical truth. Absence of tracker changes the role schema and cannot be filled synthetically. No Robot control, training checkpoint or algorithm authority is promoted.",
+  "executor_epoch": 1,
+  "fencing": {
+    "pid_startticks_required": true,
+    "immutable_final": true
+  },
+  "artifact_revision_contract": {
+    "required_revision_status": "VALID_FOR_PINNED_REVISION",
+    "forbid_in_place_overwrite": true,
+    "output_artifact_revision": "R1_0"
+  }
+}
