@@ -1,0 +1,81 @@
+{
+  "schema_version": "exact78-task-packet-v1",
+  "task_id": "baseline_e2e_pair_v1",
+  "objective": "以旧样本 get_potato_chips_0902_103 和新样本 get_potato_chips_0915_001 做一次有限、可审计的全链路基线验收：旧样本验证冻结阶段产物的 SHA/完整解码闭包，新样本从原始采集与 V3 转换开始逐阶段执行当前合法门禁，并生成中文可视化；缺少前置条件的阶段必须明确 BLOCKED_PREREQ/UNKNOWN，不得伪造输出。",
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/CURRENT_PROJECT_STATUS_MIN.json",
+    "docs/governance/DOC_AUTHORITY_MAP.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "docs/current/visuals/TWO_TASK_BASELINE_20260917/VIDEO_RECEIPT.json",
+    "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_103",
+    "/mnt/data/egodata/datasets/ego/chips_cards_hands_0915/chips_100_0915/001",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/potato_chips/get_potato_chips_0915_001"
+  ],
+  "write_set": [
+    "_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/",
+    "docs/governance/ generated projections and receipt through CAS publication only"
+  ],
+  "prerequisites": [
+    "main baseline commit 57cf78a532ff8cff05e9f14d2c1837d09852ccdc is the branch ancestor",
+    "governance and structure validation pass",
+    "raw data roots remain read-only",
+    "old sample receipt-bound source and stage references pass SHA checks",
+    "GPU work, if any, holds the V7.1 lease"
+  ],
+  "gates": [
+    "RAW_SOURCE_IDENTITY_AND_FULL_DECODE",
+    "V3_CONVERSION_RECEIPT_IDENTITY",
+    "PICO26_AND_TACTILE_INTEGRITY",
+    "SAME_SESSION_STEREO_RECTIFICATION_BEFORE_DEPTH",
+    "NO_OBJECT6D_WITHOUT_IDENTITY_MASK_AND_VALID_DEPTH",
+    "NO_CLEAN_WITHOUT_ROLE_AND_OBJECT_MASKS",
+    "CONTACT_HYPOTHESIS_ONLY",
+    "ROBOT_CONTROL_GROUND_TRUTH_FALSE",
+    "NO_DOWNSTREAM_FABRICATION",
+    "VISUAL_OUTPUT_FULL_DECODE_AND_SHA"
+  ],
+  "budgets": {
+    "cpu_seconds": 14400,
+    "gpu_seconds": 7200,
+    "wall_seconds": 21600
+  },
+  "attempt_max": 1,
+  "stop_condition": "Stop after one immutable attempt reaches PASSED_DIAGNOSTIC, BLOCKED_PREREQ, FAILED_QUALITY_C, BLOCKED_RESOURCE, or FAILED_RUNTIME_FINAL; never retry a quality failure automatically.",
+  "output_contract": {
+    "root": "_run/current/baseline_e2e_pair_v1/attempts/attempt_0001",
+    "required": [
+      "RESULT.json",
+      "PIPELINE_STAGE_MATRIX.json",
+      "ARTIFACT_RECEIPT.json",
+      "old_baseline_stage_overview.png",
+      "new_sample_pipeline_overview.png",
+      "new_sample_pico_tactile_review.mp4"
+    ],
+    "raw_mutation_allowed": false,
+    "authority_promoted": false
+  },
+  "input_bindings": {
+    "old_session": "get_potato_chips_0902_103",
+    "old_source": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_103",
+    "new_raw_source": "/mnt/data/egodata/datasets/ego/chips_cards_hands_0915/chips_100_0915/001",
+    "new_published_session": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/potato_chips/get_potato_chips_0915_001",
+    "weights": {
+      "foundationstereo": "current algorithm-contract checkpoint when H3 canary is reached",
+      "hawor": "ABSENT_FOR_THIS_SENSOR_DIAGNOSTIC",
+      "sam31": "ABSENT_UNTIL_REVIEWED_IDENTITY_PROMPTS_EXIST"
+    },
+    "calibration": "same-session camera_params.json; encoded-domain external metric accuracy remains unverified"
+  },
+  "claim_limit": "Bounded baseline and compatibility diagnostic only. Reusing frozen old outputs validates artifact closure, not fresh model reproducibility. New 0915 results do not enter exact78, do not establish physical depth/contact truth, do not authorize Robot control or training, and downstream stages remain blocked when their current prerequisites are absent.",
+  "executor_epoch": 1,
+  "fencing": {
+    "pid_startticks_required": true,
+    "immutable_final": true
+  },
+  "artifact_revision_contract": {
+    "required_revision_status": "VALID_FOR_PINNED_REVISION",
+    "forbid_in_place_overwrite": true,
+    "output_artifact_revision": "R1_0"
+  }
+}

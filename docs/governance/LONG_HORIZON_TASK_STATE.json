@@ -65,12 +65,18 @@
       "resolution": "Provide a verified same-session selected-eye/SBS mapping and rectification whose vertical epipolar residual P90 is at most 5 px with the frozen coverage gate.",
       "scope": "play_cards_0910_001 FoundationStereo and Stereo wrist proxy",
       "status": "BLOCKED_PREREQ"
+    },
+    {
+      "name": "Baseline pair diagnostic: get_potato_chips_0915_001 Depth prerequisites",
+      "resolution": "Provide reviewed same-session selected-eye/SBS rectification with vertical residual median <=2 px and P90 <=5 px, plus task-bound HaWoR and reviewed role/object identity prompts before rerunning dependent stages. Current frame-189 canary: median 1.903 px, P90 12.418 px across 42 matches.",
+      "scope": "New 0915 sample Depth/Object6D/Clean/Contact/Robot/HumanEgo only; old frozen baseline authority is unchanged.",
+      "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-17T18:14:27+08:00",
-  "generation_id": "gov-011182-ec96dca2719d",
-  "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
-  "governance_revision": 11182,
+  "generated_at": "2026-09-17T19:00:19+08:00",
+  "generation_id": "gov-011185-49bc4bf8042f",
+  "generator_code_sha": "1d12b7c8980592b222258a0ab4abbd0b47e9df04e993955f397f0f4db9aaa306",
+  "governance_revision": 11185,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -102,11 +108,41 @@
       "session": null,
       "status": "PASSED",
       "task_id": "clean_baseline_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-17T18:49:34+08:00",
+      "message": "Registered bounded baseline verification; no authority promotion.",
+      "session": "get_potato_chips_0902_103+get_potato_chips_0915_001",
+      "status": "PENDING",
+      "task_id": "baseline_e2e_pair_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-17T18:50:45+08:00",
+      "message": "Input identity frozen; bounded pair diagnostic running.",
+      "session": "get_potato_chips_0902_103+get_potato_chips_0915_001",
+      "status": "RUNNING",
+      "task_id": "baseline_e2e_pair_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-17T19:00:19+08:00",
+      "diagnostic_status": "PASSED_DIAGNOSTIC_NEW_SAMPLE_BLOCKED_DEPTH_QUALITY",
+      "message": "Bounded pair diagnostic completed; new 0915 Depth quality gate failed and downstream remained blocked.",
+      "result": {
+        "bytes": 4597,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/BASELINE_E2E_PAIR_V1_COMPLETION.json",
+        "sha256": "5447109d41cf914166cb5c59b5ca3f831b2c698b0cb7f23f53bb44dedcbbd4eb"
+      },
+      "session": "get_potato_chips_0902_103+get_potato_chips_0915_001",
+      "status": "PASSED",
+      "task_id": "baseline_e2e_pair_v1"
     }
   ],
   "repository": {
-    "branch": "main",
-    "commit": "b5bf374dc0939be4b7c8de9835271a44f673a808"
+    "branch": "task/baseline-e2e-pair-v1",
+    "commit": "57cf78a532ff8cff05e9f14d2c1837d09852ccdc"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": []

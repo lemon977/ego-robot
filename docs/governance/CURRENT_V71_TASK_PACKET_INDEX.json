@@ -1,18 +1,12 @@
 {
-  "execution_revision": "RC1",
-  "execution_semantics": "Current executable index is empty; all prior packets are catalog-only history.",
-  "generated_at": "2026-09-17T18:14:27+08:00",
-  "generation_id": "gov-011182-ec96dca2719d",
-  "governance_revision": 11182,
-  "historical_catalog": {
-    "bytes": 55477,
-    "path": "/mnt/workspace/code/chaoyang/tasks/receipts/HISTORICAL_TASK_CATALOG.json",
-    "sha256": "d12883c3bc7e8d67dae7318cabfe4861981f0448b07fbaa4702c7694773bd11a"
-  },
-  "index_bytes": 673,
+  "execution_revision": "CLEAN_BASELINE_V1",
+  "generated_at": "2026-09-17T19:00:19+08:00",
+  "generation_id": "gov-011185-49bc4bf8042f",
+  "governance_revision": 11185,
+  "index_bytes": 979,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "5a1f98056d5bc861ecb58028e44db493bc4f3c9519a6cd0fb200847c81d2b829",
-  "packet_revision": "CLEAN_BASELINE_V1_NO_ACTIVE_TASKS",
-  "plan_revision": "chaoyang-rc1-final",
-  "schema_version": "chaoyang-v71-task-packet-pointer-v3-split"
+  "index_sha256": "f7862f7ef93dddbefb48ec756d776f3d3f9a5cebcf474f9da0a10db630934a35",
+  "packet_revision": "BASELINE_E2E_PAIR_V1_TERMINAL",
+  "plan_revision": "clean-baseline-v1",
+  "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }

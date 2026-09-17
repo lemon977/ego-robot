@@ -1,0 +1,92 @@
+{
+  "artifact_receipt": {
+    "bytes": 12333,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/ARTIFACT_RECEIPT.json",
+    "sha256": "fe5aafbe598f1ae70ed42dcbdf4f4c639f0b5332342f2ec3c502a2d59a0d5061"
+  },
+  "baseline_commit": "57cf78a532ff8cff05e9f14d2c1837d09852ccdc",
+  "branch": "task/baseline-e2e-pair-v1",
+  "claim_limit": "Old outputs passed pinned SHA/full-decode closure but were not freshly inferred. The new 0915 sample passed raw/conversion/PICO/tactile checks and failed the bounded same-session stereo rectification gate; Depth expansion and every dependent stage remain absent by design. This receipt does not establish physical depth/contact truth or Robot-control authority.",
+  "completed_at": "2026-09-17T19:00:19+08:00",
+  "execution": {
+    "authority_promoted": false,
+    "downstream_fabricated": false,
+    "fresh_foundationstereo_canary_new_sample": true,
+    "fresh_model_inference_old_baseline": false,
+    "full_depth_expansion_run": false,
+    "raw_data_modified": false
+  },
+  "gpu_receipt": {
+    "bytes": 7900,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/H3_GPU_RECEIPT.json",
+    "sha256": "1307cbc10736f943e275d24bfe36c173bd6876772a73ce60548970cbdf391384"
+  },
+  "new_sample_terminal": "FAILED_QUALITY_C_AT_DEPTH_AND_BLOCKED_DOWNSTREAM",
+  "old_baseline": "PASS_FROZEN_ARTIFACT_REPRODUCTION_CLOSURE",
+  "quality_metrics": {
+    "median_gate_px": 2.0,
+    "median_vertical_error_px": 1.903045654296875,
+    "p90_gate_px": 5.0,
+    "p90_vertical_error_px": 12.417660522460935,
+    "rectification_match_count": 42
+  },
+  "result": {
+    "bytes": 1300,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "8773c47d81527a826de2b0176fa66894fb476453371c8e5797b57ff8de10f700"
+  },
+  "schema_version": "baseline-e2e-pair-completion-v1",
+  "sessions": {
+    "new": "get_potato_chips_0915_001",
+    "old": "get_potato_chips_0902_103"
+  },
+  "stage_matrix": {
+    "bytes": 2070,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/PIPELINE_STAGE_MATRIX.json",
+    "sha256": "e04ff54337dc006ee2cfe7da489669f26653ab63076f116efda5e7cdb6cd28c8"
+  },
+  "status": "PASSED_DIAGNOSTIC_NEW_SAMPLE_BLOCKED_DEPTH_QUALITY",
+  "stereo_canary_result": {
+    "bytes": 6692,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/new_foundationstereo_frame189/RESULT.json",
+    "sha256": "0ce734c1cef373d03d2044ae924e23d20c8a821709f455cbc9d7f717983b83b5"
+  },
+  "task_id": "baseline_e2e_pair_v1",
+  "task_packet": {
+    "bytes": 4181,
+    "path": "/mnt/workspace/code/chaoyang/tasks/receipts/baseline_e2e_pair_v1/TASK_PACKET.json",
+    "sha256": "0016e89b7848319dca7f935bf84836ff6399f4454f7b9e2a7e678bc83f92352e"
+  },
+  "visuals": {
+    "new_depth_diagnostic": {
+      "bytes": 16579,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/new_sample_depth_frame189.png",
+      "sha256": "8be76c8667edf68ca8af92d14321d3238f0c5e3fe156d1219ab2996501bc0750"
+    },
+    "new_full_sensor_review": {
+      "bytes": 8281428,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/new_sample_pico_tactile_review.mp4",
+      "sha256": "6bc26821e1ffabb49a12fc28185ec9a9fb46acbc8ec0fe34b2f3bf40175d7b01"
+    },
+    "new_pipeline_overview": {
+      "bytes": 774662,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/new_sample_pipeline_overview.png",
+      "sha256": "47b48db2607a680eb571cd3ab80b55845b6f34f91d0dde60551e5e1eaa6f4a03"
+    },
+    "new_rectification_diagnostic": {
+      "bytes": 1475162,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/new_sample_rectification_frame189.png",
+      "sha256": "06127564378e448f2d370c6b16862fee32046cf9183c7930320f61e8188a08bc"
+    },
+    "old_full_session": {
+      "bytes": 3345105,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/old_baseline_raw_to_robot_fullsession.mp4",
+      "sha256": "d99aa9eda84d5ca998fa002f89bdd3b523cf1b608d436a7ea9e0dbdf31f66de0"
+    },
+    "old_stage_overview": {
+      "bytes": 1099309,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/baseline_e2e_pair_v1/attempts/attempt_0001/old_baseline_stage_overview.png",
+      "sha256": "fe25149a3e745591aa26eab43876b6841fa61fb8f25f383903e3ccc447a54239"
+    }
+  }
+}
