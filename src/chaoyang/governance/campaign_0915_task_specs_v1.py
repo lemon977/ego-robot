@@ -16,8 +16,8 @@ PLAN_REVISION = "0915_FULL_FUNNEL_0916_CLEAN_V1"
 TASK_ORDER = (
     "0915_input_prepare_cad_v1",
     "0915_hawor_full_v1",
-    "0915_foundationstereo_full_v1",
     "0915_sam31_mask_full_v1",
+    "0915_foundationstereo_full_v1",
     "0915_post_geometry_robot_v1",
 )
 
