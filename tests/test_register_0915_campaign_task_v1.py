@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 import copy
+import json
+from pathlib import Path
 
 import pytest
 
@@ -40,3 +42,29 @@ def test_registration_rejects_duplicate_task() -> None:
     state["tasks"].append({"task_id": "0915_sam31_mask_full_v1", "status": "PASSED"})
     with pytest.raises(RuntimeError, match="already registered"):
         subject._validate_predecessor(state, "0915_sam31_mask_full_v1")
+
+
+def test_corrective_v2_accepts_only_exact_pre_execution_cli_failure(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    result_path = tmp_path / "RESULT.json"
+    result_path.write_text(json.dumps({
+        "returncodes": {"audit": 1},
+        "self_containment": None,
+        "prepared_manifest": None,
+    }))
+    (tmp_path / "AUDIT.log").write_text(
+        "operation is not maintained by the current algorithm contract: "
+        "audit_0915_processed_self_containment_v2\n"
+    )
+    state = _state("0915_input_prepare_cad_v1", "FAILED_RUNTIME_FINAL")
+    state["tasks"][0]["result"]["path"] = str(result_path)
+    monkeypatch.setattr(subject, "validate_artifact_ref", lambda _value: [])
+    predecessor = subject._validate_predecessor(
+        state, "0915_input_prepare_cad_v2",
+    )
+    assert predecessor["task_id"] == "0915_input_prepare_cad_v1"
+
+    (tmp_path / "AUDIT.log").write_text("different failure\n")
+    with pytest.raises(RuntimeError, match="exact pre-execution"):
+        subject._validate_predecessor(state, "0915_input_prepare_cad_v2")

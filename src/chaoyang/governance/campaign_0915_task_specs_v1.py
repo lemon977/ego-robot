@@ -15,13 +15,15 @@ from typing import Any
 PLAN_REVISION = "0915_FULL_FUNNEL_0916_CLEAN_V1"
 TASK_ORDER = (
     "0915_input_prepare_cad_v1",
+    "0915_input_prepare_cad_v2",
     "0915_hawor_full_v1",
     "0915_sam31_mask_full_v1",
     "0915_foundationstereo_full_v1",
     "0915_post_geometry_robot_v1",
 )
 
-INPUT_ATTEMPT = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
+INPUT_ATTEMPT_V1 = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
+INPUT_ATTEMPT = "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001"
 HAWOR_ATTEMPT = "_run/current/0915_hawor_full_v1/attempts/attempt_0001"
 DEPTH_ATTEMPT = "_run/current/0915_foundationstereo_full_v1/attempts/attempt_0001"
 MASK_ATTEMPT = "_run/current/0915_sam31_mask_full_v1/attempts/attempt_0001"
@@ -42,7 +44,7 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
             "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915",
             "assets/robot/hardware_handoff/kaihand_flange_adapter_v1/received_design/KAI_HAND固定件.STEP",
         ],
-        "write_set": [INPUT_ATTEMPT],
+        "write_set": [INPUT_ATTEMPT_V1],
         "prerequisites": [
             "governance_PASS_FRESH", "no_active_task",
             "0915_processed_root_read_only", "weights_ABSENT",
@@ -57,6 +59,40 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
         "claim_limit": (
             "Input proof, physical-left visual preparation and candidate STEP structure only; "
             "no model inference or calibration authority."
+        ),
+    },
+    "0915_input_prepare_cad_v2": {
+        "phase": "0915_INPUT_AUDIT_PREPARE_AND_CAD_V2",
+        "objective": (
+            "Run the corrective tactile-v2 processed-only audit, prepare physical-left "
+            "rectified RGB, and audit the candidate KaiHand STEP through direct module "
+            "entry points after the v1 CLI routing failure."
+        ),
+        "read_set": [
+            "docs/governance/CURRENT_STATUS_RECEIPT.json",
+            "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json",
+            "src/chaoyang/ops/audit_0915_processed_self_containment_v2.py",
+            "src/chaoyang/ops/prepare_0915_physical_left_batch_v1.py",
+            "src/chaoyang/ops/audit_kaihand_adapter_step_v1.py",
+            "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915",
+            "assets/robot/hardware_handoff/kaihand_flange_adapter_v1/received_design/KAI_HAND固定件.STEP",
+        ],
+        "write_set": [INPUT_ATTEMPT],
+        "prerequisites": [
+            "0915_input_prepare_cad_v1=FAILED_RUNTIME_FINAL_CLI_ROUTE_ONLY",
+            "governance_PASS_FRESH", "weights_ABSENT",
+            "direct_module_entrypoints", "0915_processed_root_read_only",
+        ],
+        "weights": "ABSENT",
+        "required_outputs": [
+            "SELF_CONTAINMENT_V2.json", "prepared_physical_left/BATCH_RESULT.json",
+            "kaihand_adapter_step_audit/RESULT.json", "RESULT.json", "RUN_RECEIPT.json",
+        ],
+        "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+        "expected_resource": "LOW_PRIORITY_CPU_IO; weights ABSENT",
+        "claim_limit": (
+            "Corrective input proof, physical-left visual preparation and candidate STEP "
+            "structure only; no model inference or calibration authority."
         ),
     },
     "0915_hawor_full_v1": {
@@ -74,7 +110,7 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
         ],
         "write_set": [HAWOR_ATTEMPT],
         "prerequisites": [
-            "0915_input_prepare_cad_v1=PASSED", "governance_PASS_FRESH",
+            "0915_input_prepare_cad_v2=PASSED", "governance_PASS_FRESH",
             "central_GPU_lease", "physical_left_only", "PICO26_NOT_CONSUMED",
         ],
         "weights": ["assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"],
@@ -100,7 +136,7 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
         ],
         "write_set": [DEPTH_ATTEMPT],
         "prerequisites": [
-            "0915_input_prepare_cad_v1=PASSED", "governance_PASS_FRESH",
+            "0915_input_prepare_cad_v2=PASSED", "governance_PASS_FRESH",
             "central_GPU_lease", "same_session_calibration_only",
         ],
         "weights": ["assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"],

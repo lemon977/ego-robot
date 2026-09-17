@@ -16,8 +16,7 @@ import uuid
 
 
 ROOT = Path(__file__).resolve().parents[3]
-TASK_ID = "0915_input_prepare_cad_v1"
-PACKET = ROOT / "tasks/current" / TASK_ID / "TASK_PACKET.json"
+TASK_IDS = ("0915_input_prepare_cad_v1", "0915_input_prepare_cad_v2")
 STATE = ROOT / "docs/governance/LONG_HORIZON_TASK_STATE.json"
 INDEX = ROOT / "tasks/current/INDEX.json"
 DATASET = Path("/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915")
@@ -54,37 +53,39 @@ def atomic_json(path: Path, value: Any) -> None:
     os.replace(temporary, path)
 
 
-def validate_route() -> None:
-    packet = load(PACKET)
+def validate_route(task_id: str) -> None:
+    packet_path = ROOT / "tasks/current" / task_id / "TASK_PACKET.json"
+    packet = load(packet_path)
     state = load(STATE)
     index = load(INDEX)
     if packet.get("weights") != "ABSENT":
         raise RuntimeError("input preparation/CAD task must have weights=ABSENT")
-    if state.get("next_task", {}).get("task_id") != TASK_ID:
+    if state.get("next_task", {}).get("task_id") != task_id:
         raise RuntimeError("task is not current next_task")
     task = next((row for row in state.get("tasks", [])
-                 if row.get("task_id") == TASK_ID), None)
+                 if row.get("task_id") == task_id), None)
     if task is None or task.get("status") not in {"PENDING", "CLAIMED", "RUNNING"}:
         raise RuntimeError("task state is not executable")
     route = next((row for row in index.get("task_packets", [])
-                  if row.get("task_id") == TASK_ID), None)
+                  if row.get("task_id") == task_id), None)
     if route is None or route.get("execution_allowed") is not True:
         raise RuntimeError("task index does not authorize execution")
-    if route.get("packet_sha256") != sha256(PACKET):
+    if route.get("packet_sha256") != sha256(packet_path):
         raise RuntimeError("task packet SHA mismatch")
 
 
-def heartbeat(pid: int) -> None:
+def heartbeat(task_id: str, pid: int) -> None:
     completed = subprocess.run([
         sys.executable, "-m", "chaoyang.governance.heartbeat_task",
-        "--task-id", TASK_ID, "--pid", str(pid), "--status", "RUNNING",
+        "--task-id", task_id, "--pid", str(pid), "--status", "RUNNING",
         "--phase", "0915_INPUT_AUDIT_PREPARE_AND_CAD",
     ], cwd=ROOT, capture_output=True, text=True, check=False)
     if completed.returncode:
         raise RuntimeError((completed.stderr or completed.stdout)[-4000:])
 
 
-def run(command: list[str], log: Path, *, heartbeat_seconds: int) -> int:
+def run(command: list[str], log: Path, *, task_id: str,
+        heartbeat_seconds: int) -> int:
     env = dict(os.environ)
     env["PYTHONPATH"] = str(ROOT / "src")
     env["PYTHONDONTWRITEBYTECODE"] = "1"
@@ -95,40 +96,42 @@ def run(command: list[str], log: Path, *, heartbeat_seconds: int) -> int:
         )
         while process.poll() is None:
             time.sleep(max(10, heartbeat_seconds))
-            heartbeat(os.getpid())
+            heartbeat(task_id, os.getpid())
         return int(process.returncode)
 
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--task-id", choices=TASK_IDS,
+                        default="0915_input_prepare_cad_v1")
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--heartbeat-seconds", type=int, default=45)
     args = parser.parse_args()
-    validate_route()
+    task_id = args.task_id
+    validate_route(task_id)
     output = args.output_root.resolve()
     if output.exists() or output.is_symlink():
         raise RuntimeError(f"fresh immutable attempt required: {output}")
     output.mkdir(parents=True)
     started = time.time()
-    heartbeat(os.getpid())
+    heartbeat(task_id, os.getpid())
 
     audit = output / "SELF_CONTAINMENT_V2.json"
     prepared = output / "prepared_physical_left"
     cad = output / "kaihand_adapter_step_audit"
     commands = [
         ("audit", [
-            sys.executable, "-m", "chaoyang.cli", "run",
-            "audit_0915_processed_self_containment_v2",
+            sys.executable, "-m",
+            "chaoyang.ops.audit_0915_processed_self_containment_v2",
             "--dataset-root", str(DATASET), "--output", str(audit),
         ]),
         ("prepare", [
-            sys.executable, "-m", "chaoyang.cli", "run",
-            "prepare_0915_physical_left_batch_v1",
+            sys.executable, "-m",
+            "chaoyang.ops.prepare_0915_physical_left_batch_v1",
             "--dataset-root", str(DATASET), "--output-root", str(prepared),
         ]),
         ("cad", [
-            sys.executable, "-m", "chaoyang.cli", "run",
-            "audit_kaihand_adapter_step_v1",
+            sys.executable, "-m", "chaoyang.ops.audit_kaihand_adapter_step_v1",
             "--step", str(STEP), "--output-root", str(cad),
         ]),
     ]
@@ -136,11 +139,12 @@ def main() -> int:
     for name, command in commands:
         returncodes[name] = run(
             command, output / f"{name.upper()}.log",
+            task_id=task_id,
             heartbeat_seconds=args.heartbeat_seconds,
         )
         atomic_json(output / "PROGRESS.json", {
             "schema_version": "0915-input-prepare-cad-progress-v1",
-            "task_id": TASK_ID, "updated_unix": time.time(),
+            "task_id": task_id, "updated_unix": time.time(),
             "returncodes": returncodes,
         })
         if returncodes[name] != 0:
@@ -158,7 +162,7 @@ def main() -> int:
     )
     result = {
         "schema_version": "0915-input-prepare-cad-result-v1",
-        "task_id": TASK_ID,
+        "task_id": task_id,
         "status": "PASSED" if passed else "FAILED_RUNTIME_FINAL",
         "returncodes": returncodes,
         "self_containment": ref(audit) if audit.is_file() else None,
@@ -182,7 +186,7 @@ def main() -> int:
     atomic_json(output / "RESULT.json", result)
     atomic_json(output / "RUN_RECEIPT.json", {
         "schema_version": "0915-input-prepare-cad-run-receipt-v1",
-        "task_id": TASK_ID, "status": result["status"],
+        "task_id": task_id, "status": result["status"],
         "result": ref(output / "RESULT.json"),
     })
     print(json.dumps({"status": result["status"],

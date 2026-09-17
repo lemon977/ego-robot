@@ -15,6 +15,7 @@ from chaoyang.governance.campaign_0915_task_specs_v1 import (
 def test_campaign_has_finite_serial_order() -> None:
     assert TASK_ORDER == (
         "0915_input_prepare_cad_v1",
+        "0915_input_prepare_cad_v2",
         "0915_hawor_full_v1",
         "0915_sam31_mask_full_v1",
         "0915_foundationstereo_full_v1",
@@ -28,7 +29,7 @@ def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
     for task_id in TASK_ORDER:
         packet = build_packet(task_id)
         if packet["weights"] == "ABSENT":
-            assert task_id in {TASK_ORDER[0], TASK_ORDER[-1]}
+            assert task_id in {TASK_ORDER[0], TASK_ORDER[1], TASK_ORDER[-1]}
         else:
             assert len(packet["weights"]) == 1
         assert len(packet["read_set"]) <= 8

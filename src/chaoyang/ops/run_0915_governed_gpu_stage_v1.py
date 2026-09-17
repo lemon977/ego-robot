@@ -20,7 +20,7 @@ from chaoyang.governance.campaign_0915_task_specs_v1 import build_packet
 ROOT = Path(__file__).resolve().parents[3]
 STATE = ROOT / "docs/governance/LONG_HORIZON_TASK_STATE.json"
 INDEX = ROOT / "tasks/current/INDEX.json"
-INPUT_ATTEMPT = ROOT / "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
+INPUT_ATTEMPT = ROOT / "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001"
 HAWOR_ATTEMPT = ROOT / "_run/current/0915_hawor_full_v1/attempts/attempt_0001"
 
 GPU_TASKS = {

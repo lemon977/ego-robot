@@ -21,7 +21,7 @@ from chaoyang.pipeline.full_funnel_ledger_v1 import STAGE_ORDER, validate
 
 ROOT = Path(__file__).resolve().parents[3]
 POST = ROOT / "_run/current/0915_post_geometry_robot_v1/attempts/attempt_0001"
-PREPARED = ROOT / "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/prepared_physical_left"
+PREPARED = ROOT / "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/prepared_physical_left"
 HAWOR = ROOT / "_run/current/0915_hawor_full_v1/attempts/attempt_0001/hawor"
 MASK = ROOT / "_run/current/0915_sam31_mask_full_v1/attempts/attempt_0001/sam31"
 DEPTH = ROOT / "_run/current/0915_foundationstereo_full_v1/attempts/attempt_0001/depth"
