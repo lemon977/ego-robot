@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "robot-visual-sidecar-v1.schema.json",
+  "title": "0915 development Robot Visual or strict Contact-aware sidecar",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "lane", "status", "control_ground_truth", "physical_deployment_authorized", "calibration_authority", "calibration_evidence", "metrics", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "robot-visual-sidecar-v1"},
+    "session_id": {"type": "string", "minLength": 1},
+    "lane": {"enum": ["ROBOT_VISUAL", "ROBOT_CONTACT_AWARE_STRICT"]},
+    "status": {"enum": ["PASS", "REJECTED_QUALITY", "BLOCKED_UPSTREAM", "BLOCKED_EXTERNAL", "FAILED_RUNTIME"]},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false},
+    "calibration_authority": {"const": "DEVELOPMENT_ONLY"},
+    "calibration_evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["robot_tcp", "tool_to_kaihand_root", "camera_world_to_base"],
+      "properties": {
+        "robot_tcp": {"enum": ["ABSENT", "PRESENT_MEASURED"]},
+        "tool_to_kaihand_root": {"enum": ["ABSENT", "PRESENT_CANDIDATE_GEOMETRY", "PRESENT_MEASURED"]},
+        "camera_world_to_base": {"enum": ["ABSENT", "PRESENT_MEASURED"]}
+      }
+    },
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["arm_ik", "kaihand_retarget", "collision", "joint_limit", "velocity", "acceleration"],
+      "properties": {
+        "arm_ik": {"type": ["number", "null"], "minimum": 0},
+        "kaihand_retarget": {"type": ["number", "null"], "minimum": 0},
+        "collision": {"type": ["number", "null"], "minimum": 0},
+        "joint_limit": {"type": ["number", "null"], "minimum": 0},
+        "velocity": {"type": ["number", "null"], "minimum": 0},
+        "acceleration": {"type": ["number", "null"], "minimum": 0}
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}
