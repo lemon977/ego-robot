@@ -21,27 +21,27 @@
   ],
   "assets": {
     "tianji_urdf": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+      "path": "assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
       "bytes": 17957,
       "sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309",
       "required_root_link": "base_link",
       "required_base_visual": "ZJ_Robot_link.STL"
     },
     "kaihand_left_urdf": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
       "bytes": 29480,
       "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74",
       "required_root_link": "hand_l_base_link"
     },
     "kaihand_right_urdf": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
       "bytes": 29568,
       "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586",
       "required_root_link": "hand_r_base_link"
     }
   },
   "unverified_cad_excluded": {
-    "path": "/mnt/workspace/code/chaoyang/assets/robot/V2相机固定法兰PRO版本.STL",
+    "path": "assets/robot/V2相机固定法兰PRO版本.STL",
     "bytes": 337084,
     "sha256": "d47925eb8687a9ed9f20020e0f244878a05b37d2f882ec111c4ee277916dccc3",
     "measured_mesh_extents_mm": [72.1135139465332, 72.11376857757568, 75.66085040569305],
@@ -49,12 +49,12 @@
   },
   "proxy_source": {
     "numeric_materialization": {
-      "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/robot/20260903_shared_adapter_successor_v1/PINNED_KAIHAND_MOUNT_AUTHORITY_V1.json",
+      "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/robot/20260903_shared_adapter_successor_v1/PINNED_KAIHAND_MOUNT_AUTHORITY_V1.json",
       "sha256": "dee0de8cc6bc64d9a6417f0b8578a32f8b37c070a4cfb2a9b581f2627c21f218",
       "source_status": "PINNED_DEVELOPMENT_ONLY_NOT_FORMAL_CALIBRATION_AUTHORITY"
     },
     "root_plane_geometry_preflight": {
-      "path": "/mnt/workspace/code/chaoyang/_run/gpt_robot_kaihand_rootplane_mount_cpu_successor_20260831_v1/CPU_PREFLIGHT.json",
+      "path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/gpt_robot_kaihand_rootplane_mount_cpu_successor_20260831_v1/CPU_PREFLIGHT.json",
       "sha256": "424f7a708ee7fa01d24d37d3f1b0dce780a601b73a8075a31d2c307cf850cf25",
       "source_claim": "CPU_STATIC_A_EXACT_KAI_ROOTPLANE_MOUNT_NO_GPU_NOT_FINAL"
     },

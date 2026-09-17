@@ -1,0 +1,59 @@
+{
+  "$schema": "../schema/system_manifest.schema.json",
+  "algorithms": [
+    {
+      "algorithm_id": "clean.real_pixel_bilateral_phone_dev.v1",
+      "implementation_files": [
+        {
+          "bytes": 30965,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/newtask_object_firewall.py",
+          "sha256": "f9c2aeb96e9f7366dc0a645246c65e78b3bf0cf976b6c945c5a8f852d8c4a128"
+        }
+      ],
+      "invariants": [
+        "consume only a Mask result with consumption_authorized=true",
+        "prefer same-MOV or same-session real observed donor pixels",
+        "preserve task objects, fixtures, and support authorities",
+        "write per-pixel source identity and unsupported mask",
+        "unsupported pixels remain raw rather than invented",
+        "cross-camera phone static is diagnostic only, never formal donor authority"
+      ],
+      "required_weight_ids": [],
+      "stage": "clean",
+      "status": "SHARED_ALGORITHM_INPUT_AUTHORITY_HOLD"
+    }
+  ],
+  "claim_limit": "Historical missing references were retired to tasks/receipts/RETIRED_REFERENCES.json; no evidence is inferred.",
+  "current_evidence": [],
+  "learned_weights": [],
+  "manifest_version": "2026-09-02.1",
+  "schema_version": "chaoyang-system-manifest-v1",
+  "shared_by_default": true,
+  "status": "CLEAN_BASELINE_NO_STALE_EVIDENCE",
+  "system_id": "clean",
+  "task_specific_config_keys": [
+    "source_identity",
+    "authorized_mask_result",
+    "remove_role_ids",
+    "preserve_object_ids",
+    "fixture_ids",
+    "same_session_clean_plate",
+    "donor_bank",
+    "table_support",
+    "camera_intrinsics_and_poses",
+    "exposure_profile"
+  ],
+  "weight_policy": {
+    "new_weight_requires": [
+      "bytes_and_sha256",
+      "base_weight_id",
+      "training_data_manifest_sha256",
+      "training_code_sha256",
+      "session_level_split_manifest_sha256",
+      "evaluation_manifest_sha256_and_metrics",
+      "applicable_task_scope",
+      "license_id_and_status"
+    ],
+    "task_local_paths_allowed": false
+  }
+}

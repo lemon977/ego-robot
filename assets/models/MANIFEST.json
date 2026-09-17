@@ -1,0 +1,457 @@
+{
+  "files": [
+    {
+      "bytes": 1402,
+      "path": "assets/models/checkpoints/foundationstereo/23-51-11/ASSET_PIN.json",
+      "sha256": "dea0fe13b7c5fe4b59e54375d7ed96d1d26ab5be731c47aa7ac56b88368d8ee7",
+      "type": "file"
+    },
+    {
+      "bytes": 499,
+      "path": "assets/models/checkpoints/foundationstereo/23-51-11/cfg.yaml",
+      "sha256": "a9d9dd2137c30edc2236194f62df14d222dad5fd3287a33c7540b543bb93853f",
+      "type": "file"
+    },
+    {
+      "bytes": 3298527334,
+      "path": "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+      "sha256": "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1",
+      "type": "file"
+    },
+    {
+      "bytes": 3502755717,
+      "path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+      "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "type": "file"
+    },
+    {
+      "bytes": 2305,
+      "path": "assets/models/cutie/ASSET_PIN.json",
+      "sha256": "c05f39f789554d69e85c39cdad015bca5d11019d82280097f2183183596382e2",
+      "type": "file"
+    },
+    {
+      "bytes": 140443788,
+      "path": "assets/models/cutie/cutie-base-mega.pth",
+      "sha256": "9c05402ee36d3a356fb72715d263ba7e1ea06ad3bada48c1306491792da43023",
+      "type": "file"
+    },
+    {
+      "bytes": 46827520,
+      "path": "assets/models/cutie/torch_home/hub/checkpoints/resnet18-5c106cde.pth",
+      "sha256": "5c106cde386e87d4033832f2996f5493238eda96ccf559d1d62760c4de0613f8",
+      "type": "file"
+    },
+    {
+      "bytes": 102502400,
+      "path": "assets/models/cutie/torch_home/hub/checkpoints/resnet50-19c8e357.pth",
+      "sha256": "19c8e3572231adff6824a2da93fd67b5986919a2e65f8b6007eab4edee220097",
+      "type": "file"
+    },
+    {
+      "bytes": 182959506,
+      "path": "assets/models/humanego/frozen_checkpoints/kai22/best.pt",
+      "sha256": "5d8862d400b2e8eb2bdb5dfe1fdff389b7e5f39cf53ddab3600a8e4c4df08bc3",
+      "type": "file"
+    },
+    {
+      "bytes": 9767,
+      "path": "assets/models/humanego/frozen_checkpoints/kai22/config.json",
+      "sha256": "27913ab193eebf7f3169f0cf925d06556a1701eaa93438fecc1d93c41666770c",
+      "type": "file"
+    },
+    {
+      "bytes": 275,
+      "path": "assets/models/humanego/frozen_checkpoints/kai22/dataset_stats.json",
+      "sha256": "a8ceb0bc02af36e8c180953b22b4e340e494d6589bd378b64671d04a510004cc",
+      "type": "file"
+    },
+    {
+      "bytes": 1285,
+      "path": "assets/models/humanego/frozen_checkpoints/kai22/freeze_manifest.json",
+      "sha256": "8d071aaa2a55f150e10a3e20035086996de087b531c9c0aa517a031fc47efc0a",
+      "type": "file"
+    },
+    {
+      "bytes": 8434,
+      "path": "assets/models/humanego/frozen_checkpoints/kai22/run_manifest.json",
+      "sha256": "dbbceaa1940f2eafbca11c7357ccc2c400d739d395969f7555be3b74ba0334cb",
+      "type": "file"
+    },
+    {
+      "bytes": 10050,
+      "path": "assets/models/humanego/pretrained_humanego/config.json",
+      "sha256": "ebc6243fcbdc7dcd7ce3e8b3445929dd1abff56deb6ca1ffb7a547a0511dd3c1",
+      "type": "file"
+    },
+    {
+      "bytes": 9632,
+      "path": "assets/models/humanego/pretrained_humanego/dataset_split.json",
+      "sha256": "b4ff2064009c6976ddcd0a7bd5db9260e0b07533f5c6b0beea02f77a77f06e15",
+      "type": "file"
+    },
+    {
+      "bytes": 272,
+      "path": "assets/models/humanego/pretrained_humanego/dataset_stats.json",
+      "sha256": "7d674d0dfdd2f3e710e3661d093601a68a2af67e6d392257770b4df8113b0c7a",
+      "type": "file"
+    },
+    {
+      "bytes": 182252962,
+      "path": "assets/models/humanego/pretrained_humanego/latest.pt",
+      "sha256": "663f21b4350333fb852d0f19d042613d1e7bc5ead2577f9862d113ccea04b183",
+      "type": "file"
+    },
+    {
+      "bytes": 182960530,
+      "path": "assets/models/humanego/retarget_ab_checkpoints/r2/kai22/best.pt",
+      "sha256": "2a9b5c54bf38ce84512821772ba6cf9e4dcae7c25944981451637bbc616e5a37",
+      "type": "file"
+    },
+    {
+      "bytes": 9819,
+      "path": "assets/models/humanego/retarget_ab_checkpoints/r2/kai22/config.json",
+      "sha256": "9a6622e3c40425fb8d32050d7d122e51df79b08f541b412940ce1e087afabaf5",
+      "type": "file"
+    },
+    {
+      "bytes": 273,
+      "path": "assets/models/humanego/retarget_ab_checkpoints/r2/kai22/dataset_stats.json",
+      "sha256": "480c0e29b0bd9cae12e621619747d49215c0e5c617c84953e536c96c667684b1",
+      "type": "file"
+    },
+    {
+      "bytes": 1314,
+      "path": "assets/models/humanego/retarget_ab_checkpoints/r2/kai22/freeze_manifest.json",
+      "sha256": "e0da71f903b697d784eca25212c5e39b470de008697a7a6974e7292cdf6d9996",
+      "type": "file"
+    },
+    {
+      "bytes": 9297,
+      "path": "assets/models/humanego/retarget_ab_checkpoints/r2/kai22/run_manifest.json",
+      "sha256": "c1f50aeb3a1698e4f372e98eff5307bce3898fb04404f46ac4a51887c93b8dc1",
+      "type": "file"
+    },
+    {
+      "bytes": 208044816,
+      "path": "assets/models/lama-onnx/lama_fp32.onnx",
+      "sha256": "1faef5301d78db7dda502fe59966957ec4b79dd64e16f03ed96913c7a4eb68d6",
+      "type": "file"
+    },
+    {
+      "bytes": 2148,
+      "path": "assets/models/sam2_1_hiera_large/ASSET_PIN.json",
+      "sha256": "7b03a85cdecf5e71ef7b1d65dd38fdbf73deea0e9ddfc2bbe41ddc111d7b11c0",
+      "type": "file"
+    },
+    {
+      "bytes": 11357,
+      "path": "assets/models/sam2_1_hiera_large/LICENSE_sam2",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "type": "file"
+    },
+    {
+      "bytes": 1411224,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/_C.so",
+      "sha256": "5ac07e83eeb400c6c307dc466a18376ca45aa416bd997ad1b84fa396784c8db0",
+      "type": "file"
+    },
+    {
+      "bytes": 395,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/__init__.py",
+      "sha256": "b87ca1e95cd54b81766e8c74acf0e937952639529e40d2b4088693286f49419e",
+      "type": "file"
+    },
+    {
+      "bytes": 18461,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/automatic_mask_generator.py",
+      "sha256": "66df266dbe14412305ae3398f0ec1bb21b303a93216b102d767e6c4ee5d4c3d7",
+      "type": "file"
+    },
+    {
+      "bytes": 6160,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/build_sam.py",
+      "sha256": "bc49ac8e9ebf871790fa2e5f0e70bd5734e010966eff66af0c350ceaf14f3f1e",
+      "type": "file"
+    },
+    {
+      "bytes": 3548,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2/sam2_hiera_b+.yaml",
+      "sha256": "bfc8204754ae5686d7618cc4b10e6b62ce04de1b0132d1af6465cfe54d12955b",
+      "type": "file"
+    },
+    {
+      "bytes": 3696,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2/sam2_hiera_l.yaml",
+      "sha256": "60585839767537de53e9eaf574fd6fd904a339b4ed8f9824b6f1b629806261ba",
+      "type": "file"
+    },
+    {
+      "bytes": 3659,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2/sam2_hiera_s.yaml",
+      "sha256": "4e32b6bae4788c68c1ea7b0984ade5d68b819b94102e540b3f7d32e866708d41",
+      "type": "file"
+    },
+    {
+      "bytes": 3753,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2/sam2_hiera_t.yaml",
+      "sha256": "4902dbe10270628d58cd7dc238074ec5b6bd3c9c4cddd8b85b037383fcf94dda",
+      "type": "file"
+    },
+    {
+      "bytes": 3650,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2.1/sam2.1_hiera_b+.yaml",
+      "sha256": "e73f9e9547b305040552ee943ebd3a34cee5727a76fc2ab88b87f7b28b430754",
+      "type": "file"
+    },
+    {
+      "bytes": 3798,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2.1/sam2.1_hiera_l.yaml",
+      "sha256": "545e4325aa5c19a1615d43c946b07276ed4c57214eacf1437e38fa3d9374f636",
+      "type": "file"
+    },
+    {
+      "bytes": 3761,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2.1/sam2.1_hiera_s.yaml",
+      "sha256": "632e5cd0104f5ab6cd4f9d2dfd80a8e7240e481ad7960a13cad2ae3504b88dbd",
+      "type": "file"
+    },
+    {
+      "bytes": 3855,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2.1/sam2.1_hiera_t.yaml",
+      "sha256": "43e114f609a1af7efede061f5c186119d498acd31f118f300c07acf57d4a5eca",
+      "type": "file"
+    },
+    {
+      "bytes": 11256,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/configs/sam2.1_training/sam2.1_hiera_b+_MOSE_finetune.yaml",
+      "sha256": "98988ae8b7b70b97d8c7f7be4df3c25335b395ab2953cbaecff06d864c3b20a1",
+      "type": "file"
+    },
+    {
+      "bytes": 7808,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/csrc/connected_components.cu",
+      "sha256": "926c277e24f40609622bb4ce49912838d1c799e63edcccc1c75e65e701acd497",
+      "type": "file"
+    },
+    {
+      "bytes": 197,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/__init__.py",
+      "sha256": "34bd8069c54764e7b8d73a78905dbe6467140a2f73170875128f6ca4d8cdd0aa",
+      "type": "file"
+    },
+    {
+      "bytes": 197,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/backbones/__init__.py",
+      "sha256": "34bd8069c54764e7b8d73a78905dbe6467140a2f73170875128f6ca4d8cdd0aa",
+      "type": "file"
+    },
+    {
+      "bytes": 10003,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/backbones/hieradet.py",
+      "sha256": "03785581ca304d0451ae0df7a08ee0bf1e1dbe66fad285066e6b9ffc0d88d64f",
+      "type": "file"
+    },
+    {
+      "bytes": 4706,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/backbones/image_encoder.py",
+      "sha256": "16eaad232220386f510ca8dfab8655e63699977149a4daf9ce9c6f374e6777a9",
+      "type": "file"
+    },
+    {
+      "bytes": 3053,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/backbones/utils.py",
+      "sha256": "84bd48cda1ad468fb8c231d0c2eb83ad53386633d6e63ddaa6ed929c5521bdba",
+      "type": "file"
+    },
+    {
+      "bytes": 5509,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/memory_attention.py",
+      "sha256": "07358cb7f58ec3788e88ff4e6415f8a9d628a3963529d6e2c915494a5347c8e2",
+      "type": "file"
+    },
+    {
+      "bytes": 5657,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/memory_encoder.py",
+      "sha256": "73f7089ae5fdacdfcaaf3deca1ca6d9f84d89e7deb9cf97589622a9ef17ba42f",
+      "type": "file"
+    },
+    {
+      "bytes": 8361,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/position_encoding.py",
+      "sha256": "14ae89d7ae68f61e2ffcba09eb171d8df9a7298332d4da99036d703294f89ec1",
+      "type": "file"
+    },
+    {
+      "bytes": 197,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/sam/__init__.py",
+      "sha256": "34bd8069c54764e7b8d73a78905dbe6467140a2f73170875128f6ca4d8cdd0aa",
+      "type": "file"
+    },
+    {
+      "bytes": 12657,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/sam/mask_decoder.py",
+      "sha256": "ca3523c58365574faddf1bfb54f374e4b4beba05127185ea2b17d22b916e099a",
+      "type": "file"
+    },
+    {
+      "bytes": 7016,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/sam/prompt_encoder.py",
+      "sha256": "486596f5ba976cb9ced3836d65f1793dae586be2180567a451098f96c45ae401",
+      "type": "file"
+    },
+    {
+      "bytes": 12870,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/sam/transformer.py",
+      "sha256": "17aac13abc8f73023f6be4b78af708df9f9f254964729421b1ba60e72a9011c1",
+      "type": "file"
+    },
+    {
+      "bytes": 46907,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/sam2_base.py",
+      "sha256": "6d81450e897d0735f9be369771f2b3fb6eadb90dd3f3ac16b3f7a8c8eb1a052a",
+      "type": "file"
+    },
+    {
+      "bytes": 13173,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/modeling/sam2_utils.py",
+      "sha256": "e35bbf13bc2e544a0272cd3f9539af38a752676ac3cd744be31cd8220afee804",
+      "type": "file"
+    },
+    {
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/sam2_hiera_b+.yaml",
+      "target": "configs/sam2/sam2_hiera_b+.yaml",
+      "type": "symlink"
+    },
+    {
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/sam2_hiera_l.yaml",
+      "target": "configs/sam2/sam2_hiera_l.yaml",
+      "type": "symlink"
+    },
+    {
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/sam2_hiera_s.yaml",
+      "target": "configs/sam2/sam2_hiera_s.yaml",
+      "type": "symlink"
+    },
+    {
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/sam2_hiera_t.yaml",
+      "target": "configs/sam2/sam2_hiera_t.yaml",
+      "type": "symlink"
+    },
+    {
+      "bytes": 19937,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/sam2_image_predictor.py",
+      "sha256": "f13e5f9d94e5c8d9d2c3622dab20c8f334c089ef2ee5ea8e199da7d332b029ba",
+      "type": "file"
+    },
+    {
+      "bytes": 64829,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/sam2_video_predictor.py",
+      "sha256": "eac623ee74d5f7aa1ed0e7912cd89005c8ae97fefd99eb3ae974ab41a6a1bea1",
+      "type": "file"
+    },
+    {
+      "bytes": 197,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/utils/__init__.py",
+      "sha256": "34bd8069c54764e7b8d73a78905dbe6467140a2f73170875128f6ca4d8cdd0aa",
+      "type": "file"
+    },
+    {
+      "bytes": 12842,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/utils/amg.py",
+      "sha256": "b7b33090e2af72e04dbb815c8f32aff41a4ed1abf9668f62b59f1bdd640ca5d8",
+      "type": "file"
+    },
+    {
+      "bytes": 15611,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/utils/misc.py",
+      "sha256": "a5295920c904e5673c94e42d43cf4ef44ae69f2a727e742f36b777297f36e9a4",
+      "type": "file"
+    },
+    {
+      "bytes": 4885,
+      "path": "assets/models/sam2_1_hiera_large/implementation/sam2/utils/transforms.py",
+      "sha256": "ba3a64f4600c62f209206a6df3b40e3fcf133edae32fad658831bb0c2a6d1146",
+      "type": "file"
+    },
+    {
+      "bytes": 898083611,
+      "path": "assets/models/sam2_1_hiera_large/sam2.1_hiera_large.pt",
+      "sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+      "type": "file"
+    },
+    {
+      "bytes": 53582271,
+      "path": "assets/models/vendor/hawor/external/detector.pt",
+      "sha256": "5ef3df44e42d2db52d4ffe91f83a22ce9925e2acc9abebf453f2c5d22e380033",
+      "type": "file"
+    },
+    {
+      "bytes": 3267481572,
+      "path": "assets/models/vendor/hawor/hawor/checkpoints/hawor.ckpt",
+      "sha256": "4d1cc43853c190d6f2c10d9b6295c73109f0faf9ef41ac817a2b31d94b4823f2",
+      "type": "file"
+    },
+    {
+      "bytes": 418603497,
+      "path": "assets/models/vendor/hawor/hawor/checkpoints/infiller.pt",
+      "sha256": "30715e7e72e91d4e164bb762c7ea613dcff5448dbda5fabf40b4054e408cc5c2",
+      "type": "file"
+    },
+    {
+      "bytes": 2743,
+      "path": "assets/models/vendor/hawor/hawor/model_config.yaml",
+      "sha256": "edfe12dc14ce371d698da722b59acfed5b4a38a7f8f5116cbc1fce459a07dd2d",
+      "type": "file"
+    },
+    {
+      "bytes": 3821391,
+      "path": "assets/models/vendor/hawor/mano/MANO_LEFT.pkl",
+      "sha256": "c4022f7083f2ca7c78b2b3d595abbab52debd32b09d372b16923a801f0ea6a30",
+      "type": "file"
+    },
+    {
+      "bytes": 3821356,
+      "path": "assets/models/vendor/hawor/mano/MANO_RIGHT.pkl",
+      "sha256": "45d60aa3b27ef9107a7afd4e00808f307fd91111e1cfa35afd5c4a62de264767",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "path": "assets/models/vendor/metric3d/placeholder.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "type": "file"
+    },
+    {
+      "bytes": 0,
+      "path": "assets/models/vendor/metric3d/新建文本文档.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "type": "file"
+    },
+    {
+      "bytes": 157780510,
+      "path": "assets/models/vendor/propainter/ProPainter.pth",
+      "sha256": "12c070c4b48f374c91d8a2a17851140b85c159621080989f9e191bbc18bd6591",
+      "type": "file"
+    },
+    {
+      "bytes": 21108000,
+      "path": "assets/models/vendor/propainter/raft-things.pth",
+      "sha256": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1",
+      "type": "file"
+    },
+    {
+      "bytes": 20348681,
+      "path": "assets/models/vendor/propainter/recurrent_flow_completion.pth",
+      "sha256": "22939a1a7900da878dbe1ccd011d646b1bfb30b8290039d8ff0e0c2fefbfd283",
+      "type": "file"
+    }
+  ],
+  "payload_policy": "Local model files are ignored by Git; every retained payload is SHA-256 bound here.",
+  "schema_version": "chaoyang-model-assets-v2",
+  "summary": {
+    "bytes": 12693720162,
+    "entries": 75,
+    "files": 71
+  }
+}

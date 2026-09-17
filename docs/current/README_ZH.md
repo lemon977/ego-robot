@@ -1,0 +1,17 @@
+# Chaoyang 当前入口
+
+状态：CURRENT
+适用基线：clean-baseline-v1
+
+本页是面向人和 AI 的唯一浅层导航，不直接授予算法或实验结论 authority。
+
+- 当前事实：[CURRENT_STATUS_RECEIPT.json](../governance/CURRENT_STATUS_RECEIPT.json)
+- 项目最小状态：[CURRENT_PROJECT_STATUS_MIN.json](../governance/CURRENT_PROJECT_STATUS_MIN.json)
+- RC1 最小状态：[CURRENT_RC1_STATUS_MIN.json](../governance/CURRENT_RC1_STATUS_MIN.json)
+- 当前文档权威：[DOC_AUTHORITY_MAP.json](../governance/DOC_AUTHORITY_MAP.json)
+- 当前算法合同：[ALGORITHM_CONTRACT.json](../governance/ALGORITHM_CONTRACT.json)
+- 当前任务索引：[INDEX.json](../../tasks/current/INDEX.json)
+- 当前视觉复核说明：[visuals/README_ZH.md](visuals/README_ZH.md)
+- 迁移与恢复：[CLEAN_BASELINE_V1_ZH.md](../reference/architecture/CLEAN_BASELINE_V1_ZH.md)
+
+历史任务只能通过 tasks/receipts/HISTORICAL_TASK_CATALOG.json 和仓库内 archive/ 查询，不能直接重启。归档不参与 Git、构建、测试或当前文档导航。

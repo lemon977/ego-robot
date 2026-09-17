@@ -1,0 +1,257 @@
+{
+  "baseline": "baseline-20260917-0aa69e9",
+  "claim_limit": "Records pre-existing missing references only; does not assert the referenced artifacts were valid.",
+  "created_at": "2026-09-17T11:40:00+08:00",
+  "references": [
+    {
+      "json_pointer": "/algorithms/0/implementation_files/0",
+      "original_reference": {
+        "original_bytes": 51267,
+        "original_path": "src/chaoyang/ops/run_newtask_clean_bilateral_phone_dev.py",
+        "original_sha256": "fa1ce2fa012440cbfa0c01a6eb2cf0df7c123c80f7bd5d09ab3b656099a5aa33"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/clean/system.manifest.json"
+    },
+    {
+      "json_pointer": "/current_evidence/0",
+      "original_reference": {
+        "original_bytes": 169027,
+        "claim_limit": "Ten phone-development frames; not a formal Clean result.",
+        "id": "phone_l3_result",
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/newtask_baseline_clean_l3_20260902_v1/RUN.json",
+        "original_sha256": "d367594161f81bf19c76ba3c4af5ea066919bfc7d20945eeed4c5c122164f6ac",
+        "status": "HOLD_HUMAN_SEMANTIC_CLOSURE_UNRESOLVED"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/clean/system.manifest.json"
+    },
+    {
+      "json_pointer": "/current_evidence/1",
+      "original_reference": {
+        "original_bytes": 8424,
+        "claim_limit": "Frame 0 PHONE_DEV only; no 10-frame/full-video Clean.",
+        "id": "chips_frame0_cross_camera_final",
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/newtask_clean_chips_frame0_whole_table_bounded_final_20260902_v1/RESULTS.json",
+        "original_sha256": "81f4656978b911e3ae76029f0e07d5e013b046f93c84115d423c251f6af86f52",
+        "status": "HOLD_CROSS_CAMERA_STATIC_INSUFFICIENT"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/clean/system.manifest.json"
+    },
+    {
+      "json_pointer": "/verification/local_probe",
+      "original_reference": {
+        "original_bytes": 805789,
+        "loaded_file_origins_checked": 3682,
+        "loaded_origins_outside_project_or_environment": 0,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE_V3.json",
+        "runner_smoke": "PASS_IMPORT_GEOMETRY_MODEL_CONSTRUCTION_STRICT_CPU_WEIGHT_LOAD",
+        "original_sha256": "e3f0a22d33cdae6758924b76c7f95a2a4f32f60e80edb830860ef1c1a89c32e8",
+        "status": "CPU_PASS_GPU_DEPTH_REPLAY_PENDING"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/foundationstereo/environment_authority.json"
+    },
+    {
+      "json_pointer": "/verification/runner_static_preflight",
+      "original_reference": {
+        "original_bytes": 1515,
+        "gpu_depth_executed": false,
+        "gpu_lease_acquired": false,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260907_foundationstereo_local_environment_v1/RUNNER_STATIC_PREFLIGHT.json",
+        "original_sha256": "616983de316f6f52b0685b21373356bc10f8ad775bedd9c2637bb78358ce0004",
+        "status": "PASS_STATIC_PREFLIGHT"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/foundationstereo/environment_authority.json"
+    },
+    {
+      "json_pointer": "/verification/snapshot_content",
+      "original_reference": {
+        "original_bytes": 851,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260907_foundationstereo_local_environment_v1/SNAPSHOT_CONTENT_VERIFY.json",
+        "original_sha256": "6a3e3b81b356e4c0c1e2fea4fa4e72f88f6556a402e975771e14d943825645bd",
+        "status": "PASS"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/foundationstereo/environment_authority.json"
+    },
+    {
+      "json_pointer": "/verification",
+      "original_reference": {
+        "original_bytes": 805789,
+        "cuda_initialized": false,
+        "depth_forward_executed": false,
+        "loaded_origins_checked": 3682,
+        "loaded_origins_outside_project_or_environment": 0,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE_V3.json",
+        "original_sha256": "e3f0a22d33cdae6758924b76c7f95a2a4f32f60e80edb830860ef1c1a89c32e8",
+        "strict_cpu_checkpoint_load": "PASS"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/foundationstereo/local_environment_lock.json"
+    },
+    {
+      "json_pointer": "/capacity_execution/chain_result",
+      "original_reference": {
+        "original_bytes": 2551,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260903_mask_local_environment_v1/CAPACITY_CHAIN_RESULT.json",
+        "original_sha256": "db1f25c9bc14440f9d408a0c0553622d12b03d3cc7466f2a4df863dce0b61f11"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/environment_authority.json"
+    },
+    {
+      "json_pointer": "/tools/capacity_chain",
+      "original_reference": {
+        "original_bytes": 10487,
+        "original_path": "src/chaoyang/ops/run_mask_environment_capacity_chain.py",
+        "original_sha256": "172c6c58e716fec829dd8f49cef44cda1f2f076af950d76d7a0c3e13bb0572e5"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/environment_authority.json"
+    },
+    {
+      "json_pointer": "/tools/materializer",
+      "original_reference": {
+        "original_bytes": 26614,
+        "original_path": "src/chaoyang/ops/materialize_mask_sam3_import_closure.py",
+        "original_sha256": "9a43e54d7b3bd110b2d453aecc97a71c2cf867c996ec0e210f03ca34e8999b53"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/environment_authority.json"
+    },
+    {
+      "json_pointer": "/tools/verifier",
+      "original_reference": {
+        "original_bytes": 20882,
+        "original_path": "src/chaoyang/ops/verify_mask_environment_migration.py",
+        "original_sha256": "4f1c23018f7b7d96f1c71e54f460f901cb282409c88c903a0ee59a88c002262a"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/environment_authority.json"
+    },
+    {
+      "json_pointer": "/verification/local_probe",
+      "original_reference": {
+        "original_bytes": 793418,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260903_mask_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+        "original_sha256": "2fe63e3913b6e163f3250bde254b6e5569d001c2d2c7a325d090d30ff148ebad",
+        "status": "CPU_PASS_GPU_REPLAY_PENDING"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/environment_authority.json"
+    },
+    {
+      "json_pointer": "/verification/overlay_full_readback",
+      "original_reference": {
+        "original_bytes": 882,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260903_mask_local_environment_v1/CLOSURE_VERIFY.json",
+        "original_sha256": "42cd9320290b21fd50b20b4ea399bfa89d19f4102a6724eea00a861db5b7b0f0",
+        "status": "PASS"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/environment_authority.json"
+    },
+    {
+      "json_pointer": "/verification/test_receipt",
+      "original_reference": {
+        "original_bytes": 3875,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260903_mask_local_environment_v1/TEST_RECEIPT.json",
+        "original_sha256": "e933c234da4596ad326e2ffde63bb5fd3576a9fa2433686b3249fbfa9e4af033",
+        "status": "CPU_PASS_GPU_REPLAY_PENDING"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/environment_authority.json"
+    },
+    {
+      "json_pointer": "/verification",
+      "original_reference": {
+        "original_bytes": 793418,
+        "loaded_origins_checked": 3262,
+        "loaded_origins_outside_project_or_environment": 0,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260903_mask_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+        "original_sha256": "2fe63e3913b6e163f3250bde254b6e5569d001c2d2c7a325d090d30ff148ebad",
+        "status": "CPU_PASS_GPU_REPLAY_PENDING"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/local_environment_lock.json"
+    },
+    {
+      "json_pointer": "/dry_run/composite_inventory",
+      "original_reference": {
+        "base_snapshot_entries_metadata_checked": 76696,
+        "original_bytes": 793418,
+        "composite_hook_is_only_base_payload_addition": true,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260903_mask_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+        "original_sha256": "2fe63e3913b6e163f3250bde254b6e5569d001c2d2c7a325d090d30ff148ebad",
+        "status": "CPU_PASS_GPU_REPLAY_PENDING"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/local_environment_rollback.json"
+    },
+    {
+      "json_pointer": "/dry_run/overlay_full_readback",
+      "original_reference": {
+        "original_bytes": 882,
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260903_mask_local_environment_v1/CLOSURE_VERIFY.json",
+        "original_sha256": "42cd9320290b21fd50b20b4ea399bfa89d19f4102a6724eea00a861db5b7b0f0",
+        "status": "PASS"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/local_environment_rollback.json"
+    },
+    {
+      "json_pointer": "/algorithms/1/implementation_files/0",
+      "original_reference": {
+        "original_bytes": 24766,
+        "original_path": "src/chaoyang/ops/run_contact_assisted_object_instance_authority.py",
+        "original_sha256": "ebd170f1ebe5b47251f43871c58aef2b31f1e570271871e8a64a349d7c36c465"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/system.manifest.json"
+    },
+    {
+      "json_pointer": "/current_evidence/0",
+      "original_reference": {
+        "original_bytes": 863325,
+        "claim_limit": "Phone baseline chips only; consumption_authorized=true.",
+        "id": "chips_assisted_v4_result",
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/gpt_mask_assisted_bilateral_flow_refresh_chips_20260902_v4/RESULT.json",
+        "original_sha256": "c54f786a72a0ebcd3c43ab5d750a74ae176bfc9edda81a4f653491e22e77142a",
+        "status": "PASS_CANARY12_FULL_ARTIFACTS_EMITTED"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/system.manifest.json"
+    },
+    {
+      "json_pointer": "/current_evidence/1",
+      "original_reference": {
+        "original_bytes": 1647300,
+        "claim_limit": "Human and lower cuff pass, but both tracker temporal gates do not; consumption_authorized=false.",
+        "id": "poker_assisted_v4_result",
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/gpt_mask_assisted_bilateral_flow_refresh_poker_20260902_v4/RESULT.json",
+        "original_sha256": "d25203ad71eef2a802372d4a008f5573500c486a2236cec55d20e53f33f05b67",
+        "status": "HOLD_CANARY12_NO_FULL_ARTIFACT_PROMOTION"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/mask/system.manifest.json"
+    },
+    {
+      "json_pointer": "/current_evidence/0",
+      "original_reference": {
+        "original_bytes": 14823,
+        "claim_limit": "Synthetic/phone-development geometry; formal_session=false.",
+        "id": "newtask_approx_geometry",
+        "original_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/newtask_geometry_prep_v2/GEOMETRY_MANIFEST.json",
+        "original_sha256": "65dffad7fc6ec25c7abede682612543665ee5957de793e8acf884b058dc7bf18",
+        "status": "COMPLETE_APPROX_GEOMETRY"
+      },
+      "reason": "SOURCE_NOT_PRESENT_AT_CLEAN_BASELINE",
+      "source": "configs/systems/robot/system.manifest.json"
+    }
+  ],
+  "retired_count": 21,
+  "schema_version": 1
+}

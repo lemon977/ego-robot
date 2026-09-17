@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_revision", "validity", "generated_at", "stage", "source_h0", "resource_observation", "row_count", "summary", "rows", "claim_limit", "sensor_role_mask_contract"],
+  "properties": {
+    "schema_version": {"const": "handle-sensor-mask-preflight-ledger-v7.1"},
+    "artifact_revision": {"const": "R7_0"}, "validity": {"const": "VALID_FOR_PINNED_REVISION"},
+    "generated_at": {"type": "string"}, "stage": {"const": "h4"},
+    "source_h0": {"$ref": "#/$defs/evidence"}, "resource_observation": {"type": "object"},
+    "row_count": {"type": "integer", "minimum": 0}, "summary": {"type": "object"},
+    "rows": {"type": "array", "items": {"$ref": "#/$defs/row"}},
+    "claim_limit": {"type": "string", "minLength": 30},
+    "sensor_role_mask_contract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema", "role_prompts", "visible_pixel_ownership", "roles_must_remain_separate", "controllers_are_not_gloves", "forearms_are_not_gloves", "chips_union_allowed", "reentry_identity_required"],
+      "properties": {
+        "schema": {"const": "SENSOR_ROLE_MASK_V1"},
+        "role_prompts": {
+          "type": "object", "required": ["left_gloved_hand", "right_gloved_hand", "left_forearm", "right_forearm", "left_controller", "right_controller"],
+          "additionalProperties": false, "properties": {
+            "left_gloved_hand": {"type": "string"}, "right_gloved_hand": {"type": "string"},
+            "left_forearm": {"type": "string"}, "right_forearm": {"type": "string"},
+            "left_controller": {"type": "string"}, "right_controller": {"type": "string"}
+          }
+        },
+        "visible_pixel_ownership": {"type": "string"}, "roles_must_remain_separate": {"const": true},
+        "controllers_are_not_gloves": {"const": true}, "forearms_are_not_gloves": {"const": true},
+        "chips_union_allowed": {"const": false}, "reentry_identity_required": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object", "required": ["path", "bytes", "sha256"],
+      "properties": {"path": {"type": "string", "pattern": "^/"}, "bytes": {"type": "integer", "minimum": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "row": {
+      "type": "object", "required": ["session_id", "dataset_id", "task", "frame_count", "status", "cpu_preflight", "primary_blocker", "contract"],
+      "properties": {
+        "session_id": {"type": "string"}, "dataset_id": {"type": "string"},
+        "task": {"enum": ["potato_chips", "playing_cards"]}, "frame_count": {"type": ["integer", "null"]},
+        "status": {"enum": ["BLOCKED_RESOURCE", "BLOCKED_SOURCE", "BLOCKED_PREREQ", "FAILED_RUNTIME_FINAL"]},
+        "cpu_preflight": {"enum": ["PASSED", "FAILED", "BLOCKED"]}, "primary_blocker": {"type": ["string", "null"]},
+        "contract": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object", "required": ["visual_input", "role_ids", "object_contract", "seed_contract", "regression_cases"],
+              "properties": {
+                "role_ids": {"type": "array", "minItems": 6, "maxItems": 6, "uniqueItems": true},
+                "object_contract": {
+                  "type": "object", "required": ["id_pattern", "prompt", "union_allowed", "identity_rule"],
+                  "properties": {"union_allowed": {"const": false}}
+                },
+                "seed_contract": {
+                  "type": "object", "required": ["source", "status", "text_prompt_alone_grants_identity"],
+                  "properties": {"text_prompt_alone_grants_identity": {"const": false}}
+                },
+                "regression_cases": {"type": "array", "contains": {"const": "OFFSCREEN_REENTRY"}}
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

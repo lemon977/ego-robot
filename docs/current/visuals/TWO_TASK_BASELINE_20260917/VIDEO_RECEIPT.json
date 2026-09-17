@@ -1,0 +1,241 @@
+{
+  "candidate_status": "UNKNOWN",
+  "mode": "OFFLINE_VISUAL",
+  "schema_version": "two-task-baseline-video-receipt-v1",
+  "sessions": {
+    "get_potato_chips_0902_103": {
+      "contact_authority": false,
+      "control_ground_truth": false,
+      "keyframes": [
+        {
+          "frame_id": 0,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/get_potato_chips_0902_103_KEYFRAME_000000.png",
+          "sha256": "eb94bf2b867800e122e417a9276be9cbad7dfc8d06dcc02ceb752ad4c851792e"
+        },
+        {
+          "frame_id": 142,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/get_potato_chips_0902_103_KEYFRAME_000142.png",
+          "sha256": "65fa24f3f1eed912c50d5873762857f51036f4efd62be31066373f5d0c7bf8d3"
+        },
+        {
+          "frame_id": 283,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/get_potato_chips_0902_103_KEYFRAME_000283.png",
+          "sha256": "a1d0119a9422b2b27f6e0f3f44754eb2c06467cf680e9e1acf8a4ad66e2cab08"
+        }
+      ],
+      "new_clean_candidate": "UNKNOWN",
+      "outputs": [
+        {
+          "bytes": 3345105,
+          "decoded_frames": 284,
+          "ffmpeg_xerror_full_decode": true,
+          "fps": "30/1",
+          "height": 1160,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/get_potato_chips_0902_103_RAW_TO_ROBOT_FULLSESSION.mp4",
+          "sha256": "d99aa9eda84d5ca998fa002f89bdd3b523cf1b608d436a7ea9e0dbdf31f66de0",
+          "width": 1920
+        },
+        {
+          "bytes": 898682,
+          "decoded_frames": 284,
+          "ffmpeg_xerror_full_decode": true,
+          "fps": "30/1",
+          "height": 440,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/get_potato_chips_0902_103_OLD_VS_NEW_CLEAN_OCCLUSION_FULLSESSION.mp4",
+          "sha256": "d0004f981db6cc27ba5cca3f8b11c4c39588727d644b5e0c0053f6b8bb212b1c",
+          "width": 1920
+        }
+      ],
+      "session": "get_potato_chips_0902_103",
+      "source_frame_ids": [
+        0,
+        283
+      ],
+      "sources": [
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_103/CameraRecord_get_potato_chips_0902_103.mp4",
+          "sha256": "45140fc9849dcaa9e24dad2ce9af910bef212950345a9705225b2276db143d2c",
+          "stage": "raw"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/hawor_bounded_v2/chips/get_potato_chips_0902_103/HAWOR_RAW_VS_BOUNDED_PARAMETER_中文全片固定尺度.mp4",
+          "sha256": "02fdfbd0824c2da6cef894b42820883f1683a07339b8a8fbf1fdd8dcb410437d",
+          "stage": "hawor"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/mask_role_removal_bounded_v2_1/chips/get_potato_chips_0902_103/get_potato_chips_0902_103_HAND_TRACKER_MASK_中文逐帧复核.mp4",
+          "sha256": "7c160bd7129b85e50115a692c41996600ee3e4ff4630e1ff2019910cceea01dc",
+          "stage": "role_mask"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/mask_task_object_identity_v1/chips/get_potato_chips_0902_103/get_potato_chips_0902_103_TASK_OBJECT_IDENTITY_中文全片复核.mp4",
+          "sha256": "a855aec90c6956e23b7c512458bcba932debf85714ff71f01c8377d2380168c1",
+          "stage": "task_object_mask"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/depth_corrected_metric_v1/chips/get_potato_chips_0902_103/get_potato_chips_0902_103_校正公制深度_逐帧.mp4",
+          "sha256": "ba876741dbaf17fdd95b820dcdc3157089700197fc269cf94484667f5c25742b",
+          "stage": "depth"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/object6d_observed_only_v1/chips/get_potato_chips_0902_103/physical_object_0/get_potato_chips_0902_103_OBJECT6D_观测限定_中文全片复核.mp4",
+          "sha256": "e2cbe360d871185ab15323ffdd5cb65f62c6986f6d2ab35124c763fd70d5ca40",
+          "stage": "object6d"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/object6d_observed_only_v1/chips/get_potato_chips_0902_103/physical_object_1/get_potato_chips_0902_103_OBJECT6D_观测限定_中文全片复核.mp4",
+          "sha256": "38725735fd73698aa2c2036fc8f62d37cda123db49a4e912f58eef4747e76788",
+          "stage": "object6d"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/object6d_observed_only_v1/chips/get_potato_chips_0902_103/physical_object_2/get_potato_chips_0902_103_OBJECT6D_观测限定_中文全片复核.mp4",
+          "sha256": "9bf45442b6f50ac48c4e26b494bbe6e5d9ad1d81e8e4e9dcfd6a8bd8447dc8b6",
+          "stage": "object6d"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_103/CLEAN_SYNTHETIC_MASTER.mp4",
+          "sha256": "be4730ec881184ef962c12720bcc61c5fe31b339e99e5d9cb3fcafaac4b1e560",
+          "stage": "clean"
+        },
+        {
+          "fps": "30/1",
+          "frames": 284,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_103/fullsession_review/get_potato_chips_0902_103_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "c823fac206f6919d07b877a4201137853fe08e246f5b29f9746db8a99907a44f",
+          "stage": "robot"
+        }
+      ],
+      "training_eligible": false
+    },
+    "play_cards_0902_042": {
+      "contact_authority": false,
+      "control_ground_truth": false,
+      "keyframes": [
+        {
+          "frame_id": 0,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/play_cards_0902_042_KEYFRAME_000000.png",
+          "sha256": "5a03e9d6bdd2bc1659ccc8c089c04afaf03fa3e96b99e5e0f122de72ed720ba1"
+        },
+        {
+          "frame_id": 85,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/play_cards_0902_042_KEYFRAME_000085.png",
+          "sha256": "3796be411b600d7317b1c12b9b201649c3caedec374ba9686ab394f6b4ef64ea"
+        },
+        {
+          "frame_id": 170,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/play_cards_0902_042_KEYFRAME_000170.png",
+          "sha256": "10597b6f347245f2e243fdc800909b0c4c605a625ae793777236ca4ad8f289e6"
+        }
+      ],
+      "new_clean_candidate": "UNKNOWN",
+      "outputs": [
+        {
+          "bytes": 1663458,
+          "decoded_frames": 171,
+          "ffmpeg_xerror_full_decode": true,
+          "fps": "30/1",
+          "height": 1160,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/play_cards_0902_042_RAW_TO_ROBOT_FULLSESSION.mp4",
+          "sha256": "0c1f87cc23729bc12347573c93ad3229fdbfb7774b66d2c6c767d07748d08bb5",
+          "width": 1920
+        },
+        {
+          "bytes": 474684,
+          "decoded_frames": 171,
+          "ffmpeg_xerror_full_decode": true,
+          "fps": "30/1",
+          "height": 440,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/play_cards_0902_042_OLD_VS_NEW_CLEAN_OCCLUSION_FULLSESSION.mp4",
+          "sha256": "1715b7992a95e6ad249e7cd7e9b7428da7c8ea7b7f1149fd44736af361087e1b",
+          "width": 1920
+        }
+      ],
+      "session": "play_cards_0902_042",
+      "source_frame_ids": [
+        0,
+        170
+      ],
+      "sources": [
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/playing_cards/play_cards_0902_042/CameraRecord_play_cards_0902_042.mp4",
+          "sha256": "879cd8f2ec91cd7aecbdff2de83d950d5cad0b6b11bc2fb97c5054df33ca4928",
+          "stage": "raw"
+        },
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/hawor_fresh_bounded_v2_v1/play_cards_0902_042/HAWOR_RAW_VS_BOUNDED_PARAMETER_中文全片固定尺度.mp4",
+          "sha256": "c9debc829726fd2b841783455b796204e6936501f77b31716e36fc5afb64d2ae",
+          "stage": "hawor"
+        },
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/mask_role_removal_bounded_v2_1/poker/play_cards_0902_042/play_cards_0902_042_HAND_TRACKER_MASK_中文逐帧复核.mp4",
+          "sha256": "814cc1ece07bbc4f6213bd8cd560ca944db2d69a8b5950a1c8a108882e95de3f",
+          "stage": "role_mask"
+        },
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/mask_task_object_identity_v1/poker/play_cards_0902_042/play_cards_0902_042_TASK_OBJECT_IDENTITY_中文全片复核.mp4",
+          "sha256": "9ff0da09c3796e63dd809fdebf26131f091677996942409f44f2e08f27ac4be3",
+          "stage": "task_object_mask"
+        },
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260910_exact78_depth_object6d_expansion_v2/depth_corrected_metric_v1/poker/play_cards_0902_042/play_cards_0902_042_校正公制深度_逐帧.mp4",
+          "sha256": "74734ef8f4d25426643d352e46e0d913a2f5c3474cefae60bdf5594c5a9953af",
+          "stage": "depth"
+        },
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260910_exact78_depth_object6d_expansion_v2/object6d_observed_only_v1/poker/play_cards_0902_042/physical_object_0/play_cards_0902_042_OBJECT6D_观测限定_中文全片复核.mp4",
+          "sha256": "bcb316769bc013f0d79fa7351b51b5f31a3fd52daa097f093b8a9a155da41633",
+          "stage": "object6d"
+        },
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_042/CLEAN_SYNTHETIC_MASTER.mp4",
+          "sha256": "466c2bb16df79d553570e9603ae366edc5e9d66b374e7dddeba0fa69ced4d6e0",
+          "stage": "clean"
+        },
+        {
+          "fps": "30/1",
+          "frames": 171,
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/robot30_offline_visual/fresh_batch_012/attempt_0001/work_sessions/play_cards_0902_042/render/poker/play_cards_0902_042/fullsession_review/play_cards_0902_042_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "5f2fa51b6ada773e254618476ac40f65cb404d4873fffc7574eb1c102dc26eed",
+          "stage": "robot"
+        }
+      ],
+      "training_eligible": false
+    }
+  },
+  "source_freeze": {
+    "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/route/attempt_0001/SOURCE_FREEZE.json",
+    "sha256": "569e54a1ad77f5ac6977ac117de8426369aeff7bab1ae2ee4f32e082d803de26"
+  }
+}

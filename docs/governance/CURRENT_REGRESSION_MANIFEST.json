@@ -1,57 +1,63 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-14T19:12:16+08:00",
-  "generation_id": "gov-005869-1eff2016fad2",
-  "governance_revision": 5869,
+  "generated_at": "2026-09-17T10:20:59+08:00",
+  "generation_id": "gov-011169-0f858fe9be38",
+  "governance_revision": 11169,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
-      "bytes": 8392,
+      "bytes": 10463,
       "path": "/mnt/workspace/code/chaoyang/tests/test_governance_fact_ledger.py",
-      "sha256": "95fc124ce027af3544de6ef62ab597f7d850490cf85cb5d971f495e3752b8f64",
+      "sha256": "627949c259f8a966e147493a89af3c4df9290e7c748cb96661b06e1918e135cc",
       "stage": "governance"
     },
     {
-      "bytes": 3469,
+      "bytes": 5378,
       "path": "/mnt/workspace/code/chaoyang/tests/test_governance_heartbeat_clean_reconcile_v52.py",
-      "sha256": "5d710b2af963035240b467200814bf32fece82dd5460091823b20bf7950ef28e",
+      "sha256": "a23483c8bff022fabd19bf7b9729bff0f8e0e44f069803ea6d2e1f44461ab36b",
       "stage": "governance"
     },
     {
-      "bytes": 4114,
+      "bytes": 5805,
       "path": "/mnt/workspace/code/chaoyang/tests/test_current_baseline_registry_v2.py",
-      "sha256": "8743d4679f77ea768560ed5e9fd937f838c5dd048980bfa54b2f2ee194ade7e0",
+      "sha256": "b4dc0a4a2453cba60f9f7ed569cc0bf065043887ea7e6324f6d479d448033a60",
       "stage": "governance"
     },
     {
-      "bytes": 4342,
+      "bytes": 4349,
       "path": "/mnt/workspace/code/chaoyang/tests/test_exact78_clean_wave_attempts_v3.py",
-      "sha256": "36d0580391efdb278c7c14b5cf3bd943d25c356bb8e105718243cd7397de9ffc",
+      "sha256": "cccb59ffd00631fbb26e8ebaa21b1af531532f4af8c68a4cf6088d49b6b3a3c6",
       "stage": "clean"
     },
     {
-      "bytes": 1517,
+      "bytes": 1528,
       "path": "/mnt/workspace/code/chaoyang/tests/test_hawor_bounded_parameter_successor.py",
-      "sha256": "1013a62353c27e08cd4ebf01ee76b05d72c5dcc8ddb03ebb534c2ff3fa539242",
+      "sha256": "d01175471b5d8b57fc608f66b3d2ed800f83cbba85b3f6167c6e156ae3f6eeff",
       "stage": "hawor"
     },
     {
-      "bytes": 2070,
+      "bytes": 1647,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_hawor_diagnostic_reproduction_pair_v71.py",
+      "sha256": "f529d14afc34b224a543a05833dbb6f85b573d798b0d2999f31515a0d5ae93b1",
+      "stage": "hawor"
+    },
+    {
+      "bytes": 2081,
       "path": "/mnt/workspace/code/chaoyang/tests/test_run_exact78_role_mask_successor_v3.py",
-      "sha256": "9d630ee0e47ade4afe568cbc433dfd552261dbbf2157b6ac8d36179a863fe970",
+      "sha256": "08e3b2b5c52b954c3470e63967895039eaf2770f104f992a23af9ecc7f1c20fc",
       "stage": "role_mask"
     },
     {
-      "bytes": 4654,
+      "bytes": 4663,
       "path": "/mnt/workspace/code/chaoyang/tests/test_mask_successor_protocol.py",
-      "sha256": "15476ebe20c7f30a2a87aaec6bc130cebcf2fef068e804ea3537e0f448c8ebec",
+      "sha256": "6644fae00abd3d0e33a312563e300fac00129378d5dd6de6ec76fac1014d322f",
       "stage": "object_mask"
     },
     {
-      "bytes": 4100,
+      "bytes": 4107,
       "path": "/mnt/workspace/code/chaoyang/tests/test_exact78_depth_object6d_expansion_v2.py",
-      "sha256": "b1947667b8bd54b0a326e32c8f2b6a98fd1e52054638927d6d89bdbeacc2e557",
+      "sha256": "3f775fdd8c23f60886739b0c5fab92be43b96bc516852c708db97c0200d86887",
       "stage": "depth_object6d"
     },
     {
@@ -61,39 +67,465 @@
       "stage": "object6d"
     },
     {
-      "bytes": 3759,
+      "bytes": 1129,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_adapt_object6d_rectified_to_selected_v71.py",
+      "sha256": "f1e3fc2cece208c9ee620c8bff9722851fe6da197fb3daec5eae3e3bda0fbbca",
+      "stage": "object6d"
+    },
+    {
+      "bytes": 388,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_object6d_coordinate_domain_v71.py",
+      "sha256": "0463a0c2b4f10e222d593b7d89efd5028846768206fb1a9b1a7b6168f0cb384b",
+      "stage": "object6d"
+    },
+    {
+      "bytes": 958,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_object6d_selected_camera_adapter_batch_v71.py",
+      "sha256": "88c3ea0a357f2c4e32d9433b492c11ae59b2c2ba9c7f418d13b5c2aa66032fbe",
+      "stage": "object6d"
+    },
+    {
+      "bytes": 3777,
       "path": "/mnt/workspace/code/chaoyang/tests/test_contact_geometry_v2_fixtures.py",
-      "sha256": "c636f4a57f3c28ddaba4ec9d60e2924bd28a933dcaa0d6475b11b408819e753f",
+      "sha256": "4fe8b0f11800e1cb787cf4beac65a880228a66f1421bf617e13fa03e4b02fee9",
       "stage": "contact"
     },
     {
-      "bytes": 13543,
+      "bytes": 18444,
       "path": "/mnt/workspace/code/chaoyang/tests/test_contact_robot_occlusion_v1.py",
-      "sha256": "b582f058ab8bf7575b3b0cb8213d4e88745c51732f37196e5c05f2e4af070643",
+      "sha256": "f57afecf0ecad502daef393959d0b93095075c5449fa6dd994d6089cc5cecd74",
       "stage": "occlusion"
     },
     {
-      "bytes": 26224,
+      "bytes": 3206,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_visible_surface_occlusion_canary_v71.py",
+      "sha256": "02ee749c9cb9dc0935f4ba0511c6c8fb7421f95fecb87bbd6b0202ef5a17b3fe",
+      "stage": "occlusion"
+    },
+    {
+      "bytes": 2363,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_occlusion_visible_surface_watcher_v71.py",
+      "sha256": "0e81e8d49ee7374b5c8bd06f2f0c465924611cdb6d0ed3ad284a1788d1861184",
+      "stage": "occlusion"
+    },
+    {
+      "bytes": 367,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_occlusion_silver_governance_finalizer_v71.py",
+      "sha256": "2dc3ff279951f32e0f172446e829394616c76265f77c177515e358539bc64f2e",
+      "stage": "occlusion"
+    },
+    {
+      "bytes": 26268,
       "path": "/mnt/workspace/code/chaoyang/tests/test_tianji_kai_robot_baseline.py",
-      "sha256": "fb840b1f855a4575e97edad0f9d24afe544d399bc3db44b37a18ead3ad521a9e",
+      "sha256": "279a72fda9b87331384dd799e3e7126764c4e2d15e546d621b95f3fefb464bcb",
       "stage": "robot"
     },
     {
-      "bytes": 5313,
+      "bytes": 5327,
       "path": "/mnt/workspace/code/chaoyang/tests/test_robot_hand_round1_v52.py",
-      "sha256": "591791658c063ca34158ebd19739b489347fe9b068285eade6ac4a4203f83275",
+      "sha256": "9e1e374b54b7a1369db67cc6aaefb8dc7df992703ffa1a8ec3024c0274562311",
       "stage": "robot"
     },
     {
-      "bytes": 2242,
-      "path": "/mnt/workspace/code/chaoyang/HumanEgo/tests/test_visual_aux_contract_v1.py",
-      "sha256": "fcc4d0b757dad2a741e136ffeecfb256727dbd6ccefed8628abd89937df86087",
+      "bytes": 2218,
+      "path": "/mnt/workspace/code/chaoyang/tests/human_ego/test_visual_aux_contract_v1.py",
+      "sha256": "07b7cf09128531bdf2c34e0d07095d95ec6d35c5a2a1fcbebb6dda85a53e8bc4",
       "stage": "humanego_aux"
     },
     {
-      "bytes": 5585,
-      "path": "/mnt/workspace/code/chaoyang/HumanEgo/tests/test_visual_aux_bundle_v52.py",
-      "sha256": "9224e3fcd4373a318dcf8c4877f0ef88c490cfb31b3b086c91d35afd67738577",
+      "bytes": 12202,
+      "path": "/mnt/workspace/code/chaoyang/tests/human_ego/test_visual_aux_bundle_v52.py",
+      "sha256": "8ba270a71e1c4fa16912263a7b13857fda44b99b3dae65ce61e85df1d3908fd6",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 16484,
+      "path": "/mnt/workspace/code/chaoyang/tests/human_ego/test_visual_aux_future2d_v53.py",
+      "sha256": "bd39a1ed1e9dec6e024e4020af46fab626476ca2d225a495d9c89ab4fac74ff9",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 2297,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_gpu_command_with_v71_lease.py",
+      "sha256": "b079cd1215d184caad9adf782740ed1dcc71dbfbc1e1304ec45f5e623518c725",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 5303,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_v71_post_robot_visual_aux.py",
+      "sha256": "5731fda3aed4de8e9eb9d9ed14cb931d1bcd86529f3241de60481a89d463e268",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 1336,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_visual_tier_causal_clean_v71.py",
+      "sha256": "47e8f1daaa7176897fa21a5fe4f7c1044a25d9642e901ec65650b894c93a16e1",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 1898,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_v71_post_robot_visual_tier.py",
+      "sha256": "f2b6d590352a324af98b35a910063f56c078b66e78d5de5eae949cda95123991",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 5972,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_governance_v71_contracts.py",
+      "sha256": "b428997bf8e41864691723c7f8eb7d7e27ffded23530708e7fcee14e4ffee491",
+      "stage": "governance"
+    },
+    {
+      "bytes": 9007,
+      "path": "/mnt/workspace/code/chaoyang/tests/governance/test_r3_governance_contracts.py",
+      "sha256": "7f016d007fd4d8ab5439a12c87b50fee58bd84523fc2add0b4d96520551deee0",
+      "stage": "governance"
+    },
+    {
+      "bytes": 14179,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_pipeline_contracts_r3.py",
+      "sha256": "33f00d3aa5192cb689ee5e89bb3cf9134b5c345e04547990c5b374e4038fe42f",
+      "stage": "pipeline_r3"
+    },
+    {
+      "bytes": 10901,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_robot_v75_recovery_target_reach_profile.py",
+      "sha256": "cd254fb61bfbbe10e97332cd6421ba86efa0077eaeb2fbfc484d57b8d200e49c",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1498,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_robot_r3_output_schemas.py",
+      "sha256": "07af4418acf889795d7f10d76fdf945e7daf3ffa59af714048b4cf50af5c15c2",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1974,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_robot_hard_soft_gate_v71.py",
+      "sha256": "b644b270f143e89bb509b0a3fdafc84be8a3ab05582fd2558132274c14e1dc84",
+      "stage": "robot"
+    },
+    {
+      "bytes": 2040,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_robot_hard_soft_watcher_v75_adopt.py",
+      "sha256": "38e0d64e9dcc8687328f35df2d48e1e2624bf849a94e71126e7afd106df15306",
+      "stage": "robot"
+    },
+    {
+      "bytes": 611,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_visual_aux_checkpoint_index_cli_v71.py",
+      "sha256": "bf89619384ec09104897df8d56715e71e37bab0d45377c0fa1bcd1b759e3a6c4",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 1299,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_cleanup_current_only_v71_cli.py",
+      "sha256": "83f6e35fbf1e3cac7ff85e00bd186aad24466d86c0793f8054f1ecab87cf1855",
+      "stage": "cleanup"
+    },
+    {
+      "bytes": 1606,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_publish_v71_task_packet_successor.py",
+      "sha256": "75cd1560bc712c7970a3c4355a23931b5e47c51f4bf02da16a1a8bf799e07f8d",
+      "stage": "governance"
+    },
+    {
+      "bytes": 2970,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_gpu_lease_v71.py",
+      "sha256": "d57b209777d2652df15c4eb8a070d72a76073da9892fa3f1138679c0e3baffff",
+      "stage": "governance"
+    },
+    {
+      "bytes": 495,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_v71_finite_convergence_supervisor.py",
+      "sha256": "8d8da4dd5d258399a7b190372fb0c096e02ada22ebffc4f0f97e82847d5d4c73",
+      "stage": "governance"
+    },
+    {
+      "bytes": 1919,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_post_clean_s1_automation_v71.py",
+      "sha256": "27ade92393164626a14401e1fd71c8b76a5f4e8f7366067f25f9fd1b13b422c4",
+      "stage": "governance"
+    },
+    {
+      "bytes": 867,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_v71_post_s1_finalize.py",
+      "sha256": "403014fe5ad9d2957f2ac4e9c4b3a57e9658d370bb3b21d3df4a92a18aae87da",
+      "stage": "governance"
+    },
+    {
+      "bytes": 989,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_cleanup_current_only_v71.py",
+      "sha256": "72cf8e43de9ce24bf741b60beca1d4164dcdcd0b0c62a767320ecd4940272188",
+      "stage": "cleanup"
+    },
+    {
+      "bytes": 1337,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_conversion_cause_ledger_v2.py",
+      "sha256": "c7c2eb72b987de0c37e456c203e9cb74acbcc88f0234cea5bb573657d5c351cf",
+      "stage": "conversion"
+    },
+    {
+      "bytes": 4883,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_exact78_conversion_cause_ledger_v2.py",
+      "sha256": "aff5ec63a537c70209b9aebebfe519a3808959057971d4a6b5b3c099d21122c4",
+      "stage": "conversion"
+    },
+    {
+      "bytes": 913,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_successor_canary_selection_v71.py",
+      "sha256": "6ba7b59336fdaeb1cda7c04f4d39299af44efef9a1bfd033c2437e3699064cd8",
+      "stage": "conversion"
+    },
+    {
+      "bytes": 1363,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_robot_conversion_diagnosis_watcher_v71.py",
+      "sha256": "1dd1b4dddb3c45d1d6c982e02c9e5bfc4abbd77cfaca7e3666f3ad7fc98b3502",
+      "stage": "conversion"
+    },
+    {
+      "bytes": 4237,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_successor_command_packets_v71.py",
+      "sha256": "506b8498d7a399741dccebfe607f799634936fbe9d074cc425db65c7e10f2e00",
+      "stage": "conversion"
+    },
+    {
+      "bytes": 1461,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_exact78_final_terminal_matrix_v71.py",
+      "sha256": "8911a5bdae978d457e82adebd0cad5be8955b1e3a10c4167cd26dfeca8cf50b7",
+      "stage": "exact78"
+    },
+    {
+      "bytes": 508,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_s1_input_semantics_v71.py",
+      "sha256": "20bda7ae8251a28fdc6e9333ad9159acbe9a4a6457badd4579753c6522979605",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 3065,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_contact_occlusion_canary_plan_v71.py",
+      "sha256": "a1e92001b899ef4de6d748438c60c2b6e99eace8f46949dc57b8ed818097ee06",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 754,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_contact_occlusion_canary_revision_r72.py",
+      "sha256": "88bf2893fac8d9b8d998d80d194151a4efccc56f2944a5a5ec3574d625e09f0f",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 487,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_contact_occlusion_canary_revision_r73.py",
+      "sha256": "309dda1e4189b49b87ef484919d4683a3926a2509f43c292b898859bba2e4085",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 2669,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_frozen_reentry_audit_frames_v71.py",
+      "sha256": "12a387da949d1c3c1d4d89e1562c53cf5ad819c701823c6022a5bc7bb5916836",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 4475,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_s1_input_preflight_index_v71.py",
+      "sha256": "808a534bb925da701ec65e05cf5df87711f84eba0a23218be2901f726e57a11f",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 11471,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_causal_modal_mask_challenger_v71.py",
+      "sha256": "494e7656a5598b06581f4a3c38af6d585eacbee4c159d0081aa988432bbcda66",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 9921,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_causal_modal_mask_gpu_adapter_v71.py",
+      "sha256": "414aa6b68994bb1c6bce7a6643037aecc93f6a0406a394ecf08adc57eed33194",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 845,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_cutie_asset_pin_v71.py",
+      "sha256": "9b86020540173c33bc02168e28a337187e06e627a17f7e5a82de09d3960e8aba",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 3822,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_evaluate_s1_modal_mask_canaries_v71.py",
+      "sha256": "0acbd0daab5c65315c52d426b380cdf40305896fa3d3114960e83dbb4052e88f",
+      "stage": "object_mask"
+    },
+    {
+      "bytes": 551,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_role_mask_runtime_contract_repair_v71.py",
+      "sha256": "c15724055dabcd91cfe1447fc403c86efe192c36c73412f9bd991cc52d74aaaf",
+      "stage": "role_mask"
+    },
+    {
+      "bytes": 1041,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_sam31_canonical_tree_identity_v71.py",
+      "sha256": "dabf0dc112b63f20b5e8655f53a04deae5df39c46b8cd711dbc7c0142ffd6305",
+      "stage": "role_mask"
+    },
+    {
+      "bytes": 5708,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_object_contact_evidence_v1.py",
+      "sha256": "b050f4da45c618071b15edc02159bdae52f90db80626b0c2893aa8fc14ac63ef",
+      "stage": "contact"
+    },
+    {
+      "bytes": 7177,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_object_pose_hypothesis_v2.py",
+      "sha256": "d2a7d54d9ee93b9e9cedd3ad12e872216a9ce321287f86d27571922e921d2512",
+      "stage": "object6d"
+    },
+    {
+      "bytes": 466,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_occlusion_blocked_receipts_v71.py",
+      "sha256": "118d88cf6cabca282bea1c7762b750deae88b94c1b68f8c2236b3c20ad3a60b3",
+      "stage": "occlusion"
+    },
+    {
+      "bytes": 6986,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_causal_robotized_compositor_v1.py",
+      "sha256": "de43118facc772c9c95dac61237676ddffb85f36826f17cb001128b0194aaea9",
+      "stage": "occlusion"
+    },
+    {
+      "bytes": 514,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_metric_contact_robot_blocked_v71.py",
+      "sha256": "bb886af19647008129b7632b437efb247e5c6351b7a63d345ff5e9563674023a",
+      "stage": "robot"
+    },
+    {
+      "bytes": 922,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_robot_geometry_terminal_matrix_v71.py",
+      "sha256": "675c84ab5032e7bf4e514daf1b80776cef2ef2f71097404a00726e8fb5b6a4f3",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1543,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_continue_exact78_robot_session_067_v1.py",
+      "sha256": "d113335b58cd1f9ef3edb3eea83505b9f141da05bf6abd08a58b248d7a534fa8",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1019,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_robot_geometry_self_collision_v71.py",
+      "sha256": "3506c8bc293574887b8f48ff5a6d77603bb5e64b4d2f1b861213dd721dc97cf7",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1051,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_export_robot_unified_zbuffer_canary_v71.py",
+      "sha256": "e710a6dc981ce6d535d8eaff68aa0947d7cc3329fb730b3e2b486d01da19fe4c",
+      "stage": "robot"
+    },
+    {
+      "bytes": 5630,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_robot_geometry_v1.py",
+      "sha256": "6c5afbe64430d592160a8fd76bc6599a988797100478737e0af87e493b59551d",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1392,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_robot_object_ownership_canary_v71.py",
+      "sha256": "8e2662f451c7f2ca7c07e7c420ea753f16d3fcb302f4b400012f5b8a14c799af",
+      "stage": "robot"
+    },
+    {
+      "bytes": 4470,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_exact78_robot_ready_batches_v53.py",
+      "sha256": "fbeead627629c78ee690c33d12fe0a09d1e62d92dc19b9247467f0bc294ea2e6",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1180,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_v71_post_finalize_robot_expansion.py",
+      "sha256": "3c6ca5d1287118cc3f450d25380d9fc2dd5d73acab464ee500dddb6f741f589a",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1974,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_robot_hard_soft_gate_v71.py",
+      "sha256": "b644b270f143e89bb509b0a3fdafc84be8a3ab05582fd2558132274c14e1dc84",
+      "stage": "robot"
+    },
+    {
+      "bytes": 306,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_kaihand_tip_reachability_floor_v71.py",
+      "sha256": "aa33917e8592a7273f81707dd576a91b1b2f0ef7cd26d57edf4fb83dc3fabe43",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1315,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_robot_placement_candidate_reduction_v71.py",
+      "sha256": "229d49a91a03e2b9c8f1603fb736eb91446f37dda302878cb4f2611045cef9dd",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1289,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_robot_placement_reduction_watcher_v71.py",
+      "sha256": "f7ff63a3b3a4497b4dafb571aea01d8c96d381627edfc50b04adaa48f8cca51b",
+      "stage": "robot"
+    },
+    {
+      "bytes": 1090,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_audit_robot_hand_round2_value_v71.py",
+      "sha256": "d2b7aac7df3a970b7c7a3f9e40158817bae3e07743a02b7d036de528233b65b9",
+      "stage": "robot"
+    },
+    {
+      "bytes": 6641,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_handle_sensor_pipeline_admission_v71.py",
+      "sha256": "148b22dd0f73e3844c53fc9cad675f0de6f3d6586ca294b672361412d90e9a66",
+      "stage": "sensor"
+    },
+    {
+      "bytes": 6474,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_handle_h1_h2_sidecars_v71.py",
+      "sha256": "fcaa0e4429574e3e9a363beb1ef84aa2cce467387284eb12283de2a63ac3528d",
+      "stage": "sensor"
+    },
+    {
+      "bytes": 5100,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_handle_h3_h4_preflight_v71.py",
+      "sha256": "71d4fc5917d6ea6f8bc89a52f73c23349ba926233292a9ac340d9c2e4d0ed71e",
+      "stage": "sensor"
+    },
+    {
+      "bytes": 830,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_sensor_pipeline_terminal_matrix_v71.py",
+      "sha256": "27f94012e338790ec6510caa25e74e5ced59efad949595e3a43aeaee7c0dde2d",
+      "stage": "sensor"
+    },
+    {
+      "bytes": 2911,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_sensor_post_visual_aux_canaries_v71.py",
+      "sha256": "1948d912c1d41265bc25f9768c508a18e1e10b85fb497c55dec699b63778567a",
+      "stage": "sensor"
+    },
+    {
+      "bytes": 1025,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_visual_aux_checkpoint_index_v71.py",
+      "sha256": "06c6430df1fc5fe7294646beded87c5f2cba313dd25323ba1dc819dab92a59eb",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 4503,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_build_visual_aux_robot_expansion_plan_v71.py",
+      "sha256": "34a0e80f72d7844e1793cc07888a49ed0659859c46495be94a20ad30bfa92b92",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 2518,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_visual_aux_candidate_bundle_watcher_v71.py",
+      "sha256": "3839b3746d57b260c5e32d82d17d050978ea586ce7823a57bf2651d60a0b5aec",
+      "stage": "humanego_aux"
+    },
+    {
+      "bytes": 2234,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_visual_aux_capacity_preflight_v71.py",
+      "sha256": "cab5b1166984717344189a6d317a03e1664ab0bd3b65747b130e95908189ce87",
       "stage": "humanego_aux"
     }
   ]

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "migration_id",
+    "generated_at",
+    "generation_id",
+    "effective_governance_revision",
+    "effective_status",
+    "previous_plan",
+    "new_plan",
+    "task_migrations",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-plan-migration-receipt-v1"},
+    "migration_id": {"enum": ["MIGRATE-00-V71-R3", "RC1-MIGRATE-00"]},
+    "generated_at": {"type": "string"},
+    "generation_id": {"type": "string", "minLength": 1},
+    "effective_governance_revision": {"type": "integer", "minimum": 1},
+    "effective_status": {"const": "CURRENT"},
+    "previous_plan": {"$ref": "artifact_ref.schema.json"},
+    "new_plan": {"$ref": "artifact_ref.schema.json"},
+    "task_migrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["from_task_id", "to_task_id", "migration_status", "reason"],
+        "properties": {
+          "from_task_id": {"type": "string"},
+          "to_task_id": {"type": "string"},
+          "migration_status": {"enum": ["MIGRATED", "TERMINATED", "SUPERSEDED", "UNCHANGED"]},
+          "reason": {"type": "string"}
+        }
+      }
+    },
+    "claim_limit": {"type": "string"}
+  }
+}

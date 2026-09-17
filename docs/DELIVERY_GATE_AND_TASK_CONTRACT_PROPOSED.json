@@ -1,0 +1,466 @@
+{
+  "schema_version": "chaoyang-visual-delivery-proposal-v1",
+  "status": "PROPOSED_NOT_EXECUTED",
+  "proposed_release_id": "VISUAL_DELIVERY_RC1",
+  "based_on_snapshot": {
+    "revision": 10823,
+    "timestamp": "2026-09-16T05:17:16+08:00",
+    "remote_execution_verified": false,
+    "local_manifest_verified_files": 12
+  },
+  "authority": {
+    "promote_existing_results": false,
+    "control_ground_truth": false,
+    "physical_deployment_authorized": false,
+    "consumer_qualification": "VISUAL_AUX_ONLY_AFTER_GATES"
+  },
+  "scope": {
+    "main_cohort": "exact78",
+    "raw_sessions": 156,
+    "raw_per_task": {
+      "chips": 78,
+      "poker": 78
+    },
+    "upstream_candidate_sessions": 101,
+    "metric_ready_sessions": 58,
+    "metric_ready_per_task": {
+      "chips": 39,
+      "poker": 19
+    },
+    "sensor_cohort": "SEPARATE_REPORT_NOT_BLOCKING_EXACT78",
+    "checkpoint_objective": "H50_FUTURE_2D_VISUAL_AUX",
+    "out_of_scope": [
+      "PHYSICAL_DEPLOYMENT",
+      "REAL_ROBOT_SUPERVISED_POLICY",
+      "HUMANEGO_6DOF_POLICY_SWITCH",
+      "NEW_PAPER_MODEL_ROLLOUT",
+      "LARGE_ASSET_CLEANUP"
+    ]
+  },
+  "budget": {
+    "max_root_cause_algorithm_rounds": 2,
+    "max_active_engineering_hours_total": 24,
+    "per_session_runtime_attempts": 2,
+    "quality_failure_auto_retry": false,
+    "new_task_name_resets_budget": false,
+    "gpu_wait_counts_as_algorithm_attempt": false,
+    "training_gpu_time_reservation_fraction_proposal": 0.3,
+    "batch_wall_time_budget": "FREEZE_ONCE_FROM_REAL_PILOT_PROFILE_BEFORE_BATCH",
+    "training_max_epochs_proposal": 100,
+    "training_max_updates_proposal": 10000,
+    "stop_at_first_training_limit": true
+  },
+  "models": {
+    "segmentation": "KEEP_PINNED_SAM3.1",
+    "inpainting": "KEEP_PINNED_PROPAINTER",
+    "hand": "KEEP_EXISTING_VALIDATED_HAND_SOURCE_BY_CAPTURE_DOMAIN",
+    "robot_solver": "REUSE_V77_AND_BOUNDED_CAUSAL_SUCCESSOR",
+    "policy_architecture": "KEEP_VISUAL_AUX_FUTURE2D_MODEL",
+    "allow_unverified_model_upgrade": false
+  },
+  "runtime_paths": {
+    "primary_mask": "FIXED_SAM31_CAUSAL_TRACKING",
+    "only_mask_fallback": "VERIFIED_CURRENT_FRAME_REDETECT_RESEED_SAME_MODEL",
+    "object_atlas": "OPTIONAL_SAME_INSTANCE_SAME_FACE_CAUSAL",
+    "contact10": "OPTIONAL_FOR_CONTACT_REFINEMENT_NOT_BASE_COMPOSITOR",
+    "metric_backed": "VALID_CALIBRATION_AND_REGISTRATION",
+    "visual_only": "NO_FABRICATED_DEPTH_UNKNOWN_ORDERING_STAYS_UNKNOWN"
+  },
+  "artifact_separation": {
+    "run_status_independent_of_quality": true,
+    "historical_quality_c_immutable": true,
+    "sidecar_quality_per_frame": true,
+    "input_image_valid_separate_from_future_label_valid": true,
+    "offline_visualization_not_loader_input": true,
+    "robot_q_cache_independent_of_clean": true,
+    "robot_render_cache_independent_of_clean": true
+  },
+  "temporal_proposal": {
+    "raw_frame_grid_preserved": true,
+    "horizon_original_frames": 50,
+    "observation_start_stride_original_frames": 5,
+    "causal_inpainting_history_frames_including_current": 16,
+    "causal_current_window": "[max(0,t-15),t]",
+    "publish_only_current_t": true,
+    "rewrite_old_current_frames_with_new_future": false,
+    "future_targets_allowed": true,
+    "current_inputs_future_dependency_allowed": false,
+    "check_all_current_input_sources": [
+      "mask",
+      "donor",
+      "atlas",
+      "inpaint",
+      "robot_q",
+      "placement",
+      "current_state"
+    ],
+    "initial_calibration_prefix": "NO_TRAINING_BEFORE_PREFIX_END_WHEN_USED",
+    "out_of_bounds_future_padding_allowed": false,
+    "forward_fill_missing_allowed": false
+  },
+  "pixel_source_policy": {
+    "RAW_VISIBLE": {
+      "physical_measurement_claim": "RAW_APPEARANCE_ONLY",
+      "may_feed_visual_aux": true
+    },
+    "REAL_WARP": {
+      "requires": [
+        "same_surface_or_instance",
+        "verified_correspondence",
+        "source_visibility",
+        "source_time<=target_time"
+      ],
+      "may_feed_visual_aux": "AFTER_QA"
+    },
+    "OBJECT_ATLAS": {
+      "requires": [
+        "same_physical_instance",
+        "same_face",
+        "verified_warp",
+        "source_time<=target_time"
+      ],
+      "may_feed_visual_aux": "AFTER_QA"
+    },
+    "SYNTHETIC_CAUSAL_BACKGROUND": {
+      "real_donor_required": false,
+      "may_feed_visual_aux": "AFTER_QA",
+      "may_fill_unobserved_task_object_as_truth": false,
+      "physical_ground_truth": false
+    },
+    "UNKNOWN": {
+      "feed_uncertain_texture_to_encoder": false,
+      "small_regions": "SAME_CAUSAL_MASK_NEUTRALIZATION_IN_BOTH_RGB_BRANCHES",
+      "large_or_critical_failures": "DROP_OBSERVATION_IN_BOTH_BRANCHES"
+    }
+  },
+  "quality_gates": [
+    {
+      "id": "STRUCTURE",
+      "class": "HARD_STRUCTURAL",
+      "origin": "EXISTING_PRINCIPLES_PRESERVED",
+      "required_fraction": 1.0,
+      "checks": [
+        "frame_identity",
+        "selected_eye_and_coordinate_domain",
+        "schema_and_source_binding",
+        "finite_valid_states",
+        "proper_rotations",
+        "paired_input_identity",
+        "no_split_group_overlap",
+        "complete_pixel_source_map"
+      ]
+    },
+    {
+      "id": "RECTIFICATION",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "EXISTING_REGISTERED_SENSOR_GATE",
+      "median_vertical_residual_max_px": 2.0,
+      "p90_vertical_residual_max_px": 5.0,
+      "pixel_domain": "REGISTERED_MEASUREMENT_RESOLUTION_NOT_ASSUMED_SELECTED_GRID",
+      "coverage_threshold": "PRESERVE_REGISTERED_CONTRACT",
+      "consumer": "STEREO_ONLY",
+      "absence_blocks_all_visual_work": false
+    },
+    {
+      "id": "MASK_SUPPORT",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "PROPOSED_ENGINEERING_PROXY_NOT_GOLD",
+      "min_high_confidence_support_coverage": 0.98,
+      "max_detected_identity_swaps": 0,
+      "missing_reference": "NOT_MEASURABLE_NOT_AUTOMATIC_PASS",
+      "candidate_mask_itself_is_reference": false
+    },
+    {
+      "id": "MASK_FUNCTION",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "PROPOSED_FIXED_VISIBLE_WINDOW_FUNCTION_TEST",
+      "window_frames": 24,
+      "min_target_presence_in_confirmed_visible_window": 0.95,
+      "seed_then_all_missing_allowed": false
+    },
+    {
+      "id": "CLEAN_WRITE",
+      "class": "HARD_STRUCTURAL",
+      "origin": "EXISTING_WRITE_BOUNDARY_PRESERVED",
+      "changed_pixels_outside_m_write_max": 0,
+      "compare_before_lossy_encoding": true
+    },
+    {
+      "id": "CLEAN_OBJECT_RETENTION",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "EXISTING_NUMERICAL_BOUND_PRESERVED",
+      "min_visible_object_retention": 0.999,
+      "scope": "CLEAN_NOT_UNCONDITIONAL_FINAL_ROBOTIZED",
+      "known_identity_texture_replacement_allowed": false,
+      "not_a_segmentation_accuracy_measure": true
+    },
+    {
+      "id": "HUMAN_ACCESSORY_RESIDUAL",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "PROPOSED_ENGINEERING_PROXY_NOT_GOLD",
+      "max_reference_evidence_residual_fraction": 0.02,
+      "no_regression_against_frozen_accepted_reference": true,
+      "missing_reference": "NOT_MEASURABLE_NOT_AUTOMATIC_PASS",
+      "independent_evidence_definition_must_be_frozen": true
+    },
+    {
+      "id": "ROBOT",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "EXISTING_HARD_GATES_PLUS_PROPOSED_VISUAL_ALIGNMENT",
+      "hard_numeric_collision_joint_limit_gates": "PRESERVE_REGISTERED_GATES_ON_ALL_CONSUMED_STATES",
+      "max_endpoint_reprojection_error_fraction_image_diagonal": 0.01,
+      "strict_human_shape_similarity_hard_gate": false,
+      "global_coordinate_or_chirality_error": "REJECT_SESSION",
+      "local_unusable_frame": "INVALIDATE_FRAME_AND_DEPENDENT_INPUT_WINDOWS"
+    },
+    {
+      "id": "OCCLUSION",
+      "class": "HARD_STRUCTURAL",
+      "origin": "EXISTING_INTERNAL_GEOMETRY_AND_PROVENANCE_RULES",
+      "known_pixels_respect_valid_depth_order": true,
+      "visible_nonoverlap_object_removed_for_missing_depth": false,
+      "object_front_without_appearance": "UNKNOWN",
+      "missing_contact10_globally_blocks": false,
+      "full_object6d_pose_required_for_visible_pixel_depth_ordering": false
+    },
+    {
+      "id": "UNKNOWN_INPUT",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "PROPOSED_SMALL_UNKNOWN_INPUT_BUDGET",
+      "max_unknown_fraction_whole_image": 0.01,
+      "max_unknown_fraction_frozen_interaction_roi": 0.05,
+      "roi_may_be_expanded_to_dilute_ratio": false,
+      "shared_neutralization_required": true,
+      "excess": "DROP_CURRENT_OBSERVATION_PAIR"
+    },
+    {
+      "id": "CAUSAL",
+      "class": "HARD_STRUCTURAL",
+      "origin": "EXISTING_FORMAL_TRAINING_RULE",
+      "max_source_frame_le_current_t": true,
+      "fixed_seed_prefix_future_mutation_test_required": true,
+      "lookahead_robot_or_mask_not_permitted": true
+    },
+    {
+      "id": "H50_VALID",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "PRESERVE_ANY_ENDPOINT_40_OF_50_RULE",
+      "valid_time_step": "left_valid OR right_valid",
+      "min_valid_time_steps": 40,
+      "per_side_mask_preserved": true,
+      "loss_on_invalid_targets": false,
+      "fde_definition": "EXACT_FINAL_HORIZON_STEP_WHEN_VALID_NOT_LAST_AVAILABLE_STEP"
+    },
+    {
+      "id": "TRAINING_DATA_MINIMUM",
+      "class": "DOWNSTREAM_ELIGIBILITY",
+      "origin": "PROPOSED_NUMERIC_FREEZE_NOT_CONFIRMED_CURRENT_VALUES",
+      "min_train_source_groups_per_task": 16,
+      "min_validation_source_groups_per_task": 3,
+      "min_unique_train_starts_per_task": 256,
+      "min_unique_validation_starts_per_task": 48,
+      "preferred_train_source_groups_per_task": 20,
+      "preferred_validation_source_groups_per_task": 4,
+      "threshold_changes_after_batch_results": false,
+      "overlapping_windows_count_as_independent_groups": false
+    }
+  ],
+  "session_quality_proposal": {
+    "HIGH_COVERAGE_VISUAL": {
+      "min_full_sequence_visual_valid_fraction": 0.9,
+      "global_hard_error": false,
+      "does_not_imply_perfect_frames": true
+    },
+    "PARTIAL_TRAINABLE": {
+      "min_unique_h50_starts": 10,
+      "min_retained_fraction_scheduled_h50_starts": 0.2,
+      "all_consumed_observations_pass_gates": true,
+      "all_historical_c_overwritten": false
+    },
+    "REJECT": "DOES_NOT_MEET_CONSUMER_GATES_OR_HAS_GLOBAL_ERROR",
+    "input_too_short_for_h50": "MAY_COUNT_VISUAL_NOT_TRAINING"
+  },
+  "evaluation": {
+    "fixed_development_examples": [
+      "play_cards_0903_245",
+      "play_cards_0903_227",
+      "get_potato_chips_0902_039",
+      "get_potato_chips_0902_023"
+    ],
+    "sensor_examples_separate": [
+      "play_cards_0910_053",
+      "play_cards_0910_001"
+    ],
+    "production_holdout": "SELECT_UNUSED_SESSION_GROUPS_BEFORE_EXAMINING_OUTPUTS_AFTER_RELEASE_FREEZE",
+    "pixel_gold_required_for_visual_research": false,
+    "accuracy_claim_without_gold": false,
+    "synthetic_known_answer_tests_required": true,
+    "conversion_rates_required": [
+      "terminal_coverage",
+      "admitted_algorithm_execution_coverage",
+      "high_coverage_visual_sessions/raw",
+      "strict_all_frame_pass_sessions/raw",
+      "training_eligible_sessions/raw",
+      "training_eligible_sessions/upstream",
+      "training_eligible_sessions/metric",
+      "valid_paired_h50_starts/scheduled_starts"
+    ],
+    "stratify_by": [
+      "task",
+      "capture_domain",
+      "route",
+      "development_vs_holdout"
+    ],
+    "not_evaluated_is_quality_failure": false,
+    "rate_finalized_requires_all_admitted_evaluated": true,
+    "incomplete_rate_bounds": "[confirmed_successes/N,(confirmed_successes+unevaluated)/N]"
+  },
+  "training": {
+    "jobs": [
+      "TRAIN_CHIPS_RAW",
+      "TRAIN_CHIPS_ROBOTIZED",
+      "TRAIN_POKER_RAW",
+      "TRAIN_POKER_ROBOTIZED"
+    ],
+    "task_pairs_independent": true,
+    "wait_for_all_156_to_start_pair": false,
+    "smoke_before_full_training_updates_proposal": 200,
+    "smoke_counts_as_final_checkpoint": false,
+    "pair_shared": [
+      "source_groups",
+      "observations",
+      "future_labels",
+      "validity_masks",
+      "neutralization_mask",
+      "split",
+      "seed",
+      "initialization",
+      "optimizer",
+      "update_budget",
+      "non_rgb_inputs"
+    ],
+    "only_intended_variable": "RGB_DOMAIN",
+    "checkpoint_outputs": [
+      "best",
+      "last",
+      "reload_receipt",
+      "train_validation_loss",
+      "ADE",
+      "FDE",
+      "PCK",
+      "coverage",
+      "identity",
+      "inference_video",
+      "config_code_data_hashes"
+    ],
+    "require_robotized_beats_raw_to_mark_training_completed": false,
+    "claim_multiseed_significance_from_one_seed": false
+  },
+  "tasks": [
+    {
+      "id": "T0_FREEZE",
+      "max_engineering_hours": 2,
+      "depends_on": [],
+      "must_produce": [
+        "release_spec",
+        "master_ledger",
+        "group_split",
+        "current_input_gap_delta"
+      ]
+    },
+    {
+      "id": "T1_MASK",
+      "max_engineering_hours": 8,
+      "depends_on": [
+        "T0_FREEZE"
+      ],
+      "must_produce": [
+        "real_3_and_24_frame_masks",
+        "regression_masks",
+        "verified_primary_or_only_fallback"
+      ]
+    },
+    {
+      "id": "T2_CLEAN",
+      "max_engineering_hours": 8,
+      "depends_on": [
+        "T0_FREEZE",
+        "USABLE_ROLE_OBJECT_MASKS"
+      ],
+      "must_produce": [
+        "fresh_clean_pixels",
+        "causal_source_map",
+        "background_synthetic_vs_unknown_separation"
+      ],
+      "must_not_wait_for": [
+        "COMPLETE_CONTACT",
+        "PERFECT_OBJECT_ATLAS"
+      ]
+    },
+    {
+      "id": "T3_ROBOT",
+      "max_engineering_hours": 4,
+      "depends_on": [
+        "T0_FREEZE"
+      ],
+      "must_produce": [
+        "per_frame_hard_gates",
+        "partial_window_eligibility",
+        "causal_current_render",
+        "measured_runtime_profile"
+      ],
+      "must_not_wait_for": [
+        "CLEAN"
+      ]
+    },
+    {
+      "id": "T4_INTEGRATE",
+      "max_engineering_hours": 2,
+      "depends_on": [
+        "T2_CLEAN",
+        "T3_ROBOT"
+      ],
+      "must_produce": [
+        "two_task_real_bundle_smoke",
+        "training_save_reload_smoke",
+        "release_freeze"
+      ]
+    },
+    {
+      "id": "T5_PRODUCTION",
+      "budget": "REAL_PILOT_PROFILE_FROZEN_BEFORE_BATCH",
+      "depends_on": [
+        "T4_INTEGRATE"
+      ],
+      "must_produce": [
+        "all_156_rows_classified",
+        "admitted_sessions_executed",
+        "conversion_report",
+        "eligible_pair_datasets"
+      ]
+    },
+    {
+      "id": "T6_TRAIN",
+      "budget": "SAME_FIXED_STEPS_OR_EPOCHS_PER_PAIR",
+      "depends_on": [
+        "RESPECTIVE_PAIR_DATA_MINIMUM"
+      ],
+      "must_produce": [
+        "four_trained_checkpoints",
+        "paired_evaluation",
+        "final_acceptance"
+      ],
+      "may_overlap": [
+        "T5_PRODUCTION_OF_OTHER_TASK"
+      ]
+    }
+  ],
+  "final_acceptance": {
+    "pipeline_operationally_closed": "ALL_ADMITTED_ALGORITHM_STEPS_FINISHED_WITH_RESTART_TEST",
+    "data_minimum_met": "BOTH_TASK_PAIRS_MEET_FROZEN_MINIMUM",
+    "four_checkpoints_trained": "ALL_FOUR_HAVE_REAL_UPDATES_AND_RELOAD_PROOF",
+    "rate_finalized": "NO_UNEVALUATED_ADMITTED_SESSIONS",
+    "visual_ab_value": "REPORT_RESULT_SEPARATELY_INCLUDING_NEGATIVE",
+    "physical_deployment_authorized": false
+  }
+}

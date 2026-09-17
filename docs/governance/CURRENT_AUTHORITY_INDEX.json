@@ -6,17 +6,17 @@
       "evidence": [
         {
           "bytes": 22674,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
           "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
         },
         {
           "bytes": 2241,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
         },
         {
           "bytes": 11608,
-          "path": "/mnt/workspace/code/chaoyang/docs/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/research/current/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
           "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
         }
       ],
@@ -29,7 +29,7 @@
       "evidence": [
         {
           "bytes": 11608,
-          "path": "/mnt/workspace/code/chaoyang/docs/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/research/current/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
           "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
         }
       ],
@@ -42,7 +42,7 @@
       "evidence": [
         {
           "bytes": 11608,
-          "path": "/mnt/workspace/code/chaoyang/docs/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/research/current/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
           "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
         }
       ],
@@ -55,12 +55,12 @@
       "evidence": [
         {
           "bytes": 22674,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
           "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
         },
         {
           "bytes": 2241,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
         }
       ],
@@ -73,12 +73,12 @@
       "evidence": [
         {
           "bytes": 12660,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
           "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
         },
         {
           "bytes": 4164,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
           "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
         }
       ],
@@ -90,9 +90,9 @@
       "claim_limit": "Method and limitation evidence only; it grants no local Contact, Robot, compositor, training or physical authority.",
       "evidence": [
         {
-          "bytes": 18289,
-          "path": "/mnt/workspace/code/chaoyang/docs/pipeline/MASQUERADE_CONTACT_OCCLUSION_LEARNINGS_ZH.md",
-          "sha256": "0df0ad0e2d5be4c6d20471dc99da6eba2f4c9bbad7f53fa3871460d8e0615f77"
+          "bytes": 18478,
+          "path": "/mnt/workspace/code/chaoyang/docs/reference/pipeline/MASQUERADE_CONTACT_OCCLUSION_LEARNINGS_ZH.md",
+          "sha256": "61bf05cc25561ce7fbb1c937480255234c7da9ffa69d805d57ccd73ee8f07ac7"
         }
       ],
       "scope": "method-design/masquerade-to-exact78-v3",
@@ -104,7 +104,7 @@
       "evidence": [
         {
           "bytes": 9903,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         }
       ],
@@ -117,17 +117,188 @@
       "evidence": [
         {
           "bytes": 9903,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
           "bytes": 13930,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/HUMAN_CONTACT_HYPOTHESIS_V1.npz",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/HUMAN_CONTACT_HYPOTHESIS_V1.npz",
           "sha256": "392d2a73060f7b042b71106b0a6bd3022763fb52acbd47043f09b2d987b818d9"
         }
       ],
       "scope": "play_cards_0902_042/HUMAN_CONTACT_HYPOTHESIS_V1",
       "status": "HYPOTHESIS_ONLY"
+    },
+    {
+      "claim": "Robot v5.2首个v73批次的3条严格C由软姿态门触发；三条轨迹均通过全片数字URDF碰撞及硬时序/限位审计。",
+      "claim_limit": "数字URDF和跨系统软姿态诊断；不授予Robot、Contact、控制或物理部署authority。",
+      "evidence": [
+        {
+          "bytes": 11164,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hard_soft_gate_canary_v71/RESULT.json",
+          "sha256": "1b5771faa04eb2704ef2127965653f86db44c863704b3f2a2ef318b5e1c68ae8"
+        }
+      ],
+      "scope": "exact78_robot_v73_batch_001",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "双手同时可见的H50硬门会拒绝单侧有效的第一视角会话；087在逐侧valid掩码下由0个恢复为233个因果H50窗口。",
+      "claim_limit": "单会话工程诊断；只支持masked future-2D辅助训练资格，不支持Robot、动作、Contact或物理authority。",
+      "evidence": [
+        {
+          "bytes": 1271,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hard_soft_visual_aux_candidates_v71/get_potato_chips_0902_087/H50_PREFLIGHT_ANY_ENDPOINT_V2.json",
+          "sha256": "a204284386cc6d5d1f4fb2e7ff39e5bd66d93ebe2024c5049fd5ae8453868040"
+        }
+      ],
+      "scope": "get_potato_chips_0902_087_visual_aux_h50",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "087硬几何候选已形成严格因果的Raw/Robotized Visual Aux bundle；逐侧valid掩码保留233个H50窗口。",
+      "claim_limit": "Development Visual Aux bundle only; unresolved overlap is excluded, not solved. No occlusion, contact, Robot action, policy or deployment authority.",
+      "evidence": [
+        {
+          "bytes": 634,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hard_soft_visual_aux_bundle_canary_v71/get_potato_chips_0902_087/RESULT.json",
+          "sha256": "90fb8807e948afe770e8ab6f4f01420e6e2607caf457e9f2e5765b41379db389"
+        }
+      ],
+      "scope": "get_potato_chips_0902_087_causal_visual_aux_bundle",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "087真实会话已闭合Robot optical-Z与Stereo可见物体表面的4帧前后关系canary；接触窄带已知覆盖81.47%，UNKNOWN 18.53%。",
+      "claim_limit": "Observed visible-surface z-buffer diagnostic only; no hidden object completion, contact truth, Gold accuracy, Silver authority, Robot control or deployment authority.",
+      "evidence": [
+        {
+          "bytes": 4314,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering/RESULT.json",
+          "sha256": "d139a02d05a29614996c456f4ec3b124f7f722cbbbd38b42b9d58ba562dd0fbd"
+        }
+      ],
+      "scope": "get_potato_chips_0902_087_visible_surface_occlusion_canary",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "Occlusion compositor只在Robot/物体真实重叠区要求Stereo排序后，087连续接触窗的物体条件保留率中位数由77.48%提高到95.92%，但仍未达到99% Silver门。",
+      "claim_limit": "Twenty-four-frame internal visible-surface comparison; remaining loss and hidden object appearance are unresolved, no Silver/Gold accuracy or deployment authority.",
+      "evidence": [
+        {
+          "bytes": 11512,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v2/RESULT.json",
+          "sha256": "e66f432bc46ddd267ecc1d258635891d66c91008a4e1cfde7d8575cf8c88dbdd"
+        },
+        {
+          "bytes": 11454,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v3/RESULT.json",
+          "sha256": "91bca18d9589aadd4c7383cd80bb6893e2f08cc69c51ddd38b870c48ca8ab281"
+        }
+      ],
+      "scope": "get_potato_chips_0902_087_occlusion_visible_object_retention_successor",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "087连续24帧可见表面z-buffer successor的物体条件保留率按像素加权为97.01%，已消除非重叠物体被深度门误降背景的问题，但仍未达到99% Silver门。",
+      "claim_limit": "Observed visible-surface internal QA only; hidden geometry/appearance and independent accuracy remain unresolved, no Silver/Gold or Robot authority.",
+      "evidence": [
+        {
+          "bytes": 13294,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v4/RESULT.json",
+          "sha256": "4b9952ce1bc8469314a12c99d3b952c8fc4d8da8a482a0f5d6cb095d5daa4d69"
+        }
+      ],
+      "scope": "get_potato_chips_0902_087_occlusion_visible_surface_24frame_v4",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "Chips087连续24帧可见表面Robot/Object光学Z诊断在边缘邻域一致性约束后达到99.72%条件物体像素保留率，known coverage 84.12%，UNKNOWN 15.88%。",
+      "claim_limit": "仅为直接可见物体表面、Raw合法像素与数字Robot z-buffer的内部诊断；未恢复隐藏物体外观，未完成人工Gold，不授予Silver/Gold、接触真值、Robot控制或物理部署authority。",
+      "evidence": [
+        {
+          "bytes": 24552,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v8/RESULT.json",
+          "sha256": "c1e32a09a4d0fd121065f135ed7f92c3969a0b7be68b1533a70c9d0dc3c1520b"
+        },
+        {
+          "bytes": 1230773,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v8/get_potato_chips_0902_087_可见表面遮挡ZBuffer_24帧.mp4",
+          "sha256": "3e35ed24e4cb8e4a89f12d7d7dd015116445e85ddebce0ded9c8bf349f5faa3b"
+        },
+        {
+          "bytes": 8708430,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v8/get_potato_chips_0902_087_可见表面遮挡ZBuffer_24帧_均匀预览.png",
+          "sha256": "1f68de27e09c2c3c2c3fa2abe7110e7d023b471aa367d330de0fb4a1cafc774f"
+        }
+      ],
+      "scope": "get_potato_chips_0902_087/frames_92_115/visible_surface_occlusion_R7_2",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "V7.1 Visual Aux has bounded routing capacity for both Chips and Poker pairs",
+      "claim_limit": "Capacity forecast only: Chips 17 train/4 validation potential and Poker 20 train/4 validation potential; pending Robot/Clean/bundle receipts are not completed datasets or checkpoints.",
+      "evidence": [
+        {
+          "bytes": 6956,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_visual_aux_capacity_preflight_v71/RESULT.json",
+          "sha256": "33287c40a7bc25f25e7282e1969a450659e17e6329670ba2a3460624d821d0ce"
+        }
+      ],
+      "scope": "exact78/visual_aux/capacity_preflight_R7_2",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "Chips087 right-pinky frame75 exceeds the current sampled KaiHand tip-direction reachable floor",
+      "claim_limit": "One-frame deterministic sampled digital reachability diagnosis under fixed wrist and current URDF limits; not global physical reachability, human truth, Robot authority or calibration.",
+      "evidence": [
+        {
+          "bytes": 2593,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_kaihand_pinky_reachability_v71/get_potato_chips_0902_087/RESULT.json",
+          "sha256": "e58a8263c6fe8bd68fa3aa3a3ee5622df3f8c884d303bf7b2a9a06c59dbf9ff3"
+        }
+      ],
+      "scope": "get_potato_chips_0902_087/frame75/right_pinky/kaihand_reachability_R7_3",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "A two-candidate Robot base-backoff subset reproduced the full-sweep winner on the first six completed Chips sessions.",
+      "claim_limit": "Retrospective six-session Chips replay only; 71.4% fewer candidate evaluations is not measured wall-clock speedup, Poker generality, Robot authority, or evidence for unseen sessions.",
+      "evidence": [
+        {
+          "bytes": 4647,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_placement_reduction_audit_v71/RESULT.json",
+          "sha256": "4390ac85e96bd7699ab6a9b2fc4f7312bd5b48ee330a23fb28ad3035bdcece96"
+        }
+      ],
+      "scope": "exact78/robot_geometry/placement_reduction_R7_3_replay",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "Hand round-2 produced no frozen summary-metric improvement on the first six completed Chips sessions.",
+      "claim_limit": "Six-session Chips summary and recorded-duration audit only; not proof that round-2 is globally redundant and not permission to mutate R7.3.",
+      "evidence": [
+        {
+          "bytes": 6261,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hand_round2_value_audit_v71/RESULT.json",
+          "sha256": "036f2224f95375b0dcdf10680d4e73f945c9c57c3430da733f2d931ead0f9e60"
+        }
+      ],
+      "scope": "exact78/robot_geometry/hand_round2_value_R7_3_replay",
+      "status": "DEVELOPMENT_EVIDENCE"
+    },
+    {
+      "claim": "Frozen HaWoR temporal diagnostic contracts have executable CPU reproductions",
+      "claim_limit": "CPU post-processing diagnostics over existing HaWoR tracks only; not HaWoR re-inference, weight provenance, successor authority, external 3D truth or Wave delta.",
+      "evidence": [
+        {
+          "bytes": 1095,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/successors/hawor/diagnostic_reproduction_R7_4/RESULT.json",
+          "sha256": "cb98da41e6cde5012d1292c2004302434f1addcebc4713523aeeeb018d4d16de"
+        }
+      ],
+      "scope": "exact78/hawor/temporal_diagnostic_reproduction_R7_2",
+      "status": "DEVELOPMENT_EVIDENCE"
     }
   ],
   "cohort": "exact78-chips78-poker78-frozen",
@@ -141,13 +312,13 @@
     "Visual Robot authority and physical deployment authority are separate.",
     "V5.2: one executor epoch, one canonical run signature and immutable finals are mandatory."
   ],
-  "generated_at": "2026-09-14T19:12:16+08:00",
-  "generation_id": "gov-005869-1eff2016fad2",
-  "generator_code_sha": "feadae102fb1e784711daa615fd7475fbaa95d6eddd5cc0ebc1506e5694afc70",
-  "governance_revision": 5869,
+  "generated_at": "2026-09-17T10:20:59+08:00",
+  "generation_id": "gov-011169-0f858fe9be38",
+  "generator_code_sha": "fb220729c1260fb6e44b0b779758d8b456681cdd901e3e65ce8535e69b8c5873",
+  "governance_revision": 11169,
   "repository": {
     "branch": "main",
-    "commit": "1f97e25f99723ec3a6c73dfe6f3fb963ca515db5"
+    "commit": "0aa69e9a26b73345e9cd7c43fa8a8fb2fa5d8fc2"
   },
   "schema_version": "chaoyang-current-authority-index-v1",
   "stages": [
@@ -158,7 +329,7 @@
       "evidence": [
         {
           "bytes": 104108,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/EXACT78_BATCH_MANIFEST.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/EXACT78_BATCH_MANIFEST.json",
           "sha256": "b6dcfec1fb41b9ffb0b9b19cc62d029f5cedf57f41552a611272cc9e5c6e43a8"
         }
       ],
@@ -175,7 +346,7 @@
       "evidence": [
         {
           "bytes": 1360,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/HAWOR_BATCH_RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/HAWOR_BATCH_RESULT.json",
           "sha256": "579175ef7dc92ea867b186d3569d1a70e4fad0fae489a1912578be581e49c6ab"
         }
       ],
@@ -192,7 +363,7 @@
       "evidence": [
         {
           "bytes": 1189,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/RESULT.json",
           "sha256": "f89c759e2fe90f1efe2fd25357518ed540eb55cd579cb178ace191432717d69f"
         }
       ],
@@ -209,7 +380,7 @@
       "evidence": [
         {
           "bytes": 5290,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/MASK_TASK_OBJECT_BATCH_RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/MASK_TASK_OBJECT_BATCH_RESULT.json",
           "sha256": "8732b29b4eb7e9a50fd5cba102a5ab65e1729ce5fabbcc3e9976cc2f55e218b2"
         }
       ],
@@ -226,17 +397,17 @@
       "evidence": [
         {
           "bytes": 9691,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/MASK_JOIN_READY_STATE_V3.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/MASK_JOIN_READY_STATE_V3.json",
           "sha256": "3ee150e3289bb03489c3bf58b84fd77c521beb366c22dd3b13f947aafbcf6246"
         },
         {
           "bytes": 22674,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
           "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
         },
         {
           "bytes": 2241,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
         }
       ],
@@ -253,12 +424,12 @@
       "evidence": [
         {
           "bytes": 22674,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
           "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
         },
         {
           "bytes": 2241,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
         }
       ],
@@ -270,287 +441,292 @@
     },
     {
       "authority_scope": "EXACT78_WAVE0_FROZEN_PLUS_VERIFIED_SESSION_TERMINALS",
-      "blocked": 19,
+      "blocked": 0,
       "denominator_semantics": "Wave0 frozen 58; existing Clean refs plus immutable per-session Grade-B or explicit non-pass terminals determine current counts. RUNNING is the single active guardian row.",
       "evidence": [
         {
           "bytes": 149770,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
           "sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1"
         },
         {
+          "bytes": 2873,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/RECOVERY_19_SELECTION.json",
+          "sha256": "01177dcc3140ea32a76c9caf2ac5b48fbf116c2aa0f63663e8ec4542cf06e338"
+        },
+        {
           "bytes": 4739,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_052/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_052/RESULT.json",
           "sha256": "301469a48d6ec94448c7271216cbc03e923ab23e06970197f926f44fdb521470"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_103/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_103/RESULT.json",
           "sha256": "26c8f4b2b50a1d9f6cd2a366aa5247bc2843102e17243cc924b05dd1294b72d9"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_140/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_140/RESULT.json",
           "sha256": "76078d46918d01ca23b67bada53e2ef1f0ba0b4afee573f5d5cab61d324949bd"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_182/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_182/RESULT.json",
           "sha256": "b6dfb50fe5c575258ca6044c33f8befa3fc9b588ee7a40f6ab14296b483a0fbd"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_050/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_050/RESULT.json",
           "sha256": "77993f74d406f3418be5c13ec0adebf5b20b6781d6f992fdbeafd6c570e8df39"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_085/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_085/RESULT.json",
           "sha256": "9c82c2e7ab5b08d5e868bde40d098709f1a0b9bb2b4438ba57f465e35659e4df"
         },
         {
           "bytes": 4743,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_113/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_113/RESULT.json",
           "sha256": "6e0c4bbd9a2b0c76e527ca41d0d759f71d13ec227cc2c4496d8f30d40716c510"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_150/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_150/RESULT.json",
           "sha256": "523851e4546975e33e948927da15439b7bae9a9d99208766128aaec1b693f13d"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_011/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_011/RESULT.json",
           "sha256": "1118483360560d5540c29ef3dca4f1ffb1b6120c6728c6cdc9ccc7c0f2b1e42b"
         },
         {
           "bytes": 4739,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_019/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_019/RESULT.json",
           "sha256": "57e91c0d6721d28e2065e4a00e31951d53e166312ca233bb90a77b482d18a183"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_023/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_023/RESULT.json",
           "sha256": "8923e665d221d9a329c67f2f71c0540976d1d4351a7094590246481fa63bd19b"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_029/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_029/RESULT.json",
           "sha256": "a598e3c5db908c539c6c3fcc0ef15f18d922e58ecda357ae69cce55ec2bf7d57"
         },
         {
           "bytes": 4738,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_039/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_039/RESULT.json",
           "sha256": "be64c2433ee612c5e9f6c9e1128c233a0f061b258bde5b9a9ab4ffba1bf773c1"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_041/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_041/RESULT.json",
           "sha256": "c27c6230ac5e90b062fed2cc05d9203149994a02aa5e5fc0be7718186e964529"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_049/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_049/RESULT.json",
           "sha256": "554680ea76e3634357f1fbc85b724097f1e0fe5ee4d5c200792a7d63fe501e2e"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_052/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_052/RESULT.json",
           "sha256": "712401b245c1a976db9d0b3d9d7ccf0253abd55a0d94cd9c0490cc3a0f93e0e3"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_059/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_059/RESULT.json",
           "sha256": "afe31a63f13c34671dcbcec1073505fec2d290b9f0687a65a83422a7789fe91d"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_066/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_066/RESULT.json",
           "sha256": "21698c82b30b9ee0b4baeaeeb3d618ff96fb65fb1fbb0892a79ea7de14bab5f4"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_067/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_067/RESULT.json",
           "sha256": "57d2bf37fb377131b21cfec8247f47225e793b58896618c0b8054eb535643863"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_083/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_083/RESULT.json",
           "sha256": "8ef106a7c969fdd6498beec268b31a14722e25fba2ba0ccd979c224a007cc417"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_087/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_087/RESULT.json",
           "sha256": "ea600a1588139bbb6edf0643f0e31395c7221ff6ce10a4eee16c9ceb8fc4a827"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_090/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_090/RESULT.json",
           "sha256": "cd53a07a8ba9ca19fc06410e2f5040d18a54aa8856773d0a4e923c3ec12a79fc"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_091/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_091/RESULT.json",
           "sha256": "d911353c21b7e090265dec5a98071b410de5146dbdcf1269c64988deb1139b07"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_093/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_093/RESULT.json",
           "sha256": "21725b7d8dc723303202feaa529661e78266e71664791d91073dd11dbf13000c"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_095/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_095/RESULT.json",
           "sha256": "61366421f20b86618a56df4e08773dff8cbdacb67ad5990e82819e9f805dc54e"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_096/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_096/RESULT.json",
           "sha256": "79db98549983406a82d94105ea5f6e5e7a44175c0c4960de2d7fd518462dff77"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_098/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_098/RESULT.json",
           "sha256": "2279c5d09145ce5dd167427ecd277eef327399771aeab12950dca28491ac654d"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_100/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_100/RESULT.json",
           "sha256": "6caf0c76d4722639761913fa1b2281dfe117999ca2fa131fd6036d712427133c"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_103/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_103/RESULT.json",
           "sha256": "806f54cf4df76578f463a35acc01591bc052cb1da4398a9729d5691743f1495a"
         },
         {
           "bytes": 4734,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_107/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_107/RESULT.json",
           "sha256": "0645e295e1e5ab4aec4c37e40cc05716cb1ed41cad085cdb6375b5415dcbdd3a"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_112/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_112/RESULT.json",
           "sha256": "fe0c6ac4ceebebf39f429df5275876ff1ba451a8574665e540fcdd3111447229"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_114/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_114/RESULT.json",
           "sha256": "265c40c5c476ba7c72bc616ef8a367f7623778016bd1aef3965812a5b5af80e2"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_119/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_119/RESULT.json",
           "sha256": "4bb02b9e1bda2b68a7c0100e714e85e49ebd5fc100aa64f736019a72ea914fe6"
         },
         {
           "bytes": 4738,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_121/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_121/RESULT.json",
           "sha256": "351647ae45b8aa03a434c41cd4ac7868068d5f8e6c6da1111a332d6772545563"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_122/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_122/RESULT.json",
           "sha256": "3a0f5688534ced4a23343e301745118fd26b0ad8de448b129a0b2c4d250f3f3c"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_025/RESULT.json",
-          "sha256": "81bb186a9da5be469b908d51b063b345a8916f4475f204b6bda0407e26ce3a10"
+          "bytes": 4820,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_025/RESULT.json",
+          "sha256": "d232b7a251143b41569b79608c713f804074c7739931fb3ca658b4beaf756c0b"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_073/RESULT.json",
-          "sha256": "c4f92dd6240d640683d02915a36ad6f21ec50e7760d6815b45538f8cbd2e8543"
+          "bytes": 4820,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_073/RESULT.json",
+          "sha256": "dade6e8945239bd1e38733b29cf853fbed23319aadec24b5b1386ed3628010b8"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_101/RESULT.json",
-          "sha256": "87a05454483ff58ac85fa1f40ec3649e0b1e5ee2c63d4ef46de6ccf454561755"
+          "bytes": 4821,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_101/RESULT.json",
+          "sha256": "7699231fbd63c17c99cc0ef9d25b1db6dfed51ad81e406d72a10461cdb3a3209"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_104/RESULT.json",
-          "sha256": "ae973c3151fc113abfbe5b6d9919d114064a5c169ab70cd9c120b152c16bcc9a"
+          "bytes": 4821,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_104/RESULT.json",
+          "sha256": "165710afea496733e7e9df944cf29ca715ef3b095f8e9daacd7d48a59ce48ee1"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_189/RESULT.json",
-          "sha256": "f7839e4da81245ee701744d7c6e9425f31cbd122b3d59750c6b40050dfacf47c"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_189/RESULT.json",
+          "sha256": "d803467be48bd46a2133b94349feb0764cbdb133909a38662b7eeb33ba5ea719"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_202/RESULT.json",
-          "sha256": "a9706ae570a6b2701687285592dda7031ef3e979b1cb320013d66de07e501cf3"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_202/RESULT.json",
+          "sha256": "2a4b4a4b93d3f12e9763de2b450eca82a3f7704a65d0dfd17393c950239c1e4a"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_227/RESULT.json",
-          "sha256": "82eef8ba167b83add5dbfe46ab251897b0029e8ed8d9242d95726a463681da35"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_227/RESULT.json",
+          "sha256": "f2f16fd49e9f1e098d8e36db73b14ad7ce1378a86dd46ab4f6616a6a53f4ae76"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_195/RESULT.json",
-          "sha256": "26753bc37904bcd0f7f902448d654010a44fe8c3a4c78faf0488756fe392ab68"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_195/RESULT.json",
+          "sha256": "af56be7d7121d2baede6ad55160f7a3893bb9c58a13c96babd4d5313b18ee76f"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_024/RESULT.json",
-          "sha256": "f177037e4cc79a1297e79140f68b585d301eba3840ba5dd6e6aea047c196b333"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_024/RESULT.json",
+          "sha256": "0715193302508fe4d22ef5c66ac6a1ce5c2a1faa578ffafbb476878acfcdf4dc"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_025/RESULT.json",
-          "sha256": "8c9ceefe998d272ca5554c9e70913ab990cc7685e6af0f6ecee510777d40c168"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_025/RESULT.json",
+          "sha256": "50ae33d4a764d7945fab1ffcae06a72f403e900f2bc24cd1ea06bf701b9ca2f6"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_026/RESULT.json",
-          "sha256": "74942e6bdfd5bb159f78834f6ee2c09ecc63c4a1205ef2f89a292c4c9c9f0a4f"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_026/RESULT.json",
+          "sha256": "1f764f471df6edd9b42066a6621e5f35999b44f373c77088cd5413293e1ae393"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_031/RESULT.json",
-          "sha256": "a1c9497e628857b6564bc7457f65dd8032da51ddcb4d2e48e15bcd0e4a3081f7"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_031/RESULT.json",
+          "sha256": "337523b3df4fa6af2fc24999da7dffd0279f1f59679c41b7908f7711693bcc25"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_032/RESULT.json",
-          "sha256": "f842c176e5fe0a1d78bc918ff952ccffd9afb33595eb707e4d175dbf9ab4e0cc"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_032/RESULT.json",
+          "sha256": "4367b6316f5f851f70ec61a2fbb4faa35fa8a73d24a1f30df1d29c133d02a5b4"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_036/RESULT.json",
-          "sha256": "b33e171707c9cf2b5553e2dbba030dce1b3fe1792caee38c6cd305eacf756fa6"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_036/RESULT.json",
+          "sha256": "b345e853866b9620bf5c3a11d82c27cd5ed4c269097b712fa44b51c0bb75adf7"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_039/RESULT.json",
-          "sha256": "5414495c686407662fd85ac45c54fd6f4ebbef3835abb9a9bf2e740f33f52081"
+          "bytes": 4764,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_039/RESULT.json",
+          "sha256": "e4ebfc6f018279cddccb01be8959097dadd35163c488b9cb9afc1b56251f20de"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_047/RESULT.json",
-          "sha256": "02804ea6627ddbf06728e782c12e4cc2bb77991fe0307fe87cf519add4f4f4cc"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_047/RESULT.json",
+          "sha256": "e8f693eaa948f9ce951a8d80e9df510da4eb180c13d248a07b2d3e5ff2d2539b"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_049/RESULT.json",
-          "sha256": "5bb0ff2be44010c92e76556e9f6767652fcf78cf4e573b798524944990b13866"
+          "bytes": 4764,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_049/RESULT.json",
+          "sha256": "ac8c4aa3b21449cd9e83202cb069c8e905401cd9d7ae6d327a8f83cef6edb9fa"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_053/RESULT.json",
-          "sha256": "6c3487d7bdf30b62eca296d1c7e4e024a02b9fd6f77d7a493d74df60cf6d9beb"
+          "bytes": 4764,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_053/RESULT.json",
+          "sha256": "dcd60f45ec021297091a45c9a6c29d3614b94c097937c9c93c40752640e476b6"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_042/RESULT.json",
-          "sha256": "2897a8dbb2d41fa6b03d297c0ac5ec8eb75df2b95557e46c6f74e250cbc523e7"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_042/RESULT.json",
+          "sha256": "5ff6ef68db2bf188f7781691d98a4c280a4f03a96e0d4f3c3287bcb7be2ba6db"
         }
       ],
       "grade_c": 0,
-      "passed": 39,
+      "passed": 58,
       "running": 0,
       "stage": "Clean",
       "total": 58
@@ -562,32 +738,32 @@
       "evidence": [
         {
           "bytes": 12660,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
           "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
         },
         {
           "bytes": 9903,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
           "bytes": 4424,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
           "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
         },
         {
           "bytes": 860,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/AGENT_REVIEW.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/AGENT_REVIEW.json",
           "sha256": "a2b6dc7699dcc936addd445ca4a8d02cc18774f27d05dde2a9f40a23c6fc085c"
         },
         {
           "bytes": 2458677,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.png",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.png",
           "sha256": "342dc25c4f6fe554e35adfc68aeddc7f8c1b06ee65d0df7e5836d237ffa9a600"
         },
         {
           "bytes": 1262130,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
           "sha256": "eae4585f04e84f517285875224fcef4188779de862fa7fab307e6b6a9053a5d9"
         }
       ],
@@ -604,42 +780,42 @@
       "evidence": [
         {
           "bytes": 12660,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
           "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
         },
         {
           "bytes": 9903,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
           "bytes": 6830,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_robot_visual_training_closure_recovery_v1/VISUAL_TRAINING_ASSEMBLY_CONTRACT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_robot_visual_training_closure_recovery_v1/VISUAL_TRAINING_ASSEMBLY_CONTRACT.json",
           "sha256": "522bd91c4b02024f04f7b4ead35a78b6bafd1b58ee5f0432385a3542db7f06c1"
         },
         {
           "bytes": 17998,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_robot_coordinate_install_calibration_audit_v1/ROBOT_COORDINATE_INSTALL_CALIBRATION_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_robot_coordinate_install_calibration_audit_v1/ROBOT_COORDINATE_INSTALL_CALIBRATION_AUDIT.json",
           "sha256": "528ff788397f98661d4d94b73f8e95c5b388a0947bfb8e6fe5bda53f8471793a"
         },
         {
           "bytes": 10530,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_naturalv2_kaihand_mount_lineage_audit_v1/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_naturalv2_kaihand_mount_lineage_audit_v1/RESULT.json",
           "sha256": "9d3fd9ef74799ced8a5ef02b4173f3b23fd50f7e0a5daad8d7ca15f7f6437f10"
         },
         {
           "bytes": 4722,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/RESULT.json",
           "sha256": "bbc362b0911f20b0295604d8cc45fcbc3e43c12c1d65dc93b3c54c6e5ed4f24f"
         },
         {
           "bytes": 1377,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/AGENT_REVIEW.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/AGENT_REVIEW.json",
           "sha256": "3eb438ca4782840aeda6734a7b7f4bb970f751ec9a597f8a482eb0760d784359"
         },
         {
           "bytes": 2398,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3_review_v1/POSTPROCESS_RECEIPT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3_review_v1/POSTPROCESS_RECEIPT.json",
           "sha256": "3a3fd4609c204743bef04e086554aba2ef48809216af1b25c43a0fd315d489a9"
         }
       ],
@@ -656,12 +832,12 @@
       "evidence": [
         {
           "bytes": 4164,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
           "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
         },
         {
           "bytes": 662,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
           "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
         }
       ],
@@ -678,12 +854,12 @@
       "evidence": [
         {
           "bytes": 4164,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
           "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
         },
         {
           "bytes": 662,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
           "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
         }
       ],
@@ -698,7 +874,10 @@
     "join_calibration_missing": 43,
     "raw_calibration_missing": 59,
     "raw_total": 156,
-    "wave0_clean_passed": 39,
+    "wave0_clean_blocked_prereq": 0,
+    "wave0_clean_failed_quality_c": 0,
+    "wave0_clean_failed_runtime_final": 0,
+    "wave0_clean_passed": 58,
     "wave0_clean_pending": 0,
     "wave0_metric_ready": 58,
     "wave1_delta": 0,

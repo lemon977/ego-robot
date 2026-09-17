@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/robotized_compositor_causal_v1.schema.json",
+  "title": "ROBOTIZED_COMPOSITOR_CAUSAL_V1 ledger row",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_id",
+    "artifact_revision",
+    "target_frame_id",
+    "mode",
+    "training_authorized",
+    "referenced_donor_frame_ids",
+    "causal_proof",
+    "unknown_training_policy",
+    "clean_pixels_may_supply_object",
+    "control_ground_truth",
+    "rgb_sha256",
+    "training_valid_mask_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "ROBOTIZED_COMPOSITOR_CAUSAL_V1"},
+    "session_id": {"type": "string", "minLength": 1},
+    "artifact_revision": {"type": "string", "pattern": "^R7_[0-9]+$"},
+    "target_frame_id": {"type": "integer", "minimum": 0},
+    "mode": {
+      "enum": ["CAUSAL_TRAINING_INPUT", "OFFLINE_BIDIRECTIONAL_VISUALIZATION"]
+    },
+    "training_authorized": {"type": "boolean"},
+    "referenced_donor_frame_ids": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 0},
+      "uniqueItems": true
+    },
+    "causal_proof": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["all_donor_frame_ids_lte_target", "future_mutation_invariant_test"],
+      "properties": {
+        "all_donor_frame_ids_lte_target": {"type": "boolean"},
+        "future_mutation_invariant_test": {"type": "boolean"}
+      }
+    },
+    "unknown_training_policy": {"const": "TRAINING_VALID_MASK_FALSE"},
+    "clean_pixels_may_supply_object": {"const": false},
+    "control_ground_truth": {"const": false},
+    "rgb_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "training_valid_mask_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"mode": {"const": "CAUSAL_TRAINING_INPUT"}}},
+      "then": {
+        "properties": {
+          "training_authorized": {"const": true},
+          "causal_proof": {
+            "properties": {
+              "all_donor_frame_ids_lte_target": {"const": true},
+              "future_mutation_invariant_test": {"const": true}
+            }
+          }
+        }
+      },
+      "else": {"properties": {"training_authorized": {"const": false}}}
+    }
+  ]
+}

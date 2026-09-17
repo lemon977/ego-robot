@@ -1,0 +1,168 @@
+{
+  "canonical_cpu_runtime_authorized": true,
+  "canonical_gpu_runtime_authorized": false,
+  "checkpoint": {
+    "asset_pin": {
+      "bytes": 1402,
+      "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/foundationstereo/23-51-11/ASSET_PIN.json",
+      "sha256": "dea0fe13b7c5fe4b59e54375d7ed96d1d26ab5be731c47aa7ac56b88368d8ee7"
+    },
+    "bytes": 3298527334,
+    "config_bytes": 499,
+    "config_path": "assets/models/checkpoints/foundationstereo/23-51-11/cfg.yaml",
+    "config_sha256": "a9d9dd2137c30edc2236194f62df14d222dad5fd3287a33c7540b543bb93853f",
+    "gpu_or_depth_forward_during_validation": false,
+    "materialization": "CROSS_FILESYSTEM_STREAM_COPY_SOURCE_STABILITY_FSYNC_DESTINATION_FULL_READBACK_ATOMIC_DIRECTORY_PUBLISH",
+    "nas_source_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+    "sha256": "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1",
+    "strict_cpu_state_dict_load": "PASS_1360_TENSORS_374517067_PARAMETERS"
+  },
+  "claim_limit": "Project-local FoundationStereo CPU imports, model construction, and strict checkpoint compatibility only. No CUDA depth forward, metric-depth equivalence, production, Object6D authority, or downstream consumption is authorized.",
+  "consumption_authorized": false,
+  "environment_id": "foundationstereo-py311-v1",
+  "launch": {
+    "activation_required": false,
+    "command": [
+      "src/chaoyang/ops/foundationstereo_python.sh"
+    ],
+    "cuda_hidden": true,
+    "fallback_to_external_cache_or_network_forbidden": true,
+    "fallback_to_external_checkpoint_forbidden": true,
+    "fallback_to_external_conda_forbidden": true,
+    "inherited_pythonpath_forbidden": true,
+    "project_local_cache": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/caches/foundationstereo-py311-v1",
+    "project_relative_checkpoint": "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+    "project_relative_environment_root": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1",
+    "project_relative_python": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/bin/python",
+    "snapshot_manifest": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz"
+  },
+  "local_environment_lock": {
+    "path": "configs/systems/foundationstereo/local_environment_lock.json",
+    "status": "CPU_PASS_GPU_DEPTH_REPLAY_PENDING"
+  },
+  "next_gate": "Under the central GPU lease, run a bounded project-local checkpoint depth replay against frozen historical outputs; publish a successor authority only if numeric/visual equivalence and loaded-origin checks pass.",
+  "rollback": {
+    "bytes": 2592,
+    "executed": false,
+    "path": "/mnt/workspace/code/chaoyang/configs/systems/foundationstereo/local_environment_rollback.json",
+    "sha256": "67f709ba8741ce20725fe7cecc6861aa7d0cb88312733344a580a518ee5a293e",
+    "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE"
+  },
+  "runtime": {
+    "cuda_initialized_during_probe": false,
+    "einops_version": "0.8.2",
+    "huggingface_hub_version": "1.25.1",
+    "imageio_version": "2.37.4",
+    "joblib_version": "1.5.3",
+    "numpy_version": "1.26.4",
+    "omegaconf_version": "2.3.0",
+    "opencv_contrib_python_version": "4.10.0.84",
+    "pandas_version": "3.0.5",
+    "python_version": "3.11.15",
+    "scipy_version": "1.17.1",
+    "timm_version": "1.0.28",
+    "torch_version": "2.4.1",
+    "torchvision_version": "0.19.1",
+    "trimesh_version": "4.12.2",
+    "xformers_version": "0.0.28.post1"
+  },
+  "schema_version": "chaoyang-foundationstereo-environment-authority-v1",
+  "snapshot": {
+    "counts": {
+      "directories": 2496,
+      "regular_files": 30612,
+      "special": 0,
+      "symlinks": 1382
+    },
+    "device": 102,
+    "logical_bytes": 5967308280,
+    "manifest_bytes": 1926343,
+    "manifest_sha256": "eb21bb9eedfab20097c3b05a93ef87b4e86df7a3376d8a337c088e0c095a733e",
+    "method": "NO_CLOBBER_SAME_FILESYSTEM_HARDLINK",
+    "post_publish_full_content_verify": "PASS_30612_UNIQUE_INODES",
+    "publish_method": "owned_empty_directory_reservation_then_rename",
+    "snapshot_id": "b36d784428904038954ad618972727d8",
+    "source_path": "/mnt/workspace/miniconda3/envs/foundation_stereo",
+    "source_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "tree_content_sha256": "dc08100b81b0a787607e1a5aa1760b49a8604d91b32cfc919f6d3e23b05b54f1",
+    "unique_regular_bytes": 5967308280
+  },
+  "source_authority": {
+    "closure_policy": {
+      "dinov2_source": "vendored vendor/FoundationStereo/dinov2 with torch.hub source=local",
+      "edgenext_initialization": "pretrained=false; strict formal FoundationStereo checkpoint supplies every tensor",
+      "network_connect_denied_during_model_construction_smoke": true
+    },
+    "historical_git_metadata_role": "PROVENANCE_ONLY_NOT_A_RUNTIME_DEPENDENCY",
+    "license": {
+      "path": "vendor/FoundationStereo/LICENSE",
+      "sha256": "edc216df7d9ed4825550f0881ab6fca31ba79dd5694cd64c776e312821488e16"
+    },
+    "repository": "vendor/FoundationStereo",
+    "runtime_files": {
+      "extractor_local_no_download": {
+        "path": "vendor/FoundationStereo/core/extractor.py",
+        "sha256": "1d14ea1731ed952db5574834e6495c7bb37121497472a1bbbf617608abfb5c4b"
+      },
+      "model": {
+        "path": "vendor/FoundationStereo/core/foundation_stereo.py",
+        "sha256": "ad303fa4e8c22c1fe527f377ebfcb6ce1efa8858b99b75c62c6639e5c4cb04ae"
+      },
+      "pico_runner": {
+        "path": "vendor/FoundationStereo/scripts/pico_stereo_depth.py",
+        "sha256": "a3dd48f22508c603d2ae689ed17af25ff49393d5d440f00de8ae87fbaa4d9284"
+      },
+      "vendored_dinov2_loader": {
+        "path": "vendor/FoundationStereo/depth_anything/dpt.py",
+        "sha256": "9ce8c4b117a23fdd55c81f8b53ddc712b16b72ecfb6015986f5c92f08d80ffd9"
+      }
+    },
+    "runtime_tree_pin": {
+      "algorithm": "sha256 over sorted non-pyc regular rows F\\0relative_path\\0bytes\\0content_sha256\\n; __pycache__ excluded",
+      "logical_bytes": 19904911,
+      "regular_files": 210,
+      "symlinks": 0,
+      "tree_sha256": "77d30c541da776514174e53fb34ab61655d33e7ada73ff43127bba3cab3ddc76"
+    },
+    "upstream_commit_from_retained_historical_git_metadata": "6e8806816b533e4d13ddbb95ffa907b797060a62",
+    "upstream_origin": "https://github.com/NVlabs/FoundationStereo.git"
+  },
+  "status": "CPU_PASS_GPU_DEPTH_REPLAY_PENDING",
+  "tools": {
+    "bounded_runner": {
+      "path": "src/chaoyang/ops/run_foundationstereo_two_session_canary.py",
+      "sha256": "b369b2a177914a1f92996154ee1223fad3574b8fa2ce52def6fcaaf37cefd909"
+    },
+    "checkpoint_materializer": {
+      "path": "src/chaoyang/ops/materialize_foundationstereo_checkpoint.py",
+      "sha256": "3959ed04d9f1b92386e36f19e24d625cfc3981245d9df0ca8c29397bef9e04db"
+    },
+    "launcher": {
+      "path": "src/chaoyang/ops/foundationstereo_python.sh",
+      "sha256": "d7d43454903736ddcf90280b4568783fd278f221f9faf308515bdcbd22e3040f"
+    },
+    "snapshot": {
+      "path": "src/chaoyang/ops/no_clobber_hardlink_snapshot.py",
+      "sha256": "9ec43f2a1cd12d6d44c631f7902813b8f8148d6e0f4251b632810e6dbd1e541e"
+    },
+    "verifier": {
+      "path": "src/chaoyang/ops/verify_foundationstereo_environment.py",
+      "sha256": "53f66bfa4e2bf914b9cd54dd5761cf06d68ab01006203a2b9e49634a27a42c85"
+    }
+  },
+  "verification": {
+    "historical_failed_probes": [
+      {
+        "authority": false,
+        "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE.json",
+        "status": "HOLD_RUNNER_GEOMETRY_EXACT_FLOAT_COMPARISON"
+      },
+      {
+        "authority": false,
+        "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260907_foundationstereo_local_environment_v1/LOCAL_ENV_PROBE_V2.json",
+        "status": "HOLD_PYTORCH_RESTRICTED_UNPICKLER_REJECTED_HISTORICAL_NUMPY_METADATA"
+      }
+    ]
+  }
+}

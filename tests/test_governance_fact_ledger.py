@@ -9,20 +9,29 @@ import pytest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from tools.governance import common
-from tools.governance.bootstrap_current_governance import build_authority, build_task_state
-from tools.governance.recover_stale_tasks import safe_recovery_candidate
-from tools.cleanup_current_only_v6 import active_task_reference_view, collect_artifact_ref_paths
+from chaoyang.governance import common
+from chaoyang.governance.bootstrap_current_governance import build_authority, build_task_state
+from chaoyang.governance.recover_stale_tasks import safe_recovery_candidate
+from chaoyang.governance.validate_governance_state import validate_transitive_artifact_refs
+from chaoyang.ops.cleanup_current_only_v6 import active_task_reference_view, collect_artifact_ref_paths
 
 
 def configure_tmp(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     root = tmp_path / "governance"
+    root.mkdir(parents=True, exist_ok=True)
+    source_governance = common.REPO_ROOT / "docs/governance"
+    for name in (
+        "ROBOT_QUALITY_GATE_POLICY_V71_ZH.md",
+        "GOVERNANCE_CONSISTENCY_REPAIR_20260917_ZH.md",
+    ):
+        (root / name).write_bytes((source_governance / name).read_bytes())
     monkeypatch.setattr(common, "GOVERNANCE_ROOT", root)
     monkeypatch.setattr(common, "AUTHORITY_PATH", root / "CURRENT_AUTHORITY_INDEX.json")
     monkeypatch.setattr(common, "TASK_STATE_PATH", root / "LONG_HORIZON_TASK_STATE.json")
     monkeypatch.setattr(common, "STATUS_PATH", root / "CURRENT_PROJECT_STATUS_ZH.md")
     monkeypatch.setattr(common, "RECEIPT_PATH", root / "CURRENT_STATUS_RECEIPT.json")
     monkeypatch.setattr(common, "MIN_STATUS_PATH", root / "CURRENT_PROJECT_STATUS_MIN.json")
+    monkeypatch.setattr(common, "RC1_STATUS_MIN_PATH", root / "CURRENT_RC1_STATUS_MIN.json")
     monkeypatch.setattr(common, "TASK_QUEUE_PATH", root / "TASK_QUEUE.json")
     monkeypatch.setattr(common, "CHANGELOG_PATH", root / "STATE_CHANGELOG.jsonl")
     monkeypatch.setattr(common, "LOCK_PATH", root / ".governance.lock")
@@ -30,6 +39,9 @@ def configure_tmp(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
     monkeypatch.setattr(common, "STAGE_BASELINES_PATH", root / "CURRENT_STAGE_BASELINES_ZH.md")
     monkeypatch.setattr(common, "FILE_LAYOUT_PATH", root / "CURRENT_FILE_LAYOUT.json")
     monkeypatch.setattr(common, "REGRESSION_MANIFEST_PATH", root / "CURRENT_REGRESSION_MANIFEST.json")
+    monkeypatch.setattr(common, "RC1_PLAN_PATH", root / "ABSENT_RC1_PLAN.md")
+    monkeypatch.setattr(common, "RC1_RELEASE_SPEC_PATH", root / "ABSENT_RC1_RELEASE_SPEC.json")
+    monkeypatch.setattr(common, "RC1_CONTRACT_PATH", root / "ABSENT_RC1_CONTRACT.json")
 
 
 def test_publish_bundle_receipt_binds_generated_files(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> None:
@@ -70,6 +82,19 @@ def test_artifact_tampering_is_detected(tmp_path: Path) -> None:
     assert any("sha256 mismatch" in error or "bytes mismatch" in error for error in errors)
 
 
+def test_transitive_artifact_tampering_is_detected(tmp_path: Path) -> None:
+    artifact = tmp_path / "implementation.py"
+    artifact.write_text("print('v1')\n", encoding="utf-8")
+    contract = {"stage": {"code_closure": [common.artifact_ref(artifact)]}}
+    artifact.write_text("print('v2')\n", encoding="utf-8")
+
+    errors, stats = validate_transitive_artifact_refs(contract, label="contract")
+
+    assert stats == {"unique_refs": 1, "sha_verified": 1, "large_sha_skipped": 0}
+    assert any("contract.stage.code_closure.0" in error for error in errors)
+    assert any("sha256 mismatch" in error or "bytes mismatch" in error for error in errors)
+
+
 def test_dead_worker_becomes_suspected() -> None:
     state = build_task_state()
     task = state["tasks"][0]
@@ -87,6 +112,24 @@ def test_invalid_task_status_is_rejected() -> None:
     state["tasks"][0]["status"] = "TOTALLY_FINE"
     errors = common.validate_task_state(state)
     assert errors == ["invalid task status: TOTALLY_FINE"]
+
+
+def test_next_task_cannot_point_to_terminal_task() -> None:
+    state = build_task_state()
+    task = state["tasks"][0]
+    task["status"] = "FAILED_RUNTIME_FINAL"
+    state["next_task"] = {"task_id": task["task_id"]}
+    errors = common.validate_task_state(state)
+    assert errors == [
+        f"next_task points to terminal task: {task['task_id']}=FAILED_RUNTIME_FINAL"
+    ]
+
+
+def test_next_task_must_exist_in_task_state() -> None:
+    state = build_task_state()
+    state["next_task"] = {"task_id": "missing_task"}
+    errors = common.validate_task_state(state)
+    assert errors == ["next_task does not exist in task state: missing_task"]
 
 
 def test_markdown_does_not_keep_ghost_task() -> None:

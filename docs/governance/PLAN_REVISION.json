@@ -1,17 +1,37 @@
 {
-  "schema_version": "exact78-plan-revision-v1",
-  "plan_revision": "exact78-v5.2",
   "approved_source": {
-    "bytes": 17318,
-    "lines": 694,
-    "sha256": "1055a0cb600c9ac512f6d7a16ea324691e8601595fd19bfb2c4968b20352980e"
+    "bytes": 5744,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
+    "sha256": "76752afc63b6af01d5c65493ad95d7381b250e9f717dcbc480d7f259198bee07"
   },
-  "canonical_plan_path": "docs/governance/EXACT78_V5_2_EXECUTION_PLAN_ZH.md",
-  "wave0_selection_sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1",
+  "architecture_contract": {
+    "bytes": 6639,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_V7_1_R3_EXECUTION_PLAN_ZH.md",
+    "sha256": "c30b643a5d910fcbba9cb8f77dc505e20cfcdceb9331703d92a9eba74916ad03"
+  },
+  "artifact_revision_policy": "IMMUTABLE_RC1",
+  "canonical_plan_path": "docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
+  "execution_revision": "RC1",
+  "generated_at": "2026-09-16T11:18:39+08:00",
+  "generation_id": "gov-010824-cde1f70d2e92",
+  "global_hard_gate": "CURRENT_STATUS_RECEIPT_PASS_FRESH",
+  "governance_revision": 10824,
+  "local_debt_gate": "LOCAL_SCOPE_ONLY",
+  "migration_id": "RC1-MIGRATE-00",
+  "plan_revision": "chaoyang-rc1-final",
+  "schema_version": "chaoyang-plan-revision-v2",
+  "status": "APPROVED_FOR_EXECUTION",
   "terminal_names": [
-    "EXACT78_TERMINAL_COMPLETE",
-    "EXACT78_WAVE0_CLEAN_COMPLETE",
-    "EXACT78_END_TO_END_COMPLETE"
+    "PIPELINE_OPERATIONALLY_CLOSED",
+    "DATA_MINIMUM_MET_CHIPS",
+    "DATA_MINIMUM_MET_POKER",
+    "CHECKPOINT_PAIR_CHIPS",
+    "CHECKPOINT_PAIR_POKER",
+    "FOUR_CHECKPOINTS_TRAINED",
+    "VISUAL_AB_VALUE_CHIPS",
+    "VISUAL_AB_VALUE_POKER",
+    "RATE_FINALIZED",
+    "RC1_RELEASE_STATUS"
   ],
-  "status": "APPROVED_FOR_EXECUTION"
+  "training_input_policy": "CAUSAL_TRAINING_INPUT_ONLY"
 }

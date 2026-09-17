@@ -5,7 +5,7 @@ from pathlib import Path
 
 import pytest
 
-from tools import run_exact78_clean_wave_guardian_v3 as guardian
+from chaoyang.ops import run_exact78_clean_wave_guardian_v3 as guardian
 
 
 def setup_root(tmp_path: Path) -> tuple[Path, dict[str, object]]:

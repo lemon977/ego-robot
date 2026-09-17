@@ -8,12 +8,12 @@
 - 原子绑定：`CURRENT_STATUS_RECEIPT.json`；任一 revision、generation、bytes 或 SHA 不一致即 `STATUS_CONFLICT`。
 - 人类入口：自动生成的 `CURRENT_PROJECT_STATUS_ZH.md`，禁止手改关键计数。
 - 追加历史：`STATE_CHANGELOG.jsonl`。
-- 工具：`tools/governance/`；claim 统一通过 `register_claim.py`，stage 通过 `register_stage_authority.py`，任务通过 `update_task_state.py`。
+- 工具：`src/chaoyang/governance/`；claim 统一通过 `register_claim.py`，stage 通过 `register_stage_authority.py`，任务通过 `update_task_state.py`。
 - 会议冻结：`python -m tools.governance.create_meeting_snapshot --timestamp <YYYYMMDD_HHMM>`。
 
 ## 2. Wave0 Clean
 
-- 执行根：`tasks/control/runs/20260913_exact78_v3_wave_clean_v1/`。
+- 执行根：`archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/`。
 - 冻结选择：`EXACT78_WAVE0_SELECTION.json`；后续新增只能进入 Wave1/2 delta。
 - 当前唯一可执行闭包：`EXECUTION_AUTHORITY_V3.json`。V2 已在GPU执行前撤回，见 `EXECUTION_AUTHORITY_V2_WITHDRAWN.json`。
 - Chips107 CPU handoff 已按 Raw PNG、Role manifest、对象manifest和三个独立物体实例逐帧闭合；见 `preparation_receipts/get_potato_chips_0902_107.json`。
@@ -23,7 +23,7 @@
 
 ## 3. 上游 C 有界修复
 
-- 执行根：`tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/`。
+- 执行根：`archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_lane_c_successors_v1/`。
 - 冻结分簇与代表样本：`REMEDIATION_SELECTION.json`。
 - 执行闭包：`EXECUTION_AUTHORITY.json`。
 - 每簇最多两轮、四小时工程墙钟、两GPU小时；失败canary与两条旧A/B regression必须一起过门才扩批。
@@ -31,24 +31,24 @@
 
 ## 4. 接触、Robot与遮挡三模块
 
-- `pipeline/human_contact_hypothesis_v1.py`：只消费 HaWoR、对象身份Mask、正式observed-only Object6D和时序，绝不消费Robot render或修改正式Object6D。
-- `pipeline/contact_aware_robot_retarget_v1.py`：六阶段、任务特定接触/穿透门、预算和最佳诊断解合同。
-- `pipeline/occlusion_compositor_v1.py`：只处理ownership和合法像素来源；没有物体外观时输出UNKNOWN，不以Clean桌面冒充物体。
+- `src/chaoyang/pipeline/human_contact_hypothesis_v1.py`：只消费 HaWoR、对象身份Mask、正式observed-only Object6D和时序，绝不消费Robot render或修改正式Object6D。
+- `src/chaoyang/pipeline/contact_aware_robot_retarget_v1.py`：六阶段、任务特定接触/穿透门、预算和最佳诊断解合同。
+- `src/chaoyang/pipeline/occlusion_compositor_v1.py`：只处理ownership和合法像素来源；没有物体外观时输出UNKNOWN，不以Clean桌面冒充物体。
 - schemas 位于 `contracts/*_v1.schema.json`。
-- Poker042全片假设结果：`tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json`。
-- 中文四帧诊断：`tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/`。
+- Poker042全片假设结果：`archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json`。
+- 中文四帧诊断：`archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/`。
 - Robot solver没有运行：缺真实NaturalV2→KaiHand装配闭包、adapter CAD/安装测量、world→Tianji base、TCP/安装标定。不得用旧黄色proxy或视觉placement补齐。
 
 ## 5. HumanEgo
 
 - future-2D与real Robot action使用不同schema：`contracts/edited_human_aux_manifest_v1.schema.json`、`contracts/real_robot_policy_manifest_v1.schema.json`。
-- 代码：`HumanEgo/utils/visual_aux_contract.py`。
-- readiness：`tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json`。
+- 代码：`src/chaoyang/human_ego/utils/visual_aux_contract.py`。
+- readiness：`archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json`。
 - 缺Robotized视觉authority时不能构建正式paired bundle；缺同步真实Robot action时只能做辅助准备，最终policy保持 `BLOCKED_EXTERNAL`。
 
 ## 6. 清理
 
-- 第一轮只删除可再生cache，证据根：`tasks/control/runs/20260913_root_cleanup_v3_lane_a/`。
+- 第一轮只删除可再生cache，证据根：`archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_root_cleanup_v3_lane_a/`。
 - `_run`、`NOW`和旧runs因仍有current/文档绝对路径引用未移动。必须先闭合引用图、PID/FD、checkpoint和SHA，再进入至少7天quarantine；禁止直接删除。
 
 ## 7. 回归与故障处理

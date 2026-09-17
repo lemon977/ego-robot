@@ -1,0 +1,162 @@
+{
+  "$schema": "../schema/system_manifest.schema.json",
+  "algorithms": [
+    {
+      "algorithm_id": "mask.sam31.assisted_bilateral_flow_refresh.v4",
+      "implementation_files": [
+        {
+          "bytes": 45424,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_assisted_bilateral_flow_refresh.py",
+          "sha256": "81776d930d00aa31275f51820e8104aee2217fdf1356651e9d8ce768c0f89181"
+        },
+        {
+          "bytes": 2128,
+          "path": "/mnt/workspace/code/chaoyang/configs/systems/mask/configs/sam31_runtime_source_v1.json",
+          "sha256": "0bcb5b09aade9963d0f02597eb2aa77f48cc45cb00b92e8378c8e33db1b961ef"
+        },
+        {
+          "bytes": 3501,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/runtime/_run/gpt_mask_assisted_bilateral_wearable_contract_20260902_v1/FLOW_REFRESH_PROTOCOL_V4.json",
+          "sha256": "ab52ed204cb5221a72df62db8b0cbf5759f71399c6d9191efac9639a734d57bd"
+        }
+      ],
+      "invariants": [
+        "separate bilateral human-core and wearable raw instances",
+        "task object remains a protected independent raw mask",
+        "union equals OR of accepted roles minus protected object",
+        "no color threshold, morphology, dilation, erosion, fill, or GrabCut repair",
+        "refresh, identity, cycle, edge, area, adjacency, and object-overlap gates fail closed"
+      ],
+      "required_weight_ids": [
+        "sam31.multiplex.0567debe"
+      ],
+      "stage": "mask",
+      "status": "SHARED_CANDIDATE_NOT_YET_CROSS_TASK_PASS"
+    },
+    {
+      "algorithm_id": "mask.sam31.pico_geometry_independent_object_authority.v1",
+      "implementation_files": [
+        {
+          "bytes": 7923,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_assisted_object_authority.py",
+          "sha256": "a5c73427a5a68ee176cd8ec7b6064f80c9c25a6626a32aa83d9905fb2c27e363"
+        },
+        {
+          "bytes": 31929,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/pico_geometry_mask_anchors.py",
+          "sha256": "9abffc9357fc0f4b198741c0b5bb8769cb7824fda3cd5576e71a9bea29863d64"
+        },
+        {
+          "bytes": 14279,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/pico_geometry_mask_protocol.py",
+          "sha256": "2e1ee362347a687bfa932f9b2cad662d48510b24c280eebee0c0492443f319f4"
+        },
+        {
+          "bytes": 34274,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+          "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        },
+        {
+          "bytes": 23470,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_newtask_baseline_sam31_mask_probe.py",
+          "sha256": "4167bea2629b87514ec97e7d692436947bf67463e962aa5353b1b877112748f6"
+        },
+        {
+          "bytes": 8583,
+          "path": "/mnt/workspace/code/chaoyang/configs/systems/mask/configs/pico_raw_point_geometry_successor_v1.json",
+          "sha256": "557ea5a607c5c38c360b5d44ec820023595d178d8ec8b9701c2544047c8b5245"
+        },
+        {
+          "bytes": 2128,
+          "path": "/mnt/workspace/code/chaoyang/configs/systems/mask/configs/sam31_runtime_source_v1.json",
+          "sha256": "0bcb5b09aade9963d0f02597eb2aa77f48cc45cb00b92e8378c8e33db1b961ef"
+        },
+        {
+          "bytes": 540653,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/organization/2026-09-03/SAM31_STABLE_SWITCH_EXECUTION.json",
+          "sha256": "16ffa9a30cc79d02005daa7f3fcd4677a50578093085f7c6a3cc68272050f621"
+        }
+      ],
+      "invariants": [
+        "canonical SAM source without nested git is authenticated by the FINAL switch receipt, runtime contract, official commit/tree, every tracked Git blob, and same-inode hardlink identity",
+        "the enclosing project repository HEAD is never accepted as the SAM repository commit",
+        "each moving chip or card owns an independent raw SAM state and object ID",
+        "contact-assisted reseeds are automatic preregistered PICO events, never manual per-frame points",
+        "object-authority PASS is required before human/tracker removal",
+        "FIT chips008 parameters remain unchanged for held-out chips011 and poker001"
+      ],
+      "required_weight_ids": [
+        "sam31.multiplex.0567debe"
+      ],
+      "stage": "mask",
+      "status": "FROZEN_FIT_EVAL_PENDING"
+    }
+  ],
+  "claim_limit": "Historical missing references were retired to tasks/receipts/RETIRED_REFERENCES.json; no evidence is inferred.",
+  "current_evidence": [],
+  "learned_weights": [
+    {
+      "applicable_tasks": [
+        "*"
+      ],
+      "base_weight_id": null,
+      "bytes": 3502755717,
+      "evaluation": {
+        "claim_limit": "Chips assisted v4 PASS does not authorize poker, blind, formal PICO, or zero-click wearable claims.",
+        "status": "PHONE_BASELINE_DEVELOPMENT_ONLY"
+      },
+      "license": {
+        "bytes": 7353,
+        "id": "SAM_LICENSE_LOCAL",
+        "path": "/mnt/workspace/code/chaoyang/vendor/SAM3/LICENSE",
+        "sha256": "4dea99bfaa016e21bc860d73f344236bd1e5c4977d1a9a8fd32f822b500ae1be",
+        "status": "RECORDED_SUBJECT_TO_LICENSE_TERMS"
+      },
+      "origin": "external_pretrained",
+      "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+      "provenance": {
+        "canonical_code_root": "vendor/SAM3",
+        "mirror_repository": "Supbatomic/sam3-1-model",
+        "mirror_revision": "99cb53e9cb67e5660e6d19de43cec2ea14279401",
+        "official_code_commit": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7",
+        "official_code_repository": "https://github.com/facebookresearch/sam3.git",
+        "official_code_tree": "6bc2384dbbfb370fe28096d23955df9b7b0bcdd9",
+        "official_model_repository": "facebook/sam3.1",
+        "official_model_revision": "daa63191845a41281374e725f4c9e51c7a824460",
+        "runtime_source_contract": "configs/systems/mask/configs/sam31_runtime_source_v1.json"
+      },
+      "scope": "shared",
+      "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+      "weight_id": "sam31.multiplex.0567debe"
+    }
+  ],
+  "manifest_version": "2026-09-03.2",
+  "schema_version": "chaoyang-system-manifest-v1",
+  "shared_by_default": true,
+  "status": "CLEAN_BASELINE_NO_STALE_EVIDENCE",
+  "system_id": "mask",
+  "task_specific_config_keys": [
+    "source_identity",
+    "display_rotation",
+    "anatomical_side_mapping",
+    "visible_role_inventory",
+    "frame0_instance_anchors",
+    "task_object_ids",
+    "protected_object_artifact",
+    "frozen_canary_frames",
+    "offline_annotation_plan"
+  ],
+  "weight_policy": {
+    "new_weight_requires": [
+      "bytes_and_sha256",
+      "base_weight_id",
+      "training_data_manifest_sha256",
+      "training_code_sha256",
+      "session_level_split_manifest_sha256",
+      "evaluation_manifest_sha256_and_metrics",
+      "applicable_task_scope",
+      "license_id_and_status"
+    ],
+    "task_local_paths_allowed": false
+  }
+}

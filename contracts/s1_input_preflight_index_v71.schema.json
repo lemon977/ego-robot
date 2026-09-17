@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/s1_input_preflight_index_v71.schema.json",
+  "title": "S1 frozen causal input and CPU preflight index",
+  "type": "object",
+  "required": [
+    "schema_version", "artifact_id", "artifact_revision", "immutable",
+    "audit_selection", "counts", "rows", "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "s1-input-preflight-index-v71"},
+    "artifact_id": {"const": "S1_INPUT_PREFLIGHT_INDEX"},
+    "artifact_revision": {"pattern": "^R7_[0-9]+(?:[._-][A-Za-z0-9]+)*$"},
+    "immutable": {"const": true},
+    "audit_selection": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256"]
+    },
+    "counts": {
+      "type": "object",
+      "required": ["sessions", "input_ready", "input_blocked", "preflight_passed", "preflight_blocked"]
+    },
+    "rows": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": [
+          "session_id", "task", "status", "frame_count", "instance_count",
+          "rgb_manifest", "prompt_manifest", "preflight_result", "blocked_reason"
+        ],
+        "properties": {
+          "session_id": {"type": "string", "minLength": 1},
+          "task": {"enum": ["CHIPS", "POKER"]},
+          "status": {"enum": ["PASSED", "BLOCKED_PREREQ", "BLOCKED_REFERENCE_PROOF"]},
+          "frame_count": {"type": "integer", "minimum": 0},
+          "instance_count": {"type": "integer", "minimum": 0},
+          "rgb_manifest": {"type": ["object", "null"]},
+          "prompt_manifest": {"type": ["object", "null"]},
+          "preflight_result": {"type": ["object", "null"]},
+          "blocked_reason": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "additionalProperties": true
+}

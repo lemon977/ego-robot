@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "governance_revision",
+    "generation_id",
+    "generated_at",
+    "status",
+    "documents",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-doc-authority-map-v1"},
+    "governance_revision": {"type": "integer", "minimum": 1},
+    "generation_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string"},
+    "status": {"const": "CURRENT"},
+    "documents": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "document_id",
+          "status",
+          "path",
+          "bytes",
+          "sha256",
+          "supersedes",
+          "evidence_receipts",
+          "authorized_scope",
+          "claim_limit"
+        ],
+        "properties": {
+          "document_id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["CURRENT", "SUPERSEDED", "HISTORICAL", "PROPOSAL"]},
+          "path": {"type": "string", "pattern": "^/"},
+          "bytes": {"type": "integer", "minimum": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+          "supersedes": {"type": "array", "items": {"type": "string"}},
+          "evidence_receipts": {
+            "type": "array",
+            "items": {"$ref": "artifact_ref.schema.json"}
+          },
+          "authorized_scope": {"type": "string", "minLength": 1},
+          "claim_limit": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

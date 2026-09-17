@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/causal_modal_mask_prompts_v71.schema.json",
+  "title": "Frozen per-instance initial and correction mask prompts",
+  "type": "object",
+  "required": ["schema_version", "artifact_id", "artifact_revision", "session_id", "task", "frozen", "allow_instance_union", "audit_selection", "instances"],
+  "properties": {
+    "schema_version": {"const": "causal-modal-mask-prompts-v71"},
+    "artifact_id": {"type": "string", "minLength": 1},
+    "artifact_revision": {"type": "string", "pattern": "^R7_[0-9]+(?:[._-][A-Za-z0-9]+)*$"},
+    "session_id": {"type": "string", "minLength": 1},
+    "task": {"enum": ["CHIPS", "POKER"]},
+    "frozen": {"const": true},
+    "allow_instance_union": {"const": false},
+    "audit_selection": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "instances": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object",
+        "required": ["instance_id", "prompt_events"],
+        "properties": {
+          "instance_id": {"type": "string", "minLength": 1},
+          "prompt_events": {
+            "type": "array", "minItems": 1,
+            "items": {
+              "type": "object",
+              "required": ["frame_id", "event_type", "mask"],
+              "properties": {
+                "frame_id": {"type": "integer", "minimum": 0},
+                "event_type": {"enum": ["INITIAL_MASK", "CORRECTION_MASK"]},
+                "mask": {
+                  "type": "object",
+                  "required": ["path", "bytes", "sha256"],
+                  "properties": {
+                    "path": {"type": "string", "pattern": "^/"},
+                    "bytes": {"type": "integer", "minimum": 1},
+                    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

@@ -1,0 +1,39 @@
+{
+  "schema_version": "chaoyang-rc1-release-spec-v1",
+  "release_id": "chaoyang-visual-aux-rc1-final",
+  "status": "FROZEN_AFTER_MIGRATION",
+  "cohort": {"name": "exact78", "sessions": 156, "chips": 78, "poker": 78},
+  "sensor_line_in_training_denominator": false,
+  "mask_baseline": "SAM3.1",
+  "robot_solver": "v77-prefix-causal-recompute",
+  "contact_global_prerequisite": false,
+  "complete_object_atlas_global_prerequisite": false,
+  "global_robot_authority_prerequisite": false,
+  "budgets": {
+    "integrated_revisions": 2,
+    "engineering_hours": 24,
+    "runtime_attempts_per_signature": 2,
+    "gpu_wait_seconds": 1800,
+    "canary_wall_seconds": 1800,
+    "session_wall_seconds_max": 7200,
+    "checkpoint_gpu_hours_each": 12,
+    "checkpoint_gpu_hours_total": 48,
+    "production_gpu_hours_total": 96,
+    "disk_multiplier": 1.5,
+    "disk_emergency_reserve_bytes": 214748364800
+  },
+  "release_flags": [
+    "PIPELINE_OPERATIONALLY_CLOSED",
+    "DATA_MINIMUM_MET_CHIPS",
+    "DATA_MINIMUM_MET_POKER",
+    "CHECKPOINT_PAIR_CHIPS",
+    "CHECKPOINT_PAIR_POKER",
+    "FOUR_CHECKPOINTS_TRAINED",
+    "VISUAL_AB_VALUE_CHIPS",
+    "VISUAL_AB_VALUE_POKER",
+    "RATE_FINALIZED",
+    "RC1_RELEASE_STATUS"
+  ],
+  "control_ground_truth": false,
+  "physical_deployment_authorized": false
+}

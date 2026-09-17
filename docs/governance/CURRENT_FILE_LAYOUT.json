@@ -1,10 +1,14 @@
 {
   "canonical_documents": {
-    "baseline_registry": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_BASELINE_REGISTRY_V2.json",
-    "current_status": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-    "depth_report": "/mnt/workspace/code/chaoyang/docs/reports/depth_accuracy/20260911",
-    "end_to_end": "/mnt/workspace/code/chaoyang/docs/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
-    "stage_baselines": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STAGE_BASELINES_ZH.md"
+    "algorithm_contract": "docs/governance/ALGORITHM_CONTRACT.json",
+    "baseline_registry": "docs/governance/CURRENT_BASELINE_REGISTRY_V2.json",
+    "current_status": "docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
+    "depth_report": "docs/research/current/reports/depth_accuracy/20260911",
+    "document_authority_map": "docs/governance/DOC_AUTHORITY_MAP.json",
+    "end_to_end": "docs/reference/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+    "execution_plan": "docs/governance/CHAOYANG_V7_1_R3_EXECUTION_PLAN_ZH.md",
+    "plan_migration_receipt": "docs/governance/PLAN_MIGRATION_RECEIPT.json",
+    "stage_baselines": "docs/governance/CURRENT_STAGE_BASELINES_ZH.md"
   },
   "claim_limit": "Layout contract only. Historical snapshot paths are resolved through PATH_REDIRECTS.json.",
   "forbidden_top_level_after_cleanup": [
@@ -12,9 +16,9 @@
     "DEPTH_ACCURACY_PACKAGE_20260911",
     "RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md"
   ],
-  "generated_at": "2026-09-14T19:12:16+08:00",
-  "generation_id": "gov-005869-1eff2016fad2",
-  "governance_revision": 5869,
+  "generated_at": "2026-09-17T10:20:59+08:00",
+  "generation_id": "gov-011169-0f858fe9be38",
+  "governance_revision": 11169,
   "protected_external": [
     "/mnt/data/egodata",
     "/nas/chenxianchi/egosteertouch",

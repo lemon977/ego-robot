@@ -1,0 +1,43 @@
+{
+  "schema_version": "chaoyang-wrist-fusion-v1",
+  "mode": "SENSOR_CONTROLLER_MANUS_STEREO",
+  "tracker_anchor": {
+    "source": "CONTROLLER_6DOF_WRIST",
+    "role": "PRIMARY_CONTINUOUS_TRANSLATION_AND_ORIENTATION",
+    "required": true
+  },
+  "finger_source": {
+    "source": "HAND21_FROM_MANUS_CONTROLLER",
+    "role": "HAND_SHAPE_AND_FINGER_ARTICULATION"
+  },
+  "surface_depth_source": {
+    "source": "FOUNDATIONSTEREO_VISIBLE_SURFACE_OPTICAL_Z",
+    "role": "OPTIONAL_LOW_FREQUENCY_RELATIVE_Z_CORRECTION",
+    "native_confidence": false
+  },
+  "calibration": {
+    "tracker_to_anatomical_offset": "ROBUST_PREFIX_MEDIAN_IN_TRACKER_LOCAL_FRAME",
+    "surface_to_wrist_z_offset": "ROBUST_PREFIX_MEDIAN_PER_SIDE",
+    "external_truth": false
+  },
+  "fusion": {
+    "causal": true,
+    "stereo_weight": 0.15,
+    "stereo_window_frames": 15,
+    "innovation_clip_mm": 30.0,
+    "correction_ema_alpha": 0.15,
+    "apply_to_whole_hand": "RIGID_WRIST_TRANSLATION_ONLY_NO_FINGER_POSE_CHANGE"
+  },
+  "outputs": {
+    "wrist_xyz": "[T,2,3]",
+    "hand21": "[T,2,21,3]",
+    "source_residuals": "PER_FRAME_PER_SIDE",
+    "validity": "PER_FRAME_PER_SIDE",
+    "provenance": "PER_FRAME_PER_SIDE"
+  },
+  "authority": {
+    "control_ground_truth": false,
+    "external_wrist_truth": false,
+    "physical_deployment": false
+  }
+}

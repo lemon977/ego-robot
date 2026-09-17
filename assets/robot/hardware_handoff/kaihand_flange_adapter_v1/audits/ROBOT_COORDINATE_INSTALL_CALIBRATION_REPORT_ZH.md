@@ -61,16 +61,16 @@ T_camera_base(t) = inv(c2w(t)) @ T_world_base
 
 直接代码证据：
 
-- `tools/render_same_side_world_temporal_review.py:594-602,633,747-750`
-- `tools/run_same_side_world_fullsession_successor.py:315-322,335,432-435`
-- `tools/render_development_robot_review_v1.py:37-40,49,114,126`
-- `tools/run_robot_motion_transfer_arm_canary_v2.py:112-118,132-137,166,200`
+- `src/chaoyang/ops/render_same_side_world_temporal_review.py:594-602,633,747-750`
+- `src/chaoyang/ops/run_same_side_world_fullsession_successor.py:315-322,335,432-435`
+- `src/chaoyang/ops/render_development_robot_review_v1.py:37-40,49,114,126`
+- `src/chaoyang/ops/run_robot_motion_transfer_arm_canary_v2.py:112-118,132-137,166,200`
 
 需要特别防混淆：
 
-- `tools/render_poker_same_side_outward_frame0.py` 是旧的单帧 camera-first 开发路径；
-- `tools/run_robot_renderer_eevee_fullchain_t1.py:930,954` 记录的是 `T_camera_base` session constant 的旧 renderer 语义；
-- `tools/audit_robot_contact_visual_two_session.py:297` 会读取 `T_camera_robot_base`，但目前没有一条获授权的正式 Robot trajectory 可以把它变成真实安装外参；
+- `src/chaoyang/ops/render_poker_same_side_outward_frame0.py` 是旧的单帧 camera-first 开发路径；
+- `src/chaoyang/ops/run_robot_renderer_eevee_fullchain_t1.py:930,954` 记录的是 `T_camera_base` session constant 的旧 renderer 语义；
+- `src/chaoyang/ops/audit_robot_contact_visual_two_session.py:297` 会读取 `T_camera_robot_base`，但目前没有一条获授权的正式 Robot trajectory 可以把它变成真实安装外参；
 - `render_development_robot_review_v1.py` 会对新 session 用 `c2w_new(0) @ accepted_camera_base` 重建 `T_world_base`，然后施加 session-specific backoff。这是视觉运动迁移策略，不是跨 session 的物理 world→base 标定。
 
 ## 4. Camera / World → Tianji Base 候选

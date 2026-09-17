@@ -1,0 +1,33 @@
+{
+  "schema_version": "two-task-robot-large-view-delivery-v1",
+  "source_freeze_sha256": "569e54a1ad77f5ac6977ac117de8426369aeff7bab1ae2ee4f32e082d803de26",
+  "mode": "OFFLINE_BIDIRECTIONAL_VISUALIZATION",
+  "control_ground_truth": false,
+  "training_eligible": false,
+  "videos": [
+    {
+      "session": "get_potato_chips_0902_103",
+      "file": "get_potato_chips_0902_103_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+      "sha256": "c823fac206f6919d07b877a4201137853fe08e246f5b29f9746db8a99907a44f",
+      "decoded_frames": 284,
+      "fps": "30/1",
+      "width": 1920,
+      "height": 480,
+      "ffmpeg_xerror_full_decode": true,
+      "hard_geometry_pass_source": "separate v76 digital collision audit",
+      "strict_pose_similarity_pass": false
+    },
+    {
+      "session": "play_cards_0902_042",
+      "file": "play_cards_0902_042_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+      "sha256": "5f2fa51b6ada773e254618476ac40f65cb404d4873fffc7574eb1c102dc26eed",
+      "decoded_frames": 171,
+      "fps": "30/1",
+      "width": 1920,
+      "height": 480,
+      "ffmpeg_xerror_full_decode": true,
+      "hard_geometry_pass_source": "RC1 Robot30 fresh_batch_012 attempt_0001",
+      "strict_pose_similarity_pass": false
+    }
+  ]
+}

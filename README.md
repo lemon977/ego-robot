@@ -1,50 +1,54 @@
 # Chaoyang Ego-to-Robot Pipeline
 
-本仓库实现第一视角数据的 Raw → HaWoR / Mask → Stereo Depth → Object6D → Clean → Contact → Robot Visual → HumanEgo 流水线。
+本仓库实现第一视角数据的 Raw → HaWoR / Mask → Stereo Depth → Object6D → Clean → Contact → Robot Visual → HumanEgo 流水线。2026-09-17 起，活动代码统一使用 src/chaoyang 包布局；旧路径只可通过归档清单查询，不再是执行入口。
 
 ## 当前唯一入口
 
 执行或回答状态问题前，按顺序读取：
 
-1. [当前状态 receipt](docs/governance/CURRENT_STATUS_RECEIPT.json)：绑定同一 revision 的全部 current 文件。
-2. [最小事实页](docs/governance/CURRENT_PROJECT_STATUS_MIN.json)：计数、活动任务与下一任务。
-3. [当前基线注册表 V2](docs/governance/CURRENT_BASELINE_REGISTRY_V2.json)：12 阶段算法、代码、权重、schema、质量门、authority 和限制。
-4. [当前阶段说明](docs/governance/CURRENT_STAGE_BASELINES_ZH.md)：给人看的算法与整改需求。
-5. [端到端复现文档](docs/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md)：稳定技术接口与复现顺序。
+1. [当前入口](docs/current/README_ZH.md)
+2. [当前状态 receipt](docs/governance/CURRENT_STATUS_RECEIPT.json)
+3. [RC1 最小事实页](docs/governance/CURRENT_RC1_STATUS_MIN.json)；其他阶段读取[项目最小事实页](docs/governance/CURRENT_PROJECT_STATUS_MIN.json)
+4. [文档权威索引](docs/governance/DOC_AUTHORITY_MAP.json)与[算法合同](docs/governance/ALGORITHM_CONTRACT.json)
+5. [当前任务索引](tasks/current/INDEX.json)；只有 execution_allowed=true 的行可执行
+6. [端到端复现说明](docs/reference/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md)
+7. [Clean baseline v1 迁移与恢复说明](docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md)
 
-旧 README、聊天、目录名中的 `current/latest/final`、未绑定 SHA 的视频都不是当前事实。
+freshness.reason=no_active_tasks 只表示没有需要心跳的活动治理任务，不表示所有研究文档刚更新。实时事实由 receipt、SHA 与 DOC_AUTHORITY_MAP 共同约束。历史文件名中的 current/latest/final 不具有当前权威性。
 
 ## 目录职责
 
-```text
-chaoyang/
-├── assets/       # 权重、Robot URDF/CAD与固定资产
-├── contracts/    # 当前机器合同和schema
-├── data/         # 小型manifest、fixture和必要项目内派生数据
-├── docs/         # current治理、技术文档、报告和历史胶囊
-├── HumanEgo/     # 视觉辅助/策略模型代码
-├── pipeline/     # 可复用阶段实现
-├── systems/      # 注册表驱动的阶段入口说明
-├── tasks/        # current与不可变证据run
-├── tests/        # 当前回归
-├── third_party/  # 固定第三方实现及许可证
-├── tools/        # current入口与治理/清理工具
-├── archive/      # 尚未完成删除证明的历史胶囊
-└── _run/         # GPU lease、lock和当前executor控制面
-```
+    chaoyang/
+    ├── src/chaoyang/       # pipeline、human_ego、governance、ops、cli
+    ├── configs/            # pipeline、training、systems 配置
+    ├── contracts/          # schema 与机器合同
+    ├── manifests/          # 数据、模型、实验与 vendor 清单
+    ├── scripts/            # 少量迁移和人工入口
+    ├── tests/              # 当前回归
+    ├── docs/               # 当前入口、指南、参考、研究与治理
+    ├── tasks/current/      # 仅当前可执行任务
+    ├── tasks/receipts/     # 紧凑证明与历史目录
+    ├── assets/models/      # 权重本体忽略，清单受控
+    ├── vendor/             # 运行必需的最小第三方源码
+    ├── _run/current/       # 忽略的锁、缓存、日志、媒体和实验结果
+    └── archive/            # 隔离且被 Git/构建/测试排除的可恢复历史
 
-V6 已移除重复端到端文档和顶层深度专题包。清理采用逐目标门：与活动 Clean 无传递依赖、无 current 引用、无活动 FD/CWD且胶囊闭合的旧资产可立即删除；只有活动依赖本身需要等待。`NOW/` 已完成证据胶囊，剩余硬编码引用正在与对应旧工具一起退休。历史路径通过 `docs/governance/PATH_REDIRECTS.json` 解析。
+## 统一命令
+
+    PYTHONPATH=src python -m chaoyang.cli paths
+    PYTHONPATH=src python -m chaoyang.cli validate-governance
+    PYTHONPATH=src python -m chaoyang.cli run <operation> [args...]
+
+默认路径：原始数据 /mnt/data/egodata/datasets/ego；处理数据 /mnt/data/egodata/datasets/ego/processed；运行产物 <repo>/_run/current；模型权重 <repo>/assets/models。分别使用 EGO_DATA_ROOT、EGO_PROCESSED_ROOT、CHAOYANG_RUN_ROOT、CHAOYANG_MODEL_ROOT 覆盖。
 
 ## 不可破坏规则
 
-- `/mnt/data/egodata` 的原始数据、0909/0910 release 与数据侧可视化永久保护；`/nas/chenxianchi` 的其他项目不触碰。
-- current authority 只由 receipt 绑定的机器文件解释；生成的 current Markdown 禁止手改。
-- 已有 final 不覆盖；不同输入、代码、权重、标定或 schema 签名不得静默复用。
-- HaWoR 单目三维、Stereo/Object6D 内部残差、Robot 数字接触距离和视觉审核都不是物理真实精度。
-- `visual_robot_trajectory_sidecar` 不是 `real_robot_action_sidecar`；Visual Aux checkpoint 不是最终 Policy checkpoint。
+- 不移动、删除或改写 /mnt/data/egodata。
+- current authority 只由 receipt 绑定的机器文件解释。
+- 已有 final 不覆盖；输入、代码、权重、标定或 schema 签名变化不得静默复用。
+- HAND_OBJECT_ATTACHMENT 只可延续遮挡期 pose，不得反向证明身份、Contact 或正式 Object6D。
 - Clean 合成像素不得反喂 Depth、Object6D、Contact 几何或动作真值。
-- 永久删除前必须有 dry-run 清单、零 current 引用、零活动 FD/CWD、Git保护快照和删除收据。
+- GPU 任务必须走租约；迁移、治理、哈希和测试默认 CPU。
+- 永久删除不可再生内容前，必须有归档清单、零 current 引用、零活动 FD/CWD、Git 保护快照和删除收据。
 
-第三方版本与许可证见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)。
-
-KaiHand—Tianji 法兰连接件的当前硬件参考包见 [assets/robot/hardware_handoff/kaihand_flange_adapter_v1/README_ZH.md](assets/robot/hardware_handoff/kaihand_flange_adapter_v1/README_ZH.md)。该包只有经 SHA 核验的参考几何与测量清单，当前没有可直接打印的连接件 STEP/STL。
+第三方来源与许可证见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [vendor 清单](manifests/vendor.json)。

@@ -14,6 +14,9 @@
     "tasks": {"type": "array", "items": {"type": "object", "additionalProperties": true, "required": ["task_id", "phase", "attempt", "status", "updated_at"], "properties": {"task_id": {"type": "string"}, "phase": {"type": "string"}, "attempt": {"type": "integer", "minimum": 0}, "status": {"type": "string"}, "updated_at": {"type": "string"}, "heartbeat_at": {"type": ["string", "null"]}, "session": {"type": ["string", "null"]}, "pid": {"type": ["integer", "null"]}, "proc_start_ticks": {"type": ["integer", "null"]}, "gpu_id": {"type": ["integer", "null"]}}}},
     "blockers": {"type": "array", "items": {"type": "object", "additionalProperties": false, "required": ["name", "status", "scope", "resolution"], "properties": {"name": {"type": "string"}, "status": {"type": "string"}, "scope": {"type": "string"}, "resolution": {"type": "string"}}}},
     "recent_events": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
-    "next_task": {"type": ["object", "null"], "additionalProperties": true}
+    "next_task": {"type": ["object", "null"], "additionalProperties": true},
+    "rc1_pair_status": {"type": "object", "additionalProperties": {"type": "string"}},
+    "rc1_release_flags": {"type": "object", "additionalProperties": true},
+    "rc1_budget": {"type": "object", "additionalProperties": true}
   }
 }

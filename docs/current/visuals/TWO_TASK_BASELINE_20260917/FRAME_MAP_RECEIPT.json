@@ -1,0 +1,17 @@
+{
+  "schema_version": "two-task-baseline-frame-map-receipt-v1",
+  "video_receipt_sha256": "40eed8e1e7accf47acb933afa9283c8d557e327261375008c8ad04b056eb9129",
+  "frame_maps": {
+    "get_potato_chips_0902_103": {
+      "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/get_potato_chips_0902_103_FRAME_MAP.jsonl",
+      "sha256": "be3d770b7786ea75157cb1383d48f55254478fbed33792e40120b2bcc5f69712",
+      "rows": 284
+    },
+    "play_cards_0902_042": {
+      "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_two_task_visual_baseline_v1/visuals/attempt_0002/play_cards_0902_042_FRAME_MAP.jsonl",
+      "sha256": "80d94de4b3526ef71ca5d3f5b1fafe66f9992216d624c05dc815c0388a3b51de",
+      "rows": 171
+    }
+  },
+  "mapping_rule": "Every input video was validated to contain exactly N 30fps presentation frames; review frames consume each stage sequentially without padding, interpolation, trimming or looping."
+}

@@ -1,0 +1,114 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/contact_occlusion_canary_plan_v71.schema.json",
+  "title": "Contact and occlusion bounded canary plan V7.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "plan_revision", "artifact_id", "artifact_revision",
+    "validity", "generated_at", "producer_signature", "input_manifest_sha",
+    "source_evidence", "canaries", "counts", "authority", "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "contact-occlusion-canary-plan-v71"},
+    "plan_revision": {"const": "chaoyang-v7.1"},
+    "artifact_id": {"const": "CONTACT_OCCLUSION_CANARY_PLAN_V71"},
+    "artifact_revision": {"const": "R7_1"},
+    "validity": {"const": "VALID_FOR_PINNED_REVISION"},
+    "generated_at": {"type": "string", "minLength": 1},
+    "producer_signature": {"$ref": "#/$defs/sha"},
+    "input_manifest_sha": {"$ref": "#/$defs/sha"},
+    "source_evidence": {
+      "type": "array", "minItems": 2,
+      "items": {"$ref": "#/$defs/evidence"}
+    },
+    "canaries": {
+      "type": "array", "minItems": 6, "maxItems": 6,
+      "items": {"$ref": "#/$defs/canary"}
+    },
+    "counts": {
+      "type": "object", "additionalProperties": false,
+      "required": ["total", "standard_exact78", "controller_manus_sensor", "ready", "blocked_prereq"],
+      "properties": {
+        "total": {"const": 6},
+        "standard_exact78": {"const": 3},
+        "controller_manus_sensor": {"const": 3},
+        "ready": {"type": "integer", "minimum": 0, "maximum": 6},
+        "blocked_prereq": {"type": "integer", "minimum": 0, "maximum": 6}
+      }
+    },
+    "authority": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256", "role"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha"},
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "dependency": {
+      "type": "object", "additionalProperties": false,
+      "required": ["dependency_id", "required", "status", "reason", "evidence_paths"],
+      "properties": {
+        "dependency_id": {"type": "string", "minLength": 1},
+        "required": {"type": "boolean"},
+        "status": {"enum": ["VERIFIED_LOCAL", "VERIFIED_INPUT_ONLY", "BLOCKED_UPSTREAM", "MISSING_LOCAL_CODE", "MISSING_LOCAL_WEIGHTS", "LICENSE_REVIEW_REQUIRED", "NOT_APPLICABLE"]},
+        "reason": {"type": "string", "minLength": 1},
+        "evidence_paths": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "budget": {
+      "type": "object", "additionalProperties": false,
+      "required": ["max_rounds", "wall_seconds_per_round", "gpu_seconds_per_round", "cpu_only_compilation"],
+      "properties": {
+        "max_rounds": {"type": "integer", "minimum": 1, "maximum": 2},
+        "wall_seconds_per_round": {"type": "integer", "minimum": 1, "maximum": 14400},
+        "gpu_seconds_per_round": {"type": "integer", "minimum": 0, "maximum": 7200},
+        "cpu_only_compilation": {"const": true}
+      }
+    },
+    "authority_limit": {
+      "type": "object", "additionalProperties": false,
+      "required": ["maximum_publication", "forbidden_claims"],
+      "properties": {
+        "maximum_publication": {"type": "string", "minLength": 1},
+        "forbidden_claims": {"type": "array", "minItems": 1, "items": {"type": "string"}}
+      }
+    },
+    "canary": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "canary_id", "line", "priority", "objective", "methods", "scope",
+        "execution_mode", "causal_policy", "offline_policy", "algorithm_prerequisites",
+        "input_evidence", "budget", "go_gates", "no_go_gates", "terminal_on_no_go",
+        "authority_limit", "resource_status", "blockers"
+      ],
+      "properties": {
+        "canary_id": {"enum": ["S1", "S2", "S3", "N1", "N2", "N3"]},
+        "line": {"enum": ["STANDARD_EXACT78", "CONTROLLER_MANUS_SENSOR"]},
+        "priority": {"type": "integer", "minimum": 1, "maximum": 3},
+        "objective": {"type": "string", "minLength": 1},
+        "methods": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "scope": {"type": "string", "minLength": 1},
+        "execution_mode": {"enum": ["CAUSAL_PROCESSING", "OFFLINE_BIDIRECTIONAL_VISUALIZATION", "DUAL_SEPARATED"]},
+        "causal_policy": {"type": "string", "minLength": 1},
+        "offline_policy": {"type": "string", "minLength": 1},
+        "algorithm_prerequisites": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/dependency"}},
+        "input_evidence": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/evidence"}},
+        "budget": {"$ref": "#/$defs/budget"},
+        "go_gates": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "no_go_gates": {"type": "array", "minItems": 1, "items": {"type": "string"}},
+        "terminal_on_no_go": {"type": "string", "minLength": 1},
+        "authority_limit": {"$ref": "#/$defs/authority_limit"},
+        "resource_status": {"enum": ["READY_FOR_BOUNDED_RUN", "BLOCKED_PREREQ"]},
+        "blockers": {"type": "array", "items": {"type": "string", "minLength": 1}}
+      }
+    }
+  }
+}

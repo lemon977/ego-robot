@@ -2,9 +2,9 @@
   "schema_version": "kaihand-tianji-hardware-handoff-receipt-v1",
   "created_at": "2026-09-14T18:54:00+08:00",
   "status": "PASS_REFERENCE_PACKAGE_INCOMPLETE_FOR_PRINT_RELEASE",
-  "directory": "/mnt/workspace/code/chaoyang/assets/robot/hardware_handoff/kaihand_flange_adapter_v1",
+  "directory": "assets/robot/hardware_handoff/kaihand_flange_adapter_v1",
   "archive": {
-    "path": "/mnt/workspace/code/chaoyang/assets/robot/hardware_handoff/kaihand_flange_adapter_v1_REFERENCE_ONLY.tar.gz",
+    "path": "assets/robot/hardware_handoff/kaihand_flange_adapter_v1_REFERENCE_ONLY.tar.gz",
     "bytes": 3593146,
     "sha256": "c9a712ee0aa36cae798da37be69403f8b6ff59f95ff76a382e6f71652028b490"
   },

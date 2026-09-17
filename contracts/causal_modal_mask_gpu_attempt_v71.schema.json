@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/causal_modal_mask_gpu_attempt_v71.schema.json",
+  "title": "Immutable leased S1 causal modal-mask attempt",
+  "allOf": [
+    {"$ref": "immutable_artifact_revision_v71.schema.json"},
+    {
+      "type": "object",
+      "required": ["payload"],
+      "properties": {
+        "payload": {
+          "type": "object",
+          "required": ["schema_version", "status", "session_id", "task_id", "attempt_id", "backend", "execution_performed", "gpu_lease_scope", "output", "identity_policy", "prompt_policy", "authority_limit"],
+          "properties": {
+            "schema_version": {"const": "causal-modal-mask-gpu-attempt-v71"},
+            "status": {"enum": ["PASSED", "FAILED_RUNTIME_FINAL", "BLOCKED_REFERENCE_PROOF", "BLOCKED_PREREQ", "BLOCKED_RESOURCE"]},
+            "backend": {"enum": ["sam2_1", "cutie"]},
+            "execution_performed": {"type": "boolean"},
+            "gpu_lease_scope": {"const": "MODEL_CONSTRUCTION_AND_CAUSAL_INFERENCE_ONLY"},
+            "identity_policy": {"const": "PER_INSTANCE_NO_UNION_FAIL_CLOSED_UNKNOWN"},
+            "prompt_policy": {"const": "CURRENT_OR_PAST_ONLY"},
+            "output": {"type": ["object", "null"]},
+            "runtime_error": {"type": ["string", "null"]}
+          }
+        }
+      }
+    }
+  ]
+}

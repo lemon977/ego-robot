@@ -1,0 +1,27 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/depth_quality_evidence_r3.schema.json",
+  "title": "DEPTH-10 FoundationStereo internal quality evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "stage", "valid_coverage", "formula_mae_m", "formula_p95_m", "lr_consistency_mae_px", "registration_p90_px", "temporal_static_std_m", "temporal_static_std_p95_m", "temporal_frame_median_std_m", "boundary_uncertain_ratio", "low_texture_ratio", "reflective_ratio", "motion_blur_ratio", "depth_confidence_present", "external_metric_accuracy", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "DEPTH_QUALITY_EVIDENCE_R3"},
+    "stage": {"const": "DEPTH-10"},
+    "valid_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+    "formula_mae_m": {"type": "number", "minimum": 0},
+    "formula_p95_m": {"type": "number", "minimum": 0},
+    "lr_consistency_mae_px": {"type": ["number", "null"], "minimum": 0},
+    "registration_p90_px": {"type": ["number", "null"], "minimum": 0},
+    "temporal_static_std_m": {"type": ["number", "null"], "minimum": 0},
+    "temporal_static_std_p95_m": {"type": ["number", "null"], "minimum": 0},
+    "temporal_frame_median_std_m": {"type": ["number", "null"], "minimum": 0},
+    "boundary_uncertain_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "low_texture_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "reflective_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "motion_blur_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "depth_confidence_present": {"const": false},
+    "external_metric_accuracy": {"const": "UNKNOWN"},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

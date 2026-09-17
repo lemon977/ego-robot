@@ -1,0 +1,18 @@
+{
+  "execution_revision": "RC1",
+  "execution_semantics": "Current executable index is empty; all prior packets are catalog-only history.",
+  "generated_at": "2026-09-17T10:20:59+08:00",
+  "generation_id": "gov-011169-0f858fe9be38",
+  "governance_revision": 11169,
+  "historical_catalog": {
+    "bytes": 55477,
+    "path": "/mnt/workspace/code/chaoyang/tasks/receipts/HISTORICAL_TASK_CATALOG.json",
+    "sha256": "d12883c3bc7e8d67dae7318cabfe4861981f0448b07fbaa4702c7694773bd11a"
+  },
+  "index_bytes": 673,
+  "index_path": "tasks/current/INDEX.json",
+  "index_sha256": "5a1f98056d5bc861ecb58028e44db493bc4f3c9519a6cd0fb200847c81d2b829",
+  "packet_revision": "CLEAN_BASELINE_V1_NO_ACTIVE_TASKS",
+  "plan_revision": "chaoyang-rc1-final",
+  "schema_version": "chaoyang-v71-task-packet-pointer-v3-split"
+}

@@ -3,8 +3,8 @@ from __future__ import annotations
 import numpy as np
 import pytest
 
-from tools import run_exact78_robot_hand_round1_v52 as hand
-from tools import run_newtask_robot_shared_v4_hand as handfit
+from chaoyang.ops import run_exact78_robot_hand_round1_v52 as hand
+from chaoyang.ops import run_newtask_robot_shared_v4_hand as handfit
 
 
 class TemporalV2Stub:

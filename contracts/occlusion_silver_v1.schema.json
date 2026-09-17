@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "known_decision_coverage", "unknown_pixel_ratio", "unknown_contact_frame_ratio", "max_unknown_run", "protected_retention", "temporal_consistency_pass", "zbuffer_consistency_pass", "byte_exact_outside_authorized_band", "bidirectional_closure_pass", "accuracy_reported", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "OCCLUSION_SILVER_V1"},
+    "status": {"enum": ["VISUAL_OCCLUSION_SILVER_READY", "FAILED_QUALITY_C"]},
+    "known_decision_coverage": {"type": "number", "minimum": 0, "maximum": 1},
+    "unknown_pixel_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "unknown_contact_frame_ratio": {"type": "number", "minimum": 0, "maximum": 1},
+    "max_unknown_run": {"type": "integer", "minimum": 0},
+    "protected_retention": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+    "temporal_consistency_pass": {"type": "boolean"},
+    "zbuffer_consistency_pass": {"type": "boolean"},
+    "byte_exact_outside_authorized_band": {"type": "boolean"},
+    "bidirectional_closure_pass": {"type": "boolean"},
+    "accuracy_reported": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}
