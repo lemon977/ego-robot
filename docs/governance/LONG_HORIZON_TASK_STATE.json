@@ -73,12 +73,24 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-17T20:08:33+08:00",
-  "generation_id": "gov-011188-3e8a6f0b50be",
-  "generator_code_sha": "c6510e33db871c2a41c1f94db48c120f2d79a6bcb48fd18af0136021ea08635e",
-  "governance_revision": 11188,
+  "generated_at": "2026-09-18T00:19:21+08:00",
+  "generation_id": "gov-011190-360ad3d91b58",
+  "generator_code_sha": "311988bbf93d095c9a887b2858f4f931a93f5050a92d3ce10e360a60b2225534",
+  "governance_revision": 11190,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
-  "next_task": null,
+  "next_task": {
+    "expected_resource": "LOW_PRIORITY_CPU_IO; max two cleaning workers; weights ABSENT",
+    "prerequisites": [
+      "governance_PASS_FRESH",
+      "git_main_fast_forwarded_to_5c766fc",
+      "0915_processed_root_read_only",
+      "0916_source_root_read_only",
+      "no_active_task"
+    ],
+    "session": null,
+    "stop_condition": "220-session processed self-containment terminal plus 240-session 0916 cleaning terminal.",
+    "task_id": "0915_0916_input_audit_clean_v1"
+  },
   "rc1_budget": {
     "checkpoint_gpu_hours_limit": 48,
     "checkpoint_gpu_hours_used": 0,
@@ -168,12 +180,44 @@
       "session": "get_potato_chips_0915_001",
       "status": "FAILED_QUALITY_C",
       "task_id": "0915_leftmono_e2e_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T00:18:28+08:00",
+      "message": "Registered processed-only 0915 audit and weightless 0916 cleaning task; execution not started.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_0916_input_audit_clean_v1",
+      "task_packet": {
+        "bytes": 1990,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_0916_input_audit_clean_v1/TASK_PACKET.json",
+        "sha256": "c0fe44e0e7f4c75f50b4a4af655c7d292f0dbf125e2cefb50ecdf3edc1773cf3"
+      }
     }
   ],
   "repository": {
-    "branch": "task/0915-leftmono-e2e-v1",
-    "commit": "73f73443660476d79af2db457e43b904321af772"
+    "branch": "task/0915-full-funnel-0916-clean-v1",
+    "commit": "1229e814e8fee684a1a34a01dc3e4c311fa64bef"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
-  "tasks": []
+  "tasks": [
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "PROCESSED_INPUT_AUDIT_AND_0916_CLEANING",
+      "pid": null,
+      "plan_execution_revision": "0915_0916_V1",
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_0916_input_audit_clean_v1",
+      "task_packet": {
+        "bytes": 1990,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_0916_input_audit_clean_v1/TASK_PACKET.json",
+        "sha256": "c0fe44e0e7f4c75f50b4a4af655c7d292f0dbf125e2cefb50ecdf3edc1773cf3"
+      },
+      "updated_at": "2026-09-18T00:18:28+08:00"
+    }
+  ]
 }

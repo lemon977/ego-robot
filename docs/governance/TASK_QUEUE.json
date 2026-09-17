@@ -1,9 +1,32 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-17T20:08:33+08:00",
-  "generation_id": "gov-011188-3e8a6f0b50be",
-  "governance_revision": 11188,
-  "next_task": null,
+  "generated_at": "2026-09-18T00:19:21+08:00",
+  "generation_id": "gov-011190-360ad3d91b58",
+  "governance_revision": 11190,
+  "next_task": {
+    "expected_resource": "LOW_PRIORITY_CPU_IO; max two cleaning workers; weights ABSENT",
+    "prerequisites": [
+      "governance_PASS_FRESH",
+      "git_main_fast_forwarded_to_5c766fc",
+      "0915_processed_root_read_only",
+      "0916_source_root_read_only",
+      "no_active_task"
+    ],
+    "session": null,
+    "stop_condition": "220-session processed self-containment terminal plus 240-session 0916 cleaning terminal.",
+    "task_id": "0915_0916_input_audit_clean_v1"
+  },
   "schema_version": "chaoyang-task-queue-v1",
-  "tasks": []
+  "tasks": [
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "PROCESSED_INPUT_AUDIT_AND_0916_CLEANING",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_0916_input_audit_clean_v1",
+      "updated_at": "2026-09-18T00:18:28+08:00"
+    }
+  ]
 }

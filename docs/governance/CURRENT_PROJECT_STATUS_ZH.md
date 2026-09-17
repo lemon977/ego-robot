@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-17T20:08:33+08:00`
-- governance revision：`11188`
-- generation id：`gov-011188-3e8a6f0b50be`
+- 状态生成时间：`2026-09-18T00:19:21+08:00`
+- governance revision：`11190`
+- generation id：`gov-011190-360ad3d91b58`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`c6510e33db871c2a41c1f94db48c120f2d79a6bcb48fd18af0136021ea08635e`
-- repository：`73f73443660476d79af2db457e43b904321af772` / `task/0915-leftmono-e2e-v1`
+- generator code SHA：`311988bbf93d095c9a887b2858f4f931a93f5050a92d3ce10e360a60b2225534`
+- repository：`1229e814e8fee684a1a34a01dc3e4c311fa64bef` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -115,7 +115,11 @@
 
 ## H. 下一任务
 
-状态机当前未选择下一任务。
+- next_task_id：`0915_0916_input_audit_clean_v1`
+- next_session：`-`
+- prerequisites：`governance_PASS_FRESH, git_main_fast_forwarded_to_5c766fc, 0915_processed_root_read_only, 0916_source_root_read_only, no_active_task`
+- expected_resource：`LOW_PRIORITY_CPU_IO; max two cleaning workers; weights ABSENT`
+- stop_condition：`220-session processed self-containment terminal plus 240-session 0916 cleaning terminal.`
 
 ## 固定读取协议
 

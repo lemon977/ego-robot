@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-17T20:08:33+08:00",
-  "generation_id": "gov-011188-3e8a6f0b50be",
-  "governance_revision": 11188,
+  "generated_at": "2026-09-18T00:19:21+08:00",
+  "generation_id": "gov-011190-360ad3d91b58",
+  "governance_revision": 11190,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -135,13 +135,73 @@
       "restart_authorized": false,
       "terminal_status": "COMMITTED"
     },
+    "handle_data_cleaning_v4_0916": {
+      "claim_limit": "0916 cleaning and content admission only; no downstream algorithm authority.",
+      "code_closure": [
+        {
+          "bytes": 28840,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/convert_handle_egodex_v3.py",
+          "sha256": "f6ab876399460a3d28dd7c07a9be4286b0172f6d166c0b3b8370359e5c2deed9"
+        },
+        {
+          "bytes": 6764,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/batch_clean_handle_content_v4.py",
+          "sha256": "7c2d0dd1008e41101c5340d7678db8c1c2353252c77db6cc2cad945b11251abe"
+        },
+        {
+          "bytes": 11624,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_0916_input_audit_clean_v1.py",
+          "sha256": "e569752affc8703f4a150719849cf68d63ab90fb0ff7a21190d8dc0fa84abb36"
+        }
+      ],
+      "conversion_semantics": "UNCHANGED_FROM_V3",
+      "denominator": {
+        "sessions": 240
+      },
+      "downstream_execution": "FORBIDDEN_IN_THIS_TASK",
+      "execution_status": "PENDING_NEW_BOUNDED_TASK",
+      "input_root": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916",
+      "target_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916",
+      "weights": "ABSENT",
+      "workers_max": 2
+    },
     "mask_baseline": {
       "challenger_is_current_authority": false,
-      "challengers": [
-        "SAM2.1",
-        "Cutie"
+      "challengers": [],
+      "claim_limit": "The 0915 full-funnel campaign uses only the pinned SAM3.1 weight; SAM2.1 and Cutie are not executable candidates.",
+      "current": "SAM3.1",
+      "selection_policy": "SAM3.1_ONLY_USER_LOCKED"
+    },
+    "processed_0915_full_funnel_v1": {
+      "claim_limit": "Processed-only structural and development pipeline contract; no PICO26 hand input, physical calibration, policy or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 12689,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_0915_processed_self_containment_v1.py",
+          "sha256": "e35140094adb82dd8b531e9f6d2f6c52d074aeb8ffacd33fc3f36f9d6d193a40"
+        },
+        {
+          "bytes": 14048,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_sensor_leftmono_hawor_v1.py",
+          "sha256": "e9e62940651a4cf4b344b036c52e502e8e69170bca481121dc90852215651550"
+        },
+        {
+          "bytes": 21863,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_leftmono_sam31_masks_v1.py",
+          "sha256": "14533c344ea3a562203122742c219b84131a5c07c48e724505bbf65a1672d49a"
+        }
       ],
-      "current": "SAM3.1"
+      "denominator": {
+        "frames": 58686,
+        "sessions": 220
+      },
+      "execution_status": "PENDING_NEW_BOUNDED_TASK",
+      "input_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915",
+      "model_policy": {
+        "hand": "HaWoR",
+        "mask": "SAM3.1_ONLY"
+      },
+      "pico26": "PRESENT_PRESERVED_NOT_CONSUMED"
     },
     "r3_execution_status_gap_audit": {
       "authority_promoted": false,
