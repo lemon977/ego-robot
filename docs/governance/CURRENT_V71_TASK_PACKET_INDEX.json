@@ -1,9 +1,9 @@
 {
   "execution_revision": "RC1",
   "execution_semantics": "Current executable index is empty; all prior packets are catalog-only history.",
-  "generated_at": "2026-09-17T17:00:51+08:00",
-  "generation_id": "gov-011175-524749ef868a",
-  "governance_revision": 11175,
+  "generated_at": "2026-09-17T18:14:27+08:00",
+  "generation_id": "gov-011182-ec96dca2719d",
+  "governance_revision": 11182,
   "historical_catalog": {
     "bytes": 55477,
     "path": "/mnt/workspace/code/chaoyang/tasks/receipts/HISTORICAL_TASK_CATALOG.json",

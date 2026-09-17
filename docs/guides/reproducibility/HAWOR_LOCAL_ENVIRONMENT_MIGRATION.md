@@ -23,7 +23,7 @@ gates are separate authorities:
 - historical vendored runtime pin:
   `vendor/HaWoR/CHA0YANG_RUNTIME_PIN.json` (immutable);
 - new environment authority: `configs/systems/hawor/environment_authority.json`;
-- destination: `archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1`;
+- destination: `_run/current/environments/hawor-py310-v1`;
 - activation-free launcher: `src/chaoyang/ops/hawor_python.sh`.
 
 ## 1. Fresh terminal-state preflight
@@ -33,7 +33,7 @@ From the repository root:
 ```bash
 python src/chaoyang/ops/no_clobber_hardlink_snapshot.py preflight \
   --source /mnt/workspace/miniconda3/envs/hawor \
-  --target archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1
+  --target _run/current/environments/hawor-py310-v1
 ```
 
 The preflight is read-only.  It must have no fatal blocker, no stale staging
@@ -51,7 +51,7 @@ When the fresh preflight is clear:
 ```bash
 python src/chaoyang/ops/no_clobber_hardlink_snapshot.py create \
   --source /mnt/workspace/miniconda3/envs/hawor \
-  --target archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1
+  --target _run/current/environments/hawor-py310-v1
 ```
 
 If CPFS explicitly confirms metadata capacity while `statvfs` still reports
@@ -71,7 +71,7 @@ hard-link identity, and tree content SHA:
 
 ```bash
 python src/chaoyang/ops/no_clobber_hardlink_snapshot.py verify \
-  --snapshot archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1 \
+  --snapshot _run/current/environments/hawor-py310-v1 \
   --content
 ```
 
@@ -85,7 +85,7 @@ Choose a new immutable evidence directory below `archive/baseline-20260917-0aa69
 
 ```bash
 python src/chaoyang/ops/verify_hawor_environment_migration.py probe \
-  --environment archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1 \
+  --environment _run/current/environments/hawor-py310-v1 \
   --output archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/<new_env_migration_run>/LOCAL_ENV_PROBE.json
 ```
 
@@ -168,7 +168,7 @@ Successful snapshots require the verified tree SHA printed by the tool.  Omit
 
 ```bash
 python src/chaoyang/ops/no_clobber_hardlink_snapshot.py rollback \
-  --snapshot archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1 \
+  --snapshot _run/current/environments/hawor-py310-v1 \
   --confirm-tree-sha <exact_tree_sha256> \
   --execute
 ```

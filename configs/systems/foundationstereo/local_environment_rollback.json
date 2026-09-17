@@ -18,7 +18,7 @@
       "src/chaoyang/ops/no_clobber_hardlink_snapshot.py",
       "rollback",
       "--snapshot",
-      "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1",
+      "_run/current/environments/foundationstereo-py311-v1",
       "--confirm-tree-sha",
       "dc08100b81b0a787607e1a5aa1760b49a8604d91b32cfc919f6d3e23b05b54f1"
     ],
@@ -46,13 +46,13 @@
   },
   "manifest": {
     "bytes": 1926343,
-    "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "path": "/mnt/workspace/code/chaoyang/_run/current/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
     "sha256": "eb21bb9eedfab20097c3b05a93ef87b4e86df7a3376d8a337c088e0c095a733e"
   },
   "schema_version": "chaoyang-foundationstereo-local-environment-rollback-v1",
   "snapshot": {
     "environment_id": "foundationstereo-py311-v1",
-    "path": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1",
+    "path": "_run/current/environments/foundationstereo-py311-v1",
     "snapshot_id": "b36d784428904038954ad618972727d8",
     "tree_content_sha256": "dc08100b81b0a787607e1a5aa1760b49a8604d91b32cfc919f6d3e23b05b54f1"
   },

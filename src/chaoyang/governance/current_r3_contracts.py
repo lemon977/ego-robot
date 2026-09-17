@@ -108,6 +108,8 @@ def build_algorithm_contract(
     depth10_receipt = repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_10/attempts/attempt_0003_real_play_cards_0910_001/RUN_RECEIPT.json"
     depth20_receipt = repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_20/attempts/attempt_0003_real_input_preflight/RUN_RECEIPT.json"
     gap_audit_root = repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004"
+    data_cleaning_receipt = (
+        repo_root / "tasks/receipts/HANDLE_DATA_CLEANING_V3_COMPLETION.json")
     stages: list[dict[str, Any]] = []
     for entry in baseline_registry.get("entries", []):
         stage = str(entry["stage"])
@@ -138,6 +140,35 @@ def build_algorithm_contract(
         "quality_gate_classes": QUALITY_GATE_CLASSES,
         "stages": stages,
         "special_status_contracts": {
+            "handle_data_cleaning_v3": {
+                "terminal_status": "COMMITTED",
+                "execution_status": "COMPLETE_NO_ACTIVE_TASK",
+                "implementation_revision": "V3",
+                "code_closure": [artifact_ref(repo_root / path) for path in (
+                    "src/chaoyang/ops/tactile_quality_gate_v1.py",
+                    "src/chaoyang/ops/convert_handle_egodex_v3.py",
+                    "src/chaoyang/ops/batch_clean_handle_content_v3.py",
+                    "src/chaoyang/ops/run_handle_cleaning_v3_queue.py",
+                )],
+                "completion_receipt": artifact_ref(data_cleaning_receipt),
+                "current_document": artifact_ref(
+                    repo_root / "docs/current/DATA_CLEANING_0911_0915_ZH.md"),
+                "counts": {
+                    "session_count": 681,
+                    "completed": 681,
+                    "cleaned": 561,
+                    "rejected": 120,
+                    "failed": 0,
+                },
+                "modality_contract": {
+                    "0911_0914": "MANUS25_CONTROLLERS_CAMERA_TACTILE_PRESENT",
+                    "0915_manus": "ABSENT_NOT_CAPTURED",
+                    "0915_pico26": "PRESENT_AND_PRESERVED",
+                },
+                "gpu_required": False,
+                "restart_authorized": False,
+                "claim_limit": "Raw tactile integrity/activity and declared modality completeness only; not calibrated force, contact truth, or physical accuracy.",
+            },
             "sensor_h4_formal": {
                 "execution_status": "BLOCKED_RESOURCE",
                 "qa_status": "NOT_EVALUATED",
@@ -296,6 +327,11 @@ def build_doc_authority_map(
     candidates = [
         _doc("repository_readme", "CURRENT", repo_root / "README.md", scope="PROJECT_NAVIGATION_PROTOCOL", claim_limit="Navigation only; current facts remain receipt-bound and current algorithms come from the algorithm contract."),
         _doc("agent_execution_protocol", "CURRENT", repo_root / "AGENTS.md", scope="AI_EXECUTION_PROTOCOL", claim_limit="Execution/reading rules only; not measurement evidence or stage authority."),
+        _doc("current_navigation", "CURRENT", repo_root / "docs/current/README_ZH.md", scope="CURRENT_SHALLOW_ENTRY", claim_limit="Unique shallow entry only; machine facts remain receipt-bound."),
+        _doc("ai_work_entry", "CURRENT", repo_root / "docs/current/AI_WORK_ENTRY_ZH.md", scope="CURRENT_AI_WORK_HANDOFF", claim_limit="Reading order, task naming, resource boundaries and candidate optimization lanes; it does not authorize execution without a current task packet."),
+        _doc("data_cleaning_0911_0915", "CURRENT", repo_root / "docs/current/DATA_CLEANING_0911_0915_ZH.md", scope="CURRENT_DATA_CLEANING_BASELINE", claim_limit="Three-dataset cleaning terminal state and reuse boundary only; tactile activity is not contact or force truth.", evidence=[repo_root / "tasks/receipts/HANDLE_DATA_CLEANING_V3_COMPLETION.json"]),
+        _doc("handle_data_cleaning_v3_guide", "CURRENT", repo_root / "docs/guides/data/HANDLE_DATA_CLEANING_V3.md", scope="CURRENT_DATA_CLEANING_ALGORITHM_GUIDE", claim_limit="V3 cleaning design, modality contract and output schema; terminal counts remain bound to the completion receipt."),
+        _doc("clean_baseline_v1_reference", "CURRENT", repo_root / "docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md", scope="CURRENT_CLEAN_BASELINE_ARCHITECTURE", claim_limit="Repository layout, archive and restore contract; current facts remain receipt-bound."),
         _doc("sensor_h4_bounded_policy_decision", "CURRENT", repo_root / "docs/current/reference/SENSOR_H4_BOUNDED_POLICY_DECISION.md", scope="SENSOR_H4_DEVELOPMENT_POLICY_DECISION", claim_limit="Rejects only the current automatic glove/Controller Mask-to-Clean route; formal H4 remains BLOCKED_RESOURCE/NOT_EVALUATED/POLICY_DEFERRED and H1/H2/H3 stay independent.", evidence=[repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_r3/sensor_h4_bounded_decision/attempts/attempt_0001/RUN_RECEIPT.json"]),
         _doc("r3_execution_status_gap_audit", "HISTORICAL", repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004/DECISION.md", scope="HISTORICAL_R3_POINT_IN_TIME_DELIVERABLE_GAP_AUDIT", claim_limit="Historical point-in-time audit; it must not drive current Robot counts or routing.", evidence=[repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004/RUN_RECEIPT.json"]),
         _doc("r3_execution_dag_semantics", "CURRENT", governance_root / "EXECUTION_DAG_SEMANTICS_R3_ZH.md", scope="CURRENT_EXECUTION_DAG_SEMANTICS", claim_limit="Dependency interpretation and scheduling rules only; not stage completion evidence or authority."),
@@ -357,6 +393,11 @@ def validate_doc_authority_map(value: Mapping[str, Any]) -> list[str]:
         "governance_consistency_repair_handoff",
         "docs_navigation",
         "sensor_h4_bounded_policy_decision",
+        "current_navigation",
+        "ai_work_entry",
+        "data_cleaning_0911_0915",
+        "handle_data_cleaning_v3_guide",
+        "clean_baseline_v1_reference",
     }
     for document_id in sorted(required_current):
         if statuses.get(document_id) != "CURRENT":

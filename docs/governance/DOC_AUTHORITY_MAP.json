@@ -3,23 +3,84 @@
   "documents": [
     {
       "authorized_scope": "PROJECT_NAVIGATION_PROTOCOL",
-      "bytes": 3594,
+      "bytes": 3736,
       "claim_limit": "Navigation only; current facts remain receipt-bound and current algorithms come from the algorithm contract.",
       "document_id": "repository_readme",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/README.md",
-      "sha256": "063b8581e25a23ad61ff9a18849d4d0117e9edbb8d0c94e7e45d9dc967742edc",
+      "sha256": "521e46231c7e09f415c6661a756ef706fa7e1da46b5fbdbb182e196b2b3f6f19",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "AI_EXECUTION_PROTOCOL",
-      "bytes": 2905,
+      "bytes": 3444,
       "claim_limit": "Execution/reading rules only; not measurement evidence or stage authority.",
       "document_id": "agent_execution_protocol",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/AGENTS.md",
-      "sha256": "b201d7fbc67dc9ff7fef24939ae450408d5f948e46d0e6e479e506b598dc75e3",
+      "sha256": "32377184144fa953057e53ddd0dd31e7318d8c25e9cb78149c84a8b3a0b50d05",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_SHALLOW_ENTRY",
+      "bytes": 1238,
+      "claim_limit": "Unique shallow entry only; machine facts remain receipt-bound.",
+      "document_id": "current_navigation",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/README_ZH.md",
+      "sha256": "5efdfbf4f41cec2dd5ef080622a07394b7ebc837145f4d922c9b1cd8907fcfd1",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_AI_WORK_HANDOFF",
+      "bytes": 5514,
+      "claim_limit": "Reading order, task naming, resource boundaries and candidate optimization lanes; it does not authorize execution without a current task packet.",
+      "document_id": "ai_work_entry",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/AI_WORK_ENTRY_ZH.md",
+      "sha256": "9b48db60cf80eb6525441a3fe8b20b897f6b3522264641adab1bfb321f13727a",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_DATA_CLEANING_BASELINE",
+      "bytes": 4699,
+      "claim_limit": "Three-dataset cleaning terminal state and reuse boundary only; tactile activity is not contact or force truth.",
+      "document_id": "data_cleaning_0911_0915",
+      "evidence_receipts": [
+        {
+          "bytes": 3541,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/HANDLE_DATA_CLEANING_V3_COMPLETION.json",
+          "sha256": "1eac606a4a55d25619556ef6b42269dec8661ed36c13c41b0ede31daca3226c5"
+        }
+      ],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/DATA_CLEANING_0911_0915_ZH.md",
+      "sha256": "7fb5190c1b46a2f0f00740d1204637814a7b9fe118a4992929467faf6a5dd43f",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_DATA_CLEANING_ALGORITHM_GUIDE",
+      "bytes": 5978,
+      "claim_limit": "V3 cleaning design, modality contract and output schema; terminal counts remain bound to the completion receipt.",
+      "document_id": "handle_data_cleaning_v3_guide",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/guides/data/HANDLE_DATA_CLEANING_V3.md",
+      "sha256": "75924deba4476819a36f451c86170fb3e6ab5d3f792251d4658828ab8418c243",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_CLEAN_BASELINE_ARCHITECTURE",
+      "bytes": 3011,
+      "claim_limit": "Repository layout, archive and restore contract; current facts remain receipt-bound.",
+      "document_id": "clean_baseline_v1_reference",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md",
+      "sha256": "c496529c7cf80af6ea22ec0e906c7d2e3e339221a0944f73eccfe9a465fdf3fc",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -58,7 +119,7 @@
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "67ea6281cbe09e8d1a113d0eb905431a4b07d259c3d2cdeb4be642d010710aee",
+      "sha256": "315e30658157b93bd16b2972190d7a2f9a9d3b984255e5372bbe7620c8c8ebfb",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -135,9 +196,9 @@
       "document_id": "v71_r3_execution_plan",
       "evidence_receipts": [
         {
-          "bytes": 1588,
+          "bytes": 1632,
           "path": "/mnt/workspace/code/chaoyang/docs/governance/PLAN_MIGRATION_RECEIPT.json",
-          "sha256": "c5a8e24c1d9a53d476c3071afbc909fadfeee6ace910dcff844043c041cad9f4"
+          "sha256": "4260881104b979e16410b66ed1801993231207d8c27d09e1b0ab763e4ff917bd"
         }
       ],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_V7_1_R3_EXECUTION_PLAN_ZH.md",
@@ -155,9 +216,9 @@
       "document_id": "rc1_final_delivery_plan",
       "evidence_receipts": [
         {
-          "bytes": 1588,
+          "bytes": 1632,
           "path": "/mnt/workspace/code/chaoyang/docs/governance/PLAN_MIGRATION_RECEIPT.json",
-          "sha256": "c5a8e24c1d9a53d476c3071afbc909fadfeee6ace910dcff844043c041cad9f4"
+          "sha256": "4260881104b979e16410b66ed1801993231207d8c27d09e1b0ab763e4ff917bd"
         }
       ],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
@@ -170,19 +231,19 @@
     },
     {
       "authorized_scope": "CURRENT_DOCS_NAVIGATION",
-      "bytes": 1334,
+      "bytes": 1524,
       "claim_limit": "Unique current documentation navigation; factual claims remain subordinate to receipt-bound governance artifacts.",
       "document_id": "docs_navigation",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/README.md",
-      "sha256": "22119ec93dadb637c58b34248191edd31087620faf711e304407d99383386d5f",
+      "sha256": "a17848ae7953b99a9866b800559a89ec72273257f1807a951b97ba3f282b8342",
       "status": "CURRENT",
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-17T17:00:51+08:00",
-  "generation_id": "gov-011175-524749ef868a",
-  "governance_revision": 11175,
+  "generated_at": "2026-09-17T18:14:27+08:00",
+  "generation_id": "gov-011182-ec96dca2719d",
+  "governance_revision": 11182,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

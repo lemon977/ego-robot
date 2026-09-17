@@ -1,0 +1,88 @@
+{
+  "schema_version": "handle-data-cleaning-v3-completion-v1",
+  "status": "COMMITTED",
+  "baseline": "clean-baseline-v1",
+  "claim_limit": "Raw tactile activity/integrity and declared modality completeness only; not calibrated force, contact truth, or physical accuracy.",
+  "execution": {
+    "gpu_used": false,
+    "raw_data_modified": false,
+    "processed_payload_modified_by_provenance_repair": false
+  },
+  "totals": {
+    "session_count": 681,
+    "completed": 681,
+    "cleaned": 561,
+    "rejected": 120,
+    "failed": 0
+  },
+  "queue_state": {
+    "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_0911/QUEUE_STATE.json",
+    "bytes": 496,
+    "sha256": "8660ff915d7ae59a771d5010a00384d31c04ee9ad235c0f182839002e7bdaa7b",
+    "state": "COMMITTED"
+  },
+  "datasets": [
+    {
+      "name": "chips_cards_handle_0911",
+      "source_root": "/mnt/data/egodata/datasets/ego/chips_cards_handle_0911",
+      "processed_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_0911",
+      "session_count": 241,
+      "completed": 241,
+      "cleaned": 139,
+      "rejected": 102,
+      "failed": 0,
+      "dataset_result": {
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_0911/DATASET_RESULT.json",
+        "bytes": 101874,
+        "sha256": "694c39d34e98fd254608fcca1163ba8132a843d8b671e6646c7e0a4c02218acb"
+      },
+      "preflight_audit": {
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_0911/PREFLIGHT_AUDIT.json",
+        "bytes": 3152789,
+        "sha256": "efc96daa809bf4538a346e750a1278592bd5093f3168fb3534a3b0250894255f"
+      }
+    },
+    {
+      "name": "chips_cards_handle_highview_0914",
+      "source_root": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0914",
+      "processed_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0914",
+      "session_count": 220,
+      "completed": 220,
+      "cleaned": 202,
+      "rejected": 18,
+      "failed": 0,
+      "dataset_result": {
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0914/DATASET_RESULT.json",
+        "bytes": 99050,
+        "sha256": "df7a2b058f33033e265db371eca3e116f304e2433eccba060bbf88d370089e63"
+      },
+      "preflight_audit": {
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0914/PREFLIGHT_AUDIT.json",
+        "bytes": 4149146,
+        "sha256": "deb07b9c7f9af43b073995964c39f63903aa2bb41582b80b03a1bcf748ee3460"
+      }
+    },
+    {
+      "name": "chips_cards_hands__0915",
+      "source_root": "/mnt/data/egodata/datasets/ego/chips_cards_hands_0915",
+      "processed_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915",
+      "session_count": 220,
+      "completed": 220,
+      "cleaned": 220,
+      "rejected": 0,
+      "failed": 0,
+      "declared_absent_modalities": ["MANUS"],
+      "dataset_result": {
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/DATASET_RESULT.json",
+        "bytes": 101474,
+        "sha256": "1f3d146395c1bd86a034f75bf66ec958f5518866f289b6de49d908ef6ced0c20"
+      },
+      "preflight_audit": {
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/PREFLIGHT_AUDIT.json",
+        "bytes": 3658231,
+        "sha256": "ac517ec9a67f6791318f204a135fc424211333b959d8b10d514a8c8f8cecc220"
+      },
+      "provenance_repair": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/SOURCE_PATH_REPAIR_20260917.json"
+    }
+  ]
+}

@@ -7,12 +7,14 @@
 执行或回答状态问题前，按顺序读取：
 
 1. [当前入口](docs/current/README_ZH.md)
-2. [当前状态 receipt](docs/governance/CURRENT_STATUS_RECEIPT.json)
-3. [RC1 最小事实页](docs/governance/CURRENT_RC1_STATUS_MIN.json)；其他阶段读取[项目最小事实页](docs/governance/CURRENT_PROJECT_STATUS_MIN.json)
-4. [文档权威索引](docs/governance/DOC_AUTHORITY_MAP.json)与[算法合同](docs/governance/ALGORITHM_CONTRACT.json)
-5. [当前任务索引](tasks/current/INDEX.json)；只有 execution_allowed=true 的行可执行
-6. [端到端复现说明](docs/reference/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md)
-7. [Clean baseline v1 迁移与恢复说明](docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md)
+2. [后续 AI 工作入口](docs/current/AI_WORK_ENTRY_ZH.md)
+3. [当前状态 receipt](docs/governance/CURRENT_STATUS_RECEIPT.json)
+4. [RC1 最小事实页](docs/governance/CURRENT_RC1_STATUS_MIN.json)；其他阶段读取[项目最小事实页](docs/governance/CURRENT_PROJECT_STATUS_MIN.json)
+5. [文档权威索引](docs/governance/DOC_AUTHORITY_MAP.json)与[算法合同](docs/governance/ALGORITHM_CONTRACT.json)
+6. [当前任务索引](tasks/current/INDEX.json)；只有 execution_allowed=true 的行可执行
+7. [三批数据清洗验收基线](docs/current/DATA_CLEANING_0911_0915_ZH.md)
+8. [端到端复现说明](docs/reference/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md)
+9. [Clean baseline v1 迁移与恢复说明](docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md)
 
 freshness.reason=no_active_tasks 只表示没有需要心跳的活动治理任务，不表示所有研究文档刚更新。实时事实由 receipt、SHA 与 DOC_AUTHORITY_MAP 共同约束。历史文件名中的 current/latest/final 不具有当前权威性。
 

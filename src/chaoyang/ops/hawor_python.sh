@@ -3,8 +3,8 @@
 set -eu
 
 tool_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
-project_root=$(CDPATH= cd -- "$tool_dir/.." && pwd -P)
-environment_root="$project_root/archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1"
+project_root=$(CDPATH= cd -- "$tool_dir/../../.." && pwd -P)
+environment_root="$project_root/_run/current/environments/hawor-py310-v1"
 python_executable="$environment_root/bin/python"
 snapshot_manifest="$environment_root/.chaoyang-hardlink-snapshot/manifest.json.gz"
 

@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-17T17:00:51+08:00",
-  "generation_id": "gov-011175-524749ef868a",
-  "governance_revision": 11175,
+  "generated_at": "2026-09-17T18:14:27+08:00",
+  "generation_id": "gov-011182-ec96dca2719d",
+  "governance_revision": 11182,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -82,6 +82,58 @@
         "evidence_class": "DEVELOPMENT_ONLY",
         "may_register_authority": false
       }
+    },
+    "handle_data_cleaning_v3": {
+      "claim_limit": "Raw tactile integrity/activity and declared modality completeness only; not calibrated force, contact truth, or physical accuracy.",
+      "code_closure": [
+        {
+          "bytes": 14262,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/tactile_quality_gate_v1.py",
+          "sha256": "20887f135cba071d5ad034def9acedbcbebc0ea65f17954d795421d33e9f8178"
+        },
+        {
+          "bytes": 28840,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/convert_handle_egodex_v3.py",
+          "sha256": "f6ab876399460a3d28dd7c07a9be4286b0172f6d166c0b3b8370359e5c2deed9"
+        },
+        {
+          "bytes": 16719,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/batch_clean_handle_content_v3.py",
+          "sha256": "dd174f76828217918f0984d86a323e6d49c3fc47a24cfd2cc19eb3dde862ff0d"
+        },
+        {
+          "bytes": 6313,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_handle_cleaning_v3_queue.py",
+          "sha256": "a765a98e3f97bcbf039ebff50edd6ba90807a17cfaf68ca59772681d447c7956"
+        }
+      ],
+      "completion_receipt": {
+        "bytes": 3541,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/HANDLE_DATA_CLEANING_V3_COMPLETION.json",
+        "sha256": "1eac606a4a55d25619556ef6b42269dec8661ed36c13c41b0ede31daca3226c5"
+      },
+      "counts": {
+        "cleaned": 561,
+        "completed": 681,
+        "failed": 0,
+        "rejected": 120,
+        "session_count": 681
+      },
+      "current_document": {
+        "bytes": 4699,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/DATA_CLEANING_0911_0915_ZH.md",
+        "sha256": "7fb5190c1b46a2f0f00740d1204637814a7b9fe118a4992929467faf6a5dd43f"
+      },
+      "execution_status": "COMPLETE_NO_ACTIVE_TASK",
+      "gpu_required": false,
+      "implementation_revision": "V3",
+      "modality_contract": {
+        "0911_0914": "MANUS25_CONTROLLERS_CAMERA_TACTILE_PRESENT",
+        "0915_manus": "ABSENT_NOT_CAPTURED",
+        "0915_pico26": "PRESENT_AND_PRESERVED"
+      },
+      "restart_authorized": false,
+      "terminal_status": "COMMITTED"
     },
     "mask_baseline": {
       "challenger_is_current_authority": false,
@@ -504,9 +556,9 @@
       "algorithm_id": "foundationstereo_corrected_metric_v1",
       "code_closure": [
         {
-          "bytes": 25590,
+          "bytes": 25542,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py",
-          "sha256": "e456b6403e57a3a86276966483de9108dbdd8b21a715d0ef6b43c10a7762e20e"
+          "sha256": "36344bd4f7627bfa86416d1c61ef180a50bc6cc486c48987411b55aa217d1c54"
         },
         {
           "bytes": 19267,

@@ -5,6 +5,8 @@
 
 本页是面向人和 AI 的唯一浅层导航，不直接授予算法或实验结论 authority。
 
+- 后续 AI 执行与优化边界：[AI_WORK_ENTRY_ZH.md](AI_WORK_ENTRY_ZH.md)
+- 三批数据清洗验收基线：[DATA_CLEANING_0911_0915_ZH.md](DATA_CLEANING_0911_0915_ZH.md)
 - 当前事实：[CURRENT_STATUS_RECEIPT.json](../governance/CURRENT_STATUS_RECEIPT.json)
 - 项目最小状态：[CURRENT_PROJECT_STATUS_MIN.json](../governance/CURRENT_PROJECT_STATUS_MIN.json)
 - RC1 最小状态：[CURRENT_RC1_STATUS_MIN.json](../governance/CURRENT_RC1_STATUS_MIN.json)

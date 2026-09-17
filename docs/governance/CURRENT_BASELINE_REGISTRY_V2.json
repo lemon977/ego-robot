@@ -326,9 +326,9 @@
       "authorized_scope": "VISUAL_OBJECT6D_CANDIDATE_INPUT",
       "code_closure": [
         {
-          "bytes": 25590,
+          "bytes": 25542,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py",
-          "sha256": "e456b6403e57a3a86276966483de9108dbdd8b21a715d0ef6b43c10a7762e20e"
+          "sha256": "36344bd4f7627bfa86416d1c61ef180a50bc6cc486c48987411b55aa217d1c54"
         },
         {
           "bytes": 19267,
@@ -1712,9 +1712,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-17T17:00:51+08:00",
-  "generation_id": "gov-011175-524749ef868a",
-  "governance_revision": 11175,
+  "generated_at": "2026-09-17T18:14:27+08:00",
+  "generation_id": "gov-011182-ec96dca2719d",
+  "governance_revision": 11182,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",
@@ -1735,9 +1735,9 @@
           "sha256": "d6b220b3445495ad191a3ea52ac5e43c301559db1b4032d4561bfe565fdc95cd"
         },
         {
-          "bytes": 7325,
+          "bytes": 7277,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_sensor_h3_foundationstereo_canary_v71.py",
-          "sha256": "912a6653a85ae67839f0862ee2d958d9a79eb00b2eb66d9259aad81ad4d51acb"
+          "sha256": "27a6aa661bb4ba66211b0bf70c388ead4392e17a3d29b77befb37d390e8c5e44"
         },
         {
           "bytes": 31361,

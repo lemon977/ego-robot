@@ -37,9 +37,9 @@
   "failures": [],
   "governance_gate": "PASS_FRESH",
   "governance_status_min": {
-    "bytes": 1490,
+    "bytes": 1664,
     "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_MIN.json",
-    "sha256": "eca6a47334a8ff59f17603511f17510b633bf4cb91aa3aa4d1febdff3440013b"
+    "sha256": "b3887816e4bd91b829f7138ba411bda69bed39fb6c9b91cec05cc9df27af4a77"
   },
   "governance_validation": {
     "errors": [],

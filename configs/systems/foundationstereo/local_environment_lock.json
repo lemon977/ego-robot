@@ -1,8 +1,8 @@
 {
   "authority": {
-    "bytes": 8201,
+    "bytes": 7999,
     "path": "/mnt/workspace/code/chaoyang/configs/systems/foundationstereo/environment_authority.json",
-    "sha256": "230e493c4319324e539ab607443e65b42d73678d631bef88ad89218b718554ed"
+    "sha256": "834e7f8bdf288a0c89c49111be8dabfaa24683e574d9f007a6c66f8bdaf743f1"
   },
   "canonical_cpu_runtime_authorized": true,
   "canonical_gpu_runtime_authorized": false,
@@ -17,11 +17,11 @@
   "claim_limit": "CPU-only local FoundationStereo runtime. A central-lease GPU depth replay remains mandatory before production or downstream consumption.",
   "consumption_authorized": false,
   "environment_id": "foundationstereo-py311-v1",
-  "environment_root": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1",
+  "environment_root": "_run/current/environments/foundationstereo-py311-v1",
   "launcher": [
     "src/chaoyang/ops/foundationstereo_python.sh"
   ],
-  "python": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/bin/python",
+  "python": "_run/current/environments/foundationstereo-py311-v1/bin/python",
   "schema_version": "chaoyang-foundationstereo-local-environment-lock-v1",
   "snapshot": {
     "counts": {
@@ -31,7 +31,7 @@
       "symlinks": 1382
     },
     "logical_bytes": 5967308280,
-    "manifest": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "manifest": "_run/current/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
     "manifest_bytes": 1926343,
     "manifest_sha256": "eb21bb9eedfab20097c3b05a93ef87b4e86df7a3376d8a337c088e0c095a733e",
     "snapshot_id": "b36d784428904038954ad618972727d8",

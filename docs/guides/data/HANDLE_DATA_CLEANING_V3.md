@@ -1,5 +1,8 @@
 # Handle / Cards / Chips Data Cleaning V3
 
+Status: CURRENT ALGORITHM GUIDE. The terminal 0911/0914/0915 counts and immutable
+receipt are published in [`DATA_CLEANING_0911_0915_ZH.md`](../../current/DATA_CLEANING_0911_0915_ZH.md).
+
 ## Scope
 
 This additive workflow cleans these immutable source datasets:
@@ -132,9 +135,8 @@ for isolation from concurrent training and simulation work.
 Example audit:
 
 ```bash
-nice -n 15 ionice -c 3 \
-  /cpfs_infra/user/chenxianchi/miniconda3/envs/egoforce/bin/python \
-  src/chaoyang/ops/batch_clean_handle_content_v3.py \
+PYTHONPATH=src nice -n 15 ionice -c 3 \
+  python -m chaoyang.cli run batch_clean_handle_content_v3 \
   --mode audit \
   --task-source playing_cards=/absolute/cards/root \
   --task-source potato_chips=/absolute/chips/root \

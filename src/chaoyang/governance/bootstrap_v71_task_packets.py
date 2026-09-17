@@ -265,7 +265,7 @@ TASKS = [
     definition(
         "sensor_h0_admission_v1",
         "Build an independent 0909/0910 sensor-session admission ledger.",
-        [PLAN, "docs/CHIPS_CARDS_HANDLE_RGB30_V1_PROCESSING_GUIDE_ZH.md"],
+        [PLAN, "docs/reference/data/CHIPS_CARDS_HANDLE_RGB30_V1_PROCESSING_GUIDE_ZH.md"],
         ["archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/sensor/h0/"],
         ["g0_core_governance_v71"],
         ["dynamic_denominator", "read_only_source", "branch_eligibility_independent"],

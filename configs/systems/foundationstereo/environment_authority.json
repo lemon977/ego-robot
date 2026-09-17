@@ -31,11 +31,11 @@
     "fallback_to_external_checkpoint_forbidden": true,
     "fallback_to_external_conda_forbidden": true,
     "inherited_pythonpath_forbidden": true,
-    "project_local_cache": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/caches/foundationstereo-py311-v1",
+    "project_local_cache": "_run/caches/foundationstereo-py311-v1",
     "project_relative_checkpoint": "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
-    "project_relative_environment_root": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1",
-    "project_relative_python": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/bin/python",
-    "snapshot_manifest": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz"
+    "project_relative_environment_root": "_run/current/environments/foundationstereo-py311-v1",
+    "project_relative_python": "_run/current/environments/foundationstereo-py311-v1/bin/python",
+    "snapshot_manifest": "_run/current/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz"
   },
   "local_environment_lock": {
     "path": "configs/systems/foundationstereo/local_environment_lock.json",
@@ -43,10 +43,10 @@
   },
   "next_gate": "Under the central GPU lease, run a bounded project-local checkpoint depth replay against frozen historical outputs; publish a successor authority only if numeric/visual equivalence and loaded-origin checks pass.",
   "rollback": {
-    "bytes": 2592,
+    "bytes": 2448,
     "executed": false,
     "path": "/mnt/workspace/code/chaoyang/configs/systems/foundationstereo/local_environment_rollback.json",
-    "sha256": "67f709ba8741ce20725fe7cecc6861aa7d0cb88312733344a580a518ee5a293e",
+    "sha256": "5ab5d1bffe53c76831309d59ffeaa34d2ef217b96556e2b8a0411868d5902876",
     "status": "PASS_DRY_RUN_VERIFIED_ROLLBACK_AVAILABLE"
   },
   "runtime": {

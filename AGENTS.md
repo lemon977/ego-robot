@@ -1,6 +1,6 @@
 # Chaoyang agent execution protocol
 
-1. 先运行 `python -m tools.governance.validate_governance_state`；再读 `CURRENT_RC1_STATUS_MIN.json` 和当前 `TASK_PACKET.json`。只有非 RC1 任务才回退到 `CURRENT_PROJECT_STATUS_MIN.json`。
+1. 先运行 `PYTHONPATH=src python -m chaoyang.cli validate-governance`；再按 `docs/current/AI_WORK_ENTRY_ZH.md` 读取 RC1 或项目最小状态和当前 Task Packet。只有非 RC1 任务才使用 `CURRENT_PROJECT_STATUS_MIN.json`。
 2. 默认只读 Task Packet 的 `read_set`；初始最多8个文件、20条搜索结果和80行日志。失败时才按原因扩展。
 3. 当前文档权威先从 receipt 绑定的 `DOC_AUTHORITY_MAP.json` 读取；当前算法和质量门只从同一 revision 的 `ALGORITHM_CONTRACT.json` 与 `CURRENT_BASELINE_REGISTRY_V2.json` 读取，不从旧 README、聊天或目录名推断。
 4. Writer 必须持有 PID、`/proc` startticks、executor epoch、run signature 与 fencing token；双writer立即终止。
@@ -21,3 +21,6 @@
 19. RC1 worker不得默认读取完整计划；当前交付语义来自receipt绑定的RC1 contract/release spec，具体执行只来自Task Packet。
 20. source group按原始独立采集证据计数；同一merged recording切出的多个session不得重复计入训练/验证容量。
 21. RC1 checkpoint数据门失败时必须写`BLOCKED_DATA_VOLUME`，不得降低16 train + 3 validation独立source group门，也不得用session数替代。
+22. `tasks/current/INDEX.json` 无 `execution_allowed=true` 行时不得执行算法任务；新目标必须发布新的有限 Task Packet，不得复活历史包。
+23. 0911/0914/0915 清洗终态只从 `tasks/receipts/HANDLE_DATA_CLEANING_V3_COMPLETION.json` 与数据根收据读取；不得重启已提交队列或覆盖 processed 发布根。
+24. 当前脚本只能通过算法合同登记后由 `chaoyang run <operation>` 调用；旧实现、临时脚本和未登记模块不得作为隐式入口。

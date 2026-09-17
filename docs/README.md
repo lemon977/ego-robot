@@ -2,6 +2,8 @@
 
 本页只负责导航，不承载项目状态。唯一正式 current 入口是 [`docs/current/README_ZH.md`](current/README_ZH.md)；机器事实由 [`CURRENT_STATUS_RECEIPT.json`](governance/CURRENT_STATUS_RECEIPT.json)、[`DOC_AUTHORITY_MAP.json`](governance/DOC_AUTHORITY_MAP.json) 和 [`ALGORITHM_CONTRACT.json`](governance/ALGORITHM_CONTRACT.json) 共同约束。
 
+后续 AI 从 [`AI_WORK_ENTRY_ZH.md`](current/AI_WORK_ENTRY_ZH.md) 开始；0911/0914/0915 数据清洗终态见 [`DATA_CLEANING_0911_0915_ZH.md`](current/DATA_CLEANING_0911_0915_ZH.md)。
+
 ## 活动文档分区
 
 - `current/`：唯一当前导航与少量浅层复核索引。

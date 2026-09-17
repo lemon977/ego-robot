@@ -31,7 +31,7 @@ PICO_SCRIPT = PROJECT / "vendor/FoundationStereo/scripts/pico_stereo_depth.py"
 CHECKPOINT = PROJECT / "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
 CONFIG = CHECKPOINT.parent / "cfg.yaml"
 CALIBRATION = PROJECT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260907_stereo_object6d_formal_prepared_v1/calibration.json"
-LOCAL_PYTHON = PROJECT / "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/bin/python"
+LOCAL_PYTHON = PROJECT / "_run/current/environments/foundationstereo-py311-v1/bin/python"
 LEASE = PROJECT / "_run/current/GPU_LEASE.json"
 FONT = Path("/usr/share/fonts/truetype/wqy/wqy-microhei.ttc")
 K_DEPTH = np.asarray([[320.0, 0.0, 319.5], [0.0, 320.0, 239.5], [0.0, 0.0, 1.0]], dtype=np.float64)

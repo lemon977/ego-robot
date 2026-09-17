@@ -20,8 +20,12 @@ from typing import Any, Iterable
 import h5py
 import numpy as np
 
-import convert_handle_egodex_to_tracker_session as base
-from tactile_quality_gate_v1 import analyze_session
+try:
+    from . import convert_handle_egodex_to_tracker_session as base
+    from .tactile_quality_gate_v1 import analyze_session
+except ImportError:  # Direct file execution by the bounded batch runner.
+    import convert_handle_egodex_to_tracker_session as base
+    from tactile_quality_gate_v1 import analyze_session
 
 
 SIDES = ("left", "right")
@@ -597,6 +601,8 @@ def install_patches() -> None:
 
 def main() -> int:
     global _QUALITY
+    if "--help" in sys.argv or "-h" in sys.argv:
+        return base.main()
     source_text = _args_value("--source")
     if source_text is None:
         raise base.ContractError("--source is required")
