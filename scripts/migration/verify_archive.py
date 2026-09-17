@@ -33,7 +33,22 @@ def main()->int:
     if observed_root!=summary['merkle_root_sha256'] or len(rows)!=summary['entries'] or missing or mismatched or summary['unstable_entries']:
         raise RuntimeError({'merkle':observed_root,'missing':missing[:10],'mismatched':mismatched[:10]})
     by_path={r['path']:r for r in rows}
-    samples=['git/repository.bundle','git/worktree.patch','MOVES.tsv']
+    has_git_bundle='git/repository.bundle' in by_path
+    if has_git_bundle:
+        samples=['git/repository.bundle','git/worktree.patch','MOVES.tsv']
+    else:
+        samples=[]
+        if 'MOVES.tsv' in by_path:
+            samples.append('MOVES.tsv')
+        samples.extend(
+            row['path'] for row in rows
+            if row['type']=='file'
+            and row['path'].startswith('content/')
+            and row['path'] not in samples
+        )
+        samples=samples[:3]
+    if not samples:
+        raise RuntimeError('archive has no restorable file samples')
     staging=root/'.staging';staging.mkdir(exist_ok=True)
     drill=Path(tempfile.mkdtemp(prefix='restore-drill-',dir=staging))
     restored=[]
@@ -43,21 +58,26 @@ def main()->int:
         observed=sha(target)
         if observed!=row['sha256']:raise RuntimeError(f'sample SHA mismatch: {relative}')
         restored.append({'path':relative,'bytes':row['bytes'],'sha256':observed})
-    bundle=root/'git/repository.bundle'
-    verify=subprocess.run(['git','bundle','verify',str(bundle)],cwd=root,text=True,capture_output=True,check=False)
-    if verify.returncode:raise RuntimeError(verify.stderr)
-    clone=drill/'bundle-clone'
-    subprocess.run(['git','clone','--no-checkout',str(bundle),str(clone)],cwd=root,check=True,capture_output=True,text=True)
-    subprocess.run(['git','checkout','--detach','pre-clean-20260917-0aa69e9'],cwd=clone,check=True,capture_output=True,text=True)
+    bundle_verify='NOT_APPLICABLE'
     patch_checks=[]
-    for relative in ('git/worktree.patch','git/index.patch'):
-        patch=root/relative
-        if patch.stat().st_size==0:
-            patch_checks.append({'path':relative,'status':'SKIPPED_EMPTY'});continue
-        result=subprocess.run(['git','apply','--check',str(patch)],cwd=clone,text=True,capture_output=True,check=False)
-        patch_checks.append({'path':relative,'status':'PASS' if result.returncode==0 else 'FAIL','stderr':result.stderr[-2000:]})
-        if result.returncode:raise RuntimeError(patch_checks[-1])
-    result={'schema_version':1,'status':'PASS','inventory_entries':len(rows),'merkle_root_sha256':observed_root,'all_paths_and_sizes_verified':True,'sample_restores':restored,'bundle_verify':'PASS','patch_checks':patch_checks,'staging_path':str(drill)}
+    if has_git_bundle:
+        bundle=root/'git/repository.bundle'
+        verify=subprocess.run(['git','bundle','verify',str(bundle)],cwd=root,text=True,capture_output=True,check=False)
+        if verify.returncode:raise RuntimeError(verify.stderr)
+        clone=drill/'bundle-clone'
+        subprocess.run(['git','clone','--no-checkout',str(bundle),str(clone)],cwd=root,check=True,capture_output=True,text=True)
+        subprocess.run(['git','checkout','--detach','pre-clean-20260917-0aa69e9'],cwd=clone,check=True,capture_output=True,text=True)
+        bundle_verify='PASS'
+        for relative in ('git/worktree.patch','git/index.patch'):
+            if relative not in by_path:
+                continue
+            patch=root/relative
+            if patch.stat().st_size==0:
+                patch_checks.append({'path':relative,'status':'SKIPPED_EMPTY'});continue
+            result=subprocess.run(['git','apply','--check',str(patch)],cwd=clone,text=True,capture_output=True,check=False)
+            patch_checks.append({'path':relative,'status':'PASS' if result.returncode==0 else 'FAIL','stderr':result.stderr[-2000:]})
+            if result.returncode:raise RuntimeError(patch_checks[-1])
+    result={'schema_version':1,'status':'PASS','inventory_entries':len(rows),'merkle_root_sha256':observed_root,'all_paths_and_sizes_verified':True,'sample_restores':restored,'bundle_verify':bundle_verify,'patch_checks':patch_checks,'staging_path':str(drill)}
     (root/'RESTORE_DRILL.json').write_text(json.dumps(result,ensure_ascii=False,indent=2,sort_keys=True)+'\n')
     print(json.dumps(result,ensure_ascii=False,sort_keys=True));return 0
 if __name__=="__main__":raise SystemExit(main())
