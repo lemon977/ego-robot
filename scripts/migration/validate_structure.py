@@ -23,6 +23,7 @@ IGNORED_ALLOWLIST = ("archive/", "_run/current/", "assets/models/")
 CODE_SUFFIXES = {".py", ".yaml", ".yml", ".toml", ".sh", ".cmd", ".ps1"}
 LEGACY_IMPORT = re.compile(r"^\s*(?:from|import)\s+(?:pipeline|HumanEgo|tools)(?:[.\s]|$)", re.MULTILINE)
 HARDCODED_ROOT = "/mnt/workspace/code/" + "chaoyang"
+DEPRECATED_SOURCE_PATH = "NOW/daemon/" + "tools"
 
 
 def git_lines(root: Path, *args: str) -> list[str]:
@@ -84,6 +85,8 @@ def main() -> int:
         text = path.read_text(encoding="utf-8", errors="ignore")
         if HARDCODED_ROOT in text:
             errors.append(f"hard-coded repository root: {relative}")
+        if DEPRECATED_SOURCE_PATH in text:
+            errors.append(f"deprecated source path: {relative}")
         if path.suffix.lower() == ".py" and LEGACY_IMPORT.search(text):
             errors.append(f"legacy top-level import: {relative}")
 
