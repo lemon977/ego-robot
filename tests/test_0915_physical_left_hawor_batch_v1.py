@@ -41,6 +41,13 @@ def test_hawor_worker_caches_models_and_resets_tracker_per_session() -> None:
     assert "detector_load_count" in source
 
 
+def test_hawor_worker_gives_upstream_a_fresh_child_and_publishes_npz_at_session_root() -> None:
+    source = inspect.getsource(worker.main)
+    assert 'upstream_output = staging / "upstream_hawor"' in source
+    assert 'upstream_npz = upstream_output / "HAWOR_RAW_MANO21.npz"' in source
+    assert 'npz = staging / "HAWOR_RAW_MANO21.npz"' in source
+
+
 def test_hawor_quality_keeps_missing_frames_missing(tmp_path) -> None:
     observed = np.zeros((2, 3), dtype=bool)
     observed[0, 0] = True
