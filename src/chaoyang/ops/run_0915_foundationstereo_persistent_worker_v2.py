@@ -198,7 +198,7 @@ def process_session(
                 disparity_flipped, _unused_depth, _unused_valid = model.infer(
                     cv2.flip(left, 1), cv2.flip(right, 1), baseline,
                 )
-                disparity, depth, valid = physical_left_depth(
+                _disparity, depth, valid = physical_left_depth(
                     disparity_flipped, focal_px=float(depth_k[0, 0]),
                     baseline_m=float(baseline),
                 )
@@ -206,7 +206,6 @@ def process_session(
                 atomic_npz(
                     frame_path,
                     frame_id=np.asarray(frame_index, np.int32),
-                    disparity_magnitude_px=disparity,
                     depth_m=depth,
                     valid=valid,
                     scaled_rectified_intrinsics=depth_k,
@@ -237,6 +236,13 @@ def process_session(
             "frame_count": frame_count,
             "physical_eye_source_indices": {"left": 1, "right": 0},
             "depth_reference": "PHYSICAL_LEFT_RECTIFIED_OPTICAL_Z",
+            "stored_frame_arrays": [
+                "frame_id", "depth_m", "valid", "scaled_rectified_intrinsics",
+                "depth_reference",
+            ],
+            "disparity_storage": (
+                "NOT_DUPLICATED; valid disparity is exactly focal_px*baseline_m/depth_m"
+            ),
             "inference_orientation": "FLIP_BOTH_EYES_THEN_FLIP_RESULT_BACK_NO_EYE_SWAP",
             "quality": gate,
             "rectification_quality": calibration["quality"],
