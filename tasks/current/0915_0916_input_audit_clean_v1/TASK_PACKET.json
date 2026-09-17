@@ -1,0 +1,51 @@
+{
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "task_id": "0915_0916_input_audit_clean_v1",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "phase": "PROCESSED_INPUT_AUDIT_AND_0916_CLEANING",
+  "objective": "Prove the 220-session 0915 processed dataset is self-contained without consuming PICO26/controller hand data, and clean all 240 0916 sessions with unchanged V3 semantics under a bounded two-worker coordinator.",
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "src/chaoyang/ops/audit_0915_processed_self_containment_v1.py",
+    "src/chaoyang/ops/batch_clean_handle_content_v4.py",
+    "src/chaoyang/ops/convert_handle_egodex_v3.py",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915",
+    "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916"
+  ],
+  "write_set": [
+    "_run/current/0915_0916_input_audit_clean_v1/attempts",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916"
+  ],
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "git_main_fast_forwarded_to_5c766fc",
+    "0915_processed_root_read_only",
+    "0916_source_root_read_only",
+    "no_active_task"
+  ],
+  "weights": "ABSENT",
+  "calibration": "PER_SESSION_PROCESSED_OR_RAW_CAMERA_PARAMS_READ_ONLY",
+  "budgets": {
+    "max_runtime_attempts": 1,
+    "max_clean_workers": 2,
+    "gpu_hours": 0,
+    "six_hour_progress_receipt_required": true
+  },
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_PREREQ",
+    "BLOCKED_REFERENCE_PROOF",
+    "CANCELLED"
+  ],
+  "required_outputs": [
+    "SELF_CONTAINMENT.json",
+    "0916_DATASET_RESULT.json reference",
+    "RESULT.json",
+    "METRICS.json",
+    "ARTIFACT_MANIFEST.json",
+    "RUN_RECEIPT.json"
+  ],
+  "claim_limit": "Processed self-containment and 0916 content cleaning only; PICO26/controller hand inputs, downstream inference, force/contact truth and deployment authority are forbidden."
+}
