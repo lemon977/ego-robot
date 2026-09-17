@@ -48,6 +48,7 @@ def main()->int:
     if verify.returncode:raise RuntimeError(verify.stderr)
     clone=drill/'bundle-clone'
     subprocess.run(['git','clone','--no-checkout',str(bundle),str(clone)],cwd=root,check=True,capture_output=True,text=True)
+    subprocess.run(['git','checkout','--detach','pre-clean-20260917-0aa69e9'],cwd=clone,check=True,capture_output=True,text=True)
     patch_checks=[]
     for relative in ('git/worktree.patch','git/index.patch'):
         patch=root/relative
