@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "visual-role-mask-v1.schema.json",
+  "title": "0915 visual role and task-object mask manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "session_id",
+    "frame_count",
+    "model",
+    "roles",
+    "instances",
+    "tracker_role_created",
+    "pico26_consumed"
+  ],
+  "properties": {
+    "schema_version": {"const": "visual-role-mask-v1"},
+    "session_id": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "weight_sha256"],
+      "properties": {
+        "identity": {"const": "SAM3.1"},
+        "weight_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "roles": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "left_human_skin_forearm",
+          "right_human_skin_forearm",
+          "left_finger_sleeve_attachment",
+          "right_finger_sleeve_attachment",
+          "left_cable",
+          "right_cable",
+          "task_object"
+        ]
+      }
+    },
+    "instances": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["instance_id", "role", "physical_identity_policy", "mask_directory"],
+        "properties": {
+          "instance_id": {"type": "string", "minLength": 1},
+          "role": {"$ref": "#/$defs/role"},
+          "physical_identity_policy": {
+            "enum": [
+              "SIDE_LOCKED_HUMAN_ROLE",
+              "SEPARATE_VISIBLE_PHYSICAL_OBJECT",
+              "UNKNOWN_AFTER_EXIT_NEW_ID_UNLESS_REIDENTIFIED"
+            ]
+          },
+          "mask_directory": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "tracker_role_created": {"const": false},
+    "pico26_consumed": {"const": false}
+  },
+  "$defs": {
+    "role": {
+      "enum": [
+        "left_human_skin_forearm",
+        "right_human_skin_forearm",
+        "left_finger_sleeve_attachment",
+        "right_finger_sleeve_attachment",
+        "left_cable",
+        "right_cable",
+        "task_object"
+      ]
+    }
+  }
+}
