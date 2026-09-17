@@ -54,3 +54,14 @@ def test_hawor_quality_keeps_missing_frames_missing(tmp_path) -> None:
     metrics = worker.quality(path)
     assert metrics["observed_frames"] == {"left": 1, "right": 0, "bilateral": 0}
     assert metrics["observed_fraction"]["right"] == 0.0
+
+
+def test_staging_reference_records_final_atomic_path(tmp_path) -> None:
+    staging = tmp_path / ".session.tmp" / "video.mp4"
+    staging.parent.mkdir()
+    staging.write_bytes(b"video")
+    final = tmp_path / "session" / "video.mp4"
+    value = prepare.ref_as(staging, final)
+    assert value["path"] == str(final.resolve())
+    assert ".session.tmp" not in value["path"]
+    assert value["bytes"] == 5
