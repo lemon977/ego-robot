@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/causal_modal_mask_challenger_v71.schema.json",
+  "title": "S1 causal modal-mask challenger immutable receipt",
+  "type": "object",
+  "required": [
+    "artifact_id", "artifact_revision", "input_artifact_ids",
+    "input_artifact_revisions", "input_manifest_sha", "producer_signature",
+    "supersedes_artifact_id", "validity", "payload"
+  ],
+  "properties": {
+    "artifact_id": {"type": "string", "minLength": 1},
+    "artifact_revision": {"type": "string", "pattern": "^R[0-9]+_[0-9]+(?:[._-][A-Za-z0-9]+)*$"},
+    "input_artifact_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "input_artifact_revisions": {"type": "array", "items": {"type": "string", "pattern": "^R[0-9]+_[0-9]+(?:[._-][A-Za-z0-9]+)*$"}},
+    "input_manifest_sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "producer_signature": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "supersedes_artifact_id": {"type": ["string", "null"]},
+    "validity": {"const": "VALID_FOR_PINNED_REVISION"},
+    "payload": {
+      "type": "object",
+      "required": ["status", "session_id", "requested_backends", "backend_preflight", "authority_limit", "execution_performed"],
+      "properties": {
+        "status": {"enum": ["PASSED", "BLOCKED_PREREQ", "BLOCKED_REFERENCE_PROOF"]},
+        "session_id": {"type": "string", "minLength": 1},
+        "requested_backends": {"type": "array", "items": {"enum": ["sam2_1", "cutie"]}, "uniqueItems": true},
+        "backend_preflight": {"type": "array", "items": {"type": "object"}},
+        "execution_performed": {"const": false},
+        "authority_limit": {
+          "type": "object",
+          "required": ["maximum_publication", "forbidden_claims"],
+          "properties": {
+            "maximum_publication": {"const": "MODAL_MASK_SUCCESSOR_CANDIDATE"},
+            "forbidden_claims": {"type": "array", "contains": {"const": "OBJECT6D_AUTHORITY"}}
+          }
+        }
+      }
+    }
+  },
+  "additionalProperties": true
+}

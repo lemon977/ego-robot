@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/robot_geometry_v1.schema.json",
+  "title": "ROBOT_GEOMETRY_V1 result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "mode", "clean_consumed", "control_ground_truth", "physical_deployment_authorized", "frame_budget_s", "zbuffer_fields", "collision_qa", "status"],
+  "properties": {
+    "schema_version": {"const": "ROBOT_GEOMETRY_V1"},
+    "session_id": {"type": "string", "minLength": 1},
+    "mode": {"enum": ["METRIC_CONTACT_ROBOT", "POSE_ONLY_VISUAL_ROBOT"]},
+    "clean_consumed": {"const": false},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false},
+    "frame_budget_s": {"type": "number", "exclusiveMinimum": 0, "maximum": 30},
+    "zbuffer_fields": {"const": ["depth", "instance_id", "part_id", "link_id", "triangle_id"]},
+    "collision_qa": {
+      "type": "object",
+      "required": ["self_collision_count", "minimum_non_adjacent_link_distance_m", "penetration_depth_m", "penetration_volume_m3", "joint_limit_violation"],
+      "properties": {
+        "self_collision_count": {"type": "integer", "minimum": 0},
+        "minimum_non_adjacent_link_distance_m": {"type": ["number", "null"]},
+        "penetration_depth_m": {"type": "number", "minimum": 0},
+        "penetration_volume_m3": {"type": "number", "minimum": 0},
+        "joint_limit_violation": {"type": "integer", "minimum": 0}
+      },
+      "additionalProperties": false
+    },
+    "status": {"enum": ["PASSED", "FAILED_QUALITY_C", "FAILED_RUNTIME_FINAL", "BLOCKED_PREREQ", "BLOCKED_EXTERNAL"]}
+  }
+}

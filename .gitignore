@@ -8,7 +8,7 @@
 credentials*.json
 *_token.txt
 
-# Python/editor/runtime caches
+# Python/editor caches (must be absent from final worktree)
 __pycache__/
 *.py[cod]
 .pytest_cache/
@@ -21,47 +21,26 @@ __pycache__/
 .venv/
 venv/
 
-# All runtime and promoted data stay local
-/_run/*
-!/_run/.gitkeep
-/data/processed/**
-!/data/processed/**/README.md
-!/data/processed/**/SOURCE_MANIFEST.json
-!/data/processed/**/STATUS.json
-/tasks/*/runs/*/*
-!/tasks/*/runs/*/README.md
-/tasks/*/annotations/*/*
-!/tasks/*/annotations/README.md
-/tasks/*/exports/*
-!/tasks/*/exports/README.md
-/data/benchmarks/hand/production_runs/
-/HumanEgo/runs/
-/HumanEgo/outputs/
-/HumanEgo/reports/
-/HumanEgo/artifacts/
+# Isolated runtime and archive roots
 /archive/
-/docs/history/
-/docs/organization/
-/docs/collaboration/
+/_run/current/**
+!/_run/current/.gitkeep
+
+# Model payloads are local; manifests remain tracked
+/assets/models/**
+!/assets/models/README.md
+!/assets/models/MANIFEST.json
+
+# Generated or heavyweight payloads must live only in allowed roots
 *.log
 *.lock
 *.tmp
 *.bak
 *.pre_*
-
-# Large numerical/model artifacts
 *.pt
 *.pth
 *.ckpt
 *.onnx
-/assets/environments/*-v1/
-/assets/calibration/pico_manus_legacy_20260914/config/*.mcal
-/HumanEgo/data_manifests/robot_sidecars_v4_candidate/**/*.npz
-/third_party/HaWoR/weights/
-/third_party/HaWoR/_DATA/data/mano/*.pkl
-/third_party/HaWoR/_DATA/data_left/mano_left/*.pkl
-
-# Media, archives and generated frames
 *.mp4
 *.avi
 *.mov
@@ -69,9 +48,9 @@ venv/
 *.tar
 *.tar.gz
 
-# Robot assets stay local until redistribution rights are confirmed
+# Fixed local hardware/model payloads
+/assets/calibration/pico_manus_legacy_20260914/config/*.mcal
 /assets/robot/tianji/
 /assets/robot/kaihand/packages/
 *.STL
 *.stl
-/HumanEgo/vendor/

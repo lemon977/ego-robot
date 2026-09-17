@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/causal_modal_mask_output_v71.schema.json",
+  "title": "Backend-neutral causal visible modal instance masks",
+  "type": "object",
+  "required": ["schema_version", "session_id", "execution_mode", "mask_semantics", "allow_instance_union", "frames", "identity_qa", "authority_limit"],
+  "properties": {
+    "schema_version": {"const": "causal-modal-mask-output-v71"},
+    "session_id": {"type": "string", "minLength": 1},
+    "execution_mode": {"const": "CAUSAL_PROCESSING"},
+    "mask_semantics": {"const": "VISIBLE_MODAL_SURFACE_ONLY"},
+    "allow_instance_union": {"const": false},
+    "frames": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["frame_id", "prompt_instance_ids", "instances", "identity_qa"],
+        "properties": {
+          "frame_id": {"type": "integer", "minimum": 0},
+          "instances": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["instance_id", "visibility", "mask"],
+              "properties": {
+                "instance_id": {"type": "string", "minLength": 1},
+                "visibility": {"enum": ["VISIBLE", "PARTIAL", "FULLY_OCCLUDED_UNKNOWN", "OUT_OF_FRAME_UNKNOWN", "TRACK_LOST_UNKNOWN"]},
+                "mask": {"type": ["object", "null"]}
+              }
+            }
+          }
+        }
+      }
+    },
+    "identity_qa": {"type": "object"},
+    "authority_limit": {"type": "object"}
+  },
+  "additionalProperties": true
+}

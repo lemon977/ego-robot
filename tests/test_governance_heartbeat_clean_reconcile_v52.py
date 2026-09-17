@@ -8,7 +8,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
-from tools.governance.heartbeat_task import reconcile_clean_authority
+from chaoyang.governance.heartbeat_task import reconcile_clean_authority  # noqa: E402
 
 
 def _write(path: Path, value: dict) -> None:
@@ -80,6 +80,7 @@ def test_reconcile_pass_terminal_and_single_running(tmp_path: Path) -> None:
         authority,
         active=True,
         clean_root=tmp_path,
+        recovery_root=None,
         expected_selection_sha256=selection_sha,
     )
     assert authority["waves"]["wave0_clean_passed"] == 5
@@ -109,6 +110,61 @@ def test_reconcile_fails_closed_on_invalid_pass(tmp_path: Path) -> None:
         authority,
         active=True,
         clean_root=tmp_path,
+        recovery_root=None,
         expected_selection_sha256=selection_sha,
     )
     assert authority == before
+
+
+def test_reconcile_recovery_overlay_supersedes_runtime_failure(tmp_path: Path) -> None:
+    predecessor = tmp_path / "predecessor"
+    recovery = tmp_path / "recovery"
+    _, selection_sha = _selection(predecessor)
+    _write(
+        predecessor / "clean_terminals/session_004/RESULT.json",
+        {
+            "status": "FAILED_RUNTIME_FINAL",
+            "terminal": True,
+            "downstream_authorized": False,
+            "session": "session_004",
+            "task": "chips",
+        },
+    )
+    _write(
+        recovery / "RECOVERY_19_SELECTION.json",
+        {
+            "sessions": [
+                {"session": f"session_{index:03d}"}
+                for index in range(4, 23)
+            ]
+        },
+    )
+    _write(
+        recovery / "propainter_v1/session_004/RESULT.json",
+        {
+            "status": "PASS_SYNTHETIC_CLEAN_BASELINE_GRADE_B",
+            "grade": "B",
+            "downstream_authorized": True,
+            "session": "session_004",
+            "task": "chips",
+            "frame_count": 10,
+            "hard_gates": {"decode": "PASS"},
+        },
+    )
+    authority = _authority()
+    assert reconcile_clean_authority(
+        authority,
+        active=True,
+        clean_root=predecessor,
+        recovery_root=recovery,
+        expected_selection_sha256=selection_sha,
+    )
+    assert authority["waves"]["wave0_clean_passed"] == 5
+    assert authority["waves"]["wave0_clean_pending"] == 53
+    assert authority["waves"]["wave0_clean_failed_runtime_final"] == 0
+
+
+def test_terminal_update_path_calls_clean_reconciliation() -> None:
+    source = (ROOT / "src/chaoyang/governance/update_task_state.py").read_text(encoding="utf-8")
+    assert "reconcile_clean_authority(authority, active=False)" in source
+    assert "Clean terminal authority reconciliation failed closed" in source

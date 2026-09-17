@@ -1,0 +1,119 @@
+{
+  "packages": [
+    {
+      "id": "foundationstereo",
+      "identity": "FILE_CLOSURE_CONTRACT",
+      "license_paths": [
+        "vendor/FoundationStereo/LICENSE"
+      ],
+      "local_patch_policy": "project adapters outside vendor",
+      "model_root": "assets/models/checkpoints/foundationstereo",
+      "runtime_closure": {
+        "algorithm": "sha256-file-list-v1",
+        "regular_bytes": 2305906,
+        "regular_files": 198,
+        "sha256_file_list": "5384ac4b94d7e825b9f0d88568b45e983fc18921df18935bbe7897a432f467bc",
+        "symlinks": 0
+      },
+      "runtime_path": "vendor/FoundationStereo",
+      "upstream_revision": null,
+      "upstream_url": "https://github.com/NVlabs/FoundationStereo"
+    },
+    {
+      "id": "hawor",
+      "identity": "UPSTREAM_COMMIT_PLUS_LOCAL_MODEL_SYMLINKS",
+      "license_paths": [
+        "vendor/HaWoR/license.txt"
+      ],
+      "local_patch_policy": "runtime source unchanged; MANO and weight symlinks point to SHA-bound assets/models payloads",
+      "model_root": "assets/models/vendor/hawor",
+      "runtime_closure": {
+        "algorithm": "sha256-file-list-v1",
+        "regular_bytes": 69501442,
+        "regular_files": 418,
+        "sha256_file_list": "0b35fafe11a40753eab6c46b8d9b1453ee2d40fc107bd79d65edc83583ac88e9",
+        "symlinks": 2
+      },
+      "runtime_path": "vendor/HaWoR",
+      "upstream_revision": "66c7d4108d588a716deccd192cb7645170cdc7bd7",
+      "upstream_url": "https://github.com/ThunderVVV/HaWoR.git"
+    },
+    {
+      "id": "propainter",
+      "identity": "UPSTREAM_COMMIT_RUNTIME_CLOSURE",
+      "license_paths": [
+        "vendor/ProPainter/LICENSE"
+      ],
+      "local_patch_policy": "nested .git and examples archived",
+      "model_root": "assets/models/vendor/propainter",
+      "runtime_closure": {
+        "algorithm": "sha256-file-list-v1",
+        "regular_bytes": 19579805,
+        "regular_files": 62,
+        "sha256_file_list": "33b48324ba58cc0f6cf7bccfaaf34166f7bc958a571401ac337f7c9519584bd6",
+        "symlinks": 0
+      },
+      "runtime_path": "vendor/ProPainter",
+      "upstream_revision": "e8870e79321c31b733e2031af5aa2fb1fe3ac7eec",
+      "upstream_url": "https://github.com/sczhou/ProPainter.git"
+    },
+    {
+      "id": "sam3",
+      "identity": "PINNED_RUNTIME_CLOSURE",
+      "license_paths": [
+        "vendor/SAM3/LICENSE"
+      ],
+      "local_patch_policy": "upstream runtime files unchanged; examples/tests and other non-runtime content archived",
+      "model_root": "assets/models/checkpoints/sam3.1",
+      "runtime_closure": {
+        "algorithm": "sha256-file-list-v1",
+        "git_tree": "a5babb47805d0ab0ada43dfc27a9482d18c32d06",
+        "regular_bytes": 9204143,
+        "regular_files": 226,
+        "sha256_file_list": "1af6f1238c456aeafec0cbcfa21399776b0c714aefa23a4fa988b9ecc1941e4f",
+        "symlinks": 0
+      },
+      "runtime_path": "vendor/SAM3",
+      "upstream_revision": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7",
+      "upstream_url": "https://github.com/facebookresearch/sam3.git"
+    },
+    {
+      "id": "glvnd",
+      "identity": "LOCAL_RUNTIME_SHIM",
+      "license_paths": [],
+      "local_patch_policy": "runtime shim only",
+      "model_root": null,
+      "runtime_closure": {
+        "algorithm": "sha256-file-list-v1",
+        "regular_bytes": 94,
+        "regular_files": 1,
+        "sha256_file_list": "8fb20d05a5633ff8ad875169fce69b4a41dca7db6f3bd3f7447c15c1d3991d7b",
+        "symlinks": 0
+      },
+      "runtime_path": "vendor/glvnd",
+      "upstream_revision": null,
+      "upstream_url": null
+    },
+    {
+      "id": "cutie",
+      "identity": "PINNED_FILE_CLOSURE_FROM_PROPainter_DEMO",
+      "license_paths": [
+        "vendor/ProPainter/LICENSE"
+      ],
+      "local_patch_policy": "minimal runtime closure only",
+      "model_root": "assets/models/cutie",
+      "runtime_closure": {
+        "algorithm": "sha256-file-list-v1",
+        "regular_bytes": 174366,
+        "regular_files": 43,
+        "sha256_file_list": "7c2fb16aaa3c5765040d2c7e35975cb360ea7b3e51e99f315e3a9d23798c8c33",
+        "symlinks": 0
+      },
+      "runtime_path": "vendor/Cutie",
+      "upstream_revision": null,
+      "upstream_url": "https://github.com/hkchengrex/Cutie"
+    }
+  ],
+  "policy": "Only runtime import closure, licenses, upstream identity and local patch records may remain under vendor/. Model payloads live in assets/models/.",
+  "schema_version": "chaoyang-vendor-manifest-v1"
+}

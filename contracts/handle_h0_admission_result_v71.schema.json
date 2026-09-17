@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/handle_h0_admission_result_v71.schema.json",
+  "title": "Handle H0 Admission Result V7.1",
+  "type": "object",
+  "required": ["schema_version", "status", "row_count", "summary", "files", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "handle-h0-admission-result-v7.1"},
+    "status": {"const": "PASSED"},
+    "row_count": {"type": "integer", "minimum": 1},
+    "summary": {
+      "type": "object",
+      "required": ["by_admission", "by_dataset", "by_task", "total_frames_declared"]
+    },
+    "files": {
+      "type": "object",
+      "required": ["SENSOR_PIPELINE_ADMISSION_LEDGER.json", "SENSOR_PIPELINE_ADMISSION_LEDGER.csv"],
+      "additionalProperties": {
+        "type": "object",
+        "required": ["path", "bytes", "sha256"],
+        "properties": {
+          "path": {"type": "string"},
+          "bytes": {"type": "integer", "minimum": 1},
+          "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 20}
+  },
+  "additionalProperties": false
+}

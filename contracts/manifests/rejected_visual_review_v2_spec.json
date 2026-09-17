@@ -8,7 +8,7 @@
       "title": "v2 representative frame 228 — left sleeve/forearm absent",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00228.png",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00228.png",
       "frame_scope": {"scope": "FRAME_SET", "frame_indices": [228]},
       "frame_scope_label": "representative frame 228; one of 15/15 held development frames",
       "rejection_reasons": [
@@ -22,7 +22,7 @@
       "title": "v2 representative frame 233 — bilateral sleeve/forearm omission",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00233.png",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00233.png",
       "frame_scope": {"scope": "FRAME_SET", "frame_indices": [233]},
       "frame_scope_label": "representative frame 233; last frame before abrupt left-sleeve recovery",
       "rejection_reasons": [
@@ -36,7 +36,7 @@
       "title": "v2 representative frame 234 — abrupt left-sleeve recovery, right sleeve absent",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00234.png",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00234.png",
       "frame_scope": {"scope": "FRAME_SET", "frame_indices": [234]},
       "frame_scope_label": "representative frame 234; 61,851 to 146,094-pixel temporal transition",
       "rejection_reasons": [
@@ -50,7 +50,7 @@
       "title": "v2 representative frame 242 — persistent right sleeve/forearm omission",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00242.png",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/review_frames/frame_00242.png",
       "frame_scope": {"scope": "FRAME_SET", "frame_indices": [242]},
       "frame_scope_label": "representative final development frame 242",
       "rejection_reasons": [
@@ -64,7 +64,7 @@
       "title": "v2 complete 15-frame RAW/MASK/overlay review video",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P2_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/PREVIEW_RAW_MASK_OVERLAY.mp4",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p2_dev15_v2/sam31_ego_human_producer_p2/sessions/grap_a_cap_004/PREVIEW_RAW_MASK_OVERLAY.mp4",
       "frame_scope": {"scope": "FRAME_SET", "frame_indices": [228,229,230,231,232,233,234,235,236,237,238,239,240,241,242]},
       "frame_scope_label": "complete public development window 228-242; all 15 frames held",
       "rejection_reasons": [

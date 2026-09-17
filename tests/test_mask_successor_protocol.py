@@ -2,7 +2,7 @@ from copy import deepcopy
 
 import pytest
 
-from pipeline.mask_successor_protocol import (
+from chaoyang.pipeline.mask_successor_protocol import (
     ProtocolError,
     temporal_failures,
     tracker_spatial_failures,

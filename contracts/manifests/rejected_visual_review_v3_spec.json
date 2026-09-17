@@ -8,7 +8,7 @@
       "title": "v3 representative frame 228 — box route yields no eligible complete limb",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P3_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00228.png",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00228.png",
       "frame_scope": {
         "scope": "FRAME_SET",
         "frame_indices": [228]
@@ -25,7 +25,7 @@
       "title": "v3 representative frame 235 — high-score box instances still fail ownership",
       "kind": "copy",
       "qa_ref": "audits/SAM31_EGO_HUMAN_PRODUCER_P3_T1_REPORT.md",
-      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00235.png",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00235.png",
       "frame_scope": {
         "scope": "FRAME_SET",
         "frame_indices": [235]
@@ -42,7 +42,7 @@
       "title": "v3 representative frame 242 — failure persists through final development frame",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P3_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00242.png",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/review_frames/frame_00242.png",
       "frame_scope": {
         "scope": "FRAME_SET",
         "frame_indices": [242]
@@ -59,7 +59,7 @@
       "title": "v3 complete 15-frame RAW/MASK/overlay review video",
       "kind": "copy",
       "qa_ref": "audits/INDEPENDENT_QA_SAM31_PRODUCER_P3_DEV15.json",
-      "source_path": "_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/PREVIEW_RAW_MASK_OVERLAY.mp4",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/sam31_ego_human_producer_p3_dev15_v1/sam31_ego_human_producer_p3/sessions/grap_a_cap_004/PREVIEW_RAW_MASK_OVERLAY.mp4",
       "frame_scope": {
         "scope": "FRAME_SET",
         "frame_indices": [228, 229, 230, 231, 232, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242]

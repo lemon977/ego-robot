@@ -1,0 +1,90 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/wrist_fusion_v1.schema.json",
+  "title": "Chaoyang causal wrist fusion V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "mode", "tracker_anchor", "finger_source",
+    "surface_depth_source", "calibration", "fusion", "outputs",
+    "authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-wrist-fusion-v1"},
+    "mode": {"enum": ["BARE_HAND_PICO_HAWOR_STEREO", "SENSOR_CONTROLLER_MANUS_STEREO"]},
+    "tracker_anchor": {
+      "type": "object",
+      "required": ["source", "role", "required"],
+      "properties": {
+        "source": {"enum": ["PICO_OPENXR_WRIST", "CONTROLLER_6DOF_WRIST"]},
+        "role": {"const": "PRIMARY_CONTINUOUS_TRANSLATION_AND_ORIENTATION"},
+        "required": {"const": true}
+      },
+      "additionalProperties": false
+    },
+    "finger_source": {
+      "type": "object",
+      "required": ["source", "role"],
+      "properties": {
+        "source": {"enum": ["HAWOR_MANO21", "HAND21_FROM_MANUS_CONTROLLER"]},
+        "role": {"const": "HAND_SHAPE_AND_FINGER_ARTICULATION"}
+      },
+      "additionalProperties": false
+    },
+    "surface_depth_source": {
+      "type": "object",
+      "required": ["source", "role", "native_confidence"],
+      "properties": {
+        "source": {"const": "FOUNDATIONSTEREO_VISIBLE_SURFACE_OPTICAL_Z"},
+        "role": {"const": "OPTIONAL_LOW_FREQUENCY_RELATIVE_Z_CORRECTION"},
+        "native_confidence": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "calibration": {
+      "type": "object",
+      "required": ["tracker_to_anatomical_offset", "surface_to_wrist_z_offset", "external_truth"],
+      "properties": {
+        "tracker_to_anatomical_offset": {"const": "ROBUST_PREFIX_MEDIAN_IN_TRACKER_LOCAL_FRAME"},
+        "surface_to_wrist_z_offset": {"const": "ROBUST_PREFIX_MEDIAN_PER_SIDE"},
+        "external_truth": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "fusion": {
+      "type": "object",
+      "required": ["causal", "stereo_weight", "stereo_window_frames", "innovation_clip_mm", "correction_ema_alpha", "apply_to_whole_hand"],
+      "properties": {
+        "causal": {"const": true},
+        "stereo_weight": {"type": "number", "minimum": 0, "maximum": 0.2},
+        "stereo_window_frames": {"type": "integer", "minimum": 3},
+        "innovation_clip_mm": {"type": "number", "minimum": 1, "maximum": 30},
+        "correction_ema_alpha": {"type": "number", "exclusiveMinimum": 0, "maximum": 0.2},
+        "apply_to_whole_hand": {"const": "RIGID_WRIST_TRANSLATION_ONLY_NO_FINGER_POSE_CHANGE"}
+      },
+      "additionalProperties": false
+    },
+    "outputs": {
+      "type": "object",
+      "required": ["wrist_xyz", "hand21", "source_residuals", "validity", "provenance"],
+      "properties": {
+        "wrist_xyz": {"const": "[T,2,3]"},
+        "hand21": {"const": "[T,2,21,3]"},
+        "source_residuals": {"const": "PER_FRAME_PER_SIDE"},
+        "validity": {"const": "PER_FRAME_PER_SIDE"},
+        "provenance": {"const": "PER_FRAME_PER_SIDE"}
+      },
+      "additionalProperties": false
+    },
+    "authority": {
+      "type": "object",
+      "required": ["control_ground_truth", "external_wrist_truth", "physical_deployment"],
+      "properties": {
+        "control_ground_truth": {"const": false},
+        "external_wrist_truth": {"const": false},
+        "physical_deployment": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/exact78_conversion_cause_ledger_v2.schema.json",
+  "title": "exact78 CONVERSION_CAUSE_LEDGER_V2",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "artifact_revision",
+    "input_artifact_ids",
+    "input_manifest_sha",
+    "producer_signature",
+    "supersedes_artifact_id",
+    "validity",
+    "status",
+    "authority",
+    "counts",
+    "conditional_conversion_rates",
+    "failure_cause_attribution",
+    "successor_new_passes",
+    "breakdowns",
+    "rows",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "exact78-conversion-cause-ledger-v2"},
+    "artifact_id": {"type": "string", "minLength": 1},
+    "artifact_revision": {"pattern": "^R7_[1-9][0-9]*$"},
+    "input_artifact_ids": {"type": "array", "items": {"type": "string"}},
+    "input_manifest_sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "producer_signature": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "supersedes_artifact_id": {"type": ["string", "null"]},
+    "validity": {"enum": ["VALID_FOR_PINNED_REVISION", "STALE_FOR_LATEST_REVISION"]},
+    "created_at": {"type": "string"},
+    "status": {"const": "PASS_DIAGNOSTIC_ACCOUNTING"},
+    "authority": {"const": false},
+    "counts": {
+      "type": "object",
+      "required": ["sessions", "exclusive_first_blockers", "robot_eligible", "robot_candidates"],
+      "properties": {
+        "sessions": {"const": 156},
+        "exclusive_first_blockers": {
+          "type": "object",
+          "required": [
+            "HAWOR_C",
+            "ROLE_AFTER_HAWOR",
+            "OBJECT_AFTER_HAWOR_ROLE",
+            "CALIBRATION_MISSING_AFTER_TRIPLE",
+            "METRIC_READY"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "HAWOR_C": {"type": "integer", "minimum": 0},
+            "ROLE_AFTER_HAWOR": {"type": "integer", "minimum": 0},
+            "OBJECT_AFTER_HAWOR_ROLE": {"type": "integer", "minimum": 0},
+            "CALIBRATION_MISSING_AFTER_TRIPLE": {"type": "integer", "minimum": 0},
+            "METRIC_READY": {"type": "integer", "minimum": 0}
+          }
+        },
+        "robot_eligible": {"type": "integer", "minimum": 0},
+        "robot_candidates": {"type": "integer", "minimum": 0}
+      }
+    },
+    "conditional_conversion_rates": {"$ref": "#/$defs/rates"},
+    "failure_cause_attribution": {"type": "object"},
+    "successor_new_passes": {"type": "object"},
+    "breakdowns": {"type": "object"},
+    "rows": {
+      "type": "array",
+      "minItems": 156,
+      "maxItems": 156,
+      "items": {"$ref": "#/$defs/row"}
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "rates": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["stage", "numerator", "denominator", "rate_percent"],
+        "properties": {
+          "stage": {"type": "string"},
+          "numerator": {"type": "integer", "minimum": 0},
+          "denominator": {"type": "integer", "minimum": 0},
+          "rate_percent": {"type": ["number", "null"], "minimum": 0, "maximum": 100}
+        }
+      }
+    },
+    "row": {
+      "type": "object",
+      "required": [
+        "session_id",
+        "task",
+        "date",
+        "acquisition_contract",
+        "first_blocker",
+        "first_blocker_category",
+        "current_primary_cause_category",
+        "robot_eligible",
+        "robot_candidate",
+        "successor_newly_passed"
+      ],
+      "properties": {
+        "session_id": {"type": "string"},
+        "task": {"enum": ["chips", "poker"]},
+        "date": {"type": "string"},
+        "acquisition_contract": {"type": "string"},
+        "first_blocker": {
+          "enum": [
+            "HAWOR_C",
+            "ROLE_AFTER_HAWOR",
+            "OBJECT_AFTER_HAWOR_ROLE",
+            "CALIBRATION_MISSING_AFTER_TRIPLE",
+            "METRIC_READY"
+          ]
+        },
+        "first_blocker_category": {
+          "enum": ["ALGORITHM_FAILURE", "PROVENANCE_MISSING", "NO_FAILURE_CURRENT_SNAPSHOT"]
+        },
+        "current_primary_cause_category": {
+          "enum": [
+            "ALGORITHM_FAILURE",
+            "INFRASTRUCTURE_FAILURE",
+            "PROVENANCE_MISSING",
+            "NO_FAILURE_CURRENT_SNAPSHOT"
+          ]
+        },
+        "robot_eligible": {"type": "boolean"},
+        "robot_candidate": {"type": "boolean"},
+        "successor_newly_passed": {"type": "boolean"}
+      }
+    }
+  }
+}

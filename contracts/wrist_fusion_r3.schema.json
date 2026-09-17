@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/wrist_fusion_r3.schema.json",
+  "title": "DEPTH-20 bounded Controller wrist optical-Z correction",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "stage", "primary_anchor", "finger_source", "stereo_measurement", "configuration", "frames", "external_metric_accuracy", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "WRIST_FUSION_R3"}, "stage": {"const": "DEPTH-20"},
+    "primary_anchor": {"const": "CONTROLLER_SE3"}, "finger_source": {"const": "MANUS25"},
+    "stereo_measurement": {"const": "VISIBLE_SURFACE_OPTICAL_Z"},
+    "configuration": {
+      "type": "object", "additionalProperties": false,
+      "required": ["causal_window", "innovation_limit_m", "stereo_weight", "ema_alpha", "correction_cap_m"],
+      "properties": {
+        "causal_window": {"const": 15}, "innovation_limit_m": {"const": 0.03},
+        "stereo_weight": {"const": 0.15}, "ema_alpha": {"const": 0.15}, "correction_cap_m": {"const": 0.005}
+      }
+    },
+    "frames": {
+      "type": "array",
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["frame_id", "controller_wrist_m", "hawor_wrist_m", "stereo_surface_proxy_z_m", "fused_wrist_m", "source_flag", "correction_m", "valid"],
+        "properties": {
+          "frame_id": {"type": "integer", "minimum": 0},
+          "controller_wrist_m": {"$ref": "#/$defs/xyz"}, "hawor_wrist_m": {"oneOf": [{"$ref": "#/$defs/xyz"}, {"type": "null"}]},
+          "stereo_surface_proxy_z_m": {"type": ["number", "null"]}, "fused_wrist_m": {"$ref": "#/$defs/xyz"},
+          "source_flag": {"enum": ["CONTROLLER_ONLY_STEREO_INVALID", "CONTROLLER_ONLY_INNOVATION_REJECTED", "CONTROLLER_PLUS_STEREO_OPTICAL_Z_BOUNDED"]},
+          "correction_m": {"type": "number", "minimum": -0.005, "maximum": 0.005}, "valid": {"type": "boolean"}
+        }
+      }
+    },
+    "external_metric_accuracy": {"const": "UNKNOWN"}, "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {"xyz": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}}
+}

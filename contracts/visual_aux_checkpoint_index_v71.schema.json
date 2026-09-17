@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/visual_aux_checkpoint_index_v71.schema.json",
+  "type": "object",
+  "required": ["schema_version", "plan_revision", "status", "pair_status", "rows", "counts", "split_movement_allowed", "future_information_allowed", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "VISUAL_AUX_CHECKPOINT_INDEX_V71"},
+    "plan_revision": {"const": "chaoyang-v7.1"},
+    "status": {"enum": ["FULL_PASS", "PARTIAL_PASS", "FULL_BLOCKED"]},
+    "pair_status": {
+      "type": "object",
+      "required": ["chips", "poker"],
+      "properties": {"chips": {"enum": ["PASS", "BLOCKED_DATA_VOLUME", "FAILED_EPOCH0", "FAILED_TRAINING"]}, "poker": {"enum": ["PASS", "BLOCKED_DATA_VOLUME", "FAILED_EPOCH0", "FAILED_TRAINING"]}}
+    },
+    "rows": {"type": "array", "minItems": 4, "maxItems": 4},
+    "counts": {"type": "object"},
+    "split_movement_allowed": {"const": false},
+    "future_information_allowed": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

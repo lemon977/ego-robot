@@ -13,7 +13,7 @@ PROJECT = Path(__file__).resolve().parents[1]
 if str(PROJECT) not in sys.path:
     sys.path.insert(0, str(PROJECT))
 
-from pipeline.contact_aware_robot_retarget_v1 import (  # noqa: E402
+from chaoyang.pipeline.contact_aware_robot_retarget_v1 import (  # noqa: E402
     RetargetCandidate,
     RetargetContractError,
     SolverBudget,
@@ -22,17 +22,19 @@ from pipeline.contact_aware_robot_retarget_v1 import (  # noqa: E402
     audit_geometry,
     run_staged_retarget,
 )
-from pipeline.human_contact_hypothesis_v1 import (  # noqa: E402
+from chaoyang.pipeline.human_contact_hypothesis_v1 import (  # noqa: E402
     ContactHypothesisError,
     PoseSource,
     build_contact_pose_hypotheses,
 )
-from pipeline.occlusion_compositor_v1 import (  # noqa: E402
+from chaoyang.pipeline.occlusion_compositor_v1 import (  # noqa: E402
     DepthQualityEvidence,
+    FrameOcclusionResult,
     ObjectPixelSource,
     Ownership,
     audit_frame,
     audit_session,
+    audit_session_silver,
     choose_object_pixels,
     resolve_ownership,
 )
@@ -235,6 +237,34 @@ def test_depth_quality_is_evidence_not_native_confidence() -> None:
         _quality((1, 1), present=True).combined()
 
 
+def test_visible_object_without_robot_does_not_require_stereo_depth() -> None:
+    shape = (2, 2)
+    object_mask = np.asarray([[True, False], [False, False]], dtype=np.bool_)
+    raw = np.full((*shape, 3), 90, dtype=np.uint8)
+    pixels, provenance = choose_object_pixels(raw_rgb=raw, raw_visible_mask=object_mask)
+    false = np.zeros(shape, dtype=np.bool_)
+    evidence = DepthQualityEvidence(false, false, false, false, false, false)
+    result = resolve_ownership(
+        human_mask=false,
+        object_amodal_mask=object_mask,
+        object_depth_m=np.full(shape, np.nan),
+        object_depth_valid=false,
+        robot_alpha_mask=false,
+        robot_depth_m=np.full(shape, np.nan),
+        robot_depth_valid=false,
+        stereo_depth_valid=false,
+        depth_quality_evidence=evidence,
+        object_rgb=pixels,
+        object_pixel_source=provenance,
+        # The dilated contact band may include nearby object-only pixels.
+        # They still do not require Stereo depth because no Robot layer
+        # competes for ownership at this pixel.
+        contact_decision_mask=object_mask,
+    )
+    assert result.ownership[0, 0] == Ownership.OBJECT_FRONT
+    assert result.training_valid_mask[0, 0]
+
+
 def test_unknown_coverage_cannot_pass_by_abstaining_everywhere() -> None:
     shape = (1, 1)
     frame = audit_frame(
@@ -292,6 +322,90 @@ def test_known_accurate_frames_pass_only_with_protected_raw_retention() -> None:
     assert session.known_decision_coverage == 1.0
     assert session.accuracy_on_known == 1.0
     assert session.protected_retention == 1.0
+
+
+def test_silver_gate_passes_without_accuracy_and_never_invents_it() -> None:
+    shape = (1, 1)
+    raw = np.full((*shape, 3), 20, dtype=np.uint8)
+    pixels, source = choose_object_pixels(raw_rgb=raw, raw_visible_mask=np.ones(shape, dtype=np.bool_))
+    resolved = resolve_ownership(
+        human_mask=np.zeros(shape, dtype=np.bool_),
+        object_amodal_mask=np.ones(shape, dtype=np.bool_),
+        object_depth_m=np.full(shape, 0.8),
+        object_depth_valid=np.ones(shape, dtype=np.bool_),
+        robot_alpha_mask=np.ones(shape, dtype=np.bool_),
+        robot_depth_m=np.full(shape, 1.0),
+        robot_depth_valid=np.ones(shape, dtype=np.bool_),
+        stereo_depth_valid=np.ones(shape, dtype=np.bool_),
+        depth_quality_evidence=_quality(shape),
+        object_rgb=pixels,
+        object_pixel_source=source,
+        contact_decision_mask=np.ones(shape, dtype=np.bool_),
+    )
+    frame = audit_frame(resolved, protected_raw_object_mask=np.ones(shape, dtype=np.bool_))
+    silver = audit_session_silver(
+        [frame],
+        temporal_consistency_pass=True,
+        zbuffer_consistency_pass=True,
+        byte_exact_outside_authorized_band=True,
+        bidirectional_closure_pass=True,
+    )
+    assert silver.passed
+    assert not hasattr(silver, "accuracy_on_known")
+
+
+def test_silver_retention_is_pixel_weighted_not_worst_frame_ratio() -> None:
+    good = audit_frame(
+        FrameOcclusionResult(
+            ownership=np.full((1, 199), Ownership.OBJECT_FRONT, dtype=np.uint8),
+            training_valid_mask=np.ones((1, 199), dtype=np.bool_),
+            object_pixel_source=np.full((1, 199), ObjectPixelSource.RAW_VISIBLE, dtype=np.uint8),
+            contact_decision_mask=np.zeros((1, 199), dtype=np.bool_),
+            object_rgb=np.zeros((1, 199, 3), dtype=np.uint8),
+        ),
+        protected_raw_object_mask=np.ones((1, 199), dtype=np.bool_),
+    )
+    one_small_failure = audit_frame(
+        FrameOcclusionResult(
+            ownership=np.asarray([[Ownership.TIE_UNKNOWN]], dtype=np.uint8),
+            training_valid_mask=np.asarray([[False]]),
+            object_pixel_source=np.asarray([[ObjectPixelSource.RAW_VISIBLE]], dtype=np.uint8),
+            contact_decision_mask=np.asarray([[False]]),
+            object_rgb=np.zeros((1, 1, 3), dtype=np.uint8),
+        ),
+        protected_raw_object_mask=np.ones((1, 1), dtype=np.bool_),
+    )
+    silver = audit_session_silver(
+        [good, one_small_failure],
+        temporal_consistency_pass=True,
+        zbuffer_consistency_pass=True,
+        byte_exact_outside_authorized_band=True,
+        bidirectional_closure_pass=True,
+    )
+    assert silver.protected_retention == pytest.approx(199 / 200)
+    assert silver.passed
+
+
+def test_silver_gate_does_not_hide_internal_failures_behind_missing_gold() -> None:
+    frame = audit_frame(
+        FrameOcclusionResult(
+            ownership=np.asarray([[Ownership.TIE_UNKNOWN]], dtype=np.uint8),
+            training_valid_mask=np.asarray([[False]]),
+            object_pixel_source=np.asarray([[ObjectPixelSource.NONE_UNKNOWN]], dtype=np.uint8),
+            contact_decision_mask=np.asarray([[True]]),
+            object_rgb=np.zeros((1, 1, 3), dtype=np.uint8),
+        )
+    )
+    silver = audit_session_silver(
+        [frame] * 6,
+        temporal_consistency_pass=False,
+        zbuffer_consistency_pass=False,
+        byte_exact_outside_authorized_band=False,
+        bidirectional_closure_pass=False,
+    )
+    assert not silver.passed
+    assert "KNOWN_DECISION_COVERAGE" in silver.failed_gates
+    assert "TEMPORAL_CONSISTENCY" in silver.failed_gates
 
 
 @pytest.mark.parametrize(

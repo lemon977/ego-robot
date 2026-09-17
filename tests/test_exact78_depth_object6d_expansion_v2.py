@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from tools.build_exact78_depth_object6d_expansion_v2 import (
+from chaoyang.ops.build_exact78_depth_object6d_expansion_v2 import (
     CHIPS_CANARY,
     adapt_task_object_frames,
     choose_expansion_sessions,

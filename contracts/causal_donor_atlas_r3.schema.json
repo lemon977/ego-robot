@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/causal_donor_atlas_r3.schema.json",
+  "title": "R3 independent causal donor and object atlas record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_kind", "session_id", "object_instance_id", "target_frame_id", "source_frame_ids", "causal_training_eligible", "identity_verified", "pose_verified", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "CAUSAL_DONOR_ATLAS_R3"},
+    "artifact_kind": {"enum": ["BACKGROUND_DONOR", "OBJECT_ATLAS"]},
+    "session_id": {"type": "string", "minLength": 1}, "object_instance_id": {"type": ["string", "null"]},
+    "target_frame_id": {"type": "integer", "minimum": 0},
+    "source_frame_ids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 0}},
+    "causal_training_eligible": {"type": "boolean"}, "identity_verified": {"type": "boolean"}, "pose_verified": {"type": "boolean"},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

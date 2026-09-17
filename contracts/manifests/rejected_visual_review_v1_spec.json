@@ -135,8 +135,8 @@
       "version": "MASK v8",
       "title": "offline v6/v7 morphology proxy",
       "kind": "copy",
-      "qa_ref": "_run/g2_004_mask_clean_candidate_v8/qa/failure_attribution.json",
-      "source_path": "_run/g2_004_mask_clean_candidate_v8/sessions/grap_a_cap_004/diagnostic/offline_proxy/v6_v7_proxy_morphology_232_236_239_240.png",
+      "qa_ref": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_004_mask_clean_candidate_v8/qa/failure_attribution.json",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_004_mask_clean_candidate_v8/sessions/grap_a_cap_004/diagnostic/offline_proxy/v6_v7_proxy_morphology_232_236_239_240.png",
       "frame_scope_label": "offline proxy only, frames 232,236,239,240",
       "rejection_reasons": [
         "This is an offline proxy and cannot establish true SAM candidate behavior.",
@@ -148,8 +148,8 @@
       "version": "MASK v8",
       "title": "true-SAM four-frame diagnostic",
       "kind": "copy",
-      "qa_ref": "_run/g2_004_mask_clean_candidate_v8/qa/failure_attribution.json",
-      "source_path": "_run/g2_004_mask_clean_candidate_v8/sessions/grap_a_cap_004/diagnostic/true_sam/TRUE_SAM_4FRAME_DIAGNOSTIC.png",
+      "qa_ref": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_004_mask_clean_candidate_v8/qa/failure_attribution.json",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_004_mask_clean_candidate_v8/sessions/grap_a_cap_004/diagnostic/true_sam/TRUE_SAM_4FRAME_DIAGNOSTIC.png",
       "frame_scope_label": "explicit QA frames 232,236,239,240",
       "rejection_reasons": [
         "Left observed forearm is not crop-boundary connected in all four diagnostic frames.",
@@ -161,8 +161,8 @@
       "version": "MASK v9",
       "title": "critical four-frame short-window diagnostic",
       "kind": "copy",
-      "qa_ref": "_run/g2_004_mask_clean_candidate_v9/qa/failure_attribution.json",
-      "source_path": "_run/g2_004_mask_clean_candidate_v9/sessions/grap_a_cap_004/diagnostic/short_window/V9_CRITICAL_4FRAME.png",
+      "qa_ref": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_004_mask_clean_candidate_v9/qa/failure_attribution.json",
+      "source_path": "archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_004_mask_clean_candidate_v9/sessions/grap_a_cap_004/diagnostic/short_window/V9_CRITICAL_4FRAME.png",
       "frame_scope_label": "curated critical 4 frames within explicit QA window 228-242",
       "rejection_reasons": [
         "All 15 left forearms remain held because sleeve-prompt recall is 0.40 below the 0.60 gate.",

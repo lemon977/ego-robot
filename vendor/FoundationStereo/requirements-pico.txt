@@ -1,0 +1,16 @@
+# Minimal runtime needed by FoundationStereo and the PICO stereo adapter.
+# Keep the PyTorch/xFormers versions aligned with NVIDIA's environment.yml.
+torch==2.4.1
+torchvision==0.19.1
+xformers==0.0.28.post1
+omegaconf==2.3.0
+opencv-contrib-python==4.10.0.84
+numpy<2
+timm
+huggingface-hub
+einops
+scipy
+trimesh
+imageio
+joblib
+pandas
