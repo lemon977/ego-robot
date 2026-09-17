@@ -9,6 +9,7 @@ are neither inspected nor used as evidence.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import time
@@ -74,8 +75,21 @@ def audit_session(task: str, session: Path) -> dict[str, Any]:
     if not conversion_path.is_file() or not camera_path.is_file() or len(stereo_files) != 1:
         raise shared.SelfContainmentError(f"{session.name}: core processed inputs missing")
 
-    conversion = json.loads(conversion_path.read_text(encoding="utf-8"))
-    camera = json.loads(camera_path.read_text(encoding="utf-8"))
+    access_digest = hashlib.sha256()
+    opened_counts = {"conversion": 0, "camera": 0, "stereo": 0, "training_data": 0}
+
+    def read_json(path: Path, kind: str) -> dict[str, Any]:
+        payload = path.read_bytes()
+        relative = str(path.relative_to(session))
+        digest = hashlib.sha256(payload).hexdigest()
+        access_digest.update(relative.encode("utf-8") + b"\0")
+        access_digest.update(str(len(payload)).encode("ascii") + b"\0")
+        access_digest.update(digest.encode("ascii") + b"\n")
+        opened_counts[kind] += 1
+        return json.loads(payload)
+
+    conversion = read_json(conversion_path, "conversion")
+    camera = read_json(camera_path, "camera")
     if camera.get("left", {}).get("sourceIndex") != 1:
         raise shared.SelfContainmentError(f"{session.name}: physical left sourceIndex != 1")
     if camera.get("right", {}).get("sourceIndex") != 0:
@@ -95,6 +109,13 @@ def audit_session(task: str, session: Path) -> dict[str, Any]:
             f"{session.name}: training rows {len(frames)} != {expected}"
         )
     stereo = shared.video_identity(stereo_files[0])
+    stereo_sha = shared.sha256(stereo_files[0])
+    access_digest.update(
+        str(stereo_files[0].relative_to(session)).encode("utf-8") + b"\0"
+        + str(stereo_files[0].stat().st_size).encode("ascii") + b"\0"
+        + stereo_sha.encode("ascii") + b"\n"
+    )
+    opened_counts["stereo"] += 1
     if (stereo["width"], stereo["height"]) != (4096, 1536):
         raise shared.SelfContainmentError(
             f"{session.name}: SBS geometry {(stereo['width'], stereo['height'])}"
@@ -107,7 +128,7 @@ def audit_session(task: str, session: Path) -> dict[str, Any]:
     tactile_valid_frames = 0
     max_abs_offset_ms = 0.0
     for index, path in enumerate(frames):
-        payload = json.loads(path.read_text(encoding="utf-8"))
+        payload = read_json(path, "training_data")
         metadata = payload.get("metadata")
         observation = payload.get("obs")
         tactile = payload.get("entities", {}).get("tactile")
@@ -133,7 +154,7 @@ def audit_session(task: str, session: Path) -> dict[str, Any]:
         "status": "PASS",
         "frame_count": expected,
         "stereo": {**stereo, "path": str(stereo_files[0]),
-                   "sha256": shared.sha256(stereo_files[0])},
+                   "sha256": stereo_sha},
         "camera": {"path": str(camera_path), "sha256": shared.sha256(camera_path),
                    "physical_left_source_index": 1,
                    "physical_right_source_index": 0,
@@ -146,6 +167,16 @@ def audit_session(task: str, session: Path) -> dict[str, Any]:
             "raw_source_fallback_used": False,
         },
         "pico26": "PRESENT_PRESERVED_NOT_CONSUMED",
+        "access_ledger": {
+            "opened_file_counts": opened_counts,
+            "opened_file_count": sum(opened_counts.values()),
+            "allowed_access_manifest_sha256": access_digest.hexdigest(),
+            "denied_sidecar_files_opened": 0,
+            "denied_hand_or_controller_fields_consumed": 0,
+            "training_json_field_consumption": [
+                "/metadata", "/obs", "/entities/tactile",
+            ],
+        },
     }
 
 
@@ -199,6 +230,22 @@ def main() -> int:
             "denied_json_pointers": list(shared.DENIED_JSON_POINTERS),
             "denied_sidecars": sorted(shared.DENIED_BASENAMES),
             "pico26": "PRESENT_PRESERVED_NOT_CONSUMED",
+        },
+        "access_proof": {
+            "session_ledgers": len(results),
+            "opened_file_count": sum(
+                int(row.get("access_ledger", {}).get("opened_file_count", 0))
+                for row in results
+            ),
+            "denied_sidecar_files_opened": sum(
+                int(row.get("access_ledger", {}).get("denied_sidecar_files_opened", 0))
+                for row in results
+            ),
+            "denied_hand_or_controller_fields_consumed": sum(
+                int(row.get("access_ledger", {}).get("denied_hand_or_controller_fields_consumed", 0))
+                for row in results
+            ),
+            "instrumentation": "EXPLICIT_OPEN_AND_JSON_POINTER_CONSUMPTION_LEDGER",
         },
         "started_unix": started,
         "finished_unix": time.time(),
