@@ -1,0 +1,21 @@
+<launch>
+  <arg name="model" />
+  <!-- For RViz config: save an RViz config as urdf.rviz in this launch/ directory -->
+  <arg name="rvizconfig" default="$(find KaiBot-Dexhand shell-URDF-L-260624(1620))/launch/urdf.rviz" />
+  <param
+    name="robot_description"
+    textfile="$(find KaiBot-Dexhand shell-URDF-L-260624(1620))/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf" />
+  <node
+    name="joint_state_publisher_gui"
+    pkg="joint_state_publisher_gui"
+    type="joint_state_publisher_gui" />
+  <node
+    name="robot_state_publisher"
+    pkg="robot_state_publisher"
+    type="robot_state_publisher" />
+  <node
+    name="rviz"
+    pkg="rviz"
+    type="rviz"
+    args="-d $(arg rvizconfig)" />
+</launch>

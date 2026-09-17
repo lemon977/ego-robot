@@ -1,0 +1,1 @@
+"""HumanEgo shared utilities."""

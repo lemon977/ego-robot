@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/occlusion_silver_r3.schema.json",
+  "title": "R3 Occlusion Silver evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "authority_level", "status", "known_decision_coverage", "unknown_pixel_ratio", "unknown_contact_frame_ratio", "max_unknown_run", "protected_retention", "pixel_provenance_coverage", "temporal_consistency_pass", "zbuffer_consistency_pass", "byte_exact_outside_authorized_band", "causal_donor_pass", "accuracy_reported", "external_accuracy", "pixel_records", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "OCCLUSION_SILVER_R3"}, "authority_level": {"const": "SILVER"},
+    "status": {"enum": ["VISUAL_OCCLUSION_SILVER_READY", "FAILED_QUALITY_C"]},
+    "known_decision_coverage": {"$ref": "#/$defs/ratio"}, "unknown_pixel_ratio": {"$ref": "#/$defs/ratio"},
+    "unknown_contact_frame_ratio": {"$ref": "#/$defs/ratio"}, "max_unknown_run": {"type": "integer", "minimum": 0},
+    "protected_retention": {"$ref": "#/$defs/ratio"}, "pixel_provenance_coverage": {"$ref": "#/$defs/ratio"},
+    "temporal_consistency_pass": {"type": "boolean"}, "zbuffer_consistency_pass": {"type": "boolean"},
+    "byte_exact_outside_authorized_band": {"type": "boolean"}, "causal_donor_pass": {"type": "boolean"},
+    "accuracy_reported": {"const": false}, "external_accuracy": {"const": "UNKNOWN"},
+    "pixel_records": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["frame_id", "ownership", "pixel_source", "training_valid", "donor_frame_id"],
+        "properties": {
+          "frame_id": {"type": "integer", "minimum": 0},
+          "ownership": {"enum": ["BACKGROUND", "HUMAN_FRONT", "OBJECT_FRONT", "ROBOT_FRONT", "TIE_UNKNOWN"]},
+          "pixel_source": {"enum": ["RAW_VISIBLE_OBJECT", "CAUSAL_TEMPORAL_DONOR", "POSE_VERIFIED_OBJECT_ATLAS", "TEXTURED_OBJECT_RENDERER", "UNKNOWN"]},
+          "training_valid": {"type": "boolean"}, "donor_frame_id": {"type": ["integer", "null"], "minimum": 0}
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "VISUAL_OCCLUSION_SILVER_READY"}}, "required": ["status"]},
+      "then": {
+        "properties": {
+          "known_decision_coverage": {"minimum": 0.70},
+          "unknown_pixel_ratio": {"maximum": 0.30},
+          "unknown_contact_frame_ratio": {"maximum": 0.20},
+          "max_unknown_run": {"maximum": 5},
+          "protected_retention": {"minimum": 0.99},
+          "pixel_provenance_coverage": {"minimum": 0.70},
+          "temporal_consistency_pass": {"const": true},
+          "zbuffer_consistency_pass": {"const": true},
+          "byte_exact_outside_authorized_band": {"const": true},
+          "causal_donor_pass": {"const": true}
+        }
+      }
+    }
+  ],
+  "$defs": {"ratio": {"type": "number", "minimum": 0, "maximum": 1}}
+}

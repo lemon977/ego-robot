@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/contact_hypothesis_r3.schema.json",
+  "title": "CONTACT-10 per-finger hypothesis",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "claim_status", "external_accuracy", "evidence_nodes", "hypotheses", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "CONTACT_HYPOTHESIS_R3"},
+    "claim_status": {"const": "HYPOTHESIS_ONLY"}, "external_accuracy": {"const": "UNKNOWN"},
+    "evidence_nodes": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "hypotheses": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["frame_id", "hand_side", "finger_id", "pad_link", "object_instance_id", "state", "surface_distance_mm", "relative_velocity", "slip_score", "uncertainty", "valid", "evidence_id", "parent_evidence_ids"],
+        "properties": {
+          "frame_id": {"type": "integer", "minimum": 0}, "hand_side": {"enum": ["left", "right"]},
+          "finger_id": {"enum": ["thumb", "index", "middle", "ring", "little"]}, "pad_link": {"type": "string", "minLength": 1},
+          "object_instance_id": {"type": ["string", "null"]}, "state": {"enum": ["APPROACH", "TOUCH_CANDIDATE", "SLIDE_CANDIDATE", "RELEASE", "UNKNOWN"]},
+          "surface_distance_mm": {"type": ["number", "null"]}, "relative_velocity": {"type": ["number", "null"]},
+          "slip_score": {"type": ["number", "null"], "minimum": 0, "maximum": 1}, "uncertainty": {"type": "number", "minimum": 0, "maximum": 1},
+          "valid": {"type": "boolean"}, "evidence_id": {"type": "string", "minLength": 1},
+          "parent_evidence_ids": {"type": "array", "uniqueItems": true, "items": {"type": "string"}}
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/mask_role_object_r3.schema.json",
+  "title": "R3 Role/Object Mask contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mask_kind", "scope", "input_domain", "algorithm_baseline", "instances", "authority_promoted", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "MASK_ROLE_OBJECT_R3"},
+    "mask_kind": {"enum": ["ROLE", "OBJECT"]},
+    "scope": {"enum": ["EXACT78", "SENSOR_H4_FORMAL", "SENSOR_H4_DEVELOPMENT_CANARY", "ROBOT_RENDER"]},
+    "input_domain": {"enum": ["RAW_RGB", "ROBOT_RENDER"]},
+    "algorithm_baseline": {"enum": ["SAM3.1", "RENDER_PART_ID"]},
+    "task": {"enum": ["chips", "poker", "none"]},
+    "instances": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["instance_id", "role", "offscreen_policy", "reentry_policy"],
+        "properties": {
+          "instance_id": {"type": "string", "minLength": 1}, "role": {"type": "string", "minLength": 1},
+          "offscreen_policy": {"const": "EMPTY_MASK"}, "reentry_policy": {"const": "RESTORE_SAME_IDENTITY"}
+        }
+      }
+    },
+    "execution_status": {"type": "string"}, "qa_status": {"type": "string"}, "policy_status": {"type": "string"},
+    "pixel_mask_authority": {"type": "boolean"}, "authority_promoted": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"scope": {"const": "SENSOR_H4_FORMAL"}}, "required": ["scope"]},
+      "then": {
+        "required": ["execution_status", "qa_status", "policy_status", "pixel_mask_authority"],
+        "properties": {
+          "execution_status": {"const": "BLOCKED_RESOURCE"},
+          "qa_status": {"const": "NOT_EVALUATED"},
+          "policy_status": {"const": "POLICY_DEFERRED"},
+          "pixel_mask_authority": {"const": false}
+        }
+      }
+    }
+  ]
+}

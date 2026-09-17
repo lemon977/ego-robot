@@ -1,0 +1,25 @@
+{
+  "schema_version": "OBJECT_POSE_HYPOTHESIS_FIXTURE_V1",
+  "task_id": "poker",
+  "session_id": "fixture_poker_object_pose_v71",
+  "fps": 30.0,
+  "object_ids": ["card_0"],
+  "poker_dimensions_m": [0.063, 0.088, 0.001],
+  "frame_count": 10,
+  "direct_frames": [0, 3, 4, 7, 8],
+  "direct_x_m": {"0": 0.0, "3": 0.01, "4": 0.01, "7": 0.11, "8": 0.11},
+  "attachment_x_m": [0.0, 0.003, 0.006, 0.01, 0.01, 0.04, 0.075, 0.11, 0.11, 0.11],
+  "contact_seed_parent_frame": 4,
+  "expected_sources": [
+    "DIRECT_OBJECT6D",
+    "BIDIRECTIONAL_TRACKED",
+    "BIDIRECTIONAL_TRACKED",
+    "DIRECT_OBJECT6D",
+    "DIRECT_OBJECT6D",
+    "HAND_OBJECT_ATTACHMENT",
+    "HAND_OBJECT_ATTACHMENT",
+    "DIRECT_OBJECT6D",
+    "DIRECT_OBJECT6D",
+    "UNKNOWN"
+  ]
+}

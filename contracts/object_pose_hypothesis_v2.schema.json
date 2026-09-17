@@ -1,0 +1,115 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/object_pose_hypothesis_v2.schema.json",
+  "title": "OBJECT_POSE_HYPOTHESIS_V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "artifact_id", "artifact_revision", "validity",
+    "input_artifact_ids", "input_manifest_sha", "producer_signature",
+    "supersedes_artifact_id", "task_id", "session_id", "frame_count", "fps",
+    "formal_object6d", "policy", "object_models", "records", "evidence_nodes",
+    "summary", "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "OBJECT_POSE_HYPOTHESIS_V2"},
+    "artifact_id": {"$ref": "#/$defs/id"},
+    "artifact_revision": {"const": "R7_1"},
+    "validity": {"const": "VALID_FOR_PINNED_REVISION"},
+    "input_artifact_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "input_manifest_sha": {"$ref": "#/$defs/sha"},
+    "producer_signature": {"$ref": "#/$defs/sha"},
+    "supersedes_artifact_id": {"type": "null"},
+    "task_id": {"enum": ["chips", "poker"]},
+    "session_id": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "fps": {"type": "number", "exclusiveMinimum": 0},
+    "formal_object6d": {
+      "type": "object", "additionalProperties": false,
+      "required": ["authority_mode", "occluded_frame_policy", "mutated", "sha256_before", "sha256_after"],
+      "properties": {
+        "authority_mode": {"const": "DIRECT_OBSERVED_ONLY"},
+        "occluded_frame_policy": {"const": "KEEP_INVALID"},
+        "mutated": {"const": false},
+        "sha256_before": {"$ref": "#/$defs/sha"},
+        "sha256_after": {"$ref": "#/$defs/sha"}
+      }
+    },
+    "policy": {
+      "type": "object", "additionalProperties": false,
+      "required": [
+        "max_gap_frames", "max_gap_seconds", "max_endpoint_translation_m",
+        "max_endpoint_rotation_deg", "max_attachment_entry_distance_m",
+        "max_attachment_translation_drift_m", "max_attachment_rotation_drift_deg",
+        "require_two_direct_endpoints", "chips_union_allowed", "attachment_authority_promotable"
+      ],
+      "properties": {
+        "max_gap_frames": {"const": 15},
+        "max_gap_seconds": {"const": 0.5},
+        "max_endpoint_translation_m": {"const": 0.015},
+        "max_endpoint_rotation_deg": {"const": 10.0},
+        "max_attachment_entry_distance_m": {"const": 0.01},
+        "max_attachment_translation_drift_m": {"const": 0.015},
+        "max_attachment_rotation_drift_deg": {"const": 10.0},
+        "require_two_direct_endpoints": {"const": true},
+        "chips_union_allowed": {"const": false},
+        "attachment_authority_promotable": {"const": false}
+      }
+    },
+    "object_models": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["object_id", "model_mode", "instance_independent"],
+        "properties": {
+          "object_id": {"type": "string", "minLength": 1},
+          "model_mode": {"enum": ["POKER_THIN_TWO_SIDED_RIGID", "CHIPS_VISIBLE_SURFACE_OR_UNKNOWN"]},
+          "instance_independent": {"const": true}
+        }
+      }
+    },
+    "records": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["frame_index", "object_id", "source", "evidence_id", "parent_evidence_ids", "pose_object_to_camera", "confidence", "reason"],
+        "properties": {
+          "frame_index": {"type": "integer", "minimum": 0},
+          "object_id": {"type": "string", "minLength": 1},
+          "source": {"enum": ["DIRECT_OBJECT6D", "BIDIRECTIONAL_TRACKED", "HAND_OBJECT_ATTACHMENT", "UNKNOWN"]},
+          "evidence_id": {"$ref": "#/$defs/id"},
+          "parent_evidence_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+          "pose_object_to_camera": {
+            "oneOf": [
+              {"type": "null"},
+              {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "array", "minItems": 4, "maxItems": 4, "items": {"type": "number"}}}
+            ]
+          },
+          "confidence": {"type": "number", "minimum": 0, "maximum": 1},
+          "reason": {"type": "string", "minLength": 1}
+        },
+        "allOf": [
+          {"if": {"properties": {"source": {"const": "UNKNOWN"}}}, "then": {"properties": {"pose_object_to_camera": {"type": "null"}, "confidence": {"const": 0}}}},
+          {"if": {"properties": {"source": {"const": "HAND_OBJECT_ATTACHMENT"}}}, "then": {"properties": {"parent_evidence_ids": {"minItems": 1}}}}
+        ]
+      }
+    },
+    "evidence_nodes": {"type": "array", "minItems": 1, "items": {"$ref": "chaoyang://contracts/object_contact_evidence_v1.schema.json#/$defs/evidence_node"}},
+    "summary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["direct", "bidirectional_tracked", "hand_object_attachment", "unknown", "authority_promotable"],
+      "properties": {
+        "direct": {"type": "integer", "minimum": 0},
+        "bidirectional_tracked": {"type": "integer", "minimum": 0},
+        "hand_object_attachment": {"type": "integer", "minimum": 0},
+        "unknown": {"type": "integer", "minimum": 0},
+        "authority_promotable": {"const": false}
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1, "maxLength": 128, "pattern": "^[A-Za-z0-9][A-Za-z0-9._:-]*$"},
+    "sha": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  }
+}

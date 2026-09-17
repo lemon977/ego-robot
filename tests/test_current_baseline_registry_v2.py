@@ -53,14 +53,41 @@ def test_robot_v52_closure_and_claim_boundary_are_explicit() -> None:
         "run_robot_hand_segment_bidirectional_v3.py",
         "render_robot_motion_transfer_fullsession_v2.py",
         "adopt_exact78_pose_only_visual_robot_v52.py",
+        "audit_robot_hard_soft_gate_v71.py",
+        "run_robot_hard_soft_audit_watcher_v71.py",
     } <= names
     assert robot["authorized_scope"].startswith("NO_CURRENT_TASK_ROBOT_AUTHORITY")
     assert any("control_ground_truth=false" in value for value in robot["known_limitations"])
 
 
+def test_current_occlusion_and_visual_aux_successors_are_registered() -> None:
+    registry = _load("docs/governance/CURRENT_BASELINE_REGISTRY_V2.json")
+    occlusion = next(entry for entry in registry["entries"] if entry["stage"] == "Occlusion")
+    occlusion_code = {Path(reference["path"]).name for reference in occlusion["code_closure"]}
+    assert "build_visible_surface_occlusion_canary_v71.py" in occlusion_code
+    assert "run_occlusion_visible_surface_watcher_v71.py" in occlusion_code
+    assert any("visible_surface_ordering_24frame_92_115_v8" in reference["path"] for reference in occlusion["related_current_releases"])
+
+    auxiliary = next(entry for entry in registry["entries"] if entry["stage"] == "HumanEgo Aux")
+    auxiliary_code = {Path(reference["path"]).name for reference in auxiliary["code_closure"]}
+    assert "run_visual_aux_candidate_bundle_watcher_v71.py" in auxiliary_code
+
+
+def test_clean_registry_does_not_overclaim_stereo_or_contact_preservation() -> None:
+    registry = _load("docs/governance/CURRENT_BASELINE_REGISTRY_V2.json")
+    clean = next(entry for entry in registry["entries"] if entry["stage"] == "Clean")
+    assert clean["algorithm_id"] == "same_pixel_temporal_donor_then_propainter_v1"
+    limitations = "\n".join(clean["known_limitations"])
+    assert "does not use Stereo reprojection" in limitations
+    assert "18-24 px" in limitations
+    assert "current visible task-object mask" in limitations
+    assert "semantically wrong" in limitations
+    assert "structural Grade-B" in limitations
+
+
 def test_goldset_is_not_silently_promoted() -> None:
     result = _load(
-        "tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/"
+        "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/"
         "goldset_v1_review_pack/RESULT.json"
     )
     assert result["status"] == "BLOCKED_EXTERNAL_PENDING_TWO_INDEPENDENT_HUMAN_LABELS_AND_ROBOT_CANDIDATE"

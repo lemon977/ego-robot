@@ -1,0 +1,22 @@
+{
+  "task": "chips",
+  "instance_ids": ["chips_left", "chips_center", "chips_right"],
+  "frames": [
+    {
+      "frame_index": 0,
+      "instances": [
+        {"instance_id": "chips_left", "visibly_deformed": false, "evidence_type": "DIRECT_OBJECT6D"},
+        {"instance_id": "chips_center", "visibly_deformed": false, "evidence_type": "DIRECT_OBJECT6D"},
+        {"instance_id": "chips_right", "visibly_deformed": false, "evidence_type": "DIRECT_OBJECT6D"}
+      ]
+    },
+    {
+      "frame_index": 1,
+      "instances": [
+        {"instance_id": "chips_left", "visibly_deformed": false, "evidence_type": "BIDIRECTIONAL_TRACKED"},
+        {"instance_id": "chips_center", "visibly_deformed": true, "evidence_type": "UNKNOWN"},
+        {"instance_id": "chips_right", "visibly_deformed": false, "evidence_type": "BIDIRECTIONAL_TRACKED"}
+      ]
+    }
+  ]
+}
