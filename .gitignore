@@ -25,6 +25,7 @@ venv/
 /archive/
 /_run/current/**
 !/_run/current/.gitkeep
+/_run/caches/
 
 # Model payloads are local; manifests remain tracked
 /assets/models/**
