@@ -182,10 +182,10 @@ v75 的 9 条精确复用会话已完成独立数字硬几何审计：9/9 通过
 
 写域缩小和当前可见物体保护方向已得到全片像素证据，但正式训练仍被阻塞：旧 donor 是双向的、没有 support-surface 语义拒绝，也没有无损帧/source-map 闭包；Poker verified atlas 尚不存在。因而这轮没有申请 GPU、没有运行新 ProPainter，终态是 `BLOCKED_PREREQ` 而不是质量 C。视频中的有损 MP4 编码漂移不能被解释成物体被算法删除，正式 byte-exact 门必须在无损帧上计算。
 
-## 10. Poker Object Mask 有界 challenger
+## 10. 历史 Poker Object Mask 有界对比（非当前路线）
 
 - `Poker015_SAM31_vs_SAM21_全片开发复核.mp4`（428 帧，1280×480，30 FPS）
 
 这条视频只用于比较当前 SAM3.1 证据与 SAM2.1 causal challenger，不代表 SAM2.1 已晋升。SAM2.1 虽完成 428 帧推理，但 369 帧为 `UNKNOWN/低面积`，known coverage 只有 13.79%，且冻结重入窗口没有共同有效帧，因此结论为 `NO_GO / FAILED_QUALITY_C`。Cutie 在同一冻结 canary 上发生 CUDA OOM，按运行时失败封账且没有重试；Poker001/005 回归因 canary 未通过而没有启动。
 
-当前正式 Mask 基线仍为 SAM3.1。Role challenger 因 Chips010 缺少合法四角色 seed、004/009 缺少 reviewed 四角色 adapter 而为 `BLOCKED_PREREQ`，没有把旧 object prompt 错当成人/左右手/前臂/Tracker 提示。
+这段内容仅保留历史失败证据，不能据此注册后续 challenger。当前 0915 全链已经由用户锁定为 SAM3.1 唯一可执行 Mask 模型，不再创建 SAM2.1/Cutie 任务或执行胜者选择。历史 Role challenger 因 Chips010 缺少合法四角色 seed、004/009 缺少 reviewed 四角色 adapter 而为 `BLOCKED_PREREQ`，没有把旧 object prompt 错当成人/左右手/前臂/Tracker 提示。
