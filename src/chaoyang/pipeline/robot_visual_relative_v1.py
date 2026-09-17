@@ -207,7 +207,7 @@ def _neutral_tools(assets: PinnedRobotAssets, lower: np.ndarray, upper: np.ndarr
     ])
 
 
-def _sample_frames(valid: np.ndarray, maximum: int = 8) -> np.ndarray:
+def _sample_frames(valid: np.ndarray, maximum: int = 4) -> np.ndarray:
     rows = np.flatnonzero(np.any(valid, axis=1))
     if rows.size <= maximum:
         return rows
@@ -219,7 +219,7 @@ def select_workspace_candidate(
     assets: PinnedRobotAssets,
     palm: np.ndarray,
     observed: np.ndarray,
-    solve: Callable[..., tuple[np.ndarray, int]] = arm_solver._solve_one_arm,
+    solve: Callable[..., tuple[np.ndarray, int]] = arm_solver._solve_one_arm_position_only,
 ) -> dict[str, Any]:
     """Choose one finite session-static virtual mapping on a frozen grid."""
 
@@ -306,15 +306,11 @@ def solve_robot_visual(
         for frame in range(frames):
             if not valid[frame, side]:
                 continue
-            positioned, count_position = arm_solver._solve_one_arm_position_only(
+            solved, count_pose = arm_solver._solve_one_arm(
                 robot, side=side, base=np.eye(4), target_tool=targets[frame, side],
                 initial_q=previous, lower=lower[side], upper=upper[side],
             )
-            solved, count_pose = arm_solver._solve_one_arm(
-                robot, side=side, base=np.eye(4), target_tool=targets[frame, side],
-                initial_q=positioned, lower=lower[side], upper=upper[side],
-            )
-            evaluations += int(count_position + count_pose)
+            evaluations += int(count_pose)
             q_arm[frame, side] = solved
             previous = solved
             actual = arm_solver._tool_fk(robot, side, solved)
