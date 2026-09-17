@@ -97,6 +97,7 @@ def main() -> int:
             "task_id": TASK_ID,
             "packet_path": str(PACKET.relative_to(REPO_ROOT)),
             "packet_sha256": packet_ref["sha256"],
+            "execution_class": "CURRENT_LEDGER_ROUTABLE",
             "execution_allowed": True,
             "weights": "ABSENT",
         }],
