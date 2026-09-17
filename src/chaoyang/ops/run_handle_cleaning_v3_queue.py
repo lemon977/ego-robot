@@ -37,8 +37,8 @@ DATASETS = (
         "name": "chips_cards_hands__0915",
         "date": "0915",
         "dataset_id": "chips_cards_hands__0915_v3",
-        "cards": "/mnt/data/egodata/datasets/ego/chips_cards_hands__0915/cards_120_0915",
-        "chips": "/mnt/data/egodata/datasets/ego/chips_cards_hands__0915/chips_100_0915",
+        "cards": "/mnt/data/egodata/datasets/ego/chips_cards_hands_0915/cards_120_0915",
+        "chips": "/mnt/data/egodata/datasets/ego/chips_cards_hands_0915/chips_100_0915",
     },
 )
 

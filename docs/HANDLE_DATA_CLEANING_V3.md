@@ -6,7 +6,7 @@ This additive workflow cleans these immutable source datasets:
 
 - `/mnt/data/egodata/datasets/ego/chips_cards_handle_0911`
 - `/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0914`
-- `/mnt/data/egodata/datasets/ego/chips_cards_hands__0915`
+- `/mnt/data/egodata/datasets/ego/chips_cards_hands_0915`
 
 Published datasets live below `/mnt/data/egodata/datasets/ego/processed`. The
 workflow does not edit or delete source sessions and does not modify the older
@@ -66,6 +66,11 @@ quality failure. V3 aligns the actual raw VST, PICO head/controllers, PICO26 han
 joints and tactile streams on a 30 Hz host-QPC timeline. It preserves PICO26
 with source/world/camera transforms and does not emit `manus25`, derived MANUS
 wrist poses, or placeholder MANUS truth.
+
+The 0915 source root currently uses one underscore before `0915`. Its published
+dataset root retains the original identifier `chips_cards_hands__0915` for
+consumer compatibility. `SOURCE_PATH_REPAIR_20260917.json` records the bounded
+metadata provenance repair; raw data and processed payloads were not modified.
 
 ## Content admission and publication
 

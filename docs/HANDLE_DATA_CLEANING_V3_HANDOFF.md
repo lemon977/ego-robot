@@ -30,13 +30,17 @@ Immutable read-only sources:
 
 - `/mnt/data/egodata/datasets/ego/chips_cards_handle_0911`
 - `/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0914`
-- `/mnt/data/egodata/datasets/ego/chips_cards_hands__0915`
+- `/mnt/data/egodata/datasets/ego/chips_cards_hands_0915`
 
 Authorized publication roots:
 
 - `/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_0911`
 - `/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0914`
 - `/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915`
+
+The single-underscore 0915 source and double-underscore publication identifier
+are intentional. The repair receipt is `SOURCE_PATH_REPAIR_20260917.json` in
+the 0915 publication root.
 
 Never edit or delete source sessions. Do not place V3 datasets elsewhere. No
 GPU is used. Production runs serially under `nice 15` and `ionice idle` so it
