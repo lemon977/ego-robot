@@ -296,7 +296,7 @@ def build_doc_authority_map(
     candidates = [
         _doc("repository_readme", "CURRENT", repo_root / "README.md", scope="PROJECT_NAVIGATION_PROTOCOL", claim_limit="Navigation only; current facts remain receipt-bound and current algorithms come from the algorithm contract."),
         _doc("agent_execution_protocol", "CURRENT", repo_root / "AGENTS.md", scope="AI_EXECUTION_PROTOCOL", claim_limit="Execution/reading rules only; not measurement evidence or stage authority."),
-        _doc("sensor_h4_bounded_policy_decision", "CURRENT", repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_r3/sensor_h4_bounded_decision/attempts/attempt_0001/DECISION.md", scope="SENSOR_H4_DEVELOPMENT_POLICY_DECISION", claim_limit="Rejects only the current automatic glove/Controller Mask-to-Clean route; formal H4 remains BLOCKED_RESOURCE/NOT_EVALUATED/POLICY_DEFERRED and H1/H2/H3 stay independent.", evidence=[repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_r3/sensor_h4_bounded_decision/attempts/attempt_0001/RUN_RECEIPT.json"]),
+        _doc("sensor_h4_bounded_policy_decision", "CURRENT", repo_root / "docs/current/reference/SENSOR_H4_BOUNDED_POLICY_DECISION.md", scope="SENSOR_H4_DEVELOPMENT_POLICY_DECISION", claim_limit="Rejects only the current automatic glove/Controller Mask-to-Clean route; formal H4 remains BLOCKED_RESOURCE/NOT_EVALUATED/POLICY_DEFERRED and H1/H2/H3 stay independent.", evidence=[repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_r3/sensor_h4_bounded_decision/attempts/attempt_0001/RUN_RECEIPT.json"]),
         _doc("r3_execution_status_gap_audit", "HISTORICAL", repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004/DECISION.md", scope="HISTORICAL_R3_POINT_IN_TIME_DELIVERABLE_GAP_AUDIT", claim_limit="Historical point-in-time audit; it must not drive current Robot counts or routing.", evidence=[repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004/RUN_RECEIPT.json"]),
         _doc("r3_execution_dag_semantics", "CURRENT", governance_root / "EXECUTION_DAG_SEMANTICS_R3_ZH.md", scope="CURRENT_EXECUTION_DAG_SEMANTICS", claim_limit="Dependency interpretation and scheduling rules only; not stage completion evidence or authority."),
         _doc("current_project_status", "CURRENT", governance_root / "CURRENT_PROJECT_STATUS_ZH.md", scope="PROJECT_REALTIME_STATUS", claim_limit="Generated projection; receipt-bound ledgers remain factual sources."),
@@ -317,7 +317,7 @@ def build_doc_authority_map(
         _doc("optimization_exec00_bootstrap_v1", "SUPERSEDED", repo_root / "docs/research/current/CHAOYANG_PROJECT_OPTIMIZATION_EXEC00_BOOTSTRAP_TASK_PACKET_V1.json", scope="SUPERSEDED_BOOTSTRAP_PACKET", claim_limit="Cancelled bootstrap retained for audit; it must not dispatch work."),
         _doc("optimization_decision_roadmap_20260915", "HISTORICAL", repo_root / "docs/research/current/CHAOYANG_PROJECT_OPTIMIZATION_DECISION_ROADMAP_20260915_ZH.md", scope="HISTORICAL_OPTIMIZATION_ROADMAP", claim_limit="Decision history only; current execution is routed by R2.2 task packets."),
         _doc("clean_layered_sam31_exploration_v1", "SUPERSEDED", repo_root / "docs/research/current/CLEAN_LAYERED_SAM31_SUCCESSOR_EXPLORATION_V1_ZH.md", scope="SUPERSEDED_CLEAN_EXPLORATION_DESIGN", claim_limit="The GPU_CANARY_NOT_STARTED design state is obsolete; use immutable R2.2 Mask/Clean receipts."),
-        _doc("docs_readme_legacy_navigation", "SUPERSEDED", repo_root / "docs/README.md", scope="SUPERSEDED_DOCS_NAVIGATION", claim_limit="Legacy navigation only; root README and DOC_AUTHORITY_MAP are current."),
+        _doc("docs_navigation", "CURRENT", repo_root / "docs/README.md", scope="CURRENT_DOCS_NAVIGATION", claim_limit="Unique current documentation navigation; factual claims remain subordinate to receipt-bound governance artifacts."),
         _doc("v71_automation_handoff", "HISTORICAL", governance_root / "V71_AUTOMATION_HANDOFF_ZH.md", scope="HISTORICAL_AUTOMATION_HANDOFF", claim_limit="Historical handoff; it must not select current tasks."),
         _doc("v3_implementation_handoff", "HISTORICAL", governance_root / "V3_IMPLEMENTATION_HANDOFF_ZH.md", scope="HISTORICAL_IMPLEMENTATION_HANDOFF", claim_limit="Historical handoff; it must not select current tasks."),
         _doc("exact78_completion_roadmap", "HISTORICAL", governance_root / "EXACT78_COMPLETION_EXECUTION_ROADMAP_ZH.md", scope="HISTORICAL_EXACT78_ROADMAP", claim_limit="Historical roadmap; current counts and routing come from the receipt-bound ledger."),
@@ -325,7 +325,7 @@ def build_doc_authority_map(
         _doc("long_horizon_plan", "HISTORICAL", governance_root / "LONG_HORIZON_TASK_PLAN_ZH.md", scope="HISTORICAL_LONG_HORIZON_PLAN", claim_limit="Historical design record; current work uses Task Packets and R3 plan."),
         _doc("clean_terminal_audit_v52_1", "SUPERSEDED", repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/TERMINAL_AUDIT_V52_1.json", scope="SUPERSEDED_CLEAN_TERMINAL_AUDIT", claim_limit="The 39-pass/19-runtime-final snapshot predates recovery_v53 and must not drive current Clean counts.", evidence=[migration]),
     ]
-    documents = [item for item in candidates if item is not None]
+    documents = [item for item in candidates if item is not None and item.get("status") == "CURRENT" and "/archive/" not in str(item.get("path", ""))]
     return {
         "schema_version": "chaoyang-doc-authority-map-v1",
         "governance_revision": authority["governance_revision"],
@@ -355,12 +355,15 @@ def validate_doc_authority_map(value: Mapping[str, Any]) -> list[str]:
         "current_shallow_visual_navigation",
         "clean_contact_wrist_baseline_audit",
         "governance_consistency_repair_handoff",
+        "docs_navigation",
+        "sensor_h4_bounded_policy_decision",
     }
     for document_id in sorted(required_current):
         if statuses.get(document_id) != "CURRENT":
             errors.append(f"required navigation document is not CURRENT: {document_id}")
-    if statuses.get("historical_0909_status_video_index") != "HISTORICAL":
-        errors.append("legacy 0909 status/video page is not explicitly HISTORICAL")
+    for item in value.get("documents", []):
+        if item.get("status") == "CURRENT" and "/archive/" in str(item.get("path", "")):
+            errors.append(f"CURRENT document points into archive: {item.get('document_id')}")
     for item in value.get("documents", []):
         if item.get("status") != "CURRENT":
             continue

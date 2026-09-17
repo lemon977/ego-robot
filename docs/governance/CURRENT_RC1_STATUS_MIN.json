@@ -15,9 +15,9 @@
     "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-17T10:20:59+08:00",
-  "generation_id": "gov-011169-0f858fe9be38",
-  "governance_revision": 11169,
+  "generated_at": "2026-09-17T16:25:37+08:00",
+  "generation_id": "gov-011172-54f0f3a3d73e",
+  "governance_revision": 11172,
   "next_task_id": null,
   "pair_status": {
     "chips": "BLOCKED_DATA_VOLUME",
@@ -36,17 +36,11 @@
   "release_id": "chaoyang-visual-aux-rc1-final",
   "schema_version": "chaoyang-current-rc1-status-min-v1",
   "sources": {
-    "contract": "docs/governance/VISUAL_AUX_RC1_CONTRACT.json",
-    "plan": "docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
-    "receipt": "docs/governance/CURRENT_STATUS_RECEIPT.json",
-    "release_spec": "docs/governance/RC1_RELEASE_SPEC.json",
-    "task_dag": "docs/governance/RC1_TASK_DAG.json"
+    "contract": "/mnt/workspace/code/chaoyang/docs/governance/VISUAL_AUX_RC1_CONTRACT.json",
+    "plan": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
+    "receipt": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "release_spec": "/mnt/workspace/code/chaoyang/docs/governance/RC1_RELEASE_SPEC.json",
+    "task_dag": "/mnt/workspace/code/chaoyang/docs/governance/RC1_TASK_DAG.json"
   },
-  "task_counts": {
-    "BLOCKED_PREREQ": 3,
-    "BLOCKED_RESOURCE": 1,
-    "FAILED_QUALITY_C": 1,
-    "FAILED_RUNTIME_FINAL": 1,
-    "PASSED": 21
-  }
+  "task_counts": {}
 }

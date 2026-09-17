@@ -58,8 +58,8 @@ def main() -> int:
         "read_set": [str(path) for path in reads],
         "write_set": [str(RUN / "robot30_prefix_schedule_pilot/attempts")],
         "commands": [
-            "python -m tools.governance.validate_governance_state",
-            "python -m tools.run_rc1_robot_prefix_schedule_pilot ... --starts 15,20,25 (one frozen Chips and one frozen Poker session)",
+            "chaoyang validate-governance",
+            "chaoyang run run_rc1_robot_prefix_schedule_pilot ... --starts 15,20,25 (one frozen Chips and one frozen Poker session)",
         ],
         "quality_gates": ["scheduled_starts_frozen", "prefix_only", "finite_valid_sides", "joint_temporal_contract", "no_bidirectional_artifact", "collision_gate_explicit_not_evaluated"],
         "budgets": {"runtime_attempts": 2, "wall_seconds": 7200, "gpu_wait_seconds": 0},

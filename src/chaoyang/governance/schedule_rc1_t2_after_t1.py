@@ -58,7 +58,7 @@ def main() -> int:
         "prerequisites": ["governance=FRESH", f"rc1_t1_sam31_mask_bounded={t1['status']}_TERMINAL"],
         "read_set": [str(x) for x in reads],
         "write_set": [str(RUN / "rc1_t2_causal_clean/attempts")],
-        "commands": ["python -m tools.governance.validate_governance_state", f"python -m tools.run_rc1_t2_causal_clean_preflight --mask-result {args.mask_result.resolve()} --clean-contract-result {CLEAN_CONTRACT} --output-root {RUN / 'rc1_t2_causal_clean/attempts/attempt_0001'}"],
+        "commands": ["chaoyang validate-governance", f"chaoyang run run_rc1_t2_causal_clean_preflight --mask-result {args.mask_result.resolve()} --clean-contract-result {CLEAN_CONTRACT} --output-root {RUN / 'rc1_t2_causal_clean/attempts/attempt_0001'}"],
         "quality_gates": ["no_future_donor", "no_old_clean_rgb", "possible_task_object_fail_closed", "lossless_source_map", "unknown_not_relabelled_background"],
         "budgets": {"runtime_attempts": 2, "wall_seconds": 1800, "gpu_wait_seconds": 1800},
         "stop_conditions": ["PASSED", "FAILED_QUALITY_C", "FAILED_RUNTIME_FINAL", "BLOCKED_PREREQ", "BLOCKED_RESOURCE"],

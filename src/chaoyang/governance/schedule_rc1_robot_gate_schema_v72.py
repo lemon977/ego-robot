@@ -72,7 +72,7 @@ def main() -> int:
         "write_set": [str(RESULT.parent)],
         "commands": [
             "python -m pytest -q tests/test_audit_robot_hard_soft_gate_v72.py",
-            "python -m tools.audit_robot_hard_soft_gate_v72 --batch-root ... --collision-root ... --output ...",
+            "chaoyang run audit_robot_hard_soft_gate_v72 --batch-root ... --collision-root ... --output ...",
         ],
         "quality_gates": ["all_present_aliases_true", "missing_alias_fails_closed", "collision_unchanged", "state_limits_unchanged"],
         "budgets": {"runtime_attempts": 1, "wall_seconds": 600},

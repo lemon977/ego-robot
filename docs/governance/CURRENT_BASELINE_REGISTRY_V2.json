@@ -1712,9 +1712,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-17T10:20:59+08:00",
-  "generation_id": "gov-011169-0f858fe9be38",
-  "governance_revision": 11169,
+  "generated_at": "2026-09-17T16:25:37+08:00",
+  "generation_id": "gov-011172-54f0f3a3d73e",
+  "governance_revision": 11172,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",
@@ -1758,49 +1758,29 @@
       "cohort": "0909/0910 acquisition-aligned release; isolated from exact78 denominator",
       "components": {
         "sensor_h0_admission_v1": {
-          "phase": "h0_admission_closed",
-          "result": {
-            "bytes": 1884,
-            "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/sensor/h0/RESULT.json",
-            "sha256": "c9313dd1555e8e7f81078498ab3a408fc66d04884f6935249448faa033c00ca7"
-          },
-          "status": "PASSED"
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
         },
         "sensor_h1_hand_v1": {
-          "phase": "sensor_h1_hand",
-          "result": {
-            "bytes": 559,
-            "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/sensor/h1_hand/RESULT.json",
-            "sha256": "626cf30064742064340fe83da2bd12fd5dc4f14bbdbb7bae90532e9c096fbdcd"
-          },
-          "status": "PASSED"
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
         },
         "sensor_h2_tactile_v1": {
-          "phase": "sensor_h2_tactile",
-          "result": {
-            "bytes": 581,
-            "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/sensor/h2_tactile/RESULT.json",
-            "sha256": "783d4ae532526e6aa9c2f7ad04ef242ab4ed0311a70cc5840d672ca74b77d0b8"
-          },
-          "status": "PASSED"
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
         },
         "sensor_h3_stereo_v1": {
-          "phase": "sensor_h3_canary_terminal",
-          "result": {
-            "bytes": 1190,
-            "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/sensor/h3_stereo/attempts/attempt_0004/TERMINAL_RESULT.json",
-            "sha256": "a05d5b7b89548e8952acb535316106d87cadf29c465e8565df1043f610fa7003"
-          },
-          "status": "FAILED_QUALITY_C"
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
         },
         "sensor_h4_mask_v1": {
-          "phase": "sensor_h4_formal_preflight_not_evaluated",
-          "result": {
-            "bytes": 1192,
-            "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/sensor/h4_mask/RESULT.json",
-            "sha256": "b32cf2df26a8fb5b7427a2ba100183a65e7d9a4967b283870d6ae35500d67ba3"
-          },
-          "status": "BLOCKED_RESOURCE"
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
         }
       },
       "current_contract": "H0 admission branches to H1 hand, H2 tactile, H3 same-session Stereo and H4 sensor-role Mask independently.",

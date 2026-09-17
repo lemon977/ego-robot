@@ -1,12 +1,12 @@
 {
   "active_tasks": [],
   "authority_sources": {
-    "algorithm_contract": "docs/governance/ALGORITHM_CONTRACT.json",
-    "authority": "docs/governance/CURRENT_AUTHORITY_INDEX.json",
-    "doc_authority_map": "docs/governance/DOC_AUTHORITY_MAP.json",
-    "human_status": "docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-    "receipt": "docs/governance/CURRENT_STATUS_RECEIPT.json",
-    "task_state": "docs/governance/LONG_HORIZON_TASK_STATE.json"
+    "algorithm_contract": "/mnt/workspace/code/chaoyang/docs/governance/ALGORITHM_CONTRACT.json",
+    "authority": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_AUTHORITY_INDEX.json",
+    "doc_authority_map": "/mnt/workspace/code/chaoyang/docs/governance/DOC_AUTHORITY_MAP.json",
+    "human_status": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
+    "receipt": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "task_state": "/mnt/workspace/code/chaoyang/docs/governance/LONG_HORIZON_TASK_STATE.json"
   },
   "claim_limit": "Derived bounded context only; validate CURRENT_STATUS_RECEIPT.json before use.",
   "cohort": "exact78-chips78-poker78-frozen",
@@ -15,9 +15,9 @@
     "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-17T10:20:59+08:00",
-  "generation_id": "gov-011169-0f858fe9be38",
-  "governance_revision": 11169,
+  "generated_at": "2026-09-17T16:25:37+08:00",
+  "generation_id": "gov-011172-54f0f3a3d73e",
+  "governance_revision": 11172,
   "next_task": null,
   "schema_version": "chaoyang-current-project-status-min-v1",
   "stage_claim_limits": {

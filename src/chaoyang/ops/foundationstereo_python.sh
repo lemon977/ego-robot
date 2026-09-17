@@ -29,7 +29,7 @@ export PYTHONSAFEPATH=1
 # This authority is CPU-only until a separately leased checkpoint replay passes.
 export CUDA_VISIBLE_DEVICES=""
 export CHA0YANG_PROJECT_ROOT="$project_root"
-export CHA0YANG_FOUNDATIONSTEREO_ROOT="$project_root/third_party/FoundationStereo"
+export CHA0YANG_FOUNDATIONSTEREO_ROOT="$project_root/vendor/FoundationStereo"
 export CHA0YANG_FOUNDATIONSTEREO_ENV_ROOT="$environment_root"
 export CHA0YANG_FOUNDATIONSTEREO_CHECKPOINT_ROOT="$project_root/assets/models/checkpoints/foundationstereo/23-51-11"
 export CONDA_PREFIX="$environment_root"

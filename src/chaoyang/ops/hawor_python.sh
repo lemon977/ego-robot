@@ -25,7 +25,7 @@ unset CONDA_SHLVL CONDA_PROMPT_MODIFIER _CE_CONDA _CE_M LD_PRELOAD CUDA_HOME
 export PYTHONNOUSERSITE=1
 export PYTHONDONTWRITEBYTECODE=1
 export CHA0YANG_PROJECT_ROOT="$project_root"
-export CHA0YANG_HAWOR_ROOT="$project_root/third_party/HaWoR"
+export CHA0YANG_HAWOR_ROOT="$project_root/vendor/HaWoR"
 export CHA0YANG_HAWOR_ENV_ROOT="$environment_root"
 export CONDA_PREFIX="$environment_root"
 export CONDA_DEFAULT_ENV="chaoyang-hawor-py310-v1"

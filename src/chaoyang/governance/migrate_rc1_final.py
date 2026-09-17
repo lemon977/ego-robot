@@ -94,8 +94,8 @@ def _packet(snapshot: Path) -> dict:
         ],
         "write_set": [str(RUN_ROOT / "t0_freeze_capacity_split/attempts")],
         "commands": [
-            "python -m tools.governance.validate_governance_state",
-            "python -m tools.run_rc1_t0_freeze --expected-revision <current_revision>",
+            "chaoyang validate-governance",
+            "chaoyang run run_rc1_t0_freeze --expected-revision <current_revision>",
         ],
         "quality_gates": [
             "exactly_156_unique_sessions",

@@ -22,7 +22,7 @@
 ### `handle_controller_manus_pico_sensor_v71`
 
 - Cohort：0909/0910 acquisition-aligned release; isolated from exact78 denominator
-- 当前组件：sensor_h0_admission_v1=PASSED，sensor_h1_hand_v1=PASSED，sensor_h2_tactile_v1=PASSED，sensor_h3_stereo_v1=FAILED_QUALITY_C，sensor_h4_mask_v1=BLOCKED_RESOURCE
+- 当前组件：sensor_h0_admission_v1=UNKNOWN_VERIFICATION_REQUIRED，sensor_h1_hand_v1=UNKNOWN_VERIFICATION_REQUIRED，sensor_h2_tactile_v1=UNKNOWN_VERIFICATION_REQUIRED，sensor_h3_stereo_v1=UNKNOWN_VERIFICATION_REQUIRED，sensor_h4_mask_v1=UNKNOWN_VERIFICATION_REQUIRED
 - 合同：H0 admission branches to H1 hand, H2 tactile, H3 same-session Stereo and H4 sensor-role Mask independently.
 - 下一步：After the Visual Aux pair reaches a terminal, run one H3 and one H4 bounded canary; use measured quality/throughput to close or explicitly schedule a full batch.
 - 边界：Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.

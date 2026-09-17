@@ -160,7 +160,7 @@ def main() -> int:
         else:
             samples = []
             if time.monotonic() >= deadline:
-                result = {"status": "BLOCKED_RESOURCE", "created_at": now_iso(), "last_gpu_sample": sample, "recovery_command": f"python -m tools.run_exact78_v52_clean_lane"}
+                result = {"status": "BLOCKED_RESOURCE", "created_at": now_iso(), "last_gpu_sample": sample, "recovery_command": f"chaoyang run run_exact78_v52_clean_lane"}
                 atomic_json(LANE / "RUNNER_RESULT.json", result)
                 return 3
             time.sleep(30)

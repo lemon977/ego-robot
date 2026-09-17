@@ -98,7 +98,17 @@ def _weights_from_clean_result() -> Any:
         weights = value.get("vendor", {}).get("weights", {})
         if not weights:
             raise KeyError("vendor.weights")
-        return {name: dict(reference) for name, reference in sorted(weights.items())}
+        model_root = ROOT / "assets/models/vendor/propainter"
+        current = {}
+        for name in sorted(weights):
+            candidate = model_root / name
+            if not candidate.is_file():
+                return {
+                    "status": "UNKNOWN_VERIFICATION_REQUIRED",
+                    "reason": f"CURRENT_CLEAN_WEIGHT_MISSING:{candidate}",
+                }
+            current[name] = _ref(candidate)
+        return current
     except (json.JSONDecodeError, KeyError, TypeError):
         return {"status": "UNKNOWN_VERIFICATION_REQUIRED", "reason": "CLEAN_WEIGHT_PROVENANCE_NOT_PARSEABLE"}
 
@@ -464,8 +474,9 @@ def build_layout(authority: Mapping[str, Any], task_state: Mapping[str, Any]) ->
         "generated_at": authority["generated_at"],
         "repository_root": str(ROOT),
         "retained_top_level": [
-            "README.md", "AGENTS.md", "THIRD_PARTY_NOTICES.md", "assets", "contracts", "data", "docs",
-            "HumanEgo", "pipeline", "systems", "tasks", "tests", "third_party", "tools", "archive", "_run",
+            "README.md", "AGENTS.md", "THIRD_PARTY_NOTICES.md", "pyproject.toml",
+            "assets", "configs", "contracts", "docs", "manifests", "scripts",
+            "src", "tasks", "tests", "vendor", "archive", "_run",
         ],
         "protected_external": [
             "/mnt/data/egodata",
@@ -485,7 +496,11 @@ def build_layout(authority: Mapping[str, Any], task_state: Mapping[str, Any]) ->
             "end_to_end": str(ROOT / "docs/reference/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md"),
             "depth_report": str(ROOT / "docs/research/current/reports/depth_accuracy/20260911"),
         },
-        "forbidden_top_level_after_cleanup": ["NOW", "DEPTH_ACCURACY_PACKAGE_20260911", "RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md"],
+        "forbidden_top_level_after_cleanup": [
+            "NOW", "DEPTH_ACCURACY_PACKAGE_20260911",
+            "RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+            "HumanEgo", "pipeline", "systems", "third_party", "tools", "data",
+        ],
         "claim_limit": "Layout contract only. Historical snapshot paths are resolved through PATH_REDIRECTS.json.",
     }
 

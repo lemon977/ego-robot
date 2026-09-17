@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-17T10:20:59+08:00`
-- governance revision：`11169`
-- generation id：`gov-011169-0f858fe9be38`
+- 状态生成时间：`2026-09-17T16:25:37+08:00`
+- governance revision：`11172`
+- generation id：`gov-011172-54f0f3a3d73e`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`fb220729c1260fb6e44b0b779758d8b456681cdd901e3e65ce8535e69b8c5873`
-- repository：`0aa69e9a26b73345e9cd7c43fa8a8fb2fa5d8fc2` / `main`
+- generator code SHA：`aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120`
+- repository：`0549c75f74bb4f9fa4aa4860bdbdf0702a8430eb` / `refactor/clean-baseline-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -97,11 +97,7 @@
 
 ### PASSED
 
-- `rc1_multiline_f_docs_20260916` / `-` / `PASSED` / archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_multiline_optimization_v1/FINAL_RESULT.json / `2026-09-16T17:16:44+08:00`
-- `rc1_multiline_d_contact_20260916` / `-` / `PASSED` / archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_multiline_optimization_v1/lane_d_object_contact/RESULT_SUMMARY.json / `2026-09-16T17:16:43+08:00`
-- `rc1_multiline_c_depth_20260916` / `-` / `PASSED` / archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_multiline_optimization_v1/lane_c_depth/RESULT_SUMMARY.json / `2026-09-16T17:16:42+08:00`
-- `rc1_multiline_b_clean_20260916` / `-` / `PASSED` / archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_multiline_optimization_v1/lane_b_clean/DEVELOPMENT_DECISION.md / `2026-09-16T17:16:41+08:00`
-- `rc1_t5_batch_conversion` / `-` / `PASSED` / no-result / `2026-09-16T15:52:03+08:00`
+- `clean_baseline_v1` / `-` / `PASSED` / no-result / `2026-09-17T11:35:00+08:00`
 
 ### FAILED_QUALITY_C
 
@@ -113,9 +109,7 @@
 
 ### BLOCKED
 
-- `rc1_multiline_e_robot30_20260916` / `-` / `BLOCKED_PREREQ` / archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_multiline_optimization_v1/lane_e_robot30/attempts/attempt_0006/RESULT_SUMMARY.json / `2026-09-16T17:16:43+08:00`
-- `rc1_multiline_a_mask_20260916` / `-` / `BLOCKED_RESOURCE` / archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_multiline_optimization_v1/lane_a_mask/attempts/attempt_0001/RESULT.json / `2026-09-16T17:16:18+08:00`
-- `rc1_t4_bundle_smoke` / `-` / `BLOCKED_PREREQ` / archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/rc1_t4_bundle_smoke/attempts/attempt_0001/RESULT.json / `2026-09-16T15:09:50+08:00`
+- 无。
 
 ## H. 下一任务
 

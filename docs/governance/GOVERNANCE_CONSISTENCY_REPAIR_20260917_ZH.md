@@ -27,7 +27,7 @@
 先运行：
 
 ```bash
-conda run -n humanego python -m tools.governance.validate_governance_state
+conda run -n humanego chaoyang validate-governance
 ```
 
 预期 `status=PASS`，并检查输出中的 `transitive_refs`、`current_markdown_local_links_checked` 和 `freshness_scope=active_task_heartbeat_only`。大型模型 SHA 没有在此快速门中重算；需要重验时应单独安排资产校验，不能把 `large_sha_skipped` 解读为已复算。

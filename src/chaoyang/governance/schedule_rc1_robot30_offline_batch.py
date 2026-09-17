@@ -51,7 +51,7 @@ def main() -> int:
         "prerequisites": ["governance=FRESH", "prefix_schedule_pilot=PASSED", "selection=30_per_task_frozen"],
         "read_set": [str(path) for path in reads],
         "write_set": [str(RUN / "robot30_offline_visual/batch_001")],
-        "commands": ["python -m tools.governance.validate_governance_state", "python -m tools.run_rc1_robot30_offline_visual_batch --sessions get_potato_chips_0903_052,play_cards_0903_245 ..."],
+        "commands": ["chaoyang validate-governance", "chaoyang run run_rc1_robot30_offline_visual_batch --sessions get_potato_chips_0903_052,play_cards_0903_245 ..."],
         "quality_gates": ["terminal_per_session", "hard_geometry_separate_from_soft_pose", "digital_collision", "full_review", "offline_visual_only", "training_eligible_false"],
         "budgets": {"runtime_attempts": 2, "wall_seconds": 14400, "gpu_wait_seconds": 1800},
         "stop_conditions": ["PASSED", "FAILED_QUALITY_C", "FAILED_RUNTIME_FINAL", "BLOCKED_PREREQ", "BLOCKED_RESOURCE"],

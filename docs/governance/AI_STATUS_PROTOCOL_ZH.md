@@ -13,7 +13,7 @@
 
 ```bash
 cd /mnt/workspace/code/chaoyang
-python -m tools.governance.validate_governance_state
+chaoyang validate-governance
 ```
 
 若结果为 `STATUS_CONFLICT`、`STALE` 或 `SUSPECTED_DEAD_WORKER`，停止状态推断和 authority 晋升，先运行恢复审计。

@@ -35,26 +35,9 @@
           "sha256": "81c786936afa2841be93b8f5a5aefa2624a5d44141928f784817338c8bedc674"
         }
       ],
-      "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_r3/sensor_h4_bounded_decision/attempts/attempt_0001/DECISION.md",
+      "path": "/mnt/workspace/code/chaoyang/docs/current/reference/SENSOR_H4_BOUNDED_POLICY_DECISION.md",
       "sha256": "e1f4cec972e690e224b87f7d6eae982f7f75ebe082b141560a7988c89d1bbe38",
       "status": "CURRENT",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_R3_POINT_IN_TIME_DELIVERABLE_GAP_AUDIT",
-      "bytes": 1774,
-      "claim_limit": "Historical point-in-time audit; it must not drive current Robot counts or routing.",
-      "document_id": "r3_execution_status_gap_audit",
-      "evidence_receipts": [
-        {
-          "bytes": 1707,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004/RUN_RECEIPT.json",
-          "sha256": "dd646fa776fb6208ed66a3dc7533c292c37179af79862adf5eea10fdea130c53"
-        }
-      ],
-      "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004/DECISION.md",
-      "sha256": "218baa7fe6184a0ce7cea7b69b3daf675168936e663c6f5d5b2382de4bd90f04",
-      "status": "HISTORICAL",
       "supersedes": []
     },
     {
@@ -70,23 +53,23 @@
     },
     {
       "authorized_scope": "PROJECT_REALTIME_STATUS",
-      "bytes": 14339,
+      "bytes": 12733,
       "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "6fcc8cce226959674f64299c97056c2ccd9afc3d4bfa6f7b748fbd63f4f389f2",
+      "sha256": "7b30bf0eab63793b8063bbcff78435648930f43764ae4d09895705e742128d9c",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_STAGE_BASELINES",
-      "bytes": 9419,
+      "bytes": 9514,
       "claim_limit": "Generated algorithm summary; live counts come from the task ledger.",
       "document_id": "current_stage_baselines",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STAGE_BASELINES_ZH.md",
-      "sha256": "de9ddcb585b1a34a758423a247b0c8d7890d6dd1b087d26b9fe77314104eb1e1",
+      "sha256": "84095af6b46d32147d371879ca7dd0c0fd13b97126cad2b8524620befcee9646",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -136,24 +119,13 @@
     },
     {
       "authorized_scope": "CURRENT_GOVERNANCE_CONSISTENCY_HANDOFF",
-      "bytes": 3587,
+      "bytes": 3563,
       "claim_limit": "Explains the validator and routing repair; current facts remain bound to the receipt and machine indexes.",
       "document_id": "governance_consistency_repair_handoff",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/GOVERNANCE_CONSISTENCY_REPAIR_20260917_ZH.md",
-      "sha256": "d337f01db7fc4e23dbf95a59c2184996f83220b63f90dfe90d02e472418966ef",
+      "sha256": "e3026d5d0fb21a3dff769c4a5d33a8417f49f1e89edfd0dbee899761e6070462",
       "status": "CURRENT",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_0909_STATUS_VIDEO_INDEX",
-      "bytes": 20667,
-      "claim_limit": "Frozen 2026-09-11 snapshot; it must not route current work or supply current counts.",
-      "document_id": "historical_0909_status_video_index",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/reference/pipeline/CURRENT_STATUS_AND_VIDEO_INDEX_ZH.md",
-      "sha256": "7a02d569eece51390b1bc4204f94fa8f16c7ee478c4eea27002b82f1948467c5",
-      "status": "HISTORICAL",
       "supersedes": []
     },
     {
@@ -197,214 +169,20 @@
       ]
     },
     {
-      "authorized_scope": "HISTORICAL_BOUNDED_INTEGRATION_PLAN",
-      "bytes": 2412,
-      "claim_limit": "Completed bounded integration history; it must not route RC1 work.",
-      "document_id": "r22_bounded_integration_plan",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_R2_2_4H_INTEGRATION_PLAN_ZH.md",
-      "sha256": "40c4e6679870b49929d9bf48a50c91d80142bf7e317363da2ca4af3d39bcfaf1",
-      "status": "HISTORICAL",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_RC1_PROPOSAL",
-      "bytes": 33688,
-      "claim_limit": "Pre-final proposal retained for audit; RC1-FINAL is the only delivery plan.",
-      "document_id": "rc1_delivery_proposal",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/DELIVERY_ROADMAP_RC1_20260916_ZH.md",
-      "sha256": "08dba95043beee0ed72fe42b9982a295d8e2dd3fe8cdcaa2aef58757478deb33",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_RC1_GATE_PROPOSAL",
-      "bytes": 15205,
-      "claim_limit": "Pre-final proposed gate contract; use the receipt-bound RC1 release and consumer contracts.",
-      "document_id": "rc1_gate_proposal",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/DELIVERY_GATE_AND_TASK_CONTRACT_PROPOSED.json",
-      "sha256": "e7ab355280a0bf17bcf37f73ae1a33830675633cbb52f07d943025a3531c2e80",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_EXECUTION_PLAN",
-      "bytes": 4961,
-      "claim_limit": "Historical V7.1 plan; must not route new R3 work.",
-      "document_id": "v71_execution_plan",
-      "evidence_receipts": [
-        {
-          "bytes": 1588,
-          "path": "/mnt/workspace/code/chaoyang/docs/governance/PLAN_MIGRATION_RECEIPT.json",
-          "sha256": "c5a8e24c1d9a53d476c3071afbc909fadfeee6ace910dcff844043c041cad9f4"
-        }
-      ],
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md",
-      "sha256": "99b43c13c96c2b9e35f7b35c4e8be5a357981c7d2e41bedb8fdcaf840b8917ce",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_OPTIMIZATION_PLAN",
-      "bytes": 77186,
-      "claim_limit": "Historical proposal retained for audit only.",
-      "document_id": "optimization_execution_v1",
-      "evidence_receipts": [
-        {
-          "bytes": 1588,
-          "path": "/mnt/workspace/code/chaoyang/docs/governance/PLAN_MIGRATION_RECEIPT.json",
-          "sha256": "c5a8e24c1d9a53d476c3071afbc909fadfeee6ace910dcff844043c041cad9f4"
-        }
-      ],
-      "path": "/mnt/workspace/code/chaoyang/docs/research/current/CHAOYANG_PROJECT_OPTIMIZATION_EXECUTION_TASKS_V1_ZH.md",
-      "sha256": "ca01348665763ab6429373c9677d3cb0d31c228cc227fd95b664259fdd0a948c",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_BOOTSTRAP_PACKET",
-      "bytes": 8175,
-      "claim_limit": "Cancelled bootstrap retained for audit; it must not dispatch work.",
-      "document_id": "optimization_exec00_bootstrap_v1",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/research/current/CHAOYANG_PROJECT_OPTIMIZATION_EXEC00_BOOTSTRAP_TASK_PACKET_V1.json",
-      "sha256": "c6d9db6e4a0fe397ff1a672111953b1bd40d94c914c152a231d9e7c26e4a7fc4",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_OPTIMIZATION_ROADMAP",
-      "bytes": 20981,
-      "claim_limit": "Decision history only; current execution is routed by R2.2 task packets.",
-      "document_id": "optimization_decision_roadmap_20260915",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/research/current/CHAOYANG_PROJECT_OPTIMIZATION_DECISION_ROADMAP_20260915_ZH.md",
-      "sha256": "85f8bb6b15f56265f20a9328fd743ccaac161eb8e05991c99ef3fe5be6f19f06",
-      "status": "HISTORICAL",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_CLEAN_EXPLORATION_DESIGN",
-      "bytes": 16068,
-      "claim_limit": "The GPU_CANARY_NOT_STARTED design state is obsolete; use immutable R2.2 Mask/Clean receipts.",
-      "document_id": "clean_layered_sam31_exploration_v1",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/research/current/CLEAN_LAYERED_SAM31_SUCCESSOR_EXPLORATION_V1_ZH.md",
-      "sha256": "f6acf67ecad4a3ce18fc1f3e8f6ff387e0f7777c26d62f4612a39fa8ffc6e9a8",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_DOCS_NAVIGATION",
+      "authorized_scope": "CURRENT_DOCS_NAVIGATION",
       "bytes": 1334,
-      "claim_limit": "Legacy navigation only; root README and DOC_AUTHORITY_MAP are current.",
-      "document_id": "docs_readme_legacy_navigation",
+      "claim_limit": "Unique current documentation navigation; factual claims remain subordinate to receipt-bound governance artifacts.",
+      "document_id": "docs_navigation",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/README.md",
       "sha256": "22119ec93dadb637c58b34248191edd31087620faf711e304407d99383386d5f",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_AUTOMATION_HANDOFF",
-      "bytes": 22001,
-      "claim_limit": "Historical handoff; it must not select current tasks.",
-      "document_id": "v71_automation_handoff",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/V71_AUTOMATION_HANDOFF_ZH.md",
-      "sha256": "56e4dfdff6dddeb903c43718522cd34cad8faf4ad03b9be98f11e17ede94f06f",
-      "status": "HISTORICAL",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_IMPLEMENTATION_HANDOFF",
-      "bytes": 5109,
-      "claim_limit": "Historical handoff; it must not select current tasks.",
-      "document_id": "v3_implementation_handoff",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/V3_IMPLEMENTATION_HANDOFF_ZH.md",
-      "sha256": "816e6815d0d87760b86f341db918993c5fb4d5a3684dc2c2e495eeb6fa58b403",
-      "status": "HISTORICAL",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_EXACT78_ROADMAP",
-      "bytes": 7095,
-      "claim_limit": "Historical roadmap; current counts and routing come from the receipt-bound ledger.",
-      "document_id": "exact78_completion_roadmap",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_COMPLETION_EXECUTION_ROADMAP_ZH.md",
-      "sha256": "6e0498ec5e792fc204782b56f4339f8bc3da3fdf57f3f9272b8fb89b8d4d42e6",
-      "status": "HISTORICAL",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_EXECUTION_PLAN",
-      "bytes": 4187,
-      "claim_limit": "Historical evidence only; not current routing authority.",
-      "document_id": "exact78_v52_execution_plan",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V5_2_EXECUTION_PLAN_ZH.md",
-      "sha256": "c472f736277e861751258cc0cdc23239b101e3ad8ed839ecdbb668a20851790f",
-      "status": "HISTORICAL",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "HISTORICAL_LONG_HORIZON_PLAN",
-      "bytes": 8077,
-      "claim_limit": "Historical design record; current work uses Task Packets and R3 plan.",
-      "document_id": "long_horizon_plan",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/LONG_HORIZON_TASK_PLAN_ZH.md",
-      "sha256": "dd49f4ed6a2e6e1a89b5b4ccbce3983965a26c619c3b100eaf50a104b46c5389",
-      "status": "HISTORICAL",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "SUPERSEDED_CLEAN_TERMINAL_AUDIT",
-      "bytes": 2342,
-      "claim_limit": "The 39-pass/19-runtime-final snapshot predates recovery_v53 and must not drive current Clean counts.",
-      "document_id": "clean_terminal_audit_v52_1",
-      "evidence_receipts": [
-        {
-          "bytes": 1588,
-          "path": "/mnt/workspace/code/chaoyang/docs/governance/PLAN_MIGRATION_RECEIPT.json",
-          "sha256": "c5a8e24c1d9a53d476c3071afbc909fadfeee6ace910dcff844043c041cad9f4"
-        }
-      ],
-      "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/TERMINAL_AUDIT_V52_1.json",
-      "sha256": "a5ab80ecc95aa9a899b5996aa4d1714706f099cabda72ccced90763e19e098d9",
-      "status": "SUPERSEDED",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "CLEAN_BASELINE_CURRENT_NAVIGATION",
-      "bytes": 1061,
-      "claim_limit": "Navigation only; factual claims remain subordinate to current receipt and algorithm contract.",
-      "document_id": "clean_baseline_current_navigation",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/current/README_ZH.md",
-      "sha256": "eb6a1e61bb64dd4e7f9939b0784fde58a97a020cd743152d9b65214d11942402",
-      "status": "CURRENT",
-      "supersedes": []
-    },
-    {
-      "authorized_scope": "CLEAN_BASELINE_V1_ARCHITECTURE",
-      "bytes": 1668,
-      "claim_limit": "Directory, isolation and restore contract only; does not claim algorithm quality or task completion.",
-      "document_id": "clean_baseline_v1_architecture",
-      "evidence_receipts": [],
-      "path": "/mnt/workspace/code/chaoyang/docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md",
-      "sha256": "b53dc2543bef5d7ce4af2ba8be126615cf5a9a8c661195afea8cdd345527a448",
       "status": "CURRENT",
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-17T10:20:59+08:00",
-  "generation_id": "gov-011169-0f858fe9be38",
-  "governance_revision": 11169,
+  "generated_at": "2026-09-17T16:25:37+08:00",
+  "generation_id": "gov-011172-54f0f3a3d73e",
+  "governance_revision": 11172,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }
