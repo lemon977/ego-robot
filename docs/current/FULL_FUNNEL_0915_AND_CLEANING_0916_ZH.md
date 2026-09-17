@@ -36,7 +36,8 @@ SAM3.1 角色合同区分左右皮肤/前臂、左右手指皮套、左右线缆
 
 ## 状态与验收
 
-当前任务在 `task/0915-full-funnel-0916-clean-v1` 分支执行，未推送远端。0916 双 CPU worker 清洗正在运行；其权威进度是目标根的 `STATE.json` 和任务 `RESULT.json`，本文不复制易过期的运行计数。
+当前任务在 `task/0915-full-funnel-0916-clean-v1` 分支执行，未推送远端。0916 双 CPU worker 清洗已经提交：240/240 会话终态，222 个 `CLEANED`、18 个 `REJECTED`、0 个运行失败。分任务为 playing_cards 128/2、potato_chips 94/16；拒绝原因为 17 个 `TACTILE_QUALITY` 和 1 个 `VISUAL_OR_TRACKING_CONTENT`。浅层复核见 [`visuals/0916_CLEANING_V1/README_ZH.md`](visuals/0916_CLEANING_V1/README_ZH.md)。
+
+组合输入任务因旧版 v1 自包含审计被终止而如实封为 `FAILED_RUNTIME_FINAL`；这不改变独立 0916 数据集的 `COMMITTED` 状态。0915 将在后继的 v2 processed-only 审计中重新核验，不能沿用或粉饰旧审计结果。
 
 最终必须满足：0915 的 220 个会话在全阶段账本中全部终态；0916 的 240 个会话全部终态且运行失败为 0 才可发布完成状态；浅层可视化、测试、治理、结构、Markdown 链接、SHA、视频完整解码和源树不变性全部通过。
-

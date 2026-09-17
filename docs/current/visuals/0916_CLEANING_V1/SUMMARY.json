@@ -1,0 +1,23 @@
+{
+  "by_task": {
+    "playing_cards": {
+      "CLEANED": 128,
+      "REJECTED": 2
+    },
+    "potato_chips": {
+      "CLEANED": 94,
+      "REJECTED": 16
+    }
+  },
+  "claim_limit": "0916 content-cleaning review only; no downstream model authority.",
+  "cleaned": 222,
+  "failed": 0,
+  "rejected": 18,
+  "rejection_reasons": {
+    "TACTILE_QUALITY": 17,
+    "VISUAL_OR_TRACKING_CONTENT": 1
+  },
+  "schema_version": "0916-cleaning-review-summary-v1",
+  "session_count": 240,
+  "state": "COMMITTED"
+}

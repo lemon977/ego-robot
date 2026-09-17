@@ -1,8 +1,15 @@
 # 当前可直接复核的可视化
 
-更新时间：2026-09-15（Asia/Shanghai）
+更新时间：2026-09-18（Asia/Shanghai）
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
+
+## 0. 0916 独立清洗
+
+- [`0916_CLEANING_V1/README_ZH.md`](0916_CLEANING_V1/README_ZH.md)
+- [`0916_CLEANING_V1/COUNTS.png`](0916_CLEANING_V1/COUNTS.png)
+
+固定 240 个会话全部终态：222 个清洗通过、18 个质量拒绝、0 个运行失败。该目录只提供数据清洗计数、拒绝原因和代表性审阅图，不包含 HaWoR、Mask、Depth、Contact 或 Robot 结论。
 
 ## 1. 三路手腕
 

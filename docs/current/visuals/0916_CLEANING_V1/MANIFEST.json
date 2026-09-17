@@ -1,0 +1,305 @@
+{
+  "claim_limit": "0916 content-cleaning review only; no downstream model authority.",
+  "counts_visual": {
+    "bytes": 80314,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/COUNTS.png",
+    "sha256": "a19567087c32e7c13728d5f57d1b31060962955626233dff483091d72c7a9019"
+  },
+  "dataset_result": {
+    "bytes": 108243,
+    "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/DATASET_RESULT.json",
+    "sha256": "87669b30a2b0b605f87a8755f3605a673034d2848872dcce61fa64757b4489f0"
+  },
+  "rejected": [
+    {
+      "reason": "VISUAL_OR_TRACKING_CONTENT",
+      "receipt": {
+        "bytes": 18938,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/playing_cards/036/RESULT.json",
+        "sha256": "fdb5f7019a446fa45cd2f1a72ccb9b460861fe81e0d47ed0b235680704e917ff"
+      },
+      "session_id": "036",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/cards_130_0916/036",
+      "task": "playing_cards"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3007,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/playing_cards/100/RESULT.json",
+        "sha256": "3326b3e57364164aed344710ae4823964c2b811ff8ed0740e84b885d43f582c1"
+      },
+      "session_id": "100",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/cards_130_0916/100",
+      "task": "playing_cards"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3558,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/004/RESULT.json",
+        "sha256": "727e82977cc372727e8f8ec3f93fff0b92a5c14cad41782a2eb8949460606025"
+      },
+      "session_id": "004",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/004",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3275,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/005/RESULT.json",
+        "sha256": "b0a12f82e8dfc73c1ea9de855c17848e460eb14dd39b321a7b67fa1a7a1dbe97"
+      },
+      "session_id": "005",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/005",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3055,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/006/RESULT.json",
+        "sha256": "1b76d4f6c0b8b183bbb754b938a3e4ca029b4e0b2ac249dcedafdeffd19553dd"
+      },
+      "session_id": "006",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/006",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3060,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/031/RESULT.json",
+        "sha256": "6e65d761657c12e29031c03168c264cc784ccf8928c5ac3c657ac8c3b438344b"
+      },
+      "session_id": "031",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/031",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3509,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/033/RESULT.json",
+        "sha256": "ee1a998ed3724bf8b497a393d12e547b68b13c29c4a0ad3d081c2245b2d9c0dc"
+      },
+      "session_id": "033",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/033",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3060,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/039/RESULT.json",
+        "sha256": "0acf0b9c5e249f9578ea0008c231a80fef35e2ef98954972f9543eacde9245b2"
+      },
+      "session_id": "039",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/039",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3060,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/040/RESULT.json",
+        "sha256": "3e76366f814a4c2b00641f9a9b4dc6d8f22a7c4b6a434a47c49aea80b61b587c"
+      },
+      "session_id": "040",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/040",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3287,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/046/RESULT.json",
+        "sha256": "6055abad0f17610639f4bdea6c50ef1b623545efa29a540df88f45f2066e4439"
+      },
+      "session_id": "046",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/046",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3669,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/056/RESULT.json",
+        "sha256": "0884dcf38d388f017ca010da97332ed02cf721b876c68dadae417e89f945c51e"
+      },
+      "session_id": "056",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/056",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3508,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/057/RESULT.json",
+        "sha256": "b7cea917bb1af31e1ae74f90bea57e9e426023bd57c35411f9cadfc1638b83dd"
+      },
+      "session_id": "057",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/057",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3558,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/059/RESULT.json",
+        "sha256": "8daf8807537afea0668e9ff528cf4ab2294d5b9bc92c0d747575926d63842ec0"
+      },
+      "session_id": "059",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/059",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3292,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/062/RESULT.json",
+        "sha256": "0fdc1b8b06109a4ddac8cc70e61da32d3e78122743292c40b911889109aef8dc"
+      },
+      "session_id": "062",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/062",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3293,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/063/RESULT.json",
+        "sha256": "152689ef31a3733e529160fc9e7fe511f22c16fdb2210c9139a778c4b84335e9"
+      },
+      "session_id": "063",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/063",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3062,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/069/RESULT.json",
+        "sha256": "600ecfb82d529193baa0a20e0e587f69726475966f307d3ff51dcb61eb838edb"
+      },
+      "session_id": "069",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/069",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3169,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/091/RESULT.json",
+        "sha256": "7b9f1bcd2b5e0cf3f8e4895cb88ae6d6a0276a17d1839eed1e92d0e8d6d9c239"
+      },
+      "session_id": "091",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/091",
+      "task": "potato_chips"
+    },
+    {
+      "reason": "TACTILE_QUALITY",
+      "receipt": {
+        "bytes": 3509,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/rejected/potato_chips/093/RESULT.json",
+        "sha256": "e4eea36bd63327e1bca9ae20707ddb446298109a0e2a3081ba5fccae8e9160f7"
+      },
+      "session_id": "093",
+      "source": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916/chips_110_0916/093",
+      "task": "potato_chips"
+    }
+  ],
+  "representatives": [
+    {
+      "published": {
+        "bytes": 525583,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/playing_cards__001__review.jpg",
+        "sha256": "b6515bdc08e71c7bb1687ebc14f78774bceeba41f0a0d2df79b0ce31244be15a"
+      },
+      "session_id": "001",
+      "source": {
+        "bytes": 525583,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/cleaned/playing_cards/play_cards_0916_001/review/manus_projection_eight_frame.jpg",
+        "sha256": "b6515bdc08e71c7bb1687ebc14f78774bceeba41f0a0d2df79b0ce31244be15a"
+      },
+      "task": "playing_cards"
+    },
+    {
+      "published": {
+        "bytes": 506483,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/playing_cards__066__review.jpg",
+        "sha256": "0a412176403d8aec7aa47b3a0fee22cf73073129845050344294fae6aa503628"
+      },
+      "session_id": "066",
+      "source": {
+        "bytes": 506483,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/cleaned/playing_cards/play_cards_0916_066/review/manus_projection_eight_frame.jpg",
+        "sha256": "0a412176403d8aec7aa47b3a0fee22cf73073129845050344294fae6aa503628"
+      },
+      "task": "playing_cards"
+    },
+    {
+      "published": {
+        "bytes": 503095,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/playing_cards__130__review.jpg",
+        "sha256": "9aa39a2fad5336093703d26e6548300a1c45235eaa7ac3f0b3140c89b247eb8e"
+      },
+      "session_id": "130",
+      "source": {
+        "bytes": 503095,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/cleaned/playing_cards/play_cards_0916_130/review/manus_projection_eight_frame.jpg",
+        "sha256": "9aa39a2fad5336093703d26e6548300a1c45235eaa7ac3f0b3140c89b247eb8e"
+      },
+      "task": "playing_cards"
+    },
+    {
+      "published": {
+        "bytes": 456062,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/potato_chips__001__review.jpg",
+        "sha256": "2bfd10db274829c41940b1d43c0da53fc05a6cc7f473c0ee2811994881a8e36b"
+      },
+      "session_id": "001",
+      "source": {
+        "bytes": 456062,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/cleaned/potato_chips/get_potato_chips_0916_001/review/manus_projection_eight_frame.jpg",
+        "sha256": "2bfd10db274829c41940b1d43c0da53fc05a6cc7f473c0ee2811994881a8e36b"
+      },
+      "task": "potato_chips"
+    },
+    {
+      "published": {
+        "bytes": 448107,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/potato_chips__058__review.jpg",
+        "sha256": "6ce82725cbabc2a449f608dccb9494d534d45da3adb68875302b8944c60baa85"
+      },
+      "session_id": "058",
+      "source": {
+        "bytes": 448107,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/cleaned/potato_chips/get_potato_chips_0916_058/review/manus_projection_eight_frame.jpg",
+        "sha256": "6ce82725cbabc2a449f608dccb9494d534d45da3adb68875302b8944c60baa85"
+      },
+      "task": "potato_chips"
+    },
+    {
+      "published": {
+        "bytes": 442009,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/potato_chips__110__review.jpg",
+        "sha256": "072241acbd1581e6b2b24bb08c7e77c20464bb3b1baf7f4ca948f4b19e5243d4"
+      },
+      "session_id": "110",
+      "source": {
+        "bytes": 442009,
+        "path": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/cleaned/potato_chips/get_potato_chips_0916_110/review/manus_projection_eight_frame.jpg",
+        "sha256": "072241acbd1581e6b2b24bb08c7e77c20464bb3b1baf7f4ca948f4b19e5243d4"
+      },
+      "task": "potato_chips"
+    }
+  ],
+  "schema_version": "0916-cleaning-visual-manifest-v1",
+  "summary": {
+    "bytes": 498,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0916_CLEANING_V1/SUMMARY.json",
+    "sha256": "11f94598f6f75c73af030eb5964474fe714f275dcb31132bd13e0074d9153b4a"
+  }
+}
