@@ -65,9 +65,10 @@ def sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
-def ref(path: Path) -> dict[str, Any]:
+def ref(path: Path, *, published_path: Path | None = None) -> dict[str, Any]:
     resolved = path.resolve(strict=True)
-    return {"path": str(resolved), "bytes": resolved.stat().st_size,
+    public = (published_path or resolved).resolve(strict=False)
+    return {"path": str(public), "bytes": resolved.stat().st_size,
             "sha256": sha256(resolved)}
 
 
@@ -202,7 +203,7 @@ def _review_sheet(panels: list[np.ndarray]) -> np.ndarray:
 def process_visual_geometry(
     *, task: str, session_id: str, frame_count: int, source_session: Path,
     prepared_video: Path, mask_root: Path, depth_root: Path, hawor_npz: Path,
-    output: Path,
+    output: Path, published_output: Path,
 ) -> dict[str, Any]:
     manifest = load(mask_root / "ROLE_MANIFEST.json")
     registration = load(depth_root / "REGISTRATION.json")
@@ -334,14 +335,25 @@ def process_visual_geometry(
         "status": object_status, "task": task, "session_id": session_id,
         "frame_count": frame_count, "direct_visible_frames": object_valid_frames,
         "minimum_direct_visible_frames": minimum_object_frames,
-        "trajectory": ref(object_path), "hidden_shape_inferred": False,
+        "trajectory": ref(
+            object_path, published_path=published_output / object_path.name,
+        ), "hidden_shape_inferred": False,
         "claim_limit": "Direct visible-surface optical-Z only; hidden geometry remains invalid.",
     })
     atomic_json(output / "CLEAN_RESULT.json", {
         "schema_version": "0915-clean-visual-session-v1", "status": "PASS",
         "task": task, "session_id": session_id, "frame_count": frame_count,
-        "invalid_masks": ref(output / "CLEAN_INVALID_MASKS.npz"),
-        "evidence": ref(clean_path), "review": ref(output / "CLEAN_REVIEW6.png"),
+        "invalid_masks": ref(
+            output / "CLEAN_INVALID_MASKS.npz",
+            published_path=published_output / "CLEAN_INVALID_MASKS.npz",
+        ),
+        "evidence": ref(
+            clean_path, published_path=published_output / clean_path.name,
+        ),
+        "review": ref(
+            output / "CLEAN_REVIEW6.png",
+            published_path=published_output / "CLEAN_REVIEW6.png",
+        ),
         "hidden_pixels_synthesized": 0,
         "geometry_consumers_forbidden": ["Depth", "Object6D", "Contact"],
         "claim_limit": "Visual-only invalidation; task-object pixels protected and no hidden RGB invented.",
@@ -351,7 +363,9 @@ def process_visual_geometry(
         "status": contact_status, "task": task, "session_id": session_id,
         "frame_count": frame_count, "processed_tactile_frames": tactile_present,
         "tactile_supported_frames": supported_contact_frames,
-        "hypotheses": ref(contact_path), "authority": "TACTILE_SUPPORTED_HYPOTHESIS",
+        "hypotheses": ref(
+            contact_path, published_path=published_output / contact_path.name,
+        ), "authority": "TACTILE_SUPPORTED_HYPOTHESIS",
         "force_claim": False, "contact_ground_truth": False,
         "claim_limit": "Processed tactile activity plus direct visible geometry; not force or contact truth.",
     })
@@ -360,7 +374,8 @@ def process_visual_geometry(
 
 
 def process_robot_visual(*, session_id: str, hawor_npz: Path,
-                         output: Path, assets: Any) -> str:
+                         output: Path, published_output: Path,
+                         assets: Any) -> str:
     with np.load(hawor_npz, allow_pickle=False) as archive:
         joints_world = np.asarray(archive["joints_3d_world"], np.float64)
         observed = np.asarray(archive["observed"], bool)
@@ -386,17 +401,26 @@ def process_robot_visual(*, session_id: str, hawor_npz: Path,
         "metrics": robot["metrics"], "claim_limit": robot["claim_limit"],
     }
     jsonschema.Draft202012Validator(load(ROBOT_SCHEMA)).validate(robot_sidecar)
-    atomic_json(output / "ROBOT_VISUAL.json", {
-        **robot_sidecar, "states": ref(state_path),
+    atomic_json(output / "ROBOT_VISUAL.json", robot_sidecar)
+    atomic_json(output / "ROBOT_VISUAL_EVIDENCE.json", {
+        "schema_version": "0915-robot-visual-evidence-v1",
+        "session_id": session_id,
+        "states": ref(
+            state_path, published_path=published_output / state_path.name,
+        ),
         "workspace_search": robot["workspace_search"],
         "diagnostics": robot["diagnostics"], "gates": robot["gates"],
+        "sidecar": {
+            "path": str((published_output / "ROBOT_VISUAL.json").resolve()),
+            "sha256": sha256(output / "ROBOT_VISUAL.json"),
+        },
     })
     return str(robot["status"])
 
 
 def process_clean_only(*, task: str, session_id: str, frame_count: int,
                        prepared_video: Path, mask_root: Path,
-                       output: Path) -> str:
+                       output: Path, published_output: Path) -> str:
     """Publish Clean from Raw+Mask when Depth/Object6D are independently blocked."""
 
     manifest = load(mask_root / "ROLE_MANIFEST.json")
@@ -439,8 +463,17 @@ def process_clean_only(*, task: str, session_id: str, frame_count: int,
     atomic_json(output / "CLEAN_RESULT.json", {
         "schema_version": "0915-clean-visual-session-v1", "status": "PASS",
         "task": task, "session_id": session_id, "frame_count": frame_count,
-        "invalid_masks": ref(output / "CLEAN_INVALID_MASKS.npz"),
-        "evidence": ref(evidence), "review": ref(output / "CLEAN_REVIEW6.png"),
+        "invalid_masks": ref(
+            output / "CLEAN_INVALID_MASKS.npz",
+            published_path=published_output / "CLEAN_INVALID_MASKS.npz",
+        ),
+        "evidence": ref(
+            evidence, published_path=published_output / evidence.name,
+        ),
+        "review": ref(
+            output / "CLEAN_REVIEW6.png",
+            published_path=published_output / "CLEAN_REVIEW6.png",
+        ),
         "hidden_pixels_synthesized": 0,
         "geometry_consumers_forbidden": ["Depth", "Object6D", "Contact"],
         "claim_limit": "Visual-only invalidation independent of Depth/Object6D/Contact.",
@@ -531,8 +564,16 @@ def main() -> int:
     results: list[dict[str, Any]] = []
     for index, identity in enumerate(prepared_by, 1):
         task, session_id = identity
-        session_output = output / "sessions" / task / session_id
-        session_output.mkdir(parents=True)
+        published_session_output = output / "sessions" / task / session_id
+        if published_session_output.exists() or published_session_output.is_symlink():
+            raise RuntimeError(
+                f"session target already exists in fresh attempt: {published_session_output}"
+            )
+        published_session_output.parent.mkdir(parents=True, exist_ok=True)
+        session_output = published_session_output.with_name(
+            f".{session_id}.staging-{uuid.uuid4().hex}"
+        )
+        session_output.mkdir()
         upstream = {
             "Raw": terminal(prepared_by[identity]["status"]),
             "HaWoR": terminal(hawor_by[identity]["status"]),
@@ -567,6 +608,7 @@ def main() -> int:
                     depth_root=DEPTH_ATTEMPT / "sessions" / task / session_id,
                     hawor_npz=HAWOR_ATTEMPT / "sessions" / task / session_id / "HAWOR_RAW_MANO21.npz",
                     output=session_output,
+                    published_output=published_session_output,
                 ))
             except Exception as exc:  # noqa: BLE001
                 post_status.update({stage: "FAILED_RUNTIME" for stage in (
@@ -598,6 +640,7 @@ def main() -> int:
                                         / prepared_by[identity]["output"]["video_relative"]),
                         mask_root=MASK_ATTEMPT / "sessions" / task / session_id,
                         output=session_output,
+                        published_output=published_session_output,
                     )
                 except Exception as exc:  # noqa: BLE001
                     post_status["Clean"] = "FAILED_RUNTIME"
@@ -617,7 +660,9 @@ def main() -> int:
                 post_status["RobotVisual"] = process_robot_visual(
                     session_id=session_id,
                     hawor_npz=HAWOR_ATTEMPT / "sessions" / task / session_id / "HAWOR_RAW_MANO21.npz",
-                    output=session_output, assets=robot_assets,
+                    output=session_output,
+                    published_output=published_session_output,
+                    assets=robot_assets,
                 )
             except Exception as exc:  # noqa: BLE001
                 post_status["RobotVisual"] = "FAILED_RUNTIME"
@@ -637,6 +682,19 @@ def main() -> int:
             contact_status=post_status["Contact"],
             robot_status=post_status["RobotVisual"],
         )
+        atomic_json(session_output / "SESSION_RESULT.json", {
+            "schema_version": "0915-post-session-result-v1",
+            "task": task,
+            "session_id": session_id,
+            "status": (
+                "FAILED_RUNTIME"
+                if "FAILED_RUNTIME" in post_status.values() else "TERMINAL"
+            ),
+            "stages": post_status,
+            "atomic_publish": True,
+        })
+        os.replace(session_output, published_session_output)
+        session_output = published_session_output
         stage_files = {
             "Object6D": "OBJECT6D_RESULT.json", "Clean": "CLEAN_RESULT.json",
             "Contact": "CONTACT_RESULT.json", "RobotVisual": "ROBOT_VISUAL.json",
