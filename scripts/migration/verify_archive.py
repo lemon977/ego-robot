@@ -49,7 +49,7 @@ def main()->int:
     clone=drill/'bundle-clone'
     subprocess.run(['git','clone','--no-checkout',str(bundle),str(clone)],cwd=root,check=True,capture_output=True,text=True)
     patch_checks=[]
-    for relative in ('git/worktree.patch','restore/index.patch'):
+    for relative in ('git/worktree.patch','git/index.patch'):
         patch=root/relative
         if patch.stat().st_size==0:
             patch_checks.append({'path':relative,'status':'SKIPPED_EMPTY'});continue
