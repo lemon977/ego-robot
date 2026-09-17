@@ -295,15 +295,22 @@ def main() -> int:
         staging.parent.mkdir(parents=True, exist_ok=True)
         session_started = time.time()
         try:
-            rc = run_upstream(upstream, adapter, staging)
+            upstream_output = staging / "upstream_hawor"
+            rc = run_upstream(upstream, adapter, upstream_output)
             if rc:
                 raise RuntimeError(f"upstream HaWoR returned {rc}")
-            upstream_result = staging / "RESULT.json"
+            upstream_result = upstream_output / "RESULT.json"
             if upstream_result.is_file():
                 os.replace(upstream_result, staging / "UPSTREAM_RESULT.json")
-            npz = staging / "HAWOR_RAW_MANO21.npz"
-            if not npz.is_file():
+            upstream_npz = upstream_output / "HAWOR_RAW_MANO21.npz"
+            if not upstream_npz.is_file():
                 raise RuntimeError("HaWoR NPZ missing")
+            npz = staging / "HAWOR_RAW_MANO21.npz"
+            os.replace(upstream_npz, npz)
+            upstream_review = upstream_output / "HAWOR_RAW_REVIEW.mp4"
+            if upstream_review.is_file():
+                os.replace(upstream_review, staging / "HAWOR_RAW_REVIEW.mp4")
+            shutil.rmtree(upstream_output)
             metrics = quality(npz)
             status = (
                 "PASS_DEVELOPMENT_HAWOR"
