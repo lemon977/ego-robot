@@ -15,7 +15,7 @@ Depth → Mask → Clean → Contact → Robot → Occlusion → Visual Aux
 固定事实边界：
 
 - 正式 H4 为 `BLOCKED_RESOURCE / NOT_EVALUATED / POLICY_DEFERRED`，没有像素 Mask authority；attempt_0003/0004 的质量 C 只属于开发 canary。
-- 当前 Mask 基线为 SAM3.1；SAM2.1/Cutie 只可作为 challenger。
+- 当前 Mask 路线由用户锁定为 SAM3.1 唯一可执行模型；不注册、不运行 SAM2.1/Cutie challenger，也不再执行模型胜者选择。
 - FoundationStereo、HaWoR、Controller、Object6D 和数字 Robot 碰撞均不是外部物理真值。
 - `visual_robot_trajectory_sidecar.control_ground_truth=false`；Visual Aux 不是 Robot policy。
 
