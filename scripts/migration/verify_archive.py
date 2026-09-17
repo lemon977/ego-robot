@@ -33,7 +33,7 @@ def main()->int:
     if observed_root!=summary['merkle_root_sha256'] or len(rows)!=summary['entries'] or missing or mismatched or summary['unstable_entries']:
         raise RuntimeError({'merkle':observed_root,'missing':missing[:10],'mismatched':mismatched[:10]})
     by_path={r['path']:r for r in rows}
-    samples=['git/repository.bundle','restore/worktree.patch','MOVES.tsv']
+    samples=['git/repository.bundle','git/worktree.patch','MOVES.tsv']
     staging=root/'.staging';staging.mkdir(exist_ok=True)
     drill=Path(tempfile.mkdtemp(prefix='restore-drill-',dir=staging))
     restored=[]
@@ -49,7 +49,7 @@ def main()->int:
     clone=drill/'bundle-clone'
     subprocess.run(['git','clone','--no-checkout',str(bundle),str(clone)],cwd=root,check=True,capture_output=True,text=True)
     patch_checks=[]
-    for relative in ('restore/worktree.patch','restore/index.patch'):
+    for relative in ('git/worktree.patch','restore/index.patch'):
         patch=root/relative
         if patch.stat().st_size==0:
             patch_checks.append({'path':relative,'status':'SKIPPED_EMPTY'});continue
