@@ -38,6 +38,13 @@ def ref(path: Path) -> dict[str, Any]:
             "sha256": sha256(path)}
 
 
+def ref_as(path: Path, published_path: Path) -> dict[str, Any]:
+    """Hash a staging file while recording its post-rename immutable path."""
+    path = path.resolve(strict=True)
+    return {"path": str(published_path.resolve()), "bytes": path.stat().st_size,
+            "sha256": sha256(path)}
+
+
 def atomic_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.name}.tmp-{uuid.uuid4().hex}")
@@ -210,7 +217,9 @@ def prepare_session(task: str, session: Path, target: Path) -> dict[str, Any]:
             "output": {
                 "video_relative": "leftmono/LEFT_MONO_RECTIFIED.mp4",
                 "adapter_relative": "adapter_session",
-                "video": ref(mono),
+                "video": ref_as(
+                    mono, target / "leftmono/LEFT_MONO_RECTIFIED.mp4"
+                ),
                 "decode": decode,
             },
             "input_policy": {
