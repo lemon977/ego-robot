@@ -1,0 +1,68 @@
+{
+  "schema_version": "0915-0916-six-hour-progress-receipt-v1",
+  "checkpoint": "SIX_HOURS_FIRST_PROGRESS_CHECKPOINT",
+  "generated_at": "2026-09-18T06:06:26+08:00",
+  "campaign_status": "RUNNING_QUALITY_GATES_UNCHANGED",
+  "branch": "task/0915-full-funnel-0916-clean-v1",
+  "pushed_remote": false,
+  "mask_policy": "SAM3.1_ONLY_USER_LOCKED",
+  "0916_cleaning": {
+    "state": "COMMITTED",
+    "session_count": 240,
+    "cleaned": 222,
+    "rejected": 18,
+    "failed_runtime": 0,
+    "result_sha256": "bc1cc48a5648ce5596160826007766b84846328d430e41e79c0f556286caa398"
+  },
+  "0915_input": {
+    "processed_only_audit": "PASS",
+    "sessions": 220,
+    "frames": 58686,
+    "audit_failed": 0,
+    "physical_left_prepared_sessions": 220,
+    "kaihand_adapter_step": "PRESENT_CANDIDATE_GEOMETRY",
+    "measured_install_transform": "ABSENT",
+    "robot_tcp": "ABSENT",
+    "camera_world_to_base": "ABSENT",
+    "result_sha256": "23e175652438a5c3b9c59e4bd79ad726f8de1d5ebc217e2e9d809f0fe090a60d"
+  },
+  "0915_hawor_point_in_time": {
+    "state": "RUNNING",
+    "completed": 29,
+    "session_count": 220,
+    "passed": 0,
+    "rejected_quality": 29,
+    "failed_runtime": 0,
+    "model_load_count": 1,
+    "state_sha256_at_checkpoint": "fa7fe800908f8abb6c74e91597642ae0cb91723179fc127a948faf89a97b3cd1"
+  },
+  "not_started": [
+    "0915_sam31_mask_full_v1",
+    "0915_foundationstereo_full_v1",
+    "0915_post_geometry_robot_v1"
+  ],
+  "resources_point_in_time": {
+    "gpu": "NVIDIA H20",
+    "gpu_total_mib": 97871,
+    "gpu_used_mib": 10935,
+    "gpu_free_mib": 86433,
+    "unrelated_gpu_process_mib": 5402,
+    "hawor_gpu_process_mib": 4108,
+    "workspace_free_bytes": 122154909696,
+    "workspace_free_gib": 113.77,
+    "workspace_capacity_risk": "HIGH_FOR_SAM31_AND_DEPTH; RECHECK_BEFORE_EACH_STAGE",
+    "0916_cpu_workers": 2,
+    "0916_cleaning_wall_seconds": 13726.326736688614,
+    "0915_input_wall_seconds": 4873.799439430237
+  },
+  "estimated_remaining_work": {
+    "hawor_at_observed_rate": "approximately 3 hours for remaining sessions",
+    "later_stages": "not reliably estimable before HaWoR terminals and storage preflight",
+    "campaign_lower_bound": "more than 3 hours",
+    "capacity_policy": "BLOCKED_RESOURCE if a later stage cannot preserve a safe shared-disk reserve"
+  },
+  "source_mutation": false,
+  "pico26_hand_consumed": false,
+  "quality_gates_relaxed": false,
+  "claim_limit": "Immutable point-in-time progress only. Running counts are not final authority; no model, calibration, contact, control or deployment claim is promoted."
+}
