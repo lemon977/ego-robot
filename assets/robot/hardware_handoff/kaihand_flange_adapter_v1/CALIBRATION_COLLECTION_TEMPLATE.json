@@ -1,0 +1,47 @@
+{
+  "schema_version": "robot-physical-calibration-collection-v1",
+  "authority": "BLOCKED_EXTERNAL",
+  "robot_tcp": {
+    "left": {
+      "status": "ABSENT",
+      "coordinate_definition": "p_left_tool = T_left_tool_tcp @ p_left_tcp",
+      "translation_units": "metres",
+      "matrix": null,
+      "measurement": null
+    },
+    "right": {
+      "status": "ABSENT",
+      "coordinate_definition": "p_right_tool = T_right_tool_tcp @ p_right_tcp",
+      "translation_units": "metres",
+      "matrix": null,
+      "measurement": null
+    }
+  },
+  "tool_to_kaihand_root": {
+    "left": {
+      "status": "ABSENT",
+      "coordinate_definition": "p_left_tool = T_left_tool_kaihand_root @ p_hand_l_base_link",
+      "translation_units": "metres",
+      "matrix": null,
+      "measurement": null
+    },
+    "right": {
+      "status": "ABSENT",
+      "coordinate_definition": "p_right_tool = T_right_tool_kaihand_root @ p_hand_r_base_link",
+      "translation_units": "metres",
+      "matrix": null,
+      "measurement": null
+    }
+  },
+  "camera_to_base": {
+    "status": "ABSENT",
+    "coordinate_definition": "p_camera = T_camera_base @ p_robot_base",
+    "translation_units": "metres",
+    "matrix": null,
+    "measurement": null
+  },
+  "real_robot_action": {
+    "status": "ABSENT",
+    "artifact": null
+  }
+}
