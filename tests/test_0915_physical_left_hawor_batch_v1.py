@@ -41,6 +41,16 @@ def test_hawor_worker_caches_models_and_resets_tracker_per_session() -> None:
     assert "detector_load_count" in source
 
 
+def test_hawor_is_bound_as_one_logical_weight_bundle() -> None:
+    value = worker.validate_logical_weight_bundle()
+    assert value["task_binding"] == "ONE_TASK_ONE_LOGICAL_WEIGHT"
+    assert value["bundle_id"] == "HAWOR_INFERENCE_BUNDLE_V1"
+    assert {row["kind"] for row in value["components"]} == {
+        "PRIMARY_HAND_RECONSTRUCTION_MODEL",
+        "REQUIRED_HAND_DETECTOR_DEPENDENCY",
+    }
+
+
 def test_hawor_worker_gives_upstream_a_fresh_child_and_publishes_npz_at_session_root() -> None:
     source = inspect.getsource(worker.main)
     assert 'upstream_output = staging / "upstream_hawor"' in source

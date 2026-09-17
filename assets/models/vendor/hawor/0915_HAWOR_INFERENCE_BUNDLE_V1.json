@@ -1,0 +1,22 @@
+{
+  "schema_version": "chaoyang-logical-weight-bundle-v1",
+  "bundle_id": "HAWOR_INFERENCE_BUNDLE_V1",
+  "task_binding": "ONE_TASK_ONE_LOGICAL_WEIGHT",
+  "components": [
+    {
+      "bytes": 3267481572,
+      "kind": "PRIMARY_HAND_RECONSTRUCTION_MODEL",
+      "path": "assets/models/vendor/hawor/hawor/checkpoints/hawor.ckpt",
+      "sha256": "4d1cc43853c190d6f2c10d9b6295c73109f0faf9ef41ac817a2b31d94b4823f2"
+    },
+    {
+      "bytes": 53582271,
+      "kind": "REQUIRED_HAND_DETECTOR_DEPENDENCY",
+      "path": "assets/models/vendor/hawor/external/detector.pt",
+      "sha256": "5ef3df44e42d2db52d4ffe91f83a22ce9925e2acc9abebf453f2c5d22e380033"
+    }
+  ],
+  "model_identity": "HaWoR",
+  "component_count": 2,
+  "claim_limit": "One immutable logical HaWoR inference bundle for one algorithm task. The detector is a required dependency, not a competing model or a second task weight."
+}
