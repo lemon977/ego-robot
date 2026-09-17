@@ -16,8 +16,8 @@ def test_campaign_has_finite_serial_order() -> None:
     assert TASK_ORDER == (
         "0915_input_prepare_cad_v1",
         "0915_hawor_full_v1",
-        "0915_foundationstereo_full_v1",
         "0915_sam31_mask_full_v1",
+        "0915_foundationstereo_full_v1",
         "0915_post_geometry_robot_v1",
     )
     assert predecessor_task(TASK_ORDER[0]) == "0915_0916_input_audit_clean_v1"
