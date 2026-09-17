@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "full-funnel-session-ledger-v1.schema.json",
+  "title": "0915 fixed-denominator full-funnel session ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "dataset_id", "fixed_denominator", "sessions", "counts_generated"],
+  "properties": {
+    "schema_version": {"const": "full-funnel-session-ledger-v1"},
+    "dataset_id": {"const": "chips_cards_hands__0915_v3"},
+    "fixed_denominator": {"const": 220},
+    "sessions": {
+      "type": "array",
+      "minItems": 220,
+      "maxItems": 220,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["session_id", "task", "stages", "first_blocker"],
+        "properties": {
+          "session_id": {"type": "string", "minLength": 1},
+          "task": {"enum": ["playing_cards", "potato_chips"]},
+          "stages": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["status"],
+              "properties": {
+                "status": {
+                  "enum": [
+                    "PASS",
+                    "REJECTED_QUALITY",
+                    "BLOCKED_UPSTREAM",
+                    "BLOCKED_EXTERNAL",
+                    "FAILED_RUNTIME",
+                    "NOT_RUN"
+                  ]
+                },
+                "reason": {"type": ["string", "null"]},
+                "artifact": {"type": ["object", "null"]}
+              }
+            }
+          },
+          "first_blocker": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "counts_generated": {"const": true}
+  }
+}
