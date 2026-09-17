@@ -11,6 +11,8 @@ def test_weightless_successor_runs_v2_audit_before_prepare_and_cad() -> None:
         "prepare_0915_physical_left_batch_v1"
     ) < source.index("audit_kaihand_adapter_step_v1")
     assert '"weights": "ABSENT"' in source
+    assert '"chaoyang.cli"' not in source
+    assert '"chaoyang.ops.audit_0915_processed_self_containment_v2"' in source
 
 
 def test_successor_has_no_model_or_pico_hand_execution() -> None:

@@ -60,6 +60,27 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
         counts = result.get("counts", {})
         if counts.get("0916_sessions") != 240 or counts.get("0916_failed") != 0:
             raise RuntimeError("0916 cleaning did not close 240 sessions with zero runtime failure")
+    elif task_id == "0915_input_prepare_cad_v2":
+        if predecessor.get("status") != "FAILED_RUNTIME_FINAL":
+            raise RuntimeError("corrective v2 requires terminal v1 CLI routing failure")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("corrective v2 predecessor result is not bound")
+        result_path = Path(result_ref["path"])
+        result = load_json(result_path)
+        audit_log = result_path.parent / "AUDIT.log"
+        expected_error = (
+            "operation is not maintained by the current algorithm contract: "
+            "audit_0915_processed_self_containment_v2"
+        )
+        if (
+            result.get("returncodes") != {"audit": 1}
+            or result.get("self_containment") is not None
+            or result.get("prepared_manifest") is not None
+            or not audit_log.is_file()
+            or audit_log.read_text(encoding="utf-8").strip() != expected_error
+        ):
+            raise RuntimeError("v1 failure is not the exact pre-execution CLI route blocker")
     elif predecessor.get("status") != "PASSED":
         raise RuntimeError(f"predecessor did not pass: {predecessor_id}")
     return predecessor
