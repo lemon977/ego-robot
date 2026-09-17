@@ -54,6 +54,32 @@ def test_hawor_quality_keeps_missing_frames_missing(tmp_path) -> None:
     metrics = worker.quality(path)
     assert metrics["observed_frames"] == {"left": 1, "right": 0, "bilateral": 0}
     assert metrics["observed_fraction"]["right"] == 0.0
+    assert metrics["numeric_mask_gate_pass"] is False
+
+
+def test_hawor_numeric_gate_requires_frozen_coverage_and_provenance(tmp_path) -> None:
+    frame_count = 20
+    observed = np.ones((2, frame_count), dtype=bool)
+    joints_2d = np.zeros((2, frame_count, 21, 2), dtype=np.float32)
+    joints_3d = np.zeros((2, frame_count, 21, 3), dtype=np.float32)
+    for side in range(2):
+        joints_2d[side, ..., 0] = 200 + side * 400 + np.arange(21)
+        joints_2d[side, ..., 1] = 300 + np.arange(21)
+        joints_3d[side, ..., 0] = np.arange(21) * 0.01
+        joints_3d[side, ..., 1] = side * 0.02
+        joints_3d[side, ..., 2] = 0.5
+    rotations = np.broadcast_to(np.eye(3), (2, frame_count, 3, 3)).copy()
+    confidence = np.full((2, frame_count), 0.8, np.float32)
+    path = tmp_path / "pass.npz"
+    np.savez(
+        path, observed=observed, joints_2d=joints_2d,
+        joints_3d_camera=joints_3d, joints_3d_world=joints_3d,
+        root_orient_camera=rotations, detector_confidence=confidence,
+        provenance=np.full((2, frame_count), "OBSERVED"), fps=np.asarray(30.0),
+    )
+    metrics = worker.quality(path)
+    assert metrics["numeric_mask_gate_pass"] is True
+    assert metrics["sides"]["left"]["bone_length_cv_max"] == 0.0
 
 
 def test_staging_reference_records_final_atomic_path(tmp_path) -> None:

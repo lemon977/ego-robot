@@ -36,6 +36,23 @@ CHAINS = ((0, 1, 2, 3, 4), (0, 5, 6, 7, 8), (0, 9, 10, 11, 12),
 BONES = tuple((chain[i], chain[i + 1]) for chain in CHAINS for i in range(4))
 
 
+def longest_false_run(values: np.ndarray) -> int:
+    longest = current = 0
+    for value in np.asarray(values, dtype=bool):
+        if value:
+            current = 0
+        else:
+            current += 1
+            longest = max(longest, current)
+    return longest
+
+
+def finite_percentile(values: np.ndarray, quantile: float) -> float | None:
+    finite = np.asarray(values, dtype=np.float64)
+    finite = finite[np.isfinite(finite)]
+    return float(np.percentile(finite, quantile)) if finite.size else None
+
+
 def sha256(path: Path) -> str:
     digest = hashlib.sha256()
     with path.open("rb") as stream:
@@ -58,13 +75,24 @@ def atomic_json(path: Path, value: Any) -> None:
 
 def quality(npz_path: Path) -> dict[str, Any]:
     with np.load(npz_path, allow_pickle=False) as data:
+        available = set(data.files)
         observed = np.asarray(data["observed"], dtype=bool)
         joints_2d = np.asarray(data["joints_2d"], dtype=np.float64)
         joints_3d = np.asarray(data["joints_3d_camera"], dtype=np.float64)
+        world = (np.asarray(data["joints_3d_world"], dtype=np.float64)
+                 if "joints_3d_world" in available else None)
+        rotations = (np.asarray(data["root_orient_camera"], dtype=np.float64)
+                     if "root_orient_camera" in available else None)
+        confidence = (np.asarray(data["detector_confidence"], dtype=np.float64)
+                      if "detector_confidence" in available else None)
+        provenance = (np.asarray(data["provenance"]).astype(str)
+                      if "provenance" in available else None)
+        fps = float(np.asarray(data["fps"]).item()) if "fps" in available else 30.0
     frame_count = observed.shape[1]
     in_frame: list[float] = []
-    bone_cv: list[float | None] = []
+    side_metrics: dict[str, dict[str, Any]] = {}
     for side in (0, 1):
+        side_name = ("left", "right")[side]
         selected = observed[side]
         uv = joints_2d[side, selected]
         valid = (
@@ -74,13 +102,84 @@ def quality(npz_path: Path) -> dict[str, Any]:
         )
         in_frame.append(float(valid.mean()) if valid.size else 0.0)
         cvs: list[float] = []
-        xyz = joints_3d[side, selected]
+        xyz_all = world[side] if world is not None else joints_3d[side]
+        xyz = xyz_all[selected]
         for start, end in BONES:
             length = np.linalg.norm(xyz[:, end] - xyz[:, start], axis=1)
             mean = float(np.nanmean(length)) if length.size else 0.0
             if mean > 1e-8:
                 cvs.append(float(np.nanstd(length) / mean))
-        bone_cv.append(float(np.mean(cvs)) if cvs else None)
+        bone_cv_max = float(max(cvs)) if cvs else None
+        positive_depth = (
+            float((joints_3d[side, selected, :, 2] > 0).mean())
+            if selected.any() else None
+        )
+        if rotations is not None and selected.any():
+            chosen_rotations = rotations[side, selected]
+            orthogonality = float(np.max(np.abs(
+                np.transpose(chosen_rotations, (0, 2, 1))
+                @ chosen_rotations - np.eye(3)
+            )))
+            determinant_min = float(np.min(np.linalg.det(chosen_rotations)))
+        else:
+            orthogonality = determinant_min = None
+        adjacent = selected[:-1] & selected[1:]
+        steps = np.linalg.norm(np.diff(xyz_all[:, 0], axis=0), axis=-1) * 1000.0
+        selected_steps = steps[adjacent]
+        p99_step = finite_percentile(selected_steps, 99)
+        max_step = float(np.max(selected_steps)) if selected_steps.size else None
+        chosen_confidence = confidence[side, selected] if confidence is not None else np.asarray([])
+        confidence_median = finite_percentile(chosen_confidence, 50)
+        confidence_p05 = finite_percentile(chosen_confidence, 5)
+        constant_one = bool(chosen_confidence.size and np.allclose(
+            chosen_confidence, 1.0, atol=1e-7,
+        ))
+        provenance_pass = bool(
+            provenance is not None
+            and set(np.unique(provenance[side])).issubset({"OBSERVED", "MISSING"})
+            and np.array_equal(selected, provenance[side] == "OBSERVED")
+        )
+        finite_gate_values = (
+            confidence_median, confidence_p05, positive_depth, bone_cv_max,
+            orthogonality, determinant_min,
+        )
+        finite_common = all(
+            value is not None and np.isfinite(float(value))
+            for value in finite_gate_values
+        )
+        numeric_mask_gate = bool(
+            finite_common
+            and float(selected.mean()) >= 0.95
+            and longest_false_run(selected) <= 8
+            and float(confidence_median) >= 0.65
+            and float(confidence_p05) >= 0.45
+            and not constant_one
+            and float(positive_depth) >= 0.995
+            and float(bone_cv_max) <= 0.08
+            and float(orthogonality) <= 1e-4
+            and float(determinant_min) > 0
+            and provenance_pass
+            and in_frame[-1] >= 0.90
+        )
+        side_metrics[side_name] = {
+            "observed_frames": int(selected.sum()),
+            "observed_fraction": float(selected.mean()),
+            "longest_missing_gap_frames": longest_false_run(selected),
+            "joint_in_frame_fraction": in_frame[-1],
+            "positive_depth_fraction": positive_depth,
+            "bone_length_cv_max": bone_cv_max,
+            "root_rotation_orthogonality_max": orthogonality,
+            "root_rotation_determinant_min": determinant_min,
+            "confidence_median": confidence_median,
+            "confidence_p05": confidence_p05,
+            "confidence_uninformative_constant_one": constant_one,
+            "wrist_step_p99_mm": p99_step,
+            "wrist_step_max_mm": max_step,
+            "wrist_step_p99_limit_mm_at_fps": 80.0 * 30.0 / fps,
+            "wrist_step_max_limit_mm_at_fps": 150.0 * 30.0 / fps,
+            "provenance_consistent": provenance_pass,
+            "numeric_mask_gate_pass": numeric_mask_gate,
+        }
     return {
         "frame_count": frame_count,
         "observed_frames": {
@@ -93,7 +192,11 @@ def quality(npz_path: Path) -> dict[str, Any]:
             "right": float(observed[1].mean()),
         },
         "joint_in_frame_fraction": {"left": in_frame[0], "right": in_frame[1]},
-        "mean_bone_length_cv": {"left": bone_cv[0], "right": bone_cv[1]},
+        "sides": side_metrics,
+        "numeric_mask_gate_pass": all(
+            row["numeric_mask_gate_pass"] for row in side_metrics.values()
+        ),
+        "identity_authority": "REQUIRES_INDEPENDENT_MASK_REVIEW",
     }
 
 
@@ -202,12 +305,11 @@ def main() -> int:
             if not npz.is_file():
                 raise RuntimeError("HaWoR NPZ missing")
             metrics = quality(npz)
-            both_observed = (
-                metrics["observed_frames"]["left"] > 0
-                and metrics["observed_frames"]["right"] > 0
+            status = (
+                "PASS_DEVELOPMENT_HAWOR"
+                if metrics["numeric_mask_gate_pass"]
+                else "FAILED_QUALITY_C"
             )
-            in_frame = min(metrics["joint_in_frame_fraction"].values()) >= 0.90
-            status = "PASS_DEVELOPMENT_HAWOR" if both_observed and in_frame else "FAILED_QUALITY_C"
             result = {
                 "schema_version": "0915-hawor-persistent-session-v1",
                 "status": status,
