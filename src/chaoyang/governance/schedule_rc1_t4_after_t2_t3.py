@@ -93,9 +93,9 @@ def main() -> int:
         "read_set": [str(path) for path in reads],
         "write_set": [str(RUN / "rc1_t4_bundle_smoke/attempts")],
         "commands": [
-            "python -m tools.governance.validate_governance_state",
+            "chaoyang validate-governance",
             (
-                "python -m tools.run_rc1_t4_bundle_smoke_preflight "
+                "chaoyang run run_rc1_t4_bundle_smoke_preflight "
                 f"--t2-result {T2_RESULT} --t3-result {T3_RESULT} "
                 f"--capacity-report {CAPACITY} --output-root {attempt}"
             ),

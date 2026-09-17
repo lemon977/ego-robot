@@ -92,8 +92,8 @@ def main() -> int:
         "read_set": [str(path) for path in reads],
         "write_set": [str(RUN / "robot30_offline_visual/fresh_batch_001")],
         "commands": [
-            "python -m tools.governance.validate_governance_state",
-            "python -m tools.run_rc1_robot30_offline_visual_batch --sessions play_cards_0903_189 ...",
+            "chaoyang validate-governance",
+            "chaoyang run run_rc1_robot30_offline_visual_batch --sessions play_cards_0903_189 ...",
         ],
         "quality_gates": [
             "terminal_per_session",

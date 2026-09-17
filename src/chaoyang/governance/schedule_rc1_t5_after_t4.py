@@ -70,7 +70,7 @@ def main() -> int:
     ]
     attempt = RUN / "rc1_t5_batch_conversion/attempts/attempt_0001"
     command = (
-        "python -m tools.build_rc1_t5_conversion_report "
+        "chaoyang run build_rc1_t5_conversion_report "
         f"--exact-ledger {EXACT_LEDGER} --capacity-report {CAPACITY} "
         f"--t1-result {T1} --t2-result {T2} --t3-result {T3} "
         f"--t4-result {t4_result} --robot30-index {robot30_index} "
@@ -91,7 +91,7 @@ def main() -> int:
         "prerequisites": [f"rc1_t4_bundle_smoke={t4['status']}_TERMINAL", "governance=FRESH"],
         "read_set": [str(path) for path in reads],
         "write_set": [str(RUN / "rc1_t5_batch_conversion/attempts")],
-        "commands": ["python -m tools.governance.validate_governance_state", command],
+        "commands": ["chaoyang validate-governance", command],
         "quality_gates": [
             "exact156_partition",
             "source_group_capacity_preserved",

@@ -47,7 +47,7 @@ CURRENT_FILES = (
 RUNS = ROOT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs"
 RUNTIME = ROOT / "_run"
 HARD_PROTECTED = (
-    ROOT / "docs/current_visuals",
+    ROOT / "docs/current/visuals",
     ROOT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h",
     ROOT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1",
     ROOT / "third_party",

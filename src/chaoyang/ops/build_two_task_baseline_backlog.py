@@ -3,7 +3,7 @@
 
 Usage from the repository root::
 
-    python -m tools.build_two_task_baseline_backlog
+    chaoyang run build_two_task_baseline_backlog
 
 This does not decode, process, publish, or mark any session training eligible.
 """

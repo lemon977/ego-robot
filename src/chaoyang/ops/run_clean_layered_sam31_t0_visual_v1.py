@@ -601,7 +601,7 @@ def run_case(adapter: Any, build_evidence: dict[str, Any], case: Case) -> dict[s
     Image.fromarray(sheet).save(contact_sheet, quality=92)
     shutil.rmtree(review_frames)
 
-    shallow = PROJECT / "docs/current_visuals" / case.shallow_name
+    shallow = PROJECT / "docs/current/visuals" / case.shallow_name
     if shallow.exists() or shallow.is_symlink():
         if shallow.resolve() != review_video.resolve():
             raise RuntimeError(f"refusing to replace shallow visual: {shallow}")

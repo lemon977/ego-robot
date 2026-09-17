@@ -141,20 +141,15 @@ def test_doc_authority_map_rejects_duplicate_current_scope(tmp_path: Path) -> No
     assert any("multiple CURRENT" in error for error in validate_doc_authority_map(value))
 
 
-def test_root_readme_and_agents_are_current_protocol_documents() -> None:
+def test_doc_authority_map_contains_only_active_documents() -> None:
     authority = build_authority()
     value = build_doc_authority_map(authority, ROOT / "docs/governance", ROOT)
     documents = {item["document_id"]: item for item in value["documents"]}
     assert documents["repository_readme"]["status"] == "CURRENT"
     assert documents["agent_execution_protocol"]["status"] == "CURRENT"
-    assert documents["r22_bounded_integration_plan"]["status"] == "HISTORICAL"
     assert documents["rc1_final_delivery_plan"]["status"] == "CURRENT"
-    assert documents["r3_execution_status_gap_audit"]["status"] == "HISTORICAL"
-    assert documents["optimization_exec00_bootstrap_v1"]["status"] == "SUPERSEDED"
-    bootstrap = json.loads(
-        (ROOT / "docs/research/current/CHAOYANG_PROJECT_OPTIMIZATION_EXEC00_BOOTSTRAP_TASK_PACKET_V1.json").read_text()
-    )
-    assert bootstrap["terminal_status"] == "CANCELLED"
+    assert all(item["status"] == "CURRENT" for item in value["documents"])
+    assert all("/archive/" not in item["path"] for item in value["documents"])
     assert not validate_doc_authority_map(value)
 
 

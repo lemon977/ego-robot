@@ -36,7 +36,7 @@ def _packet(task_id: str, phase: str, objective: str, read_set: list[Path], comm
         "frozen_inputs": {str(i): artifact_ref(path) for i, path in enumerate(read_set)},
         "prerequisites": ["governance=FRESH", "rc1_t0_freeze_capacity_split=PASSED"],
         "read_set": [str(x) for x in read_set], "write_set": [str(RUN / phase.lower() / "attempts")],
-        "commands": ["python -m tools.governance.validate_governance_state", command],
+        "commands": ["chaoyang validate-governance", command],
         "quality_gates": gates,
         "budgets": {"runtime_attempts": 2, "wall_seconds": 7200, "gpu_wait_seconds": 1800},
         "stop_conditions": ["PASSED", "FAILED_QUALITY_C", "FAILED_RUNTIME_FINAL", "BLOCKED_PREREQ", "BLOCKED_RESOURCE"],
@@ -73,13 +73,13 @@ def main() -> int:
         "rc1_t1_sam31_mask_bounded": _packet(
             "rc1_t1_sam31_mask_bounded", "RC1_T1_SAM31_MASK_BOUNDED",
             "Freeze independent Mask evaluation references, then run at most two SAM3.1 seed/propagation and re-detection/reseed revisions on one failure canary plus two regressions per task.",
-            t1_reads, "python -m tools.run_mask_sam31_temporal_identity_real_canary_r22 --output-root archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/rc1_t1_sam31_mask_bounded/attempts/attempt_0001",
+            t1_reads, "chaoyang run run_mask_sam31_temporal_identity_real_canary_r22 --output-root archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/rc1_t1_sam31_mask_bounded/attempts/attempt_0001",
             ["evaluation_reference_precedes_candidate", "identity_switch_zero", "offscreen_empty", "reentry_identity", "no_new_segmentation_model"],
             "Development Mask evidence only; SAM3.1 remains the baseline and absence of independent pixel truth is not accuracy."),
         "rc1_t3_v77_causal_robot": _packet(
             "rc1_t3_v77_causal_robot", "RC1_T3_V77_CAUSAL_ROBOT",
             "Audit v77 dependencies and prefix-recompute current Robot states without consuming reverse-lookahead, bidirectional arm states or full-sequence placement.",
-            t3_reads, "python -m tools.run_rc1_t3_v77_causal_preflight --output-root archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/rc1_t3_v77_causal_robot/attempts/attempt_0001",
+            t3_reads, "chaoyang run run_rc1_t3_v77_causal_preflight --output-root archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/rc1_t3_v77_causal_robot/attempts/attempt_0001",
             ["prefix_only_dependency_graph", "finite", "joint_limits", "digital_collision", "independent_target_alignment", "control_ground_truth_false"],
             "Digital visual trajectory only; not real action, contact truth or physical deployment authority."),
     }

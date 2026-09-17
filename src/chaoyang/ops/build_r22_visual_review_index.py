@@ -24,7 +24,7 @@ from chaoyang.governance.common import artifact_ref, atomic_json, atomic_write, 
 
 
 RUN = ROOT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/lanes/doc_r22/attempts/attempt_0001"
-SHALLOW = ROOT / "docs/current_visuals"
+SHALLOW = ROOT / "docs/current/visuals"
 SOURCES = {
     "sensor_wrist_depth_unavailable": ROOT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_r22_lane_cd_v1/depth10/play_cards_0910_001/attempt_0001/play_cards_0910_001_Controller_MANUS_HaWoR_Stereo不可用_绝对3D全片.mp4",
     "chips023_basic_occlusion": ROOT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_r22_lane_cd_v1/occlusion_basic_object6d_gated/get_potato_chips_0902_023/attempt_0001/payload/get_potato_chips_0902_023_Clean底图_Robot基础几何遮挡_全片.mp4",

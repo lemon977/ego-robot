@@ -58,7 +58,7 @@ def main() -> int:
         "frozen_inputs": {str(i): artifact_ref(path) for i, path in enumerate(reads)},
         "prerequisites": ["governance=FRESH", "selection=frozen", "matrix.robot_current_state=READY_FOR_ROBOT_CURRENT_DRAFT"],
         "read_set": [str(path) for path in reads], "write_set": [str(write_root)],
-        "commands": [f"python -m tools.run_rc1_robot30_offline_visual_batch --sessions {args.session} ... --contract-mode fresh"],
+        "commands": [f"chaoyang run run_rc1_robot30_offline_visual_batch --sessions {args.session} ... --contract-mode fresh"],
         "quality_gates": ["terminal_per_session", "v72_fail_closed_schema", "digital_collision", "full_review", "training_eligible_false"],
         "budgets": {"runtime_attempts": 2, "wall_seconds": 14400, "gpu_wait_seconds": 1800},
         "stop_conditions": ["PASSED", "FAILED_QUALITY_C", "FAILED_RUNTIME_FINAL", "BLOCKED_PREREQ", "BLOCKED_RESOURCE"],

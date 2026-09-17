@@ -3,7 +3,7 @@
 
 Usage from the Chaoyang repository root::
 
-    python -m tools.finalize_two_task_visual_baseline_v1
+    chaoyang run finalize_two_task_visual_baseline_v1
 
 The command is idempotent for identical bytes and refuses to overwrite a
 different final receipt. It does not mutate generated CURRENT_* files.

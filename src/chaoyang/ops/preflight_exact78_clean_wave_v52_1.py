@@ -16,6 +16,7 @@ import tempfile
 PROJECT = Path(__file__).resolve().parents[3]
 LEASE = PROJECT / "_run/current/GPU_LEASE.json"
 PROPAINTER = PROJECT / "vendor/ProPainter"
+PROPAINTER_WEIGHTS = PROJECT / "assets/models/vendor/propainter"
 SAMPLE = PROJECT / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/clean_expanded_role_v3_prepare_v1"
 EXECUTION_AUTHORITY_NAME = "EXECUTION_AUTHORITY_V52_1.json"
 
@@ -103,7 +104,7 @@ def main():
     if disk_path.exists(): raise RuntimeError(f"no-clobber disk budget exists: {disk_path}")
     disk_path.parent.mkdir(parents=True,exist_ok=True);new(disk_path,disk)
     lease=load(LEASE); gs=gpu(); procs=conflicts()
-    weights={n:ref(PROPAINTER/"weights"/n) for n in ("raft-things.pth","recurrent_flow_completion.pth","ProPainter.pth")}
+    weights={n:ref(PROPAINTER_WEIGHTS/n) for n in ("raft-things.pth","recurrent_flow_completion.pth","ProPainter.pth")}
     commit=subprocess.check_output(["git","-C",str(PROPAINTER),"rev-parse","HEAD"],text=True).strip()
     vendor_ok=commit=="e870e79321c31b733e2031af5aa2fb1fe3ac7eec"
     gpu_quiet=gs["used_mib"]<=8192 and gs["utilization_percent"]<=10 and not procs
