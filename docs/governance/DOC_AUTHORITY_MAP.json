@@ -58,7 +58,7 @@
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "8065a0034fe2a30a5162ecc543473f5320c836c229a4116449b700a6324491c7",
+      "sha256": "3e186851215a6ce86e0a2b1805952205f53b9feb25c911cb63b0d5313fdb649e",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -180,9 +180,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-17T16:38:39+08:00",
-  "generation_id": "gov-011173-0e4a57a22532",
-  "governance_revision": 11173,
+  "generated_at": "2026-09-17T16:55:44+08:00",
+  "generation_id": "gov-011174-0c7c32b9e3a1",
+  "governance_revision": 11174,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }
