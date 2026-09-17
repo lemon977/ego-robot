@@ -307,9 +307,10 @@ def main() -> int:
                 raise RuntimeError("HaWoR NPZ missing")
             npz = staging / "HAWOR_RAW_MANO21.npz"
             os.replace(upstream_npz, npz)
-            upstream_review = upstream_output / "HAWOR_RAW_REVIEW.mp4"
-            if upstream_review.is_file():
-                os.replace(upstream_review, staging / "HAWOR_RAW_REVIEW.mp4")
+            # Full-session review videos are rendered only for the bounded
+            # shallow review cohort.  Keeping all 220 upstream review copies
+            # would duplicate the prepared RGB publication without adding
+            # numeric evidence.
             shutil.rmtree(upstream_output)
             metrics = quality(npz)
             status = (
