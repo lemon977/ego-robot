@@ -94,6 +94,7 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
             f"{INPUT_ATTEMPT}/RESULT.json",
             f"{INPUT_ATTEMPT}/prepared_physical_left/BATCH_RESULT.json",
             "src/chaoyang/ops/run_0915_foundationstereo_persistent_worker_v2.py",
+            "src/chaoyang/ops/foundationstereo_gpu_python.sh",
             "assets/models/checkpoints/foundationstereo/23-51-11/ASSET_PIN.json",
             "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
         ],
