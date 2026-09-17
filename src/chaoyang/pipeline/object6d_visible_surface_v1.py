@@ -27,6 +27,7 @@ def _homogeneous_map(points_xy: np.ndarray, transform: np.ndarray) -> np.ndarray
 def backproject_registered_visible_surface(
     *, mask_primary: np.ndarray, depth_m: np.ndarray, depth_valid: np.ndarray,
     depth_intrinsics: np.ndarray, h_depth_to_primary: np.ndarray,
+    maximum_points: int = 20_000,
 ) -> VisiblePoints:
     mask = np.asarray(mask_primary, bool)
     depth = np.asarray(depth_m, np.float64)
@@ -37,7 +38,17 @@ def backproject_registered_visible_surface(
         raise VisibleSurfaceError("mask/depth geometry is invalid")
     if intrinsics.shape != (3, 3) or homography.shape != (3, 3):
         raise VisibleSurfaceError("registration/intrinsics must be 3x3")
+    if maximum_points < 100:
+        raise VisibleSurfaceError("maximum_points must be at least 100")
     yy, xx = np.nonzero(valid & np.isfinite(depth) & (depth > 0))
+    if len(xx) > maximum_points:
+        # Fixed linspace sampling is deterministic and retains full-image
+        # support without making the 58,686-frame batch proportional to every
+        # valid stereo pixel.
+        selected_rows = np.linspace(
+            0, len(xx) - 1, maximum_points, dtype=np.int64,
+        )
+        yy, xx = yy[selected_rows], xx[selected_rows]
     depth_xy = np.column_stack((xx, yy)).astype(np.float64)
     primary_xy = _homogeneous_map(depth_xy, homography)
     primary_index = np.rint(primary_xy).astype(np.int64)
