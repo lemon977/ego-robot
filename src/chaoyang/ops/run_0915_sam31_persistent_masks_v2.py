@@ -216,6 +216,7 @@ def track_hands(
 def _seed_candidates(
     masks: np.ndarray, scores: np.ndarray, ids: np.ndarray, *,
     human_union: np.ndarray, minimum_area: int, maximum_fraction: float,
+    maximum_human_overlap: float,
 ) -> list[dict[str, Any]]:
     rows = []
     for index, mask in enumerate(masks):
@@ -223,11 +224,12 @@ def _seed_candidates(
         overlap = int(np.count_nonzero(mask & human_union)) / max(area, 1)
         eligible = bool(
             minimum_area <= area <= int(mask.size * maximum_fraction)
-            and overlap <= 0.35
+            and overlap <= maximum_human_overlap
         )
         rows.append({
             "raw_id": int(ids[index]), "score": float(scores[index]),
             "area_pixels": area, "human_overlap_fraction": overlap,
+            "maximum_human_overlap": maximum_human_overlap,
             "eligible": eligible, **legacy.geometry(mask),
         })
     return rows
@@ -237,7 +239,7 @@ def track_text_instances(
     model: Any, frames: Path, *, prompt: str, group: str,
     role_resolver: Any, human_union: np.ndarray, anchor: int,
     output: Path, frame_count: int, height: int, width: int,
-    maximum_instances: int,
+    maximum_instances: int, maximum_human_overlap: float,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     state = model.init_state(
         resource_path=str(frames), offload_video_to_cpu=True,
@@ -252,6 +254,7 @@ def track_text_instances(
         rows = _seed_candidates(
             masks, scores, ids, human_union=human_union,
             minimum_area=80, maximum_fraction=0.25,
+            maximum_human_overlap=maximum_human_overlap,
         )
         selected = sorted(
             (row for row in rows if row["eligible"]),
@@ -356,12 +359,12 @@ def process_session(
             role_resolver=lambda _mask: "task_object",
             human_union=human_union, anchor=anchor, output=staging,
             frame_count=frame_count, height=height, width=width,
-            maximum_instances=12,
+            maximum_instances=12, maximum_human_overlap=0.35,
         )
         instances.extend(task_instances)
-        for group, suffix, maximum in (
-            ("finger_sleeve_attachment", "finger_sleeve_attachment", 12),
-            ("cable", "cable", 4),
+        for group, suffix, maximum, maximum_human_overlap in (
+            ("finger_sleeve_attachment", "finger_sleeve_attachment", 12, 1.0),
+            ("cable", "cable", 4, 0.65),
         ):
             new, text_evidence[group] = track_text_instances(
                 model, frames, prompt=plan["auxiliary_text_prompts"][group],
@@ -372,6 +375,7 @@ def process_session(
                 human_union=human_union, anchor=anchor, output=staging,
                 frame_count=frame_count, height=height, width=width,
                 maximum_instances=maximum,
+                maximum_human_overlap=maximum_human_overlap,
             )
             instances.extend(new)
 
