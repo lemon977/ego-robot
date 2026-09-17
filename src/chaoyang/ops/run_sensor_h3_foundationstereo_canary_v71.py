@@ -23,7 +23,7 @@ from typing import Any
 
 ROOT = Path(__file__).resolve().parents[3]
 PICO = ROOT / "vendor/FoundationStereo/scripts/pico_stereo_depth.py"
-PYTHON = ROOT / "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/foundationstereo-py311-v1/bin/python"
+PYTHON = ROOT / "_run/current/environments/foundationstereo-py311-v1/bin/python"
 CHECKPOINT = ROOT / "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
 EXPECTED_CHECKPOINT_SHA = "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1"
 

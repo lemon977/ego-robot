@@ -153,7 +153,7 @@
         "status": "PASS_LOCAL_ENVIRONMENT_PROMOTED",
         "authority": "configs/systems/hawor/environment_authority.json",
         "launcher": "src/chaoyang/ops/hawor_python.sh",
-        "root": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1",
+        "root": "_run/current/environments/hawor-py310-v1",
         "activation_required": false,
         "external_fallback_forbidden": true,
         "snapshot": {"directories": 5235, "files": 55160, "symlinks": 1156, "logical_bytes": 7138519539, "manifest_sha256": "0e469e8d8cfbbde720648f0e820d73060b7c382294094ff3b8d3c34c09951899", "tree_content_sha256": "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e"},

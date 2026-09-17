@@ -507,6 +507,7 @@ def build_layout(authority: Mapping[str, Any], task_state: Mapping[str, Any]) ->
 
 def build_regression_manifest(authority: Mapping[str, Any]) -> dict[str, Any]:
     tests = (
+        ("data_cleaning", "tests/test_data_cleaning_baseline_contract.py"),
         ("governance", "tests/test_governance_fact_ledger.py"),
         ("governance", "tests/test_governance_heartbeat_clean_reconcile_v52.py"),
         ("governance", "tests/test_current_baseline_registry_v2.py"),

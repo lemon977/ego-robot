@@ -6,7 +6,7 @@
   "claim_limit": "Local HaWoR execution environment only; algorithm and downstream authorities remain separately pinned.",
   "created_at": "2026-09-02T22:36:40+00:00",
   "environment_id": "hawor-py310-v1",
-  "environment_root": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1",
+  "environment_root": "_run/current/environments/hawor-py310-v1",
   "historical_records_unchanged": {
     "environment_lock": {
       "path": "vendor/HaWoR/CHA0YANG_ENVIRONMENT_LOCK.txt",
@@ -20,7 +20,7 @@
   "launcher": [
     "src/chaoyang/ops/hawor_python.sh"
   ],
-  "python": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1/bin/python",
+  "python": "_run/current/environments/hawor-py310-v1/bin/python",
   "promotion_transaction": {
     "final_authority_sha256": "3e4ab3a3b37bd80b6639afa95b027b50dd7dc4f6fd2d261966f32631392f34b2",
     "pre_promotion_authority_sha256": "b1c1012184d2162d7c93307274eb5584648d3e39c3c5b7c8dc81c78bb48fefd2",
@@ -35,7 +35,7 @@
       "symlinks": 1156
     },
     "logical_bytes": 7138519539,
-    "manifest": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+    "manifest": "_run/current/environments/hawor-py310-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
     "manifest_bytes": 3463645,
     "manifest_sha256": "0e469e8d8cfbbde720648f0e820d73060b7c382294094ff3b8d3c34c09951899",
     "tree_content_sha256": "5aafda3194a560f4c0b7f288f137571f1add309037470301652a40e7de7a265e",

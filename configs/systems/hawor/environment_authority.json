@@ -21,9 +21,9 @@
     "direct_environment_script_entrypoints_forbidden": true,
     "fallback_to_external_conda_forbidden": true,
     "inherited_pythonpath_forbidden": true,
-    "project_relative_environment_root": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1",
-    "project_relative_python": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1/bin/python",
-    "snapshot_manifest": "archive/baseline-20260917-0aa69e9/content/regenerable/assets/environments/hawor-py310-v1/.chaoyang-hardlink-snapshot/manifest.json.gz"
+    "project_relative_environment_root": "_run/current/environments/hawor-py310-v1",
+    "project_relative_python": "_run/current/environments/hawor-py310-v1/bin/python",
+    "snapshot_manifest": "_run/current/environments/hawor-py310-v1/.chaoyang-hardlink-snapshot/manifest.json.gz"
   },
   "local_environment_lock": {
     "path": "configs/systems/hawor/local_environment_lock.json",
