@@ -4,11 +4,14 @@
   "title": "0915 fixed-denominator full-funnel session ledger",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schema_version", "dataset_id", "fixed_denominator", "sessions", "counts_generated"],
+  "required": ["schema_version", "dataset_id", "fixed_denominator", "stage_order", "sessions", "summary", "counts_generated"],
   "properties": {
     "schema_version": {"const": "full-funnel-session-ledger-v1"},
     "dataset_id": {"const": "chips_cards_hands__0915_v3"},
     "fixed_denominator": {"const": 220},
+    "stage_order": {
+      "const": ["Raw", "HaWoR", "Mask", "Depth", "Object6D", "Clean", "Contact", "RobotVisual", "RobotContactAware"]
+    },
     "sessions": {
       "type": "array",
       "minItems": 220,
@@ -22,6 +25,7 @@
           "task": {"enum": ["playing_cards", "potato_chips"]},
           "stages": {
             "type": "object",
+            "required": ["Raw", "HaWoR", "Mask", "Depth", "Object6D", "Clean", "Contact", "RobotVisual", "RobotContactAware"],
             "additionalProperties": {
               "type": "object",
               "additionalProperties": false,
@@ -38,12 +42,31 @@
                   ]
                 },
                 "reason": {"type": ["string", "null"]},
-                "artifact": {"type": ["object", "null"]}
+                "input_signature": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"},
+                "weight_identity": {"type": ["string", "null"]},
+                "calibration_identity": {"type": ["string", "null"]},
+                "artifact": {
+                  "type": ["object", "null"],
+                  "additionalProperties": false,
+                  "required": ["path", "bytes", "sha256"],
+                  "properties": {
+                    "path": {"type": "string", "minLength": 1},
+                    "bytes": {"type": "integer", "minimum": 0},
+                    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+                  }
+                }
               }
             }
           },
           "first_blocker": {"type": ["string", "null"]}
         }
+      }
+    },
+    "summary": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {"type": "integer", "minimum": 0}
       }
     },
     "counts_generated": {"const": true}
