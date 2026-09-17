@@ -1,0 +1,46 @@
+{
+  "active_task_ids": [],
+  "budget": {
+    "checkpoint_gpu_hours_limit": 48,
+    "checkpoint_gpu_hours_used": 0,
+    "engineering_hours_limit": 24,
+    "engineering_hours_used": 0,
+    "production_gpu_hours_limit": 96,
+    "production_gpu_hours_used": 0
+  },
+  "claim_limit": "RC1 bounded context only; validate the current receipt before use and never fill missing facts from chat history.",
+  "cohort": "exact78-chips78-poker78-frozen",
+  "freshness": {
+    "age_seconds": 0,
+    "reason": "no_active_tasks",
+    "status": "FRESH"
+  },
+  "generated_at": "2026-09-17T16:25:37+08:00",
+  "generation_id": "gov-011172-54f0f3a3d73e",
+  "governance_revision": 11172,
+  "next_task_id": null,
+  "pair_status": {
+    "chips": "BLOCKED_DATA_VOLUME",
+    "poker": "BLOCKED_DATA_VOLUME"
+  },
+  "release_flags": {
+    "CHECKPOINT_PAIR_CHIPS": "BLOCKED_DATA_VOLUME",
+    "CHECKPOINT_PAIR_POKER": "BLOCKED_DATA_VOLUME",
+    "DATA_MINIMUM_MET_CHIPS": false,
+    "DATA_MINIMUM_MET_POKER": false,
+    "FOUR_CHECKPOINTS_TRAINED": false,
+    "PIPELINE_OPERATIONALLY_CLOSED": false,
+    "RATE_FINALIZED": false,
+    "RC1_RELEASE_STATUS": "INCOMPLETE"
+  },
+  "release_id": "chaoyang-visual-aux-rc1-final",
+  "schema_version": "chaoyang-current-rc1-status-min-v1",
+  "sources": {
+    "contract": "/mnt/workspace/code/chaoyang/docs/governance/VISUAL_AUX_RC1_CONTRACT.json",
+    "plan": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
+    "receipt": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "release_spec": "/mnt/workspace/code/chaoyang/docs/governance/RC1_RELEASE_SPEC.json",
+    "task_dag": "/mnt/workspace/code/chaoyang/docs/governance/RC1_TASK_DAG.json"
+  },
+  "task_counts": {}
+}

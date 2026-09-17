@@ -1,0 +1,67 @@
+{
+  "$schema": "../schema/system_manifest.schema.json",
+  "algorithms": [
+    {
+      "algorithm_id": "robot.actual_fk_task_geometry.v1",
+      "implementation_files": [
+        {
+          "bytes": 11963,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/robot_contact_geometry.py",
+          "sha256": "a4b86485e59f09eb9c1d3f4724b376e32e7146f69d5d6f339208e210081bcfb1"
+        },
+        {
+          "bytes": 6882,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object_occlusion_geometry.py",
+          "sha256": "093e02272a817323dcd4ff99aeb4602ae5a6f871c15ea589e1fcda7b8a81d923"
+        },
+        {
+          "bytes": 30146,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/newtask_parametric_geometry.py",
+          "sha256": "e36b0d4b8c59626fdb9b94dbed0370484f4e667161322aa18b8bb6ced5766ef6"
+        }
+      ],
+      "invariants": [
+        "one session-constant rig transform initialized from that session",
+        "actual FK from pinned robot assets and joint limits",
+        "anatomical left/right mapping is explicit and never inferred from image x order",
+        "task object geometry and metric depth are selected by registered geometry type",
+        "designated contact and all non-designated penetration are audited separately",
+        "visual depth compositing cannot substitute for physical nonpenetration"
+      ],
+      "required_weight_ids": [],
+      "stage": "robot",
+      "status": "SHARED_COMPONENTS_WITH_OPEN_COLLISION_GATE"
+    }
+  ],
+  "claim_limit": "Historical missing references were retired to tasks/receipts/RETIRED_REFERENCES.json; no evidence is inferred.",
+  "current_evidence": [],
+  "learned_weights": [],
+  "manifest_version": "2026-09-02.1",
+  "schema_version": "chaoyang-system-manifest-v1",
+  "shared_by_default": true,
+  "status": "CLEAN_BASELINE_NO_STALE_EVIDENCE",
+  "system_id": "robot",
+  "task_specific_config_keys": [
+    "object_registry",
+    "object_geometry_types",
+    "object_measurements",
+    "contact_roles",
+    "anatomical_side_mapping",
+    "session_initialization_block",
+    "camera_intrinsics_and_poses",
+    "task_object_pose_timeline"
+  ],
+  "weight_policy": {
+    "new_weight_requires": [
+      "bytes_and_sha256",
+      "base_weight_id",
+      "training_data_manifest_sha256",
+      "training_code_sha256",
+      "session_level_split_manifest_sha256",
+      "evaluation_manifest_sha256_and_metrics",
+      "applicable_task_scope",
+      "license_id_and_status"
+    ],
+    "task_local_paths_allowed": false
+  }
+}

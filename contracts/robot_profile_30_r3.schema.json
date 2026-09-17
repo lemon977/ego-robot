@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/robot_profile_30_r3.schema.json",
+  "title": "R3 ROBOT-PROFILE-30 diagnostic throughput",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_revision", "task_id", "terminal_status", "robot_tier", "phases", "inputs", "authority", "control_ground_truth", "physical_deployment_authorized", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "robot-profile-30-v1"},
+    "artifact_revision": {"const": "R7_ROBOT_5_PROFILE_30"},
+    "task_id": {"const": "ROBOT-PROFILE-30"},
+    "terminal_status": {"enum": ["PASSED", "BLOCKED_PREREQ"]},
+    "robot_tier": {"const": "NONE"},
+    "phases": {"type": "object"},
+    "inputs": {"type": "array"},
+    "authority": {"const": false},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

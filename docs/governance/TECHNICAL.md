@@ -2,7 +2,7 @@
 
 > **历史草案，不是当前执行入口。** 当前任务与授权边界见
 > [`CURRENT_TASK.md`](CURRENT_TASK.md)；0909 `rgb30_v1` 状态见
-> [`CURRENT_STATUS_ZH.md`](../../tasks/control/runs/20260911_handle0909_rgb30_v1/CURRENT_STATUS_ZH.md)。
+> [`CURRENT_STATUS_ZH.md`](../current/README_ZH.md)。
 > 下方2026-08-28内容只用于追溯早期合同形成过程。
 
 状态：`G1_CONTRACT_VALIDATED_GOVERNANCE_HOLD / ROUTE_A_D1_FULL_002_012_RESULT_INTEGRITY_PASS_VISUAL_HOLD / ROUTE_A_D2_TASK32_P0_3_STOPPED / ROUTE_A_COMBINED_SKIPPED / ROUTE_B_POINT_SCOPE_CPU_QA_PASS_GPU_HOLD / ORACLE_CLEAN_TABLE_REPROJECTION_PENDING_ATLAS_SKIPPED / EEVEE_FULL_ASSET_GPU_THROUGHPUT_PASS_VISUAL_ONLY / NULL_CALIBRATION_N2_HOLD / ROBOT_CHAIN_MOUNT_HOLD / B3_BLIND_HOLD / MASK_FORMAL_CLEAN_TRAINING_PROMOTION_HOLD`
@@ -50,7 +50,7 @@
 | MASK auditor | source、候选、冻结 H/O/U/B benchmark | `mask_independent_qa` | 改 MASK、跨 auditor 排名、覆盖不足时 PASS |
 | QA | 全部 manifest/证据 | 归因、建议、PASS/HOLD | 覆盖任何 producer 输出 |
 
-每个正式 artifact type 在 `pipeline_contract_v1.yaml` 中只能有一个 producer 和一个 schema。并行实验只写 `_run/<run_id>/`，不能成为正式 consumer 的候选路径。
+每个正式 artifact type 在 `pipeline_contract_v1.yaml` 中只能有一个 producer 和一个 schema。并行实验只写 `archive/baseline-20260917-0aa69e9/content/history/runtime/_run/<run_id>/`，不能成为正式 consumer 的候选路径。
 
 MASK producer 和 auditor 必须分别带版本身份。`mask_evidence` 绑定 `producer_pN`、像素语义 SHA 与实现 SHA；`mask_independent_qa` 绑定冻结 `auditor_a1`、阈值/profile SHA、benchmark SHA 与实际覆盖。v3（460 帧）、v8（4 帧）、v9（15 帧）覆盖和历史 auditor 不同，历史数字只能说明各自证据，不能排序。
 
@@ -68,7 +68,7 @@ T1 `producer_p1` r3 不是正式 `mask_evidence`：它虽证明 60/60 输出始�
 
 `004_old/` 的 5 个文件经最终只读审计可稳定解码，但只有 legacy 视觉参考资格：MASK overlay 可辅助理解 ownership，CLEAN/机器人视频可列举失败类别，两张 retarget 图可回顾历史接口。它们没有正式 manifest/producer/逐层深度血缘，formal/training 输入资格为 0，禁止用作阈值 GT、donor 或 fallback。
 
-人工标注工具 `tools/houb_annotation_app.py` 不是 producer。2026-08-27 已修复 RGB 差值 `int16` 平方溢出、Gradio 半透明画笔预乘 alpha/重复混色误拒绝，并增加已审核迁移标签 SHA 锁定。错误输出移入隔离区，不进入 active labels；UI、v1/v2 validator 与 v2 集成门当前 24 项测试通过。正式标签仍必须经过独立 freezer/validator，不能因为 UI 保存成功就自动 PASS。
+人工标注工具 `src/chaoyang/ops/houb_annotation_app.py` 不是 producer。2026-08-27 已修复 RGB 差值 `int16` 平方溢出、Gradio 半透明画笔预乘 alpha/重复混色误拒绝，并增加已审核迁移标签 SHA 锁定。错误输出移入隔离区，不进入 active labels；UI、v1/v2 validator 与 v2 集成门当前 24 项测试通过。正式标签仍必须经过独立 freezer/validator，不能因为 UI 保存成功就自动 PASS。
 
 ## 2. 数据流
 
@@ -109,7 +109,7 @@ temporal_window_frames = round(window_seconds * measured_fps)
 
 Route A 与 Route B 的像素链必须分开标注 `route_of_evidence`。Route A 为 text/concept→instance recall→ego selector→MASK；Route B 为 HaWoR point prompt→SAM2.1 mask decoder→MASK，不含文本召回或 selector。A′ 的 8 个 boundary 误拒、3 个 side alias 和 2/24 跨 session 结果只能用于 Route A，不得推断 Route B。
 
-修订 QA 的逐侧结果是 Route A left=`3/24`、right=`16/24`、绝对差=`54.17pp`；005:370 是 source-slot identity exchange，不是物理左成功/右失败。证据见 `audits/INDEPENDENT_QA_SAM31_AN_ARM_APRIME_CROSS_SESSION_V2.md` 与 `_run/rejected_visual_review_v5/`。
+修订 QA 的逐侧结果是 Route A left=`3/24`、right=`16/24`、绝对差=`54.17pp`；005:370 是 source-slot identity exchange，不是物理左成功/右失败。证据见 `audits/INDEPENDENT_QA_SAM31_AN_ARM_APRIME_CROSS_SESSION_V2.md` 与 `archive/baseline-20260917-0aa69e9/content/history/runtime/_run/rejected_visual_review_v5/`。
 
 路线 B 的模型选择由原 trainability decision rule 完成：官方 SAM3 point/refinement 公开便利入口处于 `torch.inference_mode()`，最终将 logit 阈值化为 bool，调用链不能提供可微 logit，因此规则触发 SAM2.1。该结论只覆盖 point API，不是“SAM3.1不可训练”。官方 SAM3.1 concept/text 训练栈存在但属于 Route A；只有 Route A 完成 per-side identity 修复并重测后仍由召回不足主导才允许触发。监督路线的 U 像素现采用方向性损失：预测 H 不罚、预测背景罚；`weight=0` 与把 U 并入 H 均为合同违例。
 
@@ -171,11 +171,11 @@ COMPOSITOR / HARMONIZER / MANIFEST
 
 同一轮只能有一个 primary owner。跨层症状可列 secondary evidence，但不得自动修改多个 producer。
 
-所有 `REJECT/HOLD` 必须由单一 registry/indexer 集中登记，记录失败阶段/帧、RAW ref/SHA、候选与可视化 ref/SHA、QA ref/SHA、单一 owner 和人工 review 状态。v1 registry 为 `_run/rejected_visual_review_v1/MANIFEST.json`（SHA256 `9ae29338…abcf`），HTML index SHA256 `edd14102…888`，含 13 项 MASK v1–v9/A2 代表性证据。可视化是 review-only 入口而非正式数据源；人工 review 不能改像素、失败归因、晋级状态或 T2 授权。未来失败必须写入新的不可变 pack 版本，不得覆盖 v1。
+所有 `REJECT/HOLD` 必须由单一 registry/indexer 集中登记，记录失败阶段/帧、RAW ref/SHA、候选与可视化 ref/SHA、QA ref/SHA、单一 owner 和人工 review 状态。v1 registry 为 `archive/baseline-20260917-0aa69e9/content/history/runtime/_run/rejected_visual_review_v1/MANIFEST.json`（SHA256 `9ae29338…abcf`），HTML index SHA256 `edd14102…888`，含 13 项 MASK v1–v9/A2 代表性证据。可视化是 review-only 入口而非正式数据源；人工 review 不能改像素、失败归因、晋级状态或 T2 授权。未来失败必须写入新的不可变 pack 版本，不得覆盖 v1。
 
-P2 strict HOLD 使用独立 v2 registry：`_run/rejected_visual_review_v2/MANIFEST.json` SHA256 `e0556a84…c88f`、`INDEX.html` SHA256 `92ca7196…065d`，5 项覆盖代表帧与完整 15 帧 review 视频。v2 不覆盖 v1，也不使 P2/P3、B3、full460 或 CLEAN 获得 formal consumer 资格。
+P2 strict HOLD 使用独立 v2 registry：`archive/baseline-20260917-0aa69e9/content/history/runtime/_run/rejected_visual_review_v2/MANIFEST.json` SHA256 `e0556a84…c88f`、`INDEX.html` SHA256 `92ca7196…065d`，5 项覆盖代表帧与完整 15 帧 review 视频。v2 不覆盖 v1，也不使 P2/P3、B3、full460 或 CLEAN 获得 formal consumer 资格。
 
-P3 box-only strict HOLD 使用独立 v3 registry：`_run/rejected_visual_review_v3/MANIFEST.json` SHA256 `352af39f…f29a`、`INDEX.html` SHA256 `423a3758…630`，4 项覆盖 228/235/242 和完整 development-15 视频。v3 不覆盖 v1/v2，也不改变 P3 的 0/15 HOLD 或任何 formal consumer 资格。
+P3 box-only strict HOLD 使用独立 v3 registry：`archive/baseline-20260917-0aa69e9/content/history/runtime/_run/rejected_visual_review_v3/MANIFEST.json` SHA256 `352af39f…f29a`、`INDEX.html` SHA256 `423a3758…630`，4 项覆盖 228/235/242 和完整 development-15 视频。v3 不覆盖 v1/v2，也不改变 P3 的 0/15 HOLD 或任何 formal consumer 资格。
 
 ## 9. 公平训练/评测
 

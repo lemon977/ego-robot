@@ -1,0 +1,946 @@
+{
+  "catalog_only": true,
+  "claim_limit": "Receipt-bound packet catalog. Presence does not authorize execution; only execution_allowed=true plus current ledger next_task may dispatch.",
+  "classification_counts": {
+    "CATALOG_REFERENCE": 10,
+    "HISTORICAL_SUPERSEDED_READ_SET": 20,
+    "TERMINAL_LEDGER_EVIDENCE": 46
+  },
+  "execution_revision": "RC1",
+  "execution_semantics": "Historical catalog only; no row authorizes execution.",
+  "generated_at": "2026-09-17T10:17:24+08:00",
+  "generation_id": "gov-011168-1b947b70a4bc",
+  "governance_revision": 11168,
+  "packet_revision": "RC1_FINAL_0007_GOVERNANCE_CLASSIFIED",
+  "plan_revision": "chaoyang-rc1-final",
+  "revision_semantics": {
+    "plan_revision_is_frozen_identifier": true,
+    "source_index_created_governance_revision": 11159,
+    "this_index_governance_revision": "set atomically by publish_bundle"
+  },
+  "schema_version": "chaoyang-historical-task-catalog-v1",
+  "source_index_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260917_governance_consistency_repair_v1/attempts/attempt_0001/TASK_PACKET_INDEX.json",
+  "status": "PASS",
+  "supersedes_index": {
+    "bytes": 31667,
+    "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/scheduler_t5/attempts/attempt_0001/TASK_PACKET_INDEX.json",
+    "sha256": "3115a97650b40774e781da92f8c42afaf95c9352592759d1b7e4d2b29252b987"
+  },
+  "task_packets": [
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/g0_core_governance_v71/TASK_PACKET.json",
+      "packet_sha256": "a00a2cafe56ca832acd0bfbe74a3dcd566dcae4dd338c88e5b22906f156bb7b2",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "g0_core_governance_v71"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/g0_provenance_debt_v71/TASK_PACKET.json",
+      "packet_sha256": "eca18ec24fa8ae75ac115ee02b2186e0c2f480cb5973afb56c344357aa62ab5a",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "g0_provenance_debt_v71"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/exact78_clean_r70_v71/TASK_PACKET.json",
+      "packet_sha256": "219df8b57272a29d6436d9c3cace653cb5b57e88aea86e4ad4ad34eee90fb8db",
+      "superseded_read_set_paths": [],
+      "task_id": "exact78_clean_r70_v71"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/exact78_conversion_cause_ledger_v2/TASK_PACKET.json",
+      "packet_sha256": "080b00c9a2a7728603683874cdeb0ef3a741a204baa608411c467d01dea02169",
+      "superseded_read_set_paths": [],
+      "task_id": "exact78_conversion_cause_ledger_v2"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/successor_hawor_bounded_v71/TASK_PACKET.json",
+      "packet_sha256": "e7ea20717cf746da70a1251da9525f7cffa9eb6229c844199b70e783d628f4f1",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "successor_hawor_bounded_v71"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/successor_role_mask_v71/TASK_PACKET.json",
+      "packet_sha256": "94feebd4dc0500649af7aa650536495ac8d8358446a07ce7b8a5d67dcb81e2d7",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "successor_role_mask_v71"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/successor_object_identity_v71/TASK_PACKET.json",
+      "packet_sha256": "da104005a4a4b21aa869587ed912c611fc584ad23a8698b0d28a3fb3a2afe7e8",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "successor_object_identity_v71"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/object_pose_hypothesis_v2/TASK_PACKET.json",
+      "packet_sha256": "e2fce7c0477e2394747baf498d1e857302a4cf421cab32a9e41a61f2e77be73d",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "object_pose_hypothesis_v2"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/contact_evidence_dag_v1/TASK_PACKET.json",
+      "packet_sha256": "f2a634683c562eb89d86e67ecbc4c42b3de736d247cab99795a62a6b98120880",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "contact_evidence_dag_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/occlusion_silver_v1/TASK_PACKET.json",
+      "packet_sha256": "d6f70f9d1951fc495c7e946f91e1a28a3f79a8cf55ee401389b5490047a66848",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "occlusion_silver_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/occlusion_goldset_v1/TASK_PACKET.json",
+      "packet_sha256": "2606fd1309020aeb3b1be3b8999d36a62947630d372bcc5f2c56c3111e769001",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "occlusion_goldset_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/robot_geometry_v1/TASK_PACKET.json",
+      "packet_sha256": "edb4289311eb1344e9eeec657f08e4d108025cab3a345b7047ab8ab334bfd0e9",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "robot_geometry_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/metric_contact_robot_v1/TASK_PACKET.json",
+      "packet_sha256": "a2308c8f0b127d6e8726a2e4a651aa5fd11c06bc3653e79db6c0af88d1979c88",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "metric_contact_robot_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/robotized_compositor_causal_v1/TASK_PACKET.json",
+      "packet_sha256": "59de5d5a49e4b2951a90137bfd4b81e1a52f88711950ec75af0da3d1609f776c",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "robotized_compositor_causal_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_task_packets_R2/task_packets/visual_aux_chips_pair_v1/TASK_PACKET.json",
+      "packet_sha256": "584ec2b3483db663c1be41e55a193b6a9984cb42fd7d0ba477225d340254ff90",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "visual_aux_chips_pair_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_task_packets_R2/task_packets/visual_aux_poker_pair_v1/TASK_PACKET.json",
+      "packet_sha256": "1a03735e40e7d640c4f2f079ca4e0a1d29ed1e04d1b52da7178db3954c55e31a",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "visual_aux_poker_pair_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/sensor_h0_admission_v1/TASK_PACKET.json",
+      "packet_sha256": "a9cbf20cfb993275937953b255d92d9a1cd8c26ed8a6f6c4f25372d7d29f2c76",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "sensor_h0_admission_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/sensor_h1_hand_v1/TASK_PACKET.json",
+      "packet_sha256": "75b9404de53edfc5e6a5f865e5a008fa3dc965099cc2171e8796f70910d6f9e0",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "sensor_h1_hand_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/sensor_h2_tactile_v1/TASK_PACKET.json",
+      "packet_sha256": "448a01468a1bced368cb9e79b05f9bd9cad031f372fbfd230e076a2cdd1b5d78",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "sensor_h2_tactile_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/sensor_h3_stereo_v1/TASK_PACKET.json",
+      "packet_sha256": "f27d2ce5309af6457e82e1146d3e4a7c7bf317ae99cafbdc8c9476b9c62e0873",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "sensor_h3_stereo_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/sensor_h4_mask_v1/TASK_PACKET.json",
+      "packet_sha256": "8452e0fc61422370771c3f4aadce4db934a16a5f1857b85b328d0bfb6eec3fdf",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "sensor_h4_mask_v1"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "HISTORICAL_SUPERSEDED_READ_SET",
+      "execution_reason": "Packet read_set includes a document registered as SUPERSEDED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/task_packets/cleanup_current_only_v71/TASK_PACKET.json",
+      "packet_sha256": "66f0104f18d0ae5247d2e8b21d46aec584437dfb03c4338f07b42ba9f4f6773a",
+      "superseded_read_set_paths": [
+        "/mnt/workspace/code/chaoyang/docs/governance/EXACT78_V7_1_EXECUTION_PLAN_ZH.md"
+      ],
+      "task_id": "cleanup_current_only_v71"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: FAILED_RUNTIME_FINAL.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v75/attempts/attempt_0016_execution/TASK_PACKET.json",
+      "packet_sha256": "de5c020429adb27ae4141e9130efb2084f40f1e32f1f69db3be0b26b7b48e12c",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_geometry_expansion_v75"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1338,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_00/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "f36c2eaaefa07f0080aa306aa89af0c361e856fe5818b94de1778660b3100a4d"
+      },
+      "development_result": {
+        "bytes": 1002,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_00/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "e90fbfed70490b5a343a190f0dd54276c5d9705c6fbbc65b2dafaceb0dc7f302"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/depth_00/TASK_PACKET.json",
+      "packet_sha256": "8340ac9fa1dafbef97d550a7409c907840bedf17b858c23b43afc848da143336",
+      "refines_legacy_task_ids": [],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "DEPTH-00"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1338,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_10/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "d4da0a8382881314b791963e6179e58c39e74d042208213622139a0e2b2279a6"
+      },
+      "development_result": {
+        "bytes": 1002,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_10/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "1e93f450dc8c487d038deda2a378811127cebf7553e5a0216cf62e34b8238963"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/depth_10/TASK_PACKET.json",
+      "packet_sha256": "70e540a4b0f1bad0beddec6b4ea48539d07a6ebd35a2c96a694871a353b53658",
+      "refines_legacy_task_ids": [
+        "sensor_h3_stereo_v1"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "DEPTH-10"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1334,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_20/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "08eb7664ab29f329959743d015607b5b5ede8fdbe5fe701aba94b01962dea52a"
+      },
+      "development_result": {
+        "bytes": 1054,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_20/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "6722853836e324ef416bb42595b265f23d770a0f46101e19aaa62a66a0292049"
+      },
+      "development_terminal_status": "BLOCKED_PREREQ",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/depth_20/TASK_PACKET.json",
+      "packet_sha256": "44f9b869ac59d2700cdfe0309f7ea73aa0478a8b9c8a7d1dfb1468605f0394cf",
+      "refines_legacy_task_ids": [
+        "sensor_h3_stereo_v1"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "DEPTH-20"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1342,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/mask_role/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "8fa54bf7f97a426511697fa2597a6b15134260ee91caeeb2cc5198ddb2caf938"
+      },
+      "development_result": {
+        "bytes": 1004,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/mask_role/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "08a64c3956c7c48e06b449a333d3c1d21163bd867d7012ac7fc218c1d1135e67"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/mask_role/TASK_PACKET.json",
+      "packet_sha256": "1efec2835f3cb5098650477c5f2a289dc7956a0336bd596ffdf9ca9180346895",
+      "refines_legacy_task_ids": [
+        "successor_role_mask_v71"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "MASK-ROLE"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1350,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/mask_object/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "9209a2ef4a006b893c3e857039cb3a22929981e551cdc7cf933e064e7283854f"
+      },
+      "development_result": {
+        "bytes": 1008,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/mask_object/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "52e5b18adc007f309698d7e9ffae2104a03b46d273c17b9e54fa2da83e31ce3b"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/mask_object/TASK_PACKET.json",
+      "packet_sha256": "e19ff1dc5e7b7ff6531b7e121ac5cd631e87fe79bcebc5b3d5cc60cc36ac7eb3",
+      "refines_legacy_task_ids": [
+        "successor_object_identity_v71"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "MASK-OBJECT"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1338,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/atlas_10/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "f371da92e1562740664598a21999b5795a7b5ea36213b67d98bd9272078e32a7"
+      },
+      "development_result": {
+        "bytes": 1002,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/atlas_10/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "d9cf91ee275aac84d793dee0d101ae583361efb54e54afd260cd5d34c76af230"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/atlas_10/TASK_PACKET.json",
+      "packet_sha256": "723a2adb0431feb3da79df1dcafd87ca6c17aa41ba33562d518d1445b0bc4cdf",
+      "refines_legacy_task_ids": [
+        "exact78_clean_r70_v71"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "ATLAS-10"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1342,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/donor_10k/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "83f54bbda45d71e4574fb4f354c49f4355b36fd901b0232586ea3c848bbd45a3"
+      },
+      "development_result": {
+        "bytes": 1004,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/donor_10k/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "ab635f379d1c3298255aee6d60524e4bdd5458c98f843bac898f50c7b5a55766"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/donor_10k/TASK_PACKET.json",
+      "packet_sha256": "b11f4557fe5d6fad68fcd5ebe20287cc340a5d29cbbca3d7b450fee0db85c7ae",
+      "refines_legacy_task_ids": [
+        "exact78_clean_r70_v71"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "DONOR-10K"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1370,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/clean_domains_r3/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "b94860717250c81aca91f008e72dcbe6aab116858524b2fac02c73bbc3c2a39b"
+      },
+      "development_result": {
+        "bytes": 1018,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/clean_domains_r3/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "1facf800b6740b43c31ec5b1f4ba730b2efdb3af46d241e098d6919983b7f513"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/clean_domains_r3/TASK_PACKET.json",
+      "packet_sha256": "2f4755982226eab4f3f32187fae90e50445f0abefe4ad0f8a7a9bca8a03c8610",
+      "refines_legacy_task_ids": [
+        "exact78_clean_r70_v71"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "CLEAN-DOMAINS-R3"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1346,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/contact_10/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "1fd1d470b981e392d5c7c626043245f99b6c22cded5d66e19dc4e3b9cf9fd106"
+      },
+      "development_result": {
+        "bytes": 1006,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/contact_10/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "8467263544623ee8e68482f10655d0c28595fc7f283d24b4a916c3a8340ca7b2"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/contact_10/TASK_PACKET.json",
+      "packet_sha256": "dd41ff002e504f160100d12d87173bf389ef218acfb0039fd8a33744801aea75",
+      "refines_legacy_task_ids": [
+        "contact_evidence_dag_v1"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "CONTACT-10"
+    },
+    {
+      "authority_promoted": false,
+      "development_receipt": {
+        "bytes": 1382,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/occlusion_silver_r3/attempts/attempt_0003_contract_hardening/RUN_RECEIPT.json",
+        "sha256": "e6349d9d1a12cf055b2e49ba33729c16d77f171974c44ef889000aa33f5c8d20"
+      },
+      "development_result": {
+        "bytes": 1024,
+        "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/occlusion_silver_r3/attempts/attempt_0003_contract_hardening/RESULT.json",
+        "sha256": "f434d8fa1fe3b57e8bbdd07c1c74b2b14298b521dfba9985d18d57e24e32f717"
+      },
+      "development_terminal_status": "PASSED_DEVELOPMENT",
+      "execution_allowed": false,
+      "execution_class": "CATALOG_REFERENCE",
+      "execution_reason": "Packet is retained for lookup but has no current ledger dispatch state.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/task_packets/occlusion_silver_r3/TASK_PACKET.json",
+      "packet_sha256": "e269e3b0a97d799a4c8ef0ac5bb633f05b0a928d2a2844b6e02cf72b152081fe",
+      "refines_legacy_task_ids": [
+        "occlusion_silver_v1"
+      ],
+      "routing_revision": "R7_3",
+      "routing_status": "CURRENT_R3_CONTRACT",
+      "superseded_read_set_paths": [],
+      "task_id": "OCCLUSION-SILVER-R3"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: FAILED_RUNTIME_FINAL.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v76/attempts/attempt_0005_execution/TASK_PACKET.json",
+      "packet_sha256": "a0b400cea296eaf562002cc755ef85ffbe672002996eb922a161b141f4dee3e3",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_geometry_expansion_v76"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v77_adopt12_r22/TASK_PACKET.json",
+      "packet_sha256": "c4c5f8c0176409fdeb09f5d62dac7b3603358f11f7f114ecc2fb4a6da0e4d31e",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v77_adopt12_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v77_batch_001_r22/TASK_PACKET.json",
+      "packet_sha256": "479086696f4acfbe1ee65a5f984431ace8145707fe92e8ce0afa699710aa1ab3",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v77_batch_001_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v77_batch_002_r22/TASK_PACKET.json",
+      "packet_sha256": "8cc890c941b990f36780e6f945e08eb428cede0e93da802fcb753fdcc523f0dc",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v77_batch_002_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v77_batch_003_r22/TASK_PACKET.json",
+      "packet_sha256": "7017924336106aa1a2ffaee136bf2f3e85b55845f8296e3512768866bd10c0ae",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v77_batch_003_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v77_batch_004_r22/TASK_PACKET.json",
+      "packet_sha256": "1c293369b043218709d38b15cbf07213937ad898c197784eac531bfe707a9049",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v77_batch_004_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v77_batch_005_r22/TASK_PACKET.json",
+      "packet_sha256": "760cf7eff7094a9d1f5283b3aa048756f9b32c92dc991e57d7a82c943b859045",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v77_batch_005_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v77_terminal_index_r22/TASK_PACKET.json",
+      "packet_sha256": "652964f2a60442708e4e23c4f0a9bf678e65be0728ec701887488e3e407c05b1",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v77_terminal_index_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_yield_20_r22/TASK_PACKET.json",
+      "packet_sha256": "64e796850bb3e21d2980f0356b17a5b8e072df73aac4f7828b30d82ca5665e6d",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_yield_20_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: BLOCKED_PREREQ.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/robot_v78_target_reach_canary_r22/TASK_PACKET.json",
+      "packet_sha256": "78e597637712a74c1bed1566559161444dc9a847605b93d5812879a1328810a6",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v78_target_reach_canary_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: FAILED_QUALITY_C.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/mask_independent_canary_r22/TASK_PACKET.json",
+      "packet_sha256": "b5f1018e5b3ca931ed491aa3e092b60867f2add4395ba06bc78663fc2549c47b",
+      "superseded_read_set_paths": [],
+      "task_id": "mask_independent_canary_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: BLOCKED_PREREQ.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/clean_prereq_r22/TASK_PACKET.json",
+      "packet_sha256": "20d2487a944951a252c4da41ddd9a541f38a3b1a8c820897c5c192fa5f6cef63",
+      "superseded_read_set_paths": [],
+      "task_id": "clean_prereq_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: BLOCKED_PREREQ.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/depth_rectification_r22/TASK_PACKET.json",
+      "packet_sha256": "3becd3359f05fe9fc34d910a4002747cf13f449691feedec4c09779bb90ac178",
+      "superseded_read_set_paths": [],
+      "task_id": "depth_rectification_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/contact10_real_canary_r22/TASK_PACKET.json",
+      "packet_sha256": "662d8237d31d213dfa423b7dacfedae50a312839c90e704d63c72cfef9b6c070",
+      "superseded_read_set_paths": [],
+      "task_id": "contact10_real_canary_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/occlusion_base_r22/TASK_PACKET.json",
+      "packet_sha256": "b3ee14722b70600918e3e525f3db794f72d40a322962ffc8df15461a90af1828",
+      "superseded_read_set_paths": [],
+      "task_id": "occlusion_base_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/doc_r22/TASK_PACKET.json",
+      "packet_sha256": "46094c99ce593e499448c04e339edf0f18221341fec67a47108ba18425ddcff4",
+      "superseded_read_set_paths": [],
+      "task_id": "doc_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/task_packets/cleanup_current_only_r72_dryrun/TASK_PACKET.json",
+      "packet_sha256": "f162531c3d04f0ff09a1bdcaaa3d28e5755ce97b3a06ac388ed475c46f1ea9bc",
+      "superseded_read_set_paths": [],
+      "task_id": "cleanup_current_only_r72_dryrun"
+    },
+    {
+      "authority_promoted": false,
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: BLOCKED_REFERENCE_PROOF.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_r22_mask_predictor_internal_state_instrumentation_v1/task_packet/TASK_PACKET.json",
+      "packet_sha256": "5359853a028d07d27fc52f0f82c70669db8d21654d58c2440911a173e7d8e372",
+      "routing_revision": "R2.2_DIAGNOSTIC",
+      "routing_status": "CURRENT_BOUNDED_DIAGNOSTIC",
+      "superseded_read_set_paths": [],
+      "task_id": "mask_sam31_predictor_internal_state_instrumentation_r22"
+    },
+    {
+      "authority_promoted": false,
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_r22_robot_v78_prerequisite_closure_v1/task_packet_v2/TASK_PACKET.json",
+      "packet_sha256": "68a99ac5ae65f26a210fa1dc9834dcd2fa117c87c011e0232893058df045846d",
+      "routing_revision": "R2.2_DIAGNOSTIC",
+      "routing_status": "CURRENT_BOUNDED_DIAGNOSTIC",
+      "superseded_read_set_paths": [],
+      "supersedes_packet": {
+        "authority_promoted": false,
+        "packet_path": "tasks/control/runs/20260916_r22_robot_v78_prerequisite_closure_v1/task_packet/TASK_PACKET.json",
+        "packet_sha256": "4945875e19e03ec7899b2f60c5fea49d1bfa58e12d8273a059165727a1379e4c",
+        "routing_revision": "R2.2_DIAGNOSTIC",
+        "routing_status": "CURRENT_BOUNDED_DIAGNOSTIC",
+        "task_id": "robot_v78_prerequisite_closure_r22"
+      },
+      "task_id": "robot_v78_prerequisite_closure_r22"
+    },
+    {
+      "authority_promoted": false,
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_r22_contact_readiness_matrix_v1/task_packet/TASK_PACKET.json",
+      "packet_sha256": "20f491bbd404324de58dee678fda6f606b45367e9eac728778b750dcee89f4a0",
+      "routing_revision": "R2.2_DIAGNOSTIC",
+      "routing_status": "CURRENT_BOUNDED_DIAGNOSTIC",
+      "superseded_read_set_paths": [],
+      "task_id": "contact_readiness_matrix_r22"
+    },
+    {
+      "authority_promoted": false,
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_r22_robot_v78_causal_metric_extractor_v1/task_packet/TASK_PACKET.json",
+      "packet_sha256": "60aafc5f00ee33d2d269ce34bb5435dac2999eea80542e126d93d28253fc8b98",
+      "routing_revision": "R2.2_DIAGNOSTIC",
+      "routing_status": "CURRENT_BOUNDED_DIAGNOSTIC",
+      "superseded_read_set_paths": [],
+      "task_id": "robot_v78_causal_metric_extractor_r22"
+    },
+    {
+      "authority_promoted": false,
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_r22_contact10_poker031_v1/task_packet/TASK_PACKET.json",
+      "packet_sha256": "addf50540700fa9484abeb2792a73711899bce5c5e334771db92dafd6b4c6709",
+      "routing_revision": "R2.2_DIAGNOSTIC",
+      "routing_status": "CURRENT_BOUNDED_DIAGNOSTIC",
+      "superseded_read_set_paths": [],
+      "task_id": "contact10_poker031_real_canary_r22"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_t0_freeze_capacity_split/TASK_PACKET.json",
+      "packet_sha256": "23f7b6a1c67aa0a137d30efec8cd058511f352da253e73039e43b8608b9583b7",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_t0_freeze_capacity_split"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: FAILED_QUALITY_C.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_t1_sam31_mask_bounded/TASK_PACKET.json",
+      "packet_sha256": "2250a3c18f6f698084e3145fb30152b3f7dd054532bf315f9bbd72a0aaafda0f",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_t1_sam31_mask_bounded"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_t3_v77_causal_robot/TASK_PACKET.json",
+      "packet_sha256": "57e624b9b7280a4d53f34046a49fb8490505429f01355227bbf57532f2d54298",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_t3_v77_causal_robot"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: BLOCKED_PREREQ.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_t2_causal_clean/TASK_PACKET.json",
+      "packet_sha256": "244d09059d39443999fd6bfd4b6e33a5e9c4ac76eca551c820ae6d7a9efa0049",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_t2_causal_clean"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_prefix_schedule_pilot/TASK_PACKET.json",
+      "packet_sha256": "8a03615c504c13df4e365826cc65daa414f9acbeae4d9efeeae7e182298f5858",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_prefix_schedule_pilot"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: FAILED_RUNTIME_FINAL.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_batch_001/TASK_PACKET.json",
+      "packet_sha256": "549f890ea30c23e5e1ae5d51c66f94002b8a4fb465baca343615eccb11499907",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_batch_001"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_001/TASK_PACKET.json",
+      "packet_sha256": "1c4559fb0a66250872046125c873ec124591f59bf21a84efd67ea1f7afb65126",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_001"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot_gate_schema_v72_poker189/TASK_PACKET.json",
+      "packet_sha256": "8c82087399d4ee3b6c46a5b8d63dab96ec3dacc158dd40585db5d44585909794",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot_gate_schema_v72_poker189"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_002/TASK_PACKET.json",
+      "packet_sha256": "79dc208c465a317c870a9a4ae83c52f9141025ce4183abe13a38fb41df4a6f4d",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_002"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_003/TASK_PACKET.json",
+      "packet_sha256": "af844e6a46743426ae7bce54d011959f43221be1fdc1b40cba2a05cfbd5b0484",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_003"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_004/TASK_PACKET.json",
+      "packet_sha256": "508f1ffde36fec09129079ce3dff6ed505b0e170265c5274bdfbbccc3cff15d5",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_004"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_005/TASK_PACKET.json",
+      "packet_sha256": "425ddcbf0152499fd3a53b964b6aa73901016adeaa2b76c328523ba587c27cfd",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_005"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_006/TASK_PACKET.json",
+      "packet_sha256": "39909fa42a5e279e27cfb42bc768b3532807f038f3d06aa970542687a95fad78",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_006"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_007/TASK_PACKET.json",
+      "packet_sha256": "ad6e66216e95bcaf028845073c7fdde124ae6f39dde3f7a359dd49f2b9119d4c",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_007"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_008/TASK_PACKET.json",
+      "packet_sha256": "1d212a160c04550b9fb9b934fe5b5ed288a50cfb8f3d39e3f92ec6cce639180f",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_008"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_009/TASK_PACKET.json",
+      "packet_sha256": "f0db46cfd3f066285e5265162219ff2fc9b2319af76649db89b5156f0bf997be",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_009"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_010/TASK_PACKET.json",
+      "packet_sha256": "ce029a9361150b39b8504619218b83b626ec30639fa57798e1f5a4ec8fb48aa9",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_010"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_011/TASK_PACKET.json",
+      "packet_sha256": "2c125677cc98ce95ddf0064569dc50920d263bc9112618395a8e0d35b63ff1c5",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_011"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_robot30_offline_visual_fresh_batch_012/TASK_PACKET.json",
+      "packet_sha256": "3ea66ebc432d4ce8a5e820467a5ea8b52413148153a41b14a85ae7072614d03f",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_robot30_offline_visual_fresh_batch_012"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: BLOCKED_PREREQ.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_t4_bundle_smoke/TASK_PACKET.json",
+      "packet_sha256": "d322bf517c2a4777cbc44484e9d78389f0908b6f7573d327b0e694621eae9c41",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_t4_bundle_smoke"
+    },
+    {
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "execution_reason": "Current ledger status is terminal/non-routable: PASSED.",
+      "packet_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_rc1_final_v1/task_packets/rc1_t5_batch_conversion/TASK_PACKET.json",
+      "packet_sha256": "378f6f994f6e1a28735ad7c484f7e6a7f3c1a4bbc0f29ccb5c02b45646074e9a",
+      "superseded_read_set_paths": [],
+      "task_id": "rc1_t5_batch_conversion"
+    }
+  ]
+}

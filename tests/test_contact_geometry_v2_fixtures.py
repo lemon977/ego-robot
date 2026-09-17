@@ -2,8 +2,8 @@ from __future__ import annotations
 
 import numpy as np
 
-from pipeline.contact_geometry_v2 import SurfaceSide, card_front_signed_clearance, measure_contact, oriented_box_sdf
-from pipeline.robot_contact_geometry import finite_y_cylinder_sdf
+from chaoyang.pipeline.contact_geometry_v2 import SurfaceSide, card_front_signed_clearance, measure_contact, oriented_box_sdf
+from chaoyang.pipeline.robot_contact_geometry import finite_y_cylinder_sdf
 
 
 CARD_DIMS = np.asarray([0.088, 0.063, 0.00030])

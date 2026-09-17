@@ -1,0 +1,188 @@
+{
+  "claim_limit": "Only CURRENT entries may guide current work; generated files remain subordinate to the current receipt.",
+  "documents": [
+    {
+      "authorized_scope": "PROJECT_NAVIGATION_PROTOCOL",
+      "bytes": 3594,
+      "claim_limit": "Navigation only; current facts remain receipt-bound and current algorithms come from the algorithm contract.",
+      "document_id": "repository_readme",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/README.md",
+      "sha256": "063b8581e25a23ad61ff9a18849d4d0117e9edbb8d0c94e7e45d9dc967742edc",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "AI_EXECUTION_PROTOCOL",
+      "bytes": 2905,
+      "claim_limit": "Execution/reading rules only; not measurement evidence or stage authority.",
+      "document_id": "agent_execution_protocol",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/AGENTS.md",
+      "sha256": "b201d7fbc67dc9ff7fef24939ae450408d5f948e46d0e6e479e506b598dc75e3",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "SENSOR_H4_DEVELOPMENT_POLICY_DECISION",
+      "bytes": 736,
+      "claim_limit": "Rejects only the current automatic glove/Controller Mask-to-Clean route; formal H4 remains BLOCKED_RESOURCE/NOT_EVALUATED/POLICY_DEFERRED and H1/H2/H3 stay independent.",
+      "document_id": "sensor_h4_bounded_policy_decision",
+      "evidence_receipts": [
+        {
+          "bytes": 1009,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_chaoyang_v71_r3/sensor_h4_bounded_decision/attempts/attempt_0001/RUN_RECEIPT.json",
+          "sha256": "81c786936afa2841be93b8f5a5aefa2624a5d44141928f784817338c8bedc674"
+        }
+      ],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/reference/SENSOR_H4_BOUNDED_POLICY_DECISION.md",
+      "sha256": "e1f4cec972e690e224b87f7d6eae982f7f75ebe082b141560a7988c89d1bbe38",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_EXECUTION_DAG_SEMANTICS",
+      "bytes": 1363,
+      "claim_limit": "Dependency interpretation and scheduling rules only; not stage completion evidence or authority.",
+      "document_id": "r3_execution_dag_semantics",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/EXECUTION_DAG_SEMANTICS_R3_ZH.md",
+      "sha256": "73a3a671ec38270a5847d56cf6636496e0768e0bc602549af90fe322b7c11275",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "PROJECT_REALTIME_STATUS",
+      "bytes": 12733,
+      "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
+      "document_id": "current_project_status",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
+      "sha256": "7b30bf0eab63793b8063bbcff78435648930f43764ae4d09895705e742128d9c",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_STAGE_BASELINES",
+      "bytes": 9514,
+      "claim_limit": "Generated algorithm summary; live counts come from the task ledger.",
+      "document_id": "current_stage_baselines",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STAGE_BASELINES_ZH.md",
+      "sha256": "84095af6b46d32147d371879ca7dd0c0fd13b97126cad2b8524620befcee9646",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_ROBOT_QUALITY_GATE_POLICY",
+      "bytes": 3879,
+      "claim_limit": "Defines Robot hard, downstream, soft and external gate boundaries; it does not prove a run passed.",
+      "document_id": "robot_quality_gate_policy",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/ROBOT_QUALITY_GATE_POLICY_V71_ZH.md",
+      "sha256": "b18fe2705a7f40678d2c61196df820a36bb7f42e06c4591e22330a6b085fba15",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_END_TO_END_REPRODUCTION_GUIDE",
+      "bytes": 11558,
+      "claim_limit": "Stable reproduction interfaces and ordering only; current versions and facts remain receipt-bound.",
+      "document_id": "raw_to_humanego_reproduction",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/reference/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md",
+      "sha256": "56d0da5cd2bc9155023ba3df8ba6bd19f0707d65bf93da529a7358a2771940c4",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_SHALLOW_VISUAL_NAVIGATION",
+      "bytes": 18360,
+      "claim_limit": "Navigation to bounded visual-review evidence only; videos do not confer geometry, contact, training or physical authority.",
+      "document_id": "current_shallow_visual_navigation",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/README_ZH.md",
+      "sha256": "1aaffccc1a0c7eb26b38cd041ce998210e36cc253f54c2f8b6c0992427936739",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_CLEAN_CONTACT_WRIST_BOUNDARY_AUDIT",
+      "bytes": 5548,
+      "claim_limit": "Bounded visual and algorithm-boundary audit; synthetic pixels and visual overlap are not physical contact truth.",
+      "document_id": "clean_contact_wrist_baseline_audit",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/research/current/reports/visualization/20260915/CLEAN_CONTACT_AND_WRIST_BASELINE_AUDIT_ZH.md",
+      "sha256": "4673665cd00d60961a50e43cc1da83ece1463e6149cfb4aacbed7487c88d6dbe",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_GOVERNANCE_CONSISTENCY_HANDOFF",
+      "bytes": 3563,
+      "claim_limit": "Explains the validator and routing repair; current facts remain bound to the receipt and machine indexes.",
+      "document_id": "governance_consistency_repair_handoff",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/GOVERNANCE_CONSISTENCY_REPAIR_20260917_ZH.md",
+      "sha256": "e3026d5d0fb21a3dff769c4a5d33a8417f49f1e89edfd0dbee899761e6070462",
+      "status": "CURRENT",
+      "supersedes": []
+    },
+    {
+      "authorized_scope": "CURRENT_ARCHITECTURE_CONTRACT",
+      "bytes": 6639,
+      "claim_limit": "Architecture and invariant contract only; RC1-FINAL exclusively routes current delivery work.",
+      "document_id": "v71_r3_execution_plan",
+      "evidence_receipts": [
+        {
+          "bytes": 1588,
+          "path": "/mnt/workspace/code/chaoyang/docs/governance/PLAN_MIGRATION_RECEIPT.json",
+          "sha256": "c5a8e24c1d9a53d476c3071afbc909fadfeee6ace910dcff844043c041cad9f4"
+        }
+      ],
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_V7_1_R3_EXECUTION_PLAN_ZH.md",
+      "sha256": "c30b643a5d910fcbba9cb8f77dc505e20cfcdceb9331703d92a9eba74916ad03",
+      "status": "CURRENT",
+      "supersedes": [
+        "v71_execution_plan",
+        "optimization_execution_v1"
+      ]
+    },
+    {
+      "authorized_scope": "CURRENT_DELIVERY_PLAN",
+      "bytes": 5744,
+      "claim_limit": "Finite delivery contract; task receipts and the RC1 eligibility index prove execution and training readiness.",
+      "document_id": "rc1_final_delivery_plan",
+      "evidence_receipts": [
+        {
+          "bytes": 1588,
+          "path": "/mnt/workspace/code/chaoyang/docs/governance/PLAN_MIGRATION_RECEIPT.json",
+          "sha256": "c5a8e24c1d9a53d476c3071afbc909fadfeee6ace910dcff844043c041cad9f4"
+        }
+      ],
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
+      "sha256": "76752afc63b6af01d5c65493ad95d7381b250e9f717dcbc480d7f259198bee07",
+      "status": "CURRENT",
+      "supersedes": [
+        "rc1_delivery_proposal",
+        "r22_bounded_integration_plan"
+      ]
+    },
+    {
+      "authorized_scope": "CURRENT_DOCS_NAVIGATION",
+      "bytes": 1334,
+      "claim_limit": "Unique current documentation navigation; factual claims remain subordinate to receipt-bound governance artifacts.",
+      "document_id": "docs_navigation",
+      "evidence_receipts": [],
+      "path": "/mnt/workspace/code/chaoyang/docs/README.md",
+      "sha256": "22119ec93dadb637c58b34248191edd31087620faf711e304407d99383386d5f",
+      "status": "CURRENT",
+      "supersedes": []
+    }
+  ],
+  "generated_at": "2026-09-17T16:25:37+08:00",
+  "generation_id": "gov-011172-54f0f3a3d73e",
+  "governance_revision": 11172,
+  "schema_version": "chaoyang-doc-authority-map-v1",
+  "status": "CURRENT"
+}

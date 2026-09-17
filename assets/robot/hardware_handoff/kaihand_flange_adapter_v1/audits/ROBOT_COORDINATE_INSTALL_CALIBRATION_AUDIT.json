@@ -53,7 +53,7 @@
       "formal_consumer_allowed": false,
       "matrix": [[0.0,1.0,0.0,0.0],[-0.8660254037844386,0.0,-0.5,1.5],[-0.5,0.0,0.8660254037844386,0.25],[0.0,0.0,0.0,1.0]],
       "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.1035250317325678e-17,"rotation_det":1.0,"translation_norm_m":1.5206906325745548},
-      "evidence_path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/incomplete/gpt_robot_static_posture_ab_cycles_scenes_20260831_v1/A/SCENE_STATE_STATIC_POSTURE.npz",
+      "evidence_path": "archive/legacy_runs/incomplete/gpt_robot_static_posture_ab_cycles_scenes_20260831_v1/A/SCENE_STATE_STATIC_POSTURE.npz",
       "evidence_sha256": "2b89c8e2eedc6cd0e984757582a4a82727955a10bca44bb98bad06f4789df673"
     },
     {
@@ -64,7 +64,7 @@
       "formal_consumer_allowed": false,
       "matrix": [[0.0,1.0,0.0,0.0],[-0.81915204,0.0,-0.57357644,1.45],[-0.57357644,0.0,0.81915204,-0.15],[0.0,0.0,0.0,1.0]],
       "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.89650542759199e-17,"rotation_det":1.0,"translation_norm_m":1.4577379737113252},
-      "evidence_path": "/mnt/workspace/code/chaoyang/archive/legacy_runs/robot/robot_home_extrinsic_audit_cpu_20260901_v1/A_CURRENT_P2H_HOME_SCENE_STATE.npz",
+      "evidence_path": "archive/legacy_runs/robot/robot_home_extrinsic_audit_cpu_20260901_v1/A_CURRENT_P2H_HOME_SCENE_STATE.npz",
       "evidence_sha256": "51a86a43332cfa93788edd149db2c1499b27eddfedf4f2636599a26b65632fb2"
     },
     {
@@ -85,7 +85,7 @@
       "formal_consumer_allowed": false,
       "matrix": [[0.0,1.0,0.0,0.05305128],[-0.8660254037844386,0.0,-0.5,1.11788651],[-0.5,0.0,0.8660254037844386,-0.52157635],[0.0,0.0,0.0,1.0]],
       "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.1035250317325678e-17,"rotation_det":1.0,"translation_norm_m":1.2347172024946746},
-      "evidence_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_static_closure_task_translation_v2/ROBOT_STATES.npz"
+      "evidence_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_static_closure_task_translation_v2/ROBOT_STATES.npz"
     },
     {
       "id": "POKER042_FRAME0_V8_VISUALLY_ACCEPTED",
@@ -96,7 +96,7 @@
       "current_robot_authority": false,
       "matrix": [[1.2246468e-16,-1.0,0.0,-0.0521179868],[0.8660254037844386,1.06057524e-16,-0.5,0.75581753],[0.5,6.123234e-17,0.8660254037844386,-1.14248481],[0.0,0.0,0.0,1.0]],
       "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.1035250317325678e-17,"rotation_det":1.0,"translation_norm_m":1.370856656478651},
-      "evidence_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_same_side_outward_frame0_pose_v8/FRAME0_STATES.npz",
+      "evidence_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/play_cards_0902_042_same_side_outward_frame0_pose_v8/FRAME0_STATES.npz",
       "evidence_sha256": "499fdf4b0380829bb23d7e20ee9886f95c09e3887684166aef7535d6a596f1cb"
     },
     {
@@ -109,7 +109,7 @@
       "note": "c2w(0) is effectively identity, so the stored T_world_base and T_camera_base are nearly equal at frame0; this does not validate moving-camera cancellation.",
       "matrix": [[1.21530223e-16,-1.0,9.61723657e-19,-0.000200007085],[0.8660254037844386,1.08893303e-16,-0.5,0.794181395],[0.5,6.16256507e-17,0.8660254037844386,-1.18782440],[0.0,0.0,0.0,1.0]],
       "se3": {"finite":true,"bottom_row_max_abs_error":0.0,"rotation_orthogonality_fro_error":2.182955481090327e-17,"rotation_det":1.0,"translation_norm_m":1.4288635099641125},
-      "evidence_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/get_potato_chips_0902_034_same_side_outward_frame0_world_v2/FRAME0_STATES.npz",
+      "evidence_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/task_action_canary_v1/get_potato_chips_0902_034_same_side_outward_frame0_world_v2/FRAME0_STATES.npz",
       "evidence_sha256": "c52c916a6ce8d306d389d1fc61f4d217f9b0d2573bea748a64fb0b5bb5826d6d"
     }
   ],
@@ -124,7 +124,7 @@
   },
   "tianji_nominal_model": {
     "classification": "NOMINAL_URDF_KINEMATICS_NOT_PHYSICAL_CALIBRATION",
-    "urdf_path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+    "urdf_path": "assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
     "urdf_sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309",
     "base_to_onboard_camera_fixed_joint": {"xyz_m":[0.0369887,0.0,0.48752],"rpy_rad":[0.0,0.785,0.0],"warning":"This is the Tianji onboard camera, not the human ego camera and must not be used as ego T_camera_base."},
     "base_to_left_arm_base_fixed_joint": {"xyz_m":[0.0,0.026,1.121],"rpy_rad":[-1.57,0.0,0.0]},
@@ -132,7 +132,7 @@
     "link7_to_flange_fixed_joint": {"xyz_m":[0.0,-0.088,0.0],"rpy_rad":[1.5708,-1.5708,0.0]},
     "left_flange_to_tool_fixed_joint": {"xyz_m":[0.0,0.0,0.145],"rpy_rad":[3.14,-1.57,0.0]},
     "right_flange_to_tool_fixed_joint": {"xyz_m":[0.0,0.0,0.145],"rpy_rad":[-3.14,-1.57,0.0]},
-    "calibration_directory": "/mnt/workspace/code/chaoyang/assets/robot/tianji/calibration",
+    "calibration_directory": "assets/robot/tianji/calibration",
     "calibration_file_count": 0,
     "measured_tcp_found": false
   },
@@ -158,9 +158,9 @@
       "V2C03_legacy_right": {"rotation_angle_deg":179.9543738500209,"translation_distance_m":0.1017180056784673}
     },
     "proxy_sources": {
-      "candidate_inventory_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/MOUNT_CANDIDATE_MATRIX.json",
+      "candidate_inventory_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/MOUNT_CANDIDATE_MATRIX.json",
       "candidate_inventory_sha256": "49efd304dde38aef1c5921f8d5866695db5e2b56c28e4f29337a2137e6e7ef92",
-      "closure_audit_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/static_interface_closure_audit_v1/ASSEMBLY_CLOSURE_AUDIT.json",
+      "closure_audit_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_mount_proxy_baseline_v1/static_interface_closure_audit_v1/ASSEMBLY_CLOSURE_AUDIT.json",
       "closure_audit_sha256": "83e14e42e0db26cef9645c28c4c0f33fef247664c354d828ca8b8270c6856e39"
     }
   },
@@ -190,37 +190,37 @@
   ],
   "current_code_path_evidence": [
     {
-      "path": "/mnt/workspace/code/chaoyang/tools/render_same_side_world_temporal_review.py",
+      "path": "src/chaoyang/ops/render_same_side_world_temporal_review.py",
       "sha256": "6228a8d724075a7771d8c751ad4b1c0c7c70a9aa672159ed7316912966c83b6f",
       "role": "world-first short temporal development review",
       "key_lines": [594,595,598,600,633,747,748,749,750]
     },
     {
-      "path": "/mnt/workspace/code/chaoyang/tools/run_same_side_world_fullsession_successor.py",
+      "path": "src/chaoyang/ops/run_same_side_world_fullsession_successor.py",
       "sha256": "e89838684cc35dd7dc53c1c3c8d393aa8550c538a0e7bf59093efe7bf2ed067e",
       "role": "world-first full-session development successor",
       "key_lines": [315,316,319,320,335,432,433,434,435]
     },
     {
-      "path": "/mnt/workspace/code/chaoyang/tools/render_development_robot_review_v1.py",
+      "path": "src/chaoyang/ops/render_development_robot_review_v1.py",
       "sha256": "e6b9ef58c9f6117bb7d9bff17ab95fd354035c9c5c70c8fb5e0e9c3005a22eb7",
       "role": "six-session development review; reanchors accepted camera placement into each session world at c2w(0)",
       "key_lines": [37,38,39,49,114,126]
     },
     {
-      "path": "/mnt/workspace/code/chaoyang/tools/run_robot_motion_transfer_arm_canary_v2.py",
+      "path": "src/chaoyang/ops/run_robot_motion_transfer_arm_canary_v2.py",
       "sha256": "e3a177f205ff648060f1d170a55117a9157646ba149f9d6bd3bcb652717bc74a",
       "role": "development motion transfer with session-specific base adjustment",
       "key_lines": [112,113,114,117,132,136,166,200]
     },
     {
-      "path": "/mnt/workspace/code/chaoyang/tools/run_robot_renderer_eevee_fullchain_t1.py",
+      "path": "src/chaoyang/ops/run_robot_renderer_eevee_fullchain_t1.py",
       "sha256": "bba0f3576e52a50130e35373d7317dfdd628be094b4e998d9ea21a34ed38a913",
       "role": "older camera-first/session-constant renderer path; not current coordinate authority",
       "key_lines": [930,954]
     },
     {
-      "path": "/mnt/workspace/code/chaoyang/tools/audit_robot_contact_visual_two_session.py",
+      "path": "src/chaoyang/ops/audit_robot_contact_visual_two_session.py",
       "sha256": "d6f968d0ca0ae309b813ba3335233a2f9e966ea0ece2e64018f2528b33dc9f4a",
       "role": "contact visual audit reads T_camera_robot_base but no formal current trajectory is execution-authorized",
       "key_lines": [297]
@@ -237,7 +237,7 @@
     "consequence": "No final contact precision in millimetres can be claimed."
   },
   "external_blockers": {
-    "source_path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/BLOCKER_ROBOT_EXECUTION_CLOSURE.json",
+    "source_path": "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/BLOCKER_ROBOT_EXECUTION_CLOSURE.json",
     "source_sha256": "242310b2e0b82b52d5b11f017e407f17a80ceccae59ca25aed6bd48cf2d14be3",
     "status": "BLOCKED_EXTERNAL",
     "required_before_robot": [

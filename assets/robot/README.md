@@ -1,6 +1,6 @@
 # Canonical local robot assets
 
-本目录是 Tianji、KaiHand 与相机法兰的唯一项目内资产根。`HumanEgo/vendor/kaihand` 仅为指向这里的 symlink，禁止复制第二份资产树。
+本目录是 Tianji、KaiHand 与相机法兰的唯一项目内资产根。`src/chaoyang/human_ego/third_party/kaihand` 仅为指向这里的 symlink，禁止复制第二份资产树。
 
 历史资产清单记录：
 

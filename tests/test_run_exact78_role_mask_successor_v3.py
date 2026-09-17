@@ -2,7 +2,7 @@ import importlib.util
 from pathlib import Path
 
 
-MODULE_PATH = Path(__file__).parents[1] / "tools/run_exact78_role_mask_successor_v3.py"
+MODULE_PATH = Path(__file__).parents[1] / "src/chaoyang/ops/run_exact78_role_mask_successor_v3.py"
 SPEC = importlib.util.spec_from_file_location("role_v3", MODULE_PATH)
 module = importlib.util.module_from_spec(SPEC)
 assert SPEC.loader

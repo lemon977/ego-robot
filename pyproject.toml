@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "chaoyang-ego-robot"
+version = "0.1.0"
+description = "Chaoyang ego-to-robot pipeline"
+requires-python = ">=3.10"
+dependencies = ["jsonschema>=4.18"]
+
+[project.scripts]
+chaoyang = "chaoyang.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["chaoyang*"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 100
+
+[tool.chaoyang.paths]
+data_root = "/mnt/data/egodata/datasets/ego"
+processed_root = "/mnt/data/egodata/datasets/ego/processed"
+run_root = "_run/current"
+model_root = "assets/models"

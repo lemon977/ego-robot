@@ -5,7 +5,7 @@
 > 大面积损坏。采集端 `dataset.hdf5` 已按 40 ms gate 删除不完整行并保证≥95%完整覆盖；
 > 104/104 与 228/228 均声明导出行完整。按用户最终决策，旧结果已退出正式入口，
 > acquisition-aligned v2 从零重建后仍发布到原有两个 processed 路径，不新增并列数据根。详细复核见
-> `tasks/control/runs/20260911_handle_acquisition_aligned_v2/ADMISSION_REAUDIT_ZH.md`。
+> `archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_handle_acquisition_aligned_v2/ADMISSION_REAUDIT_ZH.md`。
 
 ## 1. 文档目的与适用范围
 
@@ -54,8 +54,8 @@ EGO-DEX 原始会话到 tracker-style 训练数据的完整处理方式。
 用户只需直接使用两个脚本：
 
 ```text
-tools/qa_clean_handle_egodex_session.py
-tools/batch_convert_handle_egodex_to_tracker.py
+src/chaoyang/ops/qa_clean_handle_egodex_session.py
+src/chaoyang/ops/batch_convert_handle_egodex_to_tracker.py
 ```
 
 ### 2.1 单会话 QA/Clean 脚本
@@ -257,7 +257,7 @@ threshold = max(20 ADC, median_abs_diff + 10 × MAD)
 也不得靠静默生成光流帧掩盖。快照报告见：
 
 ```text
-tasks/control/runs/20260911_chips_cards_handle_0910_rgb30_v1/
+archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_chips_cards_handle_0910_rgb30_v1/
   flicker_audit_snapshot_1805/REPORT_ZH.md
 ```
 
@@ -276,7 +276,7 @@ cd /mnt/workspace/code/chaoyang
 只检查输入、文件数、大小和必需文件，不复制、不生成数据：
 
 ```bash
-python3 tools/qa_clean_handle_egodex_session.py \
+python3 src/chaoyang/ops/qa_clean_handle_egodex_session.py \
   --source /mnt/data/egodata/datasets/ego/chips_cards_handle_0909/potato_chips/010 \
   --output /mnt/data/egodata/datasets/ego/processed_canary/session_010 \
   --session-id 010 \
@@ -288,7 +288,7 @@ Dry-run 中 `--output` 只用于显示目标，不会创建。
 ### 6.2 生成 QA/Clean canary
 
 ```bash
-python3 tools/qa_clean_handle_egodex_session.py \
+python3 src/chaoyang/ops/qa_clean_handle_egodex_session.py \
   --source /mnt/data/egodata/datasets/ego/chips_cards_handle_0909/potato_chips/010 \
   --output /mnt/data/egodata/datasets/ego/processed_canary/session_010 \
   --session-id 010 \
@@ -300,7 +300,7 @@ python3 tools/qa_clean_handle_egodex_session.py \
 ### 6.3 策略排除会话
 
 ```bash
-python3 tools/qa_clean_handle_egodex_session.py \
+python3 src/chaoyang/ops/qa_clean_handle_egodex_session.py \
   --source /path/to/session \
   --output /path/to/output \
   --session-id 001 \
@@ -316,14 +316,14 @@ python3 tools/qa_clean_handle_egodex_session.py \
 当前正式 0909/0910。当前执行入口是：
 
 ```text
-tools/batch_convert_handle_acquisition_aligned_v2.py
-tools/guard_handle_acquisition_batches_v2.py
+src/chaoyang/ops/batch_convert_handle_acquisition_aligned_v2.py
+src/chaoyang/ops/guard_handle_acquisition_batches_v2.py
 ```
 
 ### 7.1 只查看映射，不写数据
 
 ```bash
-python3 tools/batch_convert_handle_egodex_to_tracker.py \
+python3 src/chaoyang/ops/batch_convert_handle_egodex_to_tracker.py \
   --task-source potato_chips=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/potato_chips \
   --task-source playing_cards=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/playing_cards \
   --policy-exclude potato_chips=001 \
@@ -342,7 +342,7 @@ python3 tools/batch_convert_handle_egodex_to_tracker.py \
 ### 7.2 四会话 canary
 
 ```bash
-python3 tools/batch_convert_handle_egodex_to_tracker.py \
+python3 src/chaoyang/ops/batch_convert_handle_egodex_to_tracker.py \
   --task-source potato_chips=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/potato_chips \
   --task-source playing_cards=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/playing_cards \
   --task-sessions potato_chips=010,038,001 \
@@ -368,7 +368,7 @@ Canary 顺序和目的：
 下面命令只用于复现旧 v1 的任务分层试验，不能作为当前正式重跑入口：
 
 ```bash
-python3 tools/batch_convert_handle_egodex_to_tracker.py \
+python3 src/chaoyang/ops/batch_convert_handle_egodex_to_tracker.py \
   --task-source potato_chips=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/potato_chips \
   --task-source playing_cards=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/playing_cards \
   --policy-exclude potato_chips=001 \
@@ -385,7 +385,7 @@ python3 tools/batch_convert_handle_egodex_to_tracker.py \
 只有在数据集根还没有最终 `COMMITTED` 时使用：
 
 ```bash
-python3 tools/batch_convert_handle_egodex_to_tracker.py \
+python3 src/chaoyang/ops/batch_convert_handle_egodex_to_tracker.py \
   --task-source potato_chips=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/potato_chips \
   --task-source playing_cards=/mnt/data/egodata/datasets/ego/chips_cards_handle_0909/playing_cards \
   --policy-exclude potato_chips=001 \
@@ -452,7 +452,7 @@ playing_cards/play_cards_0909_<session_id>
 正式 dry-run：
 
 ```bash
-python3 tools/batch_convert_handle_egodex_to_tracker.py \
+python3 src/chaoyang/ops/batch_convert_handle_egodex_to_tracker.py \
   --task-source potato_chips=/mnt/data/egodata/datasets/ego/chips_cards_handle_0910/chips_119_0910 \
   --task-source playing_cards=/mnt/data/egodata/datasets/ego/chips_cards_handle_0910/cards_109_0910 \
   --date-tag 0910 \
@@ -706,7 +706,7 @@ SHA256 9897fcec346cb13c14d2ac03e71f0a6659b77144783c6ba6bfc214c7e2d3b0a5
 ```
 
 当前两批均无 staging。旧错误结果已按用户授权退出并清理；原因、旧策略与修正证据保留在
-`tasks/control/runs/20260911_handle_acquisition_aligned_v2/ADMISSION_REAUDIT_ZH.md`。
+`archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_handle_acquisition_aligned_v2/ADMISSION_REAUDIT_ZH.md`。
 
 ## 15. 常见问题
 
@@ -771,7 +771,7 @@ admission policy；两个任务均无 rejected、无 staging。后半程在完�
 worker安全切换到4个worker；严格 adoption/resume 与 flock 防双写证据位于：
 
 ```text
-/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_handle_acquisition_aligned_v2/
+archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_handle_acquisition_aligned_v2/
 WORKER_EXPANSION_0910_2_TO_4_RECEIPT.json
 SHA256 65116d8202c3e125f89b4b73f953743f8dc9011519aafcadeb7e9f4bbd23131a
 ```

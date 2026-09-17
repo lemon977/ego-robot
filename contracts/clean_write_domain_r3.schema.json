@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/clean_write_domain_r3.schema.json",
+  "title": "R3 Clean mask-domain and causal source contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "stage", "mask_domains", "pixel_source_precedence", "causal_training_input", "fresh_propainter_required", "quality_gates", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "CLEAN_WRITE_DOMAIN_R3"},
+    "stage": {"enum": ["CLEAN-B", "CLEAN-C", "CLEAN-20", "CLEAN-21"]},
+    "mask_domains": {
+      "type": "object", "additionalProperties": false,
+      "required": ["remove", "flow", "write", "relations"],
+      "properties": {
+        "remove": {"const": "M_remove"}, "flow": {"const": "M_flow"}, "write": {"const": "M_write"},
+        "relations": {"const": ["M_write_SUBSET_M_remove", "M_remove_SUBSET_M_flow", "M_write_DISJOINT_VISIBLE_OBJECT"]}
+      }
+    },
+    "pixel_source_precedence": {"const": ["RAW_VISIBLE_OBJECT", "CAUSAL_TEMPORAL_DONOR", "POSE_VERIFIED_OBJECT_ATLAS", "PROPainter_REMAINDER", "UNKNOWN"]},
+    "causal_training_input": {"const": true}, "fresh_propainter_required": {"const": true},
+    "quality_gates": {
+      "type": "object", "additionalProperties": false,
+      "required": ["contact_added_removal_reduction", "human_residual_no_regression", "nonhuman_leakage_no_regression", "visible_object_retention", "byte_exact_outside_write"],
+      "properties": {
+        "contact_added_removal_reduction": {"const": 0.5}, "human_residual_no_regression": {"const": true},
+        "nonhuman_leakage_no_regression": {"const": true}, "visible_object_retention": {"const": 0.999},
+        "byte_exact_outside_write": {"const": true}
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

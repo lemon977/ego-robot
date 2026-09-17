@@ -11,14 +11,14 @@
       "claim_limit": "Source/PICO diagnostic; PICO21 is not MANO21 and Object6D/static-base/clean-plate authority is absent.",
       "evidence": [
         {
-          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/pipeline/20260903_source_gate_full16_v3/get_potato_chips_0901_001/SOURCE_GATE.json",
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/pipeline/20260903_source_gate_full16_v3/get_potato_chips_0901_001/SOURCE_GATE.json",
           "sha256": "fcd6f1c3e4239bc4f6af170bc79fcb4c1df8553ab429d856e652eea7a44541e1",
           "role": "source_gate_v3"
         }
       ],
       "gate_contract": {
         "id": "newtask-source-gate-v3-runner",
-        "path": "/mnt/workspace/code/chaoyang/tools/audit_newtask_source_sessions.py",
+        "path": "src/chaoyang/ops/audit_newtask_source_sessions.py",
         "sha256": "2819cd4548be8f96b3d5d636aa9837500616100474bbd33d9ed0691408ba0130",
         "frozen_before_evaluation": true
       },
@@ -76,14 +76,14 @@
       "claim_limit": "36-frame numeric canary only.",
       "evidence": [
         {
-          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/pipeline/20260903_hawor_chips001_canary_v1/RESULT.json",
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/pipeline/20260903_hawor_chips001_canary_v1/RESULT.json",
           "sha256": "34292c2b8fabb08c458598b7ec196d2954566790a6cb8ed14dc53daafabd80b1",
           "role": "hawor_canary_result"
         }
       ],
       "gate_contract": {
         "id": "newtask-hawor-mano21-canary-v1-runner",
-        "path": "/mnt/workspace/code/chaoyang/tools/run_hawor_newtask_canary.py",
+        "path": "src/chaoyang/ops/run_hawor_newtask_canary.py",
         "sha256": "baaf856cad6e6275436deb405f4539d821252f779af3b8def34d0235265448df",
         "frozen_before_evaluation": true
       },
@@ -176,14 +176,14 @@
       "claim_limit": "Discontinuous 12-frame visual canary only.",
       "evidence": [
         {
-          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/mask/20260903_chips001_formal_sharedckpt_canary12_v1/gpu_sampled12/MASK_VISUAL_REVIEW.json",
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/mask/20260903_chips001_formal_sharedckpt_canary12_v1/gpu_sampled12/MASK_VISUAL_REVIEW.json",
           "sha256": "267c0371f4a0c8b7667a6e42bc452fc2ebfc906e3cafc698ec357049a79cf753",
           "role": "independent_visual_review"
         }
       ],
       "gate_contract": {
         "id": "chips-formal-pico-canary-contract-v1",
-        "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/mask/20260903_formal_pico_canary_contract_v1/CANARY_CONTRACT.json",
+        "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/mask/20260903_formal_pico_canary_contract_v1/CANARY_CONTRACT.json",
         "sha256": "b714a64eeb2466a46a96e24ed22dafa9345cb03f9f00eaf3a92ae9e12de38cc5",
         "frozen_before_evaluation": true
       },
@@ -235,14 +235,14 @@
       "claim_limit": "Twelve-frame old Clean v3 audit only.",
       "evidence": [
         {
-          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/clean/20260903_chips001_clean_v3_quality_audit_v1/QUALITY_GATE.json",
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/clean/20260903_chips001_clean_v3_quality_audit_v1/QUALITY_GATE.json",
           "sha256": "651e9fa14857f0dfe702c969595e31a57c30343de3d0db6a6e1b2c812c893ace",
           "role": "clean_quality_audit"
         }
       ],
       "gate_contract": {
         "id": "general-clean-quality-gate-v1",
-        "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/clean/20260903_chips001_clean_v3_quality_audit_v1/GENERAL_CLEAN_QUALITY_GATE_V1.json",
+        "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/clean/20260903_chips001_clean_v3_quality_audit_v1/GENERAL_CLEAN_QUALITY_GATE_V1.json",
         "sha256": "6ac71daac463339188375eafe8e490bbfea2c79ec224c08b4ca53cb2b3aa3a86",
         "frozen_before_evaluation": false
       },
@@ -317,14 +317,14 @@
       "claim_limit": "Palette A/B only; no motion/contact/collision authority.",
       "evidence": [
         {
-          "path": "/mnt/workspace/code/chaoyang/tasks/chips/runs/robot/20260903_chips001_palette_004ref_canary12_v1/PALETTE_GATE.json",
+          "path": "archive/baseline-20260917-0aa69e9/content/history/tasks/chips/runs/robot/20260903_chips001_palette_004ref_canary12_v1/PALETTE_GATE.json",
           "sha256": "467373a85229d5ba7349fe1da97d931f2a9b5a5b58d8a5cdb6063f965c4e735d",
           "role": "palette_canary"
         }
       ],
       "gate_contract": {
         "id": "robot-pbr-palette-004ref-v1",
-        "path": "/mnt/workspace/code/chaoyang/systems/robot/configs/robot_pbr_palette_004ref_v1.json",
+        "path": "configs/systems/robot/configs/robot_pbr_palette_004ref_v1.json",
         "sha256": "fbacbe617d49ee8b8a060afd21672ae7776d9d6835cde18c8f01e01acd79c543",
         "frozen_before_evaluation": false
       },

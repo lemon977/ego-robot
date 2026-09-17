@@ -1,0 +1,1 @@
+../../../../../assets/models/vendor/hawor/mano/MANO_RIGHT.pkl

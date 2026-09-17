@@ -7,7 +7,7 @@ import numpy as np
 from scipy.spatial.transform import Rotation
 
 
-SCRIPT = Path(__file__).resolve().parents[1] / "tools/run_hawor_bounded_parameter_successor.py"
+SCRIPT = Path(__file__).resolve().parents[1] / "src/chaoyang/ops/run_hawor_bounded_parameter_successor.py"
 SPEC = importlib.util.spec_from_file_location("hawor_bounded_parameter_successor", SCRIPT)
 assert SPEC is not None and SPEC.loader is not None
 MODULE = importlib.util.module_from_spec(SPEC)

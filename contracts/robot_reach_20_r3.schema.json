@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/robot_reach_20_r3.schema.json",
+  "title": "R3 ROBOT-REACH-20 diagnostic proxy",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "artifact_revision", "task_id", "task", "session", "terminal_status", "robot_tier", "candidate_robot_tier", "evidence_class", "object6d_consumed", "workspace_bounds_consumed", "hard_geometry_pass", "hard_target_contract_pass", "soft_pose_similarity_pass", "visual_train_eligible", "metric_contact_eligible", "side_gates", "input", "authority", "control_ground_truth", "physical_deployment_authorized", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "robot-reach-20-audit-v1"},
+    "artifact_revision": {"const": "R7_ROBOT_5_REACH_20"},
+    "task_id": {"const": "ROBOT-REACH-20"},
+    "task": {"enum": ["chips", "poker"]},
+    "session": {"type": "string", "minLength": 1},
+    "terminal_status": {"enum": ["PASSED", "FAILED_QUALITY_C"]},
+    "robot_tier": {"const": "NONE"},
+    "candidate_robot_tier": {"enum": ["POSE_ONLY_VISUAL", "NONE"]},
+    "evidence_class": {"const": "DIAGNOSTIC_PROXY"},
+    "object6d_consumed": {"const": false},
+    "workspace_bounds_consumed": {"const": false},
+    "hard_geometry_pass": {"const": false},
+    "hard_target_contract_pass": {"type": "boolean"},
+    "soft_pose_similarity_pass": {"type": "boolean"},
+    "visual_train_eligible": {"type": "boolean"},
+    "metric_contact_eligible": {"const": false},
+    "side_gates": {"type": "array", "minItems": 1},
+    "input": {"type": "object"},
+    "authority": {"const": false},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

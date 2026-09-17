@@ -1,0 +1,78 @@
+{
+  "claim_limit": "Formal runner method integration only. It may execute only after validate_spec admits fresh A/B HaWoR, Mask, Object6D and Clean. Frame0 placement and NaturalV2 remain Grade-B development visualization transforms, not real-robot calibration or deployment authority.",
+  "endpoint_gate_after_placement": {
+    "position_max_mm": 40.0,
+    "rotation_max_deg": 20.0
+  },
+  "frame0_static_placement": {
+    "delta_from_nominal_rotation_max_deg": 35.0,
+    "delta_from_nominal_translation_max_m": 0.05,
+    "development_visualization_only": true,
+    "formula": "inverse(T_world_rig @ FK_tool(q_nominal_frame0)) @ T_target_root_frame0",
+    "freeze_for_session": true,
+    "must_report_pre_and_post_residual_separately": true,
+    "real_robot_measurement_or_calibration": false,
+    "source": "FIRST_VALID_BILATERAL_DIRECT_FRAME_ONLY"
+  },
+  "hand_retarget": {
+    "absolute_bone_error_max_deg": 60.0,
+    "distal_bone_error_max_deg": 25.0,
+    "fast_analytic_allowed": false,
+    "hundred_degree_relaxation_allowed": false,
+    "method": "NONLINEAR_PER_FINGER_LEAST_SQUARES",
+    "per_finger_mean_error_max_deg": 40.0
+  },
+  "identity": {
+    "human_left_drives_physical_right": true,
+    "human_right_drives_physical_left": true,
+    "image_x_order_inference": false
+  },
+  "schema_version": "tianji-kai-gradeb-cross-chirality-successor-v1",
+  "scope": {
+    "clean_consumed_at_contract_creation": false,
+    "formal_deployment_authorized": false,
+    "formal_robot_execution_requires_fresh_preflight": true,
+    "kind": "FULL_SESSION_FORMAL_DEVELOPMENT_VISUALIZATION_METHOD",
+    "minimum_frame_count": 24,
+    "retry_or_threshold_search_authorized": false,
+    "source_first_frame": 0
+  },
+  "session_id": "get_potato_chips_0902_034",
+  "successor_revision": "V2_ONE_STEP_STOP_VIABILITY_FORMAL_INTEGRATION",
+  "task_id": "chips",
+  "temporal_hard_gates": {
+    "arm_second_difference_max_rad": 0.06,
+    "arm_solver_effective_step_max_rad": 0.06,
+    "arm_step_max_rad": 0.12,
+    "branch_jump_forbidden": true,
+    "collision_gate_relaxation_allowed": false,
+    "first_frame": "STATIC_IK_FULL_URDF_LIMITS",
+    "five_pad_contact_metrics_required_in_postprocessor": true,
+    "full_fixed_denominator_per_link_collision_required_in_postprocessor": true,
+    "hand_second_difference_max_rad": 0.06,
+    "hand_solver_effective_step_max_rad": 0.06,
+    "hand_step_max_rad": 0.08,
+    "later_frame_seed": "PREVIOUS_ACCEPTED_ONLY",
+    "one_step_stop_viability_required": true,
+    "urdf_limits_required": true
+  },
+  "validated_canary": {
+    "accepted_frames": 24,
+    "canary_result": {
+      "bytes": 180067,
+      "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_chips034_gradeb_viability_successor_v2/canary24/RESULT.json",
+      "sha256": "eb90936673f328143d85950853cba0f7cd1454c8bf3c5b8298860ff9acd75250"
+    },
+    "readiness_result": {
+      "bytes": 5847,
+      "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/robot_chips034_gradeb_viability_successor_v2/RESULT.json",
+      "sha256": "6917ab0aad543b9973bad70d261e58ba179ced6ac4decbffd09280ea169f6990"
+    },
+    "visual_kinematic_candidate": true
+  },
+  "wrist_basis_policy": {
+    "name": "SHARED_ANATOMICAL_SEMANTIC_BASIS_RETAIN_HUMAN_HANDEDNESS",
+    "physical_handedness_substitution_for_human_target": false,
+    "target_rotation_formula": "human_semantic_basis @ physical_kai_semantic_basis.T"
+  }
+}

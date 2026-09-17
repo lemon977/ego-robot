@@ -1,0 +1,17 @@
+{
+  "members": [
+    {
+      "archive_member": "base_001/camera_params.json",
+      "bytes": 2358,
+      "path": "/mnt/workspace/code/chaoyang/manifests/legacy_data/inputs/baseline_background/base_001_prefix_staging/camera_params.json",
+      "sha256": "f44e237577f640e6e0c1262dcf384f524c25d38e91e2b52c4a17239d9b40f2bf"
+    },
+    {
+      "archive_member": "base_001/clip_manifest.json",
+      "bytes": 6272,
+      "path": "/mnt/workspace/code/chaoyang/manifests/legacy_data/inputs/baseline_background/base_001_prefix_staging/clip_manifest.json",
+      "sha256": "bfabb8f11447fe747f2976a50f9208e3de5d457e6aeca6dafc55ec4034326a19"
+    }
+  ],
+  "status": "PRELIMINARY_COMPLETE_MEMBERS_WHOLE_ARCHIVE_STILL_UPLOADING"
+}

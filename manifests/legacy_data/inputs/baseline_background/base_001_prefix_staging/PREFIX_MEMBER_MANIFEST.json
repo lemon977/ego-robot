@@ -1,0 +1,14 @@
+{
+  "schema_version": "complete-zip-prefix-member-v1",
+  "status": "PRELIMINARY_COMPLETE_MEMBER_WHOLE_ARCHIVE_STILL_UPLOADING",
+  "archive_path": "archive/baseline-20260917-0aa69e9/content/history/manifests/legacy_data-payloads/inputs/baseline_background/base_001.zip",
+  "member": "base_001/source_stereo/CameraRecord_base_001_stereo.mp4",
+  "local_header_data_offset": 273,
+  "descriptor_offset": 237680770,
+  "next_local_header_offset": 237680786,
+  "compressed_bytes": 237680497,
+  "bytes": 237625948,
+  "crc32": "b373eb64",
+  "sha256": "e7699134b665158c6d485e3c2b7b0beabd603fb75db8033ae8e197c0aec6f4b2",
+  "claim_limit": "This member is CRC-complete, but whole ZIP authority awaits central-directory and full-archive validation."
+}

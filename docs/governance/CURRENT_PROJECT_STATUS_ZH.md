@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-14T19:12:16+08:00`
-- governance revision：`5869`
-- generation id：`gov-005869-1eff2016fad2`
+- 状态生成时间：`2026-09-17T16:25:37+08:00`
+- governance revision：`11172`
+- generation id：`gov-011172-54f0f3a3d73e`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`feadae102fb1e784711daa615fd7475fbaa95d6eddd5cc0ebc1506e5694afc70`
-- repository：`1f97e25f99723ec3a6c73dfe6f3fb963ca515db5` / `main`
+- generator code SHA：`aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120`
+- repository：`0549c75f74bb4f9fa4aa4860bdbdf0702a8430eb` / `refactor/clean-baseline-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -17,8 +17,11 @@
 
 - Raw：`156`
 - Wave0 metric-ready：`58`
-- Wave0 已有 Clean：`39`
+- Wave0 已有 Clean：`58`
 - Wave0 待 Clean：`0`
+- Wave0 Clean 质量 C：`0`
+- Wave0 Clean 运行失败终态：`0`
+- Wave0 Clean 前置阻塞：`0`
 - Wave1 新增：`0`
 - Wave2 新增：`0`
 - 整个 exact78 缺标定：`59/156`
@@ -34,17 +37,17 @@
 | Object Mask | 156 | 121 | 35 | 0 | 0 | `TASK_OBJECT_IDENTITY` |
 | Depth | 58 | 58 | 0 | 0 | 0 | `VISUAL_OBJECT6D_CANDIDATE_INPUT` |
 | Object6D | 58 | 58 | 0 | 0 | 0 | `OBSERVED_ONLY_KEEP_INVALID` |
-| Clean | 58 | 39 | 0 | 0 | 19 | `EXACT78_WAVE0_FROZEN_PLUS_VERIFIED_SESSION_TERMINALS` |
+| Clean | 58 | 58 | 0 | 0 | 0 | `EXACT78_WAVE0_FROZEN_PLUS_VERIFIED_SESSION_TERMINALS` |
 | Contact | 2 | 0 | 0 | 0 | 2 | `POKER042_HYPOTHESIS_ONLY_NO_CONTACT_AUTHORITY` |
 | Robot Visual | 156 | 0 | 1 | 0 | 155 | `NO_CURRENT_TASK_ROBOT_AUTHORITY_POKER042_4FRAME_FINAL_C` |
 | HumanEgo Aux | 4 | 0 | 0 | 0 | 4 | `SCHEMA_READY_BUNDLES_BLOCKED_ROBOT_VISUAL` |
 | HumanEgo Policy | 4 | 0 | 0 | 0 | 4 | `BLOCKED_EXTERNAL_REAL_ROBOT_ACTION` |
 
+> Clean 的 PASSED 数量只表示当前冻结合同下的结构、来源和解码终态；不表示接触边界、隐藏物体外观或 donor 语义已经通过。Robotized/Visual Aux 还必须单独通过 contact-preservation、pixel-source legality 和 Occlusion 门。
+
 ## D. 当前运行任务
 
-| task_id | session | phase | attempt | PID | GPU | heartbeat | 状态 |
-|---|---|---|---:|---:|---:|---|---|
-| `exact78_v52_lane_c_contact_robot` | `get_potato_chips_0902_067` | `robot_067_finite_continuation` | 2 | 2593657 | - | `2026-09-14T19:12:16+08:00` | `RUNNING` |
+当前无活跃任务。
 
 ## E. 当前阻塞
 
@@ -53,9 +56,14 @@
 | KaiHand adapter CAD | `BLOCKED_EXTERNAL` | Physical Robot authority | Verified adapter CAD and measured installation transform. |
 | Robot TCP and installation calibration | `BLOCKED_EXTERNAL` | Physical Robot authority | Measured TCP, mount and camera/world-to-base calibration. |
 | Real Robot action demonstrations | `BLOCKED_EXTERNAL` | HumanEgo policy checkpoints | Synchronized action/state/RGB data satisfying the formal schema. |
-| Shared H20 occupied by external egotouch training | `BLOCKED_RESOURCE` | Wave0 ProPainter Clean GPU batch | Wait for the external egotouch process to exit, then re-run physical GPU, lease and disk preflight without preempting it. |
-| Contact-aware Robot execution closure | `BLOCKED_EXTERNAL` | Poker042 contact-aware Robot retarget, Robot render, occlusion compositor and any Robot authority; Chips034 additionally remains BLOCKED_PREREQ upstream. Evidence: /mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json. Poker042 human-contact output is HYPOTHESIS_ONLY. | Provide a verified NaturalV2 flange-to-KaiHand assembly transform or adapter CAD/measured installation transform, world-to-Tianji-base calibration, and Robot TCP/installation calibration. Then rerun only the frozen four-frame retarget gate before any 24-frame or full-session render; do not guess missing transforms from a prior visual proxy. |
+| Contact-aware Robot execution closure | `BLOCKED_EXTERNAL` | Poker042 contact-aware Robot retarget, Robot render, occlusion compositor and any Robot authority; Chips034 additionally remains BLOCKED_PREREQ upstream. Evidence: archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json. Poker042 human-contact output is HYPOTHESIS_ONLY. | Provide a verified NaturalV2 flange-to-KaiHand assembly transform or adapter CAD/measured installation transform, world-to-Tianji-base calibration, and Robot TCP/installation calibration. Then rerun only the frozen four-frame retarget gate before any 24-frame or full-session render; do not guess missing transforms from a prior visual proxy. |
 | Contact/Robot 034/042 formal prerequisites | `BLOCKED_PREREQ` | Chips034 Human Contact remains blocked because its current Role Mask is Grade C and no formal Wave0 Depth/Object6D exists. Poker042 Human Contact is complete as HYPOTHESIS_ONLY; only its Robot retarget and compositor remain blocked. | For Chips034, pass the frozen Role Mask successor and publish a fresh formal Depth/Object6D delta before contact inference. For Poker042, do not rerun contact inference; close the separately recorded Robot assembly/world-to-base/TCP prerequisites, then run only the frozen four-frame retarget gate. Clean and Robot render are required later for the compositor, not for contact inference. |
+| Sensor-line DEPTH-10/20 play_cards_0910_001 prerequisites | `BLOCKED_PREREQ` | New sensor-line play_cards_0910_001 Stereo/DEPTH-20 only; sourceIndex code is fixed, exact78 Depth and Controller/MANUS branches are unchanged. | Recover or verify same-session rectification that passes median <=2 px and P90 <=5 px on held-out frames. Current corrected-source P90 is 47.98/35.09/14.31 px. Do not request GPU or run FoundationStereo until the CPU gate passes. |
+| Clean-20/21 causal semantic prerequisites | `BLOCKED_PREREQ` | Poker245 and Chips039 Clean successor only; Wave0 R7_0 structural terminals remain immutable. | Build causal semantic donor rejection and lossless frame/source-map closure; build a verified Poker atlas; only then request GPU for fresh ProPainter. Current causal UNKNOWN/write is 82.36% Poker and 69.90% Chips. |
+| Mask challenger R7_3 bounded NO_GO | `BLOCKED_PREREQ` | Role C cluster and Poker Object Mask successor only; SAM3.1 current authority and existing A/B results unchanged. | Provide a reviewed four-role prompt/adapter closure for Role Mask. For Poker object re-entry, improve causal memory/re-detection so the frozen failed canary passes known coverage and post-reentry overlap before running Poker001/005 regression. SAM2.1 current run achieved only 13.785% known coverage; Cutie OOM is runtime evidence, not quality evidence. |
+| R2.2 Mask canary not executed | `BLOCKED_RESOURCE` | Poker and Chips independent SAM3.1 canaries | Acquire the serialized GPU lease and run the frozen candidate/reference canaries; absence of pixel gold limits results to development metrics. |
+| R2.2 causal Clean prerequisites incomplete | `BLOCKED_PREREQ` | Poker245 and Chips039 prefix-only Clean successor | Publish support-surface semantics and lossless successor RGB/source-map pairs; Poker also requires a pose-verified causal atlas warp. |
+| R2.2 same-session rectification gate failed | `BLOCKED_PREREQ` | play_cards_0910_001 FoundationStereo and Stereo wrist proxy | Provide a verified same-session selected-eye/SBS mapping and rectification whose vertical epipolar residual P90 is at most 5 px with the frozen coverage gate. |
 
 ## F. 当前可支持的结论
 
@@ -72,16 +80,24 @@
 - Masquerade supports edited-human visual pretraining but does not supply contact truth or a complete contact-aware compositor for exact78.（`DEVELOPMENT_EVIDENCE`；边界：Method and limitation evidence only; it grants no local Contact, Robot, compositor, training or physical authority.）
 - Poker042 can produce a hypothesis-only human-contact sidecar without waiting for Clean or Robot rendering.（`DEVELOPMENT_EVIDENCE`；边界：The HYPOTHESIS_ONLY artifact has now been produced; this claim still grants no physical contact truth, Robot solve, compositor result or authority.）
 - Poker042 has a full-session human-contact hypothesis sidecar while formal Object6D remains unchanged.（`HYPOTHESIS_ONLY`；边界：Digital HaWoR fingertip-to-observed Object6D geometry only: 73 direct frames, 4 bounded inferred frames and 94 UNKNOWN; not physical contact truth or Robot authority.）
+- Robot v5.2首个v73批次的3条严格C由软姿态门触发；三条轨迹均通过全片数字URDF碰撞及硬时序/限位审计。（`DEVELOPMENT_EVIDENCE`；边界：数字URDF和跨系统软姿态诊断；不授予Robot、Contact、控制或物理部署authority。）
+- 双手同时可见的H50硬门会拒绝单侧有效的第一视角会话；087在逐侧valid掩码下由0个恢复为233个因果H50窗口。（`DEVELOPMENT_EVIDENCE`；边界：单会话工程诊断；只支持masked future-2D辅助训练资格，不支持Robot、动作、Contact或物理authority。）
+- 087硬几何候选已形成严格因果的Raw/Robotized Visual Aux bundle；逐侧valid掩码保留233个H50窗口。（`DEVELOPMENT_EVIDENCE`；边界：Development Visual Aux bundle only; unresolved overlap is excluded, not solved. No occlusion, contact, Robot action, policy or deployment authority.）
+- 087真实会话已闭合Robot optical-Z与Stereo可见物体表面的4帧前后关系canary；接触窄带已知覆盖81.47%，UNKNOWN 18.53%。（`DEVELOPMENT_EVIDENCE`；边界：Observed visible-surface z-buffer diagnostic only; no hidden object completion, contact truth, Gold accuracy, Silver authority, Robot control or deployment authority.）
+- Occlusion compositor只在Robot/物体真实重叠区要求Stereo排序后，087连续接触窗的物体条件保留率中位数由77.48%提高到95.92%，但仍未达到99% Silver门。（`DEVELOPMENT_EVIDENCE`；边界：Twenty-four-frame internal visible-surface comparison; remaining loss and hidden object appearance are unresolved, no Silver/Gold accuracy or deployment authority.）
+- 087连续24帧可见表面z-buffer successor的物体条件保留率按像素加权为97.01%，已消除非重叠物体被深度门误降背景的问题，但仍未达到99% Silver门。（`DEVELOPMENT_EVIDENCE`；边界：Observed visible-surface internal QA only; hidden geometry/appearance and independent accuracy remain unresolved, no Silver/Gold or Robot authority.）
+- Chips087连续24帧可见表面Robot/Object光学Z诊断在边缘邻域一致性约束后达到99.72%条件物体像素保留率，known coverage 84.12%，UNKNOWN 15.88%。（`DEVELOPMENT_EVIDENCE`；边界：仅为直接可见物体表面、Raw合法像素与数字Robot z-buffer的内部诊断；未恢复隐藏物体外观，未完成人工Gold，不授予Silver/Gold、接触真值、Robot控制或物理部署authority。）
+- V7.1 Visual Aux has bounded routing capacity for both Chips and Poker pairs（`DEVELOPMENT_EVIDENCE`；边界：Capacity forecast only: Chips 17 train/4 validation potential and Poker 20 train/4 validation potential; pending Robot/Clean/bundle receipts are not completed datasets or checkpoints.）
+- Chips087 right-pinky frame75 exceeds the current sampled KaiHand tip-direction reachable floor（`DEVELOPMENT_EVIDENCE`；边界：One-frame deterministic sampled digital reachability diagnosis under fixed wrist and current URDF limits; not global physical reachability, human truth, Robot authority or calibration.）
+- A two-candidate Robot base-backoff subset reproduced the full-sweep winner on the first six completed Chips sessions.（`DEVELOPMENT_EVIDENCE`；边界：Retrospective six-session Chips replay only; 71.4% fewer candidate evaluations is not measured wall-clock speedup, Poker generality, Robot authority, or evidence for unseen sessions.）
+- Hand round-2 produced no frozen summary-metric improvement on the first six completed Chips sessions.（`DEVELOPMENT_EVIDENCE`；边界：Six-session Chips summary and recorded-duration audit only; not proof that round-2 is globally redundant and not permission to mutate R7.3.）
+- Frozen HaWoR temporal diagnostic contracts have executable CPU reproductions（`DEVELOPMENT_EVIDENCE`；边界：CPU post-processing diagnostics over existing HaWoR tracks only; not HaWoR re-inference, weight provenance, successor authority, external 3D truth or Wave delta.）
 
 ## G. 最新状态变化
 
 ### PASSED
 
-- `chaoyang_current_only_cleanup_v6` / `workspace` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/FINAL_RESULT.json / `2026-09-14T18:37:33+08:00`
-- `chaoyang_current_only_cleanup_v6` / `workspace` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/control/runs/20260914_chaoyang_cleanup_v6/FINAL_RESULT.json / `2026-09-14T18:36:45+08:00`
-- `exact78_wave0_clean_v1` / `play_cards_0902_042` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/TERMINAL_AUDIT_V52_1.json / `2026-09-14T18:36:45+08:00`
-- `exact78_v52_lane_a_clean_successor_v521` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_a_clean_successor_v521/RUNNER_RESULT.json / `2026-09-14T16:24:01+08:00`
-- `exact78_wave0_clean_v1` / `play_cards_0902_042` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/TERMINAL_AUDIT_V52_1.json / `2026-09-14T16:24:01+08:00`
+- `clean_baseline_v1` / `-` / `PASSED` / no-result / `2026-09-17T11:35:00+08:00`
 
 ### FAILED_QUALITY_C
 
@@ -97,11 +113,7 @@
 
 ## H. 下一任务
 
-- next_task_id：`exact78_v52_lane_c_contact_robot`
-- next_session：`-`
-- prerequisites：`exact78_wave0_clean_v1, contact_geometry_v2_fixture`
-- expected_resource：`CPU Robot retarget plus serialized GPU render when needed`
-- stop_condition：`All 156 sessions receive METRIC_CONTACT_ROBOT, POSE_ONLY_VISUAL_ROBOT, FAILED_QUALITY_C, FAILED_RUNTIME_FINAL, or BLOCKED_PREREQ terminal; no physical authority promotion.`
+状态机当前未选择下一任务。
 
 ## 固定读取协议
 

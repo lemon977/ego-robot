@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/depth_source_audit_r3.schema.json",
+  "title": "DEPTH-00 coordinate and source audit",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "stage", "session_id", "depth_convention", "depth_unit", "formula", "depth_confidence_present", "external_metric_accuracy", "calibration", "image_domains", "coordinate_adapters", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "DEPTH_SOURCE_AUDIT_R3"},
+    "stage": {"const": "DEPTH-00"},
+    "session_id": {"type": "string", "minLength": 1},
+    "depth_convention": {"const": "OPTICAL_Z"},
+    "depth_unit": {"const": "m"},
+    "formula": {"const": "Z=fB/d"},
+    "depth_confidence_present": {"const": false},
+    "external_metric_accuracy": {"const": "UNKNOWN"},
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["K", "baseline_m", "identity_status"],
+      "properties": {
+        "K": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "array", "minItems": 3, "maxItems": 3, "items": {"type": "number"}}},
+        "baseline_m": {"type": "number", "exclusiveMinimum": 0},
+        "identity_status": {"enum": ["VERIFIED_SAME_SESSION", "VERIFIED_SAME_DEVICE_CONTRACT"]}
+      }
+    },
+    "image_domains": {
+      "type": "object",
+      "required": ["raw_fisheye", "rectified_left", "selected_left", "visual_mp4"],
+      "additionalProperties": {"type": "object"}
+    },
+    "coordinate_adapters": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "additionalProperties": false,
+        "required": ["source_domain", "target_domain", "implementation_sha256"],
+        "properties": {
+          "source_domain": {"type": "string"}, "target_domain": {"type": "string"},
+          "implementation_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

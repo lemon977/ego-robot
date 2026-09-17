@@ -1,0 +1,51 @@
+{
+  "schema_version": "chaoyang-external-calibration-archive-v1",
+  "archived_at": "2026-09-14T12:48:00+08:00",
+  "source_root": "/mnt/workspace/yidu/pico_controller/config",
+  "destination_root": "assets/calibration/pico_manus_legacy_20260914/config",
+  "copy_method": "rsync_archive_checksum_then_sha256_compare",
+  "copy_verified": true,
+  "claim_limit": "Engineering calibration and historical configuration only; not external physical ground truth.",
+  "files": [
+    {
+      "path": "calib_wrist.json",
+      "bytes": 709,
+      "sha256": "99ed407f349d50382d4ce791e2bb8a8e8641069e6aa316d3a6eb45263cb22c53"
+    },
+    {
+      "path": "calib_wrist.json.bak_before_xflip",
+      "bytes": 709,
+      "sha256": "99ed407f349d50382d4ce791e2bb8a8e8641069e6aa316d3a6eb45263cb22c53"
+    },
+    {
+      "path": "calib_wrist.json.bak_left_flip",
+      "bytes": 706,
+      "sha256": "5c911802a8badae537a5698e43048ac43466d47577588be7bfd5406a0ec2a961"
+    },
+    {
+      "path": "lemon01LeftMetaglovePro.mcal",
+      "bytes": 779464,
+      "sha256": "b9876f8505ada0d8c4acea804a7cc08ef2904f58d0d9f0400f98b185db0ddb8d"
+    },
+    {
+      "path": "lemon01RightMetaglovePro.mcal",
+      "bytes": 734907,
+      "sha256": "256da82c50a5f0de924e4e6dbd63f1392aa867c027617ed17711684422d8b614"
+    },
+    {
+      "path": "pico_cam/head_to_cam_solved.json",
+      "bytes": 646,
+      "sha256": "f9915e4bed5767c96e1206f8e5743477308746dfb595e8bc2370f29140ef61a2"
+    },
+    {
+      "path": "pico_cam/head_to_cam_solved_left.json",
+      "bytes": 646,
+      "sha256": "f9915e4bed5767c96e1206f8e5743477308746dfb595e8bc2370f29140ef61a2"
+    },
+    {
+      "path": "pico_cam/vst_cam.json",
+      "bytes": 1462,
+      "sha256": "2f3cb140ed9d8caad14fb2e6122d4146377181b99ab4b83326c0f7dab19ba532"
+    }
+  ]
+}

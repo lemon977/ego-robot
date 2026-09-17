@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_revision", "validity", "generated_at", "stage", "source_h0", "resource_observation", "row_count", "summary", "rows", "claim_limit"],
+  "properties": {
+    "schema_version": {"const": "handle-sensor-depth-preflight-ledger-v7.1"},
+    "artifact_revision": {"const": "R7_0"}, "validity": {"const": "VALID_FOR_PINNED_REVISION"},
+    "generated_at": {"type": "string"}, "stage": {"const": "h3"},
+    "source_h0": {"$ref": "#/$defs/evidence"}, "resource_observation": {"type": "object"},
+    "row_count": {"type": "integer", "minimum": 0}, "summary": {"type": "object"},
+    "rows": {"type": "array", "items": {"$ref": "#/$defs/row"}},
+    "claim_limit": {"type": "string", "minLength": 30}
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object", "required": ["path", "bytes", "sha256"],
+      "properties": {"path": {"type": "string", "pattern": "^/"}, "bytes": {"type": "integer", "minimum": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "row": {
+      "type": "object", "required": ["session_id", "dataset_id", "task", "frame_count", "status", "cpu_preflight", "primary_blocker", "contract"],
+      "properties": {
+        "session_id": {"type": "string"}, "dataset_id": {"type": "string"},
+        "task": {"enum": ["potato_chips", "playing_cards"]}, "frame_count": {"type": ["integer", "null"]},
+        "status": {"enum": ["BLOCKED_RESOURCE", "BLOCKED_SOURCE", "BLOCKED_PREREQ", "FAILED_RUNTIME_FINAL"]},
+        "cpu_preflight": {"enum": ["PASSED", "FAILED", "BLOCKED"]}, "primary_blocker": {"type": ["string", "null"]},
+        "contract": {
+          "oneOf": [
+            {"type": "null"},
+            {
+              "type": "object", "required": ["source_stereo", "camera_contract", "rectification_contract", "future_depth_contract"],
+              "properties": {
+                "source_stereo": {"type": "object"}, "camera_contract": {"type": "object"},
+                "rectification_contract": {
+                  "type": "object", "required": ["rotation_source", "fixed_exact78_rotation_allowed"],
+                  "properties": {"rotation_source": {"type": "string"}, "fixed_exact78_rotation_allowed": {"const": false}}
+                },
+                "future_depth_contract": {
+                  "type": "object", "required": ["quantity", "depth_confidence_present", "controller_wrist_overwrite_allowed"],
+                  "properties": {"quantity": {"const": "visible-surface optical-Z_m"}, "depth_confidence_present": {"const": false}, "controller_wrist_overwrite_allowed": {"const": false}}
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  }
+}

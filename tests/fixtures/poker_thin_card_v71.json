@@ -1,0 +1,14 @@
+{
+  "task": "poker",
+  "object_instance_id": "card_01",
+  "rigid": true,
+  "two_sided": true,
+  "dimensions_m": [0.088, 0.063, 0.0003],
+  "surface_ids": ["FRONT", "BACK", "EDGE"],
+  "probes": [
+    {"probe_id": "front_center", "local_point_m": [0.0, 0.0, 0.00015], "expected_region": "FRONT"},
+    {"probe_id": "back_center", "local_point_m": [0.0, 0.0, -0.00015], "expected_region": "BACK"},
+    {"probe_id": "long_edge", "local_point_m": [0.044, 0.0, 0.0], "expected_region": "EDGE"},
+    {"probe_id": "solid_interior", "local_point_m": [0.0, 0.0, 0.0], "expected_region": "PENETRATION"}
+  ]
+}

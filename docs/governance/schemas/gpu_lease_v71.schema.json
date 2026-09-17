@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "status", "task_id", "attempt_id", "hostname", "boot_id",
+    "pid", "process_startticks", "gpu_process_pid", "gpu_id", "acquired_at",
+    "heartbeat_at", "expires_at", "executor_epoch", "fencing_token", "priority"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-gpu-lease-v71"},
+    "status": {"enum": ["ACQUIRED", "RELEASED", "SUSPECTED_STALE_LEASE"]},
+    "task_id": {"type": "string", "minLength": 1},
+    "attempt_id": {"type": "string", "minLength": 1},
+    "hostname": {"type": "string", "minLength": 1},
+    "boot_id": {"type": "string", "minLength": 1},
+    "pid": {"type": "integer", "minimum": 1},
+    "process_startticks": {"type": "integer", "minimum": 1},
+    "gpu_process_pid": {"type": ["integer", "null"], "minimum": 1},
+    "gpu_id": {"type": "integer", "minimum": 0},
+    "acquired_at": {"type": "string", "format": "date-time"},
+    "heartbeat_at": {"type": "string", "format": "date-time"},
+    "expires_at": {"type": "string", "format": "date-time"},
+    "executor_epoch": {"type": "integer", "minimum": 1},
+    "fencing_token": {"type": "string", "minLength": 16},
+    "priority": {"enum": ["CANARY", "REGRESSION", "FULL_BATCH", "CHECKPOINT_TRAINING"]},
+    "released_at": {"type": "string", "format": "date-time"},
+    "release_reason": {"type": "string"},
+    "recovery_evidence": {"type": "object"}
+  }
+}

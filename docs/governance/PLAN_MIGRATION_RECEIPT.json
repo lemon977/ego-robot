@@ -1,0 +1,39 @@
+{
+  "claim_limit": "Plan migration and task routing only; execution evidence remains in immutable task receipts.",
+  "effective_governance_revision": 10824,
+  "effective_status": "CURRENT",
+  "generated_at": "2026-09-16T11:18:39+08:00",
+  "generation_id": "gov-010824-cde1f70d2e92",
+  "migration_id": "RC1-MIGRATE-00",
+  "new_plan": {
+    "bytes": 5744,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",
+    "sha256": "76752afc63b6af01d5c65493ad95d7381b250e9f717dcbc480d7f259198bee07"
+  },
+  "previous_plan": {
+    "bytes": 2412,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_R2_2_4H_INTEGRATION_PLAN_ZH.md",
+    "sha256": "40c4e6679870b49929d9bf48a50c91d80142bf7e317363da2ca4af3d39bcfaf1"
+  },
+  "schema_version": "chaoyang-plan-migration-receipt-v1",
+  "task_migrations": [
+    {
+      "from_task_id": "visual_aux_chips_pair_v1",
+      "migration_status": "MIGRATED",
+      "reason": "RC1 adds source-group, causal-input and consumer-eligibility contracts before pair training.",
+      "to_task_id": "rc1_t0_freeze_capacity_split"
+    },
+    {
+      "from_task_id": "visual_aux_poker_pair_v1",
+      "migration_status": "MIGRATED",
+      "reason": "RC1 adds source-group, causal-input and consumer-eligibility contracts before pair training.",
+      "to_task_id": "rc1_t0_freeze_capacity_split"
+    },
+    {
+      "from_task_id": "doc_r22",
+      "migration_status": "TERMINATED",
+      "reason": "R2.2 remains completed history and no longer routes delivery work.",
+      "to_task_id": "rc1_migrate_00"
+    }
+  ]
+}

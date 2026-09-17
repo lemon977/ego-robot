@@ -3,9 +3,9 @@
   "asset_family": "kaihand",
   "asset_version": "kaibot_dexhand",
   "status": "validated",
-  "source": "HumanEgo/vendor/kaihand KaiBot-Dexhand shell URDF L-260624 / R-260424; project policy uses KaiBot (no separate Kai v3)",
+  "source": "src/chaoyang/human_ego/third_party/kaihand KaiBot-Dexhand shell URDF L-260624 / R-260424; project policy uses KaiBot (no separate Kai v3)",
   "left": {
-    "urdf": "/mnt/workspace/code/chaoyang/HumanEgo/vendor/kaihand/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+    "urdf": "src/chaoyang/human_ego/third_party/kaihand/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
     "urdf_sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74",
     "joint_names": [
       "hand_l_thumb_joint1",
@@ -33,7 +33,7 @@
     ]
   },
   "right": {
-    "urdf": "/mnt/workspace/code/chaoyang/HumanEgo/vendor/kaihand/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+    "urdf": "src/chaoyang/human_ego/third_party/kaihand/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
     "urdf_sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586",
     "joint_names": [
       "hand_r_thumb_joint1",

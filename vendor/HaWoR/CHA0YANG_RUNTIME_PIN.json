@@ -1,0 +1,316 @@
+{
+  "environment": {
+    "lock_bytes": 3481,
+    "lock_path": "CHA0YANG_ENVIRONMENT_LOCK.txt",
+    "lock_sha256": "08fc213dc968fabe78bf682b13078b75a2c83854adc76ab659bcf57df12de6ac"
+  },
+  "file_count": 59,
+  "files": [
+    {
+      "bytes": 41,
+      "path": "UPSTREAM_COMMIT",
+      "sha256": "fbbeb52c11a0a828682fba36db8e8276386b07fe6ecdfdade1ace9b0ff1990d8"
+    },
+    {
+      "bytes": 3821356,
+      "path": "_DATA/data/mano/MANO_RIGHT.pkl",
+      "sha256": "45d60aa3b27ef9107a7afd4e00808f307fd91111e1cfa35afd5c4a62de264767"
+    },
+    {
+      "bytes": 1178,
+      "path": "_DATA/data/mano_mean_params.npz",
+      "sha256": "efc0ec58e4a5cef78f3abfb4e8f91623b8950be9eff8b8e0dbb0d036ebc63988"
+    },
+    {
+      "bytes": 3821391,
+      "path": "_DATA/data_left/mano_left/MANO_LEFT.pkl",
+      "sha256": "c4022f7083f2ca7c78b2b3d595abbab52debd32b09d372b16923a801f0ea6a30"
+    },
+    {
+      "bytes": 3437,
+      "path": "hawor/configs/__init__.py",
+      "sha256": "8af4f8aa408bb2d67a91b0c3e6fddffb39072c22b01762fe72ddb3d275fefd0b"
+    },
+    {
+      "bytes": 4196,
+      "path": "hawor/utils/geometry.py",
+      "sha256": "4a4df217db764d0d16bd82532f880d8f56cd4182ce3add2d6c3985218c355344"
+    },
+    {
+      "bytes": 7526,
+      "path": "hawor/utils/process.py",
+      "sha256": "3a7a6490c4505c9c773715fd48c8206607536304d46f1cfb5a08fc1dc8de9a5c"
+    },
+    {
+      "bytes": 608,
+      "path": "hawor/utils/pylogger.py",
+      "sha256": "c8a816419a6b61389321f971427e1b88f7fda0345ae49f579318abdcb8349296"
+    },
+    {
+      "bytes": 10693,
+      "path": "hawor/utils/render_openpose.py",
+      "sha256": "6387d2c82ffe6bfc17adb291e8ed9e2802aa6cda0e584ec9c221d87c38bc19bf"
+    },
+    {
+      "bytes": 8744,
+      "path": "hawor/utils/rotation.py",
+      "sha256": "b2fde35678f2338ee68b768459240224b44143eb5d1bfad3e2fb868214a60691"
+    },
+    {
+      "bytes": 13945,
+      "path": "infiller/hand_utils/geometry.py",
+      "sha256": "02ca44763d1ee738306f44f19d467ba197e026be7f2e373ca281948e2a972536"
+    },
+    {
+      "bytes": 4196,
+      "path": "infiller/hand_utils/geometry_utils.py",
+      "sha256": "4a4df217db764d0d16bd82532f880d8f56cd4182ce3add2d6c3985218c355344"
+    },
+    {
+      "bytes": 2354,
+      "path": "infiller/hand_utils/mano_wrapper.py",
+      "sha256": "89c3c0ade660110e2757da7c746b3593de18eed4c58e249d4581cd3314915a44"
+    },
+    {
+      "bytes": 6962,
+      "path": "infiller/hand_utils/process.py",
+      "sha256": "e497363091a995b8dd9300ac429bc62d471d79136d442073a2df5ba97d4fc146"
+    },
+    {
+      "bytes": 8744,
+      "path": "infiller/hand_utils/rotation.py",
+      "sha256": "b2fde35678f2338ee68b768459240224b44143eb5d1bfad3e2fb868214a60691"
+    },
+    {
+      "bytes": 3451,
+      "path": "infiller/lib/misc/sampler.py",
+      "sha256": "9d4470e5bde5ea9f0a09528cdaefb91d31ba43ec001331c27b464905561d81ac"
+    },
+    {
+      "bytes": 10275,
+      "path": "infiller/lib/model/network.py",
+      "sha256": "0bdc234dbc7d0baf0456e30a0901b621aa48ec7171ee40d40d95ad99e48947b5"
+    },
+    {
+      "bytes": 1327,
+      "path": "infiller/lib/model/positional_encoding.py",
+      "sha256": "213c293579e627e0acc767732ec96ee57a5d9a8f4309b4b028bd4cf1c094819f"
+    },
+    {
+      "bytes": 7115,
+      "path": "infiller/lib/model/preprocess.py",
+      "sha256": "1770fff0b9fc1f622cc8c3a433ec7e81d751213b3107ec7bb966685d2ee83148"
+    },
+    {
+      "bytes": 10746,
+      "path": "infiller/lib/model/skeleton.py",
+      "sha256": "4a79b9b18645188c38600221ac65d5c6a41216f4d09f1c34567ade21c0bdc982"
+    },
+    {
+      "bytes": 6426,
+      "path": "infiller/lib/vis/pose.py",
+      "sha256": "7e79494e9239e4cf52e0eaa9297cf86df1b92400846ce3d3255358290c7af493"
+    },
+    {
+      "bytes": 3652,
+      "path": "lib/core/constants.py",
+      "sha256": "3d25a45df302f5d576b983b9dce1e2b13fb461a41e701d2b9afb39fed989c948"
+    },
+    {
+      "bytes": 1427,
+      "path": "lib/datasets/detect_track_video_hot3d.py",
+      "sha256": "fe69fad6ee7b12c49cbde80c259408bb2304a7ca3c4f2ec576fce1b68aafe48d"
+    },
+    {
+      "bytes": 2170,
+      "path": "lib/datasets/hot3d_dataset.py",
+      "sha256": "890b2ab63d9252c6993c294164a09d99172c7afe4d931432b97f531982e499bd"
+    },
+    {
+      "bytes": 721,
+      "path": "lib/datasets/hot3d_dataset_preprocess.py",
+      "sha256": "ecfa805903a67368f6b5aa25d0e1d650ea9c7ed3b0b4203c147001394a89b7df"
+    },
+    {
+      "bytes": 2517,
+      "path": "lib/datasets/track_dataset.py",
+      "sha256": "79ef470ce35177f71d2a5145b39ad148e53771de971a53ea88b872d0aa1b89c6"
+    },
+    {
+      "bytes": 7434,
+      "path": "lib/eval_utils/custom_utils.py",
+      "sha256": "5c9547303ee64537f0a335f10e6c7ef6f00a072d90496f17e737599b2e7cf7ff"
+    },
+    {
+      "bytes": 14950,
+      "path": "lib/eval_utils/eval_utils.py",
+      "sha256": "dee3d6e09c2c743f0ccb10ca58f259b1b6dc7fdd65aca5dedf82821c860e33a4"
+    },
+    {
+      "bytes": 14058,
+      "path": "lib/eval_utils/filling_utils.py",
+      "sha256": "0d5480973163841394dc5ff5e714428fa77c7f9fa41e8f0ebcabc12a7ea8e699"
+    },
+    {
+      "bytes": 2822,
+      "path": "lib/eval_utils/video_utils.py",
+      "sha256": "e4d7678786f3b30ae36c8b06888aa31078f9ae6d5c59f689cbe60c32757a72ba"
+    },
+    {
+      "bytes": 194,
+      "path": "lib/models/backbones/__init__.py",
+      "sha256": "86810a8ada8017d1b1c7e850f1f772289e56439d796f717d27785d6aa43c9b45"
+    },
+    {
+      "bytes": 12450,
+      "path": "lib/models/backbones/vit.py",
+      "sha256": "557011238c4759f4017c00182f8235b68d865b2f89cb0760e22321068703b1b5"
+    },
+    {
+      "bytes": 0,
+      "path": "lib/models/components/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 11299,
+      "path": "lib/models/components/pose_transformer.py",
+      "sha256": "ee8a11a8b19361d6e069fd7103d00c19cf9403268f4f3e4caf6f6a1e8a0feb93"
+    },
+    {
+      "bytes": 6791,
+      "path": "lib/models/components/t_cond_mlp.py",
+      "sha256": "d8d0c820bb576012ea7ee90de6abe40eebe13357ace19338188a0617b2b21a8e"
+    },
+    {
+      "bytes": 22663,
+      "path": "lib/models/hawor.py",
+      "sha256": "3c4ce9e5f2bb1f7a42e2d1668b40582f93836b58ea3cc2a3be0beb2bcf8b6de4"
+    },
+    {
+      "bytes": 2354,
+      "path": "lib/models/mano_wrapper.py",
+      "sha256": "89c3c0ade660110e2757da7c746b3593de18eed4c58e249d4581cd3314915a44"
+    },
+    {
+      "bytes": 4655,
+      "path": "lib/models/modules.py",
+      "sha256": "b66c0fd5df0f946760de9422405afe06b58029702b46cb57b69f7e2544c7e32c"
+    },
+    {
+      "bytes": 0,
+      "path": "lib/pipeline/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 5757,
+      "path": "lib/pipeline/est_scale.py",
+      "sha256": "8290b092ef2f338f99ec2c8ce40c0c1fef2a0478c4dacf2106351af1f12b0db4"
+    },
+    {
+      "bytes": 9377,
+      "path": "lib/pipeline/masked_droid_slam.py",
+      "sha256": "ec7e3510a428774fc875dda045cdc1eb97ae5dadd40edda9668809d8414505f0"
+    },
+    {
+      "bytes": 10626,
+      "path": "lib/pipeline/tools.py",
+      "sha256": "6f8d291051bcc048b9bdde67d8f57f7d65b5a2cdba1cbee2278c485569e292a9"
+    },
+    {
+      "bytes": 13945,
+      "path": "lib/utils/geometry.py",
+      "sha256": "02ca44763d1ee738306f44f19d467ba197e026be7f2e373ca281948e2a972536"
+    },
+    {
+      "bytes": 9454,
+      "path": "lib/utils/imutils.py",
+      "sha256": "a3998d65a97a203572e65cf2fb03acc543824b956f58966e8563e93b87c12286"
+    },
+    {
+      "bytes": 11879,
+      "path": "lib/vis/renderer.py",
+      "sha256": "08c7e281be05084b793d7691b959319c8e32c46eede7973ea5e7fb2664d53016"
+    },
+    {
+      "bytes": 11960,
+      "path": "lib/vis/renderer_world.py",
+      "sha256": "c63eabbb57dadfe0da2f95d8a098f275e1e46023518bee12f1c592e091ef35c7"
+    },
+    {
+      "bytes": 7862,
+      "path": "lib/vis/run_vis2.py",
+      "sha256": "9a5d5d997c31da184fda4afcc70d7799d07b89e26cf67943538aa2b23cf4c440"
+    },
+    {
+      "bytes": 23339,
+      "path": "lib/vis/tools.py",
+      "sha256": "47b455736ba5aac3d61911379ebfa662550b8cac5d1f6cccda665aaba13ca628"
+    },
+    {
+      "bytes": 9722,
+      "path": "lib/vis/viewer.py",
+      "sha256": "0c5d6c65bafd7360a8ee9de3a6eafeb16f2725e70a2fabc3a03afbc9a9eba803"
+    },
+    {
+      "bytes": 2057,
+      "path": "lib/vis/wham_tools/tools.py",
+      "sha256": "8ebb711dccdaf744439820fe846fbb6774471ea0cfdc57ef6c96a66b39bcec6b"
+    },
+    {
+      "bytes": 19133,
+      "path": "license.txt",
+      "sha256": "0bb835f5ed7272947a23d92d0e74bbdadcbf0beb9235c0735c32d1310a4bceda"
+    },
+    {
+      "bytes": 491,
+      "path": "requirements.txt",
+      "sha256": "49d563f860c3f5c473e7506a464297b1a996933ccb596300d0c8a978a92a468a"
+    },
+    {
+      "bytes": 2217,
+      "path": "scripts/scripts_test_video/detect_track_video.py",
+      "sha256": "6cda57c3f5a73395ac982c0b3537236df581dbf136d51ee91e7f7066073a5689"
+    },
+    {
+      "bytes": 4549,
+      "path": "scripts/scripts_test_video/hawor_slam.py",
+      "sha256": "c0b99d0e0582f7d6287e3860fdfdf7a4b42ae2cf9f229562bb7a9aba516226b4"
+    },
+    {
+      "bytes": 16553,
+      "path": "scripts/scripts_test_video/hawor_video.py",
+      "sha256": "81f8a37fdd43692063d166083945cf99f032984358b1a31410266794218ea217"
+    },
+    {
+      "bytes": 53582271,
+      "path": "weights/external/detector.pt",
+      "sha256": "5ef3df44e42d2db52d4ffe91f83a22ce9925e2acc9abebf453f2c5d22e380033"
+    },
+    {
+      "bytes": 3267481572,
+      "path": "weights/hawor/checkpoints/hawor.ckpt",
+      "sha256": "4d1cc43853c190d6f2c10d9b6295c73109f0faf9ef41ac817a2b31d94b4823f2"
+    },
+    {
+      "bytes": 418603497,
+      "path": "weights/hawor/checkpoints/infiller.pt",
+      "sha256": "30715e7e72e91d4e164bb762c7ea613dcff5448dbda5fabf40b4054e408cc5c2"
+    },
+    {
+      "bytes": 2743,
+      "path": "weights/hawor/model_config.yaml",
+      "sha256": "edfe12dc14ce371d698da722b59acfed5b4a38a7f8f5116cbc1fce459a07dd2d"
+    }
+  ],
+  "runtime_contract": {
+    "camera_authority": "PICO_EXPORTED_C2W_AND_INTRINSICS",
+    "droid_slam_used_by_pico_canary": false,
+    "external_checkout_required": false,
+    "mano_assets_local": true,
+    "metric3d_used_by_pico_canary": false,
+    "weights_local": true
+  },
+  "schema_version": "chaoyang-vendored-hawor-runtime-pin-v1",
+  "upstream_commit": "66c7d4108d58a716deccd192cb7645170cdc7bd7",
+  "vendor_root": "third_party/HaWoR"
+}

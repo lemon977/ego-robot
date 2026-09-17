@@ -32,13 +32,13 @@ lifecycle:
 
 frozen_inputs:
   exact78_manifest:
-    path: HumanEgo/data_manifests/retarget_ab/kai22_r2.json
+    path: manifests/human_ego/retarget_ab/kai22_r2.json
     sha256: 4378c6011e5af39ed0e6bc0fd3e8a054ce1d1ceb5279cb513b6be17375984e6c
     sessions: 78
     frames: 32318
     split: {train: 62, validation: 8, test: 8}
   exact78_r2_sidecars:
-    root: HumanEgo/data_manifests/robot_sidecars_v4_candidate/r2_robust24_confidence_temporal/kai22
+    root: manifests/human_ego/robot_sidecars_v4_candidate/r2_robust24_confidence_temporal/kai22
     expected_verified_count: 78
     mutable: false
   raw:
@@ -197,7 +197,7 @@ mask_experiment_governance:
   auditor:
     target_identity: auditor_a1
     freeze_state: FROZEN_HUMAN_REVIEW_POLICY_DIAGNOSTIC_ONLY_NO_AUTOMATIC_PASS
-    implementation_ref: pipeline/auditor/mask_auditor_a1.py
+    implementation_ref: src/chaoyang/pipeline/auditor/mask_auditor_a1.py
     implementation_sha256: 82d21b01a623093d2c89308ba7d1dd596f6d062d6273b8044db5df12356e9c7c
     claim_limit: BENCHMARK_DIAGNOSTIC_RANKING_ONLY_NOT_PRODUCTION_PASS
     threshold_profile_ref: {policy: HUMAN_REVIEW_POLICY, empirical_noise_floor: null, noise_floor_status: UNAVAILABLE_USER_WAIVED_0_OF_8, automatic_pass_thresholds: null}
@@ -244,19 +244,19 @@ mask_experiment_governance:
       project_U_pixel_zero_loss_supported_without_loss_change: false
       requires_official_loss_modification_and_independent_audit: true
       original_trainability_t0_claim_scope: ROUTE_B_PUBLIC_POINT_INTERFACE_ONLY_NOT_SAM31_UNTRAINABLE
-    freeze_ref: {ref: _run/g2_auditor_a1_freeze_v1/8e084d147cc4a0102a27ac5b6a9643125ec8a2472531de998086392baf110b1f/AUDITOR_FREEZE.json, sha256: d2cd400a5ffb7e30f365f1ae3af21fb916b31302e64034ca8ba75c36c001fd9c}
+    freeze_ref: {ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_auditor_a1_freeze_v1/8e084d147cc4a0102a27ac5b6a9643125ec8a2472531de998086392baf110b1f/AUDITOR_FREEZE.json, sha256: d2cd400a5ffb7e30f365f1ae3af21fb916b31302e64034ca8ba75c36c001fd9c}
   benchmark:
     schema: contracts/mask_benchmark.schema.json
     state: V2_FROZEN_HUMAN_REVIEWED_WITH_0_255_ADAPTER
     staging_v1:
-      manifest_ref: _run/g2_mask_benchmark_v1/BENCHMARK_MANIFEST.json
+      manifest_ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_v1/BENCHMARK_MANIFEST.json
       manifest_sha256: 85f09ef99f3445350619a2f202f70c9182fc5ffd5f0297e32dfd32038f212a36
       frame_count: 60
-      pilot_review: {ref: _run/g2_mask_benchmark_v1/human_labels/PILOT_5_REVIEW.json, sha256: 9d218c494dd6bdc67a8249c74ea0364c746247a607dfb4463dce02a383d50960, state: PASS_PILOT_ONLY_NOT_FROZEN}
+      pilot_review: {ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_v1/human_labels/PILOT_5_REVIEW.json, sha256: 9d218c494dd6bdc67a8249c74ea0364c746247a607dfb4463dce02a383d50960, state: PASS_PILOT_ONLY_NOT_FROZEN}
     staging_v2:
-      manifest_ref: _run/g2_mask_benchmark_v2/BENCHMARK_MANIFEST.json
+      manifest_ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_v2/BENCHMARK_MANIFEST.json
       manifest_sha256: 60b9df265169bb2a4d575bfc3a836039c9ba0d618922a6f8b08dbf7b44b9fde1
-      run_manifest_ref: _run/g2_mask_benchmark_v2/run_manifest.json
+      run_manifest_ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_v2/run_manifest.json
       run_manifest_sha256: 0692d73123c8ad710367da3277d0a907620e8c76a9b8f21e1ae809de6d6c5ce4
       frame_count: 45
       partitions: {development_004: 15, same_session_blind_004: 15, cross_session_blind_025: 15}
@@ -265,13 +265,13 @@ mask_experiment_governance:
       state: HUMAN_LABELS_VALIDATED_AND_T2_FROZEN_VIA_0_255_ADAPTER
       live_label_counts: DERIVE_AT_RUNTIME_FROM_LABEL_FREEZER_INPUTS_NEVER_PIN_IN_PROFILE
       derived_t0_label_manifest:
-        ref: _run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json
+        ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json
         sha256: 3038770f20a36a1a31dff98ed4997e5db59d008c339753fc43321c76edb01d33
         state: DERIVED_T0_NOT_FROZEN
         freeze_ref_issued: true
         original_binary_values: [0, 1]
         consumer_allowed: false
-    frozen_ref: {ref: _run/g2_mask_benchmark_freeze_v1/8bdd4cb5e994a9a648adbc20bafb9a59e28a67a1118d1043501159da1888e7ac/BENCHMARK_FREEZE.json, sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b, state: FROZEN_HUMAN_REVIEWED, binary_values: [0, 255], binary_mask_count: 180, reverse_palette_exact_frames: 45}
+    frozen_ref: {ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_freeze_v1/8bdd4cb5e994a9a648adbc20bafb9a59e28a67a1118d1043501159da1888e7ac/BENCHMARK_FREEZE.json, sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b, state: FROZEN_HUMAN_REVIEWED, binary_values: [0, 255], binary_mask_count: 180, reverse_palette_exact_frames: 45}
     frame_count_min: 45
     frame_count_max: 60
     label_classes: [H, O, U, B]
@@ -288,9 +288,9 @@ mask_experiment_governance:
     ui_output: SINGLE_PALETTE_PNG_B0_H1_O2_U3
     auditor_input: FOUR_MUTUALLY_EXCLUSIVE_BINARY_HOUB_MASKS
     unique_atomic_label_freezer_state: T2_FROZEN_0_255_ADAPTER_ORIGINAL_T0_0_1_PRESERVED
-    derived_t0_manifest: {ref: _run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json, sha256: 3038770f20a36a1a31dff98ed4997e5db59d008c339753fc43321c76edb01d33, freeze_ref_issued: true, original_binary_values: [0, 1], consumer_allowed: false}
+    derived_t0_manifest: {ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_v2/derived_labels_t0/3fa396d6324c7b19b1b84880ffa18807244160934df7b21f52ff22867865af49/label_manifest.json, sha256: 3038770f20a36a1a31dff98ed4997e5db59d008c339753fc43321c76edb01d33, freeze_ref_issued: true, original_binary_values: [0, 1], consumer_allowed: false}
     frozen_adapter: {binary_values: [0, 255], binary_mask_count: 180, reverse_palette_exact_frames: 45, benchmark_freeze_sha256: 09f94084a84cd0ac0d3e93a3311da2b41c85788742029e89347b18afb6ed073b}
-    independent_second_pass: {ref: _run/g2_mask_benchmark_v2/secondary_annotation_b1/SECONDARY_ANNOTATION_MANIFEST.json, sha256: 7f346743f9e2bdfca1cb200937722023b1c046b987d8383035bb813115f8f565, completed: 0, required: 8, state: USER_WAIVED_0_OF_8, noise_floor: UNAVAILABLE_USER_WAIVED, human_need_open: false}
+    independent_second_pass: {ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/g2_mask_benchmark_v2/secondary_annotation_b1/SECONDARY_ANNOTATION_MANIFEST.json, sha256: 7f346743f9e2bdfca1cb200937722023b1c046b987d8383035bb813115f8f565, completed: 0, required: 8, state: USER_WAIVED_0_OF_8, noise_floor: UNAVAILABLE_USER_WAIVED, human_need_open: false}
     round_trip_exactness_required: true
     label_manifest_and_freeze_ref_required: true
   fixed_metrics: [human_miss, object_corruption, background_overmask, boundary_excluding_u, temporal_flip]
@@ -318,9 +318,9 @@ mask_experiment_governance:
 
 reject_hold_evidence_registry:
   state: IMPLEMENTED_REVIEW_ONLY_NOT_A_FORMAL_ARTIFACT
-  registry_ref: _run/rejected_visual_review_v1/MANIFEST.json
+  registry_ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/rejected_visual_review_v1/MANIFEST.json
   registry_sha256: 9ae293385f4f0f5cafec8f3d66d8a2ad5403759abc0f749f6d32413c3da5abcf
-  index_ref: _run/rejected_visual_review_v1/INDEX.html
+  index_ref: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/rejected_visual_review_v1/INDEX.html
   index_sha256: edd14102eb994023fb1b0f54afa383bbea413d82748ea089218dbd3aa1abe888
   asset_count: 13
   coverage: MASK_V1_THROUGH_V9_AND_A2_REPRESENTATIVE_VISUAL_EVIDENCE
@@ -338,9 +338,9 @@ calibration_object_evidence:
   access: READ_ONLY
   refinement_allowed_before_human_mask_clean_review: false
   files:
-    object_6dof_v2_npz: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/object_6dof_v2.npz, sha256: 97fb5747411830b2caa9f34cc164dca39cd411227a8ffaa7229b6e523eaf6a13}
-    cylinder_geometry: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/cylinder_geometry.json, sha256: fea720ec2d1c0c8ef311bce5dd65e7f47e806da7bedee3f96c9a3ee9fe6f4631}
-    v2_summary: {path: data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/v2_summary.json, sha256: c6b6f27d2812e756789bcd73c9708250cd5c300d12d66fb8a39627e684749d91}
+    object_6dof_v2_npz: {path: archive/baseline-20260917-0aa69e9/content/history/data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/object_6dof_v2.npz, sha256: 97fb5747411830b2caa9f34cc164dca39cd411227a8ffaa7229b6e523eaf6a13}
+    cylinder_geometry: {path: archive/baseline-20260917-0aa69e9/content/history/data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/cylinder_geometry.json, sha256: fea720ec2d1c0c8ef311bce5dd65e7f47e806da7bedee3f96c9a3ee9fe6f4631}
+    v2_summary: {path: archive/baseline-20260917-0aa69e9/content/history/data/benchmarks/hand/production_runs/final_v3_grap_a_cap_0812/grap_a_cap_004/10_object6d_v2/v2_cylinder_center_rotation_gated/v2_summary.json, sha256: c6b6f27d2812e756789bcd73c9708250cd5c300d12d66fb8a39627e684749d91}
   claim_limit: READ_ONLY_PROMPT_AND_ANALYTIC_GEOMETRY_EVIDENCE_NOT_VISUAL_PASS
 
 canary_selection:
@@ -496,8 +496,8 @@ harmonization:
 
 promotion:
   enabled: false
-  source_template: _run/{run_id}/sessions/{session_id}
-  destination_template: data/processed/formal_legacy/{session_id}_v{version}
+  source_template: archive/baseline-20260917-0aa69e9/content/history/runtime/_run/{run_id}/sessions/{session_id}
+  destination_template: archive/baseline-20260917-0aa69e9/content/history/data/processed/formal_legacy/{session_id}_v{version}
   method: FSYNC_THEN_SAME_FILESYSTEM_ATOMIC_RENAME
   overwrite_allowed: false
   required_track: HAND_ARM_FINAL

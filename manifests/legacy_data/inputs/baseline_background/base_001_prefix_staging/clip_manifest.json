@@ -1,0 +1,230 @@
+{
+  "format_version": "1.0",
+  "clip_name": "base_001",
+  "created_at": "2026-09-02 18:58:46",
+  "processing_status": "ready",
+  "source_root": "/home/pc/chaoyang/pico_dataset_editor-1.1.0/data/pico_merged/base",
+  "editor_source_root": "/home/pc/chaoyang/pico_dataset_editor-1.1.0/data/pico_merged/base",
+  "output_root": "/home/pc/chaoyang/pico_dataset_editor-1.1.0/data/pico_clips3",
+  "run_id": "merged-00-20260902-181205",
+  "selection": {
+    "run_start_s": 0.0,
+    "run_end_s": 40.319,
+    "requested_duration_s": 40.319
+  },
+  "pieces": [
+    {
+      "session": "base",
+      "source_video": "/home/pc/chaoyang/pico_dataset_editor-1.1.0/data/pico_merged/base/CameraRecord_merged.mp4",
+      "local_start_s": 0.0,
+      "local_end_s": 40.319,
+      "duration_s": 40.319,
+      "output_start_s": 0.0,
+      "run_start_s": 0.0,
+      "wall_clock_start": "2026-09-02 18:12:05",
+      "wall_clock_end": "2026-09-02 18:12:45.319000"
+    }
+  ],
+  "files": {
+    "video": "CameraRecord_base_001.mp4",
+    "source_stereo_video": "source_stereo/CameraRecord_base_001_stereo.mp4",
+    "tracking": "trackingData_base_001.txt",
+    "slam": "slam_trajectory_base_001.jsonl",
+    "camera_params": "camera_params.json",
+    "humanego_all_data": "preprocess/all_data"
+  },
+  "video": {
+    "width": 1280,
+    "height": 960,
+    "fps": 30.0,
+    "duration_s": 40.333333,
+    "frame_count": 1210
+  },
+  "video_rectification": {
+    "rectified": true,
+    "eye": "left",
+    "camera_model": "pinhole",
+    "distortion": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "intrinsics": [
+      [
+        640.0000000000001,
+        0.0,
+        639.5
+      ],
+      [
+        0.0,
+        640.0000000000001,
+        479.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "horizontal_fov_deg": 90.0,
+    "resolution": [
+      1280,
+      960
+    ]
+  },
+  "source_stereo_video": {
+    "width": 4096,
+    "height": 1536,
+    "fps": 30.0,
+    "duration_s": 40.333333,
+    "frame_count": 1210
+  },
+  "tracking": {
+    "tracking_frame_count": 3632,
+    "slam_frame_count": 3632,
+    "coordinate_system": "clip_start_head_6dof",
+    "origin_head_pose_in_source_world": "0.135336041,0.220218658,-0.4244159,0.0482052527,-0.9354404,-0.158937544,-0.312035829",
+    "first_timestamp_ns": 1788343926393593000,
+    "last_timestamp_ns": 1788343966709236000,
+    "duration_s": 40.315643
+  },
+  "humanego": {
+    "format_version": "1.0",
+    "frame_count": 1210,
+    "fps": 30.0,
+    "duration_s": 40.333333333333336,
+    "eye": "left",
+    "source_eye_resolution": [
+      2048,
+      1536
+    ],
+    "output_resolution": [
+      1280,
+      960
+    ],
+    "horizontal_fov_deg": 90.0,
+    "intrinsics": [
+      [
+        640.0000000000001,
+        0.0,
+        639.5
+      ],
+      [
+        0.0,
+        640.0000000000001,
+        479.5
+      ],
+      [
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "distortion": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "world_coordinate_system": "first_frame_selected_camera_optical",
+    "camera_coordinate_system": "current_frame_selected_camera_optical",
+    "pose_convention": "4x4 column-vector SE(3)",
+    "hand_model": {
+      "name": "Project Aria compatible 21-landmark dexterous hand",
+      "source": "PICO/OpenXR 26 joints",
+      "joint_names": [
+        "thumb_fingertip",
+        "index_fingertip",
+        "middle_fingertip",
+        "ring_fingertip",
+        "pinky_fingertip",
+        "wrist",
+        "thumb_intermediate",
+        "thumb_distal",
+        "index_proximal",
+        "index_intermediate",
+        "index_distal",
+        "middle_proximal",
+        "middle_intermediate",
+        "middle_distal",
+        "ring_proximal",
+        "ring_intermediate",
+        "ring_distal",
+        "pinky_proximal",
+        "pinky_intermediate",
+        "pinky_distal",
+        "palm_center"
+      ],
+      "pico_joint_indices": [
+        5,
+        10,
+        15,
+        20,
+        25,
+        1,
+        3,
+        4,
+        7,
+        8,
+        9,
+        12,
+        13,
+        14,
+        17,
+        18,
+        19,
+        22,
+        23,
+        24,
+        0
+      ],
+      "legacy_T_hand_to_world": "real PICO wrist pose; no virtual gripper"
+    },
+    "active_frame_counts": {
+      "left": 1178,
+      "right": 1171,
+      "both": 1171
+    },
+    "max_tracking_sync_error_ms": 18.133333,
+    "finished_frames": 30,
+    "rectified_video_written": true,
+    "humanego_compatibility": {
+      "all_data": "preprocess/all_data",
+      "default_image_alias": "rgb_WoArm_WArmObjKpts.png",
+      "objects": "not available",
+      "grasp": "thumb-index distance compatibility label only",
+      "dexterous_21_consumed_by_stock_loader": false
+    }
+  },
+  "coordinate_system": {
+    "name": "clip_start_head_6dof",
+    "origin_head_pose_in_source_world": "0.135336041,0.220218658,-0.4244159,0.0482052527,-0.9354404,-0.158937544,-0.312035829",
+    "description": "Every exported clip has an independent origin. The first selected Head pose is identity; Head, Hand, Body, and valid Controller poses use that same fixed 6DoF frame."
+  },
+  "calibration_sha256_by_session": {
+    "base": "f44e237577f640e6e0c1262dcf384f524c25d38e91e2b52c4a17239d9b40f2bf"
+  },
+  "calibration_consistent": true,
+  "tracking_fields_preserved": [
+    "TrackerState",
+    "Head (SLAM pose)",
+    "Controller",
+    "bodyTracking",
+    "Body",
+    "Input",
+    "Hand"
+  ],
+  "notes": [
+    "Tracking timeStampNs is retimed to the concatenated output timeline.",
+    "Motion poses are rebased to the first Head frame of this clip.",
+    "Original timestamps and source session names are retained in the SLAM JSONL.",
+    "The primary clip video is the selected rectified pinhole eye with trimmed AAC audio.",
+    "The cropped distorted stereo source is retained under source_stereo for traceability.",
+    "Derived MANO/model tracking folders are not copied because their frame indices no longer match.",
+    "HumanEgo uses one rectified PICO eye and real wrist/palm poses; no virtual gripper pose is generated.",
+    "The stock HumanEgo loader can use the wrist compatibility pose, but does not consume the added 21-landmark dexterous-hand fields without a model/loader extension."
+  ]
+}

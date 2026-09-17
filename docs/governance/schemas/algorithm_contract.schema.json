@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "governance_revision",
+    "generation_id",
+    "generated_at",
+    "status",
+    "quality_gate_classes",
+    "stages",
+    "special_status_contracts",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-algorithm-contract-v1"},
+    "governance_revision": {"type": "integer", "minimum": 1},
+    "generation_id": {"type": "string", "minLength": 1},
+    "generated_at": {"type": "string"},
+    "status": {"const": "CURRENT"},
+    "quality_gate_classes": {
+      "type": "object",
+      "additionalProperties": {"type": "string"},
+      "required": ["HARD_STRUCTURAL", "DOWNSTREAM_ELIGIBILITY", "SOFT_DIAGNOSTIC", "EXTERNAL_AUTHORITY"]
+    },
+    "stages": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "stage",
+          "algorithm_id",
+          "implementation_revision",
+          "code_closure",
+          "weights",
+          "input_authority",
+          "output_schema",
+          "quality_gates",
+          "known_limitations",
+          "successor_requirement",
+          "superseded_implementations"
+        ],
+        "properties": {
+          "stage": {"type": "string"},
+          "algorithm_id": {"type": "string"},
+          "implementation_revision": {"const": "R7_1_R3"},
+          "code_closure": {"type": "array", "items": {"type": "object"}},
+          "weights": {},
+          "input_authority": {"type": "string"},
+          "output_schema": {},
+          "quality_gates": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["HARD_STRUCTURAL", "DOWNSTREAM_ELIGIBILITY", "SOFT_DIAGNOSTIC", "EXTERNAL_AUTHORITY"],
+            "properties": {
+              "HARD_STRUCTURAL": {"type": "array", "items": {"type": "string"}},
+              "DOWNSTREAM_ELIGIBILITY": {"type": "array", "items": {"type": "string"}},
+              "SOFT_DIAGNOSTIC": {"type": "array", "items": {"type": "string"}},
+              "EXTERNAL_AUTHORITY": {"type": "array", "items": {"type": "string"}}
+            }
+          },
+          "known_limitations": {"type": "array", "items": {"type": "string"}},
+          "successor_requirement": {"type": "string"},
+          "superseded_implementations": {"type": "array"}
+        }
+      }
+    },
+    "special_status_contracts": {"type": "object"},
+    "claim_limit": {"type": "string", "minLength": 1}
+  }
+}

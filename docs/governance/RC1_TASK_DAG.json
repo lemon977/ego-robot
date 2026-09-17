@@ -1,0 +1,18 @@
+{
+  "schema_version": "chaoyang-rc1-task-dag-v1",
+  "release_id": "chaoyang-visual-aux-rc1-final",
+  "tasks": [
+    {"task_id": "rc1_t0_freeze_capacity_split", "depends_on": []},
+    {"task_id": "rc1_t1_sam31_mask_bounded", "depends_on": ["rc1_t0_freeze_capacity_split"]},
+    {"task_id": "rc1_t2_causal_clean", "depends_on": ["rc1_t1_sam31_mask_bounded"]},
+    {"task_id": "rc1_t3_v77_causal_robot", "depends_on": ["rc1_t0_freeze_capacity_split"]},
+    {"task_id": "rc1_t4_bundle_smoke", "depends_on": ["rc1_t2_causal_clean", "rc1_t3_v77_causal_robot"]},
+    {"task_id": "rc1_t5_batch_conversion", "depends_on": ["rc1_t4_bundle_smoke"]},
+    {"task_id": "rc1_t6_chips_pair", "depends_on": ["rc1_t5_batch_conversion"]},
+    {"task_id": "rc1_t6_poker_pair", "depends_on": ["rc1_t5_batch_conversion"]},
+    {"task_id": "rc1_t7_evaluate_release", "depends_on": ["rc1_t6_chips_pair", "rc1_t6_poker_pair"]}
+  ],
+  "pair_failure_isolation": true,
+  "negative_terminal_closes_dependency": true,
+  "claim_limit": "Dependency graph only; task receipts prove execution."
+}

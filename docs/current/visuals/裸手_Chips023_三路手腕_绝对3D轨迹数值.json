@@ -1,0 +1,92 @@
+{
+  "claim_limit": "Cross-system development visualization only. PICO is an engineering wrist anchor, HaWoR is learned monocular MANO, and Stereo is a visible-surface proxy; none is external physical truth.",
+  "coordinate_views": [
+    "camera_optical_xyz",
+    "first_frame_camera_anchored_world_xyz"
+  ],
+  "fps": 30.0,
+  "frame_count": 420,
+  "inputs": {
+    "metrics": {
+      "bytes": 380572,
+      "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_023/visualizations/wrist_comparison_v2/CHIPS023_三路手腕逐帧差值.json",
+      "sha256": "b97e205c9c221aaecde70072e8dba0d9a38ca397e87f56e373deccaa5489a31e"
+    },
+    "raw_video": {
+      "bytes": 16606232,
+      "path": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_023/CameraRecord_get_potato_chips_0902_023.mp4",
+      "sha256": "c04c5656bde3cb2e0a8467209b8af8e2f281a17f0a783857a547130bace1b1ba"
+    },
+    "session_root": "/mnt/data/egodata/datasets/ego/chips_cards_tracker_0902/potato_chips/get_potato_chips_0902_023"
+  },
+  "outputs": {
+    "montage": {
+      "bytes": 1087464,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/裸手_Chips023_三路手腕_绝对3D轨迹关键帧.png",
+      "sha256": "d2681e857a19070384a3e3d6cfb8511fd15b18168006881c851a94703984c86b"
+    },
+    "video": {
+      "bytes": 4006086,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/media/current-visuals/裸手_Chips023_三路手腕_绝对3D轨迹全片.mp4",
+      "sha256": "d5b3a78f168e9163de34cc48b630ded01deff83b622e8222d74131d5b1e5d1a8"
+    }
+  },
+  "reference_subtracted": false,
+  "schema_version": "three-wrist-absolute-3d-review-v1",
+  "session_id": "get_potato_chips_0902_023",
+  "statistics": {
+    "left": {
+      "HaWoR": {
+        "distance_to_pico_mean_mm": 90.31876508086667,
+        "step_p95_mm": 5.004427351308105,
+        "valid_frames": 420,
+        "z_max_m": 0.2653636932373047,
+        "z_min_m": 0.2085544764995575,
+        "z_range_mm": 56.80921673774719
+      },
+      "PICO": {
+        "distance_to_pico_mean_mm": 0.0,
+        "step_p95_mm": 1.7341948706895778,
+        "valid_frames": 420,
+        "z_max_m": 0.3078956682489091,
+        "z_min_m": 0.2778091933109454,
+        "z_range_mm": 30.086474937963736
+      },
+      "Stereo surface": {
+        "distance_to_pico_mean_mm": 103.91731475345546,
+        "step_p95_mm": 4.023131205629104,
+        "valid_frames": 420,
+        "z_max_m": 0.23299696098397976,
+        "z_min_m": 0.2042213193325489,
+        "z_range_mm": 28.775641651430874
+      }
+    },
+    "right": {
+      "HaWoR": {
+        "distance_to_pico_mean_mm": 105.41217832018819,
+        "step_p95_mm": 19.905119327361,
+        "valid_frames": 420,
+        "z_max_m": 0.432573139667511,
+        "z_min_m": 0.2013036012649536,
+        "z_range_mm": 231.26953840255737
+      },
+      "PICO": {
+        "distance_to_pico_mean_mm": 0.0,
+        "step_p95_mm": 21.215473439606388,
+        "valid_frames": 420,
+        "z_max_m": 0.4993606639926055,
+        "z_min_m": 0.277478073847426,
+        "z_range_mm": 221.88259014517948
+      },
+      "Stereo surface": {
+        "distance_to_pico_mean_mm": 96.59265014924664,
+        "step_p95_mm": 23.541284482816376,
+        "valid_frames": 420,
+        "z_max_m": 0.4752792496432056,
+        "z_min_m": 0.19859399725341334,
+        "z_range_mm": 276.68525238979225
+      }
+    }
+  },
+  "status": "PASS_DEVELOPMENT_VISUALIZATION"
+}

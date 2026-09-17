@@ -1,0 +1,18 @@
+{
+  "claim_limit": "Only rows with execution_allowed=true may dispatch; this baseline has none.",
+  "classification_counts": {
+    "CURRENT_LEDGER_ROUTABLE": 0
+  },
+  "execution_revision": "CLEAN_BASELINE_V1",
+  "generated_at": "2026-09-17T11:30:00+08:00",
+  "generation_id": "gov-011169-0f858fe9be38",
+  "governance_revision": 11169,
+  "historical_catalog": {
+    "bytes": 55477,
+    "path": "/mnt/workspace/code/chaoyang/tasks/receipts/HISTORICAL_TASK_CATALOG.json",
+    "sha256": "d12883c3bc7e8d67dae7318cabfe4861981f0448b07fbaa4702c7694773bd11a"
+  },
+  "schema_version": "chaoyang-current-execution-index-v1",
+  "status": "PASS_NO_ACTIVE_TASKS",
+  "task_packets": []
+}

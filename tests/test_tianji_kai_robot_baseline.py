@@ -12,8 +12,8 @@ import pytest
 
 
 PROJECT = Path(__file__).resolve().parents[1]
-RUNNER_PATH = PROJECT / "tools/run_tianji_kai_robot_baseline.py"
-POST_PATH = PROJECT / "pipeline/tianji_kai_robot_baseline_post.py"
+RUNNER_PATH = PROJECT / "src/chaoyang/ops/run_tianji_kai_robot_baseline.py"
+POST_PATH = PROJECT / "src/chaoyang/pipeline/tianji_kai_robot_baseline_post.py"
 SCHEMA_PATH = PROJECT / "contracts/tianji_kai_robot_baseline_session_spec_v1.schema.json"
 
 
@@ -297,7 +297,7 @@ def test_schema_and_validate_only_are_closed(valid_spec: Path) -> None:
     assert result["status"] == "PASS_VALIDATE_ONLY_READY_WAIT_UPSTREAM_EXECUTION"
     assert result["geometry"]["physical_instance_id"] == 0
     assert result["mount_authority"]["formal_consumer_allowed"] is False
-    assert not any(name.startswith("pipeline.robot_") for name in added)
+    assert not any(name.startswith("chaoyang.pipeline.robot_") for name in added)
     assert not Path(value["output_root"]).exists()
 
 
@@ -581,7 +581,7 @@ def test_exact_triangle_box_sat_preserves_rows() -> None:
 
 
 def test_kinematic_runner_exposes_strict_contract_flags() -> None:
-    text = (PROJECT / "tools/run_newtask_robot_kinematic_canary.py").read_text()
+    text = (PROJECT / "src/chaoyang/ops/run_newtask_robot_kinematic_canary.py").read_text()
     for token in (
         "--first-frame-static-exception",
         "--strict-previous-accepted",

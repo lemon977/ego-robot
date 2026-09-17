@@ -1,0 +1,62 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "release_id", "task", "session_id", "source_group_id",
+    "split", "execution_status", "visual_quality", "train_eligible",
+    "consumer_eligibility", "input_mode", "contract", "artifacts",
+    "control_ground_truth", "physical_deployment_authorized", "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "VISUAL_AUX_RC1_ELIGIBILITY_V1"},
+    "release_id": {"const": "chaoyang-visual-aux-rc1-final"},
+    "task": {"enum": ["chips", "poker"]},
+    "session_id": {"type": "string", "minLength": 1},
+    "source_group_id": {"type": "string", "minLength": 1},
+    "split": {"enum": ["train", "validation", "test", "heldout", "development"]},
+    "execution_status": {"enum": ["COMPLETED", "FAILED_RUNTIME_FINAL", "BLOCKED_PREREQ", "BLOCKED_RESOURCE", "NOT_EVALUATED_BUDGET", "CANCELLED"]},
+    "visual_quality": {"enum": ["HIGH_COVERAGE_VISUAL", "PARTIAL_TRAINABLE", "REJECT_QUALITY", "NOT_MEASURABLE"]},
+    "train_eligible": {"type": "boolean"},
+    "consumer_eligibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["visual_aux_rc1"],
+      "properties": {
+        "visual_aux_rc1": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["eligible", "reasons", "evaluated_at"],
+          "properties": {
+            "eligible": {"type": "boolean"},
+            "reasons": {"type": "array", "items": {"type": "string"}},
+            "evaluated_at": {"type": "string"}
+          }
+        }
+      }
+    },
+    "input_mode": {"const": "CAUSAL_TRAINING_INPUT"},
+    "contract": {"$ref": "#/$defs/artifact_ref"},
+    "artifacts": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/artifact_ref"},
+      "required": ["manifest", "labels", "raw_selector", "robotized_selector", "pixel_source", "final_input_unknown_mask", "input_payload_receipt"]
+    },
+    "counts": {"type": "object"},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "artifact_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

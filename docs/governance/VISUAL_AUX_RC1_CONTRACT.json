@@ -1,0 +1,74 @@
+{
+  "schema_version": "chaoyang-visual-aux-rc1-contract-v1",
+  "contract_id": "VISUAL_AUX_RC1_FINAL",
+  "status": "CURRENT_AFTER_RECEIPT_BINDING",
+  "cohort": "exact78-chips78-poker78-frozen",
+  "input_mode": "CAUSAL_TRAINING_INPUT",
+  "consumer_field": "consumer_eligibility.visual_aux_rc1",
+  "label": {
+    "endpoint": "T_actual_hand_root_world.translation",
+    "side_order": ["physical_left", "physical_right"],
+    "horizon": 50,
+    "time_indices": "t+1...t+50",
+    "camera_time_policy": "future_frame_inv_c2w_and_K",
+    "pixel_domain": [640, 480],
+    "normalized_divisor": [639, 479],
+    "coordinate_type": "absolute_pixel_not_displacement",
+    "control_ground_truth": false
+  },
+  "windows": {
+    "first_start": 15,
+    "stride": 5,
+    "last_start": "T-51",
+    "history": "[t-15,t]",
+    "mode": "ANY_ENDPOINT_TIMESTEP_40_OF_50",
+    "minimum_valid_timesteps": 40,
+    "maximum_both_invalid_run": 5
+  },
+  "eligibility": {
+    "requires": [
+      "receipt_bound_contract_sha",
+      "paired_manifest_label_valid_and_neutralization",
+      "causal_input_payload_sha_proof",
+      "finite_coordinate_joint_limit_and_digital_collision_gates",
+      "pixel_source_complete",
+      "final_input_unknown_gate",
+      "source_group_split_isolation"
+    ],
+    "does_not_require": [
+      "global_robot_authority",
+      "contact_authority",
+      "complete_object_atlas",
+      "physical_deployment_authority"
+    ],
+    "reject_input_modes": ["OFFLINE_BIDIRECTIONAL_VISUALIZATION", "OFFLINE_VISUAL_ONLY"]
+  },
+  "unknown": {
+    "whole_image_max_fraction": 0.01,
+    "interaction_roi_max_fraction": 0.05,
+    "neutralization_rgb": [127, 127, 127],
+    "measure_before_neutralization": true,
+    "shared_between_branches": true
+  },
+  "data_minimum": {
+    "train_source_groups": 16,
+    "validation_source_groups": 3,
+    "train_windows": 256,
+    "validation_windows": 48
+  },
+  "training": {
+    "seed": 7,
+    "batch_size": 16,
+    "optimizer": "AdamW",
+    "lr": 0.0003,
+    "weight_decay": 0.0001,
+    "scheduler": "ABSENT",
+    "amp": "ABSENT",
+    "max_epochs_for_update_budget": 100,
+    "max_updates": 10000,
+    "validation_frequency_epochs": 5,
+    "branch_gpu_hours": 12,
+    "independent_early_stop": false
+  },
+  "claim_limit": "Single-seed future-2D Visual Aux engineering delivery only; no action, contact-truth, policy or physical-deployment authority."
+}

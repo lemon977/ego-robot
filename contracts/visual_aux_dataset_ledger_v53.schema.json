@@ -1,0 +1,35 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/visual_aux_dataset_ledger_v53.schema.json",
+  "title": "Exact78 Visual Aux dataset ledger V5.3",
+  "type": "object",
+  "required": ["schema_version", "status", "task", "branch", "seed", "train", "validation", "control_ground_truth"],
+  "properties": {
+    "schema_version": {"const": "exact78-visual-aux-dataset-ledger-v53-v1"},
+    "status": {"const": "PASS_VISUAL_AUX_DATASET_LEDGER"},
+    "task": {"enum": ["chips", "poker"]},
+    "branch": {"enum": ["HUMAN_RAW_RGB", "ROBOTIZED_RGB"]},
+    "seed": {"const": 7},
+    "control_ground_truth": {"const": false},
+    "train": {"$ref": "#/$defs/artifacts"},
+    "validation": {"$ref": "#/$defs/artifacts"}
+  },
+  "additionalProperties": true,
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/artifact"}
+    }
+  }
+}

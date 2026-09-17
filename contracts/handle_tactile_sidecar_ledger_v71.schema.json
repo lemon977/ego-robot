@@ -1,0 +1,73 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "handle_tactile_sidecar_ledger_v71.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "artifact_revision", "validity", "generated_at", "stage", "source_h0", "row_count", "summary", "rows", "claim_limit", "observation_contract"],
+  "properties": {
+    "schema_version": {"const": "handle-tactile-sidecar-ledger-v7.1"},
+    "artifact_revision": {"const": "R7_0"},
+    "validity": {"const": "VALID_FOR_PINNED_REVISION"},
+    "generated_at": {"type": "string"},
+    "stage": {"const": "h2"},
+    "source_h0": {"$ref": "#/$defs/evidence"},
+    "row_count": {"type": "integer", "minimum": 0},
+    "summary": {"$ref": "#/$defs/summary"},
+    "rows": {"type": "array", "items": {"$ref": "#/$defs/row"}},
+    "claim_limit": {"type": "string", "minLength": 20},
+    "observation_contract": {
+      "type": "object",
+      "required": ["side_order", "finger_order", "grid_shape", "value_dtype", "validity", "timestamp_clock", "palm_present", "event_threshold"],
+      "properties": {
+        "side_order": {"const": ["left", "right"]},
+        "finger_order": {"const": ["thumb", "index", "middle", "ring", "pinky"]},
+        "grid_shape": {"const": [5, 4, 8]},
+        "value_dtype": {"const": "int16_raw"},
+        "validity": {"type": "string"}, "timestamp_clock": {"type": "string"},
+        "palm_present": {"const": false},
+        "event_threshold": {"const": "ABSENT_REQUIRES_CALIBRATION"}
+      }
+    }
+  },
+  "$defs": {
+    "evidence": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "summary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["by_status", "total_frames"],
+      "properties": {
+        "by_status": {"type": "object", "additionalProperties": {"type": "integer", "minimum": 0}},
+        "total_frames": {"type": "integer", "minimum": 0}
+      }
+    },
+    "row": {
+      "type": "object",
+      "required": ["session_id", "dataset_id", "task", "frame_count", "status", "primary_blocker", "artifact", "downstream"],
+      "properties": {
+        "session_id": {"type": "string"}, "dataset_id": {"type": "string"},
+        "task": {"enum": ["potato_chips", "playing_cards"]},
+        "frame_count": {"type": ["integer", "null"], "minimum": 0},
+        "status": {"enum": ["PASSED", "BLOCKED_SOURCE", "FAILED_QUALITY_C", "FAILED_RUNTIME_FINAL"]},
+        "primary_blocker": {"type": ["string", "null"]},
+        "artifact": {"oneOf": [{"$ref": "#/$defs/evidence"}, {"type": "null"}]},
+        "source_hdf5": {
+          "type": "object", "required": ["path", "sha256"],
+          "properties": {"path": {"type": "string", "pattern": "^/"}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+        },
+        "metrics": {"type": "object"},
+        "downstream": {
+          "type": "object", "additionalProperties": false,
+          "required": ["tactile_event_timing_eligible"],
+          "properties": {"tactile_event_timing_eligible": {"type": "boolean"}}
+        }
+      }
+    }
+  }
+}

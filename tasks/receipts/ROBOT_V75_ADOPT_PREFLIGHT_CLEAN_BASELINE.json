@@ -1,0 +1,530 @@
+{
+  "adopt_bundle_signature": "7b17d5135f003f6de59a4966de45a4bbc926d80ea508b65c73d2d5c890c6fbda",
+  "adopt_preflight_status": "PASS_EXACT_SHA_ADOPTABLE",
+  "artifact_revision": "CLEAN_BASELINE_V1_REBIND",
+  "authority": false,
+  "claim_limit": "Path and code-closure rebind only; historical measurements and adoption decisions are unchanged.",
+  "code_closure": [
+    {
+      "bytes": 7656,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/preflight_adopt_robot_v74_to_v75.py",
+      "sha256": "7e6e528e872fadf702e15b2e3451a5be2164553cec43724650beffe4a1c1110b"
+    },
+    {
+      "bytes": 20300,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_robot_ready_batches_v53.py",
+      "sha256": "e7a0ef10c7c29cfd2345d6e46a8691798a2993b9427d0f87dd7d99b28578c5be"
+    },
+    {
+      "bytes": 3106,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_robot_ready_batches_v54.py",
+      "sha256": "e1006dc0bcd4ba0d0d792d6a2a562ad487213e46c8f778e3689cf9dd4381c36f"
+    },
+    {
+      "bytes": 24542,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_robot_ready_batches_v75.py",
+      "sha256": "7325ff5de65334dcb47b2f0d32157e1bd82c42d45a75ec8c0085ae630f9be72a"
+    }
+  ],
+  "control_ground_truth": false,
+  "counts": {
+    "batch_reference_failures": 0,
+    "frozen_selection": 25,
+    "not_yet_phase_complete": 16,
+    "phase_complete_adoptable": 9
+  },
+  "created_at": "2026-09-15T18:46:23+08:00",
+  "failures": [],
+  "governance_gate": "PASS_FRESH",
+  "governance_status_min": {
+    "bytes": 1490,
+    "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_MIN.json",
+    "sha256": "eca6a47334a8ff59f17603511f17510b633bf4cb91aa3aa4d1febdff3440013b"
+  },
+  "governance_validation": {
+    "errors": [],
+    "freshness": {
+      "age_seconds": 0,
+      "reason": "no_active_tasks",
+      "status": "FRESH"
+    },
+    "revision": 10146,
+    "status": "PASS"
+  },
+  "physical_deployment_authorized": false,
+  "robot_tier": "NONE",
+  "rows": [
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 200486,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/arm_round2/chips/get_potato_chips_0902_103/arm_round2_bidirectional/RESULT.json",
+          "sha256": "9831060e750abf667256a6fa651b0ed9bf449697472cfbc44709b72be518703d"
+        },
+        "arm_states": {
+          "bytes": 132658,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/arm_round2/chips/get_potato_chips_0902_103/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "004b950e6b5f7068e68df6dc224b4bfe4ed32e804a0a8323e068c3744d645b30"
+        },
+        "hand_result": {
+          "bytes": 1120527,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hand_round2/chips/get_potato_chips_0902_103/hand_round2_bidirectional/RESULT.json",
+          "sha256": "687b2b1bfd5a0a924ca077197649a49d2fa8592a747cd7fd1dce6e2c5b266d7b"
+        },
+        "hand_states": {
+          "bytes": 166310,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hand_round2/chips/get_potato_chips_0902_103/hand_round2_bidirectional/HAND_BIDIRECTIONAL_STATES.npz",
+          "sha256": "d57a5facad2968da71c1de58a1146e9ae4c6d9f40e8d2b39f237911577f3008f"
+        },
+        "preflight_result": {
+          "bytes": 13508,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/preflight/RESULT.json",
+          "sha256": "19b21ec26dbbff4efc0ffd2f2fb157771652a032d4f4bf8007d0590f7989a130"
+        },
+        "review_result": {
+          "bytes": 4981,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_103/fullsession_review/RESULT.json",
+          "sha256": "8f5d806bb2dcf6409b531f5bf88a4945db31d95af5df227349c9eb20f69684a9"
+        },
+        "review_video": {
+          "bytes": 2153620,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_103/fullsession_review/get_potato_chips_0902_103_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "c823fac206f6919d07b877a4201137853fe08e246f5b29f9746db8a99907a44f"
+        },
+        "temporal_result": {
+          "bytes": 11156,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hawor_temporal/chips/get_potato_chips_0902_103/RESULT.json",
+          "sha256": "51291133a9b396bc72ef2a96a2a435bde29c9331a8214ef35cb7d2a8616b1a74"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "3c9d62855b0db16eedaa313ba681a83ff3f4c8a789ede8ead1c16a46f272d1cc",
+      "session": "get_potato_chips_0902_103",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 274213,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/arm_round2/chips/get_potato_chips_0902_112/arm_round2_bidirectional/RESULT.json",
+          "sha256": "89ae3ac83d95322a57cf120ad81f410781e769f090be450f6e0df94ecc0e3a90"
+        },
+        "arm_states": {
+          "bytes": 174066,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/arm_round2/chips/get_potato_chips_0902_112/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "42c7106461c18e303c5a3dfc4474f22e6815c7fb2531a6877a491dd1e85d1c2d"
+        },
+        "hand_result": {
+          "bytes": 1476092,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hand_round2/chips/get_potato_chips_0902_112/hand_round2_bidirectional/RESULT.json",
+          "sha256": "597e1bfe0c8b6f15d11b8f00c017e8eebf4bcaa9633d5d620510f0ead6c60100"
+        },
+        "hand_states": {
+          "bytes": 209683,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hand_round2/chips/get_potato_chips_0902_112/hand_round2_bidirectional/HAND_BIDIRECTIONAL_STATES.npz",
+          "sha256": "3582606a2b068e2040732112e244adeba7f2a4c982358b71aaa17e8ed906ba6e"
+        },
+        "preflight_result": {
+          "bytes": 13508,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/preflight/RESULT.json",
+          "sha256": "19b21ec26dbbff4efc0ffd2f2fb157771652a032d4f4bf8007d0590f7989a130"
+        },
+        "review_result": {
+          "bytes": 4970,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_112/fullsession_review/RESULT.json",
+          "sha256": "718fc27c1dde2f37dca4a7333b3566ac9cb8a777ccce854744c67f2e3277a22b"
+        },
+        "review_video": {
+          "bytes": 2576652,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_112/fullsession_review/get_potato_chips_0902_112_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "beec004655699ab20b7a46f5008334ef94cb2682055b9cf729d12e4db11ded2c"
+        },
+        "temporal_result": {
+          "bytes": 10868,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hawor_temporal/chips/get_potato_chips_0902_112/RESULT.json",
+          "sha256": "ed70595abab4d2047894d935d4c0d8bcf1316f6c859e2516e38c7b686c8cef30"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "848c949ece4cbc6812ba3dadccd991cac70956b58ed33faeb529522aeb747ef5",
+      "session": "get_potato_chips_0902_112",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 247354,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/arm_round2/chips/get_potato_chips_0902_114/arm_round2_bidirectional/RESULT.json",
+          "sha256": "3ea7ccfa2e1b9da8ecb3d689cc579439d8864e25255e12d2de68cc255cccc092"
+        },
+        "arm_states": {
+          "bytes": 157276,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/arm_round2/chips/get_potato_chips_0902_114/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "7db875eef89e58d094c621033ad41fae12582a2946556b9b4b6da1d2b07daead"
+        },
+        "hand_result": {
+          "bytes": 1334969,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hand_round2/chips/get_potato_chips_0902_114/hand_round2_bidirectional/RESULT.json",
+          "sha256": "2033e6a71bc9bbec82caa6a673e877c569736bcad7e263d3e1cff4af96e23dc2"
+        },
+        "hand_states": {
+          "bytes": 192214,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hand_round2/chips/get_potato_chips_0902_114/hand_round2_bidirectional/HAND_BIDIRECTIONAL_STATES.npz",
+          "sha256": "40eb61018e25e8af2ac83ef088599f2e3366df1edb132acc9eba900a8b6d1917"
+        },
+        "preflight_result": {
+          "bytes": 13508,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/preflight/RESULT.json",
+          "sha256": "19b21ec26dbbff4efc0ffd2f2fb157771652a032d4f4bf8007d0590f7989a130"
+        },
+        "review_result": {
+          "bytes": 4955,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_114/fullsession_review/RESULT.json",
+          "sha256": "c1557589c9c3a62c744155e7bf149419de601f1eb9a59984a83231e9d06ebb70"
+        },
+        "review_video": {
+          "bytes": 2367148,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_114/fullsession_review/get_potato_chips_0902_114_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "ad8beffe10d55dc37a12790a16fef1dcbd08d75cf65a34cc1905aad662c1d729"
+        },
+        "temporal_result": {
+          "bytes": 10559,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/hawor_temporal/chips/get_potato_chips_0902_114/RESULT.json",
+          "sha256": "317300531f7675a4706861b81857514f3424c5c7c7db917eccd3c0d00dcb6975"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "b0be367eb3d33667a403fb67ee92e79fb4b2ed04098d09aa71c1154c497f52c9",
+      "session": "get_potato_chips_0902_114",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 208505,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/arm_round2/chips/get_potato_chips_0902_119/arm_round2_bidirectional/RESULT.json",
+          "sha256": "5ed55d4e51d2cf2895c0477735ad7669793442356f3d4979731e8bd20270bd0e"
+        },
+        "arm_states": {
+          "bytes": 138836,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/arm_round2/chips/get_potato_chips_0902_119/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "66fc7f07aaf7fe8045dcddae76f29e004d9ff2f3d33bcab7e42eb6c1c8411ec1"
+        },
+        "hand_result": {
+          "bytes": 1181475,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hand_round2/chips/get_potato_chips_0902_119/hand_round2_bidirectional/RESULT.json",
+          "sha256": "20284d00610a631e0d65c06eb13e4fd9f8c3cb52b284969f22f3bf8d075195f4"
+        },
+        "hand_states": {
+          "bytes": 165058,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hand_round2/chips/get_potato_chips_0902_119/hand_round2_bidirectional/HAND_BIDIRECTIONAL_STATES.npz",
+          "sha256": "25eff5bf78a87d6770be6bc512952443d69e15aff14bbe779b001708fd4e61fc"
+        },
+        "preflight_result": {
+          "bytes": 13507,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/preflight/RESULT.json",
+          "sha256": "8d4c078e2c17d26535be50bcaf5468dfaeadf469dbf788ba14f91995e1f19375"
+        },
+        "review_result": {
+          "bytes": 4983,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/render/chips/get_potato_chips_0902_119/fullsession_review/RESULT.json",
+          "sha256": "a62bda326aa37046018ecc1a8ff0ecf523cdc0b2b1c090fa9874f837e911414a"
+        },
+        "review_video": {
+          "bytes": 2213068,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/render/chips/get_potato_chips_0902_119/fullsession_review/get_potato_chips_0902_119_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "d985e2119378964d1e1a16c89eabe07e69071211dec93f9222f07a13159b14ec"
+        },
+        "temporal_result": {
+          "bytes": 10557,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hawor_temporal/chips/get_potato_chips_0902_119/RESULT.json",
+          "sha256": "db6e0c1832f59394e5ea00d8995171296f2f30f034bd70d23f02edee1edab682"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "56540f2f58ffb5e9295db61d6d3c01711b05f7f7bd5ebeec07cdaa939b823237",
+      "session": "get_potato_chips_0902_119",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 224022,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/arm_round2/chips/get_potato_chips_0902_121/arm_round2_bidirectional/RESULT.json",
+          "sha256": "d211cf21a097cf2c7617ccdb6081654ee5344222fa86f4c1e52eca3d0442ca71"
+        },
+        "arm_states": {
+          "bytes": 146879,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/arm_round2/chips/get_potato_chips_0902_121/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "fe0a853b3d40318377050d7682679985dfe3b7ae7349599a94791f5b560324a8"
+        },
+        "hand_result": {
+          "bytes": 1246017,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hand_round2/chips/get_potato_chips_0902_121/hand_round2_bidirectional/RESULT.json",
+          "sha256": "b35179be97a4bb2afa8b1c6547b53dc528daf72f1c0ff5fd8132a2f506dfb0bd"
+        },
+        "hand_states": {
+          "bytes": 174214,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hand_round2/chips/get_potato_chips_0902_121/hand_round2_bidirectional/HAND_BIDIRECTIONAL_STATES.npz",
+          "sha256": "0c0f23b9751d29a5768173660f3f338cd442626ad6e25ca646f162ff685e6eee"
+        },
+        "preflight_result": {
+          "bytes": 13507,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/preflight/RESULT.json",
+          "sha256": "8d4c078e2c17d26535be50bcaf5468dfaeadf469dbf788ba14f91995e1f19375"
+        },
+        "review_result": {
+          "bytes": 4968,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/render/chips/get_potato_chips_0902_121/fullsession_review/RESULT.json",
+          "sha256": "8a6fe486d95875f013d08a5e5a671253fffb8c83a98813251ecdedfb6abd70b4"
+        },
+        "review_video": {
+          "bytes": 2146303,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/render/chips/get_potato_chips_0902_121/fullsession_review/get_potato_chips_0902_121_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "db20f9f9115c886a520b134175edf37a40c03733b80d7f3969d5c35572f6d16d"
+        },
+        "temporal_result": {
+          "bytes": 10562,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hawor_temporal/chips/get_potato_chips_0902_121/RESULT.json",
+          "sha256": "4eb152474d3cac9ba7b26f69f360f37092578b8bd3137425d2b04dda1596edfa"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "742b10d80f20f57e397a365d7994e5c476f9a8d544e8dc2858f3b6f2057724a7",
+      "session": "get_potato_chips_0902_121",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 200531,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/arm_round2/chips/get_potato_chips_0902_122/arm_round2_bidirectional/RESULT.json",
+          "sha256": "1aeae12af4f4bbc95edbbcb72789445811d56c1aa51e47c96d4fa6e5ac9089f6"
+        },
+        "arm_states": {
+          "bytes": 127313,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/arm_round2/chips/get_potato_chips_0902_122/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "9e3946bdcbd1db544b6b590ab6b61c9c0271df60fea3e8c4d24723018dc316ff"
+        },
+        "hand_result": {
+          "bytes": 1077847,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hand_round2/chips/get_potato_chips_0902_122/hand_round2_bidirectional/RESULT.json",
+          "sha256": "c64e59d84e5f403c27dec1246a53e373fd626ccabe777efa4085482cc4f7a04c"
+        },
+        "hand_states": {
+          "bytes": 154122,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hand_round2/chips/get_potato_chips_0902_122/hand_round2_bidirectional/HAND_BIDIRECTIONAL_STATES.npz",
+          "sha256": "e4786060b8bb92b289db27be6e0cdb68ea5c4781af85aff9e95acfc59ac08f98"
+        },
+        "preflight_result": {
+          "bytes": 13507,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/preflight/RESULT.json",
+          "sha256": "8d4c078e2c17d26535be50bcaf5468dfaeadf469dbf788ba14f91995e1f19375"
+        },
+        "review_result": {
+          "bytes": 4970,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/render/chips/get_potato_chips_0902_122/fullsession_review/RESULT.json",
+          "sha256": "e4294c8aa5b4de31575d15b800c39db8241028504026d8f28009ca3098dd615c"
+        },
+        "review_video": {
+          "bytes": 2072011,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/render/chips/get_potato_chips_0902_122/fullsession_review/get_potato_chips_0902_122_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "932b4562791341f490f23d7644ff0972ebeea64b76b0927f57d7b2ad049dd93b"
+        },
+        "temporal_result": {
+          "bytes": 10762,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_002/hawor_temporal/chips/get_potato_chips_0902_122/RESULT.json",
+          "sha256": "0911243bcc0948365dbc4c82061d2d299bd01c6c8235ccb43329b8b68aa10520"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "f4cb9096a00fc533d767690bbe07e44ace4758e4158c3229e466c0dc375d60e2",
+      "session": "get_potato_chips_0902_122",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 254052,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/arm_round2/chips/get_potato_chips_0902_025/arm_round2_bidirectional/RESULT.json",
+          "sha256": "fd61258062c8fd62a65586b5fad9327c30436b22a7dec4fc9389520d52506f1d"
+        },
+        "arm_states": {
+          "bytes": 178374,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/arm_round2/chips/get_potato_chips_0902_025/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "8ea252f60bb0e45a2fcfb14cc584d27fdbf43e2902d46755706e425fe0ae06bc"
+        },
+        "hand_result": {
+          "bytes": 1537815,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hand_round1/chips/get_potato_chips_0902_025/hand_round1_forward/RESULT.json",
+          "sha256": "9fa44ce14dd47f93c8d22840abc7b97f65927eafbf52e1330249d879ef9c1065"
+        },
+        "hand_states": {
+          "bytes": 224037,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hand_round1/chips/get_potato_chips_0902_025/hand_round1_forward/HAND_STATES.npz",
+          "sha256": "07096adb1ebe12d0e4a91a981bbc2b2c6e10e150d89137e0ff502bb5abc165b2"
+        },
+        "preflight_result": {
+          "bytes": 13552,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/preflight/RESULT.json",
+          "sha256": "75336fcd1c8d166e95177ad116468a5a90eabd2dc8d43be277bb22f94dfa3ea2"
+        },
+        "review_result": {
+          "bytes": 4923,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/render/chips/get_potato_chips_0902_025/fullsession_review/RESULT.json",
+          "sha256": "bb099354b376edb4eab607b29f97911b5d7b146b2668d77707fa494f58b60b05"
+        },
+        "review_video": {
+          "bytes": 2463065,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/render/chips/get_potato_chips_0902_025/fullsession_review/get_potato_chips_0902_025_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "36cfc56bfd384b33ca1d409aa5a299c30bb223e5100269ae6fb0bfe630e14569"
+        },
+        "temporal_result": {
+          "bytes": 10561,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hawor_temporal/chips/get_potato_chips_0902_025/RESULT.json",
+          "sha256": "f631cc8ca0951fe6b0a44f41e1bf3b2e9aa52ebcb5c782bd07883a3a97cf61b4"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "05f72ab0ffd3239607b9fe4d095925c777fe98758d8a456172309f92f4faa2b5",
+      "session": "get_potato_chips_0902_025",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 225112,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/arm_round2/chips/get_potato_chips_0902_073/arm_round2_bidirectional/RESULT.json",
+          "sha256": "2c2b35badfc6ecd3ac7f4c6e83e2b7e5047592001066093b07dac157b34f4e94"
+        },
+        "arm_states": {
+          "bytes": 149949,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/arm_round2/chips/get_potato_chips_0902_073/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "0839f8c74fd4913f3c065b127a862a0efea6e528eefbb285a424239b2c7ffa0d"
+        },
+        "hand_result": {
+          "bytes": 1286048,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hand_round1/chips/get_potato_chips_0902_073/hand_round1_forward/RESULT.json",
+          "sha256": "e4aa709cbb56512c5378efb54de664c3b0125dc34372bfe5343bc4397175d557"
+        },
+        "hand_states": {
+          "bytes": 183925,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hand_round1/chips/get_potato_chips_0902_073/hand_round1_forward/HAND_STATES.npz",
+          "sha256": "3c15d8bc6e635e29b195628de680cb20087633382b5874d85ae380c1116bf68c"
+        },
+        "preflight_result": {
+          "bytes": 13552,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/preflight/RESULT.json",
+          "sha256": "75336fcd1c8d166e95177ad116468a5a90eabd2dc8d43be277bb22f94dfa3ea2"
+        },
+        "review_result": {
+          "bytes": 4954,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/render/chips/get_potato_chips_0902_073/fullsession_review/RESULT.json",
+          "sha256": "c9405875b9ddb14356dee6dbcbc1f40e206496a5c0ab67d9ac1379a7587462f5"
+        },
+        "review_video": {
+          "bytes": 2258306,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/render/chips/get_potato_chips_0902_073/fullsession_review/get_potato_chips_0902_073_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "c10c6276e755cb7b80699ac19457b0bc6c5da3c2c4e756c8a7fcd28a25ee6e3c"
+        },
+        "temporal_result": {
+          "bytes": 10556,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hawor_temporal/chips/get_potato_chips_0902_073/RESULT.json",
+          "sha256": "9fa82f82d51bebbee7f94cd01cc20d4048e96cb181cf6005facb22890bc9cce9"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "aae55b1acfd8b1327c1e4f4d24b589f24138617f9ab3e3c585d912fb9475c11c",
+      "session": "get_potato_chips_0902_073",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    },
+    {
+      "artifacts": {
+        "arm_result": {
+          "bytes": 279341,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/arm_round2/chips/get_potato_chips_0902_101/arm_round2_bidirectional/RESULT.json",
+          "sha256": "fa14252eadea2c4bcc1da2d304c5e49bc6fbfe08c7323eafc3524ec015120677"
+        },
+        "arm_states": {
+          "bytes": 177233,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/arm_round2/chips/get_potato_chips_0902_101/arm_round2_bidirectional/ARM_BIDIRECTIONAL_STATES.npz",
+          "sha256": "60220909b1a92fd2a378752b3c0d38ccb85a206568245c8b720f4fdfeacbf5cb"
+        },
+        "hand_result": {
+          "bytes": 1502755,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hand_round2/chips/get_potato_chips_0902_101/hand_round2_bidirectional/RESULT.json",
+          "sha256": "7719c5d8ffa2c71679e24368a637923b7725e4c7acceb9b0f48062e1411dfae3"
+        },
+        "hand_states": {
+          "bytes": 220938,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hand_round2/chips/get_potato_chips_0902_101/hand_round2_bidirectional/HAND_BIDIRECTIONAL_STATES.npz",
+          "sha256": "2cc752af65a8b2daf071127797bf5deda605012b919a61f461b638e9421d94e3"
+        },
+        "preflight_result": {
+          "bytes": 13552,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/preflight/RESULT.json",
+          "sha256": "75336fcd1c8d166e95177ad116468a5a90eabd2dc8d43be277bb22f94dfa3ea2"
+        },
+        "review_result": {
+          "bytes": 4985,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/render/chips/get_potato_chips_0902_101/fullsession_review/RESULT.json",
+          "sha256": "07cc27b78e51fdd964f51fc6c26eb04c9a2291a763b728d603d28a4f57b75ee4"
+        },
+        "review_video": {
+          "bytes": 2529462,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/render/chips/get_potato_chips_0902_101/fullsession_review/get_potato_chips_0902_101_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4",
+          "sha256": "b4e2589a0621d31c732e96f24a444fd0cca760a7f9ec5352a6436fe776ca7760"
+        },
+        "temporal_result": {
+          "bytes": 10559,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_003/hawor_temporal/chips/get_potato_chips_0902_101/RESULT.json",
+          "sha256": "2d4d751b184e5a1f057a47627ba93899a5940631032f0294ca5684f3c7c9065f"
+        }
+      },
+      "authority": false,
+      "phase_closure_signature": "a3183425e4917bb3c93acb2922661f08110d0b968660b2fdadc1d40d19071d1e",
+      "session": "get_potato_chips_0902_101",
+      "source_artifact_revision": "R7_ROBOT_4",
+      "status": "ADOPTABLE_PHASE_COMPLETE",
+      "target_artifact_revision": "R7_ROBOT_5",
+      "task": "chips"
+    }
+  ],
+  "schema_version": "robot-v74-to-v75-adopt-preflight-v1",
+  "selection": {
+    "bytes": 1161,
+    "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/SELECTION.json",
+    "sha256": "dd1363c5e2cecfe84c08e8da6cc02d8f6c8caa7cf438fd0155f96b1bbb751f85"
+  },
+  "supersedes_attempt": {
+    "bytes": 30911,
+    "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v75/attempts/attempt_0015_signed_adopt_preflight/RESULT.json",
+    "sha256": "358d39a3476e651ba765efd3873fd469ce6d5f6d84eab0e61a88ad74ed2ae777"
+  },
+  "task_id": "RECOVER-V74",
+  "terminal_status": "PASSED"
+}

@@ -33,23 +33,23 @@
   },
   "assets": {
     "tianji_urdf": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
+      "path": "assets/robot/tianji/marvin_description/urdf/marvin_CCS_m6.urdf",
       "sha256": "3c3bdfa9aa397c55dea2b3bc94d42c3081d4292d041b1ff43573d175d5faf309"
     },
     "link7_left_mesh": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/meshes/m6/Link7_L.STL",
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link7_L.STL",
       "sha256": "126cc7d41c37049ce34d2636bfe2d460c21e3429ed080877d1c5e983109ef798"
     },
     "link7_right_mesh": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/tianji/marvin_description/meshes/m6/Link7_R.STL",
+      "path": "assets/robot/tianji/marvin_description/meshes/m6/Link7_R.STL",
       "sha256": "6eb75b059ff383e90a153be840bcce84b23d8f8afd074b1bc9dfec1b18c2351f"
     },
     "kaihand_left_urdf": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
       "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74"
     },
     "kaihand_right_urdf": {
-      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+      "path": "assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
       "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586"
     }
   },

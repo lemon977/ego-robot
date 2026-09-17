@@ -7,12 +7,12 @@
       "code_closure": [
         {
           "bytes": 18806,
-          "path": "/mnt/workspace/code/chaoyang/tools/batch_convert_handle_acquisition_aligned_v2.py",
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/batch_convert_handle_acquisition_aligned_v2.py",
           "sha256": "3b23e518eafe3b8d97a53f588ee8f5479eadd4619f958424de4bda042468542d"
         },
         {
           "bytes": 62144,
-          "path": "/mnt/workspace/code/chaoyang/tools/convert_handle_egodex_to_tracker_session.py",
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/convert_handle_egodex_to_tracker_session.py",
           "sha256": "bba3214b9d90f8241cf0163596342af4718d2df876a92857fd6655822929fedb"
         }
       ],
@@ -26,7 +26,7 @@
       "current_evidence": [
         {
           "bytes": 104108,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/EXACT78_BATCH_MANIFEST.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/EXACT78_BATCH_MANIFEST.json",
           "sha256": "b6dcfec1fb41b9ffb0b9b19cc62d029f5cedf57f41552a611272cc9e5c6e43a8"
         }
       ],
@@ -43,7 +43,7 @@
       "related_current_releases": [
         {
           "bytes": 5434,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_handle_acquisition_aligned_v2/FINAL_COMPLETION_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_handle_acquisition_aligned_v2/FINAL_COMPLETION_AUDIT.json",
           "sha256": "06a609a55668db4d8e78649a8e4e11983b43ef0f40093e7ca9ad724430fd7638"
         }
       ],
@@ -63,9 +63,14 @@
       "authorized_scope": "BOUNDED_V2_TERMINALS",
       "code_closure": [
         {
-          "bytes": 33528,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_hawor_bounded_parameter_successor.py",
-          "sha256": "c15db56695eb30e5d2032cecc5f248e13b023922a8617a342f0134e7417d07b9"
+          "bytes": 33523,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
+          "sha256": "135c011f24f9d2828dea6f610f9762edb6d05c7f4053c3c9e91653012a010a19"
+        },
+        {
+          "bytes": 7326,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_diagnostic_reproduction_pair_v71.py",
+          "sha256": "434d93367e2c9bef4756de717aadb7b5e51ec075e8516ce67558db5ca29cbca7"
         }
       ],
       "current_counts": {
@@ -78,13 +83,14 @@
       "current_evidence": [
         {
           "bytes": 1360,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/HAWOR_BATCH_RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/HAWOR_BATCH_RESULT.json",
           "sha256": "579175ef7dc92ea867b186d3569d1a70e4fad0fae489a1912578be581e49c6ab"
         }
       ],
       "input_authority": "FROZEN_EXACT78_COHORT",
       "known_limitations": [
-        "Monocular MANO 3D and Z are not external metric truth."
+        "Monocular MANO 3D and Z are not external metric truth.",
+        "The corrected CPU temporal diagnostic reproduction completed 6 canaries: 4 passed numeric gates for human review and 2 held on left-hand bone-length CV regression; it does not recover the original HaWoR inference weight SHA or promote successor authority."
       ],
       "output_schema": "exact78-current-hawor-batch-result-v1",
       "quality_gates": [
@@ -92,6 +98,13 @@
         "bounded_temporal_update",
         "bone_cv",
         "session_terminal"
+      ],
+      "related_current_releases": [
+        {
+          "bytes": 1095,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/successors/hawor/diagnostic_reproduction_R7_4/RESULT.json",
+          "sha256": "cb98da41e6cde5012d1292c2004302434f1addcebc4713523aeeeb018d4d16de"
+        }
       ],
       "schema_artifact": {
         "reason": "SCHEMA_ID_RECORDED_BUT_NO_STANDALONE_CURRENT_SCHEMA_ARTIFACT",
@@ -109,9 +122,24 @@
       "authorized_scope": "SAM31_ROLE_SUCCESSOR_V3",
       "code_closure": [
         {
-          "bytes": 19127,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_exact78_fullsession_role_mask.py",
-          "sha256": "76147b41db6330ca10e49f2a821961bd90646773e42e34e9aa7d292e396c4fa4"
+          "bytes": 19425,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_fullsession_role_mask.py",
+          "sha256": "3cd96e1eedbfada17c7ca173bd5b71caebbc7ca27e8f2f50c87dbc9da4b9629b"
+        },
+        {
+          "bytes": 10558,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_role_mask_runtime_contract_repair_v71.py",
+          "sha256": "8d22d484174386471e466f8de3158018d114485a3d7f9bf15d21a7e8a7ffc4c6"
+        },
+        {
+          "bytes": 34274,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+          "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        },
+        {
+          "bytes": 19267,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
+          "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
         }
       ],
       "current_counts": {
@@ -124,7 +152,7 @@
       "current_evidence": [
         {
           "bytes": 1189,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/RESULT.json",
           "sha256": "f89c759e2fe90f1efe2fd25357518ed540eb55cd579cb178ace191432717d69f"
         }
       ],
@@ -140,12 +168,24 @@
         "reentry",
         "offscreen_empty"
       ],
+      "related_current_releases": [
+        {
+          "bytes": 498,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/s1_semantic_audit/RESULT.json",
+          "sha256": "a2b38d6dcec6d753b74a8f8512d9d2b91ec1b22436877be27d338f9f6d55bfee"
+        },
+        {
+          "bytes": 1390,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
+          "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
+        }
+      ],
       "schema_artifact": {
         "reason": "SCHEMA_ID_RECORDED_BUT_NO_STANDALONE_CURRENT_SCHEMA_ARTIFACT",
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Role Mask",
-      "successor_requirement": "Fresh representative canary and two A/B regressions.",
+      "successor_requirement": "Freeze true four-role human-left/right and tracker-left/right prompts before any SAM2.1/Cutie role successor; current S1 object prompts are forbidden for this stage.",
       "superseded_implementations": [
         "metadata-only masks",
         "zero-reject full-session refresh gate"
@@ -164,9 +204,24 @@
       "authorized_scope": "TASK_OBJECT_IDENTITY",
       "code_closure": [
         {
-          "bytes": 24207,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_exact78_task_object_identity_guardian.py",
-          "sha256": "6176edb711194fba9e5a5732fe3a78a9babcc489cf539bbc003536399d299b43"
+          "bytes": 24561,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_task_object_identity_guardian.py",
+          "sha256": "b5c76f709a5cbe1b1420925b6989797d725d0762892c59f3e38253404cbc2811"
+        },
+        {
+          "bytes": 32759,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/causal_modal_mask_gpu_adapter_v71.py",
+          "sha256": "eeb43aaaf0ecfa661163060e970fb0ff43dca38db4392589f4ac66441a1e4df9"
+        },
+        {
+          "bytes": 13088,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/evaluate_s1_modal_mask_canaries_v71.py",
+          "sha256": "542b283053904e9d18edcc789248742d25b7a7e9a598a32e99bcc00a2ab3e6bb"
+        },
+        {
+          "bytes": 19267,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
+          "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
         }
       ],
       "current_counts": {
@@ -179,26 +234,57 @@
       "current_evidence": [
         {
           "bytes": 5290,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/MASK_TASK_OBJECT_BATCH_RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260909_exact78_current_baseline_batch_v1/MASK_TASK_OBJECT_BATCH_RESULT.json",
           "sha256": "8732b29b4eb7e9a50fd5cba102a5ab65e1729ce5fabbcc3e9976cc2f55e218b2"
         }
       ],
       "input_authority": "RAW_RGB_AND_HAWOR",
       "known_limitations": [
-        "Chips physical instances may never be unioned to pass an identity gate."
+        "Chips physical instances may never be unioned to pass an identity gate.",
+        "Predecessor-derived re-entry intervals support development coverage and stability only, not accuracy.",
+        "Every real Cutie/SAM2.1 attempt re-hashes the pinned large weights before GPU lease acquisition."
       ],
       "output_schema": "exact78-mask-lane-batch-result-v1",
       "quality_gates": [
         "same_physical_identity",
         "observed_empty_when_ambiguous",
-        "three_chips_instances_independent"
+        "three_chips_instances_independent",
+        "causal_prompt_order",
+        "no_gold_accuracy_from_predecessor_audit"
+      ],
+      "related_current_releases": [
+        {
+          "bytes": 801,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/revisions/R7_3/RESULT.json",
+          "sha256": "382109a23b8023724bbf18be45c3b472c0460b445986fe2137cb7fe358d19e8a"
+        },
+        {
+          "bytes": 1070,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/s1_input_preflight/RESULT.json",
+          "sha256": "84c0654ebcf614ae0b85500f4d8b3cce47054c5c61dc715aef553a4631ceb648"
+        },
+        {
+          "bytes": 498,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/s1_semantic_audit/RESULT.json",
+          "sha256": "a2b38d6dcec6d753b74a8f8512d9d2b91ec1b22436877be27d338f9f6d55bfee"
+        },
+        {
+          "bytes": 2305,
+          "path": "/mnt/workspace/code/chaoyang/assets/models/cutie/ASSET_PIN.json",
+          "sha256": "c05f39f789554d69e85c39cdad015bca5d11019d82280097f2183183596382e2"
+        },
+        {
+          "bytes": 1390,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
+          "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
+        }
       ],
       "schema_artifact": {
         "reason": "SCHEMA_ID_RECORDED_BUT_NO_STANDALONE_CURRENT_SCHEMA_ARTIFACT",
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Object Mask",
-      "successor_requirement": "Action-conditioned identity reacquisition with fail-closed ambiguity.",
+      "successor_requirement": "Run the frozen causal SAM2.1/Cutie task-object occlusion/re-entry development canary after Clean closes, then publish a non-Gold comparison receipt before deciding whether to expand to one failure canary plus two A/B regressions.",
       "superseded_implementations": [
         "class-only union masks"
       ],
@@ -208,6 +294,30 @@
           "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
           "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
           "verification": "PINNED_FULL_SHA256_VERIFIED"
+        },
+        {
+          "bytes": 140443788,
+          "path": "/mnt/workspace/code/chaoyang/assets/models/cutie/cutie-base-mega.pth",
+          "sha256": "9c05402ee36d3a356fb72715d263ba7e1ea06ad3bada48c1306491792da43023",
+          "verification": "PINNED_FULL_SHA256_VERIFIED"
+        },
+        {
+          "bytes": 102502400,
+          "path": "/mnt/workspace/code/chaoyang/assets/models/cutie/torch_home/hub/checkpoints/resnet50-19c8e357.pth",
+          "sha256": "19c8e3572231adff6824a2da93fd67b5986919a2e65f8b6007eab4edee220097",
+          "verification": "PINNED_FULL_SHA256_VERIFIED"
+        },
+        {
+          "bytes": 46827520,
+          "path": "/mnt/workspace/code/chaoyang/assets/models/cutie/torch_home/hub/checkpoints/resnet18-5c106cde.pth",
+          "sha256": "5c106cde386e87d4033832f2996f5493238eda96ccf559d1d62760c4de0613f8",
+          "verification": "PINNED_FULL_SHA256_VERIFIED"
+        },
+        {
+          "bytes": 898083611,
+          "path": "/mnt/workspace/code/chaoyang/assets/models/sam2_1_hiera_large/sam2.1_hiera_large.pt",
+          "sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
+          "verification": "PINNED_FULL_SHA256_VERIFIED"
         }
       ]
     },
@@ -216,9 +326,19 @@
       "authorized_scope": "VISUAL_OBJECT6D_CANDIDATE_INPUT",
       "code_closure": [
         {
-          "bytes": 25488,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_exact78_foundationstereo_corrected_depth_worker.py",
-          "sha256": "5d8d5c816818ba3321deb2580387379cb8f5975940cffbfe54f26a557acf11dc"
+          "bytes": 25590,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py",
+          "sha256": "e456b6403e57a3a86276966483de9108dbdd8b21a715d0ef6b43c10a7762e20e"
+        },
+        {
+          "bytes": 19267,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
+          "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
+        },
+        {
+          "bytes": 10642,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/validate_pipeline_contracts_r3.py",
+          "sha256": "75a5179ffda2788d343205491e209aeb49e7229e52b24fdba86e2855a1d37c06"
         }
       ],
       "current_counts": {
@@ -231,17 +351,17 @@
       "current_evidence": [
         {
           "bytes": 9691,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/MASK_JOIN_READY_STATE_V3.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260910_two_task_78_nine_hour_completion_v1/mask_clean/mask_role_successor_v3_final/MASK_JOIN_READY_STATE_V3.json",
           "sha256": "3ee150e3289bb03489c3bf58b84fd77c521beb366c22dd3b13f947aafbcf6246"
         },
         {
           "bytes": 22674,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
           "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
         },
         {
           "bytes": 2241,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
         }
       ],
@@ -256,6 +376,23 @@
         "registration",
         "valid_range",
         "full_decode"
+      ],
+      "related_current_releases": [
+        {
+          "bytes": 1390,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
+          "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
+        },
+        {
+          "bytes": 2292,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_10/attempts/attempt_0003_real_play_cards_0910_001/RUN_RECEIPT.json",
+          "sha256": "c5ff49b712c9e073ed3bfda7a2decc6e1253ee7ad3e32dfdfca148402d02981c"
+        },
+        {
+          "bytes": 1566,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_20/attempts/attempt_0003_real_input_preflight/RUN_RECEIPT.json",
+          "sha256": "88c1181a353189ee06b7f8b1d6ef558cb71df02873b27a6a7399073c26779c9d"
+        }
       ],
       "schema_artifact": {
         "reason": "SCHEMA_ID_RECORDED_BUT_NO_STANDALONE_CURRENT_SCHEMA_ARTIFACT",
@@ -281,8 +418,28 @@
       "code_closure": [
         {
           "bytes": 44263,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_visual_fixed_instance_object6d.py",
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_visual_fixed_instance_object6d.py",
           "sha256": "999b0b95993d50e336f2c2fa3ee5215169ea07cc4a844b51277627b7a71c648b"
+        },
+        {
+          "bytes": 7239,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/adapt_object6d_rectified_to_selected_v71.py",
+          "sha256": "a5a65499f10cfba27a71a45cc31231cc6b73ec85b76e183c7061e0bab229c556"
+        },
+        {
+          "bytes": 6571,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_object6d_coordinate_domain_v71.py",
+          "sha256": "b9371060fe861d85dc10ce7c2b7a5da7ad5f5bfdf82fc54f1b4955834a544efc"
+        },
+        {
+          "bytes": 4290,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_object6d_selected_camera_adapter_batch_v71.py",
+          "sha256": "d87da58d3f293ecd85c290715f59eeadef41f6357165a4605d21eca8830e04cd"
+        },
+        {
+          "bytes": 17502,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object_pose_hypothesis_v2.py",
+          "sha256": "e869d16892d7e12ef084d4bbd3a719b9ba7224770c7398efbc518d2bf3a4dc22"
         }
       ],
       "current_counts": {
@@ -295,19 +452,20 @@
       "current_evidence": [
         {
           "bytes": 22674,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
           "sha256": "f768bea877795ec6ec37495a8a3595f0ab0a47679f98026d0e19a4ff312ce189"
         },
         {
           "bytes": 2241,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
         }
       ],
       "input_authority": "DEPTH_B_AND_OBJECT_MASK_B",
       "known_limitations": [
         "Only visible-surface geometry is measured; occluded frames remain invalid.",
-        "Plane residual is not external pose truth."
+        "Plane residual is not external pose truth.",
+        "Legacy T_object_to_camera is in the rectified-depth camera. Its legacy T_object_to_world omitted rectified-to-selected registration and is forbidden for Robot/Contact consumption without the immutable selected-camera adapter."
       ],
       "output_schema": "camera_world_SE3_observed_only",
       "quality_gates": [
@@ -317,369 +475,445 @@
         "KEEP_INVALID",
         "instance_independence"
       ],
+      "related_current_releases": [
+        {
+          "bytes": 1731,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/RESULT.json",
+          "sha256": "769d22f7a2c9cb3a91d06fb0051742b08a370bb30d5237ddbc14e7c4716f70fd"
+        },
+        {
+          "bytes": 2379,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/selected_camera_adapter_R7_2/get_potato_chips_0902_023/physical_object_0/RESULT.json",
+          "sha256": "5e20a55bb43506610faa153b0a2144954b512be1c66abc2ec3581e4ebcafea21"
+        },
+        {
+          "bytes": 94920,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/coordinate_domain_audit_R7_3/RESULT.json",
+          "sha256": "0453ba5800d6063e29136080c82ec05eb54c01c31eb2e648212b573fc724ea3e"
+        },
+        {
+          "bytes": 62655,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/selected_camera_adapter_batch_R7_3/RESULT.json",
+          "sha256": "3ac45ea96a3f5d7a5ae052f927340963edee7fe65f949140826fbb5f84fff277"
+        },
+        {
+          "bytes": 24774,
+          "path": "/mnt/workspace/code/chaoyang/docs/research/current/CONTACT_OCCLUSION_METHODS_V71_ZH.md",
+          "sha256": "341424782c90c0f0f2bafb73d6cf3f42bc887336ac3f9ba6276077ca1f93c77a"
+        }
+      ],
       "schema_artifact": {
         "reason": "SCHEMA_ID_RECORDED_BUT_NO_STANDALONE_CURRENT_SCHEMA_ARTIFACT",
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Object6D",
-      "successor_requirement": "A separate hypothesis sidecar may bridge bounded gaps but cannot overwrite formal Object6D.",
+      "successor_requirement": "Use the selected-camera coordinate adapter before Robot/Contact development, then run bounded direct/tracked/attachment canaries; hypothesis sidecars cannot overwrite formal Object6D.",
       "superseded_implementations": [
-        "filled occlusion pose previews"
+        "filled occlusion pose previews",
+        "rectified pose multiplied directly by selected-camera c2w"
       ],
       "weights": "NOT_APPLICABLE"
     },
     {
-      "algorithm_id": "real_temporal_stereo_donor_then_propainter_v1",
+      "algorithm_id": "same_pixel_temporal_donor_then_propainter_v1",
       "authorized_scope": "EXACT78_WAVE0_FROZEN_PLUS_VERIFIED_SESSION_TERMINALS",
       "code_closure": [
         {
-          "bytes": 24669,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_clean_synthetic_propainter_baseline.py",
-          "sha256": "4cbbdb69d67cf350218c37cb646738438089c589aba38e5c052a682fb1381c65"
+          "bytes": 24660,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_clean_synthetic_propainter_baseline.py",
+          "sha256": "343569f40adfd72fd0db9983d391a87f2dce6717ea640115edb0f8f247c2d1d8"
         },
         {
           "bytes": 13216,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_generic_same_session_real_donor_v1.py",
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_generic_same_session_real_donor_v1.py",
           "sha256": "99fb12b323c283f35941e705f0b89651c1d9c29e1b74061c9cd8a8a805af4d35"
+        },
+        {
+          "bytes": 19267,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
+          "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
         }
       ],
       "current_counts": {
-        "blocked": 19,
+        "blocked": 0,
         "grade_c": 0,
-        "passed": 39,
+        "passed": 58,
         "running": 0,
         "total": 58
       },
       "current_evidence": [
         {
           "bytes": 149770,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/EXACT78_WAVE0_SELECTION.json",
           "sha256": "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1"
         },
         {
+          "bytes": 2873,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/RECOVERY_19_SELECTION.json",
+          "sha256": "01177dcc3140ea32a76c9caf2ac5b48fbf116c2aa0f63663e8ec4542cf06e338"
+        },
+        {
           "bytes": 4739,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_052/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_052/RESULT.json",
           "sha256": "301469a48d6ec94448c7271216cbc03e923ab23e06970197f926f44fdb521470"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_103/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_103/RESULT.json",
           "sha256": "26c8f4b2b50a1d9f6cd2a366aa5247bc2843102e17243cc924b05dd1294b72d9"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_140/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_140/RESULT.json",
           "sha256": "76078d46918d01ca23b67bada53e2ef1f0ba0b4afee573f5d5cab61d324949bd"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_182/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_182/RESULT.json",
           "sha256": "b6dfb50fe5c575258ca6044c33f8befa3fc9b588ee7a40f6ab14296b483a0fbd"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_050/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_050/RESULT.json",
           "sha256": "77993f74d406f3418be5c13ec0adebf5b20b6781d6f992fdbeafd6c570e8df39"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_085/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_085/RESULT.json",
           "sha256": "9c82c2e7ab5b08d5e868bde40d098709f1a0b9bb2b4438ba57f465e35659e4df"
         },
         {
           "bytes": 4743,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_113/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_113/RESULT.json",
           "sha256": "6e0c4bbd9a2b0c76e527ca41d0d759f71d13ec227cc2c4496d8f30d40716c510"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_150/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0903_150/RESULT.json",
           "sha256": "523851e4546975e33e948927da15439b7bae9a9d99208766128aaec1b693f13d"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_011/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_011/RESULT.json",
           "sha256": "1118483360560d5540c29ef3dca4f1ffb1b6120c6728c6cdc9ccc7c0f2b1e42b"
         },
         {
           "bytes": 4739,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_019/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_019/RESULT.json",
           "sha256": "57e91c0d6721d28e2065e4a00e31951d53e166312ca233bb90a77b482d18a183"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_023/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_023/RESULT.json",
           "sha256": "8923e665d221d9a329c67f2f71c0540976d1d4351a7094590246481fa63bd19b"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_029/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_029/RESULT.json",
           "sha256": "a598e3c5db908c539c6c3fcc0ef15f18d922e58ecda357ae69cce55ec2bf7d57"
         },
         {
           "bytes": 4738,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_039/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_039/RESULT.json",
           "sha256": "be64c2433ee612c5e9f6c9e1128c233a0f061b258bde5b9a9ab4ffba1bf773c1"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_041/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_041/RESULT.json",
           "sha256": "c27c6230ac5e90b062fed2cc05d9203149994a02aa5e5fc0be7718186e964529"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_049/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_049/RESULT.json",
           "sha256": "554680ea76e3634357f1fbc85b724097f1e0fe5ee4d5c200792a7d63fe501e2e"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_052/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_052/RESULT.json",
           "sha256": "712401b245c1a976db9d0b3d9d7ccf0253abd55a0d94cd9c0490cc3a0f93e0e3"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_059/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_059/RESULT.json",
           "sha256": "afe31a63f13c34671dcbcec1073505fec2d290b9f0687a65a83422a7789fe91d"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_066/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_066/RESULT.json",
           "sha256": "21698c82b30b9ee0b4baeaeeb3d618ff96fb65fb1fbb0892a79ea7de14bab5f4"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_067/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_067/RESULT.json",
           "sha256": "57d2bf37fb377131b21cfec8247f47225e793b58896618c0b8054eb535643863"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_083/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_083/RESULT.json",
           "sha256": "8ef106a7c969fdd6498beec268b31a14722e25fba2ba0ccd979c224a007cc417"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_087/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_087/RESULT.json",
           "sha256": "ea600a1588139bbb6edf0643f0e31395c7221ff6ce10a4eee16c9ceb8fc4a827"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_090/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_090/RESULT.json",
           "sha256": "cd53a07a8ba9ca19fc06410e2f5040d18a54aa8856773d0a4e923c3ec12a79fc"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_091/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_091/RESULT.json",
           "sha256": "d911353c21b7e090265dec5a98071b410de5146dbdcf1269c64988deb1139b07"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_093/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_093/RESULT.json",
           "sha256": "21725b7d8dc723303202feaa529661e78266e71664791d91073dd11dbf13000c"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_095/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_095/RESULT.json",
           "sha256": "61366421f20b86618a56df4e08773dff8cbdacb67ad5990e82819e9f805dc54e"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_096/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_096/RESULT.json",
           "sha256": "79db98549983406a82d94105ea5f6e5e7a44175c0c4960de2d7fd518462dff77"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_098/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_098/RESULT.json",
           "sha256": "2279c5d09145ce5dd167427ecd277eef327399771aeab12950dca28491ac654d"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_100/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_100/RESULT.json",
           "sha256": "6caf0c76d4722639761913fa1b2281dfe117999ca2fa131fd6036d712427133c"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_103/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_103/RESULT.json",
           "sha256": "806f54cf4df76578f463a35acc01591bc052cb1da4398a9729d5691743f1495a"
         },
         {
           "bytes": 4734,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_107/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_107/RESULT.json",
           "sha256": "0645e295e1e5ab4aec4c37e40cc05716cb1ed41cad085cdb6375b5415dcbdd3a"
         },
         {
           "bytes": 4742,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_112/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_112/RESULT.json",
           "sha256": "fe0c6ac4ceebebf39f429df5275876ff1ba451a8574665e540fcdd3111447229"
         },
         {
           "bytes": 4741,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_114/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_114/RESULT.json",
           "sha256": "265c40c5c476ba7c72bc616ef8a367f7623778016bd1aef3965812a5b5af80e2"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_119/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_119/RESULT.json",
           "sha256": "4bb02b9e1bda2b68a7c0100e714e85e49ebd5fc100aa64f736019a72ea914fe6"
         },
         {
           "bytes": 4738,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_121/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_121/RESULT.json",
           "sha256": "351647ae45b8aa03a434c41cd4ac7868068d5f8e6c6da1111a332d6772545563"
         },
         {
           "bytes": 4740,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_122/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/propainter_v1/get_potato_chips_0902_122/RESULT.json",
           "sha256": "3a0f5688534ced4a23343e301745118fd26b0ad8de448b129a0b2c4d250f3f3c"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_025/RESULT.json",
-          "sha256": "81bb186a9da5be469b908d51b063b345a8916f4475f204b6bda0407e26ce3a10"
+          "bytes": 4820,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_025/RESULT.json",
+          "sha256": "d232b7a251143b41569b79608c713f804074c7739931fb3ca658b4beaf756c0b"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_073/RESULT.json",
-          "sha256": "c4f92dd6240d640683d02915a36ad6f21ec50e7760d6815b45538f8cbd2e8543"
+          "bytes": 4820,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_073/RESULT.json",
+          "sha256": "dade6e8945239bd1e38733b29cf853fbed23319aadec24b5b1386ed3628010b8"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_101/RESULT.json",
-          "sha256": "87a05454483ff58ac85fa1f40ec3649e0b1e5ee2c63d4ef46de6ccf454561755"
+          "bytes": 4821,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_101/RESULT.json",
+          "sha256": "7699231fbd63c17c99cc0ef9d25b1db6dfed51ad81e406d72a10461cdb3a3209"
         },
         {
-          "bytes": 2282,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/get_potato_chips_0902_104/RESULT.json",
-          "sha256": "ae973c3151fc113abfbe5b6d9919d114064a5c169ab70cd9c120b152c16bcc9a"
+          "bytes": 4821,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/get_potato_chips_0902_104/RESULT.json",
+          "sha256": "165710afea496733e7e9df944cf29ca715ef3b095f8e9daacd7d48a59ce48ee1"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_189/RESULT.json",
-          "sha256": "f7839e4da81245ee701744d7c6e9425f31cbd122b3d59750c6b40050dfacf47c"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_189/RESULT.json",
+          "sha256": "d803467be48bd46a2133b94349feb0764cbdb133909a38662b7eeb33ba5ea719"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_202/RESULT.json",
-          "sha256": "a9706ae570a6b2701687285592dda7031ef3e979b1cb320013d66de07e501cf3"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_202/RESULT.json",
+          "sha256": "2a4b4a4b93d3f12e9763de2b450eca82a3f7704a65d0dfd17393c950239c1e4a"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_227/RESULT.json",
-          "sha256": "82eef8ba167b83add5dbfe46ab251897b0029e8ed8d9242d95726a463681da35"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_227/RESULT.json",
+          "sha256": "f2f16fd49e9f1e098d8e36db73b14ad7ce1378a86dd46ab4f6616a6a53f4ae76"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0903_195/RESULT.json",
-          "sha256": "26753bc37904bcd0f7f902448d654010a44fe8c3a4c78faf0488756fe392ab68"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0903_195/RESULT.json",
+          "sha256": "af56be7d7121d2baede6ad55160f7a3893bb9c58a13c96babd4d5313b18ee76f"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_024/RESULT.json",
-          "sha256": "f177037e4cc79a1297e79140f68b585d301eba3840ba5dd6e6aea047c196b333"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_024/RESULT.json",
+          "sha256": "0715193302508fe4d22ef5c66ac6a1ce5c2a1faa578ffafbb476878acfcdf4dc"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_025/RESULT.json",
-          "sha256": "8c9ceefe998d272ca5554c9e70913ab990cc7685e6af0f6ecee510777d40c168"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_025/RESULT.json",
+          "sha256": "50ae33d4a764d7945fab1ffcae06a72f403e900f2bc24cd1ea06bf701b9ca2f6"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_026/RESULT.json",
-          "sha256": "74942e6bdfd5bb159f78834f6ee2c09ecc63c4a1205ef2f89a292c4c9c9f0a4f"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_026/RESULT.json",
+          "sha256": "1f764f471df6edd9b42066a6621e5f35999b44f373c77088cd5413293e1ae393"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_031/RESULT.json",
-          "sha256": "a1c9497e628857b6564bc7457f65dd8032da51ddcb4d2e48e15bcd0e4a3081f7"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_031/RESULT.json",
+          "sha256": "337523b3df4fa6af2fc24999da7dffd0279f1f59679c41b7908f7711693bcc25"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_032/RESULT.json",
-          "sha256": "f842c176e5fe0a1d78bc918ff952ccffd9afb33595eb707e4d175dbf9ab4e0cc"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_032/RESULT.json",
+          "sha256": "4367b6316f5f851f70ec61a2fbb4faa35fa8a73d24a1f30df1d29c133d02a5b4"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_036/RESULT.json",
-          "sha256": "b33e171707c9cf2b5553e2dbba030dce1b3fe1792caee38c6cd305eacf756fa6"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_036/RESULT.json",
+          "sha256": "b345e853866b9620bf5c3a11d82c27cd5ed4c269097b712fa44b51c0bb75adf7"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_039/RESULT.json",
-          "sha256": "5414495c686407662fd85ac45c54fd6f4ebbef3835abb9a9bf2e740f33f52081"
+          "bytes": 4764,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_039/RESULT.json",
+          "sha256": "e4ebfc6f018279cddccb01be8959097dadd35163c488b9cb9afc1b56251f20de"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_047/RESULT.json",
-          "sha256": "02804ea6627ddbf06728e782c12e4cc2bb77991fe0307fe87cf519add4f4f4cc"
+          "bytes": 4765,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_047/RESULT.json",
+          "sha256": "e8f693eaa948f9ce951a8d80e9df510da4eb180c13d248a07b2d3e5ff2d2539b"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_049/RESULT.json",
-          "sha256": "5bb0ff2be44010c92e76556e9f6767652fcf78cf4e573b798524944990b13866"
+          "bytes": 4764,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_049/RESULT.json",
+          "sha256": "ac8c4aa3b21449cd9e83202cb069c8e905401cd9d7ae6d327a8f83cef6edb9fa"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_053/RESULT.json",
-          "sha256": "6c3487d7bdf30b62eca296d1c7e4e024a02b9fd6f77d7a493d74df60cf6d9beb"
+          "bytes": 4764,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_053/RESULT.json",
+          "sha256": "dcd60f45ec021297091a45c9a6c29d3614b94c097937c9c93c40752640e476b6"
         },
         {
-          "bytes": 2246,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v3_wave_clean_v1/clean_terminals/play_cards_0902_042/RESULT.json",
-          "sha256": "2897a8dbb2d41fa6b03d297c0ac5ec8eb75df2b95557e46c6f74e250cbc523e7"
+          "bytes": 4766,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_clean_runtime_recovery_v53/propainter_v1/play_cards_0902_042/RESULT.json",
+          "sha256": "5ff6ef68db2bf188f7781691d98a4c280a4f03a96e0d4f3c3287bcb7be2ba6db"
         }
       ],
       "input_authority": "ROLE_MASK_B_AND_OBJECT_MASK_B",
       "known_limitations": [
+        "The current real-donor producer is temporal only: it copies the identical integer pixel coordinate from same-session frames after two-frame RGB consensus; it does not use Stereo reprojection or scene geometry.",
+        "Human masks are expanded by 18-24 px and tracker masks by 60 px before removal; this fixed expansion can delete excessive boundary context.",
+        "Byte-exact object protection covers only pixels present in the current visible task-object mask. It does not preserve or reconstruct object surface hidden by fingertips.",
+        "A donor pixel can be byte-exact and still be semantically wrong when a moving plate/background surface occupies the same image coordinate in donor frames.",
+        "A structural Grade-B terminal proves frame/provenance/decode closure, not contact-boundary or semantic inpainting correctness.",
         "Generated pixels are visual completion, not physical background truth.",
         "Clean never feeds Depth/Object6D/contact truth."
       ],
       "output_schema": "clean_frames+master+review+source_map+result",
       "quality_gates": [
         "frame_count",
-        "object_byte_exact",
+        "visible_object_mask_byte_exact",
         "source_map",
         "master_decode",
         "review_decode"
+      ],
+      "related_current_releases": [
+        {
+          "bytes": 11854,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/optimization/clean_runtime/CLEAN_RUNTIME_BOTTLENECK_AUDIT_V71.json",
+          "sha256": "5cb6b020073863416f5cdcb6132e8372813a8899b11df5da18f094568af36eb1"
+        },
+        {
+          "bytes": 1785,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_user_visual_review_v1/CLEAN_CONTACT_BOUNDARY_USER_REVIEW.json",
+          "sha256": "e32a1b2672dc42413e7c22534df5381f2c5f573a6d2ff5686ac4512569a64e1d"
+        },
+        {
+          "bytes": 5548,
+          "path": "/mnt/workspace/code/chaoyang/docs/research/current/reports/visualization/20260915/CLEAN_CONTACT_AND_WRIST_BASELINE_AUDIT_ZH.md",
+          "sha256": "4673665cd00d60961a50e43cc1da83ece1463e6149cfb4aacbed7487c88d6dbe"
+        },
+        {
+          "bytes": 1390,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
+          "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
+        }
       ],
       "schema_artifact": {
         "reason": "SCHEMA_ID_RECORDED_BUT_NO_STANDALONE_CURRENT_SCHEMA_ARTIFACT",
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Clean",
-      "successor_requirement": "Finish frozen Wave0 terminals without changing selection.",
+      "successor_requirement": "Freeze an object/contact-aware Clean successor: replace blanket dilation with adaptive removal support; protect the visible object plus an explicitly sourced contact band; reconstruct hidden rigid-object appearance only from a pose-validated causal atlas/renderer; mark unsupported pixels UNKNOWN/training-invalid; add semantic donor rejection and contact-boundary visual gates before Robotized training use.",
       "superseded_implementations": [
-        "unproven clean previews"
+        "unproven clean previews",
+        "the inaccurate label that the current identical-coordinate donor uses Stereo geometry"
       ],
       "weights": {
         "ProPainter.pth": {
           "bytes": 157780510,
-          "path": "/mnt/workspace/code/chaoyang/third_party/ProPainter/weights/ProPainter.pth",
+          "path": "/mnt/workspace/code/chaoyang/assets/models/vendor/propainter/ProPainter.pth",
           "sha256": "12c070c4b48f374c91d8a2a17851140b85c159621080989f9e191bbc18bd6591"
         },
         "raft-things.pth": {
           "bytes": 21108000,
-          "path": "/mnt/workspace/code/chaoyang/third_party/ProPainter/weights/raft-things.pth",
+          "path": "/mnt/workspace/code/chaoyang/assets/models/vendor/propainter/raft-things.pth",
           "sha256": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
         },
         "recurrent_flow_completion.pth": {
           "bytes": 20348681,
-          "path": "/mnt/workspace/code/chaoyang/third_party/ProPainter/weights/recurrent_flow_completion.pth",
+          "path": "/mnt/workspace/code/chaoyang/assets/models/vendor/propainter/recurrent_flow_completion.pth",
           "sha256": "22939a1a7900da878dbe1ccd011d646b1bfb30b8290039d8ff0e0c2fefbfd283"
         }
       }
     },
     {
-      "algorithm_id": "human_contact_hypothesis_v1_geometry_v2",
+      "algorithm_id": "contact_evidence_dag_v71_geometry_v2",
       "authorized_scope": "POKER042_HYPOTHESIS_ONLY_NO_CONTACT_AUTHORITY",
       "code_closure": [
         {
           "bytes": 11488,
-          "path": "/mnt/workspace/code/chaoyang/pipeline/human_contact_hypothesis_v1.py",
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/human_contact_hypothesis_v1.py",
           "sha256": "67f40591d5ebf26f1454781c96b8d0b4b1eee1c104b48f7f449484e4fee2833c"
         },
         {
-          "bytes": 5673,
-          "path": "/mnt/workspace/code/chaoyang/pipeline/contact_geometry_v2.py",
-          "sha256": "6dc4eb625a217d27228f1c358112f5035beb03cc2dd70ab0c2c59fa8fae45bdd"
+          "bytes": 5682,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_geometry_v2.py",
+          "sha256": "3cf459ab35b2e9f20dd9e22990e8d4da196c97add789ec111ae4b01d1b7b83f9"
+        },
+        {
+          "bytes": 13684,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object_contact_evidence_v1.py",
+          "sha256": "78220bf72d5e3482a90b944c18ed0b596aa28abacc723aba59caed4dfc37f9ed"
+        },
+        {
+          "bytes": 8660,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_occlusion_contracts_r3.py",
+          "sha256": "d65c713bcfef868929bbf5e18effd7c17beb83a3aff2a152c69bd24764537fa7"
         }
       ],
       "current_counts": {
@@ -692,53 +926,74 @@
       "current_evidence": [
         {
           "bytes": 12660,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
           "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
         },
         {
           "bytes": 9903,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
           "bytes": 4424,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
           "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
         },
         {
           "bytes": 860,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/AGENT_REVIEW.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/AGENT_REVIEW.json",
           "sha256": "a2b6dc7699dcc936addd445ca4a8d02cc18774f27d05dde2a9f40a23c6fc085c"
         },
         {
           "bytes": 2458677,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.png",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.png",
           "sha256": "342dc25c4f6fe554e35adfc68aeddc7f8c1b06ee65d0df7e5836d237ffa9a600"
         },
         {
           "bytes": 1262130,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
           "sha256": "eae4585f04e84f517285875224fcef4188779de862fa7fab307e6b6a9053a5d9"
         }
       ],
       "input_authority": "HAWOR_OBJECT_MASK_DIRECT_OBJECT6D",
       "known_limitations": [
-        "Geometry fixtures pass, but the real-session goldset pack is explicitly blocked pending two independent human labels and a Robot candidate.",
+        "Poker/Chips geometry and evidence-direction fixtures pass, but no real-session Contact authority exists.",
+        "Attachment-propagated pose cannot prove Contact, Object6D, tactile support, or gold accuracy.",
         "Hypotheses are not physical contact truth."
       ],
       "output_schema": "contact_hypothesis_not_truth",
       "quality_gates": [
         "synthetic_geometry_fixture",
-        "bounded_gap",
+        "evidence_DAG_acyclic",
+        "attachment_cannot_prove_contact",
         "instance_identity",
-        "UNKNOWN_fail_closed",
-        "frozen_goldset_required"
+        "UNKNOWN_fail_closed"
       ],
       "related_current_releases": [
         {
-          "bytes": 1449,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/goldset_v1_review_pack/RESULT.json",
-          "sha256": "ada03512c137ec0e3caebb368263459709307a6650c32b49e62da15983acfaed"
+          "bytes": 1741,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact/RESULT.json",
+          "sha256": "71b0b16f944afdf627e6200b3df0fcb651de5cb2e876f0dca54d78981204d22d"
+        },
+        {
+          "bytes": 1731,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/RESULT.json",
+          "sha256": "769d22f7a2c9cb3a91d06fb0051742b08a370bb30d5237ddbc14e7c4716f70fd"
+        },
+        {
+          "bytes": 825,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/revisions/R7_2/RESULT.json",
+          "sha256": "3c2f92f784c748f21dfece88ca4383d7aff03ceed3a83f19b92948265055ec42"
+        },
+        {
+          "bytes": 24774,
+          "path": "/mnt/workspace/code/chaoyang/docs/research/current/CONTACT_OCCLUSION_METHODS_V71_ZH.md",
+          "sha256": "341424782c90c0f0f2bafb73d6cf3f42bc887336ac3f9ba6276077ca1f93c77a"
+        },
+        {
+          "bytes": 1390,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
+          "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
         }
       ],
       "schema_artifact": {
@@ -747,70 +1002,176 @@
         "sha256": "803c666f0b9aebdf9a596972b7f93648bb048d6b43434538284e32184beb8f7a"
       },
       "stage": "Contact",
-      "successor_requirement": "Freeze and double-review the real contact/occlusion goldset before authority.",
+      "successor_requirement": "Use direct/tracked Object evidence to seed Contact, then attachment only in the downstream direction; freeze independent gold labels before authority.",
       "superseded_implementations": [
-        "robot-render-dependent contact loop"
+        "robot-render-dependent contact loop",
+        "attachment-contact self-certification"
       ],
       "weights": "NOT_APPLICABLE"
     },
     {
-      "algorithm_id": "world_first_retarget_v5_2_first_observed_anchor",
+      "algorithm_id": "robot_geometry_v71_over_world_first_retarget_v5_2",
       "authorized_scope": "NO_CURRENT_TASK_ROBOT_AUTHORITY_POKER042_4FRAME_FINAL_C",
       "code_closure": [
         {
           "bytes": 12459,
-          "path": "/mnt/workspace/code/chaoyang/pipeline/contact_aware_robot_retarget_v1.py",
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_aware_robot_retarget_v1.py",
           "sha256": "8a61bc3dd2404234405e7a45ebd596d646b826e90599df9897f22952e282cc7d"
         },
         {
-          "bytes": 63255,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_tianji_kai_robot_baseline.py",
-          "sha256": "50c1443ea36147582a74e3ea9acd41717fcfb541ae944715e7538f49aefe1a72"
+          "bytes": 10259,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/robot_geometry_v1.py",
+          "sha256": "8656e1ad2b3274450d5fd5375f12dd9fd654b42f06f839ee866dfd92fa82719b"
+        },
+        {
+          "bytes": 63582,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_tianji_kai_robot_baseline.py",
+          "sha256": "6ccc6734f34faae8d28fdfbba67dfe13ecf7d796d138eeed6f7619e4e7fdd649"
         },
         {
           "bytes": 13374,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_hawor_temporal_jerk_successor.py",
-          "sha256": "65a64dce4ee91c743c3dbb8081cb85d4f3f00e3dd112e8bcdde57283654a4924"
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_temporal_jerk_successor.py",
+          "sha256": "c270ff9052e6fff7cfc11a2dacbafaf54fed96ceb59269eb067985a6adbc9404"
         },
         {
-          "bytes": 12930,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_robot_motion_transfer_arm_canary_v3.py",
-          "sha256": "cfea728c729220b8168b504986b5a363a47cc740f77b75784043acc075315f9b"
+          "bytes": 13184,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_robot_motion_transfer_arm_canary_v3.py",
+          "sha256": "6692b33b6d9c0c88d982eec3ec2a48415906271d6d951a3e38644bf6d159bac8"
         },
         {
           "bytes": 5556,
-          "path": "/mnt/workspace/code/chaoyang/tools/select_robot_fixed_placement_v1.py",
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/select_robot_fixed_placement_v1.py",
           "sha256": "0a64a174817feded8f45cf007856537eb073e18baf061b396c003d8588e45a3c"
         },
         {
-          "bytes": 13158,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_robot_arm_segment_bidirectional_v3.py",
-          "sha256": "49a6746def3494cb08f2a837da7d0d0769747dcfd6565ccd4db4522152bf8b99"
+          "bytes": 13440,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_robot_arm_segment_bidirectional_v3.py",
+          "sha256": "78756fe45b0e6b24739e1ee279d7b594fb54872e046350373a30b78a573cbbed"
         },
         {
-          "bytes": 13632,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_robot_hand_fullsession_v2.py",
-          "sha256": "4ca741079a2fec6297a76d6edbe2728c7f0e054c6baa8fba10f42bff25782e64"
+          "bytes": 13925,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_robot_hand_fullsession_v2.py",
+          "sha256": "da776da7577de1c3af523392f750694f1be382bc5eb470638fa9b40c23aa396f"
         },
         {
-          "bytes": 37106,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_newtask_robot_shared_v4_hand.py",
-          "sha256": "2986db0bad92c3f6c0989576f33a4ef9a7e215da4ec54288a2579490d750216c"
+          "bytes": 37537,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_newtask_robot_shared_v4_hand.py",
+          "sha256": "f1b136f5142b672040a51ee16483f389fded0b631e2fa62691987ba35cb3af2b"
         },
         {
-          "bytes": 10081,
-          "path": "/mnt/workspace/code/chaoyang/tools/run_robot_hand_segment_bidirectional_v3.py",
-          "sha256": "dedd11345a1379298a5182d4eb0217c2c10f03cc62323ac2b559ea3463e74d95"
+          "bytes": 10374,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_robot_hand_segment_bidirectional_v3.py",
+          "sha256": "c8125007d08ac4bc1778a14b56549c3c74def14e78e7967bce58aa2d317f3eb6"
         },
         {
-          "bytes": 15689,
-          "path": "/mnt/workspace/code/chaoyang/tools/render_robot_motion_transfer_fullsession_v2.py",
-          "sha256": "69f24a7cb12dee5765918300d280cc6001b634cdb9036005faf2d5e8124d3f2b"
+          "bytes": 17427,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_robot_motion_transfer_fullsession_v2.py",
+          "sha256": "b708dc18d0dcf9a639a57d99d7b83deb4987e28cf4819d8f745090c387fef901"
         },
         {
-          "bytes": 17743,
-          "path": "/mnt/workspace/code/chaoyang/tools/adopt_exact78_pose_only_visual_robot_v52.py",
-          "sha256": "4b944e2efc3d9f5bef6ba758eab8657d2aed4af9512cecbb612c832d140651bb"
+          "bytes": 20766,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/adopt_exact78_pose_only_visual_robot_v52.py",
+          "sha256": "56d9ccbbe7c9496899183e067cfb9509e5427e8c7cc9ef2acb41702377090fef"
+        },
+        {
+          "bytes": 13213,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_robot_geometry_self_collision_v71.py",
+          "sha256": "9547215d1e1f41fc192f08cf08aedd49be7d5d886c06b4d78a93eb987ccbf148"
+        },
+        {
+          "bytes": 9484,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/export_robot_unified_zbuffer_canary_v71.py",
+          "sha256": "5defd1a4f232b9d9a62e0eea1873820b54751aaa6e51f78bce06b0aabe9ea1ea"
+        },
+        {
+          "bytes": 17844,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_robot_object_ownership_canary_v71.py",
+          "sha256": "a5663e0bb051c24063cc422361c32cba61d860969f4f878bb2f3d23562c45107"
+        },
+        {
+          "bytes": 13170,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_robot_hard_soft_gate_v71.py",
+          "sha256": "7524409a0a7acd9a7ea9e1c2f43fe6fec2bafe092585373dc482bd05a4bb735c"
+        },
+        {
+          "bytes": 14323,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_robot_hard_soft_audit_watcher_v71.py",
+          "sha256": "690312f2859f39fac6e82357d98e59f8a74f5fb959abff24b2e5354524c72e33"
+        },
+        {
+          "bytes": 8294,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_robot_conversion_diagnosis_watcher_v71.py",
+          "sha256": "a036a25c7257f6a9ba7916bc9c40d0fca393be4ddfd4eaca6911707b07770c5c"
+        },
+        {
+          "bytes": 7532,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_kaihand_tip_reachability_floor_v71.py",
+          "sha256": "1b231c82d28e92060de93238fad5ed1b6626150092d085ff86c804a0aecc9758"
+        },
+        {
+          "bytes": 6421,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_robot_placement_candidate_reduction_v71.py",
+          "sha256": "da088c79fff18dfa3ee1044f89ca5a357fd88e323b7128a49bab48ad4809c991"
+        },
+        {
+          "bytes": 7839,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_robot_placement_reduction_watcher_v71.py",
+          "sha256": "48a199064b2b835ca22c567d55ccdc28e56bb90e012adf056a1692aee5d4b940"
+        },
+        {
+          "bytes": 5298,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_robot_hand_round2_value_v71.py",
+          "sha256": "c47d0b4efac367911910c6c894e0f5aa8799070f5af7135878d8a29bc7278c5c"
+        },
+        {
+          "bytes": 11084,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v71_post_finalize_robot_expansion.py",
+          "sha256": "d58fec4d6d7d88b935b722b846890e5470369420ce97679fc94250e4ca225061"
+        },
+        {
+          "bytes": 20300,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_robot_ready_batches_v53.py",
+          "sha256": "e7a0ef10c7c29cfd2345d6e46a8691798a2993b9427d0f87dd7d99b28578c5be"
+        },
+        {
+          "bytes": 24542,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_robot_ready_batches_v75.py",
+          "sha256": "7325ff5de65334dcb47b2f0d32157e1bd82c42d45a75ec8c0085ae630f9be72a"
+        },
+        {
+          "bytes": 7590,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/robot_target_reach_v75.py",
+          "sha256": "68ce4a73c139f3835343dcfad29ef96e3f02f6431ae74f09f499bfa87e76ddaa"
+        },
+        {
+          "bytes": 5157,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_robot_target_chain_v75.py",
+          "sha256": "16a8ae1fab9356ecb7e8af2545a583f68d55c197da87b46c090aae8ac4618f91"
+        },
+        {
+          "bytes": 3503,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_robot_reach_v75.py",
+          "sha256": "2d8259c4ff7d2f777aae67362f375ce08e7157f32fa86216ae72209b2a05be71"
+        },
+        {
+          "bytes": 3927,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/profile_robot_pipeline_v75.py",
+          "sha256": "46ea2179b19e3e9f5f5995bc14accdb73d731719dd95042aa82cfaaface82f50"
+        },
+        {
+          "bytes": 1632,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_target_10_r3.schema.json",
+          "sha256": "e5260b9afab407a35e111eab80a79f911be3b6986fdbc02e59f3e393aca6d0ec"
+        },
+        {
+          "bytes": 1802,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_reach_20_r3.schema.json",
+          "sha256": "0b06048520d89fc48175ee2a6cdab2102fe0652b191781783ff6f70e43ac96bf"
+        },
+        {
+          "bytes": 986,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_profile_30_r3.schema.json",
+          "sha256": "b15afa6afd469aaac2487b561bda263cfcde43ce94df295e9a69ab93fcc8b890"
         }
       ],
       "current_counts": {
@@ -823,92 +1184,197 @@
       "current_evidence": [
         {
           "bytes": 12660,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/BASELINE_AUTHORITY.json",
           "sha256": "b7835b367126bed6748b79f4d44d426c631268dba096e4938a3b6c77eddb8da6"
         },
         {
           "bytes": 9903,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
           "bytes": 6830,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_robot_visual_training_closure_recovery_v1/VISUAL_TRAINING_ASSEMBLY_CONTRACT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_robot_visual_training_closure_recovery_v1/VISUAL_TRAINING_ASSEMBLY_CONTRACT.json",
           "sha256": "522bd91c4b02024f04f7b4ead35a78b6bafd1b58ee5f0432385a3542db7f06c1"
         },
         {
           "bytes": 17998,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_robot_coordinate_install_calibration_audit_v1/ROBOT_COORDINATE_INSTALL_CALIBRATION_AUDIT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_robot_coordinate_install_calibration_audit_v1/ROBOT_COORDINATE_INSTALL_CALIBRATION_AUDIT.json",
           "sha256": "528ff788397f98661d4d94b73f8e95c5b388a0947bfb8e6fe5bda53f8471793a"
         },
         {
           "bytes": 10530,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_naturalv2_kaihand_mount_lineage_audit_v1/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_naturalv2_kaihand_mount_lineage_audit_v1/RESULT.json",
           "sha256": "9d3fd9ef74799ced8a5ef02b4173f3b23fd50f7e0a5daad8d7ca15f7f6437f10"
         },
         {
           "bytes": 4722,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/RESULT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/RESULT.json",
           "sha256": "bbc362b0911f20b0295604d8cc45fcbc3e43c12c1d65dc93b3c54c6e5ed4f24f"
         },
         {
           "bytes": 1377,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/AGENT_REVIEW.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3/AGENT_REVIEW.json",
           "sha256": "3eb438ca4782840aeda6734a7b7f4bb970f751ec9a597f8a482eb0760d784359"
         },
         {
           "bytes": 2398,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3_review_v1/POSTPROCESS_RECEIPT.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_poker042_contact_retarget_fourframe_visual_v3_review_v1/POSTPROCESS_RECEIPT.json",
           "sha256": "3a3fd4609c204743bef04e086554aba2ef48809216af1b25c43a0fd315d489a9"
         }
       ],
-      "input_authority": "CLEAN_JOIN_READY_OR_POSE_ONLY_VISUAL",
+      "input_authority": "HAND_WRIST_URDF_CAMERA_OPTIONAL_OBJECT_CONTACT",
       "known_limitations": [
-        "No Robot authority is currently published; 23 review videos are development candidates only (3 strict-numeric-pass, 5 pose-only, 15 quality-C diagnostics).",
+        "R1 Robot Geometry is independent of Clean; Object6D absence permits pose-only visual results but not metric contact.",
+        "Strict per-frame human-pose imitation is a soft target because MANO and KaiHand morphology/workspace differ; motion may differ while remaining usable for visual training.",
+        "Velocity/acceleration are visual-continuity gates, not physical Robot safety certification.",
+        "The bounded hard/soft audit can retain hard-feasible development candidates when only human-pose similarity misses; it does not promote strict Robot authority.",
+        "Development candidates and quality-C diagnostics exist, but no Robot authority is currently published.",
         "control_ground_truth=false.",
         "Adapter/TCP/install/world-to-base physical calibration is absent."
       ],
-      "output_schema": "visual_robot_trajectory_sidecar",
+      "output_schema": "robot_geometry_v1+visual_robot_trajectory_sidecar+robot_target_10_r3+robot_reach_20_r3+robot_profile_30_r3",
       "quality_gates": [
-        "proper_SE3",
-        "chirality",
-        "mount_closure",
-        "joint_limits",
-        "reachability",
-        "full_video_review"
+        "hard:finite_proper_SE3",
+        "hard:chirality_mount_root_closure",
+        "hard:URDF_joint_limits",
+        "hard:missing_stays_UNKNOWN",
+        "hard:nonadjacent_self_collision",
+        "visual_continuity:fps_bound_velocity_acceleration",
+        "robotized:unified_zbuffer_and_provenance",
+        "soft:human_arm_pose_similarity",
+        "soft:human_hand_anatomy_similarity",
+        "30s_total_frame_budget"
       ],
       "related_current_releases": [
         {
           "bytes": 6404,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/pose_only_visual_robot_v1/CURRENT_CANDIDATE_INDEX.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/pose_only_visual_robot_v1/CURRENT_CANDIDATE_INDEX.json",
           "sha256": "cf374c2d70270b3bc5eff83468f3204d68251c1a6ca5eb73427c71db69a0fdaa"
         },
         {
           "bytes": 20283,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260914_robot_visual_review_publication_v1/RESULT_SUMMARY.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_robot_visual_review_publication_v1/RESULT_SUMMARY.json",
           "sha256": "22b6172947d18c6bba53af362b5351cd83341499de9cbdc1392a2af1515b9ba1"
+        },
+        {
+          "bytes": 13726,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_exact78_robot_failure_clusters_v1/ROBOT_FAILURE_CLUSTERS.json",
+          "sha256": "79510af99b5973f121c0932b45198df4d4a47c0847646f5636e1aeedff77b1e7"
+        },
+        {
+          "bytes": 3180,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/robot_geometry/canaries/get_potato_chips_0902_023/self_collision_4frame_R7_1/RESULT.json",
+          "sha256": "67518dcfba7e51f030fe87271681cf2cb74119ed632d5b6547f419841cb33ef3"
+        },
+        {
+          "bytes": 5791,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/robot_geometry/canaries/get_potato_chips_0902_023/self_collision_24frame_R7_1/RESULT.json",
+          "sha256": "8bdf0784a7601cfd84e0eb07439ab5c44ad418d9fb9135e1ef0ea0569d5dd1b3"
+        },
+        {
+          "bytes": 57857,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/robot_geometry/canaries/get_potato_chips_0902_023/self_collision_fullsession_R7_1/RESULT.json",
+          "sha256": "efbd8e3242826ea8b6d052e41e791cd02294524b95d6b56e54483d0b9d15ee2c"
+        },
+        {
+          "bytes": 2633,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/robot_geometry/canaries/get_potato_chips_0902_023/unified_zbuffer_4frame_R7_1/RESULT.json",
+          "sha256": "8218085d8259e0c2d0ebdc9b1334a28e4ee479c0658a7cdd5676dd3f9093a136"
+        },
+        {
+          "bytes": 2951,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/robot_geometry/canaries/get_potato_chips_0902_023/unified_zbuffer_24frame_R7_2/RESULT.json",
+          "sha256": "798744bf8b3f5ebe969019abf55d1c3569945d6a59f3659d889ad4515b8a873a"
+        },
+        {
+          "bytes": 5234,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/robot_geometry/canaries/get_potato_chips_0902_023/robot_object_ownership_24frame_R7_4/RESULT.json",
+          "sha256": "6d1fb5ea149850ee691ac665fc23451a8c245f1db43e6520ae58df99e25a5c5a"
+        },
+        {
+          "bytes": 11182,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hard_soft_watcher_v71/batch_001/RESULT.json",
+          "sha256": "3ac4033944e366e7cdcffb9719b05834b0b73f823a110c71881bb62f6387add0"
+        },
+        {
+          "bytes": 3088,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hard_soft_watcher_v71/candidates/get_potato_chips_0902_087/RESULT.json",
+          "sha256": "2292d9e7eaa278446023611d7d4e469356cccedf698bf408e8cba8ad66e181bd"
+        },
+        {
+          "bytes": 2593,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_kaihand_pinky_reachability_v71/get_potato_chips_0902_087/RESULT.json",
+          "sha256": "e58a8263c6fe8bd68fa3aa3a3ee5622df3f8c884d303bf7b2a9a06c59dbf9ff3"
+        },
+        {
+          "bytes": 4647,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_placement_reduction_audit_v71/RESULT.json",
+          "sha256": "4390ac85e96bd7699ab6a9b2fc4f7312bd5b48ee330a23fb28ad3035bdcece96"
+        },
+        {
+          "bytes": 6261,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hand_round2_value_audit_v71/RESULT.json",
+          "sha256": "036f2224f95375b0dcdf10680d4e73f945c9c57c3430da733f2d931ead0f9e60"
+        },
+        {
+          "bytes": 3879,
+          "path": "/mnt/workspace/code/chaoyang/docs/governance/ROBOT_QUALITY_GATE_POLICY_V71_ZH.md",
+          "sha256": "b18fe2705a7f40678d2c61196df820a36bb7f42e06c4591e22330a6b085fba15"
+        },
+        {
+          "bytes": 2326,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v75/attempts/attempt_0016_execution/FAILED_RUNTIME_FINAL.json",
+          "sha256": "d5cf7e06a2cdbafa71192ef46c569793a036c5223f6d45b345bf244c139b5d67"
         }
       ],
       "schema_artifact": {
-        "bytes": 3991,
-        "path": "/mnt/workspace/code/chaoyang/contracts/contact_aware_robot_retarget_v1.schema.json",
-        "sha256": "ac4bde58049bb3dbd95b8ebd804854db16701f9b9a12d5ef51feafce2dcfa397"
+        "bytes": 1674,
+        "path": "/mnt/workspace/code/chaoyang/contracts/robot_geometry_v1.schema.json",
+        "sha256": "f93554ee5027215d704eca6d708e006d635975b21ce57828555430f145568182"
       },
       "stage": "Robot Visual",
-      "successor_requirement": "Four keyframes, then 24 frames, then full session; at most two bounded successors.",
+      "successor_requirement": "Continue immutable three-session batches; audit strict-C outputs with hard geometry/collision gates, then expand only hard-feasible candidates into causal Visual Aux inputs. R2 metric contact and V1 compositor remain separately gated.",
       "superseded_implementations": [
-        "withdrawn wrong-mount and wrong-chirality videos"
+        "withdrawn wrong-mount and wrong-chirality videos",
+        "Robot geometry coupled to Clean/compositor",
+        "treating every soft human-pose residual as a hard geometry failure"
       ],
       "weights": "NOT_APPLICABLE"
     },
     {
-      "algorithm_id": "occlusion_compositor_v1_development_interface",
+      "algorithm_id": "occlusion_silver_gold_split_v71",
       "authorized_scope": "NO_CURRENT_AUTHORITY",
       "code_closure": [
         {
-          "bytes": 14418,
-          "path": "/mnt/workspace/code/chaoyang/pipeline/occlusion_compositor_v1.py",
-          "sha256": "950521be2f441983977f9363731706c467cf9d8606ca428e0ad5da0041b262f4"
+          "bytes": 18638,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/occlusion_compositor_v1.py",
+          "sha256": "7a238737cd8f9005f85a010ba9da2bca19d5109d3f885303713f6c7baceade2b"
+        },
+        {
+          "bytes": 11253,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/causal_robotized_compositor_v1.py",
+          "sha256": "a91c2b710cbbc05095ca0fd22399d77b1a814bedda83bea20aa4115beed62ee3"
+        },
+        {
+          "bytes": 8660,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_occlusion_contracts_r3.py",
+          "sha256": "d65c713bcfef868929bbf5e18effd7c17beb83a3aff2a152c69bd24764537fa7"
+        },
+        {
+          "bytes": 22224,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_visible_surface_occlusion_canary_v71.py",
+          "sha256": "92f9a75a3b6a6fdee55a8eb8a0e567343919d218f5cf755224ad233b0e37d4c2"
+        },
+        {
+          "bytes": 17980,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_occlusion_visible_surface_watcher_v71.py",
+          "sha256": "1c05b62dee13c4cbb4762a81ced21f35b6733a700fbbda3e4c37940d912525aa"
+        },
+        {
+          "bytes": 5816,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_occlusion_silver_governance_finalizer_v71.py",
+          "sha256": "401c1a3dd5d1d70d973f26bcfc8811eb65a42a40ca90353d8a9b081ed2c97d0e"
         }
       ],
       "current_counts": {
@@ -921,53 +1387,144 @@
       "current_evidence": [],
       "input_authority": "CLEAN_ROBOT_RENDER_DEPTH_OBJECT_APPEARANCE",
       "known_limitations": [
-        "The review pack remains BLOCKED_EXTERNAL_PENDING_TWO_INDEPENDENT_HUMAN_LABELS_AND_ROBOT_CANDIDATE; occlusion is not yet solved."
+        "A real visible-surface z-buffer canary passes bounded numeric coverage, UNKNOWN and conditional-retention checks, but it does not reconstruct hidden object appearance or close every Silver gate.",
+        "Current Clean-base Robot review videos recover renderer-changed pixels by a Raw-versus-Robot difference mask; they do not implement authorized object/Robot ownership and visibly retain wrong ordering in contact regions.",
+        "Gold is blocked because the frozen independent 240-frame double-reviewed set does not exist; no accuracy is reported."
       ],
       "output_schema": "ownership+training_valid_mask",
       "quality_gates": [
-        "known_accuracy",
-        "known_coverage",
-        "unknown_ratio",
+        "silver_provenance_coverage",
+        "silver_unknown_ratio",
+        "zbuffer_consistency",
         "pixel_source_legality",
-        "object_conditional_retention"
+        "gold_accuracy_only_with_independent_labels"
       ],
       "related_current_releases": [
         {
-          "bytes": 1449,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/goldset_v1_review_pack/RESULT.json",
-          "sha256": "ada03512c137ec0e3caebb368263459709307a6650c32b49e62da15983acfaed"
+          "bytes": 1188,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/occlusion_silver/RESULT.json",
+          "sha256": "c9d1fdde1161c059e49a0184705d33392e59f9b8ea4d639c5c4f903f96cef970"
+        },
+        {
+          "bytes": 1207,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/occlusion_gold/RESULT.json",
+          "sha256": "eecd3c8d7ffdc05cacd4577fe3a75d19f8dd53f29e01b99208e6e137cab82173"
+        },
+        {
+          "bytes": 825,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/revisions/R7_2/RESULT.json",
+          "sha256": "3c2f92f784c748f21dfece88ca4383d7aff03ceed3a83f19b92948265055ec42"
+        },
+        {
+          "bytes": 24552,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v8/RESULT.json",
+          "sha256": "c1e32a09a4d0fd121065f135ed7f92c3969a0b7be68b1533a70c9d0dc3c1520b"
+        },
+        {
+          "bytes": 1785,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_user_visual_review_v1/CLEAN_CONTACT_BOUNDARY_USER_REVIEW.json",
+          "sha256": "e32a1b2672dc42413e7c22534df5381f2c5f573a6d2ff5686ac4512569a64e1d"
+        },
+        {
+          "bytes": 24774,
+          "path": "/mnt/workspace/code/chaoyang/docs/research/current/CONTACT_OCCLUSION_METHODS_V71_ZH.md",
+          "sha256": "341424782c90c0f0f2bafb73d6cf3f42bc887336ac3f9ba6276077ca1f93c77a"
+        },
+        {
+          "bytes": 1390,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
+          "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
         }
       ],
       "schema_artifact": {
-        "bytes": 3210,
-        "path": "/mnt/workspace/code/chaoyang/contracts/occlusion_compositor_v1.schema.json",
-        "sha256": "9bc165b2afeee605cb6fef6234c6c82faeeae185d5bc804b9ab29e21dbfffcac"
+        "bytes": 1305,
+        "path": "/mnt/workspace/code/chaoyang/contracts/occlusion_silver_v1.schema.json",
+        "sha256": "199d786122572a40b16552a6af22a42f8e8d3e6c3e2120e2f067e6a54042e58a"
       },
       "stage": "Occlusion",
-      "successor_requirement": "Goldset first, then task canaries; compositor never feeds back into retarget.",
+      "successor_requirement": "First close object/contact-aware Clean inputs and legal hidden-object appearance provenance, then extend verified visible-surface ordering to a causal full-session compositor with unified Robot/object z-buffer, temporal/byte-exact/provenance gates; independently freeze gold labels before any accuracy claim.",
       "superseded_implementations": [
-        "depth-only overlay without appearance provenance"
+        "depth-only overlay without appearance provenance",
+        "accuracy inferred from Silver consistency",
+        "requiring Stereo quality where no Robot/object overlap exists",
+        "worst-frame retention substituted for pixel-weighted retention",
+        "treating Clean-base Robot review exports as occlusion-correct output"
       ],
       "weights": "NOT_APPLICABLE"
     },
     {
-      "algorithm_id": "h50_future_2d_visual_aux_v5_2",
+      "algorithm_id": "h50_future_2d_causal_task_pairs_v71",
       "authorized_scope": "SCHEMA_READY_BUNDLES_BLOCKED_ROBOT_VISUAL",
       "code_closure": [
         {
-          "bytes": 10542,
-          "path": "/mnt/workspace/code/chaoyang/HumanEgo/tools/validate_visual_aux_bundle_v52.py",
-          "sha256": "35d7bd38cf8c954746bbfe14a0354c173b01d3f3709fbed1a9957ee4dbbe79e6"
+          "bytes": 8553,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/preflight_visual_aux_h50_candidates_v55.py",
+          "sha256": "66e20f914db08abacadb98f1de25241f680c0b0618e48ed32453576e9c69588c"
         },
         {
-          "bytes": 24582,
-          "path": "/mnt/workspace/code/chaoyang/HumanEgo/tools/train_embodiment.py",
-          "sha256": "49ec2345c75ec952ab9f05b81c4b3af81386d56a395ba4ca4a918c5dd3d502cb"
+          "bytes": 5273,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/build_visual_aux_eligibility_index_v56.py",
+          "sha256": "0ee6a669c71d26625177ca2c158c9668ce702db0eca1977394ef33425ab7d21a"
         },
         {
-          "bytes": 24991,
-          "path": "/mnt/workspace/code/chaoyang/HumanEgo/tools/evaluate_h50.py",
-          "sha256": "fb0fd80966028ad9d39cf11fb751e9feb03ac3f9259298d8ddba804742890da0"
+          "bytes": 9421,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_visual_aux_robot_expansion_plan_v71.py",
+          "sha256": "4131f0b087bcc16dca33eb08505dbcca49c2e2777b23e484576013315c14c6d2"
+        },
+        {
+          "bytes": 31795,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/build_visual_aux_session_bundle_v54.py",
+          "sha256": "2b7fd38933613380999026c54dfabe75469f5fefecb19169de1b9e9762515f90"
+        },
+        {
+          "bytes": 11669,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/validate_visual_aux_bundle_v52.py",
+          "sha256": "70e004d909b1e564c6d69c833401e5e53dbb8f0b8f32031f3debedf0b479ae19"
+        },
+        {
+          "bytes": 4415,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/smoke_visual_aux_bundle_v55.py",
+          "sha256": "fa4cb4b9b171755b87782972b7c42510c9f0d6f275feaac119d248d39d79fd26"
+        },
+        {
+          "bytes": 5107,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/training/VisualAuxFuture2DModel.py",
+          "sha256": "d6a8f7ea557631c645b332d8109f264618f522dd987976ed4c9f26c778262a03"
+        },
+        {
+          "bytes": 39790,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
+          "sha256": "501b6016c72dbbda6251fb527f55d7c71b93a3f27889d59c1053ff4c31c366ea"
+        },
+        {
+          "bytes": 9036,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+          "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+        },
+        {
+          "bytes": 10938,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_visual_tier_causal_clean_v71.py",
+          "sha256": "97fac7ec15745f5e4c3532005b2efd672814bcab00eaa3983c9c4f66728ef300"
+        },
+        {
+          "bytes": 12099,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_visual_aux_candidate_bundle_watcher_v71.py",
+          "sha256": "12165a48be504ee3f46b98f615283757bce9582ff2c6d7200578f83129882b6e"
+        },
+        {
+          "bytes": 7161,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_visual_aux_capacity_preflight_v71.py",
+          "sha256": "f07cb133ede2e303f0e46f40090a4b4d4f5777dcd9f2daed3455ef78a0b0a81f"
+        },
+        {
+          "bytes": 14420,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v71_post_robot_visual_tier.py",
+          "sha256": "1ab76a0ddeb3304ad2135b41ec65f370b5f929289e1466f4ee2ae3ed33e10daf"
+        },
+        {
+          "bytes": 30244,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v71_post_robot_visual_aux.py",
+          "sha256": "a424445feec3ff772348ec4252e9b36b80a0995bc46df99c1bfa39899b345e33"
         }
       ],
       "current_counts": {
@@ -980,37 +1537,126 @@
       "current_evidence": [
         {
           "bytes": 4164,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
           "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
         },
         {
           "bytes": 662,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
           "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
         }
       ],
       "input_authority": "STRICT_RAW_ROBOTIZED_PAIRING_AND_VISUAL_2D_LABEL",
       "known_limitations": [
-        "Zero current checkpoints.",
+        "Zero current checkpoints; train/validation session and H50-window ledgers have not reached the frozen minima.",
+        "A bounded capacity preflight finds sufficient potential routes for both task pairs, but pending Robot/Clean/bundle receipts are not counted as completed training data.",
+        "Hard-feasible Robot development candidates can produce strictly causal paired bundles with ANY_ENDPOINT_40_OF_50 validity and a preserved per-side mask; this is development input evidence, not Robot/Occlusion authority.",
+        "Existing bundles built from the current structural-only Clean are not checkpoint-eligible until contact-boundary preservation, semantic donor and Occlusion pixel-source gates pass; the user-rejected Chips039/Poker245 reviews are explicit negative evidence.",
         "Visual retarget labels are not Robot control actions."
       ],
       "output_schema": "future_2d_xy+future_2d_valid+visual_aux_checkpoint",
       "quality_gates": [
+        "causal_donor_proof",
         "paired_frame_ledger",
+        "task_pair_independence",
         "H50_window_coverage",
         "ADE_2D",
         "FDE_2D",
         "PCK",
-        "loss_curve"
+        "loss_curve",
+        "value_gate"
+      ],
+      "related_current_releases": [
+        {
+          "bytes": 2894,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_visual_aux_h50_preflight_v55/PREFLIGHT.json",
+          "sha256": "49e355b3b5964d1ec0944765594e161124b4a2619c1584c4ad5c9c0b008473ad"
+        },
+        {
+          "bytes": 1182,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_visual_aux_h50_pose_only_preflight_v55/PREFLIGHT.json",
+          "sha256": "333fdc998d076e270760e028e3d644df2c6be413cb51a309ffdb0e8009114a7a"
+        },
+        {
+          "bytes": 7102,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_visual_aux_pose_only_batch_preflight_v55/PREFLIGHT.json",
+          "sha256": "b96ea6282bd48c6e8ed06a2ed546eb146f9dfab1dc0c653ee76f9f621f9b8045"
+        },
+        {
+          "bytes": 8920,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_visual_aux_eligibility_index_v56/ELIGIBILITY_INDEX.json",
+          "sha256": "915cbf64b37a06204fd00c494021c4ec071898633369629d862fe93900ae9e3c"
+        },
+        {
+          "bytes": 16347,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/visual_aux/expansion_plan_R7_1/VISUAL_AUX_ROBOT_EXPANSION_PLAN.json",
+          "sha256": "cd69489458948431cb7592af2ff4d18bab53ebdf50e6522ad303010f82008571"
+        },
+        {
+          "bytes": 1124,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_visual_aux_bundle_canary_v55/REAL_BUNDLE_SMOKE_RESULT.json",
+          "sha256": "7ffa2dd94ba6cbe2151c3f4eb0a1450f8fcf6c7b8ed267c5a285839da2cba69a"
+        },
+        {
+          "bytes": 633,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_visual_aux_pose_only_bundle_canary_v55_2/get_potato_chips_0903_050/RESULT.json",
+          "sha256": "5f34a573545ed50e363fd79491b05f081411c8a9ba19dd3a302a068739e9f331"
+        },
+        {
+          "bytes": 1144,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_visual_aux_pose_only_bundle_canary_v55_2/REAL_BUNDLE_SMOKE_RESULT.json",
+          "sha256": "15f320c7dc78c91fca6056dd4d667dfa6785eb3cf12e6f79522a490eb5f862f6"
+        },
+        {
+          "bytes": 632,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/visual_aux/causal_bundle_canary_R7_1/get_potato_chips_0903_050/RESULT.json",
+          "sha256": "4b38683cb1cf29299f99dc7de2bf90e8e8f5e2090e6f1fe65b278016a9304ce7"
+        },
+        {
+          "bytes": 634,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_robot_hard_soft_visual_aux_bundle_canary_v71/get_potato_chips_0902_087/RESULT.json",
+          "sha256": "90fb8807e948afe770e8ab6f4f01420e6e2607caf457e9f2e5765b41379db389"
+        },
+        {
+          "bytes": 6956,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_visual_aux_capacity_preflight_v71/RESULT.json",
+          "sha256": "33287c40a7bc25f25e7282e1969a450659e17e6329670ba2a3460624d821d0ce"
+        },
+        {
+          "bytes": 1785,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_user_visual_review_v1/CLEAN_CONTACT_BOUNDARY_USER_REVIEW.json",
+          "sha256": "e32a1b2672dc42413e7c22534df5381f2c5f573a6d2ff5686ac4512569a64e1d"
+        },
+        {
+          "bytes": 633,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/visual_aux/causal_training_R7_2/bundles/get_potato_chips_0902_083/RESULT.json",
+          "sha256": "b2e169323c9512935276c8b614c9deb3254619ec69d45e3d2c8154aef35ef08d"
+        },
+        {
+          "bytes": 634,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/visual_aux/causal_training_R7_2/bundles/get_potato_chips_0902_087/RESULT.json",
+          "sha256": "90fb8807e948afe770e8ab6f4f01420e6e2607caf457e9f2e5765b41379db389"
+        },
+        {
+          "bytes": 634,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/visual_aux/causal_training_R7_2/bundles/get_potato_chips_0902_090/RESULT.json",
+          "sha256": "25d3e7897338de1143edbe7036456e8f26977f7b612ce3cbe37674e11a593a54"
+        }
       ],
       "schema_artifact": {
-        "reason": "SCHEMA_ID_RECORDED_BUT_NO_STANDALONE_CURRENT_SCHEMA_ARTIFACT",
-        "status": "UNKNOWN_VERIFICATION_REQUIRED"
+        "bytes": 1251,
+        "path": "/mnt/workspace/code/chaoyang/contracts/visual_aux_dataset_ledger_v53.schema.json",
+        "sha256": "0cce208c4268c00ad90538b28c47782e05e460f4251af080f3481d404c90e60e"
       },
       "stage": "HumanEgo Aux",
-      "successor_requirement": "Train only after Robotized visual authority and eligibility gates pass.",
+      "successor_requirement": "Continue immutable development prebuilds only; do not freeze a training ledger or start checkpoints until object/contact-aware Clean, legal pixel provenance and Occlusion Silver gates pass. Then freeze task-specific train/validation ledgers and train Chips/Poker pairs independently.",
       "superseded_implementations": [
-        "old Kai22 checkpoints not bound to the current contract"
+        "old Kai22 checkpoints not bound to the current contract",
+        "future-frame donor training input",
+        "train_embodiment.py incorrectly named as the Visual Aux trainer",
+        "bundle builders that publish zero-window sessions as training-ready",
+        "requiring both projected endpoints valid at every H50 step",
+        "treating structural-only Clean bundles as checkpoint-ready"
       ],
       "weights": "NOT_YET_PUBLISHED"
     },
@@ -1019,9 +1665,9 @@
       "authorized_scope": "BLOCKED_EXTERNAL_REAL_ROBOT_ACTION",
       "code_closure": [
         {
-          "bytes": 24582,
-          "path": "/mnt/workspace/code/chaoyang/HumanEgo/tools/train_embodiment.py",
-          "sha256": "49ec2345c75ec952ab9f05b81c4b3af81386d56a395ba4ca4a918c5dd3d502cb"
+          "bytes": 24992,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_embodiment.py",
+          "sha256": "9b8ccbda5b4a88452eebe4413dc43d60d6564ecbcdc2a79c6604bc2aef799fef"
         }
       ],
       "current_counts": {
@@ -1034,12 +1680,12 @@
       "current_evidence": [
         {
           "bytes": 4164,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/training_exact78_visual_ab_prepare_v1/FOUR_CHECKPOINT_CURRENT_READINESS.json",
           "sha256": "e559927499c7b24c4d1ec227848c075854319cf0e2428e36298332da8c81100f"
         },
         {
           "bytes": 662,
-          "path": "/mnt/workspace/code/chaoyang/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_humanego_visual_aux_prepare_v1/READINESS.json",
           "sha256": "7f132dbd89060b01b4b7aee28f7eb7c0d0bc5557cf580ef769e9407505171153"
         }
       ],
@@ -1066,9 +1712,102 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-14T19:12:16+08:00",
-  "generation_id": "gov-005869-1eff2016fad2",
-  "governance_revision": 5869,
+  "generated_at": "2026-09-17T16:25:37+08:00",
+  "generation_id": "gov-011172-54f0f3a3d73e",
+  "governance_revision": 11172,
+  "parallel_pipelines": [
+    {
+      "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",
+      "code_closure": [
+        {
+          "bytes": 18938,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_handle_sensor_pipeline_admission_v71.py",
+          "sha256": "97ab3dc974e22e79667faf796bad47ae51cc5b2a6852eb5be97fe4044ab34842"
+        },
+        {
+          "bytes": 20833,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_handle_h1_h2_sidecars_v71.py",
+          "sha256": "0f0c047663a621b8562d793ce392d93d936ea70d1657e832dadba59af6aad793"
+        },
+        {
+          "bytes": 15637,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_handle_h3_h4_preflight_v71.py",
+          "sha256": "d6b220b3445495ad191a3ea52ac5e43c301559db1b4032d4561bfe565fdc95cd"
+        },
+        {
+          "bytes": 7325,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_sensor_h3_foundationstereo_canary_v71.py",
+          "sha256": "912a6653a85ae67839f0862ee2d958d9a79eb00b2eb66d9259aad81ad4d51acb"
+        },
+        {
+          "bytes": 31361,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_chips001_pico_mask_temporal.py",
+          "sha256": "c860663f9f4aa83b7739e4197d475b89075b284fbd104c2af8e5e771c5104905"
+        },
+        {
+          "bytes": 12479,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v71_post_visual_aux_sensor_canaries.py",
+          "sha256": "3e7ce45dd5456b5587a5919be0b8209fff376944bdc3e9c26f3e4a9affd167f3"
+        },
+        {
+          "bytes": 5532,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_sensor_pipeline_terminal_matrix_v71.py",
+          "sha256": "31552523781e2b06bc00392a1e49cd3f8409d44b46890063e022272cec538799"
+        }
+      ],
+      "cohort": "0909/0910 acquisition-aligned release; isolated from exact78 denominator",
+      "components": {
+        "sensor_h0_admission_v1": {
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
+        },
+        "sensor_h1_hand_v1": {
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
+        },
+        "sensor_h2_tactile_v1": {
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
+        },
+        "sensor_h3_stereo_v1": {
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
+        },
+        "sensor_h4_mask_v1": {
+          "phase": null,
+          "result": null,
+          "status": "UNKNOWN_VERIFICATION_REQUIRED"
+        }
+      },
+      "current_contract": "H0 admission branches to H1 hand, H2 tactile, H3 same-session Stereo and H4 sensor-role Mask independently.",
+      "known_limitations": [
+        "H3/H4 full GPU batches are not authorized by a bounded canary.",
+        "H3 must estimate rectification from the same session and never reuse the fixed exact78 rotation.",
+        "H4 seed prompts are sensor-domain glove/Controller/object prompts; exact78 bare-hand prompts are not reusable.",
+        "Stereo optical-Z is visible-surface engineering depth, not external metric or wrist truth."
+      ],
+      "pipeline": "handle_controller_manus_pico_sensor_v71",
+      "successor_requirement": "After the Visual Aux pair reaches a terminal, run one H3 and one H4 bounded canary; use measured quality/throughput to close or explicitly schedule a full batch.",
+      "weights": [
+        {
+          "bytes": 3298527334,
+          "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+          "sha256": "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1",
+          "verification": "PINNED_FULL_SHA256_VERIFIED"
+        },
+        {
+          "bytes": 3502755717,
+          "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+          "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
+          "verification": "PINNED_FULL_SHA256_VERIFIED"
+        }
+      ]
+    }
+  ],
   "schema_version": "chaoyang-current-baseline-registry-v2",
   "status": "CURRENT"
 }
