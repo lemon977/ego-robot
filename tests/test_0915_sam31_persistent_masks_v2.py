@@ -33,9 +33,29 @@ def test_seed_candidates_reject_human_leakage() -> None:
     rows = subject._seed_candidates(
         masks, np.asarray([0.9, 0.8]), np.asarray([1, 2]),
         human_union=human, minimum_area=80, maximum_fraction=0.25,
+        maximum_human_overlap=0.35,
     )
     assert rows[0]["eligible"] is False
     assert rows[1]["eligible"] is True
+
+
+def test_finger_sleeve_can_overlap_hand_without_weakening_object_gate() -> None:
+    masks = np.zeros((1, 40, 50), bool)
+    masks[0, 5:25, 5:25] = True
+    human = masks[0].copy()
+    object_rows = subject._seed_candidates(
+        masks, np.asarray([0.9]), np.asarray([1]),
+        human_union=human, minimum_area=80, maximum_fraction=0.25,
+        maximum_human_overlap=0.35,
+    )
+    sleeve_rows = subject._seed_candidates(
+        masks, np.asarray([0.9]), np.asarray([1]),
+        human_union=human, minimum_area=80, maximum_fraction=0.25,
+        maximum_human_overlap=1.0,
+    )
+    assert object_rows[0]["eligible"] is False
+    assert sleeve_rows[0]["eligible"] is True
+    assert sleeve_rows[0]["maximum_human_overlap"] == 1.0
 
 
 def test_worker_is_sam31_only_without_fixed_sample_geometry() -> None:
