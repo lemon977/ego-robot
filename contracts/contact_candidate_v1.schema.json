@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/contact-candidate-v1",
+  "title": "CONTACT_CANDIDATE_V1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "session_id", "distance_gate_m", "distance_gate_was_uncertainty_expanded", "support_score_semantics", "records", "windows"],
+  "properties": {
+    "schema_version": {"const": "CONTACT_CANDIDATE_V1"},
+    "session_id": {"type": "string"},
+    "distance_gate_m": {"const": 0.005},
+    "distance_gate_was_uncertainty_expanded": {"const": false},
+    "support_score_semantics": {"const": "UNCALIBRATED_HEURISTIC_NOT_PROBABILITY_NOT_GROUND_TRUTH"},
+    "records": {"type": "array"},
+    "windows": {"type": "array"}
+  }
+}

@@ -36,6 +36,9 @@ def test_campaign_has_finite_serial_order() -> None:
         "0915_removal_envelope_v2_real_canary_v1",
         "0915_foundationstereo_encoded_domain_canary_v1",
         "0915_planar_object6d_observability_canary_v2",
+        "0915_interaction_contact_robot_dev_v1",
+        "0915_interaction_contact_robot_dev_v2",
+        "0915_interaction_contact_robot_dev_v3",
     )
     assert predecessor_task(TASK_ORDER[0]) == "0915_0916_input_audit_clean_v1"
     assert predecessor_task("0915_stereo_encoded_domain_preflight_v1") == (
@@ -44,9 +47,10 @@ def test_campaign_has_finite_serial_order() -> None:
     assert predecessor_task("0915_foundationstereo_encoded_domain_canary_v1") == (
         "0915_stereo_encoded_domain_preflight_v1"
     )
-    assert predecessor_task(TASK_ORDER[-1]) == (
+    assert predecessor_task("0915_planar_object6d_observability_canary_v2") == (
         "0915_foundationstereo_encoded_domain_canary_v1"
     )
+    assert predecessor_task(TASK_ORDER[-1]) == "0915_interaction_contact_robot_dev_v2"
 
 
 def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
@@ -63,6 +67,9 @@ def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
                 "0915_stereo_encoded_domain_preflight_v1",
                 "0915_removal_envelope_v2_real_canary_v1",
                 "0915_planar_object6d_observability_canary_v2",
+                "0915_interaction_contact_robot_dev_v1",
+                "0915_interaction_contact_robot_dev_v2",
+                "0915_interaction_contact_robot_dev_v3",
             }
         else:
             assert len(packet["weights"]) == 1

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/card-dimension-estimate-v1",
+  "title": "CARD_DIMENSION_ESTIMATE_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "session_id", "status", "method", "nonblocking", "nominal_standard_size_used", "objects"],
+  "properties": {
+    "schema_version": {"const": "CARD_DIMENSION_ESTIMATE_V1"},
+    "session_id": {"type": "string"},
+    "status": {"enum": ["ESTIMATED_FROM_STEREO", "UNKNOWN"]},
+    "method": {"const": "MULTIFRAME_DIRECT_VISIBLE_PLANE_ROBUST_RECTANGLE"},
+    "nonblocking": {"const": true},
+    "nominal_standard_size_used": {"const": false},
+    "budget_seconds": {"type": "integer", "minimum": 1},
+    "budget_exhausted": {"type": "boolean"},
+    "objects": {"type": "array", "items": {"type": "object"}}
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/interaction-evidence-v1",
+  "title": "INTERACTION_EVIDENCE_V1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "session_id", "frame_count", "coordinate_domain", "records", "short_gap_inferred_consumed", "removal_consumed", "world_motion_authority"],
+  "properties": {
+    "schema_version": {"const": "INTERACTION_EVIDENCE_V1"},
+    "session_id": {"type": "string"},
+    "frame_count": {"const": 150},
+    "coordinate_domain": {"type": "string"},
+    "short_gap_inferred_consumed": {"const": false},
+    "removal_consumed": {"const": false},
+    "world_motion_authority": {"enum": ["AUTHORIZED_AUDITED_C2W", "ABSENT_IMAGE_AND_OBJECT_RELATIVE_ONLY"]},
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["frame_id", "timestamp_s", "hand_id", "finger_id", "object_id", "finger_associated_visible_surface_point"]
+      }
+    }
+  }
+}
