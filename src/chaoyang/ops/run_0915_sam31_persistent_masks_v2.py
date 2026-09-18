@@ -165,7 +165,95 @@ def track_hands(
             masks, ids, plan["hand_spatial_prompts"],
         )
         if len(chosen) != 2:
-            raise RuntimeError(f"SAM3.1 bilateral human identity selection failed: {selection}")
+            # On high-view 0915 frames the neutral text head can legitimately
+            # emit both arms as one connected person instance.  That is not a
+            # valid bilateral identity seed.  Fall back to one independently
+            # initialised SAM3.1 state per anatomical side, with the frozen
+            # HaWoR box/positive points and opposite-hand negative points.
+            # The states never share an object ID or memory, so this does not
+            # manufacture a tracker/controller identity or split model pixels
+            # after inference.
+            state.clear()
+            instances: list[dict[str, Any]] = []
+            present_by_role: dict[str, int] = {}
+            fallback: dict[str, Any] = {}
+            for side_index, prompt in enumerate(plan["hand_spatial_prompts"]):
+                role = prompt["role"]
+                side_state = model.init_state(
+                    resource_path=str(frames), offload_video_to_cpu=True,
+                    async_loading_frames=False,
+                )
+                try:
+                    points, labels, boxes = _normalised_prompt(
+                        prompt, width, height,
+                    )
+                    _, box_seeded = model.add_prompt(
+                        inference_state=side_state, frame_idx=anchor,
+                        text_str="a person's hand and forearm",
+                        boxes_xywh=boxes,
+                        box_labels=[1], clear_old_boxes=True,
+                        output_prob_thresh=0.5,
+                    )
+                    masks, _scores, ids = legacy.normalize(
+                        box_seeded, height, width,
+                    )
+                    selected, side_evidence = select_distinct_human_ids(
+                        masks, ids, [prompt],
+                    )
+                    raw_id = selected.get(role)
+                    if raw_id is None:
+                        raise RuntimeError(
+                            f"SAM3.1 independent spatial hand seed failed: "
+                            f"{role}: {side_evidence}"
+                        )
+                    _, refined = model.add_prompt(
+                        inference_state=side_state, frame_idx=anchor,
+                        text_str=None, points=points, point_labels=labels,
+                        clear_old_points=True, boxes_xywh=None,
+                        box_labels=None, clear_old_boxes=False,
+                        obj_id=raw_id, rel_coordinates=True,
+                        output_prob_thresh=0.5,
+                    )
+                    masks, _scores, ids = legacy.normalize(
+                        refined, height, width,
+                    )
+                    anchor_by_id = {
+                        int(value): masks[index]
+                        for index, value in enumerate(ids)
+                    }
+                    directory = output / "masks" / role / role
+                    _write_mask(
+                        directory / f"{anchor:05d}.png",
+                        anchor_by_id.get(raw_id, np.zeros((height, width), bool)),
+                    )
+                    counts = _propagate_to_directories(
+                        model, side_state, anchor=anchor,
+                        frame_count=frame_count, height=height, width=width,
+                        id_to_directory={raw_id: directory},
+                    )
+                    instances.append({
+                        "instance_id": role, "role": role,
+                        "physical_identity_policy": "SIDE_LOCKED_HUMAN_ROLE",
+                        "mask_directory": str(directory.relative_to(output)),
+                    })
+                    present_by_role[role] = counts[raw_id]
+                    fallback[role] = {
+                        "raw_id": raw_id,
+                        "selection": side_evidence[role],
+                    }
+                finally:
+                    side_state.clear()
+            return instances, {
+                "prompt": "a person's hand and forearm",
+                "selection": selection,
+                "chosen_raw_ids": {
+                    role: evidence["raw_id"]
+                    for role, evidence in fallback.items()
+                },
+                "present_frames": present_by_role,
+                "route": "INDEPENDENT_SAM31_SPATIAL_STATE_PER_SIDE_AFTER_TEXT_UNION",
+                "fallback_evidence": fallback,
+            }
         latest = initial
         for prompt in plan["hand_spatial_prompts"]:
             points, labels, boxes = _normalised_prompt(prompt, width, height)
