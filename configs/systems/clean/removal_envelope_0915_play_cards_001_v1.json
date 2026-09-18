@@ -1,0 +1,43 @@
+{
+  "schema_version": "removal-envelope-config-v1",
+  "session_scope": "play_cards_0915_001",
+  "image_domain": "PHYSICAL_LEFT_SOURCE_INDEX_1_RESIZE_ONLY_NO_REMAP",
+  "accessory_scale": 1.8,
+  "high_confidence": 0.45,
+  "medium_confidence": 0.25,
+  "low_confidence_scale": 0.82,
+  "medium_confidence_scale": 0.92,
+  "maximum_radius_growth": 1.2,
+  "minimum_finger_radius_px": 5.0,
+  "maximum_finger_radius_px": 38.0,
+  "maximum_geometry_hold_frames": 2,
+  "held_radius_decay": 0.95,
+  "hold_endpoint_confidence_minimum": 0.4,
+  "hold_maximum_joint_step_px": 40.0,
+  "palm_dilation_scale": 0.16,
+  "forearm_radius_scale": 0.22,
+  "minimum_forearm_radius_px": 12.0,
+  "maximum_forearm_radius_px": 55.0,
+  "object_interior_erosion_px": 5,
+  "interaction_band_px": 5,
+  "feather_radius_px": 6,
+  "cable_profile": {
+    "profile_id": "device_yellow_cable_0915_play_cards_001_v1",
+    "device_scope": "current finger-mounted collection hardware",
+    "session_scope": "play_cards_0915_001",
+    "color_space": "OpenCV_HSV",
+    "hsv_lower": [12, 70, 45],
+    "hsv_upper": [43, 255, 255],
+    "profile_semantics": "CURRENT_INSTANCE_APPEARANCE_PRIOR_NOT_CABLE_CLASS_DEFINITION",
+    "min_component_pixels": 6,
+    "max_component_pixels": 18000,
+    "hand_anchor_radius_px": 78,
+    "previous_track_radius_px": 70,
+    "output_radius_px": 4,
+    "maximum_hold_frames": 2
+  },
+  "consumer_firewall": {
+    "allowed": ["CLEAN_MASK_QA", "VISUAL_INPAINT"],
+    "forbidden": ["DEPTH", "OBJECT6D", "CONTACT", "ROBOT_GEOMETRY", "CONTROL_GROUND_TRUTH"]
+  }
+}

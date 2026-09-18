@@ -44,6 +44,24 @@ def test_registration_rejects_duplicate_task() -> None:
         subject._validate_predecessor(state, "0915_sam31_mask_full_v1")
 
 
+def test_registration_requires_materialized_read_closure_and_weight(tmp_path: Path) -> None:
+    (tmp_path / "runner.py").write_text("# ready\n", encoding="utf-8")
+    packet = {
+        "read_set": ["runner.py", "missing.schema.json"],
+        "weights": ["model.pt"],
+    }
+    errors = subject._validate_materialized_read_closure(packet, repo_root=tmp_path)
+    assert errors == [
+        "read_set path is not materialized: missing.schema.json",
+        "weight is not materialized: model.pt",
+    ]
+    (tmp_path / "missing.schema.json").write_text("{}\n", encoding="utf-8")
+    (tmp_path / "model.pt").write_bytes(b"pinned")
+    assert subject._validate_materialized_read_closure(
+        packet, repo_root=tmp_path,
+    ) == []
+
+
 def test_corrective_v2_accepts_only_exact_pre_execution_cli_failure(
     tmp_path: Path, monkeypatch,
 ) -> None:
@@ -93,7 +111,41 @@ def test_vst_research_requires_exact_cancelled_image_domain_hold(
         subject._validate_predecessor(bad, "0915_vst_image_domain_ab_v1")
 
 
-def test_sam_registration_is_fail_closed_pending_canary_review() -> None:
-    state = _state("0915_sam31_strict_role_canary_v5")
-    with pytest.raises(RuntimeError, match="separate user review"):
+def test_sam_full_batch_registration_is_fail_closed_after_bounded_canaries() -> None:
+    state = _state("0915_planar_object6d_single_session_canary_v1")
+    with pytest.raises(RuntimeError, match="separate batch authorization"):
         subject._validate_predecessor(state, "0915_sam31_mask_full_v1")
+
+
+def test_removal_envelope_requires_visual_rejection_and_exact_authorization(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    weak_path = tmp_path / "weak.json"
+    weak_path.write_text(json.dumps({
+        "session_id": "play_cards_0915_001",
+        "session_admission": "AWAITING_USER_VISUAL_REVIEW",
+    }))
+    state = _state("0915_sam31_weak_role_canary_v1")
+    state["tasks"][0]["result"]["path"] = str(weak_path)
+    monkeypatch.setattr(subject, "validate_artifact_ref", lambda _value: [])
+    real_load = subject.load_json
+
+    def fake_load(path: Path) -> dict:
+        if Path(path) == weak_path:
+            return json.loads(weak_path.read_text())
+        if str(path).endswith("0915_SAM31_WEAK_ROLE_CANARY_V1_USER_VISUAL_REVIEW.json"):
+            return {"status": "REJECTED_QUALITY_AS_CLEAN_BASELINE"}
+        if str(path).endswith("0915_REMOVAL_ENVELOPE_V1_USER_AUTHORIZATION.json"):
+            return {
+                "status": "CONFIRMED",
+                "authorized_task": "0915_removal_envelope_single_session_canary_v1",
+                "authorized_session": "play_cards_0915_001",
+                "weights": "ABSENT",
+            }
+        return real_load(path)
+
+    monkeypatch.setattr(subject, "load_json", fake_load)
+    predecessor = subject._validate_predecessor(
+        state, "0915_removal_envelope_single_session_canary_v1",
+    )
+    assert predecessor["task_id"] == "0915_sam31_weak_role_canary_v1"

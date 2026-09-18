@@ -1,0 +1,135 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/interaction_evidence_v0a.schema.json",
+  "title": "Interaction Evidence v0a",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "coordinate_domain",
+    "authority",
+    "observations",
+    "prohibited_claims",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "INTERACTION_EVIDENCE_V0A"},
+    "coordinate_domain": {"const": "IMAGE_2D_ONLY"},
+    "authority": {"const": "DEVELOPMENT_WEAK_EVIDENCE_ONLY"},
+    "observations": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/observation"}
+    },
+    "prohibited_claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "relative_z",
+        "occlusion_order",
+        "force",
+        "contact_ground_truth",
+        "object6d",
+        "robot_control"
+      ],
+      "properties": {
+        "relative_z": {"const": false},
+        "occlusion_order": {"const": false},
+        "force": {"const": false},
+        "contact_ground_truth": {"const": false},
+        "object6d": {"const": false},
+        "robot_control": {"const": false}
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "id": {"type": "string", "minLength": 1},
+    "observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_index",
+        "frame_timestamp_s",
+        "object_instance_id",
+        "fingertip_id",
+        "mask_track_state",
+        "hawor_observation_state",
+        "boundary_distance_px",
+        "adjacency",
+        "approach",
+        "co_motion",
+        "tactile",
+        "tactile_time_offset_ms"
+      ],
+      "properties": {
+        "frame_index": {"type": "integer", "minimum": 0},
+        "frame_timestamp_s": {"type": "number"},
+        "object_instance_id": {"$ref": "#/$defs/id"},
+        "fingertip_id": {"$ref": "#/$defs/id"},
+        "mask_track_state": {
+          "enum": ["seeded", "tracked", "reseeded", "unknown"]
+        },
+        "hawor_observation_state": {
+          "enum": ["direct_observed", "inferred", "unknown"]
+        },
+        "boundary_distance_px": {
+          "oneOf": [
+            {"type": "number", "minimum": 0},
+            {"type": "null"}
+          ]
+        },
+        "adjacency": {
+          "enum": ["ADJACENT_2D", "NOT_ADJACENT_2D", "UNKNOWN"]
+        },
+        "approach": {
+          "enum": ["APPROACHING_2D", "NOT_APPROACHING_2D", "UNKNOWN"]
+        },
+        "co_motion": {
+          "enum": ["CO_MOVING_2D", "NOT_CO_MOVING_2D", "UNKNOWN"]
+        },
+        "tactile": {
+          "enum": [
+            "TACTILE_SUPPORTED_HYPOTHESIS",
+            "NOT_TACTILE_SUPPORTED",
+            "UNKNOWN"
+          ]
+        },
+        "tactile_time_offset_ms": {
+          "oneOf": [
+            {"type": "number", "minimum": 0},
+            {"type": "null"}
+          ]
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "properties": {"mask_track_state": {"const": "unknown"}},
+            "required": ["mask_track_state"]
+          },
+          "then": {"$ref": "#/$defs/unknown_evidence"}
+        },
+        {
+          "if": {
+            "properties": {
+              "hawor_observation_state": {"enum": ["inferred", "unknown"]}
+            },
+            "required": ["hawor_observation_state"]
+          },
+          "then": {"$ref": "#/$defs/unknown_evidence"}
+        }
+      ]
+    },
+    "unknown_evidence": {
+      "properties": {
+        "boundary_distance_px": {"type": "null"},
+        "adjacency": {"const": "UNKNOWN"},
+        "approach": {"const": "UNKNOWN"},
+        "co_motion": {"const": "UNKNOWN"},
+        "tactile": {"const": "UNKNOWN"},
+        "tactile_time_offset_ms": {"type": "null"}
+      }
+    }
+  }
+}

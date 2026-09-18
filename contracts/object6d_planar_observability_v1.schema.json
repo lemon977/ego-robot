@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "object6d-planar-observability-v1",
+  "title": "0915 observed-only planar Object6D observability",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "session_id",
+    "frame_count",
+    "coordinate_domain",
+    "translation_semantics",
+    "external_accuracy",
+    "hidden_geometry_inferred",
+    "unified_confidence_emitted",
+    "contact_authority",
+    "robot_authority",
+    "inputs",
+    "objects",
+    "observable_frame_counts",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "object6d-planar-observability-v1"},
+    "status": {"const": "COMPLETED_DEVELOPMENT_OBSERVABILITY"},
+    "session_id": {"const": "play_cards_0915_001"},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "coordinate_domain": {"const": "PHYSICAL_LEFT_RECTIFIED_OPTICAL_Z"},
+    "translation_semantics": {"const": "DIRECT_VISIBLE_SURFACE_CENTROID_NOT_OBJECT_CENTER"},
+    "external_accuracy": {"const": "UNVERIFIED"},
+    "hidden_geometry_inferred": {"const": false},
+    "unified_confidence_emitted": {"const": false},
+    "contact_authority": {"const": "NONE"},
+    "robot_authority": {"const": "NONE"},
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "depth_result",
+        "depth_contract",
+        "depth_registration",
+        "depth_registration_maps",
+        "depth_frame_manifest",
+        "sam_role_manifest",
+        "sam_temporal_state_ledger",
+        "sam_masks"
+      ],
+      "properties": {
+        "depth_result": {"$ref": "#/$defs/artifact"},
+        "depth_contract": {"$ref": "#/$defs/artifact"},
+        "depth_registration": {"$ref": "#/$defs/artifact"},
+        "depth_registration_maps": {"$ref": "#/$defs/artifact"},
+        "depth_frame_manifest": {"$ref": "#/$defs/artifact"},
+        "sam_role_manifest": {"$ref": "#/$defs/artifact"},
+        "sam_temporal_state_ledger": {"$ref": "#/$defs/artifact"},
+        "sam_masks": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["playing_card_00", "playing_card_01"],
+          "properties": {
+            "playing_card_00": {"$ref": "#/$defs/artifact"},
+            "playing_card_01": {"$ref": "#/$defs/artifact"}
+          }
+        }
+      }
+    },
+    "objects": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "prefixItems": [
+        {"$ref": "#/$defs/card00"},
+        {"$ref": "#/$defs/card01"}
+      ],
+      "items": false
+    },
+    "observable_frame_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["playing_card_00", "playing_card_01"],
+      "properties": {
+        "playing_card_00": {"$ref": "#/$defs/counts"},
+        "playing_card_01": {"$ref": "#/$defs/counts"}
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 40}
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "pattern": "^/"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["translation", "plane_normal", "in_plane_rotation"],
+      "properties": {
+        "translation": {"type": "integer", "minimum": 0},
+        "plane_normal": {"type": "integer", "minimum": 0},
+        "in_plane_rotation": {"type": "integer", "minimum": 0}
+      }
+    },
+    "estimate": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "xyz_m": {"$ref": "#/$defs/vec3"},
+            "unit_xyz": {"$ref": "#/$defs/vec3"},
+            "sign_convention": {"const": "Z_NONPOSITIVE_FACES_CAMERA"},
+            "axis_unit_xyz": {"$ref": "#/$defs/vec3"},
+            "angle_about_plane_normal_rad_mod_pi": {"type": "number", "minimum": 0, "maximum": 3.141592653589793},
+            "symmetry_period_rad": {"const": 3.141592653589793}
+          },
+          "minProperties": 1
+        }
+      ]
+    },
+    "residual": {
+      "anyOf": [
+        {"type": "null"},
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "median_radial_spread_m": {"type": "number", "minimum": 0},
+            "p90_radial_spread_m": {"type": "number", "minimum": 0},
+            "median_plane_distance_m": {"type": "number", "minimum": 0},
+            "p90_plane_distance_m": {"type": "number", "minimum": 0},
+            "small_to_middle_singular_ratio": {"type": "number", "minimum": 0},
+            "major_to_minor_variance_ratio": {"type": "number", "minimum": 0},
+            "median_orthogonal_spread_m": {"type": "number", "minimum": 0},
+            "p90_orthogonal_spread_m": {"type": "number", "minimum": 0}
+          },
+          "minProperties": 1
+        }
+      ]
+    },
+    "component": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["observability", "estimate", "residual", "reason", "semantics"],
+      "properties": {
+        "observability": {
+          "enum": [
+            "UNOBSERVABLE",
+            "OBSERVABLE_VISIBLE_SURFACE_CENTROID",
+            "OBSERVABLE_DIRECT_VISIBLE_PLANE",
+            "OBSERVABLE_PI_PERIODIC_MAJOR_AXIS"
+          ]
+        },
+        "estimate": {"$ref": "#/$defs/estimate"},
+        "residual": {"$ref": "#/$defs/residual"},
+        "reason": {"type": ["string", "null"]},
+        "semantics": {"type": "string", "minLength": 10}
+      }
+    },
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frame_index",
+        "mask_state",
+        "visibility_state",
+        "mask_pixel_count",
+        "registered_valid_depth_count",
+        "registered_valid_depth_fraction",
+        "translation",
+        "plane_normal",
+        "in_plane_rotation",
+        "hidden_geometry_inferred"
+      ],
+      "properties": {
+        "frame_index": {"type": "integer", "minimum": 0},
+        "mask_state": {"enum": ["seeded", "tracked", "reseeded", "unknown"]},
+        "visibility_state": {"enum": ["DIRECT_VISIBLE_PIXELS_ONLY", "OCCLUDED", "UNKNOWN"]},
+        "mask_pixel_count": {"type": "integer", "minimum": 0},
+        "registered_valid_depth_count": {"type": "integer", "minimum": 0},
+        "registered_valid_depth_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "translation": {"$ref": "#/$defs/component"},
+        "plane_normal": {"$ref": "#/$defs/component"},
+        "in_plane_rotation": {"$ref": "#/$defs/component"},
+        "hidden_geometry_inferred": {"const": false}
+      }
+    },
+    "card": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["instance_id", "geometry_class", "frames"],
+      "properties": {
+        "instance_id": {"type": "string"},
+        "geometry_class": {"const": "PLAYING_CARD_VISIBLE_PLANE"},
+        "frames": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/frame"}}
+      }
+    },
+    "card00": {
+      "allOf": [
+        {"$ref": "#/$defs/card"},
+        {"properties": {"instance_id": {"const": "playing_card_00"}}}
+      ]
+    },
+    "card01": {
+      "allOf": [
+        {"$ref": "#/$defs/card"},
+        {"properties": {"instance_id": {"const": "playing_card_01"}}}
+      ]
+    },
+    "vec3": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"type": "number"}
+    }
+  }
+}
