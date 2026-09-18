@@ -29,7 +29,7 @@ EXPECTED_HAWOR_ENV_ROOT = PROJECT / "_run/current/environments/hawor-py310-v1"
 HAWOR_ENV_LAUNCHER = PROJECT / "src/chaoyang/ops/hawor_python.sh"
 
 
-def validate_runtime_environment() -> dict[str, Any]:
+def validate_runtime_environment(runner_path: Path | None = None) -> dict[str, Any]:
     """Fail before input preflight when the fixed HaWoR runtime was bypassed."""
 
     expected_root = EXPECTED_HAWOR_ENV_ROOT.resolve()
@@ -49,7 +49,8 @@ def validate_runtime_environment() -> dict[str, Any]:
     if smplx_origin is None or expected_root not in smplx_origin.parents:
         failures.append(f"smplx origin={smplx_origin} is not inside {expected_root}")
     if failures:
-        command = f"{HAWOR_ENV_LAUNCHER} {Path(__file__).resolve()} <args>"
+        runner = Path(__file__).resolve() if runner_path is None else runner_path.resolve()
+        command = f"{HAWOR_ENV_LAUNCHER} {runner} <args>"
         raise RuntimeError(
             "WRONG_RUNTIME_ENTRYPOINT: fixed HaWoR environment was not entered through "
             f"the canonical launcher; run `{command}`. " + "; ".join(failures)

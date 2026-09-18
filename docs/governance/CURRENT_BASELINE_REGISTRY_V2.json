@@ -63,9 +63,9 @@
       "authorized_scope": "BOUNDED_V2_TERMINALS",
       "code_closure": [
         {
-          "bytes": 36021,
+          "bytes": 36126,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
-          "sha256": "980fae936217ff2cd3cb75b967db738cc30c066c78db2097175c31d68e491419"
+          "sha256": "c05e1413e124403ac7740243c1eb7e7b76488921e83df20cff7c5a3a1bb25b08"
         },
         {
           "bytes": 7326,
@@ -1690,9 +1690,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-18T11:22:26+08:00",
-  "generation_id": "gov-011902-d33ee2937b3b",
-  "governance_revision": 11902,
+  "generated_at": "2026-09-18T11:43:01+08:00",
+  "generation_id": "gov-011903-12d62f2febf1",
+  "governance_revision": 11903,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",

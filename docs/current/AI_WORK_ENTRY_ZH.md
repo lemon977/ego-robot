@@ -36,9 +36,15 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
   [`单会话 A/B`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。A/B 已证明当前
   remap 是百像素级变换，且 legacy 单目是物理右目。用户已经确认物理左目
   `sourceIndex=1 + resize-only` 为正确单目画面；当前最多只允许一个单会话 HaWoR
-  canary。该 canary 已完成但因右手画面边界/骨长门保持 `FAILED_QUALITY_C`，等待
-  用户复核；Depth 仍为独立未决问题，SAM3.1 和全批均未授权。复核入口见
-  [`0915_HAWOR_RESIZE_ONLY_CANARY_V1`](visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)。
+  canary。raw canary 的右手画面边界/骨长门为 `FAILED_QUALITY_C`；其后
+  `hawor_bounded_v2` 已通过冻结数值门但仍待人工全片复核。上游 detector/track 的
+  1–2 帧内部缺口另有短缺口连续性 successor：它保持 `observed` 和已有观测几何不变，
+  只新增 `short_gap_inferred` 与 `visual_continuity_valid`。Contact、严格覆盖率及直接
+  观测统计只能消费 `observed`；离线可视化/运动消费者只有显式声明后才能消费
+  `visual_continuity_valid`，Robot online 不得消费非因果补帧。复核入口见
+  [`bounded_v2`](visuals/0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md) 和
+  [`短缺口连续性`](visuals/0915_HAWOR_SHORT_GAP_CONTINUITY_V1/README_ZH.md)。Depth 仍为
+  独立未决问题，SAM3.1 和全批均未授权。
 - 0916 独立清洗已经完成；0915/0916 状态见
   [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。
 - 用户仍将未来 Mask 模型锁定为 SAM3.1，但图像域问题未解决前不得运行它，也不得

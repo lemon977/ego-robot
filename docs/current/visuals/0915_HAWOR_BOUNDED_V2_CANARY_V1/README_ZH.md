@@ -16,6 +16,11 @@
 视频中细暗线是 raw HaWoR，亮线是 bounded_v2；青色为解剖左手，紫色为解剖右手。
 两者使用同一像素坐标和固定尺度。缺失帧仍为缺失，没有插值补手。
 
+因此这条 observed-only 视频会在上游 detector/track 缺失的 7 个 hand-frame 上闪烁；这
+不是 bounded_v2 骨长优化主动删除骨架。独立且不改变 `observed` 的短缺口连续性
+successor 已在 [0915_HAWOR_SHORT_GAP_CONTINUITY_V1](../0915_HAWOR_SHORT_GAP_CONTINUITY_V1/README_ZH.md)
+生成，是否升格为批处理基线仍等待人工观看全片。
+
 ## 数值变化
 
 | 指标 | 左手 raw → bounded_v2 | 右手 raw → bounded_v2 |
