@@ -32,7 +32,10 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
 - 0915 裸手全链已经按用户要求停止。现有物理左目准备显式执行了
   `equiDis62 → 1280×960 FOV90 pinhole` 重映射，而 VST 编码像素是否已经校正尚未
   建立权威；现有派生结果不得作为基线。先读
-  [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
+  [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)，再复核
+  [`单会话 A/B`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。A/B 已证明当前
+  remap 是百像素级变换，且 legacy 单目是物理右目；当前只等待用户确认物理左目
+  `sourceIndex=1 + resize-only`，Depth 仍为独立未决问题。
 - 0916 独立清洗已经完成；0915/0916 状态见
   [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。
 - 用户仍将未来 Mask 模型锁定为 SAM3.1，但图像域问题未解决前不得运行它，也不得

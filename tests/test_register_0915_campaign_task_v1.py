@@ -21,9 +21,9 @@ def _state(predecessor: str, status: str = "PASSED") -> dict:
 
 
 def test_later_stage_requires_immediate_predecessor_pass() -> None:
-    state = _state("0915_hawor_full_v1")
+    state = _state("0915_vst_image_domain_ab_v1")
     predecessor = subject._validate_predecessor(state, "0915_sam31_mask_full_v1")
-    assert predecessor["task_id"] == "0915_hawor_full_v1"
+    assert predecessor["task_id"] == "0915_vst_image_domain_ab_v1"
     bad = copy.deepcopy(state)
     bad["tasks"][0]["status"] = "FAILED_RUNTIME_FINAL"
     with pytest.raises(RuntimeError, match="did not pass"):
@@ -68,3 +68,26 @@ def test_corrective_v2_accepts_only_exact_pre_execution_cli_failure(
     (tmp_path / "AUDIT.log").write_text("different failure\n")
     with pytest.raises(RuntimeError, match="exact pre-execution"):
         subject._validate_predecessor(state, "0915_input_prepare_cad_v2")
+
+
+def test_vst_research_requires_exact_cancelled_image_domain_hold(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    result_path = tmp_path / "RESULT.json"
+    result_path.write_text(json.dumps({
+        "task_id": "0915_hawor_full_v1",
+        "status": "CANCELLED",
+        "first_blocker": "VST_IMAGE_DOMAIN_UNRESOLVED_POSSIBLE_REDUNDANT_UNDISTORTION",
+    }))
+    state = _state("0915_hawor_full_v1", "CANCELLED")
+    state["tasks"][0]["result"]["path"] = str(result_path)
+    monkeypatch.setattr(subject, "validate_artifact_ref", lambda _value: [])
+    predecessor = subject._validate_predecessor(
+        state, "0915_vst_image_domain_ab_v1",
+    )
+    assert predecessor["task_id"] == "0915_hawor_full_v1"
+
+    bad = copy.deepcopy(state)
+    bad["tasks"][0]["status"] = "PASSED"
+    with pytest.raises(RuntimeError, match="requires the HaWoR task to be cancelled"):
+        subject._validate_predecessor(bad, "0915_vst_image_domain_ab_v1")

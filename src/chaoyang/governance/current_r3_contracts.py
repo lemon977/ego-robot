@@ -215,6 +215,17 @@ def build_algorithm_contract(
                 )],
                 "claim_limit": "Processed-only structural and development pipeline contract; no PICO26 hand input, physical calibration, policy or deployment authority.",
             },
+            "vst_image_domain_ab_v1": {
+                "execution_scope": "SINGLE_SESSION_CPU_VISUAL_DIAGNOSTIC",
+                "weights": "ABSENT",
+                "gpu_required": False,
+                "code_closure": [artifact_ref(
+                    repo_root / "src/chaoyang/ops/analyze_0915_vst_image_domain_ab_v1.py"
+                )],
+                "candidate_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
+                "authority_promoted": False,
+                "claim_limit": "Image-domain A/B only; no model, calibration, full-batch or physical-accuracy authority.",
+            },
             "handle_data_cleaning_v4_0916": {
                 "execution_status": "PENDING_NEW_BOUNDED_TASK",
                 "input_root": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916",

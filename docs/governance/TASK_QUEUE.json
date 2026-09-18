@@ -1,11 +1,21 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T10:22:47+08:00",
-  "generation_id": "gov-011886-8b68faeddc5a",
-  "governance_revision": 11886,
+  "generated_at": "2026-09-18T10:39:39+08:00",
+  "generation_id": "gov-011891-b3df110a8065",
+  "governance_revision": 11891,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_VST_IMAGE_DOMAIN_SINGLE_SESSION_AB",
+      "session": null,
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "0915_vst_image_domain_ab_v1",
+      "updated_at": "2026-09-18T10:37:47+08:00"
+    },
     {
       "attempt": 0,
       "gpu_id": null,

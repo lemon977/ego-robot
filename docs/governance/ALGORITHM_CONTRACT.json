@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T10:22:47+08:00",
-  "generation_id": "gov-011886-8b68faeddc5a",
-  "governance_revision": 11886,
+  "generated_at": "2026-09-18T10:39:39+08:00",
+  "generation_id": "gov-011891-b3df110a8065",
+  "governance_revision": 11891,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -373,6 +373,21 @@
         "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/visual_aux_rc1_contract.py",
         "sha256": "8a6d5d6aba107f7855a1e0351f0ccf6f4f474f53401f76503f53666e1c86ba11"
       }
+    },
+    "vst_image_domain_ab_v1": {
+      "authority_promoted": false,
+      "candidate_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
+      "claim_limit": "Image-domain A/B only; no model, calibration, full-batch or physical-accuracy authority.",
+      "code_closure": [
+        {
+          "bytes": 19383,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/analyze_0915_vst_image_domain_ab_v1.py",
+          "sha256": "cc492049797cffb6e5141220768d4a7d9f6c2eadcb1e142eb4ad59c6296e11ef"
+        }
+      ],
+      "execution_scope": "SINGLE_SESSION_CPU_VISUAL_DIAGNOSTIC",
+      "gpu_required": false,
+      "weights": "ABSENT"
     }
   },
   "stages": [

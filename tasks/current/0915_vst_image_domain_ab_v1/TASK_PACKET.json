@@ -1,0 +1,50 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Single-session VST image-domain diagnosis only; no model inference, camera-calibration promotion, full-batch baseline or source mutation.",
+  "expected_resource": "BOUNDED_CPU_VISUAL_DIAGNOSTIC; weights ABSENT",
+  "objective": "Compare one fixed 0915 session in the physical-left sourceIndex=1 passthrough domain against the held equiDis62-to-pinhole remap and the legacy processed mono, without running any model.",
+  "phase": "0915_VST_IMAGE_DOMAIN_SINGLE_SESSION_AB",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_hawor_full_v1=CANCELLED_USER_IMAGE_DOMAIN_HOLD",
+    "governance_PASS_FRESH",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN",
+    "single_session_play_cards_0915_001",
+    "source_and_processed_read_only"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
+    "src/chaoyang/ops/analyze_0915_vst_image_domain_ab_v1.py",
+    "src/chaoyang/ops/prepare_0915_physical_left_batch_v1.py",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/playing_cards/play_cards_0915_001",
+    "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/prepared_physical_left/sessions/playing_cards/play_cards_0915_001"
+  ],
+  "required_outputs": [
+    "RESULT.json",
+    "IMAGE_DOMAIN_METRICS.json",
+    "0915_VST_IMAGE_DOMAIN_AB_CONTACT_SHEET.jpg",
+    "0915_VST_IMAGE_DOMAIN_WARP_FIELD.png",
+    "0915_VST_IMAGE_DOMAIN_AB_REVIEW.mp4",
+    "tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_vst_image_domain_ab_v1",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_vst_image_domain_ab_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_VST_IMAGE_DOMAIN_AB_V1",
+    "tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json"
+  ]
+}

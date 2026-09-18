@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T10:22:47+08:00`
-- governance revision：`11886`
-- generation id：`gov-011886-8b68faeddc5a`
+- 状态生成时间：`2026-09-18T10:39:39+08:00`
+- governance revision：`11891`
+- generation id：`gov-011891-b3df110a8065`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`e7b56868309a33e60b6aa130d4773272040797d0b45d622b3f359abbe354bb95`
-- repository：`06c8ffdeba912d9e367281fe2403f4084e4aa7f6` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120`
+- repository：`221c99c0a6adac74808cd4d00827f54a586d08b5` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -113,7 +113,7 @@
 
 ### BLOCKED
 
-- 无。
+- `0915_vst_image_domain_ab_v1` / `-` / `BLOCKED_EXTERNAL` / /mnt/workspace/code/chaoyang/tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json / `2026-09-18T10:37:47+08:00`
 
 ## H. 下一任务
 

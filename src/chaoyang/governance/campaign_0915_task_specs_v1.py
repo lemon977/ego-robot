@@ -17,6 +17,7 @@ TASK_ORDER = (
     "0915_input_prepare_cad_v1",
     "0915_input_prepare_cad_v2",
     "0915_hawor_full_v1",
+    "0915_vst_image_domain_ab_v1",
     "0915_sam31_mask_full_v1",
     "0915_foundationstereo_full_v1",
     "0915_post_geometry_robot_v1",
@@ -25,6 +26,7 @@ TASK_ORDER = (
 INPUT_ATTEMPT_V1 = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
 INPUT_ATTEMPT = "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001"
 HAWOR_ATTEMPT = "_run/current/0915_hawor_full_v1/attempts/attempt_0001"
+VST_AB_ATTEMPT = "_run/current/0915_vst_image_domain_ab_v1/attempts/attempt_0001"
 DEPTH_ATTEMPT = "_run/current/0915_foundationstereo_full_v1/attempts/attempt_0001"
 MASK_ATTEMPT = "_run/current/0915_sam31_mask_full_v1/attempts/attempt_0001"
 
@@ -118,6 +120,46 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
         "budgets": {"gpu_hours": 72, "runtime_attempts": 1},
         "expected_resource": "SERIAL_GPU_FULL_BATCH; one logical HaWoR bundle",
         "claim_limit": "Development monocular hand reconstruction; no missing-hand fill or physical 3D truth.",
+    },
+    "0915_vst_image_domain_ab_v1": {
+        "phase": "0915_VST_IMAGE_DOMAIN_SINGLE_SESSION_AB",
+        "objective": (
+            "Compare one fixed 0915 session in the physical-left sourceIndex=1 "
+            "passthrough domain against the held equiDis62-to-pinhole remap and the "
+            "legacy processed mono, without running any model."
+        ),
+        "read_set": [
+            "docs/governance/CURRENT_STATUS_RECEIPT.json",
+            "tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
+            "src/chaoyang/ops/analyze_0915_vst_image_domain_ab_v1.py",
+            "src/chaoyang/ops/prepare_0915_physical_left_batch_v1.py",
+            "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/playing_cards/play_cards_0915_001",
+            f"{INPUT_ATTEMPT}/prepared_physical_left/sessions/playing_cards/play_cards_0915_001",
+        ],
+        "write_set": [
+            VST_AB_ATTEMPT,
+            "docs/current/visuals/0915_VST_IMAGE_DOMAIN_AB_V1",
+            "tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json",
+        ],
+        "prerequisites": [
+            "0915_hawor_full_v1=CANCELLED_USER_IMAGE_DOMAIN_HOLD",
+            "governance_PASS_FRESH", "weights_ABSENT", "gpu_FORBIDDEN",
+            "single_session_play_cards_0915_001", "source_and_processed_read_only",
+        ],
+        "weights": "ABSENT",
+        "required_outputs": [
+            "RESULT.json", "IMAGE_DOMAIN_METRICS.json",
+            "0915_VST_IMAGE_DOMAIN_AB_CONTACT_SHEET.jpg",
+            "0915_VST_IMAGE_DOMAIN_WARP_FIELD.png",
+            "0915_VST_IMAGE_DOMAIN_AB_REVIEW.mp4",
+            "tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json",
+        ],
+        "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+        "expected_resource": "BOUNDED_CPU_VISUAL_DIAGNOSTIC; weights ABSENT",
+        "claim_limit": (
+            "Single-session VST image-domain diagnosis only; no model inference, "
+            "camera-calibration promotion, full-batch baseline or source mutation."
+        ),
     },
     "0915_foundationstereo_full_v1": {
         "phase": "0915_FOUNDATIONSTEREO_PHYSICAL_LEFT_FULL",

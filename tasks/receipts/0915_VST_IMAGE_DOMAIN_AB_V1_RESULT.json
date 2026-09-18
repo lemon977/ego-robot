@@ -1,0 +1,49 @@
+{
+  "claim_limit": "Single-session image-domain A/B only; user confirmation is required before any new model task.",
+  "conclusion": {
+    "candidate_authority": "BOUNDED_VISUAL_RESEARCH_PENDING_USER_CONFIRMATION",
+    "candidate_mono_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
+    "current_remap_baseline_admissible": false,
+    "legacy_mono_role": "DIFFERENT_PHYSICAL_EYE_REFERENCE_ONLY",
+    "reason": "The held path performs a material nonlinear pixel remap. The legacy processed mono independently matches sourceIndex=0, while physical left is sourceIndex=1. No VST export-domain specification authorizes applying factory equiDis62 to the encoded SBS pixels.",
+    "stereo_domain_decision": "NOT_EVALUATED"
+  },
+  "first_blocker": "USER_CONFIRM_PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_DOMAIN",
+  "metrics": {
+    "bytes": 3763,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_vst_image_domain_ab_v1/attempts/attempt_0001/IMAGE_DOMAIN_METRICS.json",
+    "sha256": "564f8bf541eed4a2dad0fcd3715cb8f86fc47f13d961e04bcf91f26573f512f8"
+  },
+  "result": {
+    "bytes": 3977,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_vst_image_domain_ab_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "78e186447fa0e1b87be85114ddd94f14604262a225c6c147a57fffccf198604c"
+  },
+  "schema_version": "0915-vst-image-domain-ab-receipt-v1",
+  "source_mutated": false,
+  "status": "BLOCKED_EXTERNAL",
+  "task_id": "0915_vst_image_domain_ab_v1",
+  "visuals": {
+    "contact_sheet": {
+      "bytes": 662195,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_VST_IMAGE_DOMAIN_AB_V1/0915_VST_IMAGE_DOMAIN_AB_CONTACT_SHEET.jpg",
+      "sha256": "cdb188d810652c613365eccb5386ad2d905839e3393fa5329c16ac50f3a39058"
+    },
+    "review_video": {
+      "bytes": 2339056,
+      "decode": {
+        "height": 402,
+        "nb_read_frames": "150",
+        "r_frame_rate": "30/1",
+        "width": 1920
+      },
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_VST_IMAGE_DOMAIN_AB_V1/0915_VST_IMAGE_DOMAIN_AB_REVIEW.mp4",
+      "sha256": "929d995c0594571e4d531b29663eab6bd286b9141c834a8f25aac9f124d5bdcd"
+    },
+    "warp_field": {
+      "bytes": 1020328,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_VST_IMAGE_DOMAIN_AB_V1/0915_VST_IMAGE_DOMAIN_WARP_FIELD.png",
+      "sha256": "6befe0a4cbdc27b4e9f2534d0c6628cd32411c9db6d241914e83c2656e81c19a"
+    }
+  }
+}

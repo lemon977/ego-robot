@@ -6,6 +6,12 @@
   物理左目额外执行了 `equiDis62 → pinhole` 重映射，用户观察到画面弯曲。问题解决前
   不再运行或恢复任何 0915 模型任务，详见
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
+- 单会话 A/B 已以 `BLOCKED_EXTERNAL` 封账：当前 remap 的输出位移 P50 为
+  102.24 px、P95 为 241.02 px；legacy processed 单目来自 SBS `sourceIndex=0`
+  物理右目。浅层证据见
+  [`visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。
+- 单目下一候选仅为物理左目 `sourceIndex=1 + resize-only`，等待用户视觉确认；双目
+  Depth 的矫正方式继续为 `NOT_EVALUATED`，不能从单目决定外推。
 - 0915 Mask 模型已经由用户确定为 **SAM3.1**，这是本任务唯一可执行的 Mask 权重。
 - 不创建 SAM2.1 或 Cutie challenger，不执行胜者选择，也不因历史对比材料改变当前路线。
 - 原定执行顺序现已失效，不得从已取消的 HaWoR 任务续跑。确认 VST 像素域后必须从

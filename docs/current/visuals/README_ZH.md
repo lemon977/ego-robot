@@ -4,6 +4,17 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
+## 0915 VST 图像域 A/B（当前优先复核）
+
+- [`0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md`](0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)
+- [`0915_VST_IMAGE_DOMAIN_AB_V1/0915_VST_IMAGE_DOMAIN_AB_REVIEW.mp4`](0915_VST_IMAGE_DOMAIN_AB_V1/0915_VST_IMAGE_DOMAIN_AB_REVIEW.mp4)
+- [`0915_VST_IMAGE_DOMAIN_AB_V1/0915_VST_IMAGE_DOMAIN_AB_CONTACT_SHEET.jpg`](0915_VST_IMAGE_DOMAIN_AB_V1/0915_VST_IMAGE_DOMAIN_AB_CONTACT_SHEET.jpg)
+
+A 为 SBS `sourceIndex=1` 物理左目 resize-only；B 为已停止的
+`equiDis62 → FOV90 pinhole`。当前 remap 位移 P50 102.24 px、P95 241.02 px。
+legacy processed 单目已确认来自 `sourceIndex=0` 物理右目，不能代替左目。该任务已
+以 `BLOCKED_EXTERNAL` 封账，等待用户确认 A；不授权任何模型或批处理。
+
 ## 0915 HaWoR 当前批次诊断
 
 - [`0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md`](0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md)

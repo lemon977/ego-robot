@@ -81,6 +81,20 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             or audit_log.read_text(encoding="utf-8").strip() != expected_error
         ):
             raise RuntimeError("v1 failure is not the exact pre-execution CLI route blocker")
+    elif task_id == "0915_vst_image_domain_ab_v1":
+        if predecessor.get("status") != "CANCELLED":
+            raise RuntimeError("VST image-domain research requires the HaWoR task to be cancelled")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("cancelled HaWoR result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("task_id") != "0915_hawor_full_v1"
+            or result.get("status") != "CANCELLED"
+            or result.get("first_blocker")
+            != "VST_IMAGE_DOMAIN_UNRESOLVED_POSSIBLE_REDUNDANT_UNDISTORTION"
+        ):
+            raise RuntimeError("VST research predecessor is not the exact user image-domain hold")
     elif predecessor.get("status") != "PASSED":
         raise RuntimeError(f"predecessor did not pass: {predecessor_id}")
     return predecessor
