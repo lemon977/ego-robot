@@ -55,6 +55,7 @@ TASK_STATUSES = {
     "CLAIMED",
     "RUNNING",
     "PASSED",
+    "REJECTED_QUALITY",
     "FAILED_QUALITY_C",
     "FAILED_RUNTIME_RETRYABLE",
     "FAILED_RUNTIME_FINAL",
@@ -67,6 +68,7 @@ TASK_STATUSES = {
 }
 TERMINAL_TASK_STATUSES = {
     "PASSED",
+    "REJECTED_QUALITY",
     "FAILED_QUALITY_C",
     "FAILED_RUNTIME_FINAL",
     "BLOCKED_PREREQ",
@@ -472,9 +474,10 @@ def render_task_queue(task_state: Mapping[str, Any]) -> dict[str, Any]:
         "BLOCKED_RESOURCE": 5,
         "BLOCKED_EXTERNAL": 6,
         "FAILED_QUALITY_C": 7,
-        "FAILED_RUNTIME_FINAL": 8,
-        "PASSED": 9,
-        "CANCELLED": 10,
+        "REJECTED_QUALITY": 8,
+        "FAILED_RUNTIME_FINAL": 9,
+        "PASSED": 10,
+        "CANCELLED": 11,
     }
     tasks = sorted(
         task_state.get("tasks", []),
@@ -517,13 +520,15 @@ def validate_authority(authority: Mapping[str, Any], verify_evidence: bool = Tru
 
 
 def validate_task_state(task_state: Mapping[str, Any]) -> list[str]:
-    validate_schema("task_state.schema.json", task_state)
     tasks = list(task_state.get("tasks", []))
     errors = [
         f"invalid task status: {task['status']}"
         for task in tasks
         if task["status"] not in TASK_STATUSES
     ]
+    if errors:
+        return errors
+    validate_schema("task_state.schema.json", task_state)
     task_by_id = {str(task.get("task_id")): task for task in tasks}
     next_task = task_state.get("next_task")
     if next_task is not None:

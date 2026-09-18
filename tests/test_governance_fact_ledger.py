@@ -114,6 +114,44 @@ def test_invalid_task_status_is_rejected() -> None:
     assert errors == ["invalid task status: TOTALLY_FINE"]
 
 
+def test_rejected_quality_is_an_accepted_terminal_status() -> None:
+    state = build_task_state()
+    state["tasks"][0]["status"] = "REJECTED_QUALITY"
+    state["next_task"] = None
+
+    assert common.validate_task_state(state) == []
+    assert "REJECTED_QUALITY" in common.TERMINAL_TASK_STATUSES
+
+
+def test_next_task_cannot_point_to_rejected_quality() -> None:
+    state = build_task_state()
+    task = state["tasks"][0]
+    task["status"] = "REJECTED_QUALITY"
+    state["next_task"] = {"task_id": task["task_id"]}
+
+    assert common.validate_task_state(state) == [
+        f"next_task points to terminal task: {task['task_id']}=REJECTED_QUALITY"
+    ]
+
+
+def test_task_queue_orders_rejected_quality_with_quality_terminals() -> None:
+    state = build_task_state()
+    template = state["tasks"][0]
+    state["tasks"] = [
+        {**template, "task_id": "runtime", "status": "FAILED_RUNTIME_FINAL"},
+        {**template, "task_id": "rejected", "status": "REJECTED_QUALITY"},
+        {**template, "task_id": "quality-c", "status": "FAILED_QUALITY_C"},
+    ]
+
+    queue = common.render_task_queue(state)
+
+    assert [task["task_id"] for task in queue["tasks"]] == [
+        "quality-c",
+        "rejected",
+        "runtime",
+    ]
+
+
 def test_next_task_cannot_point_to_terminal_task() -> None:
     state = build_task_state()
     task = state["tasks"][0]

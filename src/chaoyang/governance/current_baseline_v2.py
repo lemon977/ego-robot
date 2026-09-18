@@ -147,7 +147,7 @@ SPECS: tuple[dict[str, Any], ...] = (
         "input_authority": "HAWOR_A_B", "output_schema": "exact78-role-mask-successor-finalize-result-v3",
         "quality_gates": ["human_left_right_independent", "tracker_left_right_independent", "visible_coverage", "reentry", "offscreen_empty"],
         "limitations": ["Four exact78 role masks are independent; C sessions are not downstream-authorized.", "The 0915 strict-role result was accepted only as a bounded starting point; its forearm/sleeve/cable/card02 masks remain weak.", "The 0915 weak-role runner completed, but user visual review rejected it as a Clean baseline because masks flicker and finger sleeves/yellow cables are not reliable; execution success is not Clean authority."],
-        "successor": "SAM3.1 remains the only executable semantic Mask model. Evaluate a separate provenance-bearing Clean removal envelope from SAM evidence plus bounded MANO/cable priors without registering an alternate model route; do not rewrite geometric removal pixels as semantic observations.", "superseded": ["metadata-only masks", "zero-reject full-session refresh gate", "SAM2.1/Cutie challenger selection"],
+        "successor": "SAM3.1 remains the only executable semantic Mask model. Removal V1 is rejected: a successor may add only validated local repairs near admitted SAM foreground, never promote weak MANO, forearm or appearance priors into unconstrained erase regions, and must proceed without registering an alternate model route.", "superseded": ["metadata-only masks", "zero-reject full-session refresh gate", "SAM2.1/Cutie challenger selection", "Removal Envelope V1 weak-evidence union"],
         "related_evidence": ["archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/contact_occlusion_canaries/s1_semantic_audit/RESULT.json", "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json", "tasks/receipts/0915_SAM31_WEAK_ROLE_CANARY_V1_RESULT.json", "tasks/receipts/0915_SAM31_WEAK_ROLE_CANARY_V1_USER_VISUAL_REVIEW.json"],
     },
     {
@@ -177,6 +177,8 @@ SPECS: tuple[dict[str, Any], ...] = (
             "assets/models/cutie/ASSET_PIN.json",
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
             "tasks/receipts/0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1_RESULT.json",
+            "tasks/receipts/0915_REMOVAL_ENVELOPE_V1_USER_VISUAL_REVIEW.json",
+            "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json",
         ],
     },
     {
@@ -184,13 +186,17 @@ SPECS: tuple[dict[str, Any], ...] = (
         "code": ["src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py", "src/chaoyang/ops/analyze_0915_stereo_domain_preflight_v1.py", "src/chaoyang/ops/run_0915_stereo_interaction_cpu_canary_v1.py", "src/chaoyang/ops/run_0915_foundationstereo_single_session_canary_v1.py", "src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py", "src/chaoyang/ops/validate_pipeline_contracts_r3.py"],
         "weights": ["assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"],
         "input_authority": "REGISTERED_RECTIFIED_STEREO_AND_SAME_SESSION_CALIBRATION", "output_schema": "depth_m+depth_valid+registration",
-        "quality_gates": ["Z_equals_fB_over_d_recompute", "registration", "valid_range", "full_decode"],
-        "limitations": ["FoundationStereo exposes no native confidence in this contract.", "Internal metric closure is not external millimetre accuracy."],
-        "successor": "External 30/50/70/100 cm validation is required for physical accuracy claims.", "superseded": ["uncorrected and preview-only depth"],
+        "quality_gates": ["Z_equals_fB_over_d_recompute", "registration", "valid_range", "full_decode", "left_right_consistency", "temporal_distribution_stability"],
+        "limitations": ["FoundationStereo exposes no native confidence in this contract.", "Internal metric closure is not external millimetre accuracy.", "The 0915 single-session 150-frame canary is REJECTED_QUALITY: LR residual P90 across per-frame P90 is 17.8653 px above the 5 px limit and temporal median-depth step P90 is 0.4290 m above the 0.35 m limit.", "The rejected result has consumption_authorized=false and cannot feed Object6D."],
+        "successor": "Diagnose LR reprojection direction/occlusion handling and temporal outliers in a new bounded task without lowering gates. External 30/50/70/100 cm validation remains required for physical accuracy claims.", "superseded": ["uncorrected and preview-only depth"],
         "related_evidence": [
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_10/attempts/attempt_0003_real_play_cards_0910_001/RUN_RECEIPT.json",
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_20/attempts/attempt_0003_real_input_preflight/RUN_RECEIPT.json",
+            "configs/systems/depth/foundationstereo_0915_canary_v1.json",
+            "tasks/receipts/FOUNDATIONSTEREO_RUNTIME_CLOSURE_V1.json",
+            "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json",
+            "tasks/receipts/0915_FOUNDATIONSTEREO_SINGLE_SESSION_CANARY_V1_RESULT.json",
         ],
     },
     {
@@ -211,6 +217,7 @@ SPECS: tuple[dict[str, Any], ...] = (
             "Only visible-surface geometry is measured; occluded frames remain invalid.",
             "Plane residual is not external pose truth.",
             "Legacy T_object_to_camera is in the rectified-depth camera. Its legacy T_object_to_world omitted rectified-to-selected registration and is forbidden for Robot/Contact consumption without the immutable selected-camera adapter.",
+            "The current 0915 FoundationStereo canary is REJECTED_QUALITY and grants no Object6D input scope; the planar single-session successor was not executed.",
         ],
         "successor": "Use the selected-camera coordinate adapter before Robot/Contact development, then run bounded direct/tracked/attachment canaries; hypothesis sidecars cannot overwrite formal Object6D.", "superseded": ["filled occlusion pose previews", "rectified pose multiplied directly by selected-camera c2w"],
         "related_evidence": [
@@ -223,7 +230,7 @@ SPECS: tuple[dict[str, Any], ...] = (
     },
     {
         "stage": "Clean", "algorithm_id": "same_pixel_temporal_donor_then_propainter_v1",
-        "code": ["src/chaoyang/ops/run_clean_synthetic_propainter_baseline.py", "src/chaoyang/ops/run_generic_same_session_real_donor_v1.py", "src/chaoyang/ops/run_0915_removal_envelope_single_session_canary_v1.py", "src/chaoyang/pipeline/removal_envelope_v1.py", "contracts/removal_envelope_v1.schema.json", "configs/systems/clean/removal_envelope_0915_play_cards_001_v1.json", "src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py"],
+        "code": ["src/chaoyang/ops/run_clean_synthetic_propainter_baseline.py", "src/chaoyang/ops/run_generic_same_session_real_donor_v1.py", "src/chaoyang/ops/run_0915_removal_envelope_single_session_canary_v1.py", "src/chaoyang/pipeline/removal_envelope_v1.py", "contracts/removal_envelope_v1.schema.json", "configs/systems/clean/removal_envelope_0915_play_cards_001_v1.json", "src/chaoyang/pipeline/removal_envelope_v2.py", "contracts/removal_envelope_v2.schema.json", "configs/systems/clean/removal_envelope_0915_play_cards_001_v2.json", "src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py"],
         "weights": "FROM_PINNED_CLEAN_RESULT", "input_authority": "ROLE_MASK_B_AND_OBJECT_MASK_B",
         "output_schema": "clean_frames+master+review+source_map+result", "quality_gates": ["frame_count", "visible_object_mask_byte_exact", "source_map", "master_decode", "review_decode"],
         "limitations": [
@@ -234,15 +241,17 @@ SPECS: tuple[dict[str, Any], ...] = (
             "A structural Grade-B terminal proves frame/provenance/decode closure, not contact-boundary or semantic inpainting correctness.",
             "Generated pixels are visual completion, not physical background truth.",
             "Clean never feeds Depth/Object6D/contact truth.",
-            "Removal Envelope V1 is a bounded successor candidate, not yet a passed Clean baseline. It separates sealed semantic evidence from inferred erase support and feather alpha; its current upstream raw SAM candidate pixels were not persisted and may not be reconstructed.",
+            "Removal Envelope V1 is REJECTED_QUALITY and retained only as a failed experiment. V2 has a tested conservative core but no real-video canary authority: admitted SAM semantic evidence is the base and weak priors may only create validated local repairs.",
         ],
-        "successor": "Run the weightless, single-session Removal Envelope V1 canary first: admitted SAM hand/forearm plus optional sleeve evidence, bounded MANO finger/palm/wrist/forearm support, replaceable cable appearance tracking, source-bit provenance, visible-object-core protection and independent human visual review. Keep removal/feather forbidden to Depth/Object6D/Contact/Robot geometry. Inpaint remains a separate weighted task.",
+        "successor": "Integrate the weightless, single-session Removal Envelope V2 runner with real foreground proposals, a stable-background QA hook and cable reverse-pass support. Keep SAM semantic foreground as the only base; MANO/sleeve/forearm/cable may add only validated local repairs. Missing evidence stays UNKNOWN. Keep removal/feather forbidden to Depth/Object6D/Contact/Robot geometry. Inpaint remains a separate weighted task.",
         "superseded": ["unproven clean previews", "the inaccurate label that the current identical-coordinate donor uses Stereo geometry"],
         "related_evidence": [
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/optimization/clean_runtime/CLEAN_RUNTIME_BOTTLENECK_AUDIT_V71.json",
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_user_visual_review_v1/CLEAN_CONTACT_BOUNDARY_USER_REVIEW.json",
             "docs/research/current/reports/visualization/20260915/CLEAN_CONTACT_AND_WRIST_BASELINE_AUDIT_ZH.md",
             "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
+            "tasks/receipts/0915_REMOVAL_ENVELOPE_V1_USER_VISUAL_REVIEW.json",
+            "docs/current/REMOVAL_ENVELOPE_V2_ZH.md",
         ],
     },
     {
@@ -522,6 +531,7 @@ def build_regression_manifest(authority: Mapping[str, Any]) -> dict[str, Any]:
         ("role_mask", "tests/test_0915_sam31_strict_role_canary_v1.py"),
         ("role_mask", "tests/test_0915_sam31_weak_role_canary_v1.py"),
         ("clean", "tests/pipeline/test_removal_envelope_v1.py"),
+        ("clean", "tests/pipeline/test_removal_envelope_v2.py"),
         ("clean", "tests/test_0915_removal_envelope_single_session_canary_v1.py"),
         ("object_mask", "tests/test_mask_successor_protocol.py"),
         ("depth_object6d", "tests/test_exact78_depth_object6d_expansion_v2.py"),

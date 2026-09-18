@@ -9,6 +9,7 @@ from chaoyang.cli import _maintained_operations
 
 ROOT = Path(__file__).resolve().parents[1]
 RECEIPT = ROOT / "tasks/receipts/HANDLE_DATA_CLEANING_V3_COMPLETION.json"
+RELOCATION = ROOT / "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json"
 
 
 def _sha256(path: Path) -> str:
@@ -17,6 +18,27 @@ def _sha256(path: Path) -> str:
         for block in iter(lambda: stream.read(1024 * 1024), b""):
             digest.update(block)
     return digest.hexdigest()
+
+
+def _resolve_current_materialization(reference: dict[str, object]) -> Path:
+    path = Path(str(reference["path"]))
+    if path.is_file():
+        return path
+    relocation = json.loads(RELOCATION.read_text(encoding="utf-8"))
+    legacy = Path(relocation["receipt_bound_legacy_root"])
+    current = Path(relocation["current_materialized_root"])
+    try:
+        relative = path.relative_to(legacy)
+    except ValueError:
+        return path
+    assert relocation["status"] == "PASS_CONTENT_IDENTICAL_PATH_RELOCATION"
+    assert relocation["source_data_modified"] is False
+    assert relative.as_posix() in relocation["dataset_evidence"]
+    relocated = current / relative
+    recorded = relocation["dataset_evidence"][relative.as_posix()]
+    assert recorded["bytes"] == reference["bytes"]
+    assert recorded["sha256"] == reference["sha256"]
+    return relocated
 
 
 def test_data_cleaning_completion_receipt_is_terminal_and_bound() -> None:
@@ -40,7 +62,7 @@ def test_data_cleaning_completion_receipt_is_terminal_and_bound() -> None:
           for dataset in value["datasets"]
           for key in ("dataset_result", "preflight_audit")),
     ]:
-        path = Path(reference["path"])
+        path = _resolve_current_materialization(reference)
         assert path.is_file(), path
         assert path.stat().st_size == reference["bytes"], path
         assert _sha256(path) == reference["sha256"], path

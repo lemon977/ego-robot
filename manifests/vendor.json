@@ -10,9 +10,9 @@
       "model_root": "assets/models/checkpoints/foundationstereo",
       "runtime_closure": {
         "algorithm": "sha256-file-list-v1",
-        "regular_bytes": 2305906,
+        "regular_bytes": 2305320,
         "regular_files": 198,
-        "sha256_file_list": "5384ac4b94d7e825b9f0d88568b45e983fc18921df18935bbe7897a432f467bc",
+        "sha256_file_list": "cdd17c958140e132263b2dfc39e2381fd45efcb13d8f0e3a1b82e702c90a9302",
         "symlinks": 0
       },
       "runtime_path": "vendor/FoundationStereo",
