@@ -17,6 +17,7 @@ def test_campaign_has_finite_serial_order() -> None:
         "0915_input_prepare_cad_v1",
         "0915_input_prepare_cad_v2",
         "0915_hawor_full_v1",
+        "0915_vst_image_domain_ab_v1",
         "0915_sam31_mask_full_v1",
         "0915_foundationstereo_full_v1",
         "0915_post_geometry_robot_v1",
@@ -29,7 +30,10 @@ def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
     for task_id in TASK_ORDER:
         packet = build_packet(task_id)
         if packet["weights"] == "ABSENT":
-            assert task_id in {TASK_ORDER[0], TASK_ORDER[1], TASK_ORDER[-1]}
+            assert task_id in {
+                TASK_ORDER[0], TASK_ORDER[1],
+                "0915_vst_image_domain_ab_v1", TASK_ORDER[-1],
+            }
         else:
             assert len(packet["weights"]) == 1
         assert len(packet["read_set"]) <= 8
@@ -55,3 +59,11 @@ def test_mask_packet_rejects_added_competitor() -> None:
     bad["objective"] += " Cutie"
     with pytest.raises(ValueError, match="alternate model"):
         validate_packet_policy(bad)
+
+
+def test_vst_image_domain_packet_is_single_session_weightless() -> None:
+    packet = build_packet("0915_vst_image_domain_ab_v1")
+    assert packet["weights"] == "ABSENT"
+    assert packet["budgets"]["gpu_hours"] == 0
+    assert "play_cards_0915_001" in str(packet)
+    assert "single-session" in packet["claim_limit"].lower()
