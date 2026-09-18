@@ -133,6 +133,55 @@ def build_worker_command(task_id: str, worker_output: Path) -> list[str]:
     ]
 
 
+def validate_resume_worker_output(task_id: str, worker_output: Path) -> dict[str, Any]:
+    """Validate an interrupted worker publication before a governed retry.
+
+    The wrapper attempt stays immutable and fresh.  Only the HaWoR worker is
+    currently resumable because its per-session publications are atomic and
+    its worker deterministically reuses receipted ``sessions/*/RESULT.json``
+    entries while retrying an uncommitted runtime failure.
+    """
+    if task_id != "0915_hawor_full_v1":
+        raise RuntimeError("resume-worker-output is currently authorized only for HaWoR")
+    worker_output = worker_output.resolve(strict=True)
+    if not worker_output.is_dir() or worker_output.is_symlink():
+        raise RuntimeError("resume worker output must be a real directory")
+    if (worker_output / "BATCH_RESULT.json").exists():
+        raise RuntimeError("completed HaWoR batch cannot be resumed")
+    state_path = worker_output / "STATE.json"
+    if not state_path.is_file() or state_path.is_symlink():
+        raise RuntimeError("resume worker output lacks a regular STATE.json")
+    state = load(state_path)
+    results = state.get("results")
+    completed = state.get("completed")
+    if (
+        state.get("schema_version") != "0915-hawor-persistent-state-v1"
+        or state.get("state") != "RUNNING"
+        or state.get("session_count") != 220
+        or not isinstance(completed, int)
+        or not 0 < completed < 220
+        or not isinstance(results, list)
+        or len(results) != completed
+    ):
+        raise RuntimeError("resume HaWoR STATE.json is not a finite interrupted batch")
+    session_ids = [row.get("session_id") for row in results if isinstance(row, dict)]
+    if len(session_ids) != completed or len(set(session_ids)) != completed:
+        raise RuntimeError("resume HaWoR state has duplicate or malformed session identities")
+    allowed = {"PASS_DEVELOPMENT_HAWOR", "FAILED_QUALITY_C", "FAILED_RUNTIME"}
+    if any(row.get("status") not in allowed for row in results):
+        raise RuntimeError("resume HaWoR state contains an unknown terminal status")
+    committed = list((worker_output / "sessions").glob("*/*/RESULT.json"))
+    committed_ids = {
+        json.loads(path.read_text(encoding="utf-8")).get("session_id") for path in committed
+    }
+    expected_committed = {
+        row["session_id"] for row in results if row.get("status") != "FAILED_RUNTIME"
+    }
+    if committed_ids != expected_committed:
+        raise RuntimeError("resume HaWoR committed sessions differ from STATE.json")
+    return state
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--task-id", required=True, choices=tuple(GPU_TASKS))
@@ -142,6 +191,7 @@ def main() -> int:
     parser.add_argument("--gpu-wait-seconds", type=int, default=21_600)
     parser.add_argument("--wall-seconds", type=int, default=259_200)
     parser.add_argument("--heartbeat-seconds", type=int, default=45)
+    parser.add_argument("--resume-worker-output", type=Path)
     args = parser.parse_args()
     packet = validate_route(args.task_id)
     spec = GPU_TASKS[args.task_id]
@@ -149,7 +199,12 @@ def main() -> int:
     if output.exists() or output.is_symlink():
         raise RuntimeError(f"fresh immutable attempt required: {output}")
     output.mkdir(parents=True)
-    worker_output = output / spec["worker_output"]
+    resume_state: dict[str, Any] | None = None
+    if args.resume_worker_output is not None:
+        worker_output = args.resume_worker_output.resolve(strict=True)
+        resume_state = validate_resume_worker_output(args.task_id, worker_output)
+    else:
+        worker_output = output / spec["worker_output"]
     receipt = output / "GPU_COMMAND_RECEIPT.json"
     worker_command = build_worker_command(args.task_id, worker_output)
     lease_command = [
@@ -172,6 +227,15 @@ def main() -> int:
         "weights": packet["weights"],
         "worker_command": worker_command,
         "lease_command": lease_command,
+        "resume_worker_output": (
+            {
+                "path": str(worker_output),
+                "state": ref(worker_output / "STATE.json"),
+                "completed": resume_state["completed"],
+                "failed_runtime": resume_state.get("failed_runtime"),
+            }
+            if resume_state is not None else None
+        ),
     })
     heartbeat(args.task_id, spec["phase"], os.getpid())
     environment = dict(os.environ)
@@ -230,6 +294,7 @@ def main() -> int:
         )},
         "wall_seconds": time.time() - started,
         "claim_limit": packet["claim_limit"],
+        "resume_worker_output": str(worker_output) if resume_state is not None else None,
     }
     atomic_json(output / "RESULT.json", result)
     atomic_json(output / "RUN_RECEIPT.json", {
