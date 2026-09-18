@@ -20,6 +20,9 @@ import jsonschema
 import numpy as np
 
 from chaoyang.governance.campaign_0915_task_specs_v1 import build_packet
+from chaoyang.governance.register_0915_campaign_task_v1 import (
+    validate_foundationstereo_object6d_admission,
+)
 from chaoyang.pipeline.object6d_planar_observability_v1 import (
     DEPTH_REFERENCE,
     DIRECT_VISIBILITY,
@@ -186,41 +189,25 @@ def _ref_matches(path: Path, expected: dict[str, Any]) -> bool:
 
 
 def _validate_depth_upstream(depth_root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
-    result = load_json(depth_root / "RESULT.json")
-    contract = load_json(depth_root / "DEPTH_CONTRACT.json")
-    registration = load_json(depth_root / "REGISTRATION.json")
-    if result.get("status") != "PASSED" or result.get("depth_admission") != "PASS":
-        raise RuntimeError("BLOCKED_UPSTREAM_DEPTH_NOT_ADMITTED")
-    if result.get("external_accuracy") != "UNVERIFIED":
-        raise RuntimeError("depth external-accuracy boundary drift")
-    if contract.get("external_accuracy") != "UNVERIFIED":
-        raise RuntimeError("depth contract external-accuracy boundary drift")
-    if contract.get("frame_arrays", {}).get("depth_reference") != DEPTH_REFERENCE:
-        raise RuntimeError("depth contract is not rectified-left optical-Z metres")
+    try:
+        admission = validate_foundationstereo_object6d_admission(
+            depth_root / "RESULT.json"
+        )
+    except RuntimeError as error:
+        raise RuntimeError(
+            f"BLOCKED_UPSTREAM_DEPTH_ADMISSION_CLOSURE: {error}"
+        ) from error
+    registration = admission["registration"]
+    refs = admission["references"]
     maps_path = depth_root / "REGISTRATION_MAPS.npz"
-    if not maps_path.is_file():
-        raise RuntimeError("BLOCKED_UNPROVEN_MASK_DEPTH_REGISTRATION")
-    maps_ref = registration.get("nonlinear_registration_maps")
-    if not isinstance(maps_ref, dict) or not _ref_matches(maps_path, maps_ref):
-        raise RuntimeError("registration maps are not SHA-bound by REGISTRATION.json")
-    join = registration.get("depth_to_sam_resize_map")
-    if not isinstance(join, dict):
-        raise RuntimeError("BLOCKED_UNPROVEN_MASK_DEPTH_REGISTRATION")
-    if registration.get("source_domain") != "PHYSICAL_LEFT_RECTIFIED_640x480_PIXEL_CENTERS":
-        raise RuntimeError("mask/depth registration source-domain drift")
-    if join.get("source") != "PHYSICAL_LEFT_RECTIFIED_640x480_PIXEL_CENTERS":
-        raise RuntimeError("mask/depth registration source-domain drift")
-    if join.get("target") != "PHYSICAL_LEFT_SOURCEINDEX_1_RESIZE_ONLY_1280x960_PIXEL_CENTERS":
-        raise RuntimeError("mask/depth registration target-domain drift")
-    if join.get("array") != "depth_to_sam_resize_xy" or join.get("identity_assumed") is not False:
-        raise RuntimeError("mask/depth join must use the explicit nonlinear map")
-    if "IDENTITY_JOIN_FORBIDDEN" not in str(registration.get("mask_join_policy")):
-        raise RuntimeError("identity mask/depth join was not explicitly forbidden")
+    mapping, valid = _load_registration_maps(maps_path)
+    if mapping.shape != (480, 640, 2) or valid.shape != (480, 640):
+        raise RuntimeError("depth registration-map geometry is not 640x480")
     return registration, {
         "depth_result": ref(depth_root / "RESULT.json"),
-        "depth_contract": ref(depth_root / "DEPTH_CONTRACT.json"),
-        "depth_registration": ref(depth_root / "REGISTRATION.json"),
-        "depth_registration_maps": ref(maps_path),
+        "depth_contract": refs["depth_contract"],
+        "depth_registration": refs["registration"],
+        "depth_registration_maps": refs["registration_maps"],
     }
 
 

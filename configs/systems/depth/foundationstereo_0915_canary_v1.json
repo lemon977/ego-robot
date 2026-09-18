@@ -1,0 +1,49 @@
+{
+  "schema_version": "0915-foundationstereo-canary-config-v1",
+  "task_id": "0915_foundationstereo_single_session_canary_v1",
+  "session_id": "play_cards_0915_001",
+  "model_weight": "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+  "input_domain": {
+    "stereo": "EXACTLY_ONE_SAME_SESSION_SBS",
+    "source_indices": [1, 0],
+    "rectification": "EXACT_T0_ACCEPTED_CALIBRATION_NO_REESTIMATION",
+    "depth_reference": "PHYSICAL_LEFT_RECTIFIED_OPTICAL_Z"
+  },
+  "depth": {
+    "width": 640,
+    "height": 480,
+    "z_near_m": 0.1,
+    "z_far_m": 3.0,
+    "minimum_disparity_px": 0.25,
+    "left_right_max_residual_px": 2.0
+  },
+  "quality_thresholds": {
+    "maximum_formula_recompute_error_m": 1e-06,
+    "minimum_median_geometric_valid_fraction": 0.4,
+    "minimum_median_lr_testable_fraction": 0.45,
+    "minimum_median_lr_consistent_fraction": 0.6,
+    "maximum_lr_residual_p90_px": 5.0,
+    "minimum_median_final_valid_fraction": 0.25,
+    "minimum_fraction_frames_final_valid_at_least_0_20": 0.9,
+    "maximum_temporal_depth_median_step_p90_m": 0.35,
+    "maximum_temporal_valid_fraction_step_p90": 0.2,
+    "minimum_edge_evidence_frame_fraction": 0.8,
+    "minimum_median_rgb_supported_disparity_edge_fraction": 0.15
+  },
+  "output_schema_identities": {
+    "calibration": "0915-foundationstereo-frozen-calibration-v1",
+    "registration": "0915-foundationstereo-registration-v1",
+    "depth_contract": "0915-foundationstereo-depth-contract-v1",
+    "depth_summary": "0915-foundationstereo-depth-summary-v1",
+    "worker_result": "0915-foundationstereo-worker-result-v1",
+    "terminal_result": "0915-foundationstereo-single-session-canary-result-v1"
+  },
+  "consumer_policy": {
+    "success_only": true,
+    "authorized_scopes": [
+      "VISUAL_OBJECT6D_CANDIDATE_INPUT"
+    ],
+    "external_accuracy": "UNVERIFIED",
+    "native_model_confidence": "ABSENT_NOT_FABRICATED"
+  }
+}

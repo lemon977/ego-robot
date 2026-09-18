@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import shutil
@@ -33,6 +34,303 @@ from chaoyang.governance.register_single_task_packet import _validate_packet
 
 CURRENT_INDEX = REPO_ROOT / "tasks/current/INDEX.json"
 LIVE = {"PENDING", "READY", "CLAIMED", "RUNNING", "WAIT_GPU_RESOURCE"}
+FOUNDATION_TASK_ID = "0915_foundationstereo_single_session_canary_v1"
+FOUNDATION_SESSION_ID = "play_cards_0915_001"
+FOUNDATION_WEIGHT = (
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+)
+FOUNDATION_OBJECT6D_SCOPE = "VISUAL_OBJECT6D_CANDIDATE_INPUT"
+FOUNDATION_RUNTIME_CLOSURE = (
+    REPO_ROOT / "tasks/receipts/FOUNDATIONSTEREO_RUNTIME_CLOSURE_V1.json"
+)
+
+
+def _canonical_sha256(value: Any) -> str:
+    encoded = json.dumps(
+        value, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def _bound_file(
+    owner: dict[str, Any], field: str, root: Path, filename: str,
+) -> tuple[Path, dict[str, Any]]:
+    reference = owner.get(field)
+    if not isinstance(reference, dict):
+        raise RuntimeError(f"Object6D depth admission lacks bound {field}")
+    errors = validate_artifact_ref(reference)
+    if errors:
+        raise RuntimeError(
+            f"Object6D depth admission {field} artifact drift: " + "; ".join(errors)
+        )
+    path = Path(str(reference["path"]))
+    expected = (root / filename).resolve()
+    if path.resolve() != expected:
+        raise RuntimeError(
+            f"Object6D depth admission {field} is outside the depth attempt"
+        )
+    return path, reference
+
+
+def validate_foundationstereo_object6d_admission(
+    result_path: Path,
+) -> dict[str, Any]:
+    """Validate the complete immutable FoundationStereo evidence closure.
+
+    This is deliberately stricter than a terminal-status check.  A passing depth
+    result is consumable by the visual Object6D canary only when its model,
+    runtime, writer fence, GPU execution, exact T0 calibration, quality summary,
+    depth semantics and nonlinear registration map all agree.
+    """
+
+    result_path = result_path.resolve(strict=True)
+    root = result_path.parent
+    result = load_json(result_path)
+    if (
+        result.get("schema_version")
+        != "0915-foundationstereo-single-session-canary-result-v1"
+        or result.get("task_id") != FOUNDATION_TASK_ID
+        or result.get("session_id") != FOUNDATION_SESSION_ID
+        or result.get("status") != "PASSED"
+        or result.get("depth_admission") != "PASS"
+        or result.get("first_blocker") is not None
+        or result.get("external_accuracy") != "UNVERIFIED"
+        or result.get("consumption_authorized") is not True
+        or result.get("authorized_scopes") != [FOUNDATION_OBJECT6D_SCOPE]
+        or result.get("weights") != [FOUNDATION_WEIGHT]
+        or result.get("source_mutated") is not False
+    ):
+        raise RuntimeError("Object6D depth admission terminal authority mismatch")
+
+    paths: dict[str, Path] = {}
+    refs: dict[str, dict[str, Any]] = {}
+    for field, filename in {
+        "calibration": "CALIBRATION.json",
+        "registration": "REGISTRATION.json",
+        "registration_maps": "REGISTRATION_MAPS.npz",
+        "depth_contract": "DEPTH_CONTRACT.json",
+        "depth_summary": "DEPTH_SUMMARY.json",
+        "gpu_command_receipt": "GPU_COMMAND_RECEIPT.json",
+        "run_signature": "RUN_SIGNATURE.json",
+        "writer_claim": "CLAIM.json",
+    }.items():
+        paths[field], refs[field] = _bound_file(result, field, root, filename)
+
+    gpu = load_json(paths["gpu_command_receipt"])
+    if (
+        gpu.get("schema_version") != "v71-gpu-command-receipt-v1"
+        or gpu.get("status") != "PASSED"
+        or gpu.get("task_id") != FOUNDATION_TASK_ID
+        or gpu.get("attempt_id") != root.name
+        or gpu.get("returncode") != 0
+        or gpu.get("error") is not None
+    ):
+        raise RuntimeError("Object6D depth admission GPU receipt mismatch")
+
+    signature = load_json(paths["run_signature"])
+    signature_digest = signature.get("run_signature_sha256")
+    unsigned_signature = {
+        key: value for key, value in signature.items()
+        if key != "run_signature_sha256"
+    }
+    if (
+        signature.get("schema_version") != "0915-foundationstereo-run-signature-v1"
+        or signature.get("task_id") != FOUNDATION_TASK_ID
+        or signature.get("session_id") != FOUNDATION_SESSION_ID
+        or signature.get("weights") != [FOUNDATION_WEIGHT]
+        or not isinstance(signature.get("executor_epoch"), int)
+        or signature.get("executor_epoch", 0) < 1
+        or signature_digest != _canonical_sha256(unsigned_signature)
+    ):
+        raise RuntimeError("Object6D depth admission run signature mismatch")
+
+    runtime_ref = signature.get("runtime", {}).get("runtime_closure_receipt")
+    expected_runtime_ref = artifact_ref(FOUNDATION_RUNTIME_CLOSURE)
+    if runtime_ref != expected_runtime_ref or validate_artifact_ref(runtime_ref):
+        raise RuntimeError("Object6D depth admission runtime closure is not pinned")
+    runtime = load_json(FOUNDATION_RUNTIME_CLOSURE)
+    if (
+        runtime.get("schema_version") != "foundationstereo-runtime-closure-v1"
+        or runtime.get("status") != "PASS_BOUNDED_CANARY_RUNTIME_IDENTITY_CLOSED"
+        or runtime.get("task_id") != FOUNDATION_TASK_ID
+        or runtime.get("execution_performed") is not False
+        or runtime.get("gpu_used") is not False
+        or runtime.get("batch_authorized") is not False
+        or runtime.get("external_accuracy") != "UNVERIFIED"
+        or runtime.get("consumer_policy") != {
+            "quality_pass_required": True,
+            "authorized_scopes": [FOUNDATION_OBJECT6D_SCOPE],
+            "all_other_consumers_authorized": False,
+        }
+        or runtime.get("output_schema_identities") != signature.get("schema_identity")
+    ):
+        raise RuntimeError("Object6D depth admission runtime authority mismatch")
+
+    claim = load_json(paths["writer_claim"])
+    task_packet_ref = signature.get("input_manifest", {}).get("task_packet")
+    if not isinstance(task_packet_ref, dict) or validate_artifact_ref(task_packet_ref):
+        raise RuntimeError("Object6D depth admission task packet is not pinned")
+    if (
+        claim.get("schema_version") != "0915-foundationstereo-writer-claim-v1"
+        or claim.get("task_id") != FOUNDATION_TASK_ID
+        or claim.get("session_id") != FOUNDATION_SESSION_ID
+        or claim.get("attempt_id") != root.name
+        or claim.get("weights") != [FOUNDATION_WEIGHT]
+        or claim.get("status") != "CLAIMED"
+        or claim.get("executor_epoch") != signature.get("executor_epoch")
+        or claim.get("run_signature_sha256") != signature_digest
+        or claim.get("unique_write_root") != str(root)
+        or claim.get("task_packet") != task_packet_ref
+        or not isinstance(claim.get("pid"), int)
+        or not isinstance(claim.get("proc_start_ticks"), int)
+        or not isinstance(claim.get("fencing_token_sha256"), str)
+        or len(claim.get("fencing_token_sha256", "")) != 64
+    ):
+        raise RuntimeError("Object6D depth admission writer claim/signature mismatch")
+
+    summary = load_json(paths["depth_summary"])
+    frames = summary.get("frames")
+    quality = summary.get("quality")
+    quality_gates = quality.get("gates") if isinstance(quality, dict) else None
+    review_decode = summary.get("review_decode")
+    if (
+        summary.get("schema_version") != "0915-foundationstereo-depth-summary-v1"
+        or summary.get("task_id") != FOUNDATION_TASK_ID
+        or summary.get("session_id") != FOUNDATION_SESSION_ID
+        or summary.get("status") != "PASS"
+        or summary.get("depth_admission") != "PASS"
+        or summary.get("external_accuracy") != "UNVERIFIED"
+        or summary.get("consumption_authorized") is not True
+        or summary.get("authorized_scopes") != [FOUNDATION_OBJECT6D_SCOPE]
+        or summary.get("frame_count") != 150
+        or summary.get("full_sbs_decode") is not True
+        or summary.get("model_load_count") != 1
+        or summary.get("model_inference_count") != 300
+        or not isinstance(frames, list)
+        or len(frames) != 150
+        or [row.get("frame") for row in frames] != list(range(150))
+        or not isinstance(quality, dict)
+        or quality.get("passed") is not True
+        or not isinstance(quality_gates, dict)
+        or set(quality_gates) != {
+            "full_decode",
+            "formula_recompute",
+            "geometric_validity",
+            "lr_testable_coverage",
+            "lr_consistency",
+            "final_validity",
+            "temporal_distribution_stability",
+            "rgb_edge_support",
+        }
+        or not all(value is True for value in quality_gates.values())
+        or not isinstance(review_decode, dict)
+        or review_decode.get("full_decode") is not True
+        or review_decode.get("frame_count") != 150
+        or summary.get("source_mutated") is not False
+    ):
+        raise RuntimeError("Object6D depth admission summary/quality mismatch")
+
+    t0_ref = signature.get("input_manifest", {}).get("t0_stereo_preflight")
+    if not isinstance(t0_ref, dict) or validate_artifact_ref(t0_ref):
+        raise RuntimeError("Object6D depth admission T0 preflight is not pinned")
+    t0 = load_json(Path(t0_ref["path"]))
+    calibrated = t0.get("candidates", {}).get("calibrated_rectified", {})
+    selected = "SAME_SESSION_INTRINSICS_HELDOUT_ESTIMATED_RECTIFIED"
+    calibration = load_json(paths["calibration"])
+    calibration_identity = signature.get("calibration_identity")
+    if (
+        t0.get("status") != "PASS_GPU_DEPTH_ADMISSION"
+        or t0.get("session_id") != FOUNDATION_SESSION_ID
+        or t0.get("decision", {}).get("gpu_depth_allowed") is not True
+        or t0.get("decision", {}).get("selected_candidate") != selected
+        or calibrated.get("gpu_eligible") is not True
+        or calibrated.get("quality", {}).get("passed") is not True
+        or not isinstance(calibrated.get("calibration"), dict)
+        or calibration.get("schema_version")
+        != "0915-foundationstereo-frozen-calibration-v1"
+        or calibration.get("source") != t0_ref
+        or calibration.get("consumption")
+        != "EXACT_T0_ACCEPTED_CALIBRATION_NO_REESTIMATION"
+        or calibration.get("selected_domain") != selected
+        or calibration.get("calibration") != calibrated.get("calibration")
+        or calibration_identity != {
+            "selected_domain": selected,
+            "calibration_sha256": _canonical_sha256(calibrated.get("calibration")),
+            "consumption": "EXACT_T0_ACCEPTED_CALIBRATION_NO_REESTIMATION",
+        }
+    ):
+        raise RuntimeError("Object6D depth admission exact T0 calibration mismatch")
+
+    contract = load_json(paths["depth_contract"])
+    if (
+        contract.get("schema_version") != "0915-foundationstereo-depth-contract-v1"
+        or contract.get("task_id") != FOUNDATION_TASK_ID
+        or contract.get("session_id") != FOUNDATION_SESSION_ID
+        or contract.get("frame_count") != 150
+        or contract.get("frame_geometry") != [640, 480]
+        or contract.get("frame_arrays", {}).get("depth_reference")
+        != "PHYSICAL_LEFT_RECTIFIED_OPTICAL_Z"
+        or contract.get("native_model_confidence") != "ABSENT_NOT_FABRICATED"
+        or contract.get("occluded_or_hidden_geometry") != "INVALID_NOT_COMPLETED"
+        or contract.get("external_accuracy") != "UNVERIFIED"
+        or contract.get("consumption_authorized") is not True
+        or contract.get("authorized_scopes") != [FOUNDATION_OBJECT6D_SCOPE]
+    ):
+        raise RuntimeError("Object6D depth admission depth contract mismatch")
+
+    registration = load_json(paths["registration"])
+    join = registration.get("depth_to_sam_resize_map")
+    if (
+        registration.get("schema_version") != "0915-foundationstereo-registration-v1"
+        or registration.get("source_domain")
+        != "PHYSICAL_LEFT_RECTIFIED_640x480_PIXEL_CENTERS"
+        or registration.get("depth_reference")
+        != "PHYSICAL_LEFT_RECTIFIED_OPTICAL_Z"
+        or registration.get("nonlinear_registration_maps") != refs["registration_maps"]
+        or not isinstance(join, dict)
+        or join.get("array") != "depth_to_sam_resize_xy"
+        or join.get("source")
+        != "PHYSICAL_LEFT_RECTIFIED_640x480_PIXEL_CENTERS"
+        or join.get("target")
+        != "PHYSICAL_LEFT_SOURCEINDEX_1_RESIZE_ONLY_1280x960_PIXEL_CENTERS"
+        or join.get("identity_assumed") is not False
+        or "IDENTITY_JOIN_FORBIDDEN" not in str(registration.get("mask_join_policy"))
+    ):
+        raise RuntimeError("Object6D depth admission registration-map mismatch")
+
+    worker_path = root / "DEPTH_WORKER_RESULT.json"
+    if not worker_path.is_file():
+        raise RuntimeError("Object6D depth admission lacks DEPTH_WORKER_RESULT.json")
+    worker = load_json(worker_path)
+    if (
+        worker.get("schema_version") != "0915-foundationstereo-worker-result-v1"
+        or worker.get("status") != "COMPLETED"
+        or worker.get("task_id") != FOUNDATION_TASK_ID
+        or worker.get("session_id") != FOUNDATION_SESSION_ID
+        or worker.get("external_accuracy") != "UNVERIFIED"
+        or worker.get("consumption_authorized") is not True
+        or worker.get("authorized_scopes") != [FOUNDATION_OBJECT6D_SCOPE]
+        or worker.get("run_signature") != refs["run_signature"]
+        or worker.get("writer_claim") != refs["writer_claim"]
+        or worker.get("calibration") != refs["calibration"]
+        or worker.get("registration") != refs["registration"]
+        or worker.get("registration_maps") != refs["registration_maps"]
+        or worker.get("depth_contract") != refs["depth_contract"]
+        or worker.get("depth_summary") != refs["depth_summary"]
+        or worker.get("access_contract", {}).get("source_mutated") is not False
+    ):
+        raise RuntimeError("Object6D depth admission worker/result closure mismatch")
+    return {
+        "result": result,
+        "summary": summary,
+        "contract": contract,
+        "registration": registration,
+        "calibration": calibration,
+        "run_signature": signature,
+        "writer_claim": claim,
+        "gpu_receipt": gpu,
+        "references": refs,
+    }
 
 
 def _validate_materialized_read_closure(
@@ -235,7 +533,7 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             raise RuntimeError("CPU evidence predecessor did not close both fenced lanes")
     elif task_id == "0915_foundationstereo_single_session_canary_v1":
         if predecessor.get("status") != "PASSED":
-            raise RuntimeError("Depth canary requires terminal weak-role routing predecessor")
+            raise RuntimeError("Depth canary requires terminal removal routing predecessor")
         cpu_task = next(
             (
                 row for row in state.get("tasks", [])
@@ -284,12 +582,7 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
         depth_ref = predecessor.get("result")
         if not isinstance(depth_ref, dict) or validate_artifact_ref(depth_ref):
             raise RuntimeError("Depth canary result is not bound")
-        depth_result = load_json(Path(depth_ref["path"]))
-        if (
-            depth_result.get("depth_admission") != "PASS"
-            or depth_result.get("external_accuracy") != "UNVERIFIED"
-        ):
-            raise RuntimeError("Object6D canary requires admitted unverified optical-Z")
+        validate_foundationstereo_object6d_admission(Path(depth_ref["path"]))
     elif predecessor.get("status") != "PASSED":
         raise RuntimeError(f"predecessor did not pass: {predecessor_id}")
     return predecessor

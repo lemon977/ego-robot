@@ -1,0 +1,82 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/removal_envelope_v2.schema.json",
+  "title": "Removal Envelope V2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "design",
+    "image_domain",
+    "layers",
+    "source_contributions",
+    "quality",
+    "consumer_firewall",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "removal-envelope-v2"},
+    "design": {"const": "SAM_BASE_PLUS_VALIDATED_LOCAL_REPAIRS"},
+    "image_domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "width", "height", "source_index", "remap_applied"],
+      "properties": {
+        "identity": {"const": "PHYSICAL_LEFT_SOURCE_INDEX_1_RESIZE_ONLY_NO_REMAP"},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "source_index": {"const": 1},
+        "remap_applied": {"const": false}
+      }
+    },
+    "layers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["semantic_base", "validated_repairs", "removal_envelope", "feather_alpha"],
+      "properties": {
+        "semantic_base": {"const": "ADMITTED_SAM_PRIMARY_FOREGROUND"},
+        "validated_repairs": {"const": "LOCAL_CONDITIONAL_NON_GEOMETRY_AUTHORITY"},
+        "removal_envelope": {"const": "VISUAL_CLEAN_ONLY"},
+        "feather_alpha": {"const": "VISUAL_CLEAN_ONLY"}
+      }
+    },
+    "source_contributions": {
+      "type": "object",
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "quality": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "area_inflation", "background_spill", "temporal_area_derivative", "repair_contribution"],
+      "properties": {
+        "status": {"enum": ["PASS", "REJECTED_QUALITY", "UNKNOWN_FAIL_CLOSED"]},
+        "area_inflation": {"$ref": "#/$defs/gate"},
+        "background_spill": {"$ref": "#/$defs/gate"},
+        "temporal_area_derivative": {"$ref": "#/$defs/gate"},
+        "repair_contribution": {"$ref": "#/$defs/gate"}
+      }
+    },
+    "consumer_firewall": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["allowed_consumers", "forbidden_consumers"],
+      "properties": {
+        "allowed_consumers": {"const": ["CLEAN_MASK_QA", "VISUAL_INPAINT"]},
+        "forbidden_consumers": {"const": ["DEPTH", "OBJECT6D", "CONTACT", "ROBOT_GEOMETRY", "CONTROL_GROUND_TRUTH"]}
+      }
+    },
+    "claim_limit": {"const": "REMOVAL_AND_FEATHER_ARE_NOT_GEOMETRY_OBSERVATIONS"}
+  },
+  "$defs": {
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "value", "maximum"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL", "UNKNOWN", "WARMUP"]},
+        "value": {"type": ["number", "null"]},
+        "maximum": {"type": "number", "minimum": 0}
+      }
+    }
+  }
+}

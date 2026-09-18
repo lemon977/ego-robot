@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import inspect
 import json
 from pathlib import Path
 
@@ -201,8 +202,11 @@ def test_runner_is_cpu_only_route_gated_and_uses_only_two_stable_cards() -> None
     assert "GPU_COMMAND_RECEIPT" not in source
     assert "torch" not in source
     assert '"weights": "ABSENT"' in source
-    assert "identity_assumed" in source
-    assert "IDENTITY_JOIN_FORBIDDEN" in source
+    admission_source = inspect.getsource(
+        runner.validate_foundationstereo_object6d_admission
+    )
+    assert "identity_assumed" in admission_source
+    assert "IDENTITY_JOIN_FORBIDDEN" in admission_source
 
 
 def test_runner_keeps_masks_packed_until_each_frame_is_consumed(tmp_path: Path) -> None:
@@ -223,19 +227,15 @@ def test_runner_keeps_masks_packed_until_each_frame_is_consumed(tmp_path: Path) 
     assert np.array_equal(packed.unpack(1), masks[1])
 
 
-def test_depth_upstream_requires_sha_bound_nonlinear_sam_join(tmp_path: Path) -> None:
-    write_json(tmp_path / "RESULT.json", {
-        "status": "PASSED", "depth_admission": "PASS",
-        "external_accuracy": "UNVERIFIED",
-    })
-    write_json(tmp_path / "DEPTH_CONTRACT.json", {
-        "external_accuracy": "UNVERIFIED",
-        "frame_arrays": {"depth_reference": DEPTH_REFERENCE},
-    })
+def test_depth_upstream_uses_strict_admission_and_loads_640x480_map(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    write_json(tmp_path / "RESULT.json", {"fixture": True})
+    write_json(tmp_path / "DEPTH_CONTRACT.json", {"fixture": True})
     np.savez_compressed(
         tmp_path / "REGISTRATION_MAPS.npz",
-        depth_to_sam_resize_xy=np.zeros((2, 3, 2), np.float32),
-        sam_resize_in_bounds=np.ones((2, 3), bool),
+        depth_to_sam_resize_xy=np.zeros((480, 640, 2), np.float32),
+        sam_resize_in_bounds=np.ones((480, 640), bool),
     )
     maps_ref = runner.ref(tmp_path / "REGISTRATION_MAPS.npz")
     registration = {
@@ -255,10 +255,38 @@ def test_depth_upstream_requires_sha_bound_nonlinear_sam_join(tmp_path: Path) ->
         ),
     }
     write_json(tmp_path / "REGISTRATION.json", registration)
+    monkeypatch.setattr(
+        runner,
+        "validate_foundationstereo_object6d_admission",
+        lambda _path: {
+            "registration": registration,
+            "references": {
+                "depth_contract": runner.ref(tmp_path / "DEPTH_CONTRACT.json"),
+                "registration": runner.ref(tmp_path / "REGISTRATION.json"),
+                "registration_maps": maps_ref,
+            },
+        },
+    )
     _registration, inputs = runner._validate_depth_upstream(tmp_path)
     assert inputs["depth_registration_maps"] == maps_ref
 
-    registration["depth_to_sam_resize_map"]["identity_assumed"] = True
-    write_json(tmp_path / "REGISTRATION.json", registration)
-    with pytest.raises(RuntimeError, match="explicit nonlinear map"):
+    np.savez_compressed(
+        tmp_path / "REGISTRATION_MAPS.npz",
+        depth_to_sam_resize_xy=np.zeros((2, 3, 2), np.float32),
+        sam_resize_in_bounds=np.ones((2, 3), bool),
+    )
+    with pytest.raises(RuntimeError, match="not 640x480"):
+        runner._validate_depth_upstream(tmp_path)
+
+
+def test_depth_upstream_propagates_strict_consumption_rejection(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    def reject(_path: Path) -> dict:
+        raise RuntimeError("Object6D depth admission terminal authority mismatch")
+
+    monkeypatch.setattr(
+        runner, "validate_foundationstereo_object6d_admission", reject,
+    )
+    with pytest.raises(RuntimeError, match="BLOCKED_UPSTREAM_DEPTH_ADMISSION_CLOSURE"):
         runner._validate_depth_upstream(tmp_path)

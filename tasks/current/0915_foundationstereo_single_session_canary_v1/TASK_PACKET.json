@@ -1,0 +1,69 @@
+{
+  "algorithm_prerequisites": {
+    "depth": [
+      "stereo_preflight_PASS_GPU_DEPTH_ADMISSION"
+    ],
+    "not_dependencies": [
+      "Removal_Envelope",
+      "SAM3.1_weak_role_result",
+      "interaction_v0a"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 2,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Rectified-left optical-Z in metres from calibrated fx*baseline/disparity; external accuracy remains unverified and no native model confidence is claimed.",
+  "expected_resource": "SERIAL_GPU_SINGLE_SESSION_FOUNDATIONSTEREO",
+  "objective": "Run the pinned FoundationStereo checkpoint on the CPU-preflight-selected rectified stereo domain for play_cards_0915_001 and publish optical-Z in metres.",
+  "phase": "0915_FOUNDATIONSTEREO_SINGLE_SESSION_METRIC_CANARY",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "routing_predecessor_0915_removal_envelope_single_session_canary_v1=PASSED_EXECUTION_ONLY",
+    "0915_stereo_preflight.gpu_depth_allowed=true",
+    "governance_PASS_FRESH",
+    "central_GPU_lease",
+    "same_session_rectification",
+    "external_accuracy_UNVERIFIED"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001/lanes/stereo_preflight/STEREO_PREFLIGHT.json",
+    "src/chaoyang/ops/run_0915_foundationstereo_single_session_canary_v1.py",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915/cleaned/playing_cards/play_cards_0915_001",
+    "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json",
+    "assets/models/checkpoints/foundationstereo/23-51-11",
+    "configs/systems/depth/foundationstereo_0915_canary_v1.json",
+    "tasks/receipts/FOUNDATIONSTEREO_RUNTIME_CLOSURE_V1.json"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "CALIBRATION.json",
+    "REGISTRATION_MAPS.npz",
+    "REGISTRATION.json",
+    "DEPTH_CONTRACT.json",
+    "DEPTH_SUMMARY.json",
+    "DEPTH_WORKER_RESULT.json",
+    "RESULT.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_foundationstereo_single_session_canary_v1",
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "write_set": [
+    "_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_FOUNDATIONSTEREO_CANARY_V1"
+  ]
+}

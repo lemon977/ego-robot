@@ -10,11 +10,11 @@ unverified.
 from __future__ import annotations
 
 import argparse
+from datetime import datetime
 import hashlib
 import json
 import os
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 import time
@@ -34,9 +34,16 @@ ROOT = Path(__file__).resolve().parents[3]
 TASK_ID = "0915_foundationstereo_single_session_canary_v1"
 PHASE = "0915_FOUNDATIONSTEREO_SINGLE_SESSION_METRIC_CANARY"
 SESSION_ID = "play_cards_0915_001"
-SESSION = (
+LEGACY_SESSION = (
     Path("/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915")
     / "cleaned/playing_cards" / SESSION_ID
+)
+SESSION = (
+    Path("/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915")
+    / "cleaned/playing_cards" / SESSION_ID
+)
+PATH_RELOCATION_RECEIPT = (
+    ROOT / "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json"
 )
 T0_PREFLIGHT = (
     ROOT / "_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001"
@@ -44,12 +51,25 @@ T0_PREFLIGHT = (
 )
 CHECKPOINT = ROOT / "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
 ASSET_PIN = CHECKPOINT.parent / "ASSET_PIN.json"
+CHECKPOINT_CONFIG = CHECKPOINT.parent / "cfg.yaml"
 CHECKPOINT_SHA256 = depth_v1.CHECKPOINT_SHA256
 MODEL_WEIGHT = "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
 OUTPUT_NAMESPACE = ROOT / "_run/current" / TASK_ID
+FIXED_ATTEMPT = OUTPUT_NAMESPACE / "attempts/attempt_0001"
 VISUAL_NAMESPACE = ROOT / "docs/current/visuals/0915_FOUNDATIONSTEREO_CANARY_V1"
 CENTRAL_GPU_LEASE = ROOT / "src/chaoyang/ops/run_gpu_command_with_v71_lease.py"
 PINNED_PYTHON_LAUNCHER = ROOT / "src/chaoyang/ops/foundationstereo_gpu_python.sh"
+MODEL_WORKER = ROOT / "src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py"
+ENVIRONMENT_AUTHORITY = ROOT / "configs/systems/foundationstereo/environment_authority.json"
+ENVIRONMENT_LOCK = ROOT / "configs/systems/foundationstereo/local_environment_lock.json"
+ENVIRONMENT_SNAPSHOT_MANIFEST = (
+    ROOT / "_run/current/environments/foundationstereo-py311-v1/"
+    ".chaoyang-hardlink-snapshot/manifest.json.gz"
+)
+VENDOR_ROOT = ROOT / "vendor/FoundationStereo"
+VENDOR_MANIFEST = ROOT / "manifests/vendor.json"
+CANARY_CONFIG = ROOT / "configs/systems/depth/foundationstereo_0915_canary_v1.json"
+RUNTIME_CLOSURE_RECEIPT = ROOT / "tasks/receipts/FOUNDATIONSTEREO_RUNTIME_CLOSURE_V1.json"
 
 DEPTH_WIDTH = 640
 DEPTH_HEIGHT = 480
@@ -70,6 +90,14 @@ QUALITY_THRESHOLDS = {
     "minimum_edge_evidence_frame_fraction": 0.80,
     "minimum_median_rgb_supported_disparity_edge_fraction": 0.15,
 }
+AUTHORIZED_SCOPE = "VISUAL_OBJECT6D_CANDIDATE_INPUT"
+
+
+def consumer_authority(passed: bool) -> dict[str, Any]:
+    return {
+        "consumption_authorized": bool(passed),
+        "authorized_scopes": [AUTHORIZED_SCOPE] if passed else [],
+    }
 
 
 def sha256(path: Path) -> str:
@@ -97,7 +125,41 @@ def published_ref(current: Path, published: Path) -> dict[str, Any]:
 
 
 def load_json(path: Path) -> dict[str, Any]:
-    return json.loads(path.read_text(encoding="utf-8"))
+    value = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(value, dict):
+        raise RuntimeError(f"JSON object required: {path}")
+    return value
+
+
+def canonical_sha256(value: Any) -> str:
+    encoded = json.dumps(
+        value, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+    ).encode("utf-8")
+    return hashlib.sha256(encoded).hexdigest()
+
+
+def process_start_ticks(pid: int) -> int:
+    try:
+        return int(Path(f"/proc/{pid}/stat").read_text(encoding="utf-8").split()[21])
+    except (FileNotFoundError, IndexError, ValueError) as exc:
+        raise RuntimeError(f"writer process identity unavailable: pid={pid}") from exc
+
+
+def process_has_ancestor(pid: int, ancestor_pid: int) -> bool:
+    """Return true only when ``ancestor_pid`` is in ``pid``'s live /proc chain."""
+
+    seen: set[int] = set()
+    current = pid
+    while current > 1 and current not in seen:
+        if current == ancestor_pid:
+            return True
+        seen.add(current)
+        try:
+            fields = Path(f"/proc/{current}/stat").read_text(encoding="utf-8").split()
+            current = int(fields[3])
+        except (FileNotFoundError, IndexError, ValueError):
+            return False
+    return current == ancestor_pid
 
 
 def atomic_json(path: Path, value: Any) -> None:
@@ -114,6 +176,25 @@ def atomic_json(path: Path, value: Any) -> None:
     os.replace(temporary, path)
 
 
+def atomic_json_new(path: Path, value: Any) -> None:
+    """Publish an immutable JSON file without replacing an existing writer record."""
+
+    path.parent.mkdir(parents=True, exist_ok=True)
+    temporary = path.with_name(f".{path.name}.tmp-{uuid.uuid4().hex}")
+    try:
+        with temporary.open("x", encoding="utf-8") as stream:
+            json.dump(
+                value, stream, ensure_ascii=False, indent=2, sort_keys=True,
+                allow_nan=False,
+            )
+            stream.write("\n")
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.link(temporary, path)
+    finally:
+        temporary.unlink(missing_ok=True)
+
+
 def atomic_npz(path: Path, **arrays: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_name(f".{path.name}.tmp-{uuid.uuid4().hex}")
@@ -124,9 +205,320 @@ def atomic_npz(path: Path, **arrays: Any) -> None:
     os.replace(temporary, path)
 
 
+def resolve_exactly_one_sbs(session: Path) -> Path:
+    source_root = session / "source_stereo"
+    candidates = sorted(
+        path for path in source_root.iterdir()
+        if path.is_file() and path.suffix.lower() == ".mp4"
+    ) if source_root.is_dir() else []
+    expected_name = f"CameraRecord_{SESSION_ID}_stereo.mp4"
+    if len(candidates) != 1 or candidates[0].name != expected_name:
+        raise RuntimeError(
+            "fixed canary requires exactly one SBS with the expected identity; "
+            f"observed={[path.name for path in candidates]}"
+        )
+    return candidates[0]
+
+
+def vendor_tree_identity(root: Path) -> dict[str, Any]:
+    """Recompute the deterministic ``sha256-file-list-v1`` vendor closure."""
+
+    encoded: list[str] = []
+    regular_files = symlinks = regular_bytes = 0
+    for path in sorted(root.rglob("*")):
+        if "__pycache__" in path.parts or path.is_dir():
+            continue
+        relative = path.relative_to(root).as_posix()
+        if path.is_symlink():
+            row = {"path": relative, "type": "symlink", "target": os.readlink(path)}
+            symlinks += 1
+        else:
+            size = path.stat().st_size
+            row = {
+                "path": relative, "type": "file", "bytes": size,
+                "sha256": sha256(path),
+            }
+            regular_files += 1
+            regular_bytes += size
+        encoded.append(json.dumps(
+            row, ensure_ascii=False, sort_keys=True, separators=(",", ":"),
+        ))
+    digest = hashlib.sha256(("\n".join(encoded) + "\n").encode("utf-8")).hexdigest()
+    return {
+        "algorithm": "sha256-file-list-v1",
+        "sha256_file_list": digest,
+        "regular_files": regular_files,
+        "symlinks": symlinks,
+        "regular_bytes": regular_bytes,
+    }
+
+
+def validate_canary_config() -> dict[str, Any]:
+    config = load_json(CANARY_CONFIG)
+    expected_depth = {
+        "width": DEPTH_WIDTH,
+        "height": DEPTH_HEIGHT,
+        "z_near_m": Z_NEAR_M,
+        "z_far_m": Z_FAR_M,
+        "minimum_disparity_px": MIN_DISPARITY_PX,
+        "left_right_max_residual_px": LR_MAX_RESIDUAL_PX,
+    }
+    if (
+        config.get("schema_version") != "0915-foundationstereo-canary-config-v1"
+        or config.get("task_id") != TASK_ID
+        or config.get("session_id") != SESSION_ID
+        or config.get("model_weight") != MODEL_WEIGHT
+        or config.get("depth") != expected_depth
+        or config.get("quality_thresholds") != QUALITY_THRESHOLDS
+        or config.get("consumer_policy", {}).get("authorized_scopes") != [AUTHORIZED_SCOPE]
+        or config.get("consumer_policy", {}).get("external_accuracy") != "UNVERIFIED"
+    ):
+        raise RuntimeError("FoundationStereo canary configuration drift")
+    schemas = config.get("output_schema_identities", {})
+    expected_schemas = {
+        "calibration": "0915-foundationstereo-frozen-calibration-v1",
+        "registration": "0915-foundationstereo-registration-v1",
+        "depth_contract": "0915-foundationstereo-depth-contract-v1",
+        "depth_summary": "0915-foundationstereo-depth-summary-v1",
+        "worker_result": "0915-foundationstereo-worker-result-v1",
+        "terminal_result": "0915-foundationstereo-single-session-canary-result-v1",
+    }
+    if schemas != expected_schemas:
+        raise RuntimeError("FoundationStereo output schema identity drift")
+    return config
+
+
+def _vendor_manifest_identity() -> dict[str, Any]:
+    manifest = load_json(VENDOR_MANIFEST)
+    row = next(
+        (item for item in manifest.get("packages", []) if item.get("id") == "foundationstereo"),
+        None,
+    )
+    if not isinstance(row, dict):
+        raise RuntimeError("FoundationStereo vendor manifest entry is absent")
+    observed = vendor_tree_identity(VENDOR_ROOT)
+    if row.get("runtime_path") != "vendor/FoundationStereo" or row.get("runtime_closure") != observed:
+        raise RuntimeError("FoundationStereo vendor runtime tree drift")
+    return observed
+
+
+def _runtime_paths() -> dict[str, Path]:
+    return {
+        "runner": Path(__file__).resolve(),
+        "model_worker": MODEL_WORKER,
+        "gpu_launcher": PINNED_PYTHON_LAUNCHER,
+        "gpu_lease_wrapper": CENTRAL_GPU_LEASE,
+        "environment_authority": ENVIRONMENT_AUTHORITY,
+        "environment_lock": ENVIRONMENT_LOCK,
+        "environment_snapshot_manifest": ENVIRONMENT_SNAPSHOT_MANIFEST,
+        "vendor_manifest": VENDOR_MANIFEST,
+        "checkpoint": CHECKPOINT,
+        "checkpoint_cfg": CHECKPOINT_CONFIG,
+        "asset_pin": ASSET_PIN,
+        "canary_config": CANARY_CONFIG,
+    }
+
+
+def validate_runtime_closure_receipt(
+    observed_refs: dict[str, dict[str, Any]] | None = None,
+) -> tuple[dict[str, Any], dict[str, dict[str, Any]], dict[str, Any]]:
+    """Validate the current bounded runtime authority, not the stale legacy authority."""
+
+    receipt = load_json(RUNTIME_CLOSURE_RECEIPT)
+    if (
+        receipt.get("schema_version") != "foundationstereo-runtime-closure-v1"
+        or receipt.get("status") != "PASS_BOUNDED_CANARY_RUNTIME_IDENTITY_CLOSED"
+        or receipt.get("task_id") != TASK_ID
+        or receipt.get("execution_performed") is not False
+        or receipt.get("batch_authorized") is not False
+        or receipt.get("external_accuracy") != "UNVERIFIED"
+    ):
+        raise RuntimeError("FoundationStereo bounded runtime-closure receipt is inadmissible")
+    config = validate_canary_config()
+    if (
+        receipt.get("output_schema_identities")
+        != config.get("output_schema_identities")
+        or receipt.get("consumer_policy") != {
+            "quality_pass_required": True,
+            "authorized_scopes": [AUTHORIZED_SCOPE],
+            "all_other_consumers_authorized": False,
+        }
+    ):
+        raise RuntimeError("FoundationStereo schema/consumer authority drift")
+    refs = observed_refs or {
+        name: file_ref(path) for name, path in _runtime_paths().items()
+    }
+    declared = receipt.get("artifacts", {})
+    if set(declared) != set(refs):
+        raise RuntimeError("FoundationStereo runtime-closure artifact inventory drift")
+    for name, actual in refs.items():
+        if declared.get(name) != actual:
+            raise RuntimeError(f"FoundationStereo runtime-closure drift: {name}")
+    vendor_identity = _vendor_manifest_identity()
+    if receipt.get("vendor_runtime_tree") != vendor_identity:
+        raise RuntimeError("FoundationStereo receipt vendor tree identity drift")
+    authority = load_json(ENVIRONMENT_AUTHORITY)
+    lock = load_json(ENVIRONMENT_LOCK)
+    if (
+        authority.get("environment_id") != "foundationstereo-py311-v1"
+        or lock.get("environment_id") != "foundationstereo-py311-v1"
+        or lock.get("snapshot", {}).get("manifest_sha256")
+        != refs["environment_snapshot_manifest"]["sha256"]
+        or authority.get("canonical_gpu_runtime_authorized") is not False
+        or receipt.get("legacy_environment_authority_role")
+        != "PINNED_PROVENANCE_NOT_CURRENT_GPU_ADMISSION"
+    ):
+        raise RuntimeError("FoundationStereo environment/snapshot identity drift")
+    pin = load_json(ASSET_PIN)
+    pinned_checkpoint = pin.get("files", {}).get(CHECKPOINT.name, {})
+    pinned_cfg = pin.get("files", {}).get(CHECKPOINT_CONFIG.name, {})
+    if (
+        pinned_checkpoint.get("bytes") != refs["checkpoint"]["bytes"]
+        or pinned_checkpoint.get("sha256") != refs["checkpoint"]["sha256"]
+        or pinned_cfg.get("bytes") != refs["checkpoint_cfg"]["bytes"]
+        or pinned_cfg.get("sha256") != refs["checkpoint_cfg"]["sha256"]
+    ):
+        raise RuntimeError("FoundationStereo checkpoint/cfg closure drift")
+    return receipt, refs, vendor_identity
+
+
+def build_run_signature(
+    *, packet_path: Path, preflight_path: Path, executor_epoch: int,
+) -> dict[str, Any]:
+    config = validate_canary_config()
+    preflight = validate_preflight(preflight_path)
+    camera = SESSION / "camera_params.json"
+    stereo = resolve_exactly_one_sbs(SESSION)
+    runtime_receipt, runtime_refs, vendor_identity = validate_runtime_closure_receipt()
+    calibration = preflight["candidates"]["calibrated_rectified"]["calibration"]
+    payload = {
+        "schema_version": "0915-foundationstereo-run-signature-v1",
+        "task_id": TASK_ID,
+        "session_id": SESSION_ID,
+        "executor_epoch": executor_epoch,
+        "weights": [MODEL_WEIGHT],
+        "input_manifest": {
+            "task_packet": file_ref(packet_path),
+            "t0_stereo_preflight": file_ref(preflight_path),
+            "processed_root_relocation": file_ref(PATH_RELOCATION_RECEIPT),
+            "camera_params": file_ref(camera),
+            "source_stereo": file_ref(stereo),
+        },
+        "runtime": {
+            **runtime_refs,
+            "runtime_closure_receipt": file_ref(RUNTIME_CLOSURE_RECEIPT),
+            "vendor_runtime_tree": vendor_identity,
+            "environment_id": runtime_receipt["environment_id"],
+        },
+        "calibration_identity": {
+            "selected_domain": preflight["decision"]["selected_candidate"],
+            "calibration_sha256": canonical_sha256(calibration),
+            "consumption": "EXACT_T0_ACCEPTED_CALIBRATION_NO_REESTIMATION",
+        },
+        "schema_identity": config["output_schema_identities"],
+        "configuration": {
+            "canary_config": runtime_refs["canary_config"],
+            "checkpoint_cfg": runtime_refs["checkpoint_cfg"],
+            "quality_thresholds_sha256": canonical_sha256(QUALITY_THRESHOLDS),
+        },
+    }
+    return {**payload, "run_signature_sha256": canonical_sha256(payload)}
+
+
+def _artifact_refs(value: Any) -> list[dict[str, Any]]:
+    refs: list[dict[str, Any]] = []
+    if isinstance(value, dict):
+        if set(("path", "bytes", "sha256")).issubset(value):
+            refs.append({key: value[key] for key in ("path", "bytes", "sha256")})
+        else:
+            for child in value.values():
+                refs.extend(_artifact_refs(child))
+    elif isinstance(value, list):
+        for child in value:
+            refs.extend(_artifact_refs(child))
+    return refs
+
+
+def validate_run_signature(path: Path, *, expected_epoch: int) -> dict[str, Any]:
+    signature = load_json(path)
+    stored_digest = signature.pop("run_signature_sha256", None)
+    if stored_digest != canonical_sha256(signature):
+        raise RuntimeError("FoundationStereo run signature digest mismatch")
+    signature["run_signature_sha256"] = stored_digest
+    if (
+        signature.get("schema_version") != "0915-foundationstereo-run-signature-v1"
+        or signature.get("task_id") != TASK_ID
+        or signature.get("session_id") != SESSION_ID
+        or signature.get("executor_epoch") != expected_epoch
+        or signature.get("weights") != [MODEL_WEIGHT]
+    ):
+        raise RuntimeError("FoundationStereo run signature identity mismatch")
+    seen: set[tuple[str, str]] = set()
+    for expected in _artifact_refs(signature):
+        key = (str(expected["path"]), str(expected["sha256"]))
+        if key in seen:
+            continue
+        seen.add(key)
+        actual = file_ref(Path(expected["path"]))
+        if actual != expected:
+            raise RuntimeError(f"signed artifact drift: {expected['path']}")
+    config = validate_canary_config()
+    preflight = validate_preflight(Path(signature["input_manifest"]["t0_stereo_preflight"]["path"]))
+    if signature.get("calibration_identity") != {
+        "selected_domain": preflight["decision"]["selected_candidate"],
+        "calibration_sha256": canonical_sha256(
+            preflight["candidates"]["calibrated_rectified"]["calibration"]
+        ),
+        "consumption": "EXACT_T0_ACCEPTED_CALIBRATION_NO_REESTIMATION",
+    }:
+        raise RuntimeError("signed calibration identity drift")
+    runtime_refs = {
+        name: signature["runtime"][name] for name in _runtime_paths()
+    }
+    validate_runtime_closure_receipt(runtime_refs)
+    if signature.get("schema_identity") != config["output_schema_identities"]:
+        raise RuntimeError("signed output schema identity drift")
+    return signature
+
+
+def validate_writer_claim(
+    path: Path, *, output: Path, signature_sha256: str, executor_epoch: int,
+    require_current_process_descendant: bool,
+) -> dict[str, Any]:
+    claim = load_json(path)
+    pid = claim.get("pid")
+    start_ticks = claim.get("proc_start_ticks")
+    token_sha = claim.get("fencing_token_sha256")
+    try:
+        datetime.fromisoformat(str(claim.get("claimed_at")))
+        claimed_at_valid = True
+    except ValueError:
+        claimed_at_valid = False
+    if (
+        claim.get("schema_version") != "0915-foundationstereo-writer-claim-v1"
+        or claim.get("task_id") != TASK_ID
+        or claim.get("session_id") != SESSION_ID
+        or claim.get("attempt_id") != "attempt_0001"
+        or claim.get("weights") != [MODEL_WEIGHT]
+        or claim.get("status") != "CLAIMED"
+        or not claimed_at_valid
+        or not isinstance(pid, int)
+        or not isinstance(start_ticks, int)
+        or process_start_ticks(pid) != start_ticks
+        or claim.get("executor_epoch") != executor_epoch
+        or not isinstance(token_sha, str) or len(token_sha) != 64
+        or claim.get("run_signature_sha256") != signature_sha256
+        or claim.get("unique_write_root") != str(output.resolve())
+    ):
+        raise RuntimeError("FoundationStereo writer claim/fence mismatch")
+    if require_current_process_descendant and not process_has_ancestor(os.getpid(), pid):
+        raise RuntimeError("FoundationStereo worker is not a descendant of the fenced writer")
+    return claim
+
+
 def validate_output_namespace(output: Path, visual: Path) -> None:
-    if not output.resolve().is_relative_to(OUTPUT_NAMESPACE.resolve()):
-        raise RuntimeError(f"output must stay inside {OUTPUT_NAMESPACE}")
+    if output.resolve() != FIXED_ATTEMPT.resolve():
+        raise RuntimeError(f"output must equal fresh fixed attempt {FIXED_ATTEMPT}")
     if visual.resolve() != VISUAL_NAMESPACE.resolve():
         raise RuntimeError(f"visual root must equal {VISUAL_NAMESPACE}")
 
@@ -172,14 +564,15 @@ def heartbeat(status: str) -> None:
         raise RuntimeError((completed.stderr or completed.stdout)[-4000:])
 
 
-def validate_asset_pin() -> dict[str, Any]:
+def validate_asset_pin(observed_checkpoint: dict[str, Any] | None = None) -> dict[str, Any]:
     pin = load_json(ASSET_PIN)
     pinned = pin.get("files", {}).get(CHECKPOINT.name, {})
+    observed = observed_checkpoint or file_ref(CHECKPOINT)
     if (
         pin.get("status") != "PASS_LOCAL_CHECKPOINT_MATERIALIZED_NO_MODEL_LOAD"
-        or pinned.get("bytes") != CHECKPOINT.stat().st_size
+        or pinned.get("bytes") != observed.get("bytes")
         or pinned.get("sha256") != CHECKPOINT_SHA256
-        or sha256(CHECKPOINT) != CHECKPOINT_SHA256
+        or observed.get("sha256") != CHECKPOINT_SHA256
     ):
         raise RuntimeError("FoundationStereo checkpoint asset pin drift")
     return pin
@@ -203,15 +596,41 @@ def validate_preflight(path: Path) -> dict[str, Any]:
     calibration = calibrated.get("calibration")
     if not isinstance(calibration, dict) or calibration.get("quality", {}).get("passed") is not True:
         raise RuntimeError("T0 frozen rectification calibration is absent or rejected")
-    expected = {
-        "camera_params": SESSION / "camera_params.json",
-        "source_stereo": next(iter(sorted((SESSION / "source_stereo").glob("CameraRecord_*_stereo.mp4"))), None),
+    legacy_expected = {
+        "camera_params": LEGACY_SESSION / "camera_params.json",
+        "source_stereo": LEGACY_SESSION / "source_stereo/CameraRecord_play_cards_0915_001_stereo.mp4",
     }
-    for name, actual in expected.items():
-        if actual is None or not actual.is_file():
+    current = {
+        "camera_params": SESSION / "camera_params.json",
+        "source_stereo": resolve_exactly_one_sbs(SESSION),
+    }
+    relocation = load_json(PATH_RELOCATION_RECEIPT)
+    if (
+        relocation.get("status") != "PASS_CONTENT_IDENTICAL_PATH_RELOCATION"
+        or relocation.get("receipt_bound_legacy_root")
+        != "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915"
+        or relocation.get("current_materialized_root")
+        != "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915"
+        or relocation.get("source_data_modified") is not False
+    ):
+        raise RuntimeError("0915 processed-root relocation receipt is not admissible")
+    relocation_refs = relocation.get("single_session_depth_canary_evidence", {})
+    relocation_keys = {
+        "camera_params": "camera_params.json",
+        "source_stereo": "source_stereo/CameraRecord_play_cards_0915_001_stereo.mp4",
+    }
+    for name, actual in current.items():
+        if not actual.is_file():
             raise RuntimeError(f"fixed canary input missing: {name}")
-        if payload.get("inputs", {}).get(name) != file_ref(actual):
-            raise RuntimeError(f"T0 {name} closure drift")
+        current_ref = file_ref(actual)
+        frozen_ref = payload.get("inputs", {}).get(name, {})
+        relocation_ref = relocation_refs.get(relocation_keys[name], {})
+        if frozen_ref.get("path") != str(legacy_expected[name]):
+            raise RuntimeError(f"T0 {name} legacy path identity drift")
+        for field in ("bytes", "sha256"):
+            expected_value = current_ref[field]
+            if frozen_ref.get(field) != expected_value or relocation_ref.get(field) != expected_value:
+                raise RuntimeError(f"T0 {name} content closure drift after path relocation")
     if payload.get("decode", {}).get("full_decode_passed") is not True:
         raise RuntimeError("T0 did not fully decode SBS")
     return payload
@@ -469,11 +888,30 @@ def _review_frame(left: np.ndarray, depth: np.ndarray, valid: np.ndarray, index:
     return canvas
 
 
-def run_worker(output: Path, visual: Path, preflight_path: Path) -> int:
+def run_worker(
+    output: Path,
+    visual: Path,
+    preflight_path: Path,
+    *,
+    claim_path: Path,
+    run_signature_path: Path,
+    executor_epoch: int,
+) -> int:
+    if claim_path.resolve() != (output / "CLAIM.json").resolve():
+        raise RuntimeError("worker claim must be the attempt-owned writer claim")
+    if run_signature_path.resolve() != (output / "RUN_SIGNATURE.json").resolve():
+        raise RuntimeError("worker signature must be the attempt-owned run signature")
+    signature = validate_run_signature(run_signature_path, expected_epoch=executor_epoch)
+    validate_writer_claim(
+        claim_path, output=output,
+        signature_sha256=signature["run_signature_sha256"],
+        executor_epoch=executor_epoch,
+        require_current_process_descendant=True,
+    )
     preflight = validate_preflight(preflight_path)
-    validate_asset_pin()
-    camera = Path(preflight["inputs"]["camera_params"]["path"])
-    stereo = Path(preflight["inputs"]["source_stereo"]["path"])
+    validate_asset_pin(signature["runtime"]["checkpoint"])
+    camera = SESSION / "camera_params.json"
+    stereo = resolve_exactly_one_sbs(SESSION)
     source_before = {"camera_params": file_ref(camera), "source_stereo": file_ref(stereo)}
     calibration = preflight["candidates"]["calibrated_rectified"]["calibration"]
     decoded = preflight["decode"]
@@ -522,6 +960,12 @@ def run_worker(output: Path, visual: Path, preflight_path: Path) -> int:
     started = time.monotonic()
     try:
         for frame_index in range(frame_count):
+            validate_writer_claim(
+                claim_path, output=output,
+                signature_sha256=signature["run_signature_sha256"],
+                executor_epoch=executor_epoch,
+                require_current_process_descendant=True,
+            )
             ok, sbs = capture.read()
             if not ok:
                 raise RuntimeError(f"SBS decode ended at frame {frame_index}")
@@ -677,6 +1121,7 @@ def run_worker(output: Path, visual: Path, preflight_path: Path) -> int:
         "valid_range_m": [Z_NEAR_M, Z_FAR_M],
         "native_model_confidence": "ABSENT_NOT_FABRICATED",
         "external_accuracy": "UNVERIFIED",
+        **consumer_authority(bool(quality["passed"])),
         "occluded_or_hidden_geometry": "INVALID_NOT_COMPLETED",
         "registration": "REGISTRATION.json",
         "claim_limit": (
@@ -691,6 +1136,7 @@ def run_worker(output: Path, visual: Path, preflight_path: Path) -> int:
         "status": "PASS" if quality["passed"] else "REJECTED_QUALITY",
         "depth_admission": "PASS" if quality["passed"] else "REJECTED_QUALITY",
         "external_accuracy": "UNVERIFIED",
+        **consumer_authority(bool(quality["passed"])),
         "frame_count": frame_count,
         "full_sbs_decode": True,
         "model_load_count": model.model_load_count,
@@ -708,6 +1154,12 @@ def run_worker(output: Path, visual: Path, preflight_path: Path) -> int:
     source_after = {"camera_params": file_ref(camera), "source_stereo": file_ref(stereo)}
     if source_after != source_before:
         raise RuntimeError("source input changed during FoundationStereo canary")
+    validate_writer_claim(
+        claim_path, output=output,
+        signature_sha256=signature["run_signature_sha256"],
+        executor_epoch=executor_epoch,
+        require_current_process_descendant=True,
+    )
 
     visual.mkdir(parents=True)
     final_review = visual / "0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4"
@@ -749,6 +1201,9 @@ def run_worker(output: Path, visual: Path, preflight_path: Path) -> int:
         "depth_summary": file_ref(output / "DEPTH_SUMMARY.json"),
         "review": {"video": file_ref(final_review), **review_decode},
         "external_accuracy": "UNVERIFIED",
+        **consumer_authority(bool(quality["passed"])),
+        "run_signature": file_ref(run_signature_path),
+        "writer_claim": file_ref(claim_path),
     }
     atomic_json(output / "DEPTH_WORKER_RESULT.json", worker_result)
     return 0
@@ -764,6 +1219,11 @@ def write_terminal(
     first_blocker: str | None,
 ) -> None:
     summary = load_json(output / "DEPTH_SUMMARY.json") if (output / "DEPTH_SUMMARY.json").is_file() else None
+    consumption_authorized = bool(
+        status == "PASSED"
+        and summary is not None
+        and summary.get("depth_admission") == "PASS"
+    )
     result = {
         "schema_version": "0915-foundationstereo-single-session-canary-result-v1",
         "task_id": TASK_ID,
@@ -771,6 +1231,7 @@ def write_terminal(
         "status": status,
         "depth_admission": summary.get("depth_admission") if summary else "NOT_PRODUCED",
         "external_accuracy": "UNVERIFIED",
+        **consumer_authority(consumption_authorized),
         "weights": packet["weights"],
         "first_blocker": first_blocker,
         "calibration": file_ref(output / "CALIBRATION.json") if (output / "CALIBRATION.json").is_file() else None,
@@ -780,6 +1241,8 @@ def write_terminal(
         "depth_summary": file_ref(output / "DEPTH_SUMMARY.json") if summary else None,
         "gpu_command_receipt": file_ref(output / "GPU_COMMAND_RECEIPT.json")
         if (output / "GPU_COMMAND_RECEIPT.json").is_file() else None,
+        "run_signature": file_ref(output / "RUN_SIGNATURE.json"),
+        "writer_claim": file_ref(output / "CLAIM.json"),
         "visual": file_ref(visual / "0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4")
         if (visual / "0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4").is_file() else None,
         "source_mutated": False,
@@ -798,28 +1261,71 @@ def write_terminal(
 
 def run_orchestrator(args: argparse.Namespace) -> int:
     packet = validate_route()
+    packet_path = ROOT / f"tasks/current/{TASK_ID}/TASK_PACKET.json"
     output = args.output_root.resolve()
     visual = args.visual_root.resolve()
     receipt = args.receipt.resolve()
     validate_output_namespace(output, visual)
+    if args.executor_epoch < 1 or len(args.fencing_token) < 16:
+        raise RuntimeError("positive executor epoch and fencing token >=16 chars required")
     for path in (output, visual, receipt):
         if path.exists() or path.is_symlink():
             raise RuntimeError(f"fresh output required: {path}")
-    for path in (T0_PREFLIGHT, CHECKPOINT, ASSET_PIN, CENTRAL_GPU_LEASE, PINNED_PYTHON_LAUNCHER):
+    for path in (
+        T0_PREFLIGHT, PATH_RELOCATION_RECEIPT, CHECKPOINT, CHECKPOINT_CONFIG,
+        ASSET_PIN, CENTRAL_GPU_LEASE, PINNED_PYTHON_LAUNCHER, MODEL_WORKER,
+        ENVIRONMENT_AUTHORITY, ENVIRONMENT_LOCK, ENVIRONMENT_SNAPSHOT_MANIFEST,
+        VENDOR_MANIFEST, CANARY_CONFIG, RUNTIME_CLOSURE_RECEIPT,
+    ):
         if not path.is_file():
             raise RuntimeError(f"fixed canary input is missing: {path}")
-    validate_preflight(T0_PREFLIGHT)
-    output.mkdir(parents=True)
+    run_signature = build_run_signature(
+        packet_path=packet_path,
+        preflight_path=T0_PREFLIGHT,
+        executor_epoch=args.executor_epoch,
+    )
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.mkdir()
+    atomic_json_new(output / "RUN_SIGNATURE.json", run_signature)
+    claim = {
+        "schema_version": "0915-foundationstereo-writer-claim-v1",
+        "task_id": TASK_ID,
+        "session_id": SESSION_ID,
+        "attempt_id": output.name,
+        "weights": packet["weights"],
+        "claimed_at": datetime.now().astimezone().isoformat(timespec="seconds"),
+        "status": "CLAIMED",
+        "pid": os.getpid(),
+        "proc_start_ticks": process_start_ticks(os.getpid()),
+        "executor_epoch": args.executor_epoch,
+        "fencing_token_sha256": hashlib.sha256(
+            args.fencing_token.encode("utf-8")
+        ).hexdigest(),
+        "run_signature_sha256": run_signature["run_signature_sha256"],
+        "unique_write_root": str(output),
+        "task_packet": file_ref(packet_path),
+    }
+    atomic_json_new(output / "CLAIM.json", claim)
+    validate_writer_claim(
+        output / "CLAIM.json", output=output,
+        signature_sha256=run_signature["run_signature_sha256"],
+        executor_epoch=args.executor_epoch,
+        require_current_process_descendant=False,
+    )
     heartbeat("WAIT_GPU_RESOURCE")
     gpu_receipt = output / "GPU_COMMAND_RECEIPT.json"
     worker_command = [
         str(PINNED_PYTHON_LAUNCHER), str(Path(__file__).resolve()), "--worker",
         "--output-root", str(output), "--visual-root", str(visual),
         "--preflight", str(T0_PREFLIGHT),
+        "--claim", str(output / "CLAIM.json"),
+        "--run-signature", str(output / "RUN_SIGNATURE.json"),
+        "--executor-epoch", str(args.executor_epoch),
     ]
     lease_command = [
         sys.executable, str(CENTRAL_GPU_LEASE),
         "--task-id", TASK_ID, "--attempt-id", output.name,
+        "--executor-epoch", str(args.executor_epoch),
         "--priority", "CANARY", "--gpu-id", str(args.gpu_id),
         "--min-free-mib", str(args.min_free_mib),
         "--wait-seconds", str(args.gpu_wait_seconds),
@@ -846,6 +1352,12 @@ def run_orchestrator(args: argparse.Namespace) -> int:
             # relabelled WAIT_GPU_RESOURCE in the final polling iteration.
             if process.poll() is not None:
                 break
+            validate_writer_claim(
+                output / "CLAIM.json", output=output,
+                signature_sha256=run_signature["run_signature_sha256"],
+                executor_epoch=args.executor_epoch,
+                require_current_process_descendant=False,
+            )
             lease_path = ROOT / "_run/current/GPU_LEASE.json"
             lease = load_json(lease_path) if lease_path.is_file() else {}
             acquired = (
@@ -854,6 +1366,12 @@ def run_orchestrator(args: argparse.Namespace) -> int:
                 and lease.get("attempt_id") == output.name
             )
             heartbeat("RUNNING" if acquired else "WAIT_GPU_RESOURCE")
+    validate_writer_claim(
+        output / "CLAIM.json", output=output,
+        signature_sha256=run_signature["run_signature_sha256"],
+        executor_epoch=args.executor_epoch,
+        require_current_process_descendant=False,
+    )
     gpu = load_json(gpu_receipt) if gpu_receipt.is_file() else {}
     if process.returncode != 0 or gpu.get("status") != "PASSED":
         blocked = gpu.get("status") == "BLOCKED_RESOURCE"
@@ -884,17 +1402,27 @@ def main() -> int:
     parser.add_argument("--min-free-mib", type=int, default=61_440)
     parser.add_argument("--gpu-wait-seconds", type=int, default=1800)
     parser.add_argument("--wall-seconds", type=int, default=7200)
+    parser.add_argument("--executor-epoch", type=int, required=True)
+    parser.add_argument("--fencing-token")
     parser.add_argument("--worker", action="store_true")
     parser.add_argument("--preflight", type=Path, default=T0_PREFLIGHT)
+    parser.add_argument("--claim", type=Path)
+    parser.add_argument("--run-signature", type=Path)
     args = parser.parse_args()
     if args.worker:
+        validate_route()
         validate_output_namespace(args.output_root, args.visual_root)
+        if args.claim is None or args.run_signature is None:
+            raise RuntimeError("worker requires orchestrator-owned claim and run signature")
         return run_worker(
             args.output_root.resolve(), args.visual_root.resolve(),
             args.preflight.resolve(strict=True),
+            claim_path=args.claim.resolve(strict=True),
+            run_signature_path=args.run_signature.resolve(strict=True),
+            executor_epoch=args.executor_epoch,
         )
-    if args.receipt is None:
-        raise RuntimeError("orchestrator requires --receipt")
+    if args.receipt is None or args.fencing_token is None:
+        raise RuntimeError("orchestrator requires --receipt and --fencing-token")
     return run_orchestrator(args)
 
 

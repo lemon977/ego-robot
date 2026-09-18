@@ -1,0 +1,39 @@
+{
+  "schema_version": "0915-removal-envelope-v1-user-visual-review-v1",
+  "reviewed_at": "2026-09-18T15:12:24+08:00",
+  "reviewed_session": "play_cards_0915_001",
+  "reviewed_visual": {
+    "path": "docs/current/visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_REVIEW.mp4",
+    "bytes": 5227423,
+    "sha256": "05d777e66b1aca6c62122207adff0af15608ce03dc336e2c87d5c3713e3cef30"
+  },
+  "execution_status": "PASSED",
+  "quality_status": "REJECTED_QUALITY",
+  "user_observations": [
+    "Removal Envelope V1 is visibly worse than the preceding resize-only semantic baseline.",
+    "The design directly unions weak MANO centre-line geometry, broad yellow appearance candidates and wrist-to-boundary forearm guesses into a strong erase decision.",
+    "V1 must be preserved as a failed experiment and must not be repaired by tuning radii or HSV thresholds."
+  ],
+  "diagnosed_failure_modes": [
+    "FULL_MANO_CAPSULES_CREATE_REMOVAL_INSTEAD_OF_REPAIRING_LOCAL_SEMANTIC_GAPS",
+    "WRIST_TO_IMAGE_BOUNDARY_CORRIDOR_CREATES_UNOBSERVED_FOREARM_PIXELS",
+    "COLOR_COMPONENT_CABLE_BRANCH_ACCEPTS_MANY_UNIDENTIFIED_BLOBS",
+    "SELF_REFERENTIAL_COVERAGE_GATES_DO_NOT_MEASURE_BACKGROUND_SPILL_OR_OBJECT_DAMAGE"
+  ],
+  "successor_direction": {
+    "name": "Removal Envelope V2",
+    "status": "AUTHORIZED_FOR_BOUNDED_IMPLEMENTATION_NOT_YET_QUALITY_ADMITTED",
+    "formula": "ADMITTED_SAM_FOREGROUND_PLUS_VALIDATED_LOCAL_REPAIRS",
+    "mano_authority": "LOCAL_GAP_REPAIR_ONLY_NEAR_SAM_FOREGROUND",
+    "forearm_authority": "SELECT_WRIST_CONNECTED_REAL_FOREGROUND_OR_UNKNOWN",
+    "cable_authority": "SMALL_IDENTITY_TRACK_WITH_ANCHOR_THINNESS_PATH_ENDPOINT_AND_BIDIRECTIONAL_TEMPORAL_CHECKS",
+    "required_gates": [
+      "BACKGROUND_SPILL",
+      "AREA_INFLATION",
+      "TEMPORAL_AREA_DERIVATIVE",
+      "PER_SOURCE_REPAIR_CONTRIBUTION"
+    ]
+  },
+  "independent_geometry_route": "FoundationStereo and Object6D remain independent of Clean and may proceed through their own gates.",
+  "authority_limit": "This receipt rejects V1 quality and records the bounded V2 design direction. It does not authorize inpaint, batch expansion, Contact truth, Robot control or physical deployment."
+}

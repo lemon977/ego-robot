@@ -1,21 +1,21 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-18T15:02:37+08:00",
-  "generation_id": "gov-011994-8f17bea2d0cb",
-  "governance_revision": 11994,
+  "generated_at": "2026-09-18T15:53:10+08:00",
+  "generation_id": "gov-012004-9e7a26031573",
+  "governance_revision": 12004,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
-      "bytes": 2217,
+      "bytes": 3186,
       "path": "/mnt/workspace/code/chaoyang/tests/test_data_cleaning_baseline_contract.py",
-      "sha256": "af0d9b0e000a4c292850f951309854ad43cbab35bbcd6ef90d3bd9d88e972120",
+      "sha256": "f6d14c39d3d7e4c1fd41d01a5790080a2cdcce3ccc393c19ee305474d9331a90",
       "stage": "data_cleaning"
     },
     {
-      "bytes": 10463,
+      "bytes": 11694,
       "path": "/mnt/workspace/code/chaoyang/tests/test_governance_fact_ledger.py",
-      "sha256": "627949c259f8a966e147493a89af3c4df9290e7c748cb96661b06e1918e135cc",
+      "sha256": "dab44d05aeb8179337ff342c8d76b2444e94b0b246ada30e906a574c3dd904aa",
       "stage": "governance"
     },
     {
@@ -79,6 +79,12 @@
       "stage": "clean"
     },
     {
+      "bytes": 12478,
+      "path": "/mnt/workspace/code/chaoyang/tests/pipeline/test_removal_envelope_v2.py",
+      "sha256": "77be173815d13942160fe32070ea0ed5e44937974d816728330629fdfeb8d953",
+      "stage": "clean"
+    },
+    {
       "bytes": 2881,
       "path": "/mnt/workspace/code/chaoyang/tests/test_0915_removal_envelope_single_session_canary_v1.py",
       "sha256": "98a5b0737744a161fa4faef0ce8a62ff3ec4f0ca6f20545c91b2a83d31444f9c",
@@ -109,15 +115,15 @@
       "stage": "depth_object6d"
     },
     {
-      "bytes": 5420,
+      "bytes": 12039,
       "path": "/mnt/workspace/code/chaoyang/tests/test_0915_foundationstereo_single_session_canary_v1.py",
-      "sha256": "22de4fc6296268281234b52eab624bcdff0503e591c2e035630b916aeb8848a6",
+      "sha256": "1ebc6f722e55db8d9587433766ee3308f08ab131b077a582fbe28f2396da6ce7",
       "stage": "depth_object6d"
     },
     {
-      "bytes": 10050,
+      "bytes": 10991,
       "path": "/mnt/workspace/code/chaoyang/tests/test_0915_planar_object6d_single_session_v1.py",
-      "sha256": "5ff0b39182e4a34182cdeaa47963ca20c5446ddc571d9eb369b2c88f89a57b81",
+      "sha256": "3e8182f54598d9a196ce9e584e4498d1bc79a657d7db441409f569f88abcc6f7",
       "stage": "object6d"
     },
     {

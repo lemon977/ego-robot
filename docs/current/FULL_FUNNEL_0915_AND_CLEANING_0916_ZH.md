@@ -62,24 +62,42 @@ median/P90/P95 为 1.955/2.804/3.121 px，单会话 rectified 候选为
 保持字节一致；新前臂有证据 92/150、90/150，第三张牌 115/150，右线缆 62/150，
 各皮套与左线缆仅 6–8/150。运行终态为 `PASSED`，但用户人工视觉验收已因 mask 闪烁、
 黄色线缆和皮套未被可靠选中而判为 `REJECTED_QUALITY_AS_CLEAN_BASELINE`；弱角色不能
-据此进入自动 Clean 或全批。后继设计改为分离 Raw Candidate / Semantic / Removal /
-Feather：当前封存运行未保存 raw candidate 像素，必须显式记为缺失；动态 MANO 各向异性
-包络和 cable appearance tracker 只可补齐 Clean removal，不得改写 SAM 原始证据或进入
-Depth/Object6D/Contact/Robot geometry。实现与独立验收边界见
-[`REMOVAL_ENVELOPE_V1_ZH.md`](REMOVAL_ENVELOPE_V1_ZH.md)。浅层复核见
+据此进入自动 Clean 或全批。后继设计分离 Raw Candidate / Semantic / Removal /
+Feather。当前封存运行未保存 raw candidate 像素，必须显式记为缺失。V1 的动态 MANO
+包络、wrist→边界 corridor 和宽松 appearance union 已被人工复核否决；不能继续调半径。
+V2 以 SAM foreground 为主体，弱先验只允许局部 repair，不得改写 SAM 原始证据或进入
+Depth/Object6D/Contact/Robot geometry。V1 失败边界见
+[`REMOVAL_ENVELOPE_V1_ZH.md`](REMOVAL_ENVELOPE_V1_ZH.md)，V2 合同见
+[`REMOVAL_ENVELOPE_V2_ZH.md`](REMOVAL_ENVELOPE_V2_ZH.md)。浅层复核见
 [`visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md`](visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md)。
 
 第 3 个任务已经完成 CPU 执行并生成 150 帧四面板视频。自动门通过：293 个直接观测
 side-frame、7 个双端验证内部 hold、0 个 geometry unknown，direct MANO21 关节覆盖 1.0，
 source bits 逐像素闭合，protected visible-object core 与最终 removal 零交集。Semantic
-质量仍保持 `REJECTED_QUALITY_AS_CLEAN_BASELINE`；Removal 独立为
-`AWAITING_USER_VISUAL_REVIEW`。当前 cable appearance profile 在 150 帧均有候选，靠近
-卡牌黄色图案的少量区域可能是假阳性，所以未运行 inpaint，也未授权扩批。复核见
+质量仍保持 `REJECTED_QUALITY_AS_CLEAN_BASELINE`；Removal 人工质量终态也已判为
+`REJECTED_QUALITY`。V1 将 MANO 中心线、wrist→边界前臂猜测和宽松黄色 appearance 候选
+直接 union 为强擦除区域；150/150 帧都有 cable 候选及第 60 帧 34 个候选连通域证明该
+分支没有形成可靠实例身份。V1 只作为失败实验封存，不调参重试、运行 inpaint 或扩批。
+V2 核心、schema、配置与 16 项合成合同测试已实现，真实视频 Canary 尚未运行；它需要
+真实 foreground proposal、stable-background QA 与 cable reverse-pass，缺失时 fail-closed。
+FoundationStereo/Object6D 与 Clean 解耦。V1 复核见
 [`visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md`](visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)。
+
+第 4 个任务已经完成 150 帧 FoundationStereo GPU canary。模型单次加载、300 次双向
+推理、SBS 与审阅视频完整解码均通过，GPU 租约正常释放；终态仍为
+`REJECTED_QUALITY`。失败门为左右一致性残差跨帧 P90 `17.8653 px > 5 px`，以及帧级
+深度中位数步长 P90 `0.4290 m > 0.35 m`；其余 6 个质量门通过。该结果不授权
+`VISUAL_OBJECT6D_CANDIDATE_INPUT`，因此第 5 个 Planar Object6D 任务没有启动。浅层
+视频与数值见
+[`visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md`](visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md)。
 
 ## 输入与禁止项
 
-- 0915：`/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915`，固定 220 会话、58,686 帧。
+- 0915 逻辑发布身份仍为 `chips_cards_hands__0915`，固定 220 会话、58,686 帧；当前挂载
+  实体根为 `/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915`。旧/新路径下
+  数据集收据、预检、单样本相机参数与 SBS 的 bytes/SHA 完全一致，消费者只能按
+  [`0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json`](../../tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json)
+  枚举文件逐项验证后解析路径；没有修改 `/mnt/data/egodata`。
 - 0916：`/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916`，固定 240 会话。
 - 0915 只以物理左目 RGB 上的 HaWoR 作为手部视觉来源；PICO26、controller pose 和 `trackingData` 手部字段保留但不消费。
 - 两个源树及现有 0915 processed 发布根均只读；0916 发布到独立的 `processed/chips_cards_handle_highview_0916`。

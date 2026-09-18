@@ -1,9 +1,11 @@
 from __future__ import annotations
 
 import inspect
+import hashlib
+import json
+import os
 from pathlib import Path
 
-import cv2
 import numpy as np
 import pytest
 
@@ -89,12 +91,25 @@ def test_runner_is_single_weight_t0_rectification_and_no_external_accuracy_claim
     assert "trackingData_hand" in source and "NOT_CONSUMED" in source
 
 
+def test_runner_accepts_only_sha_bound_enumerated_processed_root_relocation() -> None:
+    relocation = json.loads(subject.PATH_RELOCATION_RECEIPT.read_text(encoding="utf-8"))
+    assert relocation["status"] == "PASS_CONTENT_IDENTICAL_PATH_RELOCATION"
+    assert relocation["source_data_modified"] is False
+    assert subject.LEGACY_SESSION.parts[-4] == "chips_cards_hands__0915"
+    assert subject.SESSION.parts[-4] == "chips_cards_hands_0915"
+    source = inspect.getsource(subject.validate_preflight)
+    assert 'for field in ("bytes", "sha256")' in source
+    assert "legacy path identity drift" in source
+    assert "content closure drift after path relocation" in source
+
+
 def test_runner_uses_pinned_environment_and_central_gpu_lease() -> None:
     assert subject.PINNED_PYTHON_LAUNCHER.name == "foundationstereo_gpu_python.sh"
     assert subject.CENTRAL_GPU_LEASE.name == "run_gpu_command_with_v71_lease.py"
     source = Path(subject.__file__).read_text(encoding="utf-8")
     assert '"--priority", "CANARY"' in source
     assert '"--", *worker_command' in source
+    assert '"--executor-epoch", str(args.executor_epoch)' in source
 
 
 def test_orchestrator_polls_worker_before_reading_released_lease() -> None:
@@ -112,7 +127,7 @@ def test_namespaces_are_task_owned_and_visual_is_fixed() -> None:
         subject.OUTPUT_NAMESPACE / "attempts/attempt_0001",
         subject.VISUAL_NAMESPACE,
     )
-    with pytest.raises(RuntimeError, match="output must stay"):
+    with pytest.raises(RuntimeError, match="fresh fixed attempt"):
         subject.validate_output_namespace(
             subject.OUTPUT_NAMESPACE.parent / "another_task/attempt_0001",
             subject.VISUAL_NAMESPACE,
@@ -132,3 +147,130 @@ def test_edge_support_returns_bounded_fraction() -> None:
     metrics = subject.edge_support_metrics(image, disparity, np.ones_like(disparity, bool))
     assert metrics["strong_disparity_edge_pixels"] > 0
     assert 0.0 <= metrics["rgb_supported_disparity_edge_fraction"] <= 1.0
+
+
+def test_exactly_one_sbs_is_required(tmp_path: Path) -> None:
+    source = tmp_path / "source_stereo"
+    source.mkdir()
+    expected = source / f"CameraRecord_{subject.SESSION_ID}_stereo.mp4"
+    expected.write_bytes(b"sbs")
+    assert subject.resolve_exactly_one_sbs(tmp_path) == expected
+    (source / "another_stereo.mp4").write_bytes(b"ambiguous")
+    with pytest.raises(RuntimeError, match="exactly one SBS"):
+        subject.resolve_exactly_one_sbs(tmp_path)
+
+
+def test_writer_claim_binds_live_pid_startticks_epoch_token_and_signature(tmp_path: Path) -> None:
+    output = tmp_path / "attempt_0001"
+    output.mkdir()
+    signature_sha = "1" * 64
+    claim = {
+        "schema_version": "0915-foundationstereo-writer-claim-v1",
+        "task_id": subject.TASK_ID,
+        "session_id": subject.SESSION_ID,
+        "attempt_id": "attempt_0001",
+        "weights": [subject.MODEL_WEIGHT],
+        "claimed_at": "2026-09-18T16:00:00+08:00",
+        "status": "CLAIMED",
+        "pid": os.getpid(),
+        "proc_start_ticks": subject.process_start_ticks(os.getpid()),
+        "executor_epoch": 7,
+        "fencing_token_sha256": hashlib.sha256(b"bounded-fence-token").hexdigest(),
+        "run_signature_sha256": signature_sha,
+        "unique_write_root": str(output.resolve()),
+    }
+    claim_path = output / "CLAIM.json"
+    claim_path.write_text(json.dumps(claim), encoding="utf-8")
+    observed = subject.validate_writer_claim(
+        claim_path, output=output, signature_sha256=signature_sha,
+        executor_epoch=7, require_current_process_descendant=True,
+    )
+    assert observed["pid"] == os.getpid()
+    claim["proc_start_ticks"] += 1
+    claim_path.write_text(json.dumps(claim), encoding="utf-8")
+    with pytest.raises(RuntimeError, match="claim/fence mismatch"):
+        subject.validate_writer_claim(
+            claim_path, output=output, signature_sha256=signature_sha,
+            executor_epoch=7, require_current_process_descendant=True,
+        )
+
+
+def test_immutable_writer_records_refuse_overwrite(tmp_path: Path) -> None:
+    path = tmp_path / "CLAIM.json"
+    subject.atomic_json_new(path, {"writer": 1})
+    with pytest.raises(FileExistsError):
+        subject.atomic_json_new(path, {"writer": 2})
+    assert json.loads(path.read_text(encoding="utf-8")) == {"writer": 1}
+
+
+def test_runtime_closure_receipt_pins_current_bounded_canary_without_claiming_inference() -> None:
+    receipt = json.loads(subject.RUNTIME_CLOSURE_RECEIPT.read_text(encoding="utf-8"))
+    config = subject.validate_canary_config()
+    assert receipt["status"] == "PASS_BOUNDED_CANARY_RUNTIME_IDENTITY_CLOSED"
+    assert receipt["execution_performed"] is False
+    assert receipt["batch_authorized"] is False
+    assert receipt["legacy_environment_authority_role"] == (
+        "PINNED_PROVENANCE_NOT_CURRENT_GPU_ADMISSION"
+    )
+    assert receipt["output_schema_identities"] == config["output_schema_identities"]
+    assert receipt["vendor_runtime_tree"] == subject._vendor_manifest_identity()
+    assert set(receipt["artifacts"]) == set(subject._runtime_paths())
+    # The 3.3 GB checkpoint is closed by its independently materialized pin;
+    # this unit test deliberately does not load or rehash model bytes.
+    pin = json.loads(subject.ASSET_PIN.read_text(encoding="utf-8"))
+    assert receipt["artifacts"]["checkpoint"]["sha256"] == (
+        pin["files"][subject.CHECKPOINT.name]["sha256"]
+    )
+
+
+def test_run_signature_covers_every_runtime_and_input_authority() -> None:
+    source = inspect.getsource(subject.build_run_signature)
+    for token in (
+        "task_packet", "t0_stereo_preflight", "processed_root_relocation",
+        "camera_params", "source_stereo", "runtime_closure_receipt",
+        "vendor_runtime_tree", "calibration_identity", "schema_identity",
+        "checkpoint_cfg", "canary_config",
+    ):
+        assert token in source
+    assert set(subject._runtime_paths()) == {
+        "runner", "model_worker", "gpu_launcher", "gpu_lease_wrapper",
+        "environment_authority", "environment_lock",
+        "environment_snapshot_manifest", "vendor_manifest", "checkpoint",
+        "checkpoint_cfg", "asset_pin", "canary_config",
+    }
+
+
+def test_worker_cannot_bypass_orchestrator_writer_fence() -> None:
+    source = inspect.getsource(subject.run_worker)
+    assert "worker claim must be the attempt-owned writer claim" in source
+    assert "worker signature must be the attempt-owned run signature" in source
+    assert "require_current_process_descendant=True" in source
+    main_source = inspect.getsource(subject.main)
+    assert "worker requires orchestrator-owned claim and run signature" in main_source
+
+
+def test_consumption_authority_is_success_only_and_scope_limited() -> None:
+    assert subject.consumer_authority(True) == {
+        "consumption_authorized": True,
+        "authorized_scopes": ["VISUAL_OBJECT6D_CANDIDATE_INPUT"],
+    }
+    assert subject.consumer_authority(False) == {
+        "consumption_authorized": False,
+        "authorized_scopes": [],
+    }
+    source = inspect.getsource(subject.run_worker)
+    assert source.count("**consumer_authority(bool(quality[\"passed\"]))") == 3
+    assert '"external_accuracy": "UNVERIFIED"' in source
+
+
+def test_depth_packet_closes_quality_terminal_and_runtime_identity_outputs() -> None:
+    packet = subject.build_packet(subject.TASK_ID)
+    assert len(packet["read_set"]) <= 8
+    assert "REJECTED_QUALITY" in packet["stop_conditions"]
+    assert "configs/systems/depth/foundationstereo_0915_canary_v1.json" in packet["read_set"]
+    assert "tasks/receipts/FOUNDATIONSTEREO_RUNTIME_CLOSURE_V1.json" in packet["read_set"]
+    for name in (
+        "CLAIM.json", "RUN_SIGNATURE.json", "DEPTH_CONTRACT.json",
+        "DEPTH_WORKER_RESULT.json", "RESULT.json", "RUN_RECEIPT.json",
+    ):
+        assert name in packet["required_outputs"]

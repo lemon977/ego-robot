@@ -1,0 +1,97 @@
+{
+  "schema_version": "foundationstereo-runtime-closure-v1",
+  "status": "PASS_BOUNDED_CANARY_RUNTIME_IDENTITY_CLOSED",
+  "task_id": "0915_foundationstereo_single_session_canary_v1",
+  "environment_id": "foundationstereo-py311-v1",
+  "execution_performed": false,
+  "gpu_used": false,
+  "batch_authorized": false,
+  "external_accuracy": "UNVERIFIED",
+  "legacy_environment_authority_role": "PINNED_PROVENANCE_NOT_CURRENT_GPU_ADMISSION",
+  "legacy_authority_known_drift": "The retained environment authority and lock predate the current pruned vendor runtime tree and are signed as provenance only; this receipt independently binds the exact bounded-canary runtime closure.",
+  "artifacts": {
+    "runner": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_foundationstereo_single_session_canary_v1.py",
+      "bytes": 63491,
+      "sha256": "5ea1d946c534df6c621be90e641e7dc9cba3ddfb46851a5f61f477479da07a1f"
+    },
+    "model_worker": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py",
+      "bytes": 25542,
+      "sha256": "36344bd4f7627bfa86416d1c61ef180a50bc6cc486c48987411b55aa217d1c54"
+    },
+    "gpu_launcher": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/foundationstereo_gpu_python.sh",
+      "bytes": 2281,
+      "sha256": "f4d87bbe175f0882756ebeb630eb65e98402b3e74381a64bd34647060743b92d"
+    },
+    "gpu_lease_wrapper": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+      "bytes": 9036,
+      "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+    },
+    "environment_authority": {
+      "path": "/mnt/workspace/code/chaoyang/configs/systems/foundationstereo/environment_authority.json",
+      "bytes": 7999,
+      "sha256": "834e7f8bdf288a0c89c49111be8dabfaa24683e574d9f007a6c66f8bdaf743f1"
+    },
+    "environment_lock": {
+      "path": "/mnt/workspace/code/chaoyang/configs/systems/foundationstereo/local_environment_lock.json",
+      "bytes": 2195,
+      "sha256": "ca0f99b6dc1716c96472a4e82a95798bedb2dcbda3a9792778138c8142e622fa"
+    },
+    "environment_snapshot_manifest": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/environments/foundationstereo-py311-v1/.chaoyang-hardlink-snapshot/manifest.json.gz",
+      "bytes": 1926343,
+      "sha256": "eb21bb9eedfab20097c3b05a93ef87b4e86df7a3376d8a337c088e0c095a733e"
+    },
+    "vendor_manifest": {
+      "path": "/mnt/workspace/code/chaoyang/manifests/vendor.json",
+      "bytes": 4448,
+      "sha256": "e4e31a7b19feaad9bf472f7ded04b7db69b66caf587774060faecfae838cb635"
+    },
+    "checkpoint": {
+      "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+      "bytes": 3298527334,
+      "sha256": "60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1"
+    },
+    "checkpoint_cfg": {
+      "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/foundationstereo/23-51-11/cfg.yaml",
+      "bytes": 499,
+      "sha256": "a9d9dd2137c30edc2236194f62df14d222dad5fd3287a33c7540b543bb93853f"
+    },
+    "asset_pin": {
+      "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/foundationstereo/23-51-11/ASSET_PIN.json",
+      "bytes": 1402,
+      "sha256": "dea0fe13b7c5fe4b59e54375d7ed96d1d26ab5be731c47aa7ac56b88368d8ee7"
+    },
+    "canary_config": {
+      "path": "/mnt/workspace/code/chaoyang/configs/systems/depth/foundationstereo_0915_canary_v1.json",
+      "bytes": 1914,
+      "sha256": "71805036f1850f473e7aab7820cff468ca7cedd923f1a98472f3c45abd12e102"
+    }
+  },
+  "vendor_runtime_tree": {
+    "algorithm": "sha256-file-list-v1",
+    "sha256_file_list": "cdd17c958140e132263b2dfc39e2381fd45efcb13d8f0e3a1b82e702c90a9302",
+    "regular_files": 198,
+    "symlinks": 0,
+    "regular_bytes": 2305320
+  },
+  "output_schema_identities": {
+    "calibration": "0915-foundationstereo-frozen-calibration-v1",
+    "registration": "0915-foundationstereo-registration-v1",
+    "depth_contract": "0915-foundationstereo-depth-contract-v1",
+    "depth_summary": "0915-foundationstereo-depth-summary-v1",
+    "worker_result": "0915-foundationstereo-worker-result-v1",
+    "terminal_result": "0915-foundationstereo-single-session-canary-result-v1"
+  },
+  "consumer_policy": {
+    "quality_pass_required": true,
+    "authorized_scopes": [
+      "VISUAL_OBJECT6D_CANDIDATE_INPUT"
+    ],
+    "all_other_consumers_authorized": false
+  },
+  "claim_limit": "Identity closure for one governed FoundationStereo GPU canary only. It does not report inference, external physical accuracy, batch authority, production authority, or downstream consumption before all runtime and quality gates pass."
+}

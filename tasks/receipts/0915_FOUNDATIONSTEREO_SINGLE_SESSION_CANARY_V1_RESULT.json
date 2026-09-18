@@ -1,0 +1,67 @@
+{
+  "authorized_scopes": [],
+  "batch_started": false,
+  "calibration": {
+    "bytes": 6243,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/CALIBRATION.json",
+    "sha256": "a87ea4f2e002f3f9fe46c1e8a98bb648dadfcd4a0f75ae060fd8a18040be250d"
+  },
+  "claim_limit": "Rectified-left optical-Z in metres from calibrated fx*baseline/disparity; external accuracy remains unverified and no native model confidence is claimed.",
+  "consumption_authorized": false,
+  "depth_admission": "REJECTED_QUALITY",
+  "depth_contract": {
+    "bytes": 1275,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/DEPTH_CONTRACT.json",
+    "sha256": "f7daa3d56638208675ba0c21d4c14c539010dd543022d0088fcd91b555266a8c"
+  },
+  "depth_summary": {
+    "bytes": 173435,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/DEPTH_SUMMARY.json",
+    "sha256": "b03c2a87b25959393e7975abce260933decd512157403f07920bc540790887de"
+  },
+  "external_accuracy": "UNVERIFIED",
+  "first_blocker": "DEPTH_QUALITY_GATES_FAILED",
+  "gpu_command_receipt": {
+    "bytes": 16383,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "c662ec33c744e0a283cd86ccb644232e19ad4c7240403820e0715825ca7dc28a"
+  },
+  "registration": {
+    "bytes": 1782,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/REGISTRATION.json",
+    "sha256": "e4dd5fdd230aa0727016d6ee689bd93b50ee12b5dd2622227cb2ec16853e49ea"
+  },
+  "registration_maps": {
+    "bytes": 4817592,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/REGISTRATION_MAPS.npz",
+    "sha256": "a61c821a84693531b1ce8db874985062cc5760558fb30b1706493c6bb97885ce"
+  },
+  "result": {
+    "bytes": 3165,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "e67148f27752af9924d3559594f164662824235c3c46bcb0307f163a2dce2bb2"
+  },
+  "run_signature": {
+    "bytes": 6614,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "b8a3473f2d6c34097b33661e6b7d17c1c77fd232488c4ddf02d3184b53d5dbbe"
+  },
+  "schema_version": "0915-foundationstereo-single-session-canary-result-v1",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "REJECTED_QUALITY",
+  "task_id": "0915_foundationstereo_single_session_canary_v1",
+  "visual": {
+    "bytes": 5234398,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_FOUNDATIONSTEREO_CANARY_V1/0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4",
+    "sha256": "8a9c209e44092f223a148f9f43b8e67169b42091c5cd0b315e4e617ff147d318"
+  },
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "writer_claim": {
+    "bytes": 1008,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "6f3506039e00967fce3c6992e5d8ad3623c23254902d54bd39212a8c1cba726a"
+  }
+}

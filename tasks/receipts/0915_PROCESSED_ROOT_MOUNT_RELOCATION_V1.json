@@ -1,0 +1,39 @@
+{
+  "schema_version": "0915-processed-root-mount-relocation-v1",
+  "status": "PASS_CONTENT_IDENTICAL_PATH_RELOCATION",
+  "observed_at": "2026-09-18T15:18:00+08:00",
+  "logical_dataset_name": "chips_cards_hands__0915",
+  "receipt_bound_legacy_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915",
+  "current_materialized_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915",
+  "legacy_root_present": false,
+  "current_root_present": true,
+  "source_data_modified": false,
+  "equivalence_scope": "CONTENT_SHA_AND_BYTES_ONLY_FOR_ENUMERATED_FILES",
+  "dataset_evidence": {
+    "DATASET_RESULT.json": {
+      "bytes": 101474,
+      "sha256": "1f3d146395c1bd86a034f75bf66ec958f5518866f289b6de49d908ef6ced0c20"
+    },
+    "PREFLIGHT_AUDIT.json": {
+      "bytes": 3658231,
+      "sha256": "ac517ec9a67f6791318f204a135fc424211333b959d8b10d514a8c8f8cecc220"
+    },
+    "SOURCE_PATH_REPAIR_20260917.json": {
+      "bytes": 1970,
+      "sha256": "77e45e6402a4b4caa76b43e89a496d5d3c48fde4b73b409e5feeb8979bbad09e"
+    }
+  },
+  "single_session_depth_canary_evidence": {
+    "session_id": "play_cards_0915_001",
+    "camera_params.json": {
+      "bytes": 3454,
+      "sha256": "d6b30dcf434e49c3b400bf70930fa8e6b3b93269e73cd9ef33e81fea2e771ad6"
+    },
+    "source_stereo/CameraRecord_play_cards_0915_001_stereo.mp4": {
+      "bytes": 12601484,
+      "sha256": "e5259607b8636fbcee0caeeb09b116480f66e12f23cd7489fc7edb789cdbee79"
+    }
+  },
+  "consumer_policy": "Consumers may resolve only the enumerated legacy references to the current root after verifying bytes and SHA-256. This receipt does not authorize writes, broad prefix substitution without content verification, or changes to the immutable cleaning completion receipt.",
+  "claim_limit": "Path relocation equivalence only; no new cleaning, data mutation, semantic change, physical calibration claim or batch authority."
+}

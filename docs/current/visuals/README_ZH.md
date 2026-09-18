@@ -4,16 +4,27 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
-## 0915 Removal Envelope V1 单会话（等待人工质量结论）
+## 0915 FoundationStereo 单会话（质量拒绝）
+
+- [`0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md`](0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md)
+- [`0915_FOUNDATIONSTEREO_CANARY_V1/0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4`](0915_FOUNDATIONSTEREO_CANARY_V1/0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4)
+
+150/150 帧、单次模型加载和 300 次双向推理均正常完成。几何覆盖、最终有效覆盖、边缘
+支持和公式复算通过；左右一致性残差跨帧 P90 为 `17.8653 px`（门限 5 px），时序深度
+中位数步长 P90 为 `0.4290 m`（门限 0.35 m），因此终态为
+`REJECTED_QUALITY`。结果不授权 Object6D，Planar Object6D 未启动。
+
+## 0915 Removal Envelope V1 单会话（人工质量已拒绝）
 
 - [`0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md`](0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)
 - [`0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_REVIEW.mp4`](0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_REVIEW.mp4)
 - [`0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_CONTACT_SHEET.jpg`](0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_CONTACT_SHEET.jpg)
 
-CPU-only 150 帧执行与来源闭合已经通过；Semantic 仍是已拒绝的 SAM 质量，Removal 独立为
-`AWAITING_USER_VISUAL_REVIEW`。MANO capsule 改善手指/皮套的连续覆盖；当前 cable
-appearance profile 仍可能在卡牌黄色图案附近产生小范围假阳性，因此不能自动宣布 Clean
-PASS。没有运行 inpaint，Removal/Feather 禁止反哺任何几何证据链。
+CPU-only 150 帧执行与来源闭合已经通过，但用户完整视频复核将 Removal 质量判为
+`REJECTED_QUALITY`。V1 的 MANO 全胶囊、wrist→边界 corridor 和宽松黄色 appearance
+分支把弱证据直接升级为强擦除区，视觉效果明显劣于 resize-only semantic baseline。
+V1 作为失败反例封存，不调半径/HSV 重试；没有运行 inpaint。V2 只能以 admitted SAM
+foreground 为主体并做局部 validated repair。
 
 ## 0915 SAM3.1 弱角色单会话（已拒绝作为 Clean 基线）
 

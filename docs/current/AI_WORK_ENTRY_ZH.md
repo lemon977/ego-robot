@@ -73,22 +73,24 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
   主阻塞是 raw track 没产出，面积门只是将空结果显式 fail-closed。前臂另有反向 tracker
   未确认实例，后续必须分开优化。
 
-- 下一版 Clean 候选固定为 Raw Candidate / Semantic / Removal / Feather 四层隔离，详见
-  [`REMOVAL_ENVELOPE_V1_ZH.md`](REMOVAL_ENVELOPE_V1_ZH.md)。封存的弱角色 SAM 运行没有
-  保存 raw candidate 像素，因此本次必须登记为 `ABSENT_UPSTREAM_NOT_PERSISTED`，不得从
-  semantic mask 反造。SAM semantic 原样只读；Removal 可并入随投影尺度变化的 MANO
-  finger capsule、palm 及 wrist/forearm corridor；Feather 只服务后续独立 inpaint。
-  Sleeve 语义是 optional evidence，不再单独阻塞 Clean。黄色只是当前设备实例的可替换
-  appearance profile，不是 cable 系统定义。模块、合同和 CPU 单样本任务已经实现；只可按
-  当前任务索引执行，不授权 inpaint、220 会话扩批或将 Removal/Feather 用于
-  Depth、Object6D、Contact、Robot geometry/control truth。
+- 下一版 Clean 候选固定为 Raw Candidate / Semantic / Removal / Feather 四层隔离。V1
+  结构性失败见 [`REMOVAL_ENVELOPE_V1_ZH.md`](REMOVAL_ENVELOPE_V1_ZH.md)；V2 合同见
+  [`REMOVAL_ENVELOPE_V2_ZH.md`](REMOVAL_ENVELOPE_V2_ZH.md)。V2 以 admitted SAM
+  foreground 为唯一主体，MANO、sleeve、forearm proposal 和 cable appearance 只能做
+  有局部支持的有限 repair，证据不足保持 `UNKNOWN`。V2 核心、schema、配置和合成测试已
+  实现，但真实视频 Canary 尚未运行，不能宣称 Clean 质量通过。Removal/Feather 继续禁止
+  进入 Depth、Object6D、Contact、Robot geometry/control truth。
 
 - Removal Envelope V1 已完成 150 帧 CPU 单样本执行，浅层入口见
   [`0915_REMOVAL_ENVELOPE_CANARY_V1`](visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)。
   自动门确认 293 个直接观测 side-frame、7 个双端验证内部 hold、0 个 geometry unknown，
-  direct MANO21 关节覆盖 1.0，source bits 闭合且 protected core 零交集。当前状态仍是
-  `AWAITING_USER_VISUAL_REVIEW`：appearance cable 每帧均有候选，靠近卡牌黄色图案的
-  小区域可能是假阳性；不得自动批准 Clean、运行 inpaint 或扩批。
+  direct MANO21 关节覆盖 1.0，source bits 闭合且 protected core 零交集；这些自一致性门
+  没有测量背景误擦或 cable 身份精度。用户完整视频复核已将质量终态判为
+  `REJECTED_QUALITY`：V1 把 MANO 中心线、wrist→边界前臂猜测及宽松黄色候选直接升级成
+  强 removal。V1 作为失败实验封存，禁止调半径/HSV 重试、inpaint 或扩批。V2 只允许
+  `SAM admitted foreground + validated local repairs`；当前 16 项 V2 单测通过，但缺真实
+  foreground proposal、stable-background hook 与 cable reverse-pass 的实片证据，因此
+  状态为 `NOT_EVALUATED`。Depth/Object6D 不依赖 Clean，继续走独立证据门。
 
 首个 CPU coordinator 已完成并通过，两条 lane 的浅层证据见
 [`0915_STEREO_INTERACTION_CPU_CANARY_V1`](visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)。
@@ -98,6 +100,17 @@ resize-only 和单会话内参＋图像估计/held-out 验收的 rectified 域�
 v0a 明确没有 relative-Z、遮挡顺序、接触真值、Object6D 或 Robot authority。只有 Stereo
 内部 admission 通过时，后续 FoundationStereo 单样本任务才能注册。当前 admission 为
 `PASS_GPU_DEPTH_ADMISSION`，只授权后续单样本任务，不代表 FoundationStereo 或外部精度通过。
+当前 0915 processed 挂载实体名为单下划线 `chips_cards_hands_0915`，而冻结收据保留逻辑
+发布名 `chips_cards_hands__0915`；只有枚举文件 bytes/SHA 与
+[`0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json`](../../tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json)
+同时闭合时才允许解析该只读路径搬迁，禁止宽泛字符串替换或修改数据侧文件。
+
+- FoundationStereo 单会话已经完整运行 150 帧，模型加载 1 次、双向推理 300 次且运行
+  闭包通过；终态为 `REJECTED_QUALITY`，不是环境失败。左右一致性残差跨帧 P90 为
+  `17.8653 px`（门限 5 px），时序深度中位数步长 P90 为 `0.4290 m`（门限 0.35 m）。
+  `consumption_authorized=false` 且授权 scope 为空，因此 Planar Object6D 没有启动。
+  浅层复核见
+  [`0915_FOUNDATIONSTEREO_CANARY_V1`](visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md)。
 
 如果用户提出新目标，应建立新的、有限收敛的任务包并发布新的治理 revision；不要把旧任务包改回 `PENDING`。任务包至少固定输入、代码、配置、权重或 `ABSENT`、标定或 `ABSENT`、输出 schema、质量门、预算、终止条件和回滚路径。
 

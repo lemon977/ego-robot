@@ -1,8 +1,15 @@
-# Removal Envelope V1 当前合同
+# Removal Envelope V1 失败实验封存
 
-状态：单会话执行与证据发布 `PASSED`，Removal 质量
-`AWAITING_USER_VISUAL_REVIEW`；浅层复核见
+状态：单会话执行与证据发布 `PASSED`，人工视觉质量
+`REJECTED_QUALITY`。V1 只作为失败实验与回归反例封存，不允许调半径/HSV 后重试，不得
+进入 inpaint 或扩批。裁决见
+[`0915_REMOVAL_ENVELOPE_V1_USER_VISUAL_REVIEW.json`](../../tasks/receipts/0915_REMOVAL_ENVELOPE_V1_USER_VISUAL_REVIEW.json)，浅层复核见
 [`visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md`](visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)。
+
+失败原因是结构性证据越权：MANO 中心线、黄色 appearance 候选和 wrist→边界前臂猜测
+被直接 union 成“必须擦除”。自动门只证明来源闭合与骨架覆盖，没有测量背景误擦、面积
+膨胀、repair 主导比例或 cable 身份精度。第 60 帧的 34 个黄色候选连通域以及全片
+150/150 `APPEARANCE_TRACKED` 是失败证据，不是跟踪成功。
 
 ## 目的
 
@@ -23,7 +30,7 @@ inpaint、不启动 220 会话扩批。
 证据判断；`removal_envelope` 与 `feather_alpha` 明确禁止作为 Depth、Object6D、Contact、
 Robot geometry 或 control ground truth 的输入。
 
-## V1 来源
+## 已拒绝的 V1 来源
 
 ```text
 Removal Envelope V1
@@ -77,7 +84,7 @@ interaction band。禁止直接计算 `human_envelope - whole_object_mask`：真
 重叠仍允许 erase，隐藏物体保持 unknown，后续 inpaint 的观感不能提升 Object6D 或
 Contact 权限。
 
-## 独立验收
+## 人工验收终态
 
 Semantic 现状保持 `REJECTED_QUALITY_AS_CLEAN_BASELINE`。Removal 单独报告：
 
@@ -89,8 +96,11 @@ Semantic 现状保持 `REJECTED_QUALITY_AS_CLEAN_BASELINE`。Removal 单独报�
 - cable region 是否覆盖可见线缆且没有明显漂移。
 
 自动门只验证来源闭合、MANO 关节覆盖、protected core 不相交、帧数、完整视频解码、输入
-SHA 不变及基础时序统计。最终 `PASS` 必须由完整视频人工复核；运行 `PASSED` 仅表示证据
-生成成功，不能代替视觉质量结论。
+SHA 不变及基础时序统计。完整视频人工复核已经否决质量：V1 将弱 prior 主动生成的大块
+区域升级为强 removal，背景/任务物体误伤风险不可接受。运行 `PASSED` 仅表示证据生成
+成功，不能代替视觉质量结论。
 
-真实 inpaint 是另一个绑定自身权重的任务。本模块只生成 envelope、source provenance、
-feather alpha 和审阅材料。
+V2 必须改为 `admitted SAM foreground + validated local repairs`：MANO 只在 SAM 邻域内补
+局部断口；forearm 只能从真实 foreground proposal 中选择 wrist-connected 区域；cable
+只能接受带 anchor、细长度、路径、端点和双向时序约束的极少实例。无法验证时保持
+`UNKNOWN`。真实 inpaint 仍是另一个绑定自身权重的任务。

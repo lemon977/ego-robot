@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T15:02:37+08:00",
-  "generation_id": "gov-011994-8f17bea2d0cb",
-  "governance_revision": 11994,
+  "generated_at": "2026-09-18T15:53:10+08:00",
+  "generation_id": "gov-012004-9e7a26031573",
+  "governance_revision": 12004,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -562,11 +562,12 @@
         ]
       },
       "stage": "Role Mask",
-      "successor_requirement": "SAM3.1 remains the only executable semantic Mask model. Evaluate a separate provenance-bearing Clean removal envelope from SAM evidence plus bounded MANO/cable priors without registering an alternate model route; do not rewrite geometric removal pixels as semantic observations.",
+      "successor_requirement": "SAM3.1 remains the only executable semantic Mask model. Removal V1 is rejected: a successor may add only validated local repairs near admitted SAM foreground, never promote weak MANO, forearm or appearance priors into unconstrained erase regions, and must proceed without registering an alternate model route.",
       "superseded_implementations": [
         "metadata-only masks",
         "zero-reject full-session refresh gate",
-        "SAM2.1/Cutie challenger selection"
+        "SAM2.1/Cutie challenger selection",
+        "Removal Envelope V1 weak-evidence union"
       ],
       "weights": [
         {
@@ -661,9 +662,9 @@
           "sha256": "64cc40ebc6a82a65008d1e255c5343cc6fc9a2b94396af4d5e2655341fcc89d3"
         },
         {
-          "bytes": 40360,
+          "bytes": 63491,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_foundationstereo_single_session_canary_v1.py",
-          "sha256": "ca34de27f9d990002a11df6b22eddbec91a7dc83d2aeb313d60a70cf8c702dbc"
+          "sha256": "5ea1d946c534df6c621be90e641e7dc9cba3ddfb46851a5f61f477479da07a1f"
         },
         {
           "bytes": 19267,
@@ -680,7 +681,9 @@
       "input_authority": "REGISTERED_RECTIFIED_STEREO_AND_SAME_SESSION_CALIBRATION",
       "known_limitations": [
         "FoundationStereo exposes no native confidence in this contract.",
-        "Internal metric closure is not external millimetre accuracy."
+        "Internal metric closure is not external millimetre accuracy.",
+        "The 0915 single-session 150-frame canary is REJECTED_QUALITY: LR residual P90 across per-frame P90 is 17.8653 px above the 5 px limit and temporal median-depth step P90 is 0.4290 m above the 0.35 m limit.",
+        "The rejected result has consumption_authorized=false and cannot feed Object6D."
       ],
       "output_schema": "depth_m+depth_valid+registration",
       "quality_gates": {
@@ -705,7 +708,7 @@
         ]
       },
       "stage": "Depth",
-      "successor_requirement": "External 30/50/70/100 cm validation is required for physical accuracy claims.",
+      "successor_requirement": "Diagnose LR reprojection direction/occlusion handling and temporal outliers in a new bounded task without lowering gates. External 30/50/70/100 cm validation remains required for physical accuracy claims.",
       "superseded_implementations": [
         "uncorrected and preview-only depth"
       ],
@@ -742,9 +745,9 @@
           "sha256": "d87da58d3f293ecd85c290715f59eeadef41f6357165a4605d21eca8830e04cd"
         },
         {
-          "bytes": 23778,
+          "bytes": 22342,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_planar_object6d_single_session_canary_v1.py",
-          "sha256": "5aaf8aa896972766d48be2c6325d9ef16504425bfe2072e1b7cf429ae89af195"
+          "sha256": "dc07f28a2d406135c8ebd1910e31c4a4d23d198833c14d4c68cc9652bb3fb05f"
         },
         {
           "bytes": 17502,
@@ -767,7 +770,8 @@
       "known_limitations": [
         "Only visible-surface geometry is measured; occluded frames remain invalid.",
         "Plane residual is not external pose truth.",
-        "Legacy T_object_to_camera is in the rectified-depth camera. Its legacy T_object_to_world omitted rectified-to-selected registration and is forbidden for Robot/Contact consumption without the immutable selected-camera adapter."
+        "Legacy T_object_to_camera is in the rectified-depth camera. Its legacy T_object_to_world omitted rectified-to-selected registration and is forbidden for Robot/Contact consumption without the immutable selected-camera adapter.",
+        "The current 0915 FoundationStereo canary is REJECTED_QUALITY and grants no Object6D input scope; the planar single-session successor was not executed."
       ],
       "output_schema": "camera_world_SE3_observed_only",
       "quality_gates": {
@@ -832,6 +836,21 @@
           "sha256": "674788d2d96214d6612a37d5a6d06427cf7c95b1ce09e87598b732d18aea8f81"
         },
         {
+          "bytes": 34955,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/removal_envelope_v2.py",
+          "sha256": "0e2f4f0c99a9b55e8220f69048603dcbf046cd9757dc21c7469699d2559170d2"
+        },
+        {
+          "bytes": 2977,
+          "path": "/mnt/workspace/code/chaoyang/contracts/removal_envelope_v2.schema.json",
+          "sha256": "ba9c99e38165146fed3798c709c11c2a379c672a57d3ca06457beab34747158e"
+        },
+        {
+          "bytes": 2469,
+          "path": "/mnt/workspace/code/chaoyang/configs/systems/clean/removal_envelope_0915_play_cards_001_v2.json",
+          "sha256": "104f1495d1262001f293c404b9a4085943a927ce0661c1733aabe66df9a38253"
+        },
+        {
           "bytes": 19267,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
           "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
@@ -847,7 +866,7 @@
         "A structural Grade-B terminal proves frame/provenance/decode closure, not contact-boundary or semantic inpainting correctness.",
         "Generated pixels are visual completion, not physical background truth.",
         "Clean never feeds Depth/Object6D/contact truth.",
-        "Removal Envelope V1 is a bounded successor candidate, not yet a passed Clean baseline. It separates sealed semantic evidence from inferred erase support and feather alpha; its current upstream raw SAM candidate pixels were not persisted and may not be reconstructed."
+        "Removal Envelope V1 is REJECTED_QUALITY and retained only as a failed experiment. V2 has a tested conservative core but no real-video canary authority: admitted SAM semantic evidence is the base and weak priors may only create validated local repairs."
       ],
       "output_schema": "clean_frames+master+review+source_map+result",
       "quality_gates": {
@@ -872,7 +891,7 @@
         ]
       },
       "stage": "Clean",
-      "successor_requirement": "Run the weightless, single-session Removal Envelope V1 canary first: admitted SAM hand/forearm plus optional sleeve evidence, bounded MANO finger/palm/wrist/forearm support, replaceable cable appearance tracking, source-bit provenance, visible-object-core protection and independent human visual review. Keep removal/feather forbidden to Depth/Object6D/Contact/Robot geometry. Inpaint remains a separate weighted task.",
+      "successor_requirement": "Integrate the weightless, single-session Removal Envelope V2 runner with real foreground proposals, a stable-background QA hook and cable reverse-pass support. Keep SAM semantic foreground as the only base; MANO/sleeve/forearm/cable may add only validated local repairs. Missing evidence stays UNKNOWN. Keep removal/feather forbidden to Depth/Object6D/Contact/Robot geometry. Inpaint remains a separate weighted task.",
       "superseded_implementations": [
         "unproven clean previews",
         "the inaccurate label that the current identical-coordinate donor uses Stereo geometry"

@@ -18,12 +18,70 @@ from chaoyang.governance.common import (
     load_json,
     now_iso,
     publish_bundle,
+    validate_artifact_ref,
 )
 
 
 CURRENT_INDEX = REPO_ROOT / "tasks/current/INDEX.json"
-TERMINAL = {"PASSED", "FAILED_RUNTIME_FINAL", "BLOCKED_RESOURCE", "BLOCKED_EXTERNAL", "CANCELLED"}
+TERMINAL = {
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+}
 LIVE = {"PENDING", "READY", "CLAIMED", "RUNNING", "WAIT_GPU_RESOURCE"}
+
+
+def resolve_active_index_for_finalization(
+    current: dict,
+    task_id: str,
+    *,
+    expected_revision: int,
+) -> tuple[dict, Path]:
+    """Return the active index, including recovery from a pre-receipt partial publish.
+
+    ``publish_bundle`` historically materialized the next packet index before it
+    validated the task state.  A validation error could therefore leave the
+    terminal index on disk while the authoritative receipt and task state still
+    described the live predecessor.  Recovery is permitted only for that exact
+    one-revision-ahead shape and only through its SHA-bound predecessor.
+    """
+    route = next(
+        (row for row in current.get("task_packets", []) if row.get("task_id") == task_id),
+        None,
+    )
+    if route is not None:
+        return current, CURRENT_INDEX
+
+    expected_packet_revision = f"{task_id.upper()}_TERMINAL"
+    if (
+        current.get("status") != "PASS_NO_ACTIVE_TASKS"
+        or current.get("packet_revision") != expected_packet_revision
+        or current.get("governance_revision") != expected_revision + 1
+        or current.get("task_packets") != []
+    ):
+        raise RuntimeError("task is not current routable packet")
+    predecessor_ref = current.get("supersedes_index")
+    if not isinstance(predecessor_ref, dict):
+        raise RuntimeError("partial terminal index has no predecessor reference")
+    ref_errors = validate_artifact_ref(predecessor_ref)
+    if ref_errors:
+        raise RuntimeError("partial terminal predecessor invalid: " + "; ".join(ref_errors))
+    predecessor_path = Path(str(predecessor_ref["path"]))
+    predecessor = load_json(predecessor_path)
+    predecessor_route = next(
+        (
+            row
+            for row in predecessor.get("task_packets", [])
+            if row.get("task_id") == task_id
+        ),
+        None,
+    )
+    if predecessor_route is None or predecessor_route.get("execution_allowed") is not True:
+        raise RuntimeError("partial terminal predecessor is not the active task index")
+    return predecessor, predecessor_path
 
 
 def validate_terminal_bundle(
@@ -82,8 +140,19 @@ def main() -> int:
     if state.get("next_task", {}).get("task_id") != args.task_id:
         raise RuntimeError("task is not current next_task")
     current = load_json(CURRENT_INDEX)
+    active_index, active_index_path = resolve_active_index_for_finalization(
+        current,
+        args.task_id,
+        expected_revision=args.expected_revision,
+    )
     route = next((row for row in current.get("task_packets", []) if row.get("task_id") == args.task_id), None)
-    if route is None or route.get("execution_allowed") is not True:
+    if route is None:
+        route = next(
+            row
+            for row in active_index.get("task_packets", [])
+            if row.get("task_id") == args.task_id
+        )
+    if route.get("execution_allowed") is not True:
         raise RuntimeError("task is not current routable packet")
     packet_path = REPO_ROOT / str(route.get("packet_path"))
     packet = load_json(packet_path)
@@ -93,7 +162,7 @@ def main() -> int:
 
     output.mkdir(parents=True)
     predecessor = output / "PREDECESSOR_ACTIVE_INDEX.json"
-    shutil.copyfile(CURRENT_INDEX, predecessor)
+    shutil.copyfile(active_index_path, predecessor)
     terminal_index = {
         "schema_version": "chaoyang-v71-task-packet-index-v3",
         "packet_revision": f"{args.task_id.upper()}_TERMINAL",

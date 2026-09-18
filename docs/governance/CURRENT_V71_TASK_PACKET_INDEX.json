@@ -1,12 +1,12 @@
 {
   "execution_revision": "0915_FULL_FUNNEL_V1",
-  "generated_at": "2026-09-18T15:02:37+08:00",
-  "generation_id": "gov-011994-8f17bea2d0cb",
-  "governance_revision": 11994,
+  "generated_at": "2026-09-18T15:53:10+08:00",
+  "generation_id": "gov-012004-9e7a26031573",
+  "governance_revision": 12004,
   "index_bytes": 855,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "1aa990866727a5805e4b44760cc4522f764919d3941a537ea2c693c193d718e2",
-  "packet_revision": "0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1_TERMINAL",
+  "index_sha256": "9d7f313f361fc1f2ea8f5af81f6a7ba02372301d1b9c368fc4e2a7f4d279c51d",
+  "packet_revision": "0915_FOUNDATIONSTEREO_SINGLE_SESSION_CANARY_V1_TERMINAL",
   "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }
