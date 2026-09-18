@@ -1,0 +1,36 @@
+{
+  "schema_version": "chaoyang-receipted-artifact-cleanup-v1",
+  "created_at": "2026-09-18T11:48:07+08:00",
+  "status": "PASS_CLEANED",
+  "reason": "User accepted the one-session visual canary and requested removal of the newly generated visualization and related runtime test data before the SAM3.1 Mask stage.",
+  "scope": {
+    "runtime_root": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_short_gap_continuity_v1",
+    "shallow_visual_root": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HAWOR_SHORT_GAP_CONTINUITY_V1",
+    "file_count": 12,
+    "byte_count": 23222410,
+    "sorted_sha256_manifest_digest": "8a83c286a3ea1d5d3ef7d5fe6bd2212ad20bc2c8792f7a30b2e8f16af0902619"
+  },
+  "inventory": [
+    {"path": "docs/current/visuals/0915_HAWOR_SHORT_GAP_CONTINUITY_V1/0915_HAWOR_BOUNDED_V2_VS_SHORT_GAP_CONTINUITY.mp4", "bytes": 5343591, "sha256": "f379c0b0b2ea1c48174aae50ce12bfb775c74be98c8f70f9211b51ffa14b3fd6"},
+    {"path": "docs/current/visuals/0915_HAWOR_SHORT_GAP_CONTINUITY_V1/0915_HAWOR_SHORT_GAP_FRAMES_CONTACT_SHEET.jpg", "bytes": 689454, "sha256": "61dc4a94dfb5942b944d2ef0729e9736b798aff4f5a59cae8f134706e4128eae"},
+    {"path": "docs/current/visuals/0915_HAWOR_SHORT_GAP_CONTINUITY_V1/README_ZH.md", "bytes": 2712, "sha256": "31d2503d23f9fbd6c0a168bf4d7643ad4bc1fdc5e159e5db739c6b91d2e8bf73"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0001/output/HAWOR_BOUNDED_V2_SHORT_GAP_CONTINUITY.npz", "bytes": 377959, "sha256": "d7b1ba9c2b9d12ed0b048147a8470b81650ffd4a6b3fd74239a4e576676446f2"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0001/output/HAWOR_BOUNDED_V2_VS_SHORT_GAP_CONTINUITY.mp4", "bytes": 5343591, "sha256": "f379c0b0b2ea1c48174aae50ce12bfb775c74be98c8f70f9211b51ffa14b3fd6"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0001/output/RESULT.json", "bytes": 7096, "sha256": "588750cc251d572b22d2e57e664d00279f8b526a28fec8d305052f1f6a2f2ece"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0002/output/HAWOR_BOUNDED_V2_SHORT_GAP_CONTINUITY.npz", "bytes": 377959, "sha256": "d7b1ba9c2b9d12ed0b048147a8470b81650ffd4a6b3fd74239a4e576676446f2"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0002/output/HAWOR_BOUNDED_V2_VS_SHORT_GAP_CONTINUITY.mp4", "bytes": 5343591, "sha256": "f379c0b0b2ea1c48174aae50ce12bfb775c74be98c8f70f9211b51ffa14b3fd6"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0002/output/RESULT.json", "bytes": 7316, "sha256": "519afcedc9a1a563c7120fafb86643d4107055e22f5029f98570df1d55678bab"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0003/output/HAWOR_BOUNDED_V2_SHORT_GAP_CONTINUITY.npz", "bytes": 377959, "sha256": "d7b1ba9c2b9d12ed0b048147a8470b81650ffd4a6b3fd74239a4e576676446f2"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0003/output/HAWOR_BOUNDED_V2_VS_SHORT_GAP_CONTINUITY.mp4", "bytes": 5343591, "sha256": "f379c0b0b2ea1c48174aae50ce12bfb775c74be98c8f70f9211b51ffa14b3fd6"},
+    {"path": "_run/current/0915_hawor_short_gap_continuity_v1/attempts/attempt_0003/output/RESULT.json", "bytes": 7591, "sha256": "6e44196014ebbecb1f705aa448bf1f6abcde184f1c90df5680413ec0221126e7"}
+  ],
+  "preserved": [
+    "0915 source and processed datasets",
+    "hawor_bounded_v2 upstream canary inputs and outputs",
+    "src/chaoyang/ops/run_hawor_short_gap_completion_v1.py",
+    "tests/test_hawor_short_gap_completion_v1.py",
+    "tasks/receipts/0915_HAWOR_SHORT_GAP_CONTINUITY_V1_RESULT.json"
+  ],
+  "recovery": "Deleted runtime and visual artifacts are not retained. They can be deterministically regenerated from the preserved producer, tests, result receipt, and upstream bounded_v2 input evidence.",
+  "verified_absent": true
+}

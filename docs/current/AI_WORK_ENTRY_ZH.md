@@ -41,14 +41,17 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
   1–2 帧内部缺口另有短缺口连续性 successor：它保持 `observed` 和已有观测几何不变，
   只新增 `short_gap_inferred` 与 `visual_continuity_valid`。Contact、严格覆盖率及直接
   观测统计只能消费 `observed`；离线可视化/运动消费者只有显式声明后才能消费
-  `visual_continuity_valid`，Robot online 不得消费非因果补帧。复核入口见
-  [`bounded_v2`](visuals/0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md) 和
-  [`短缺口连续性`](visuals/0915_HAWOR_SHORT_GAP_CONTINUITY_V1/README_ZH.md)。Depth 仍为
-  独立未决问题，SAM3.1 和全批均未授权。
+  `visual_continuity_valid`，Robot online 不得消费非因果补帧。用户已确认单样本视觉
+  无明显问题；运行与可视化产物随后按要求带收据清理，代码、单元测试及结果口径保留，
+  未自动扩批。复核入口见
+  [`bounded_v2`](visuals/0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md)，短缺口结论见
+  [`结果收据`](../../tasks/receipts/0915_HAWOR_SHORT_GAP_CONTINUITY_V1_RESULT.json)。Depth 仍为
+  独立未决问题；后续 Mask 路线固定为 SAM3.1，不运行 SAM2.1/Cutie 选型。
 - 0916 独立清洗已经完成；0915/0916 状态见
   [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。
-- 用户仍将未来 Mask 模型锁定为 SAM3.1，但图像域问题未解决前不得运行它，也不得
-  创建 SAM2.1/Cutie 候选或胜者选择任务。
+- 用户已确认 resize-only 图像域和单样本 HaWoR 视觉结果；下一阶段允许在同一会话
+  `play_cards_0915_001` 上建立一个 SAM3.1 Mask canary。只能绑定已固定的 SAM3.1
+  权重，不得创建 SAM2.1/Cutie 候选、胜者选择任务或自动扩到 220 会话。
 
 如果用户提出新目标，应建立新的、有限收敛的任务包并发布新的治理 revision；不要把旧任务包改回 `PENDING`。任务包至少固定输入、代码、配置、权重或 `ABSENT`、标定或 `ABSENT`、输出 schema、质量门、预算、终止条件和回滚路径。
 

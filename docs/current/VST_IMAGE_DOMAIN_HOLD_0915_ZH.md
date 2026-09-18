@@ -1,10 +1,11 @@
 # 0915 VST 图像域停止线
 
-状态：`MONOCULAR_A_CONFIRMED / HAWOR_CANARY_COMPLETE_REVIEW_REQUIRED`
+状态：`MONOCULAR_A_CONFIRMED / HAWOR_CANARY_ACCEPTED / SAM31_SINGLE_CANARY_ALLOWED`
 
-本页是 0915 裸手视觉链当前最高优先级的停止说明。用户在单样本复核中指出，
-现有画面出现不应有的弯曲，怀疑原始 VST 像素被再次去畸变。该问题解决前，
-不得继续 HaWoR、SAM3.1、Depth、Object6D、Clean、Contact 或 Robot 扩批。
+本页记录 0915 裸手视觉链曾经的图像域停止线及其解除范围。用户在单样本复核中指出，
+现有画面出现不应有的弯曲，怀疑原始 VST 像素被再次去畸变；随后确认物理左目
+`sourceIndex=1 + resize-only` 为正确单目输入，并接受该输入上的 HaWoR 单样本视觉结果。
+这只解除同一会话 SAM3.1 Mask canary 的停止线，不授权 Depth 或 220 会话扩批。
 
 ## 已确认的实现事实
 
@@ -46,10 +47,11 @@ resize-only 画面称为物理 pinhole 或已完成外部标定。当前真正�
 - 单样本 `play_cards_0915_001` 的现有视频继续保留用于展示问题，不再证明相机、
   HaWoR、SAM3.1 或 Depth 的正确性。
 
-## 重新执行前必须共同确认
+## 后续推进边界
 
-1. 用户复核 A/B，确认 `sourceIndex=1 + resize-only` 是否与采集时看到的物理左目一致。
-2. 单目确认只授权一个单会话 HaWoR canary，不自动授权 SAM3.1 或 220 会话扩批。
+1. A/B 已由用户确认：单目固定为 `sourceIndex=1 + resize-only`。
+2. HaWoR 单会话已经人工接受；下一步只授权同一会话的 SAM3.1 Mask canary，不自动
+   授权 220 会话扩批。
 3. 双目 Depth 继续独立停止，等待左右目极线、尺度及标定板证据；不能沿用单目结论。
 4. 若未来恢复矫正，必须固定 PICO 模型约定、系数顺序、正反映射方向和编码域证据，
    禁止再以项目内假设替代采集 SDK/container 的 distortion state。
@@ -60,8 +62,7 @@ resize-only 画面称为物理 pinhole 或已完成外部标定。当前真正�
 会话扩批仍未授权。确认收据见
 [`0915_VST_IMAGE_DOMAIN_USER_CONFIRMATION.json`](../../tasks/receipts/0915_VST_IMAGE_DOMAIN_USER_CONFIRMATION.json)。
 
-该 canary 已完成：左手观测 148/150、右手 145/150；左手通过冻结数值门，右手因
-关节在画面内比例 81.58% 和骨长 CV 0.08272 未通过，整体保持
-`FAILED_QUALITY_C`。浅层复核见
-[`visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md`](visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)。
-当前再次停止，等待用户复核骨架；不得自动进入 SAM3.1 或全批。
+raw canary 的直接观测为左手 148/150、右手 145/150；随后 `hawor_bounded_v2` 通过
+冻结数值门，并以独立短缺口层验证 150/150 的离线视觉连续性。用户已确认视觉无明显
+问题；短缺口运行与可视化产物按要求清理，代码、测试、结果及清理收据保留。当前允许
+进入一个 `play_cards_0915_001` SAM3.1 Mask canary；Depth、Robot 和全批继续停止。

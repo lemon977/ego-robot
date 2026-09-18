@@ -2,25 +2,25 @@
 
 ## 当前决定
 
-- **0915 全链已停止。** 单样本复核暴露 VST 图像域疑点：当前输入准备对 SBS
-  物理左目额外执行了 `equiDis62 → pinhole` 重映射，用户观察到画面弯曲。问题解决前
-  不再运行或恢复任何 0915 模型任务，详见
+- **0915 全批仍停止，单会话 Mask 可继续。** 单样本复核暴露 VST 图像域疑点：旧输入
+  对 SBS 物理左目额外执行了 `equiDis62 → pinhole` 重映射。用户已经确认
+  `sourceIndex=1 + resize-only`，并接受该输入上的 HaWoR 单样本结果；当前只解除同一
+  会话 SAM3.1 Mask canary，不恢复 220 会话任务，详见
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
 - 单会话 A/B 已以 `BLOCKED_EXTERNAL` 封账：当前 remap 的输出位移 P50 为
   102.24 px、P95 为 241.02 px；legacy processed 单目来自 SBS `sourceIndex=0`
   物理右目。浅层证据见
   [`visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。
-- 用户已确认物理左目 `sourceIndex=1 + resize-only` 为正确单目画面；该确认当前只
-  授权 `play_cards_0915_001` 的 HaWoR canary。双目 Depth 的矫正方式继续为
-  `NOT_EVALUATED`，SAM3.1 和全批均不得从单目确认自动外推。
-- resize-only HaWoR canary 已完成：左手 148/150、右手 145/150 直接观测；左手
-  数值门通过，右手因画面内关节比例 81.58% 和骨长 CV 0.08272 未通过，整体为
-  `FAILED_QUALITY_C`。等待用户复核
-  [`浅层视频`](visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)，不自动注册后继。
+- 用户已确认物理左目 `sourceIndex=1 + resize-only` 为正确单目画面，并确认单会话
+  HaWoR 视觉结果无明显问题。双目 Depth 的矫正方式继续为 `NOT_EVALUATED`；当前只
+  授权 `play_cards_0915_001` 的 SAM3.1 Mask canary。
+- resize-only raw HaWoR canary 的直接观测为左手 148/150、右手 145/150；后继
+  `hawor_bounded_v2` 通过冻结数值门，短缺口连续性层通过单样本人工复核。相关临时
+  运行与可视化已经带收据清理，未自动注册 220 会话后继。
 - 0915 Mask 模型已经由用户确定为 **SAM3.1**，这是本任务唯一可执行的 Mask 权重。
 - 不创建 SAM2.1 或 Cutie challenger，不执行胜者选择，也不因历史对比材料改变当前路线。
-- 原定执行顺序现已失效，不得从已取消的 HaWoR 任务续跑。确认 VST 像素域后必须从
-  新的单帧/单会话 canary 任务重新开始。
+- 原定全批执行顺序仍失效，不得从已取消的 HaWoR 任务续跑。Mask 必须从新的、独立的
+  `play_cards_0915_001` SAM3.1 单会话 canary 任务开始。
 - 0916 只做 240 会话数据清洗，不进入 HaWoR、Mask、Depth、Contact 或 Robot。
 
 ## 输入与禁止项
@@ -66,5 +66,5 @@ SAM3.1 角色合同区分左右皮肤/前臂、左右手指皮套、左右线缆
 
 首次六小时不可变进度收据见 [`../../tasks/receipts/0915_0916_FULL_FUNNEL_6H_PROGRESS.json`](../../tasks/receipts/0915_0916_FULL_FUNNEL_6H_PROGRESS.json)。它是时间点快照，不替代最终全阶段账本。
 
-未来若重启 0915，仍必须满足 220 个会话在全阶段账本中全部终态；但在 VST 图像域
-单问题验收之前，不登记也不执行该任务。0916 的 240 个会话已满足全部终态且运行失败为 0。
+未来若重启 0915 全批，仍必须满足 220 个会话在全阶段账本中全部终态；当前单会话
+SAM3.1 Mask canary 不构成全批授权。0916 的 240 个会话已满足全部终态且运行失败为 0。

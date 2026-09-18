@@ -4,18 +4,7 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
-## 0915 HaWoR 短缺口连续性 canary（当前优先复核）
-
-- [`0915_HAWOR_SHORT_GAP_CONTINUITY_V1/README_ZH.md`](0915_HAWOR_SHORT_GAP_CONTINUITY_V1/README_ZH.md)
-- [`0915_HAWOR_SHORT_GAP_CONTINUITY_V1/0915_HAWOR_BOUNDED_V2_VS_SHORT_GAP_CONTINUITY.mp4`](0915_HAWOR_SHORT_GAP_CONTINUITY_V1/0915_HAWOR_BOUNDED_V2_VS_SHORT_GAP_CONTINUITY.mp4)
-- [`0915_HAWOR_SHORT_GAP_CONTINUITY_V1/0915_HAWOR_SHORT_GAP_FRAMES_CONTACT_SHEET.jpg`](0915_HAWOR_SHORT_GAP_CONTINUITY_V1/0915_HAWOR_SHORT_GAP_FRAMES_CONTACT_SHEET.jpg)
-
-`play_cards_0915_001` 的闪烁来自 detector/track 的 1–2 帧短缺口，不是骨长优化删帧。
-有界离线 MANO 插值补入左 2 帧、右 5 帧，使双手连续覆盖由 143/150 变为
-150/150；原始 `observed`、检测证据与已有观测几何均保持不变。该结果只授权人工
-复核和开发级运动连续性，Contact 与严格观测统计仍只能消费 `observed`。
-
-## 0915 HaWoR bounded_v2 单会话基线（当前优先复核）
+## 0915 HaWoR bounded_v2 单会话基线（已完成人工复核）
 
 - [`0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md`](0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md)
 - [`0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_REVIEW.mp4`](0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_REVIEW.mp4)
@@ -24,7 +13,8 @@
 这是用户确认的物理左目 resize-only 输入经过 raw HaWoR 和当前登记的
 `hawor_bounded_v2` 后处理后的 150 帧全片。观测覆盖保持左 148/150、右 145/150；
 wrist step P95 从左 18.88 降至 5.07 mm、右 21.76 降至 14.25 mm，右手骨长 CV
-从 0.08272 降至 0.06344。数值门通过，仍等待人工全片复核。
+从 0.08272 降至 0.06344。数值门通过，用户已确认视觉无明显问题；这不自动授权
+HaWoR 全批，但允许进入同一会话的 SAM3.1 Mask canary。
 
 ## 0915 物理左目 resize-only HaWoR raw 诊断
 
