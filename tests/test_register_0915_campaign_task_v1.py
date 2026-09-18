@@ -21,13 +21,13 @@ def _state(predecessor: str, status: str = "PASSED") -> dict:
 
 
 def test_later_stage_requires_immediate_predecessor_pass() -> None:
-    state = _state("0915_vst_image_domain_ab_v1")
-    predecessor = subject._validate_predecessor(state, "0915_sam31_mask_full_v1")
-    assert predecessor["task_id"] == "0915_vst_image_domain_ab_v1"
+    state = _state("0915_foundationstereo_full_v1")
+    predecessor = subject._validate_predecessor(state, "0915_post_geometry_robot_v1")
+    assert predecessor["task_id"] == "0915_foundationstereo_full_v1"
     bad = copy.deepcopy(state)
     bad["tasks"][0]["status"] = "FAILED_RUNTIME_FINAL"
     with pytest.raises(RuntimeError, match="did not pass"):
-        subject._validate_predecessor(bad, "0915_sam31_mask_full_v1")
+        subject._validate_predecessor(bad, "0915_post_geometry_robot_v1")
 
 
 def test_registration_rejects_any_live_task() -> None:
@@ -91,3 +91,9 @@ def test_vst_research_requires_exact_cancelled_image_domain_hold(
     bad["tasks"][0]["status"] = "PASSED"
     with pytest.raises(RuntimeError, match="requires the HaWoR task to be cancelled"):
         subject._validate_predecessor(bad, "0915_vst_image_domain_ab_v1")
+
+
+def test_sam_registration_is_fail_closed_pending_canary_review() -> None:
+    state = _state("0915_hawor_resize_only_canary_v1")
+    with pytest.raises(RuntimeError, match="separate user review"):
+        subject._validate_predecessor(state, "0915_sam31_mask_full_v1")

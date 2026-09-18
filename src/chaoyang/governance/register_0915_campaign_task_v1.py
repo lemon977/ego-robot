@@ -95,6 +95,32 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             != "VST_IMAGE_DOMAIN_UNRESOLVED_POSSIBLE_REDUNDANT_UNDISTORTION"
         ):
             raise RuntimeError("VST research predecessor is not the exact user image-domain hold")
+    elif task_id == "0915_hawor_resize_only_canary_v1":
+        if predecessor.get("status") != "BLOCKED_EXTERNAL":
+            raise RuntimeError("HaWoR resize-only canary requires the closed A/B review")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("A/B result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("conclusion", {}).get("candidate_mono_domain")
+            != "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY"
+            or result.get("conclusion", {}).get("current_remap_baseline_admissible") is not False
+        ):
+            raise RuntimeError("A/B result does not bind the confirmed candidate")
+        confirmation_path = REPO_ROOT / "tasks/receipts/0915_VST_IMAGE_DOMAIN_USER_CONFIRMATION.json"
+        confirmation = load_json(confirmation_path)
+        if (
+            confirmation.get("status") != "CONFIRMED"
+            or confirmation.get("confirmed_candidate")
+            != "A_PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY"
+            or confirmation.get("authorized_next_scope") != "ONE_SESSION_HAWOR_CANARY_ONLY"
+        ):
+            raise RuntimeError("user confirmation does not authorize this bounded canary")
+    elif task_id == "0915_sam31_mask_full_v1":
+        raise RuntimeError(
+            "SAM3.1 remains blocked pending a separate user review of the resize-only HaWoR canary"
+        )
     elif predecessor.get("status") != "PASSED":
         raise RuntimeError(f"predecessor did not pass: {predecessor_id}")
     return predecessor

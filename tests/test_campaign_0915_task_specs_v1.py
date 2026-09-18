@@ -18,6 +18,7 @@ def test_campaign_has_finite_serial_order() -> None:
         "0915_input_prepare_cad_v2",
         "0915_hawor_full_v1",
         "0915_vst_image_domain_ab_v1",
+        "0915_hawor_resize_only_canary_v1",
         "0915_sam31_mask_full_v1",
         "0915_foundationstereo_full_v1",
         "0915_post_geometry_robot_v1",
@@ -67,3 +68,14 @@ def test_vst_image_domain_packet_is_single_session_weightless() -> None:
     assert packet["budgets"]["gpu_hours"] == 0
     assert "play_cards_0915_001" in str(packet)
     assert "single-session" in packet["claim_limit"].lower()
+
+
+def test_resize_only_hawor_canary_is_single_session_one_weight() -> None:
+    packet = build_packet("0915_hawor_resize_only_canary_v1")
+    assert packet["budgets"]["gpu_hours"] == 1
+    assert packet["weights"] == [
+        "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+    ]
+    encoded = str(packet)
+    assert "play_cards_0915_001" in encoded
+    assert "PICO26_NOT_CONSUMED" in encoded
