@@ -15,9 +15,9 @@
     "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-18T17:24:53+08:00",
-  "generation_id": "gov-012032-27509b9465df",
-  "governance_revision": 12032,
+  "generated_at": "2026-09-18T18:15:17+08:00",
+  "generation_id": "gov-012057-d85411e095b7",
+  "governance_revision": 12057,
   "next_task": null,
   "schema_version": "chaoyang-current-project-status-min-v1",
   "stage_claim_limits": {

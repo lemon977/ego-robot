@@ -1,17 +1,17 @@
 {
   "claim_limit": "This 0915 task is terminal. No successor is executable until a separate CAS registration publishes exactly one new packet.",
   "execution_revision": "0915_FULL_FUNNEL_V1",
-  "generated_at": "2026-09-18T17:20:36+08:00",
-  "generation_id": "gov-012030-e578b98aadfc",
-  "governance_revision": 12030,
-  "packet_revision": "0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1_TERMINAL",
+  "generated_at": "2026-09-18T18:13:34+08:00",
+  "generation_id": "gov-012054-688b22df88f9",
+  "governance_revision": 12054,
+  "packet_revision": "0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2_TERMINAL",
   "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1178,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_v2_real_canary_v1/finalization_attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "a23efcd648ca6119397200b11fc6a98f78e40b18191602bed3d8536347d17415"
+    "bytes": 1203,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/finalize_0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "77aee12d48b7b4564bd15d23a37c13de51ebf1ddc0caa969dc872957dfa3e245"
   },
   "task_packets": []
 }

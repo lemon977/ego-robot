@@ -34,6 +34,8 @@ TASK_ORDER = (
     "0915_post_geometry_robot_v1",
     "0915_stereo_encoded_domain_preflight_v1",
     "0915_removal_envelope_v2_real_canary_v1",
+    "0915_foundationstereo_encoded_domain_canary_v1",
+    "0915_planar_object6d_observability_canary_v2",
 )
 
 INPUT_ATTEMPT_V1 = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
@@ -43,6 +45,7 @@ VST_AB_ATTEMPT = "_run/current/0915_vst_image_domain_ab_v1/attempts/attempt_0001
 HAWOR_RESIZE_CANARY_ATTEMPT = "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001"
 MASK_STRICT_CANARY_ATTEMPT = "_run/current/0915_sam31_strict_role_canary_v1/attempts/attempt_0001"
 MASK_STRICT_CANARY_V2_ATTEMPT = "_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001"
+MASK_STRICT_CANARY_V5_ATTEMPT = "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001"
 DEPTH_ATTEMPT = "_run/current/0915_foundationstereo_full_v1/attempts/attempt_0001"
 MASK_ATTEMPT = "_run/current/0915_sam31_mask_full_v1/attempts/attempt_0001"
 CPU_EVIDENCE_ATTEMPT = "_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001"
@@ -52,6 +55,8 @@ DEPTH_CANARY_ATTEMPT = "_run/current/0915_foundationstereo_single_session_canary
 OBJECT6D_CANARY_ATTEMPT = "_run/current/0915_planar_object6d_single_session_canary_v1/attempts/attempt_0001"
 ENCODED_STEREO_PREFLIGHT_ATTEMPT = "_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001"
 REMOVAL_ENVELOPE_V2_ATTEMPT = "_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001"
+ENCODED_DEPTH_CANARY_ATTEMPT = "_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001"
+OBJECT6D_OBSERVABILITY_V2_ATTEMPT = "_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001"
 
 
 TASK_SPECS: dict[str, dict[str, Any]] = {
@@ -886,6 +891,113 @@ TASK_SPECS["0915_removal_envelope_v2_real_canary_v1"] = {
 }
 
 
+TASK_SPECS["0915_foundationstereo_encoded_domain_canary_v1"] = {
+    "phase": "0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1",
+    "objective": (
+        "Run one FoundationStereo canary on sourceIndex-aware VST encoded pixels with "
+        "crop/resize only, a simultaneous two-eye horizontal-reflection adapter, mirrored "
+        "intrinsics, physical-left output unflip and pixelwise RGB-alignment proof."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        ENCODED_STEREO_PREFLIGHT_ATTEMPT,
+        "tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+        "tasks/receipts/0915_FOUNDATIONSTEREO_OBJECT6D_USER_CONFIRMATION_V1.json",
+        "src/chaoyang/ops/run_0915_foundationstereo_encoded_domain_canary_v1.py",
+        "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915/cleaned/playing_cards/play_cards_0915_001",
+        "assets/models/checkpoints/foundationstereo/23-51-11",
+        "configs/systems/depth/foundationstereo_0915_encoded_domain_canary_v1.json",
+    ],
+    "write_set": [
+        ENCODED_DEPTH_CANARY_ATTEMPT,
+        "docs/current/visuals/0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1",
+    ],
+    "prerequisites": [
+        "0915_stereo_encoded_domain_preflight_v1=PASSED",
+        "preflight_decision=PASS_DIRECT_FOUNDATION_INPUT",
+        "VST_ENCODED_VIDEO_ALREADY_UNDISTORTED",
+        "sourceIndex_crop_resize_only", "zero_lens_undistortion",
+        "simultaneous_horizontal_reflection_no_camera_swap",
+        "single_session_play_cards_0915_001", "governance_PASS_FRESH",
+        "source_read_only", "serial_GPU_lease",
+    ],
+    "algorithm_prerequisites": {
+        "depth": ["encoded_stereo_preflight_PASS_DIRECT_FOUNDATION_INPUT"],
+        "not_dependencies": ["Clean", "Removal_Envelope", "old_rectified_depth"],
+    },
+    "weights": ["assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"],
+    "required_outputs": [
+        "CLAIM.json", "RUN_SIGNATURE.json", "ADAPTER_CONTRACT.json",
+        "RGB_ALIGNMENT_QA.json", "DEPTH_CONTRACT.json", "DEPTH_SUMMARY.json",
+        "DEPTH_WORKER_RESULT.json", "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+        "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 2, "runtime_attempts": 1},
+    "expected_resource": "SERIAL_GPU_SINGLE_SESSION_FOUNDATIONSTEREO_ENCODED_DOMAIN",
+    "claim_limit": (
+        "Single-session development optical-Z candidate only. Consumption is limited "
+        "to VISUAL_OBJECT6D_CANDIDATE_INPUT after all gates pass; external metric "
+        "accuracy, batch, Contact, Robot and deployment authority remain absent."
+    ),
+}
+
+
+TASK_SPECS["0915_planar_object6d_observability_canary_v2"] = {
+    "phase": "0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2",
+    "objective": (
+        "Consume only the admitted encoded-domain FoundationStereo optical-Z and "
+        "SAM3.1 task-object evidence to publish independent observability for three "
+        "playing cards, while keeping the black tray separate and card_set semantic-only."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        ENCODED_DEPTH_CANARY_ATTEMPT,
+        MASK_STRICT_CANARY_V5_ATTEMPT,
+        "tasks/receipts/0915_FOUNDATIONSTEREO_OBJECT6D_USER_CONFIRMATION_V1.json",
+        "src/chaoyang/ops/run_0915_planar_object6d_observability_canary_v2.py",
+        "src/chaoyang/pipeline/object6d_planar_observability_v2.py",
+        "src/chaoyang/pipeline/object6d_planar_observability_v1.py",
+        "contracts/object6d_planar_observability_v2.schema.json",
+    ],
+    "write_set": [
+        OBJECT6D_OBSERVABILITY_V2_ATTEMPT,
+        "docs/current/visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2",
+    ],
+    "prerequisites": [
+        "0915_foundationstereo_encoded_domain_canary_v1=PASSED",
+        "depth_admission=PASS_VISUAL_OBJECT6D_CANDIDATE_INPUT",
+        "same_physical_left_encoded_resize_only_domain",
+        "three_cards_independent", "black_tray_separate_support_entity",
+        "card_set_semantic_only", "measured_card_dimensions=ABSENT",
+        "source_read_only", "weights_ABSENT", "gpu_FORBIDDEN",
+        "single_session_play_cards_0915_001", "governance_PASS_FRESH",
+    ],
+    "algorithm_prerequisites": {
+        "object6d": [
+            "encoded_foundationstereo_PASS",
+            "sam31_task_object_masks",
+            "field_level_observability",
+        ],
+        "not_dependencies": [
+            "Clean", "Removal_Envelope", "old_rectified_depth", "tray_pose_guess",
+        ],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "CLAIM.json", "RUN_SIGNATURE.json", "DEPTH_FRAME_INPUT_MANIFEST.json",
+        "OBJECT6D_OBSERVABILITY_V2.json", "OBJECT6D_SUMMARY_V2.json", "RESULT.json",
+        "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+    "expected_resource": "CPU_ONLY_150_FRAME_PLANAR_OBJECT6D_OBSERVABILITY",
+    "claim_limit": (
+        "Single-session development visible-surface observability only. center_xyz is "
+        "not the hidden object centre; full extent remains unknown without complete "
+        "boundary evidence. No external accuracy, Contact, Robot or deployment authority."
+    ),
+}
+
+
 def build_packet(task_id: str) -> dict[str, Any]:
     if task_id not in TASK_SPECS:
         raise KeyError(task_id)
@@ -932,6 +1044,10 @@ def validate_packet_policy(packet: dict[str, Any]) -> None:
 
 
 def predecessor_task(task_id: str) -> str | None:
+    if task_id == "0915_planar_object6d_observability_canary_v2":
+        return "0915_foundationstereo_encoded_domain_canary_v1"
+    if task_id == "0915_foundationstereo_encoded_domain_canary_v1":
+        return "0915_stereo_encoded_domain_preflight_v1"
     if task_id == "0915_stereo_encoded_domain_preflight_v1":
         return "0915_foundationstereo_single_session_canary_v1"
     if task_id == "0915_removal_envelope_v2_real_canary_v1":

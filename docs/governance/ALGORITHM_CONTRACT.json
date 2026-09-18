@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T17:24:53+08:00",
-  "generation_id": "gov-012032-27509b9465df",
-  "governance_revision": 12032,
+  "generated_at": "2026-09-18T18:15:17+08:00",
+  "generation_id": "gov-012057-d85411e095b7",
+  "governance_revision": 12057,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -644,7 +644,7 @@
       ]
     },
     {
-      "algorithm_id": "foundationstereo_encoded_vst_domain_preflight_pass_v3",
+      "algorithm_id": "foundationstereo_encoded_physical_left_canary_pass_v4",
       "code_closure": [
         {
           "bytes": 3046,
@@ -662,6 +662,11 @@
           "sha256": "2a059cab27d3eafb48b77c430ee3d87d1bd277c0531d30a16cbbb40d4afca13c"
         },
         {
+          "bytes": 36954,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_foundationstereo_encoded_domain_canary_v1.py",
+          "sha256": "fecac6f54f45a33d10beab842ddd9f4bf20b9f68b80ee5b9b0b65783c9bfefac"
+        },
+        {
           "bytes": 19267,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
           "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
@@ -673,15 +678,15 @@
         }
       ],
       "implementation_revision": "R7_1_R3",
-      "input_authority": "ENCODED_VST_PREFLIGHT_PASS_NO_CURRENT_DEPTH",
+      "input_authority": "ENCODED_VST_SOURCEINDEX_CROP_RESIZE_ONLY",
       "known_limitations": [
         "All decoded VST video is already undistorted; camera_params distortion fields are capture provenance and must not be applied to encoded pixels.",
         "The prior 0915 FoundationStereo canary used equiDis62 remapping and is WITHDRAWN_WRONG_IMAGE_DOMAIN in addition to its immutable REJECTED_QUALITY terminal.",
-        "The fresh 150-frame encoded-pixel preflight passed horizontal epipolar gates at median/P90/P95 |dy| 1.943/2.817/3.096 px, but it produced no Depth.",
-        "Physical left-to-right correspondences have a stable negative left-minus-right disparity sign; a future FoundationStereo task must pin its model-facing simultaneous horizontal-flip adapter and unflip the output, without lens remapping.",
-        "FoundationStereo exposes no native confidence, and internal metric closure would not by itself establish external millimetre accuracy."
+        "The fresh 150-frame encoded-domain FoundationStereo canary passed all internal gates after reflecting both physical eyes without swapping them and unflipping outputs into the original physical-left 640x480 domain.",
+        "Pixelwise RGB roundtrip mismatch and coordinate roundtrip error are both zero; this proves domain alignment, not external metric accuracy.",
+        "FoundationStereo exposes no native confidence, and external 30/50/70/100 cm validation remains absent; external_accuracy stays UNVERIFIED."
       ],
-      "output_schema": "NOT_EVALUATED",
+      "output_schema": "0915-foundationstereo-encoded-depth-contract-v1",
       "quality_gates": {
         "DOWNSTREAM_ELIGIBILITY": [
           "registration_residual",
@@ -704,7 +709,7 @@
         ]
       },
       "stage": "Depth",
-      "successor_requirement": "Run one fresh FoundationStereo encoded-domain GPU canary from the preflight-passed crop+resize pixels, pin the simultaneous horizontal-flip positive-disparity adapter, unflip outputs into the physical-left domain, and retain external accuracy as UNVERIFIED. External 30/50/70/100 cm validation remains required for physical accuracy claims.",
+      "successor_requirement": "Consume this Depth only in the bounded three-card Planar Object6D observability canary using the analytic physical-left 640x480 to SAM 1280x960 pixel-centre map. Do not expand to batch, Contact or Robot before field-level Object6D review and external depth calibration.",
       "superseded_implementations": [
         "uncorrected and preview-only depth",
         "0915 equiDis62-remapped FoundationStereo canary",
@@ -720,7 +725,7 @@
       ]
     },
     {
-      "algorithm_id": "object6d_blocked_upstream_depth_wrong_vst_domain_v2",
+      "algorithm_id": "planar_object6d_encoded_observability_v2_pass",
       "code_closure": [
         {
           "bytes": 16999,
@@ -731,17 +736,34 @@
           "bytes": 7684,
           "path": "/mnt/workspace/code/chaoyang/contracts/object6d_planar_observability_v1.schema.json",
           "sha256": "c10ac7478ec327d4a21000947e86898e1003f9ec194ce7f0a02b592bed58e884"
+        },
+        {
+          "bytes": 6875,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object6d_planar_observability_v2.py",
+          "sha256": "22f41d87a1ea8f51bb88ad6108e9e017fe9b5fc1889f98bc6d420be4b10387dc"
+        },
+        {
+          "bytes": 10881,
+          "path": "/mnt/workspace/code/chaoyang/contracts/object6d_planar_observability_v2.schema.json",
+          "sha256": "725b0fb0e21c3211603d64f448ef13ada9ffd2db9b8cda8ddd6829dcaadde858"
+        },
+        {
+          "bytes": 27400,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_planar_object6d_observability_canary_v2.py",
+          "sha256": "d23981e6d413e4f88a5284f63f1b7a532ab10e944054c9ae0244051cbfbdf19d"
         }
       ],
       "implementation_revision": "R7_1_R3",
-      "input_authority": "BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN",
+      "input_authority": "ENCODED_DOMAIN_DEPTH_PASSED_SINGLE_SESSION",
       "known_limitations": [
         "All 58 historical current Object6D terminals depended on FoundationStereo Depth produced after forbidden lens remapping of already-undistorted VST video; their current authority is withdrawn.",
-        "Only visible-surface geometry may be measured after a future encoded-domain Depth admission; occluded frames must remain invalid.",
+        "Only visible-surface geometry may be measured from the admitted encoded-domain Depth; occluded frames must remain invalid.",
         "Plane residual is not external pose truth.",
-        "The 0915 planar single-session successor was never executed and remains blocked upstream."
+        "Measured card dimensions are absent, so full physical extent must remain unobservable; no hidden centre or full 6DoF may be completed.",
+        "The black tray has no independent mask evidence and remains UNKNOWN; card_set is semantic membership only and owns no rigid pose.",
+        "On play_cards_0915_001, visible-surface center is observable on 143/146/95 frames and plane normal on 139/113/48 frames for card00/card01/card02 respectively; these are internal observability counts, not pose accuracy."
       ],
-      "output_schema": "NOT_EVALUATED",
+      "output_schema": "object6d-planar-observability-v2",
       "quality_gates": {
         "DOWNSTREAM_ELIGIBILITY": [
           "direct_observed_only",
@@ -763,11 +785,12 @@
         ]
       },
       "stage": "Object6D",
-      "successor_requirement": "First admit a fresh zero-lens-undistortion encoded-domain Depth canary. Then create a new bounded Object6D successor in that same pixel/camera domain; old rectified-depth products and dependent Contact/Occlusion sidecars cannot seed authority.",
+      "successor_requirement": "Add a bounded per-frame geometry overlay review and measured card width/height before Interaction v1. Contact and Robot remain blocked until visible geometry is reviewed; old rectified-depth products cannot seed authority.",
       "superseded_implementations": [
         "filled occlusion pose previews",
         "rectified pose multiplied directly by selected-camera c2w",
-        "58 remap-derived exact78 Object6D terminals"
+        "58 remap-derived exact78 Object6D terminals",
+        "card_plus_tray_single_rigid_body"
       ],
       "weights": "NOT_APPLICABLE"
     },

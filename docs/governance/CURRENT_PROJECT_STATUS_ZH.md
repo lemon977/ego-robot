@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T17:24:53+08:00`
-- governance revision：`12032`
-- generation id：`gov-012032-27509b9465df`
+- 状态生成时间：`2026-09-18T18:15:17+08:00`
+- governance revision：`12057`
+- generation id：`gov-012057-d85411e095b7`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120`
-- repository：`b4918fe4817c432914be7079e3874f918ea40351` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`678dcb60fed65bce8890395f6fc71b5f9def9c68e85f64b3a9b46794b2c90cfe`
+- repository：`fef8016d028db1802ae767e0abbcfe857c3a2f42` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -35,8 +35,8 @@
 | HaWoR | 156 | 144 | 12 | 0 | 0 | `BOUNDED_V2_TERMINALS` |
 | Role Mask | 156 | 124 | 32 | 0 | 0 | `SAM31_ROLE_SUCCESSOR_V3` |
 | Object Mask | 156 | 121 | 35 | 0 | 0 | `TASK_OBJECT_IDENTITY` |
-| Depth | 58 | 0 | 0 | 0 | 58 | `NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN` |
-| Object6D | 58 | 0 | 0 | 0 | 58 | `NO_CURRENT_OBJECT6D_AUTHORITY_BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN` |
+| Depth | 59 | 1 | 0 | 0 | 58 | `ONE_SESSION_VISUAL_OBJECT6D_CANDIDATE_INPUT_PLUS_58_WITHDRAWN` |
+| Object6D | 59 | 1 | 0 | 0 | 58 | `ONE_SESSION_DEVELOPMENT_VISIBLE_SURFACE_ONLY_PLUS_58_WITHDRAWN` |
 | Clean | 58 | 58 | 0 | 0 | 0 | `EXACT78_WAVE0_FROZEN_PLUS_VERIFIED_SESSION_TERMINALS` |
 | Contact | 2 | 0 | 0 | 0 | 2 | `NO_CURRENT_CONTACT_AUTHORITY_UPSTREAM_OBJECT6D_WITHDRAWN` |
 | Robot Visual | 156 | 0 | 1 | 0 | 155 | `NO_CURRENT_TASK_ROBOT_AUTHORITY_POKER042_4FRAME_FINAL_C` |
@@ -99,11 +99,11 @@
 
 ### PASSED
 
+- `0915_planar_object6d_observability_canary_v2` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T18:13:34+08:00`
+- `0915_foundationstereo_encoded_domain_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T18:00:15+08:00`
 - `0915_stereo_encoded_domain_preflight_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T17:08:21+08:00`
 - `0915_removal_envelope_single_session_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T14:56:58+08:00`
 - `0915_sam31_weak_role_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T14:11:17+08:00`
-- `0915_stereo_interaction_cpu_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T13:56:44+08:00`
-- `0915_sam31_strict_role_canary_v5` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/RESULT.json / `2026-09-18T12:47:38+08:00`
 
 ### FAILED_QUALITY_C
 
@@ -112,7 +112,6 @@
 ### FAILED_RUNTIME
 
 - `0915_sam31_strict_role_canary_v4` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001/RESULT.json / `2026-09-18T12:35:30+08:00`
-- `0915_sam31_strict_role_canary_v2` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T12:23:33+08:00`
 
 ### BLOCKED
 

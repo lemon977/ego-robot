@@ -35,15 +35,16 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
 - 空索引内的 revision 11169 是创建 revision；当前生效 revision 读取 `CURRENT_V71_TASK_PACKET_INDEX.json` 和 `CURRENT_STATUS_RECEIPT.json`。冻结 payload 的创建 revision 不要求被原地改写。
 - `tasks/receipts/HISTORICAL_TASK_CATALOG.json` 和 `archive/` 只用于查询/恢复，任何历史终态任务都不得直接重启。
 - 0911/0914/0915 数据清洗已经完成，见 [`DATA_CLEANING_0911_0915_ZH.md`](DATA_CLEANING_0911_0915_ZH.md)；它不是待办任务。
-- 0915 裸手全链已经按用户要求停止。用户已确认所有 VST 编码视频本来没有畸变；所有
+- 0915 原重复去畸变全链已经按用户要求停止；此后只以独立的新任务运行 resize-only
+  bounded canary。用户已确认所有 VST 编码视频本来没有畸变；所有
   视频消费者只能按 `sourceIndex` 裁出物理眼再 resize，禁止把 `camera_params.json` 中的
   `equiDis62` 字段应用到解码像素。现有重复去畸变派生结果不得作为基线。先读
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)，再复核
   [`单会话 A/B`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。A/B 已证明当前
   remap 是百像素级变换，且 legacy 单目是物理右目。用户已经确认物理左目
-  `sourceIndex=1 + resize-only` 为正确单目画面；当前最多只允许一个单会话 HaWoR
-  canary。raw canary 的右手画面边界/骨长门为 `FAILED_QUALITY_C`；其后
-  `hawor_bounded_v2` 已通过冻结数值门但仍待人工全片复核。上游 detector/track 的
+  `sourceIndex=1 + resize-only` 为正确单目画面。raw HaWoR canary 的右手画面边界/骨长
+  门为 `FAILED_QUALITY_C`；其后 `hawor_bounded_v2` 已通过冻结数值门和用户全片复核。
+  上游 detector/track 的
   1–2 帧内部缺口另有短缺口连续性 successor：它保持 `observed` 和已有观测几何不变，
   只新增 `short_gap_inferred` 与 `visual_continuity_valid`。Contact、严格覆盖率及直接
   观测统计只能消费 `observed`；离线可视化/运动消费者只有显式声明后才能消费
@@ -130,9 +131,31 @@ raw resize-only 匹配统计保留为诊断；消费 `equiDis62` 的 rectified �
   34,280 个 robust matches 的 `|dy|` median/P90/P95 为
   `1.9432 / 2.8167 / 3.0964 px`，150/150 帧满足最小匹配门，frame 81/94 均无局部异常，
   因此结论为 `PASS_DIRECT_FOUNDATION_INPUT`：本会话不需要额外 encoded-domain 极线 remap。
-  但物理左减物理右的视差符号以 `0.9994` 一致率为负；FoundationStereo 后续 GPU
-  successor 必须显式固定“两眼同时水平镜像→模型→输出镜像回来”的正视差 model adapter。
-  该适配不等于去畸变，也不得把本 preflight 宣称为 Depth 或外部毫米精度。
+  但物理左减物理右的视差符号以 `0.9994` 一致率为负；随后 GPU successor 已按用户
+  确认固定“两眼同时水平镜像→模型→输出镜像回来”的正视差 model adapter。该适配不等于
+  去畸变，左右物理相机没有交换。
+
+- 新的 FoundationStereo encoded-domain canary 已完成 150 帧并通过全部内部质量门，浅层
+  入口见
+  [`0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1`](visuals/0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/README_ZH.md)。
+  输出已反镜像回原物理左目 640×480 并使用原左目 K；RGB/Depth 像素往返最大误差为
+  `0`，错位像素为 `0`。几何有效比例中位数 `0.95983`，左右一致比例中位数
+  `0.94666`，Depth 中位数帧间变化 P90 为 `0.00445 m`。结果仅授权给同会话新建的
+  三牌独立 Object6D observability canary；外部 30/50/70/100 cm 标定缺失，因此
+  `external_accuracy=UNVERIFIED`，不授权 Contact、Robot 或批处理。
+
+- 用户所称“旧基线”固定为 156 会话 frozen exact78 批量基线，而不是本轮 SAM/Removal
+  单样本实验。旧 Poker 对照为 `play_cards_0902_042`，旧 Chips 对照为
+  `get_potato_chips_0902_103`；完整比较边界见
+  [`0915_OLD_BATCH_BASELINE_COMPARISON_ZH.md`](0915_OLD_BATCH_BASELINE_COMPARISON_ZH.md)。
+  旧 Depth/Object6D 已撤权，不参与新深度数值比较。
+
+- 新三牌 Object6D v2 已在同一 encoded physical-left 域完成。`card00/01/02` 的可见表面
+  中心分别为 `143/146/95` 帧，平面法向分别为 `139/113/48` 帧；其余帧按 Mask unknown
+  或非平面证据 fail-closed。卡托保持独立 `UNKNOWN`，`card_set` 仅为语义组。牌尺寸
+  尚未实测，因此 full extent 为 `0/150`，没有补造完整 6DoF。入口见
+  [`0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2`](visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md)。
+  Interaction/Contact 前仍需逐帧几何叠加审阅和实测牌宽高。
 
 - Removal Envelope V2 真实 150 帧 canary 已完成并终态为 `REJECTED_QUALITY`，浅层入口见
   [`0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1`](visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1/README_ZH.md)。

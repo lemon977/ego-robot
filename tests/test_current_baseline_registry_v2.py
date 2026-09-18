@@ -88,38 +88,52 @@ def test_clean_registry_does_not_overclaim_stereo_or_contact_preservation() -> N
 def test_depth_registry_forbids_lens_undistortion_on_encoded_vst_video() -> None:
     registry = _load("docs/governance/CURRENT_BASELINE_REGISTRY_V2.json")
     depth = next(entry for entry in registry["entries"] if entry["stage"] == "Depth")
-    assert depth["algorithm_id"] == "foundationstereo_encoded_vst_domain_preflight_pass_v3"
-    assert depth["input_authority"] == "ENCODED_VST_PREFLIGHT_PASS_NO_CURRENT_DEPTH"
+    assert depth["algorithm_id"] == (
+        "foundationstereo_encoded_physical_left_canary_pass_v4"
+    )
+    assert depth["input_authority"] == "ENCODED_VST_SOURCEINDEX_CROP_RESIZE_ONLY"
     names = {Path(reference["path"]).name for reference in depth["code_closure"]}
     assert "vst_encoded_video_domain.py" in names
     assert "stereo_encoded_domain_preflight_v1.py" in names
     assert "run_0915_stereo_encoded_domain_preflight_v1.py" in names
+    assert "run_0915_foundationstereo_encoded_domain_canary_v1.py" in names
     assert "run_0915_foundationstereo_single_session_canary_v1.py" not in names
     limitations = "\n".join(depth["known_limitations"])
     assert "already undistorted" in limitations
     assert "WITHDRAWN_WRONG_IMAGE_DOMAIN" in limitations
     assert "34,280" not in limitations  # machine text remains locale-neutral
-    assert "1.943/2.817/3.096" in limitations
-    assert "simultaneous horizontal-flip adapter" in limitations
+    assert "simultaneously horizontal" not in limitations
+    assert "reflecting both physical eyes" in limitations
+    assert "Pixelwise RGB roundtrip" in limitations
 
 
-def test_depth_and_object6d_have_no_current_authorized_outputs() -> None:
+def test_depth_and_object6d_separate_one_encoded_canary_from_withdrawn_58() -> None:
     registry = _load("docs/governance/CURRENT_BASELINE_REGISTRY_V2.json")
     depth = next(entry for entry in registry["entries"] if entry["stage"] == "Depth")
     object6d = next(
         entry for entry in registry["entries"] if entry["stage"] == "Object6D"
     )
-    assert depth["authorized_scope"] == "NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN"
+    assert depth["authorized_scope"] == (
+        "ONE_SESSION_VISUAL_OBJECT6D_CANDIDATE_INPUT_PLUS_58_WITHDRAWN"
+    )
     assert depth["current_counts"] == {
-        "total": 58,
-        "passed": 0,
+        "total": 59,
+        "passed": 1,
         "grade_c": 0,
         "running": 0,
         "blocked": 58,
     }
-    assert object6d["algorithm_id"] == "object6d_blocked_upstream_depth_wrong_vst_domain_v2"
-    assert object6d["input_authority"] == "BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN"
-    assert object6d["authorized_scope"].startswith("NO_CURRENT_OBJECT6D_AUTHORITY")
+    assert object6d["algorithm_id"] == (
+        "planar_object6d_encoded_observability_v2_pass"
+    )
+    assert object6d["input_authority"] == (
+        "ENCODED_DOMAIN_DEPTH_PASSED_SINGLE_SESSION"
+    )
+    object_code = {Path(reference["path"]).name for reference in object6d["code_closure"]}
+    assert "run_0915_planar_object6d_observability_canary_v2.py" in object_code
+    assert object6d["authorized_scope"] == (
+        "ONE_SESSION_DEVELOPMENT_VISIBLE_SURFACE_ONLY_PLUS_58_WITHDRAWN"
+    )
     assert object6d["current_counts"] == depth["current_counts"]
 
 

@@ -1,9 +1,9 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-18T17:24:53+08:00",
-  "generation_id": "gov-012032-27509b9465df",
-  "governance_revision": 12032,
+  "generated_at": "2026-09-18T18:15:17+08:00",
+  "generation_id": "gov-012057-d85411e095b7",
+  "governance_revision": 12057,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
@@ -31,9 +31,9 @@
       "stage": "governance"
     },
     {
-      "bytes": 7838,
+      "bytes": 8257,
       "path": "/mnt/workspace/code/chaoyang/tests/test_current_baseline_registry_v2.py",
-      "sha256": "03ec2c8b30f8db6182a48c58c60317e42fd2c1005bbd08657f02cfb187174da2",
+      "sha256": "a3c9cc8a84ad2072d365d47bf85347c67dbd58c466697d998557b2b58245ae06",
       "stage": "governance"
     },
     {
@@ -133,6 +133,12 @@
       "stage": "depth_object6d"
     },
     {
+      "bytes": 2350,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_foundationstereo_encoded_domain_canary_v1.py",
+      "sha256": "0166e67c12c6b4a47b270b3914ed9aa058206711860bbbfa5cd58462313cde17",
+      "stage": "depth_object6d"
+    },
+    {
       "bytes": 2023,
       "path": "/mnt/workspace/code/chaoyang/tests/pipeline/test_vst_encoded_video_domain.py",
       "sha256": "951f04f713497772e0efeefd9bc2af353a6bb93ed0e498d7ba1eced3291a2230",
@@ -148,6 +154,18 @@
       "bytes": 10991,
       "path": "/mnt/workspace/code/chaoyang/tests/test_0915_planar_object6d_single_session_v1.py",
       "sha256": "3e8182f54598d9a196ce9e584e4498d1bc79a657d7db441409f569f88abcc6f7",
+      "stage": "object6d"
+    },
+    {
+      "bytes": 7316,
+      "path": "/mnt/workspace/code/chaoyang/tests/pipeline/test_object6d_planar_observability_v2.py",
+      "sha256": "d483b9c95c70f99f066c76ae7bb91b8d9867ae7801b1043d85f0b7c0db921183",
+      "stage": "object6d"
+    },
+    {
+      "bytes": 8584,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_planar_object6d_observability_canary_v2.py",
+      "sha256": "2395a9dae6d34ad4af99115e7b4c77ab98a2513d615c4a7d84d456b57c78adca",
       "stage": "object6d"
     },
     {

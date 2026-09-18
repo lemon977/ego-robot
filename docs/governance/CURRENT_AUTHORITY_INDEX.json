@@ -357,13 +357,13 @@
     "Visual Robot authority and physical deployment authority are separate.",
     "V5.2: one executor epoch, one canonical run signature and immutable finals are mandatory."
   ],
-  "generated_at": "2026-09-18T17:24:53+08:00",
-  "generation_id": "gov-012032-27509b9465df",
-  "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
-  "governance_revision": 12032,
+  "generated_at": "2026-09-18T18:15:17+08:00",
+  "generation_id": "gov-012057-d85411e095b7",
+  "generator_code_sha": "678dcb60fed65bce8890395f6fc71b5f9def9c68e85f64b3a9b46794b2c90cfe",
+  "governance_revision": 12057,
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "b4918fe4817c432914be7079e3874f918ea40351"
+    "commit": "fef8016d028db1802ae767e0abbcfe857c3a2f42"
   },
   "schema_version": "chaoyang-current-authority-index-v1",
   "stages": [
@@ -436,9 +436,9 @@
       "total": 156
     },
     {
-      "authority_scope": "NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN",
+      "authority_scope": "ONE_SESSION_VISUAL_OBJECT6D_CANDIDATE_INPUT_PLUS_58_WITHDRAWN",
       "blocked": 58,
-      "denominator_semantics": "The historical 58 remap-derived terminals are retained as files but all 58 are blocked from current consumption because decoded VST video was lens-undistorted a second time.",
+      "denominator_semantics": "59 explicitly separated terminals: 58 historical remap-derived exact78 Depth products remain withdrawn/blocked; one play_cards_0915_001 encoded-domain canary passed internal gates and is authorized only as VISUAL_OBJECT6D_CANDIDATE_INPUT.",
       "evidence": [
         {
           "bytes": 9691,
@@ -459,18 +459,28 @@
           "bytes": 2852,
           "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
           "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
+        },
+        {
+          "bytes": 3377,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/RESULT.json",
+          "sha256": "6dde1b8037751b66172870422877679a6b70813db10247daea4d226d2eeef970"
+        },
+        {
+          "bytes": 98491,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/DEPTH_SUMMARY.json",
+          "sha256": "208a46f056482b85a40ed9180fae8d5d1c09e00e7c76125f5f171cc07889f5b2"
         }
       ],
       "grade_c": 0,
-      "passed": 0,
+      "passed": 1,
       "running": 0,
       "stage": "Depth",
-      "total": 58
+      "total": 59
     },
     {
-      "authority_scope": "NO_CURRENT_OBJECT6D_AUTHORITY_BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN",
+      "authority_scope": "ONE_SESSION_DEVELOPMENT_VISIBLE_SURFACE_ONLY_PLUS_58_WITHDRAWN",
       "blocked": 58,
-      "denominator_semantics": "The historical 58 Object6D terminals depended on withdrawn remap-derived Depth and therefore have no current downstream authority.",
+      "denominator_semantics": "59 explicitly separated terminals: 58 historical remap-derived exact78 Object6D products remain withdrawn/blocked; one play_cards_0915_001 encoded-domain three-card canary passed development field-level observability only, with no Contact or Robot authority.",
       "evidence": [
         {
           "bytes": 22674,
@@ -486,13 +496,23 @@
           "bytes": 2852,
           "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
           "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
+        },
+        {
+          "bytes": 2181,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/RESULT.json",
+          "sha256": "1c7b3152e98ab4dd42c1d6c004865b78ad95d9d4afd517d156eb74b37bcd3323"
+        },
+        {
+          "bytes": 3365,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/OBJECT6D_SUMMARY_V2.json",
+          "sha256": "868dc58420af08bb833cba3d49e8facb8f79f060a5a17209642228ffb14c5758"
         }
       ],
       "grade_c": 0,
-      "passed": 0,
+      "passed": 1,
       "running": 0,
       "stage": "Object6D",
-      "total": 58
+      "total": 59
     },
     {
       "authority_scope": "EXACT78_WAVE0_FROZEN_PLUS_VERIFIED_SESSION_TERMINALS",

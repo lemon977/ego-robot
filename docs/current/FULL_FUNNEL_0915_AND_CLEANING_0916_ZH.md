@@ -106,8 +106,21 @@ Contact/Occlusion 假设不再拥有当前消费资格。历史产物未删除�
 复核：只按 `sourceIndex` 裁切左右眼再 resize，不做镜头去畸变或 remap。34,280 个
 robust matches 的 `|dy|` median/P90/P95 为 `1.9432/2.8167/3.0964 px`，frame 81/94
 无单帧异常，结论为 `PASS_DIRECT_FOUNDATION_INPUT`。这只解除“是否需要额外极线 remap”
-的问题，不产生 Depth；后续 FoundationStereo 仍需新任务、GPU 租约和显式正视差
-水平镜像 adapter，且外部精度保持 `UNVERIFIED`。
+的问题，不产生 Depth。其 GPU successor 随后固定物理左右眼身份，对两眼同时水平镜像
+以适配正视差模型，并在推理后把输出反镜像回原物理左目。该 FoundationStereo canary
+已完成 150 帧、单次加载和 300 次双向推理；全部内部门通过，RGB/Depth 像素回域误差
+为 0。浅层入口见
+[`visuals/0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/README_ZH.md`](visuals/0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/README_ZH.md)。
+外部精度仍为 `UNVERIFIED`，只允许同会话新 Object6D canary 消费。
+
+新的 Object6D 合同固定三张牌为三个独立物理实例，`black_card_tray` 为独立 support
+entity，`card_set` 只表达语义成员关系而不拥有共同刚体姿态。`center_xyz`、plane
+normal、in-plane rotation 和 full extent 分别报告可观测性；牌尺寸尚未实测时
+full extent 保持 `UNOBSERVABLE`，不得补造隐藏中心或完整 6DoF。
+该 canary 已完成：三张牌的 visible-surface center 分别为 `143/146/95` 帧，plane
+normal 分别为 `139/113/48` 帧；第三张牌遮挡较多时保持 unknown。时间轴见
+[`visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md`](visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md)。
+这只是字段级内部可观测性，不是外部 pose accuracy；Contact/Robot 尚未放行。
 
 `0915_removal_envelope_v2_real_canary_v1` 也已在 150 帧实片上运行，终态
 `REJECTED_QUALITY`。V2 的 repair contribution P95 为 `0.00293`、area inflation P95

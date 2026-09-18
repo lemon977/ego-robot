@@ -1,0 +1,47 @@
+{
+  "artifacts": {
+    "document": {
+      "bytes": 1064651,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/OBJECT6D_OBSERVABILITY_V2.json",
+      "sha256": "45ba5f41cffab0f7a9be3793b64a9e679b82abba19557fcb246aadad9d96a72b"
+    },
+    "summary": {
+      "bytes": 3365,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/OBJECT6D_SUMMARY_V2.json",
+      "sha256": "868dc58420af08bb833cba3d49e8facb8f79f060a5a17209642228ffb14c5758"
+    },
+    "timeline": {
+      "bytes": 84169,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/0915_PLANAR_OBJECT6D_OBSERVABILITY_TIMELINE_V2.png",
+      "sha256": "9a504862527c5e4ed6e51f6d40104fdfa6e993e5a47f7433a73023b97cbea815"
+    }
+  },
+  "claim_limit": "Single-session development visible-surface observability only. center_xyz is not the hidden object centre; full extent remains unknown without complete boundary evidence. No external accuracy, Contact, Robot or deployment authority.",
+  "coordinate_domain": "PHYSICAL_LEFT_ENCODED_RESIZE_ONLY_OPTICAL_Z",
+  "external_accuracy": "UNVERIFIED",
+  "gpu_used": false,
+  "hidden_geometry_inferred": false,
+  "object6d_admission": "PASS_DEVELOPMENT_VISIBLE_SURFACE_ONLY",
+  "result": {
+    "bytes": 2181,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/RESULT.json",
+    "sha256": "1c7b3152e98ab4dd42c1d6c004865b78ad95d9d4afd517d156eb74b37bcd3323"
+  },
+  "run_signature": {
+    "bytes": 46569,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "b6e9703142b4d3c32f88c8e6da1f51b70b1f6ef311fadbf453bc55d431bb10fc"
+  },
+  "schema_version": "0915-planar-object6d-observability-canary-result-v2",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_planar_object6d_observability_canary_v2",
+  "unified_validity_emitted": false,
+  "weights": "ABSENT",
+  "writer_claim": {
+    "bytes": 896,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/CLAIM.json",
+    "sha256": "640ffa65d876a2f8f13aefa88e9ba0a76d2480727dcd7684761d1c401ec5136c"
+  }
+}

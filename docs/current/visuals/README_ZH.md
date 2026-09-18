@@ -4,6 +4,31 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
+## 旧 exact78 批量基线对照
+
+- [`TWO_TASK_BASELINE_20260917/README_ZH.md`](TWO_TASK_BASELINE_20260917/README_ZH.md)
+
+这里才是“之前确认并完成批量处理的旧数据”对照：156 会话、56,663 帧；代表会话为
+Poker042 和 Chips103。近期 0915 SAM/Removal 单样本实验不属于这个旧基线。
+
+## 0915 FoundationStereo encoded-domain Depth（通过；开发级）
+
+- [`0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/README_ZH.md`](0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/README_ZH.md)
+- [`0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/0915_FOUNDATIONSTEREO_ENCODED_DEPTH_REVIEW.mp4`](0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/0915_FOUNDATIONSTEREO_ENCODED_DEPTH_REVIEW.mp4)
+
+150/150 帧通过内部 Depth 门。两眼仅同时水平镜像以适配视差符号，输出已反镜像回原
+物理左目，RGB/Depth 逐像素往返误差为 0；未交换左右眼，也未做 lens undistortion/remap。
+外部毫米精度仍为 `UNVERIFIED`，只允许作为同会话 Object6D canary 输入。
+
+## 0915 三牌 Planar Object6D（通过；开发级可观测性）
+
+- [`0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md`](0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md)
+- [`0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/0915_PLANAR_OBJECT6D_OBSERVABILITY_TIMELINE_V2.png`](0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/0915_PLANAR_OBJECT6D_OBSERVABILITY_TIMELINE_V2.png)
+
+三张牌分别发布 center、plane normal、平面内方向和 full extent 的可观测性；不合并卡托，
+不硬补完整 6DoF。可见表面中心为 143/146/95 帧，平面法向为 139/113/48 帧；牌尺寸
+缺失使 full extent 保持 0/150。绿条不是外部姿态精度或 Contact 真值。
+
 ## 0915 Encoded-domain Stereo Preflight（通过；不是 Depth）
 
 - [`0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1/README_ZH.md`](0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1/README_ZH.md)

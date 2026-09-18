@@ -1,0 +1,71 @@
+{
+  "adapter_contract": {
+    "bytes": 1359,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/ADAPTER_CONTRACT.json",
+    "sha256": "8ecdf4a1e6e6971e94a74e0c1b0d47185e4abf6720e26218ef6078d3bf777cc8"
+  },
+  "authorized_scopes": [
+    "VISUAL_OBJECT6D_CANDIDATE_INPUT"
+  ],
+  "claim_limit": "Single-session development optical-Z candidate only. Consumption is limited to VISUAL_OBJECT6D_CANDIDATE_INPUT after all gates pass; external metric accuracy, batch, Contact, Robot and deployment authority remain absent.",
+  "consumption_authorized": true,
+  "depth_admission": "PASS",
+  "depth_contract": {
+    "bytes": 1389,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/DEPTH_CONTRACT.json",
+    "sha256": "59ae84744876f6a6809fbdb0dee87fc81a21b458d9b5ae315265e5e30eb7fcb2"
+  },
+  "depth_summary": {
+    "bytes": 98491,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/DEPTH_SUMMARY.json",
+    "sha256": "208a46f056482b85a40ed9180fae8d5d1c09e00e7c76125f5f171cc07889f5b2"
+  },
+  "depth_worker_result": {
+    "bytes": 2401,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/DEPTH_WORKER_RESULT.json",
+    "sha256": "3ffc82beaaa44aaac0b94630578ca8d475fede209dcbacb32fd04ea110a50921"
+  },
+  "external_accuracy": "UNVERIFIED",
+  "first_blocker": null,
+  "gpu_command_receipt": {
+    "bytes": 11693,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "79c15ef7c1adf126544811a157eb8e56d1cdd78830c4564f24bb62d7786fa501"
+  },
+  "horizontal_reflection_for_disparity_sign": true,
+  "lens_undistortion_applied": false,
+  "output_domain": "ORIGINAL_PHYSICAL_LEFT_640x480",
+  "result": {
+    "bytes": 3377,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "6dde1b8037751b66172870422877679a6b70813db10247daea4d226d2eeef970"
+  },
+  "rgb_alignment_qa": {
+    "bytes": 592,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/RGB_ALIGNMENT_QA.json",
+    "sha256": "56708a707cb3ee65a9f6926ed68adac42afa569c97c5c739b3d6d36a434159c4"
+  },
+  "run_signature": {
+    "bytes": 5755,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "55fe6c7128e6aa44475f4f4917ea47121242a083249ec15925c017749fd3118b"
+  },
+  "schema_version": "0915-foundationstereo-encoded-canary-result-v1",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_foundationstereo_encoded_domain_canary_v1",
+  "visual": {
+    "bytes": 5365877,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/0915_FOUNDATIONSTEREO_ENCODED_DEPTH_REVIEW.mp4",
+    "sha256": "1c9289361747620ba32de0074dddee33136c333774efc28b88aabe2cae3b9c92"
+  },
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "writer_claim": {
+    "bytes": 1016,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "9c54598a599b1a5e0d3e310d4d1435ef8c356736e2d6416fcbe6b1d2b6ebce9e"
+  }
+}

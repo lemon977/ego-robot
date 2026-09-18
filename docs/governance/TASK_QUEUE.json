@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T17:24:53+08:00",
-  "generation_id": "gov-012032-27509b9465df",
-  "governance_revision": 12032,
+  "generated_at": "2026-09-18T18:15:17+08:00",
+  "generation_id": "gov-012057-d85411e095b7",
+  "governance_revision": 12057,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -80,6 +80,16 @@
       "attempt": 0,
       "gpu_id": null,
       "heartbeat_at": null,
+      "phase": "0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_foundationstereo_encoded_domain_canary_v1",
+      "updated_at": "2026-09-18T18:00:15+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
       "phase": "0915_HAWOR_PHYSICAL_LEFT_RESIZE_ONLY_CANARY",
       "session": null,
       "status": "PASSED",
@@ -95,6 +105,16 @@
       "status": "PASSED",
       "task_id": "0915_input_prepare_cad_v2",
       "updated_at": "2026-09-18T05:37:48+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_PLANAR_OBJECT6D_ENCODED_OBSERVABILITY_CANARY_V2",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_planar_object6d_observability_canary_v2",
+      "updated_at": "2026-09-18T18:13:34+08:00"
     },
     {
       "attempt": 0,
