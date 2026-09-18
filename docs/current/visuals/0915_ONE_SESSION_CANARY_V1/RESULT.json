@@ -1,0 +1,27 @@
+{
+  "claim_limit": "Four-panel development review, not accuracy ground truth.",
+  "contact_sheet": {
+    "bytes": 741309,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ONE_SESSION_CANARY_V1/play_cards_0915_001_FULL_FUNNEL_CONTACT_SHEET.jpg",
+    "sha256": "111d711316404fb6b4c48bde3a7e3b43ae49c61e0d407a92302b1b3eb5ef9a86"
+  },
+  "control_ground_truth": false,
+  "frame_count": 150,
+  "physical_deployment_authorized": false,
+  "post_stages": {
+    "Clean": "BLOCKED_UPSTREAM",
+    "Contact": "BLOCKED_UPSTREAM",
+    "Object6D": "BLOCKED_UPSTREAM",
+    "RobotContactAware": "BLOCKED_UPSTREAM",
+    "RobotVisual": "REJECTED_QUALITY"
+  },
+  "schema_version": "0915-one-session-visual-evidence-v1",
+  "session_id": "play_cards_0915_001",
+  "status": "PASS_VISUAL_DECODE_ONLY",
+  "task": "playing_cards",
+  "video": {
+    "bytes": 6865209,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ONE_SESSION_CANARY_V1/play_cards_0915_001_FULL_FUNNEL_REVIEW.mp4",
+    "sha256": "fa063be22ae3d7252988ea13097aaefa71d504a2e654e5a64b3207a256512e1a"
+  }
+}

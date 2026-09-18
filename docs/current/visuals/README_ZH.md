@@ -7,6 +7,7 @@
 ## 0915 HaWoR 当前批次诊断
 
 - [`0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md`](0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md)
+- [`0915_ONE_SESSION_CANARY_V1/README_ZH.md`](0915_ONE_SESSION_CANARY_V1/README_ZH.md)
 
 该目录把当前 `play_cards_0915_001` 的冻结 HaWoR NPZ 叠加回物理左目 RGB，用于复核
 OBS/MISS、左右手身份和投影。它同时记录了当前“全片双手各 95%”分母与既有 chips_001

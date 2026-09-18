@@ -1,0 +1,19 @@
+{
+  "claim_limit": "SAM3.1 terminal development review; not mask ground truth.",
+  "contact_sheet": {
+    "bytes": 397755,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ONE_SESSION_CANARY_V1/play_cards_0915_001_SAM31_BASELINE_CONTACT_SHEET.jpg",
+    "sha256": "30b77978d3eb3c7b3069573fa232267e72f2882ac2098ca3a1fb5ff59c6cdf1b"
+  },
+  "frame_count": 150,
+  "sam31_terminal_status": "REJECTED_QUALITY",
+  "schema_version": "0915-one-session-sam31-visual-evidence-v1",
+  "session_id": "play_cards_0915_001",
+  "status": "PASS_VISUAL_DECODE_ONLY",
+  "task": "playing_cards",
+  "video": {
+    "bytes": 3183763,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ONE_SESSION_CANARY_V1/play_cards_0915_001_SAM31_BASELINE_REVIEW.mp4",
+    "sha256": "908a42bb539de8e4213dcaab980f050ba6195cf59cedfa273624f2d7aab32e32"
+  }
+}
