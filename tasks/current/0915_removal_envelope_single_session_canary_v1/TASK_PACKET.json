@@ -1,0 +1,78 @@
+{
+  "algorithm_prerequisites": {
+    "forbidden_consumers": [
+      "Depth",
+      "Object6D",
+      "Contact",
+      "RobotGeometry",
+      "ControlGroundTruth"
+    ],
+    "removal": [
+      "sealed_admitted_SAM_masks",
+      "accepted_bounded_HaWoR",
+      "resize_only_RGB",
+      "replaceable_cable_appearance_profile"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Visual Clean removal inference only. Expanded or held pixels and feather alpha are not semantic truth, geometry observation, Contact evidence, Robot geometry, control truth or physical-deployment authority; no inpaint or batch is authorized.",
+  "expected_resource": "CPU_ONLY_SINGLE_SESSION_VISUAL_CLEAN_MASK_CANARY",
+  "objective": "Build an auditable visual-only Clean removal envelope for play_cards_0915_001 from sealed admitted SAM evidence, bounded MANO geometry and a replaceable device-instance cable appearance profile, without rerunning SAM or inpainting.",
+  "phase": "0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_sam31_weak_role_canary_v1=PASSED_EXECUTION_ONLY",
+    "user_rejected_weak_role_as_clean_baseline",
+    "user_authorized_independent_removal_envelope_v1",
+    "single_session_play_cards_0915_001",
+    "governance_PASS_FRESH",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN",
+    "no_SAM_rerun",
+    "no_inpaint"
+  ],
+  "read_set": [
+    "src/chaoyang/ops/run_0915_removal_envelope_single_session_canary_v1.py",
+    "src/chaoyang/pipeline/removal_envelope_v1.py",
+    "contracts/removal_envelope_v1.schema.json",
+    "configs/systems/clean/removal_envelope_0915_play_cards_001_v1.json",
+    "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+    "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+    "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+    "_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001"
+  ],
+  "required_outputs": [
+    "raw_candidate/STATUS.json",
+    "semantic/SEALED_INPUTS.json",
+    "removal/MANO_FINGER_CAPSULES.npz",
+    "removal/PALM_WRIST_FOREARM_CORRIDORS.npz",
+    "removal/CABLE_TRACKED_REGION.npz",
+    "removal/PROTECTED_VISIBLE_OBJECT.npz",
+    "removal/REMOVAL_ENVELOPE.npz",
+    "removal/SOURCE_BITS_INVENTORY.json",
+    "clean/FEATHER_ALPHA_INVENTORY.json",
+    "clean/INPAINT_NOT_RUN.json",
+    "FRAME_PROVENANCE_LEDGER.json",
+    "REMOVAL_ENVELOPE_MANIFEST.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_removal_envelope_single_session_canary_v1",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_REMOVAL_ENVELOPE_CANARY_V1",
+    "tasks/receipts/0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1_RESULT.json"
+  ]
+}

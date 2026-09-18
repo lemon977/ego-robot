@@ -1,0 +1,62 @@
+{
+  "algorithm_prerequisites": {
+    "interaction_v0a": [
+      "accepted_bounded_HaWoR",
+      "SAM3.1_v5_role_masks_and_states",
+      "processed_entities_tactile_only"
+    ],
+    "stereo_preflight": [
+      "same_session_SBS",
+      "same_session_camera_params"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "CPU single-session evidence only. The outer task may pass while a later Depth task remains blocked by the inner stereo admission. Interaction v0a contains no Z, occlusion-order, contact-truth, Object6D or Robot authority.",
+  "expected_resource": "TWO_FENCED_CPU_LANES_ONE_GOVERNANCE_COORDINATOR",
+  "objective": "Run two fenced CPU lanes for the fixed play_cards_0915_001 session: a raw-resize versus calibrated-rectified stereo-domain preflight and image-plane-only Interaction Evidence v0a.",
+  "phase": "0915_STEREO_INTERACTION_CPU_CANARY",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_sam31_strict_role_canary_v5=PASSED",
+    "user_authorized_bounded_parallel_canaries",
+    "governance_PASS_FRESH",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN",
+    "two_disjoint_lane_writer_fences",
+    "source_read_only"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_PARALLEL_CANARIES_USER_AUTHORIZATION.json",
+    "src/chaoyang/ops/run_0915_stereo_interaction_cpu_canary_v1.py",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/playing_cards/play_cards_0915_001",
+    "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+    "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/ROLE_MANIFEST.json",
+    "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/TEMPORAL_STATE_LEDGER.json",
+    "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/masks"
+  ],
+  "required_outputs": [
+    "lanes/stereo_preflight/STEREO_PREFLIGHT.json",
+    "lanes/interaction_v0a/INTERACTION_EVIDENCE_V0A.json",
+    "lanes/interaction_v0a/INTERACTION_V0A_TIMELINE.png",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_stereo_interaction_cpu_canary_v1",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1"
+  ]
+}

@@ -1,0 +1,27 @@
+{
+  "claim_limit": "Single-session visual Clean removal inference only. Expanded/held pixels and feather alpha are not semantic truth, geometry observation, contact evidence, Robot geometry, control truth, or physical-deployment authority. Inpaint was not run.",
+  "contact_sheet": {
+    "bytes": 1120251,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_CONTACT_SHEET.jpg",
+    "sha256": "55e23579d9d1ca549d29e5225eacb68bc4e103aeb58dcb9d9fc492adc3597bd3"
+  },
+  "manifest": {
+    "bytes": 13782,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001/REMOVAL_ENVELOPE_MANIFEST.json",
+    "sha256": "4f0ca95c3320a732b2f9f7f1695136462b8bcd3072fcaf08a7dc5917dd8d7e01"
+  },
+  "removal_admission": "AWAITING_USER_VISUAL_REVIEW",
+  "result": {
+    "bytes": 2634,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "4f554be5aa8cff4aa6e8a55aeec507dc1553fd2e791630d6c2be10c55e099a6c"
+  },
+  "schema_version": "0915-removal-envelope-task-result-v1",
+  "status": "PASSED",
+  "task_id": "0915_removal_envelope_single_session_canary_v1",
+  "visual": {
+    "bytes": 5227423,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_REVIEW.mp4",
+    "sha256": "05d777e66b1aca6c62122207adff0af15608ce03dc336e2c87d5c3713e3cef30"
+  }
+}

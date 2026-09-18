@@ -35,6 +35,26 @@ CURRENT_INDEX = REPO_ROOT / "tasks/current/INDEX.json"
 LIVE = {"PENDING", "READY", "CLAIMED", "RUNNING", "WAIT_GPU_RESOURCE"}
 
 
+def _validate_materialized_read_closure(
+    packet: dict[str, Any], *, repo_root: Path = REPO_ROOT,
+) -> list[str]:
+    """Reject a sole executable route whose declared inputs are not present."""
+    errors: list[str] = []
+    for raw in packet.get("read_set", []):
+        path = Path(str(raw))
+        resolved = path if path.is_absolute() else repo_root / path
+        if not resolved.exists():
+            errors.append(f"read_set path is not materialized: {raw}")
+    weights = packet.get("weights")
+    if isinstance(weights, list):
+        for raw in weights:
+            path = Path(str(raw))
+            resolved = path if path.is_absolute() else repo_root / path
+            if not resolved.is_file():
+                errors.append(f"weight is not materialized: {raw}")
+    return errors
+
+
 def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]:
     if state.get("next_task") is not None:
         raise RuntimeError("registration requires no current next_task")
@@ -119,7 +139,7 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             raise RuntimeError("user confirmation does not authorize this bounded canary")
     elif task_id == "0915_sam31_mask_full_v1":
         raise RuntimeError(
-            "SAM3.1 remains blocked pending a separate user review of the resize-only HaWoR canary"
+            "SAM3.1 full batch remains blocked pending separate batch authorization"
         )
     elif task_id == "0915_sam31_strict_role_canary_v2":
         if predecessor.get("status") != "CANCELLED":
@@ -185,6 +205,91 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             or '"completed_instances": 2' not in str(gpu.get("stdout_tail"))
         ):
             raise RuntimeError("strict-role v4 was not the exact direction-level exception")
+    elif task_id == "0915_stereo_interaction_cpu_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("CPU evidence canary requires the completed strict-role v5")
+        authorization = load_json(
+            REPO_ROOT / "tasks/receipts/0915_PARALLEL_CANARIES_USER_AUTHORIZATION.json"
+        )
+        if (
+            authorization.get("status") != "CONFIRMED"
+            or authorization.get("authorized_session") != "play_cards_0915_001"
+            or "STEREO_DOMAIN_CPU_PREFLIGHT"
+            not in authorization.get("authorized_scope", [])
+            or "INTERACTION_V0A_IMAGE_2D_ONLY"
+            not in authorization.get("authorized_scope", [])
+        ):
+            raise RuntimeError("bounded CPU evidence lacks exact user authorization")
+    elif task_id == "0915_sam31_weak_role_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("weak-role canary requires terminal CPU evidence routing")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("CPU evidence predecessor result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("lane_fences_valid") is not True
+            or result.get("gpu_used") is not False
+            or result.get("session_id") != "play_cards_0915_001"
+        ):
+            raise RuntimeError("CPU evidence predecessor did not close both fenced lanes")
+    elif task_id == "0915_foundationstereo_single_session_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("Depth canary requires terminal weak-role routing predecessor")
+        cpu_task = next(
+            (
+                row for row in state.get("tasks", [])
+                if row.get("task_id") == "0915_stereo_interaction_cpu_canary_v1"
+            ),
+            None,
+        )
+        if cpu_task is None:
+            raise RuntimeError("Depth canary lacks the CPU stereo preflight task")
+        cpu_ref = cpu_task.get("result")
+        if not isinstance(cpu_ref, dict) or validate_artifact_ref(cpu_ref):
+            raise RuntimeError("Depth canary CPU predecessor result is not bound")
+        cpu_result = load_json(Path(cpu_ref["path"]))
+        if cpu_result.get("stereo_gpu_depth_allowed") is not True:
+            raise RuntimeError("Depth canary is blocked by the inner stereo admission")
+    elif task_id == "0915_removal_envelope_single_session_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("Removal Envelope canary requires terminal weak-role execution")
+        weak_ref = predecessor.get("result")
+        if not isinstance(weak_ref, dict) or validate_artifact_ref(weak_ref):
+            raise RuntimeError("Removal Envelope weak-role predecessor is not bound")
+        weak_result = load_json(Path(weak_ref["path"]))
+        if (
+            weak_result.get("session_id") != "play_cards_0915_001"
+            or weak_result.get("session_admission") != "AWAITING_USER_VISUAL_REVIEW"
+        ):
+            raise RuntimeError("Removal Envelope predecessor is not the bounded weak-role run")
+        review = load_json(
+            REPO_ROOT / "tasks/receipts/0915_SAM31_WEAK_ROLE_CANARY_V1_USER_VISUAL_REVIEW.json"
+        )
+        if review.get("status") != "REJECTED_QUALITY_AS_CLEAN_BASELINE":
+            raise RuntimeError("Removal Envelope requires the recorded weak-role visual rejection")
+        authorization = load_json(
+            REPO_ROOT / "tasks/receipts/0915_REMOVAL_ENVELOPE_V1_USER_AUTHORIZATION.json"
+        )
+        if (
+            authorization.get("status") != "CONFIRMED"
+            or authorization.get("authorized_task") != task_id
+            or authorization.get("authorized_session") != "play_cards_0915_001"
+            or authorization.get("weights") != "ABSENT"
+        ):
+            raise RuntimeError("Removal Envelope lacks exact user authorization")
+    elif task_id == "0915_planar_object6d_single_session_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("Object6D canary requires the Depth execution terminal")
+        depth_ref = predecessor.get("result")
+        if not isinstance(depth_ref, dict) or validate_artifact_ref(depth_ref):
+            raise RuntimeError("Depth canary result is not bound")
+        depth_result = load_json(Path(depth_ref["path"]))
+        if (
+            depth_result.get("depth_admission") != "PASS"
+            or depth_result.get("external_accuracy") != "UNVERIFIED"
+        ):
+            raise RuntimeError("Object6D canary requires admitted unverified optical-Z")
     elif predecessor.get("status") != "PASSED":
         raise RuntimeError(f"predecessor did not pass: {predecessor_id}")
     return predecessor
@@ -232,6 +337,7 @@ def main() -> int:
 
     packet = build_packet(args.task_id)
     errors = _validate_packet(packet)
+    errors.extend(_validate_materialized_read_closure(packet))
     if errors:
         raise RuntimeError("invalid campaign packet: " + "; ".join(errors))
     packet_path = REPO_ROOT / "tasks/current" / args.task_id / "TASK_PACKET.json"

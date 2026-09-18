@@ -1,0 +1,23 @@
+{
+  "schema_version": "0915-parallel-canaries-user-authorization-v1",
+  "status": "CONFIRMED",
+  "confirmed_at_local_date": "2026-09-18",
+  "authorized_session": "play_cards_0915_001",
+  "authorized_scope": [
+    "SAM3.1_WEAK_ROLE_SINGLE_SESSION_CANARY",
+    "STEREO_DOMAIN_CPU_PREFLIGHT",
+    "FOUNDATIONSTEREO_SINGLE_SESSION_CANARY_AFTER_PREFLIGHT_PASS",
+    "INTERACTION_V0A_IMAGE_2D_ONLY",
+    "PLANAR_OBJECT6D_OBSERVED_ONLY_AFTER_DEPTH_PASS"
+  ],
+  "execution_policy": {
+    "single_current_routable_task": true,
+    "cpu_lanes_may_run_in_parallel_under_one_coordinator": true,
+    "gpu_tasks_are_serial": true,
+    "sam_model": "SAM3.1_ONLY_USER_LOCKED",
+    "source_data_read_only": true,
+    "automatic_batch_expansion": false
+  },
+  "user_instruction_summary": "Start the bounded parallel canaries, keep current documentation synchronized, and use sub-agents to reduce integration errors.",
+  "claim_limit": "This receipt records authorization for bounded single-session development evidence only; it does not authorize a 220-session batch or external deployment."
+}

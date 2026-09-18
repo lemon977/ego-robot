@@ -32,6 +32,30 @@ CLEAN_SELECTION = CLEAN_ROOT / "EXACT78_WAVE0_SELECTION.json"
 CLEAN_SELECTION_SHA256 = "10ee9e3668aa4928f0087c961dbb5d909202af576f859adf7dbb02604f5b3bd1"
 CLEAN_TASK_ID = "exact78_wave0_clean_v1"
 CLEAN_RECOVERY_TASK_ID = "exact78_wave0_clean_runtime_recovery_v53"
+LIVE_TASK_STATUSES = frozenset({
+    "PENDING", "READY", "CLAIMED", "RUNNING", "WAIT_GPU_RESOURCE",
+})
+
+
+def heartbeat_guard_reason(state: dict, task_id: str) -> str | None:
+    """Return why a heartbeat must not mutate the current task state.
+
+    A finalizer and a worker heartbeat can race on the same CAS revision.  The
+    retrying heartbeat must re-check both liveness and routing after every
+    reload; otherwise it can resurrect a terminal row after the finalizer has
+    cleared ``next_task``.
+    """
+    matches = [item for item in state.get("tasks", []) if item.get("task_id") == task_id]
+    if not matches:
+        return "UNKNOWN_TASK"
+    if len(matches) != 1:
+        return "DUPLICATE_TASK_ROWS"
+    if matches[0].get("status") not in LIVE_TASK_STATUSES:
+        return "TASK_NOT_LIVE"
+    next_task = state.get("next_task")
+    if not isinstance(next_task, dict) or next_task.get("task_id") != task_id:
+        return "TASK_NOT_CURRENT"
+    return None
 
 
 def reconcile_clean_authority(
@@ -221,9 +245,17 @@ def main() -> int:
         receipt = load_json(RECEIPT_PATH)
         authority = load_json(AUTHORITY_PATH)
         state = load_json(TASK_STATE_PATH)
+        guard_reason = heartbeat_guard_reason(state, args.task_id)
+        if guard_reason is not None:
+            if guard_reason == "UNKNOWN_TASK":
+                raise SystemExit(f"unknown task: {args.task_id}")
+            print(
+                f"heartbeat ignored fail-closed: {args.task_id} {guard_reason}",
+                file=sys.stderr,
+            )
+            return 0
         selected = next((item for item in state["tasks"] if item["task_id"] == args.task_id), None)
-        if selected is None:
-            raise SystemExit(f"unknown task: {args.task_id}")
+        assert selected is not None
         selected.update(
             status=args.status,
             pid=args.pid,

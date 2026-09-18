@@ -1,0 +1,24 @@
+{
+  "reviewed_at": "2026-09-18T14:18:15+08:00",
+  "reviewed_session": "play_cards_0915_001",
+  "reviewed_visual": {
+    "bytes": 1470984,
+    "path": "docs/current/visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/0915_SAM31_WEAK_ROLE_REVIEW.mp4",
+    "sha256": "067d940db2107cc499f03623c9a4ea8b1b4f0b4e574cbf2ae67d1e993f630520"
+  },
+  "schema_version": "0915-sam31-weak-role-user-visual-review-v1",
+  "status": "REJECTED_QUALITY_AS_CLEAN_BASELINE",
+  "user_observations": [
+    "Selected masks visibly flicker across the review video.",
+    "Yellow cables are not reliably selected.",
+    "Finger sleeves are not reliably selected."
+  ],
+  "proposed_successor_direction": {
+    "status": "CANDIDATE_TO_EVALUATE_NOT_YET_IMPLEMENTED",
+    "clean_mask_may_exceed_semantic_mask": "PROPOSED",
+    "mano_finger_envelope_as_removal_prior": "PROPOSED",
+    "sam_sleeve_semantics_optional_for_clean": "PROPOSED",
+    "semantic_masks_remain_unmodified_evidence": "REQUIRED_BOUNDARY"
+  },
+  "authority_limit": "This receipt records user visual adjudication and design direction only. It does not implement or authorize a Clean successor, batch expansion, Contact truth, hidden object completion, Robot control or deployment."
+}

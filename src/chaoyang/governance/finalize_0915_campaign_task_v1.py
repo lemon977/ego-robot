@@ -26,6 +26,35 @@ TERMINAL = {"PASSED", "FAILED_RUNTIME_FINAL", "BLOCKED_RESOURCE", "BLOCKED_EXTER
 LIVE = {"PENDING", "READY", "CLAIMED", "RUNNING", "WAIT_GPU_RESOURCE"}
 
 
+def validate_terminal_bundle(
+    result_path: Path,
+    result: dict,
+    packet: dict,
+    *,
+    repo_root: Path = REPO_ROOT,
+) -> list[str]:
+    """Validate a successful terminal before it can unlock a successor."""
+    errors: list[str] = []
+    if packet.get("task_id") != result.get("task_id"):
+        errors.append("task packet/result identity mismatch")
+    write_set = packet.get("write_set", [])
+    if not write_set:
+        errors.append("task packet has no write_set")
+    else:
+        expected = Path(str(write_set[0]))
+        expected_root = expected if expected.is_absolute() else repo_root / expected
+        if result_path.parent.resolve() != expected_root.resolve():
+            errors.append("result is outside the primary packet write root")
+    if result.get("status") == "PASSED":
+        if result.get("weights") != packet.get("weights"):
+            errors.append("successful result weight identity differs from task packet")
+        for raw in packet.get("required_outputs", []):
+            candidate = result_path.parent / str(raw)
+            if not candidate.is_file():
+                errors.append(f"required output is missing: {raw}")
+    return errors
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--task-id", required=True, choices=TASK_ORDER)
@@ -56,6 +85,11 @@ def main() -> int:
     route = next((row for row in current.get("task_packets", []) if row.get("task_id") == args.task_id), None)
     if route is None or route.get("execution_allowed") is not True:
         raise RuntimeError("task is not current routable packet")
+    packet_path = REPO_ROOT / str(route.get("packet_path"))
+    packet = load_json(packet_path)
+    bundle_errors = validate_terminal_bundle(result_path, result, packet)
+    if bundle_errors:
+        raise RuntimeError("terminal bundle invalid: " + "; ".join(bundle_errors))
 
     output.mkdir(parents=True)
     predecessor = output / "PREDECESSOR_ACTIVE_INDEX.json"

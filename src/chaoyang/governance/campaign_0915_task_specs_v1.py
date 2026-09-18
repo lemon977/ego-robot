@@ -24,6 +24,11 @@ TASK_ORDER = (
     "0915_sam31_strict_role_canary_v3",
     "0915_sam31_strict_role_canary_v4",
     "0915_sam31_strict_role_canary_v5",
+    "0915_stereo_interaction_cpu_canary_v1",
+    "0915_sam31_weak_role_canary_v1",
+    "0915_removal_envelope_single_session_canary_v1",
+    "0915_foundationstereo_single_session_canary_v1",
+    "0915_planar_object6d_single_session_canary_v1",
     "0915_sam31_mask_full_v1",
     "0915_foundationstereo_full_v1",
     "0915_post_geometry_robot_v1",
@@ -38,6 +43,11 @@ MASK_STRICT_CANARY_ATTEMPT = "_run/current/0915_sam31_strict_role_canary_v1/atte
 MASK_STRICT_CANARY_V2_ATTEMPT = "_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001"
 DEPTH_ATTEMPT = "_run/current/0915_foundationstereo_full_v1/attempts/attempt_0001"
 MASK_ATTEMPT = "_run/current/0915_sam31_mask_full_v1/attempts/attempt_0001"
+CPU_EVIDENCE_ATTEMPT = "_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001"
+WEAK_ROLE_ATTEMPT = "_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001"
+REMOVAL_ENVELOPE_ATTEMPT = "_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001"
+DEPTH_CANARY_ATTEMPT = "_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001"
+OBJECT6D_CANARY_ATTEMPT = "_run/current/0915_planar_object6d_single_session_canary_v1/attempts/attempt_0001"
 
 
 TASK_SPECS: dict[str, dict[str, Any]] = {
@@ -391,6 +401,252 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
     },
 }
 
+# Bounded post-v5 evidence chain.  Routing is deliberately serial because the
+# current governance contract exposes exactly one executable ``next_task``.
+# ``algorithm_prerequisites`` records the real evidence dependencies so the
+# routing predecessor is never misrepresented as an algorithm input.
+TASK_SPECS["0915_stereo_interaction_cpu_canary_v1"] = {
+    "phase": "0915_STEREO_INTERACTION_CPU_CANARY",
+    "objective": (
+        "Run two fenced CPU lanes for the fixed play_cards_0915_001 session: "
+        "a raw-resize versus calibrated-rectified stereo-domain preflight and "
+        "image-plane-only Interaction Evidence v0a."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        "tasks/receipts/0915_PARALLEL_CANARIES_USER_AUTHORIZATION.json",
+        "src/chaoyang/ops/run_0915_stereo_interaction_cpu_canary_v1.py",
+        "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/playing_cards/play_cards_0915_001",
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/ROLE_MANIFEST.json",
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/TEMPORAL_STATE_LEDGER.json",
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/masks",
+    ],
+    "write_set": [
+        CPU_EVIDENCE_ATTEMPT,
+        "docs/current/visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1",
+    ],
+    "prerequisites": [
+        "0915_sam31_strict_role_canary_v5=PASSED",
+        "user_authorized_bounded_parallel_canaries",
+        "governance_PASS_FRESH", "weights_ABSENT", "gpu_FORBIDDEN",
+        "two_disjoint_lane_writer_fences", "source_read_only",
+    ],
+    "algorithm_prerequisites": {
+        "stereo_preflight": ["same_session_SBS", "same_session_camera_params"],
+        "interaction_v0a": [
+            "accepted_bounded_HaWoR", "SAM3.1_v5_role_masks_and_states",
+            "processed_entities_tactile_only",
+        ],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "lanes/stereo_preflight/STEREO_PREFLIGHT.json",
+        "lanes/interaction_v0a/INTERACTION_EVIDENCE_V0A.json",
+        "lanes/interaction_v0a/INTERACTION_V0A_TIMELINE.png",
+        "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+    "expected_resource": "TWO_FENCED_CPU_LANES_ONE_GOVERNANCE_COORDINATOR",
+    "claim_limit": (
+        "CPU single-session evidence only. The outer task may pass while a later "
+        "Depth task remains blocked by the inner stereo admission. Interaction v0a "
+        "contains no Z, occlusion-order, contact-truth, Object6D or Robot authority."
+    ),
+}
+
+TASK_SPECS["0915_sam31_weak_role_canary_v1"] = {
+    "phase": "0915_SAM31_WEAK_ROLE_SINGLE_SESSION_CANARY",
+    "objective": (
+        "Run the pinned SAM3.1 checkpoint on weak roles only: forearms, visible "
+        "per-finger sleeves, visible yellow cables and playing_card_02; retain the "
+        "v5 hands and card00/card01 as read-only regression evidence."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        f"{CPU_EVIDENCE_ATTEMPT}/RESULT.json",
+        "src/chaoyang/ops/run_0915_sam31_weak_role_canary_v1.py",
+        "src/chaoyang/pipeline/sam31_0915_weak_role_contract_v1.py",
+        f"{HAWOR_RESIZE_CANARY_ATTEMPT}/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+        "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+    ],
+    "write_set": [
+        WEAK_ROLE_ATTEMPT,
+        "docs/current/visuals/0915_SAM31_WEAK_ROLE_CANARY_V1",
+        "tasks/receipts/0915_SAM31_WEAK_ROLE_CANARY_V1_RESULT.json",
+    ],
+    "prerequisites": [
+        "routing_predecessor_0915_stereo_interaction_cpu_canary_v1=PASSED",
+        "algorithm_independent_of_stereo_and_interaction_outputs",
+        "governance_PASS_FRESH", "central_GPU_lease",
+        "SAM3.1_ONLY_USER_LOCKED", "single_session_play_cards_0915_001",
+        "quality_triggered_reseed_only", "no_batch_expansion",
+    ],
+    "algorithm_prerequisites": {
+        "mask": ["accepted_bounded_HaWoR", "resize_only_RGB", "v5_regression_evidence"],
+        "not_dependencies": ["stereo_preflight", "interaction_v0a"],
+    },
+    "weights": ["assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"],
+    "required_outputs": [
+        "PROMPT_PLAN.json", "WEAK_ROLE_MANIFEST.json", "TEMPORAL_STATE_LEDGER.json",
+        "QUALITY_TRIGGER_LEDGER.json", "REGRESSION_GATES.json",
+        "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 2, "runtime_attempts": 1},
+    "expected_resource": "SERIAL_GPU_SINGLE_SESSION_CANARY_ONE_SAM3.1_WEIGHT",
+    "claim_limit": (
+        "Weak-role development masks only. Initial boxes are prompts, unknown is not "
+        "absence, multiplex is an efficiency route rather than identity proof, and no "
+        "batch, contact, hidden-shape or deployment authority is granted."
+    ),
+}
+
+TASK_SPECS["0915_removal_envelope_single_session_canary_v1"] = {
+    "phase": "0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1",
+    "objective": (
+        "Build an auditable visual-only Clean removal envelope for play_cards_0915_001 "
+        "from sealed admitted SAM evidence, bounded MANO geometry and a replaceable "
+        "device-instance cable appearance profile, without rerunning SAM or inpainting."
+    ),
+    "read_set": [
+        "src/chaoyang/ops/run_0915_removal_envelope_single_session_canary_v1.py",
+        "src/chaoyang/pipeline/removal_envelope_v1.py",
+        "contracts/removal_envelope_v1.schema.json",
+        "configs/systems/clean/removal_envelope_0915_play_cards_001_v1.json",
+        f"{HAWOR_RESIZE_CANARY_ATTEMPT}/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+        WEAK_ROLE_ATTEMPT,
+    ],
+    "write_set": [
+        REMOVAL_ENVELOPE_ATTEMPT,
+        "docs/current/visuals/0915_REMOVAL_ENVELOPE_CANARY_V1",
+        "tasks/receipts/0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_sam31_weak_role_canary_v1=PASSED_EXECUTION_ONLY",
+        "user_rejected_weak_role_as_clean_baseline",
+        "user_authorized_independent_removal_envelope_v1",
+        "single_session_play_cards_0915_001", "governance_PASS_FRESH",
+        "weights_ABSENT", "gpu_FORBIDDEN", "no_SAM_rerun", "no_inpaint",
+    ],
+    "algorithm_prerequisites": {
+        "removal": [
+            "sealed_admitted_SAM_masks", "accepted_bounded_HaWoR",
+            "resize_only_RGB", "replaceable_cable_appearance_profile",
+        ],
+        "forbidden_consumers": [
+            "Depth", "Object6D", "Contact", "RobotGeometry", "ControlGroundTruth",
+        ],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "raw_candidate/STATUS.json", "semantic/SEALED_INPUTS.json",
+        "removal/MANO_FINGER_CAPSULES.npz",
+        "removal/PALM_WRIST_FOREARM_CORRIDORS.npz",
+        "removal/CABLE_TRACKED_REGION.npz",
+        "removal/PROTECTED_VISIBLE_OBJECT.npz",
+        "removal/REMOVAL_ENVELOPE.npz",
+        "removal/SOURCE_BITS_INVENTORY.json",
+        "clean/FEATHER_ALPHA_INVENTORY.json", "clean/INPAINT_NOT_RUN.json",
+        "FRAME_PROVENANCE_LEDGER.json", "REMOVAL_ENVELOPE_MANIFEST.json",
+        "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+    "expected_resource": "CPU_ONLY_SINGLE_SESSION_VISUAL_CLEAN_MASK_CANARY",
+    "claim_limit": (
+        "Visual Clean removal inference only. Expanded or held pixels and feather alpha "
+        "are not semantic truth, geometry observation, Contact evidence, Robot geometry, "
+        "control truth or physical-deployment authority; no inpaint or batch is authorized."
+    ),
+}
+
+TASK_SPECS["0915_foundationstereo_single_session_canary_v1"] = {
+    "phase": "0915_FOUNDATIONSTEREO_SINGLE_SESSION_METRIC_CANARY",
+    "objective": (
+        "Run the pinned FoundationStereo checkpoint on the CPU-preflight-selected "
+        "rectified stereo domain for play_cards_0915_001 and publish optical-Z in metres."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        f"{CPU_EVIDENCE_ATTEMPT}/lanes/stereo_preflight/STEREO_PREFLIGHT.json",
+        f"{REMOVAL_ENVELOPE_ATTEMPT}/RESULT.json",
+        "src/chaoyang/ops/run_0915_foundationstereo_single_session_canary_v1.py",
+        "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/playing_cards/play_cards_0915_001",
+        "assets/models/checkpoints/foundationstereo/23-51-11/ASSET_PIN.json",
+        "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
+    ],
+    "write_set": [
+        DEPTH_CANARY_ATTEMPT,
+        "docs/current/visuals/0915_FOUNDATIONSTEREO_CANARY_V1",
+    ],
+    "prerequisites": [
+        "routing_predecessor_0915_removal_envelope_single_session_canary_v1=PASSED_EXECUTION_ONLY",
+        "0915_stereo_preflight.gpu_depth_allowed=true",
+        "governance_PASS_FRESH", "central_GPU_lease",
+        "same_session_rectification", "external_accuracy_UNVERIFIED",
+    ],
+    "algorithm_prerequisites": {
+        "depth": ["stereo_preflight_PASS_GPU_DEPTH_ADMISSION"],
+        "not_dependencies": ["Removal_Envelope", "SAM3.1_weak_role_result", "interaction_v0a"],
+    },
+    "weights": ["assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"],
+    "required_outputs": [
+        "CALIBRATION.json", "REGISTRATION.json", "DEPTH_CONTRACT.json",
+        "DEPTH_SUMMARY.json", "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 2, "runtime_attempts": 1},
+    "expected_resource": "SERIAL_GPU_SINGLE_SESSION_FOUNDATIONSTEREO",
+    "claim_limit": (
+        "Rectified-left optical-Z in metres from calibrated fx*baseline/disparity; "
+        "external accuracy remains unverified and no native model confidence is claimed."
+    ),
+}
+
+TASK_SPECS["0915_planar_object6d_single_session_canary_v1"] = {
+    "phase": "0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY",
+    "objective": (
+        "Estimate observed-only planar geometry for playing_card_00 and playing_card_01 "
+        "from admitted SAM masks and stereo depth, with independent observability fields."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        f"{DEPTH_CANARY_ATTEMPT}/RESULT.json",
+        f"{DEPTH_CANARY_ATTEMPT}/DEPTH_CONTRACT.json",
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+        "src/chaoyang/ops/run_0915_planar_object6d_single_session_canary_v1.py",
+        "src/chaoyang/pipeline/object6d_planar_observability_v1.py",
+        "contracts/object6d_planar_observability_v1.schema.json",
+    ],
+    "write_set": [
+        OBJECT6D_CANARY_ATTEMPT,
+        "docs/current/visuals/0915_PLANAR_OBJECT6D_CANARY_V1",
+    ],
+    "prerequisites": [
+        "0915_foundationstereo_single_session_canary_v1=PASSED",
+        "depth_admission=PASS", "card00_card01_v5_masks_only",
+        "governance_PASS_FRESH", "weights_ABSENT",
+    ],
+    "algorithm_prerequisites": {
+        "object6d": ["admitted_rectified_depth", "card00_card01_valid_masks"],
+        "excluded_until_successor": ["playing_card_02"],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "OBJECT6D_OBSERVABILITY.json", "OBJECT6D_SUMMARY.json",
+        "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+    "expected_resource": "CPU_OBSERVED_ONLY_PLANAR_GEOMETRY",
+    "claim_limit": (
+        "Visible planar geometry only. Translation, plane normal and in-plane rotation "
+        "observability are independent; hidden pose, unified confidence, contact truth "
+        "and Robot authority are forbidden."
+    ),
+}
+
 # Corrective successor for the v2 pre-inference import-path failure.  It keeps
 # the algorithm, inputs and gates byte-for-byte scoped to the same canary; only
 # the entry-point environment closure is corrected.
@@ -552,6 +808,7 @@ def validate_packet_policy(packet: dict[str, Any]) -> None:
         "0915_sam31_strict_role_canary_v3",
         "0915_sam31_strict_role_canary_v4",
         "0915_sam31_strict_role_canary_v5",
+        "0915_sam31_weak_role_canary_v1",
         "0915_sam31_mask_full_v1",
     }:
         encoded = str(packet).lower()

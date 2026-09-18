@@ -1,0 +1,67 @@
+{
+  "algorithm_prerequisites": {
+    "mask": [
+      "accepted_bounded_HaWoR",
+      "resize_only_RGB",
+      "v5_regression_evidence"
+    ],
+    "not_dependencies": [
+      "stereo_preflight",
+      "interaction_v0a"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 2,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Weak-role development masks only. Initial boxes are prompts, unknown is not absence, multiplex is an efficiency route rather than identity proof, and no batch, contact, hidden-shape or deployment authority is granted.",
+  "expected_resource": "SERIAL_GPU_SINGLE_SESSION_CANARY_ONE_SAM3.1_WEIGHT",
+  "objective": "Run the pinned SAM3.1 checkpoint on weak roles only: forearms, visible per-finger sleeves, visible yellow cables and playing_card_02; retain the v5 hands and card00/card01 as read-only regression evidence.",
+  "phase": "0915_SAM31_WEAK_ROLE_SINGLE_SESSION_CANARY",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "routing_predecessor_0915_stereo_interaction_cpu_canary_v1=PASSED",
+    "algorithm_independent_of_stereo_and_interaction_outputs",
+    "governance_PASS_FRESH",
+    "central_GPU_lease",
+    "SAM3.1_ONLY_USER_LOCKED",
+    "single_session_play_cards_0915_001",
+    "quality_triggered_reseed_only",
+    "no_batch_expansion"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001/RESULT.json",
+    "src/chaoyang/ops/run_0915_sam31_weak_role_canary_v1.py",
+    "src/chaoyang/pipeline/sam31_0915_weak_role_contract_v1.py",
+    "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+    "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+    "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "required_outputs": [
+    "PROMPT_PLAN.json",
+    "WEAK_ROLE_MANIFEST.json",
+    "TEMPORAL_STATE_LEDGER.json",
+    "QUALITY_TRIGGER_LEDGER.json",
+    "REGRESSION_GATES.json",
+    "RESULT.json",
+    "GPU_COMMAND_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_sam31_weak_role_canary_v1",
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "write_set": [
+    "_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_SAM31_WEAK_ROLE_CANARY_V1"
+  ]
+}

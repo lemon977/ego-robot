@@ -4,6 +4,41 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
+## 0915 Removal Envelope V1 单会话（等待人工质量结论）
+
+- [`0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md`](0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)
+- [`0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_REVIEW.mp4`](0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_REVIEW.mp4)
+- [`0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_CONTACT_SHEET.jpg`](0915_REMOVAL_ENVELOPE_CANARY_V1/0915_REMOVAL_ENVELOPE_CONTACT_SHEET.jpg)
+
+CPU-only 150 帧执行与来源闭合已经通过；Semantic 仍是已拒绝的 SAM 质量，Removal 独立为
+`AWAITING_USER_VISUAL_REVIEW`。MANO capsule 改善手指/皮套的连续覆盖；当前 cable
+appearance profile 仍可能在卡牌黄色图案附近产生小范围假阳性，因此不能自动宣布 Clean
+PASS。没有运行 inpaint，Removal/Feather 禁止反哺任何几何证据链。
+
+## 0915 SAM3.1 弱角色单会话（已拒绝作为 Clean 基线）
+
+- [`0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md`](0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md)
+- [`0915_SAM31_WEAK_ROLE_CANARY_V1/0915_SAM31_WEAK_ROLE_REVIEW.mp4`](0915_SAM31_WEAK_ROLE_CANARY_V1/0915_SAM31_WEAK_ROLE_REVIEW.mp4)
+- [`0915_SAM31_WEAK_ROLE_CANARY_V1/0915_SAM31_WEAK_ROLE_CONTACT_SHEET.jpg`](0915_SAM31_WEAK_ROLE_CANARY_V1/0915_SAM31_WEAK_ROLE_CONTACT_SHEET.jpg)
+
+只重算双前臂、8 个独立可见皮套、双黄色线缆和第三张牌；旧左右手与前两张牌保持
+字节一致。前臂有证据 92/150、90/150，第三张牌 115/150，右线缆 62/150；各皮套与
+左线缆仅 6–8/150。用户复核视频后确认选中区域闪烁，黄色线缆与手指皮套没有被可靠
+选中；人工质量终态为 `REJECTED_QUALITY_AS_CLEAN_BASELINE`。`PASSED` 只表示运行与
+证据发布完成。
+
+## 0915 Stereo 与 Interaction v0a 单会话 CPU 证据
+
+- [`0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md`](0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)
+- [`0915_STEREO_INTERACTION_CPU_CANARY_V1/0915_STEREO_INTERACTION_CPU_REVIEW.png`](0915_STEREO_INTERACTION_CPU_CANARY_V1/0915_STEREO_INTERACTION_CPU_REVIEW.png)
+
+`play_cards_0915_001` 的两条独立 CPU lane 均已封账。Stereo 预检为
+`PASS_GPU_DEPTH_ADMISSION`：rectified 候选误差 median/P90/P95 为
+0.628/1.901/3.881 px；这是池化 admission，不是逐帧全过门，frame 81/94 仍有超阈值
+尾部。外部精度保持 `UNVERIFIED`。Interaction v0a 仅发布 2D
+邻接、接近、共动及触觉支持假设；没有 relative-Z、遮挡顺序、接触真值、Object6D
+或 Robot authority。
+
 ## 0915 SAM3.1 严格角色单会话（待人工视觉验收）
 
 - [`0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md`](0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)

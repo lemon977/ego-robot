@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T12:54:49+08:00",
-  "generation_id": "gov-011956-2d7872e05c01",
-  "governance_revision": 11956,
+  "generated_at": "2026-09-18T15:00:45+08:00",
+  "generation_id": "gov-011993-7dc3d7332381",
+  "governance_revision": 11993,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -510,6 +510,11 @@
           "sha256": "53695dfcbd88e2b058996b84f3ebcfced6ae5eaed5230f51a7681bf1c3234c0a"
         },
         {
+          "bytes": 26984,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_sam31_weak_role_canary_v1.py",
+          "sha256": "1f732ec3887ff1324be897e28a050626220e7b410cd112568d154ef1e3bc1bb9"
+        },
+        {
           "bytes": 34274,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
           "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
@@ -518,6 +523,11 @@
           "bytes": 9760,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
           "sha256": "94a0e0dc9912ff180dc84c5a768cbc9f3479b2a552e45504569c73e410a60bca"
+        },
+        {
+          "bytes": 11358,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_0915_weak_role_contract_v1.py",
+          "sha256": "48a9a98d22e5b5ad9d9236dc3d572f93eff6575f3749cc9c9c95696d129bfe96"
         },
         {
           "bytes": 19267,
@@ -529,7 +539,8 @@
       "input_authority": "HAWOR_A_B",
       "known_limitations": [
         "Four exact78 role masks are independent; C sessions are not downstream-authorized.",
-        "The 0915 strict-role path is a one-session development canary awaiting user visual review; it does not authorize a batch."
+        "The 0915 strict-role result was accepted only as a bounded starting point; its forearm/sleeve/cable/card02 masks remain weak.",
+        "The 0915 weak-role runner completed, but user visual review rejected it as a Clean baseline because masks flicker and finger sleeves/yellow cables are not reliable; execution success is not Clean authority."
       ],
       "output_schema": "exact78-role-mask-successor-finalize-result-v3",
       "quality_gates": {
@@ -551,7 +562,7 @@
         ]
       },
       "stage": "Role Mask",
-      "successor_requirement": "SAM3.1 is user-locked as the only executable Mask model. Improve its prompts, temporal identity and fail-closed quality gates without registering an alternate model route; current S1 object prompts remain forbidden for this role stage.",
+      "successor_requirement": "SAM3.1 remains the only executable semantic Mask model. Evaluate a separate provenance-bearing Clean removal envelope from SAM evidence plus bounded MANO/cable priors without registering an alternate model route; do not rewrite geometric removal pixels as semantic observations.",
       "superseded_implementations": [
         "metadata-only masks",
         "zero-reject full-session refresh gate",
@@ -640,6 +651,21 @@
           "sha256": "36344bd4f7627bfa86416d1c61ef180a50bc6cc486c48987411b55aa217d1c54"
         },
         {
+          "bytes": 24752,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/analyze_0915_stereo_domain_preflight_v1.py",
+          "sha256": "a4a7875fd0960a1b9aff50dd7f7821caa0991d5bdae6cc5e44cc1bb57d441174"
+        },
+        {
+          "bytes": 31197,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_stereo_interaction_cpu_canary_v1.py",
+          "sha256": "64cc40ebc6a82a65008d1e255c5343cc6fc9a2b94396af4d5e2655341fcc89d3"
+        },
+        {
+          "bytes": 40360,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_foundationstereo_single_session_canary_v1.py",
+          "sha256": "ca34de27f9d990002a11df6b22eddbec91a7dc83d2aeb313d60a70cf8c702dbc"
+        },
+        {
           "bytes": 19267,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
           "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
@@ -716,9 +742,24 @@
           "sha256": "d87da58d3f293ecd85c290715f59eeadef41f6357165a4605d21eca8830e04cd"
         },
         {
+          "bytes": 23778,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_planar_object6d_single_session_canary_v1.py",
+          "sha256": "5aaf8aa896972766d48be2c6325d9ef16504425bfe2072e1b7cf429ae89af195"
+        },
+        {
           "bytes": 17502,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object_pose_hypothesis_v2.py",
           "sha256": "e869d16892d7e12ef084d4bbd3a719b9ba7224770c7398efbc518d2bf3a4dc22"
+        },
+        {
+          "bytes": 16999,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object6d_planar_observability_v1.py",
+          "sha256": "091f64826097926465daeadea8c62cb6ebfb2d157f74ed5c4d0ffd813b02e444"
+        },
+        {
+          "bytes": 7684,
+          "path": "/mnt/workspace/code/chaoyang/contracts/object6d_planar_observability_v1.schema.json",
+          "sha256": "c10ac7478ec327d4a21000947e86898e1003f9ec194ce7f0a02b592bed58e884"
         }
       ],
       "implementation_revision": "R7_1_R3",
@@ -771,6 +812,26 @@
           "sha256": "99fb12b323c283f35941e705f0b89651c1d9c29e1b74061c9cd8a8a805af4d35"
         },
         {
+          "bytes": 34140,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_removal_envelope_single_session_canary_v1.py",
+          "sha256": "ac10194bc42f7569cd8619fffece1ed30927943d300ed921610f40252d0cd53f"
+        },
+        {
+          "bytes": 24527,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/removal_envelope_v1.py",
+          "sha256": "ebbb9a824cf1692fb41be355764f1a180b24d1821432badada0fdcb524251c7b"
+        },
+        {
+          "bytes": 3890,
+          "path": "/mnt/workspace/code/chaoyang/contracts/removal_envelope_v1.schema.json",
+          "sha256": "7f25658b8292742c3a2bb29c75b667e9e633b6d3053b77c98ce70ac366b6ecbd"
+        },
+        {
+          "bytes": 1542,
+          "path": "/mnt/workspace/code/chaoyang/configs/systems/clean/removal_envelope_0915_play_cards_001_v1.json",
+          "sha256": "674788d2d96214d6612a37d5a6d06427cf7c95b1ce09e87598b732d18aea8f81"
+        },
+        {
           "bytes": 19267,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/depth_mask_clean_contracts_r3.py",
           "sha256": "0eb7e4fac14dc07b468307228efa8acc1e403262c53b98ffb905e15127708bd1"
@@ -785,7 +846,8 @@
         "A donor pixel can be byte-exact and still be semantically wrong when a moving plate/background surface occupies the same image coordinate in donor frames.",
         "A structural Grade-B terminal proves frame/provenance/decode closure, not contact-boundary or semantic inpainting correctness.",
         "Generated pixels are visual completion, not physical background truth.",
-        "Clean never feeds Depth/Object6D/contact truth."
+        "Clean never feeds Depth/Object6D/contact truth.",
+        "Removal Envelope V1 is a bounded successor candidate, not yet a passed Clean baseline. It separates sealed semantic evidence from inferred erase support and feather alpha; its current upstream raw SAM candidate pixels were not persisted and may not be reconstructed."
       ],
       "output_schema": "clean_frames+master+review+source_map+result",
       "quality_gates": {
@@ -810,7 +872,7 @@
         ]
       },
       "stage": "Clean",
-      "successor_requirement": "Freeze an object/contact-aware Clean successor: replace blanket dilation with adaptive removal support; protect the visible object plus an explicitly sourced contact band; reconstruct hidden rigid-object appearance only from a pose-validated causal atlas/renderer; mark unsupported pixels UNKNOWN/training-invalid; add semantic donor rejection and contact-boundary visual gates before Robotized training use.",
+      "successor_requirement": "Run the weightless, single-session Removal Envelope V1 canary first: admitted SAM hand/forearm plus optional sleeve evidence, bounded MANO finger/palm/wrist/forearm support, replaceable cable appearance tracking, source-bit provenance, visible-object-core protection and independent human visual review. Keep removal/feather forbidden to Depth/Object6D/Contact/Robot geometry. Inpaint remains a separate weighted task.",
       "superseded_implementations": [
         "unproven clean previews",
         "the inaccurate label that the current identical-coordinate donor uses Stereo geometry"
@@ -852,6 +914,11 @@
           "sha256": "78220bf72d5e3482a90b944c18ed0b596aa28abacc723aba59caed4dfc37f9ed"
         },
         {
+          "bytes": 19495,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/interaction_evidence_v0a.py",
+          "sha256": "6b2e39af4e4fb97ae0bd529fcecd111eb2b2199395c618705bda5893fd83b391"
+        },
+        {
           "bytes": 8660,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_occlusion_contracts_r3.py",
           "sha256": "d65c713bcfef868929bbf5e18effd7c17beb83a3aff2a152c69bd24764537fa7"
@@ -861,6 +928,7 @@
       "input_authority": "HAWOR_OBJECT_MASK_DIRECT_OBJECT6D",
       "known_limitations": [
         "Poker/Chips geometry and evidence-direction fixtures pass, but no real-session Contact authority exists.",
+        "Interaction v0a is image-plane-only adjacency/approach/co-motion with optional aligned tactile support; it explicitly contains no relative Z, occlusion order or contact truth.",
         "Attachment-propagated pose cannot prove Contact, Object6D, tactile support, or gold accuracy.",
         "Hypotheses are not physical contact truth."
       ],

@@ -1,9 +1,9 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-18T12:54:49+08:00",
-  "generation_id": "gov-011956-2d7872e05c01",
-  "governance_revision": 11956,
+  "generated_at": "2026-09-18T15:00:45+08:00",
+  "generation_id": "gov-011993-7dc3d7332381",
+  "governance_revision": 11993,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
@@ -22,6 +22,12 @@
       "bytes": 5378,
       "path": "/mnt/workspace/code/chaoyang/tests/test_governance_heartbeat_clean_reconcile_v52.py",
       "sha256": "a23483c8bff022fabd19bf7b9729bff0f8e0e44f069803ea6d2e1f44461ab36b",
+      "stage": "governance"
+    },
+    {
+      "bytes": 1334,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_heartbeat_task_live_guard_v1.py",
+      "sha256": "d2c7d0b6ac36b5547019e6536e64b10500ac5ed2c8168b89111545c3c4d5c509",
       "stage": "governance"
     },
     {
@@ -61,6 +67,24 @@
       "stage": "role_mask"
     },
     {
+      "bytes": 5082,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_sam31_weak_role_canary_v1.py",
+      "sha256": "a2d9f4ea6ea36121a1bd22f3f2550a461cf7e6e7a6baedef01f31ff77e29744d",
+      "stage": "role_mask"
+    },
+    {
+      "bytes": 6819,
+      "path": "/mnt/workspace/code/chaoyang/tests/pipeline/test_removal_envelope_v1.py",
+      "sha256": "0e5882ca3af453ac805fd86cfb4adfc352e63146019c2165413236c86d260734",
+      "stage": "clean"
+    },
+    {
+      "bytes": 2881,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_removal_envelope_single_session_canary_v1.py",
+      "sha256": "98a5b0737744a161fa4faef0ce8a62ff3ec4f0ca6f20545c91b2a83d31444f9c",
+      "stage": "clean"
+    },
+    {
       "bytes": 4663,
       "path": "/mnt/workspace/code/chaoyang/tests/test_mask_successor_protocol.py",
       "sha256": "6644fae00abd3d0e33a312563e300fac00129378d5dd6de6ec76fac1014d322f",
@@ -71,6 +95,30 @@
       "path": "/mnt/workspace/code/chaoyang/tests/test_exact78_depth_object6d_expansion_v2.py",
       "sha256": "3f775fdd8c23f60886739b0c5fab92be43b96bc516852c708db97c0200d86887",
       "stage": "depth_object6d"
+    },
+    {
+      "bytes": 3086,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_stereo_domain_preflight_v1.py",
+      "sha256": "9929dc24249d5f7c3ab9cd31b82b3b4e4561d2e5a1d22147c1269287b0abccf2",
+      "stage": "depth_object6d"
+    },
+    {
+      "bytes": 3775,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_run_0915_stereo_interaction_cpu_canary_v1.py",
+      "sha256": "d75db399726a1dc574d1394ae04657b9f385ff4127f6feb901ca59d7398e33c1",
+      "stage": "depth_object6d"
+    },
+    {
+      "bytes": 5420,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_foundationstereo_single_session_canary_v1.py",
+      "sha256": "22de4fc6296268281234b52eab624bcdff0503e591c2e035630b916aeb8848a6",
+      "stage": "depth_object6d"
+    },
+    {
+      "bytes": 10050,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_planar_object6d_single_session_v1.py",
+      "sha256": "5ff0b39182e4a34182cdeaa47963ca20c5446ddc571d9eb369b2c88f89a57b81",
+      "stage": "object6d"
     },
     {
       "bytes": 7005,
@@ -100,6 +148,12 @@
       "bytes": 3777,
       "path": "/mnt/workspace/code/chaoyang/tests/test_contact_geometry_v2_fixtures.py",
       "sha256": "4fe8b0f11800e1cb787cf4beac65a880228a66f1421bf617e13fa03e4b02fee9",
+      "stage": "contact"
+    },
+    {
+      "bytes": 7360,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_interaction_evidence_v0a.py",
+      "sha256": "2dfc90900f7a7941387bfc78053377c16a1915ade447290a1dfc8d02f7b1af73",
       "stage": "contact"
     },
     {

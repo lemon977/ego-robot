@@ -1,0 +1,29 @@
+{
+  "schema_version": "0915-removal-envelope-user-authorization-v1",
+  "created_at": "2026-09-18T14:50:35+08:00",
+  "status": "CONFIRMED",
+  "authorized_session": "play_cards_0915_001",
+  "authorized_task": "0915_removal_envelope_single_session_canary_v1",
+  "authorized_scope": [
+    "SEALED_SAM_SEMANTIC_INPUTS_READ_ONLY",
+    "MANO_FINGER_CAPSULES",
+    "PALM_WRIST_FOREARM_CORRIDORS",
+    "REPLACEABLE_CABLE_APPEARANCE_PROFILE",
+    "VISIBLE_OBJECT_CORE_PROTECTION",
+    "FEATHER_ALPHA",
+    "CPU_ONLY_SINGLE_SESSION_VISUAL_REVIEW"
+  ],
+  "forbidden_scope": [
+    "SAM_RERUN",
+    "INPAINT",
+    "BATCH_EXPANSION",
+    "DEPTH_INPUT",
+    "OBJECT6D_INPUT",
+    "CONTACT_INPUT",
+    "ROBOT_GEOMETRY_INPUT",
+    "CONTROL_GROUND_TRUTH"
+  ],
+  "weights": "ABSENT",
+  "raw_candidate_policy": "ABSENT_UPSTREAM_NOT_PERSISTED_MUST_NOT_BE_RECONSTRUCTED",
+  "claim_limit": "User-authorized one-session Removal Envelope V1 implementation and visual canary only."
+}

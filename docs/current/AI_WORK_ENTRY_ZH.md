@@ -24,7 +24,12 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
 
 ## 当前可执行状态
 
-- `tasks/current/INDEX.json` 当前为 `PASS_NO_ACTIVE_TASKS`，没有可执行任务。
+- 当前 bounded 后继采用唯一执行路由，不允许同时注册多个可执行任务。顺序为
+  `0915_stereo_interaction_cpu_canary_v1 → 0915_sam31_weak_role_canary_v1 →
+  0915_removal_envelope_single_session_canary_v1 →
+  0915_foundationstereo_single_session_canary_v1 →
+  0915_planar_object6d_single_session_canary_v1`。其中首任务内部只有两个互不相交的 CPU
+  writer lane 可以并行；两个 GPU 模型任务仍通过中央租约串行。
 - 只有索引中 `execution_allowed=true` 且与账本 `next_task` 一致的任务包可以调度。
 - 空索引内的 revision 11169 是创建 revision；当前生效 revision 读取 `CURRENT_V71_TASK_PACKET_INDEX.json` 和 `CURRENT_STATUS_RECEIPT.json`。冻结 payload 的创建 revision 不要求被原地改写。
 - `tasks/receipts/HISTORICAL_TASK_CATALOG.json` 和 `archive/` 只用于查询/恢复，任何历史终态任务都不得直接重启。
@@ -49,13 +54,50 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
   独立未决问题；后续 Mask 路线固定为 SAM3.1，不运行 SAM2.1/Cutie 选型。
 - 0916 独立清洗已经完成；0915/0916 状态见
   [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。
-- 用户已确认 resize-only 图像域和单样本 HaWoR 视觉结果；同一会话
-  `play_cards_0915_001` 的 SAM3.1 严格角色 canary 已执行完成，当前等待用户视觉验收。
-  左右手与前两张牌形成可审阅单样本结果，前臂、皮套、线缆和第三张牌仍有大量
-  `unknown`，不得解释为角色不在画面，也不得进入批量 Clean/Contact。复核入口见
+- 用户已确认 resize-only 图像域和单样本 HaWoR 视觉结果，并接受现有 SAM3.1 结果作为
+  下一轮 bounded 优化起点，不是全角色质量通过。左右手与前两张牌形成回归证据；前臂、
+  皮套、线缆和第三张牌仍有大量 `unknown`，旧大框还存在吞并整手的初始化偏差。当前只对
+  这些弱角色运行更紧的 `initial_visual_box`、逐个可见 sleeve 实例和质量触发 reseed；不得
+  把 `unknown` 解释为角色不在画面，也不得自动进入批量 Clean/Contact。旧结果入口见
   [`0915_SAM31_STRICT_ROLE_CANARY_V1`](visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)。
   只能使用已固定的 SAM3.1 权重，不得创建 SAM2.1/Cutie 候选、胜者选择任务或自动扩到
   220 会话。
+
+- SAM3.1 弱角色单样本已经执行完成，浅层入口见
+  [`0915_SAM31_WEAK_ROLE_CANARY_V1`](visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md)。
+  v5 左右手及前两张牌通过 SHA/字节回归门且没有重算；新前臂有证据 92/150、90/150，
+  `playing_card_02` 为 115/150，右线缆为 62/150，但各皮套与左线缆仅 6–8/150。
+  因此任务运行终态为 `PASSED`，但用户视觉验收已将其判为
+  `REJECTED_QUALITY_AS_CLEAN_BASELINE`，不得自动扩批或进入 Clean/Contact。皮套/左线缆
+  虽有完整方向的 propagation yield，但 primary/fallback 各自仅 4/150 帧 raw mask 非空；
+  主阻塞是 raw track 没产出，面积门只是将空结果显式 fail-closed。前臂另有反向 tracker
+  未确认实例，后续必须分开优化。
+
+- 下一版 Clean 候选固定为 Raw Candidate / Semantic / Removal / Feather 四层隔离，详见
+  [`REMOVAL_ENVELOPE_V1_ZH.md`](REMOVAL_ENVELOPE_V1_ZH.md)。封存的弱角色 SAM 运行没有
+  保存 raw candidate 像素，因此本次必须登记为 `ABSENT_UPSTREAM_NOT_PERSISTED`，不得从
+  semantic mask 反造。SAM semantic 原样只读；Removal 可并入随投影尺度变化的 MANO
+  finger capsule、palm 及 wrist/forearm corridor；Feather 只服务后续独立 inpaint。
+  Sleeve 语义是 optional evidence，不再单独阻塞 Clean。黄色只是当前设备实例的可替换
+  appearance profile，不是 cable 系统定义。模块、合同和 CPU 单样本任务已经实现；只可按
+  当前任务索引执行，不授权 inpaint、220 会话扩批或将 Removal/Feather 用于
+  Depth、Object6D、Contact、Robot geometry/control truth。
+
+- Removal Envelope V1 已完成 150 帧 CPU 单样本执行，浅层入口见
+  [`0915_REMOVAL_ENVELOPE_CANARY_V1`](visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)。
+  自动门确认 293 个直接观测 side-frame、7 个双端验证内部 hold、0 个 geometry unknown，
+  direct MANO21 关节覆盖 1.0，source bits 闭合且 protected core 零交集。当前状态仍是
+  `AWAITING_USER_VISUAL_REVIEW`：appearance cable 每帧均有候选，靠近卡牌黄色图案的
+  小区域可能是假阳性；不得自动批准 Clean、运行 inpaint 或扩批。
+
+首个 CPU coordinator 已完成并通过，两条 lane 的浅层证据见
+[`0915_STEREO_INTERACTION_CPU_CANARY_V1`](visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)。
+Stereo 与 Interaction 是两条不同证据链：Stereo 比较 raw
+resize-only 和单会话内参＋图像估计/held-out 验收的 rectified 域；Interaction v0a 只计算
+2D 邻接、接近和共动，并允许 `entities.tactile.offline_source_valid` 提供弱支持。Interaction
+v0a 明确没有 relative-Z、遮挡顺序、接触真值、Object6D 或 Robot authority。只有 Stereo
+内部 admission 通过时，后续 FoundationStereo 单样本任务才能注册。当前 admission 为
+`PASS_GPU_DEPTH_ADMISSION`，只授权后续单样本任务，不代表 FoundationStereo 或外部精度通过。
 
 如果用户提出新目标，应建立新的、有限收敛的任务包并发布新的治理 revision；不要把旧任务包改回 `PENDING`。任务包至少固定输入、代码、配置、权重或 `ABSENT`、标定或 `ABSENT`、输出 schema、质量门、预算、终止条件和回滚路径。
 

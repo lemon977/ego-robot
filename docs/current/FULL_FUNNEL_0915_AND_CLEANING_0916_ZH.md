@@ -2,10 +2,10 @@
 
 ## 当前决定
 
-- **0915 全批仍停止，单会话 Mask 已完成并等待视觉验收。** 单样本复核暴露 VST 图像域疑点：旧输入
+- **0915 全批仍停止，单会话证据链已进入下一轮 bounded 优化。** 单样本复核暴露 VST 图像域疑点：旧输入
   对 SBS 物理左目额外执行了 `equiDis62 → pinhole` 重映射。用户已经确认
   `sourceIndex=1 + resize-only`，并接受该输入上的 HaWoR 单样本结果；同一会话
-  SAM3.1 严格角色 canary 已完成，但不恢复 220 会话任务，详见
+  SAM3.1 严格角色 canary 已完成且用户接受其作为下一轮起点，但弱角色没有质量通过；这不恢复 220 会话任务，详见
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
 - 单会话 A/B 已以 `BLOCKED_EXTERNAL` 封账：当前 remap 的输出位移 P50 为
   102.24 px、P95 为 241.02 px；legacy processed 单目来自 SBS `sourceIndex=0`
@@ -13,7 +13,7 @@
   [`visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。
 - 用户已确认物理左目 `sourceIndex=1 + resize-only` 为正确单目画面，并确认单会话
   HaWoR 视觉结果无明显问题。双目 Depth 的矫正方式继续为 `NOT_EVALUATED`；
-  `play_cards_0915_001` 的 SAM3.1 Mask canary 已运行，正在等待人工视觉验收。
+  `play_cards_0915_001` 的 SAM3.1 Mask canary 已运行并完成本轮人工判断。
 - resize-only raw HaWoR canary 的直接观测为左手 148/150、右手 145/150；后继
   `hawor_bounded_v2` 通过冻结数值门，短缺口连续性层通过单样本人工复核。相关临时
   运行与可视化已经带收据清理，未自动注册 220 会话后继。
@@ -23,6 +23,59 @@
   `play_cards_0915_001` SAM3.1 单会话 canary 任务开始并封账；浅层复核见
   [`visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md`](visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)。
 - 0916 只做 240 会话数据清洗，不进入 HaWoR、Mask、Depth、Contact 或 Robot。
+
+## 当前 bounded 执行 DAG
+
+当前治理只允许一个 `next_task`，因此执行路由保持串行；这不等于算法依赖串行：
+
+1. `0915_stereo_interaction_cpu_canary_v1`：同一 coordinator 下并行运行两个独立 writer
+   lane。Stereo lane 做 raw-resize 与 rectified 域预检；Interaction lane 只做 2D
+   adjacency/approach/co-motion 和可选触觉支持。
+2. `0915_sam31_weak_role_canary_v1`：只绑定 SAM3.1，算法上不消费 Stereo/Interaction
+   结果；目标仅为双前臂、逐个可见 sleeve、黄色线缆和 `playing_card_02`，v5 双手及
+   `card00/card01` 作为 SHA 守卫的只读回归输入。
+3. `0915_removal_envelope_single_session_canary_v1`：`weights=ABSENT` 的 CPU-only
+   单样本任务；只读封存 SAM semantic、bounded HaWoR 与 resize-only RGB，独立产生
+   MANO capsule、palm/wrist/forearm corridor、可替换 appearance profile 的 cable
+   region、逐像素来源位图和 feather alpha。不重跑 SAM，不运行 inpaint；结果必须独立
+   人工验收，并禁止反哺几何证据链。
+4. `0915_foundationstereo_single_session_canary_v1`：只有 Stereo lane 内部 admission
+   通过才可注册。输出为 rectified-left optical-Z，单位米，尺度源为 rectified `fx ×`
+   same-session factory baseline；外部精度保持 `UNVERIFIED`。
+5. `0915_planar_object6d_single_session_canary_v1`：先只处理稳定的 `card00/card01`，分别
+   输出 translation、plane normal、in-plane rotation 的可观测性及平面残差；不生成统一
+   置信度，不补遮挡姿态。
+
+SAM 弱角色与 FoundationStereo 是独立 GPU 任务并通过中央租约串行；不通过扩展多
+`next_task` 来制造伪并行。任何 bounded 结果都不自动授权全批。
+
+第 1 个任务已经完成：两个 CPU lane 都有独立 writer fence、运行签名与终态，合并结果
+为 `PASSED`。Stereo lane 为 `PASS_GPU_DEPTH_ADMISSION`；raw resize-only 垂直误差
+median/P90/P95 为 1.955/2.804/3.121 px，单会话 rectified 候选为
+0.628/1.901/3.881 px。该 PASS 是池化 admission；frame 81/94 仍有逐帧尾部超门，
+后继 Depth 必须单独置 invalid。Interaction v0a 在 4500 个指尖—物体配对中记录 59 个 2D
+邻接、1378 个 2D 接近、804 个 2D 共动与 16 个触觉支持假设；这些均为开发级弱证据。
+浅层复核见
+[`visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md`](visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)。
+
+第 2 个任务也已完成运行并发布完整 150 帧审阅视频。v5 左右手与前两张牌只读回归门
+保持字节一致；新前臂有证据 92/150、90/150，第三张牌 115/150，右线缆 62/150，
+各皮套与左线缆仅 6–8/150。运行终态为 `PASSED`，但用户人工视觉验收已因 mask 闪烁、
+黄色线缆和皮套未被可靠选中而判为 `REJECTED_QUALITY_AS_CLEAN_BASELINE`；弱角色不能
+据此进入自动 Clean 或全批。后继设计改为分离 Raw Candidate / Semantic / Removal /
+Feather：当前封存运行未保存 raw candidate 像素，必须显式记为缺失；动态 MANO 各向异性
+包络和 cable appearance tracker 只可补齐 Clean removal，不得改写 SAM 原始证据或进入
+Depth/Object6D/Contact/Robot geometry。实现与独立验收边界见
+[`REMOVAL_ENVELOPE_V1_ZH.md`](REMOVAL_ENVELOPE_V1_ZH.md)。浅层复核见
+[`visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md`](visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md)。
+
+第 3 个任务已经完成 CPU 执行并生成 150 帧四面板视频。自动门通过：293 个直接观测
+side-frame、7 个双端验证内部 hold、0 个 geometry unknown，direct MANO21 关节覆盖 1.0，
+source bits 逐像素闭合，protected visible-object core 与最终 removal 零交集。Semantic
+质量仍保持 `REJECTED_QUALITY_AS_CLEAN_BASELINE`；Removal 独立为
+`AWAITING_USER_VISUAL_REVIEW`。当前 cable appearance profile 在 150 帧均有候选，靠近
+卡牌黄色图案的少量区域可能是假阳性，所以未运行 inpaint，也未授权扩批。复核见
+[`visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md`](visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)。
 
 ## 输入与禁止项
 

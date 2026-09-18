@@ -1,0 +1,40 @@
+{
+  "batch_started": false,
+  "claim_limit": "Weak-role development masks only. Initial boxes are prompts, unknown is not absence, multiplex is an efficiency route rather than identity proof, and no batch, contact, hidden-shape or deployment authority is granted.",
+  "controller_role_created": false,
+  "first_blocker": null,
+  "gpu_command_receipt": {
+    "bytes": 27722,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "94b0903b0ab206e0cac93ea652324d0efd3ef65f7e24f491d3209a44661732b4"
+  },
+  "image_domain": "PHYSICAL_LEFT_SOURCE_INDEX_1_RESIZE_ONLY_NO_REMAP",
+  "next_authority": "USER_VISUAL_REVIEW_REQUIRED_NO_AUTOMATIC_BATCH_SUCCESSOR",
+  "pico26_consumed": false,
+  "regression_instances_recomputed": false,
+  "result": {
+    "bytes": 1702,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "b22ee1253ef6358889b4baeaaf357b871452476ef0f8aba0ff99bdb92e47a71e"
+  },
+  "schema_version": "0915-sam31-weak-role-canary-result-v1",
+  "session_admission": "AWAITING_USER_VISUAL_REVIEW",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_sam31_weak_role_canary_v1",
+  "tracker_role_created": false,
+  "visual": {
+    "bytes": 1470984,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/0915_SAM31_WEAK_ROLE_REVIEW.mp4",
+    "sha256": "067d940db2107cc499f03623c9a4ea8b1b4f0b4e574cbf2ae67d1e993f630520"
+  },
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "worker_result": {
+    "bytes": 8652,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001/SAM31_WEAK_ROLE_WORKER_RESULT.json",
+    "sha256": "66ac16dd8ab8680b48a0f6041e2e0a1c2252f4d82d0e8703658f61738cc7194f"
+  }
+}

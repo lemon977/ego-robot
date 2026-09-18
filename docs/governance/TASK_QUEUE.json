@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T12:54:49+08:00",
-  "generation_id": "gov-011956-2d7872e05c01",
-  "governance_revision": 11956,
+  "generated_at": "2026-09-18T15:00:45+08:00",
+  "generation_id": "gov-011993-7dc3d7332381",
+  "governance_revision": 11993,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -80,11 +80,41 @@
       "attempt": 0,
       "gpu_id": null,
       "heartbeat_at": null,
+      "phase": "0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_removal_envelope_single_session_canary_v1",
+      "updated_at": "2026-09-18T14:56:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
       "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V5",
       "session": null,
       "status": "PASSED",
       "task_id": "0915_sam31_strict_role_canary_v5",
       "updated_at": "2026-09-18T12:47:38+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_WEAK_ROLE_SINGLE_SESSION_CANARY_V1",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_sam31_weak_role_canary_v1",
+      "updated_at": "2026-09-18T14:11:17+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_STEREO_INTERACTION_CPU_CANARY",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_stereo_interaction_cpu_canary_v1",
+      "updated_at": "2026-09-18T13:56:44+08:00"
     },
     {
       "attempt": 0,

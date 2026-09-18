@@ -24,6 +24,11 @@ def test_campaign_has_finite_serial_order() -> None:
         "0915_sam31_strict_role_canary_v3",
         "0915_sam31_strict_role_canary_v4",
         "0915_sam31_strict_role_canary_v5",
+        "0915_stereo_interaction_cpu_canary_v1",
+        "0915_sam31_weak_role_canary_v1",
+        "0915_removal_envelope_single_session_canary_v1",
+        "0915_foundationstereo_single_session_canary_v1",
+        "0915_planar_object6d_single_session_canary_v1",
         "0915_sam31_mask_full_v1",
         "0915_foundationstereo_full_v1",
         "0915_post_geometry_robot_v1",
@@ -38,7 +43,11 @@ def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
         if packet["weights"] == "ABSENT":
             assert task_id in {
                 TASK_ORDER[0], TASK_ORDER[1],
-                "0915_vst_image_domain_ab_v1", TASK_ORDER[-1],
+                "0915_vst_image_domain_ab_v1",
+                "0915_stereo_interaction_cpu_canary_v1",
+                "0915_removal_envelope_single_session_canary_v1",
+                "0915_planar_object6d_single_session_canary_v1",
+                TASK_ORDER[-1],
             }
         else:
             assert len(packet["weights"]) == 1
@@ -65,6 +74,28 @@ def test_mask_packet_rejects_added_competitor() -> None:
     bad["objective"] += " Cutie"
     with pytest.raises(ValueError, match="alternate model"):
         validate_packet_policy(bad)
+
+
+def test_bounded_canaries_separate_routing_from_algorithm_dependencies() -> None:
+    cpu = build_packet("0915_stereo_interaction_cpu_canary_v1")
+    weak = build_packet("0915_sam31_weak_role_canary_v1")
+    removal = build_packet("0915_removal_envelope_single_session_canary_v1")
+    depth = build_packet("0915_foundationstereo_single_session_canary_v1")
+    object6d = build_packet("0915_planar_object6d_single_session_canary_v1")
+    assert cpu["weights"] == removal["weights"] == object6d["weights"] == "ABSENT"
+    assert weak["weights"] == [
+        "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+    ]
+    assert depth["weights"] == [
+        "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+    ]
+    assert "not_dependencies" in weak["algorithm_prerequisites"]
+    assert "not_dependencies" in depth["algorithm_prerequisites"]
+    assert predecessor_task(removal["task_id"]) == weak["task_id"]
+    assert predecessor_task(depth["task_id"]) == removal["task_id"]
+    assert depth["algorithm_prerequisites"]["depth"] == [
+        "stereo_preflight_PASS_GPU_DEPTH_ADMISSION"
+    ]
 
 
 def test_vst_image_domain_packet_is_single_session_weightless() -> None:
