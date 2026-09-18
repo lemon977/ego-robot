@@ -24,19 +24,20 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
 
 ## 当前可执行状态
 
-- 当前 bounded 后继采用唯一执行路由，不允许同时注册多个可执行任务。顺序为
+- 已封账的 bounded 历史路由顺序为
   `0915_stereo_interaction_cpu_canary_v1 → 0915_sam31_weak_role_canary_v1 →
   0915_removal_envelope_single_session_canary_v1 →
   0915_foundationstereo_single_session_canary_v1 →
-  0915_planar_object6d_single_session_canary_v1`。其中首任务内部只有两个互不相交的 CPU
-  writer lane 可以并行；两个 GPU 模型任务仍通过中央租约串行。
+  0915_planar_object6d_single_session_canary_v1`。当前索引无活动任务；其中
+  FoundationStereo 使用了错误的重复 lens-undistortion，Object6D 未启动，不能从这条
+  历史路由续跑。
 - 只有索引中 `execution_allowed=true` 且与账本 `next_task` 一致的任务包可以调度。
 - 空索引内的 revision 11169 是创建 revision；当前生效 revision 读取 `CURRENT_V71_TASK_PACKET_INDEX.json` 和 `CURRENT_STATUS_RECEIPT.json`。冻结 payload 的创建 revision 不要求被原地改写。
 - `tasks/receipts/HISTORICAL_TASK_CATALOG.json` 和 `archive/` 只用于查询/恢复，任何历史终态任务都不得直接重启。
 - 0911/0914/0915 数据清洗已经完成，见 [`DATA_CLEANING_0911_0915_ZH.md`](DATA_CLEANING_0911_0915_ZH.md)；它不是待办任务。
-- 0915 裸手全链已经按用户要求停止。现有物理左目准备显式执行了
-  `equiDis62 → 1280×960 FOV90 pinhole` 重映射，而 VST 编码像素是否已经校正尚未
-  建立权威；现有派生结果不得作为基线。先读
+- 0915 裸手全链已经按用户要求停止。用户已确认所有 VST 编码视频本来没有畸变；所有
+  视频消费者只能按 `sourceIndex` 裁出物理眼再 resize，禁止把 `camera_params.json` 中的
+  `equiDis62` 字段应用到解码像素。现有重复去畸变派生结果不得作为基线。先读
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)，再复核
   [`单会话 A/B`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。A/B 已证明当前
   remap 是百像素级变换，且 legacy 单目是物理右目。用户已经确认物理左目
@@ -92,25 +93,35 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
   foreground proposal、stable-background hook 与 cable reverse-pass 的实片证据，因此
   状态为 `NOT_EVALUATED`。Depth/Object6D 不依赖 Clean，继续走独立证据门。
 
-首个 CPU coordinator 已完成并通过，两条 lane 的浅层证据见
+首个 CPU coordinator 已完成运行，两条 lane 的浅层证据见
 [`0915_STEREO_INTERACTION_CPU_CANARY_V1`](visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)。
 Stereo 与 Interaction 是两条不同证据链：Stereo 比较 raw
 resize-only 和单会话内参＋图像估计/held-out 验收的 rectified 域；Interaction v0a 只计算
 2D 邻接、接近和共动，并允许 `entities.tactile.offline_source_valid` 提供弱支持。Interaction
-v0a 明确没有 relative-Z、遮挡顺序、接触真值、Object6D 或 Robot authority。只有 Stereo
-内部 admission 通过时，后续 FoundationStereo 单样本任务才能注册。当前 admission 为
-`PASS_GPU_DEPTH_ADMISSION`，只授权后续单样本任务，不代表 FoundationStereo 或外部精度通过。
+v0a 明确没有 relative-Z、遮挡顺序、接触真值、Object6D 或 Robot authority。Stereo 的
+raw resize-only 匹配统计保留为诊断；消费 `equiDis62` 的 rectified 分支及原
+`PASS_GPU_DEPTH_ADMISSION` 已按用户确认撤销，不能授权 FoundationStereo。
 当前 0915 processed 挂载实体名为单下划线 `chips_cards_hands_0915`，而冻结收据保留逻辑
 发布名 `chips_cards_hands__0915`；只有枚举文件 bytes/SHA 与
 [`0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json`](../../tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json)
 同时闭合时才允许解析该只读路径搬迁，禁止宽泛字符串替换或修改数据侧文件。
 
-- FoundationStereo 单会话已经完整运行 150 帧，模型加载 1 次、双向推理 300 次且运行
-  闭包通过；终态为 `REJECTED_QUALITY`，不是环境失败。左右一致性残差跨帧 P90 为
+- FoundationStereo 单会话曾完整运行 150 帧，模型加载 1 次、双向推理 300 次且运行
+  闭包通过；不可变执行终态为 `REJECTED_QUALITY`。但该运行对已经无畸变的 VST 编码
+  像素再次应用 `equiDis62`，当前证据 authority 为 `WITHDRAWN_WRONG_IMAGE_DOMAIN`。
+  左右一致性残差跨帧 P90 为
   `17.8653 px`（门限 5 px），时序深度中位数步长 P90 为 `0.4290 m`（门限 0.35 m）。
   `consumption_authorized=false` 且授权 scope 为空，因此 Planar Object6D 没有启动。
   浅层复核见
   [`0915_FOUNDATIONSTEREO_CANARY_V1`](visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md)。
+
+- 全局 VST 编码域确认收据为
+  [`VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json`](../../tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json)。
+  相机文件中的 distortion 字段只能保留作采集 provenance。未来 Depth 如需极线对齐，
+  必须新建编码域、零 lens-undistortion 的标定 successor；不得复活旧任务或旧 remap。
+  该边界同样适用于旧 exact78 worker；原 Depth `58/58` 与依赖它的 Object6D `58/58`
+  已分别改记为 `0 passed / 58 blocked`。依赖这批几何的 Contact/Occlusion 声明已撤回，
+  后续不得把历史文件或旧内部一致性指标当作当前 Depth/Object6D authority。
 
 如果用户提出新目标，应建立新的、有限收敛的任务包并发布新的治理 revision；不要把旧任务包改回 `PENDING`。任务包至少固定输入、代码、配置、权重或 `ABSENT`、标定或 `ABSENT`、输出 schema、质量门、预算、终止条件和回滚路径。
 

@@ -1,6 +1,6 @@
 # 0915 Stereo 与 Interaction v0a 单会话 CPU 证据
 
-状态：`PASSED`
+状态：`RAW_RESIZE_DIAGNOSTIC_RETAINED / RECTIFIED_BRANCH_WITHDRAWN`
 
 会话：`play_cards_0915_001`，150 帧。该任务由同一 coordinator 启动两个互不相交的
 CPU writer lane；两条 lane 都已独立封账，未使用 GPU，也未修改源数据。
@@ -19,13 +19,12 @@ CPU writer lane；两条 lane 都已独立封账，未使用 GPU，也未修改�
   的 P90/P95 为 7.376/18.999 px，frame 94 的 P90 为 6.422 px，超过当前 5/8 px
   诊断阈值。
 - 同会话 factory baseline 为 0.0637716504 m。
-- 终态：`PASS_GPU_DEPTH_ADMISSION`。
+- 原运行终态为 `PASS_GPU_DEPTH_ADMISSION`；该 admission 现已撤销。
 
-这里的 rectification 使用同会话 `equiDis62` 内参和由 10 个估计帧得到、再由 10 个
-不重叠 held-out 帧验收的图像匹配旋转；不是把 factory 外参直接宣称为已验证矫正。
-它只允许 FoundationStereo 在同一单样本上继续验证。后续 Depth 必须保留逐帧 invalid
-与 LR/时序门，不能用池化 PASS 覆盖上述坏帧。外部毫米精度仍为 `UNVERIFIED`；P95 与
-空间覆盖也没有全面优于 raw，因此不能把预检写成 Depth 质量通过。
+用户已确认 VST 编码视频本来没有畸变，因此这里消费 `equiDis62` 的 rectified 分支属于
+重复去畸变，连同 `PASS_GPU_DEPTH_ADMISSION` 一并撤销。raw resize-only 的匹配统计仍可
+保留为诊断数据，但不单独提供 metric stereo 标定。新的 Depth 前置必须是编码视频域、
+零 lens-undistortion 的双目标定；当前任务不得复活。
 
 ## Interaction v0a
 

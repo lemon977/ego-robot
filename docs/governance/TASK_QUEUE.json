@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T15:53:10+08:00",
-  "generation_id": "gov-012004-9e7a26031573",
-  "governance_revision": 12004,
+  "generated_at": "2026-09-18T16:21:28+08:00",
+  "generation_id": "gov-012006-6e134603a08b",
+  "governance_revision": 12006,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [

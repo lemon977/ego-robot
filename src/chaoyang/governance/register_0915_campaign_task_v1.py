@@ -43,6 +43,9 @@ FOUNDATION_OBJECT6D_SCOPE = "VISUAL_OBJECT6D_CANDIDATE_INPUT"
 FOUNDATION_RUNTIME_CLOSURE = (
     REPO_ROOT / "tasks/receipts/FOUNDATIONSTEREO_RUNTIME_CLOSURE_V1.json"
 )
+VST_ENCODED_DOMAIN_CONFIRMATION = (
+    REPO_ROOT / "tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json"
+)
 
 
 def _canonical_sha256(value: Any) -> str:
@@ -532,23 +535,20 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
         ):
             raise RuntimeError("CPU evidence predecessor did not close both fenced lanes")
     elif task_id == "0915_foundationstereo_single_session_canary_v1":
-        if predecessor.get("status") != "PASSED":
-            raise RuntimeError("Depth canary requires terminal removal routing predecessor")
-        cpu_task = next(
-            (
-                row for row in state.get("tasks", [])
-                if row.get("task_id") == "0915_stereo_interaction_cpu_canary_v1"
-            ),
-            None,
+        confirmation = load_json(VST_ENCODED_DOMAIN_CONFIRMATION)
+        if (
+            confirmation.get("status")
+            != "CONFIRMED_ENCODED_VIDEO_ALREADY_UNDISTORTED"
+            or confirmation.get("admitted_visual_transform")
+            != "SOURCE_INDEX_CROP_THEN_RESIZE_ONLY"
+            or "EQUIDIS62_TO_PINHOLE"
+            not in confirmation.get("prohibited_operations", [])
+        ):
+            raise RuntimeError("VST encoded-video domain confirmation is invalid")
+        raise RuntimeError(
+            "wrong-domain FoundationStereo task is terminal; register a fresh "
+            "encoded-video-domain successor with zero lens-undistortion"
         )
-        if cpu_task is None:
-            raise RuntimeError("Depth canary lacks the CPU stereo preflight task")
-        cpu_ref = cpu_task.get("result")
-        if not isinstance(cpu_ref, dict) or validate_artifact_ref(cpu_ref):
-            raise RuntimeError("Depth canary CPU predecessor result is not bound")
-        cpu_result = load_json(Path(cpu_ref["path"]))
-        if cpu_result.get("stereo_gpu_depth_allowed") is not True:
-            raise RuntimeError("Depth canary is blocked by the inner stereo admission")
     elif task_id == "0915_removal_envelope_single_session_canary_v1":
         if predecessor.get("status") != "PASSED":
             raise RuntimeError("Removal Envelope canary requires terminal weak-role execution")

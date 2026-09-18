@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T15:53:10+08:00`
-- governance revision：`12004`
-- generation id：`gov-012004-9e7a26031573`
+- 状态生成时间：`2026-09-18T16:21:28+08:00`
+- governance revision：`12006`
+- generation id：`gov-012006-6e134603a08b`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120`
-- repository：`c1a65c42d4f9f52b0f56523b8730daeab27026fc` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`6cdf7f83cb533932b37bdcdfc9037edaa7de74499c09575493a499386f10710d`
+- repository：`4b0b91e48defeea1f2203134d3c4388dccb30cf7` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -35,10 +35,10 @@
 | HaWoR | 156 | 144 | 12 | 0 | 0 | `BOUNDED_V2_TERMINALS` |
 | Role Mask | 156 | 124 | 32 | 0 | 0 | `SAM31_ROLE_SUCCESSOR_V3` |
 | Object Mask | 156 | 121 | 35 | 0 | 0 | `TASK_OBJECT_IDENTITY` |
-| Depth | 58 | 58 | 0 | 0 | 0 | `VISUAL_OBJECT6D_CANDIDATE_INPUT` |
-| Object6D | 58 | 58 | 0 | 0 | 0 | `OBSERVED_ONLY_KEEP_INVALID` |
+| Depth | 58 | 0 | 0 | 0 | 58 | `NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN` |
+| Object6D | 58 | 0 | 0 | 0 | 58 | `NO_CURRENT_OBJECT6D_AUTHORITY_BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN` |
 | Clean | 58 | 58 | 0 | 0 | 0 | `EXACT78_WAVE0_FROZEN_PLUS_VERIFIED_SESSION_TERMINALS` |
-| Contact | 2 | 0 | 0 | 0 | 2 | `POKER042_HYPOTHESIS_ONLY_NO_CONTACT_AUTHORITY` |
+| Contact | 2 | 0 | 0 | 0 | 2 | `NO_CURRENT_CONTACT_AUTHORITY_UPSTREAM_OBJECT6D_WITHDRAWN` |
 | Robot Visual | 156 | 0 | 1 | 0 | 155 | `NO_CURRENT_TASK_ROBOT_AUTHORITY_POKER042_4FRAME_FINAL_C` |
 | HumanEgo Aux | 4 | 0 | 0 | 0 | 4 | `SCHEMA_READY_BUNDLES_BLOCKED_ROBOT_VISUAL` |
 | HumanEgo Policy | 4 | 0 | 0 | 0 | 4 | `BLOCKED_EXTERNAL_REAL_ROBOT_ACTION` |
@@ -70,24 +70,25 @@
 
 ### 可以支持
 
-- FoundationStereo disparity-to-depth formula and registration chain are internally closed for the current visual Depth products.（`SUPPORTED_INTERNAL_CONSISTENCY`；边界：Not an external millimetre-accuracy measurement.）
-- Chips034 right hand shows a persistent negative HaWoR-versus-Stereo Z discrepancy.（`SUPPORTED_INTERNAL_CONSISTENCY`；边界：Cross-system surface difference; it does not establish which system is physically correct.）
+- 当前无已发布支持结论。
 
 ### 不能支持或仅为假设
 
-- The Chips034 discrepancy is primarily a HaWoR absolute-Z placement error.（`HYPOTHESIS_ONLY`；边界：Median-Z correction is diagnostic and no external hand-depth truth exists.）
+- FoundationStereo disparity-to-depth formula and registration chain are internally closed for the current visual Depth products.（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
+- Chips034 right hand shows a persistent negative HaWoR-versus-Stereo Z discrepancy.（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
+- The Chips034 discrepancy is primarily a HaWoR absolute-Z placement error.（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
 - Current Object6D poses are physical ground truth.（`UNSUPPORTED`；边界：Observed visible-surface geometry only; occluded frames stay invalid.）
 - Current visual Robot results are deployable or training-authorized.（`UNSUPPORTED`；边界：Central Robot authority and action sidecars are both absent.）
 - Masquerade supports edited-human visual pretraining but does not supply contact truth or a complete contact-aware compositor for exact78.（`DEVELOPMENT_EVIDENCE`；边界：Method and limitation evidence only; it grants no local Contact, Robot, compositor, training or physical authority.）
-- Poker042 can produce a hypothesis-only human-contact sidecar without waiting for Clean or Robot rendering.（`DEVELOPMENT_EVIDENCE`；边界：The HYPOTHESIS_ONLY artifact has now been produced; this claim still grants no physical contact truth, Robot solve, compositor result or authority.）
-- Poker042 has a full-session human-contact hypothesis sidecar while formal Object6D remains unchanged.（`HYPOTHESIS_ONLY`；边界：Digital HaWoR fingertip-to-observed Object6D geometry only: 73 direct frames, 4 bounded inferred frames and 94 UNKNOWN; not physical contact truth or Robot authority.）
+- Poker042 can produce a hypothesis-only human-contact sidecar without waiting for Clean or Robot rendering.（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
+- Poker042 has a full-session human-contact hypothesis sidecar while formal Object6D remains unchanged.（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
 - Robot v5.2首个v73批次的3条严格C由软姿态门触发；三条轨迹均通过全片数字URDF碰撞及硬时序/限位审计。（`DEVELOPMENT_EVIDENCE`；边界：数字URDF和跨系统软姿态诊断；不授予Robot、Contact、控制或物理部署authority。）
 - 双手同时可见的H50硬门会拒绝单侧有效的第一视角会话；087在逐侧valid掩码下由0个恢复为233个因果H50窗口。（`DEVELOPMENT_EVIDENCE`；边界：单会话工程诊断；只支持masked future-2D辅助训练资格，不支持Robot、动作、Contact或物理authority。）
 - 087硬几何候选已形成严格因果的Raw/Robotized Visual Aux bundle；逐侧valid掩码保留233个H50窗口。（`DEVELOPMENT_EVIDENCE`；边界：Development Visual Aux bundle only; unresolved overlap is excluded, not solved. No occlusion, contact, Robot action, policy or deployment authority.）
-- 087真实会话已闭合Robot optical-Z与Stereo可见物体表面的4帧前后关系canary；接触窄带已知覆盖81.47%，UNKNOWN 18.53%。（`DEVELOPMENT_EVIDENCE`；边界：Observed visible-surface z-buffer diagnostic only; no hidden object completion, contact truth, Gold accuracy, Silver authority, Robot control or deployment authority.）
-- Occlusion compositor只在Robot/物体真实重叠区要求Stereo排序后，087连续接触窗的物体条件保留率中位数由77.48%提高到95.92%，但仍未达到99% Silver门。（`DEVELOPMENT_EVIDENCE`；边界：Twenty-four-frame internal visible-surface comparison; remaining loss and hidden object appearance are unresolved, no Silver/Gold accuracy or deployment authority.）
-- 087连续24帧可见表面z-buffer successor的物体条件保留率按像素加权为97.01%，已消除非重叠物体被深度门误降背景的问题，但仍未达到99% Silver门。（`DEVELOPMENT_EVIDENCE`；边界：Observed visible-surface internal QA only; hidden geometry/appearance and independent accuracy remain unresolved, no Silver/Gold or Robot authority.）
-- Chips087连续24帧可见表面Robot/Object光学Z诊断在边缘邻域一致性约束后达到99.72%条件物体像素保留率，known coverage 84.12%，UNKNOWN 15.88%。（`DEVELOPMENT_EVIDENCE`；边界：仅为直接可见物体表面、Raw合法像素与数字Robot z-buffer的内部诊断；未恢复隐藏物体外观，未完成人工Gold，不授予Silver/Gold、接触真值、Robot控制或物理部署authority。）
+- 087真实会话已闭合Robot optical-Z与Stereo可见物体表面的4帧前后关系canary；接触窄带已知覆盖81.47%，UNKNOWN 18.53%。（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
+- Occlusion compositor只在Robot/物体真实重叠区要求Stereo排序后，087连续接触窗的物体条件保留率中位数由77.48%提高到95.92%，但仍未达到99% Silver门。（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
+- 087连续24帧可见表面z-buffer successor的物体条件保留率按像素加权为97.01%，已消除非重叠物体被深度门误降背景的问题，但仍未达到99% Silver门。（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
+- Chips087连续24帧可见表面Robot/Object光学Z诊断在边缘邻域一致性约束后达到99.72%条件物体像素保留率，known coverage 84.12%，UNKNOWN 15.88%。（`WITHDRAWN`；边界：Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.）
 - V7.1 Visual Aux has bounded routing capacity for both Chips and Poker pairs（`DEVELOPMENT_EVIDENCE`；边界：Capacity forecast only: Chips 17 train/4 validation potential and Poker 20 train/4 validation potential; pending Robot/Clean/bundle receipts are not completed datasets or checkpoints.）
 - Chips087 right-pinky frame75 exceeds the current sampled KaiHand tip-direction reachable floor（`DEVELOPMENT_EVIDENCE`；边界：One-frame deterministic sampled digital reachability diagnosis under fixed wrist and current URDF limits; not global physical reachability, human truth, Robot authority or calibration.）
 - A two-candidate Robot base-backoff subset reproduced the full-sweep winner on the first six completed Chips sessions.（`DEVELOPMENT_EVIDENCE`；边界：Retrospective six-session Chips replay only; 71.4% fewer candidate evaluations is not measured wall-clock speedup, Poker generality, Robot authority, or evidence for unseen sessions.）

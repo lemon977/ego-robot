@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T15:53:10+08:00",
-  "generation_id": "gov-012004-9e7a26031573",
-  "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
-  "governance_revision": 12004,
+  "generated_at": "2026-09-18T16:21:28+08:00",
+  "generation_id": "gov-012006-6e134603a08b",
+  "generator_code_sha": "6cdf7f83cb533932b37bdcdfc9037edaa7de74499c09575493a499386f10710d",
+  "governance_revision": 12006,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -576,7 +576,7 @@
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "c1a65c42d4f9f52b0f56523b8730daeab27026fc"
+    "commit": "4b0b91e48defeea1f2203134d3c4388dccb30cf7"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [

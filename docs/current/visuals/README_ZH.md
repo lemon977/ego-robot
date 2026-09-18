@@ -4,15 +4,15 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
-## 0915 FoundationStereo 单会话（质量拒绝）
+## 0915 FoundationStereo 单会话（错误图像域，证据已撤销）
 
 - [`0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md`](0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md)
 - [`0915_FOUNDATIONSTEREO_CANARY_V1/0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4`](0915_FOUNDATIONSTEREO_CANARY_V1/0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4)
 
-150/150 帧、单次模型加载和 300 次双向推理均正常完成。几何覆盖、最终有效覆盖、边缘
-支持和公式复算通过；左右一致性残差跨帧 P90 为 `17.8653 px`（门限 5 px），时序深度
-中位数步长 P90 为 `0.4290 m`（门限 0.35 m），因此终态为
-`REJECTED_QUALITY`。结果不授权 Object6D，Planar Object6D 未启动。
+150/150 帧、单次模型加载和 300 次双向推理均正常完成，但该任务对已经无畸变的 VST
+编码视频再次应用 `equiDis62`，左栏不是正确画面。不可变执行终态为
+`REJECTED_QUALITY`，当前 authority 为 `WITHDRAWN_WRONG_IMAGE_DOMAIN`。结果不授权
+Object6D，Planar Object6D 未启动。
 
 ## 0915 Removal Envelope V1 单会话（人工质量已拒绝）
 
@@ -43,10 +43,9 @@ foreground 为主体并做局部 validated repair。
 - [`0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md`](0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)
 - [`0915_STEREO_INTERACTION_CPU_CANARY_V1/0915_STEREO_INTERACTION_CPU_REVIEW.png`](0915_STEREO_INTERACTION_CPU_CANARY_V1/0915_STEREO_INTERACTION_CPU_REVIEW.png)
 
-`play_cards_0915_001` 的两条独立 CPU lane 均已封账。Stereo 预检为
-`PASS_GPU_DEPTH_ADMISSION`：rectified 候选误差 median/P90/P95 为
-0.628/1.901/3.881 px；这是池化 admission，不是逐帧全过门，frame 81/94 仍有超阈值
-尾部。外部精度保持 `UNVERIFIED`。Interaction v0a 仅发布 2D
+`play_cards_0915_001` 的两条独立 CPU lane 均已封账。Stereo 原预检曾发布
+`PASS_GPU_DEPTH_ADMISSION`，但 rectified 分支对已经无畸变的编码视频再次消费了
+`equiDis62`，因此 admission 已撤销。raw resize-only 统计仅保留为诊断。Interaction v0a 仅发布 2D
 邻接、接近、共动及触觉支持假设；没有 relative-Z、遮挡顺序、接触真值、Object6D
 或 Robot authority。
 
@@ -93,7 +92,8 @@ HaWoR 全批，但允许进入同一会话的 SAM3.1 Mask canary。
 A 为 SBS `sourceIndex=1` 物理左目 resize-only；B 为已停止的
 `equiDis62 → FOV90 pinhole`。当前 remap 位移 P50 102.24 px、P95 241.02 px。
 legacy processed 单目已确认来自 `sourceIndex=0` 物理右目，不能代替左目。该任务已
-以 `BLOCKED_EXTERNAL` 封账，等待用户确认 A；不授权任何模型或批处理。
+以 `BLOCKED_EXTERNAL` 封账；用户随后确认 A 及“全部 VST 编码视频本来无畸变”。该
+确认只建立 resize-only 图像域边界，不授权任何模型或批处理。
 
 ## 0915 HaWoR 当前批次诊断
 
@@ -101,7 +101,7 @@ legacy processed 单目已确认来自 `sourceIndex=0` 物理右目，不能代�
 - [`0915_ONE_SESSION_CANARY_V1/README_ZH.md`](0915_ONE_SESSION_CANARY_V1/README_ZH.md)
 
 **停止说明：** 两个 0915 目录消费了经 `equiDis62 → pinhole` 显式重映射的物理左目。
-用户观察到不应有的画面弯曲，而 VST 编码像素是否已经校正尚未确认。因此这些文件只
+用户观察到不应有的画面弯曲，并已确认 VST 编码像素本来无畸变。因此这些文件只
 保留为问题复现证据，不是 0915 基线，也不再支持相机、HaWoR、SAM3.1 或 Depth 正确性。
 当前停止线见 [`../VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](../VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
 
@@ -113,6 +113,10 @@ legacy processed 单目已确认来自 `sourceIndex=0` 物理右目，不能代�
 固定 240 个会话全部终态：222 个清洗通过、18 个质量拒绝、0 个运行失败。该目录只提供数据清洗计数、拒绝原因和代表性审阅图，不包含 HaWoR、Mask、Depth、Contact 或 Robot 结论。
 
 ## 1. 三路手腕
+
+> **当前权威已撤回：** 本节及后续凡消费旧 exact78 FoundationStereo/Object6D 的可视化，
+> 均建立在重复 lens-undistortion 的错误 VST 图像域上。数值和文件只保留用于历史追溯，
+> 不再支持 Depth、Object6D、Contact、Occlusion 或 Robot 的当前结论。
 
 ### 裸手旧数据：Chips023
 

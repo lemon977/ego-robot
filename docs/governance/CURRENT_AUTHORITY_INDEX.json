@@ -2,8 +2,13 @@
   "claims": [
     {
       "claim": "FoundationStereo disparity-to-depth formula and registration chain are internally closed for the current visual Depth products.",
-      "claim_limit": "Not an external millimetre-accuracy measurement.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
+        {
+          "bytes": 11608,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/research/current/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
+          "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+        },
         {
           "bytes": 22674,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/PREDECESSOR_26_TERMINALS.json",
@@ -15,39 +20,49 @@
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
         },
         {
-          "bytes": 11608,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/research/current/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
-          "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "exact78 metric-ready Depth",
-      "status": "SUPPORTED_INTERNAL_CONSISTENCY"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "Chips034 right hand shows a persistent negative HaWoR-versus-Stereo Z discrepancy.",
-      "claim_limit": "Cross-system surface difference; it does not establish which system is physically correct.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
         {
           "bytes": 11608,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/research/current/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
           "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "get_potato_chips_0902_034/right",
-      "status": "SUPPORTED_INTERNAL_CONSISTENCY"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "The Chips034 discrepancy is primarily a HaWoR absolute-Z placement error.",
-      "claim_limit": "Median-Z correction is diagnostic and no external hand-depth truth exists.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
         {
           "bytes": 11608,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/docs/stale-linked/docs/research/current/reports/depth_accuracy/20260911/documents/DEPTH_ACCURACY_CURRENT_STATUS_ZH.md",
           "sha256": "b9ad9fb5f12c1d0ac86dec8a1c1bd6b769bd7e35303d1110d039c307dd5cf787"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "get_potato_chips_0902_034/right",
-      "status": "HYPOTHESIS_ONLY"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "Current Object6D poses are physical ground truth.",
@@ -100,20 +115,7 @@
     },
     {
       "claim": "Poker042 can produce a hypothesis-only human-contact sidecar without waiting for Clean or Robot rendering.",
-      "claim_limit": "The HYPOTHESIS_ONLY artifact has now been produced; this claim still grants no physical contact truth, Robot solve, compositor result or authority.",
-      "evidence": [
-        {
-          "bytes": 9903,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
-          "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
-        }
-      ],
-      "scope": "play_cards_0902_042/human-contact-input-gate",
-      "status": "DEVELOPMENT_EVIDENCE"
-    },
-    {
-      "claim": "Poker042 has a full-session human-contact hypothesis sidecar while formal Object6D remains unchanged.",
-      "claim_limit": "Digital HaWoR fingertip-to-observed Object6D geometry only: 73 direct frames, 4 bounded inferred frames and 94 UNKNOWN; not physical contact truth or Robot authority.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
         {
           "bytes": 9903,
@@ -121,13 +123,36 @@
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
+        }
+      ],
+      "scope": "play_cards_0902_042/human-contact-input-gate",
+      "status": "WITHDRAWN"
+    },
+    {
+      "claim": "Poker042 has a full-session human-contact hypothesis sidecar while formal Object6D remains unchanged.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
+      "evidence": [
+        {
           "bytes": 13930,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/HUMAN_CONTACT_HYPOTHESIS_V1.npz",
           "sha256": "392d2a73060f7b042b71106b0a6bd3022763fb52acbd47043f09b2d987b818d9"
+        },
+        {
+          "bytes": 9903,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json",
+          "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "play_cards_0902_042/HUMAN_CONTACT_HYPOTHESIS_V1",
-      "status": "HYPOTHESIS_ONLY"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "Robot v5.2首个v73批次的3条严格C由软姿态门触发；三条轨迹均通过全片数字URDF碰撞及硬时序/限位审计。",
@@ -170,20 +195,25 @@
     },
     {
       "claim": "087真实会话已闭合Robot optical-Z与Stereo可见物体表面的4帧前后关系canary；接触窄带已知覆盖81.47%，UNKNOWN 18.53%。",
-      "claim_limit": "Observed visible-surface z-buffer diagnostic only; no hidden object completion, contact truth, Gold accuracy, Silver authority, Robot control or deployment authority.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
         {
           "bytes": 4314,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering/RESULT.json",
           "sha256": "d139a02d05a29614996c456f4ec3b124f7f722cbbbd38b42b9d58ba562dd0fbd"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "get_potato_chips_0902_087_visible_surface_occlusion_canary",
-      "status": "DEVELOPMENT_EVIDENCE"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "Occlusion compositor只在Robot/物体真实重叠区要求Stereo排序后，087连续接触窗的物体条件保留率中位数由77.48%提高到95.92%，但仍未达到99% Silver门。",
-      "claim_limit": "Twenty-four-frame internal visible-surface comparison; remaining loss and hidden object appearance are unresolved, no Silver/Gold accuracy or deployment authority.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
         {
           "bytes": 11512,
@@ -194,27 +224,37 @@
           "bytes": 11454,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v3/RESULT.json",
           "sha256": "91bca18d9589aadd4c7383cd80bb6893e2f08cc69c51ddd38b870c48ca8ab281"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "get_potato_chips_0902_087_occlusion_visible_object_retention_successor",
-      "status": "DEVELOPMENT_EVIDENCE"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "087连续24帧可见表面z-buffer successor的物体条件保留率按像素加权为97.01%，已消除非重叠物体被深度门误降背景的问题，但仍未达到99% Silver门。",
-      "claim_limit": "Observed visible-surface internal QA only; hidden geometry/appearance and independent accuracy remain unresolved, no Silver/Gold or Robot authority.",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
         {
           "bytes": 13294,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v4/RESULT.json",
           "sha256": "4b9952ce1bc8469314a12c99d3b952c8fc4d8da8a482a0f5d6cb095d5daa4d69"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "get_potato_chips_0902_087_occlusion_visible_surface_24frame_v4",
-      "status": "DEVELOPMENT_EVIDENCE"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "Chips087连续24帧可见表面Robot/Object光学Z诊断在边缘邻域一致性约束后达到99.72%条件物体像素保留率，known coverage 84.12%，UNKNOWN 15.88%。",
-      "claim_limit": "仅为直接可见物体表面、Raw合法像素与数字Robot z-buffer的内部诊断；未恢复隐藏物体外观，未完成人工Gold，不授予Silver/Gold、接触真值、Robot控制或物理部署authority。",
+      "claim_limit": "Withdrawn from current consumption: the supporting Stereo/Object6D evidence was derived after applying forbidden lens remapping to already-undistorted VST pixels.",
       "evidence": [
         {
           "bytes": 24552,
@@ -230,10 +270,15 @@
           "bytes": 8708430,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_occlusion_silver_canary_v71/get_potato_chips_0902_087/visible_surface_ordering_24frame_92_115_v8/get_potato_chips_0902_087_可见表面遮挡ZBuffer_24帧_均匀预览.png",
           "sha256": "1f68de27e09c2c3c2c3fa2abe7110e7d023b471aa367d330de0fb4a1cafc774f"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "scope": "get_potato_chips_0902_087/frames_92_115/visible_surface_occlusion_R7_2",
-      "status": "DEVELOPMENT_EVIDENCE"
+      "status": "WITHDRAWN"
     },
     {
       "claim": "V7.1 Visual Aux has bounded routing capacity for both Chips and Poker pairs",
@@ -306,19 +351,19 @@
   "decisions": [
     "Wave0 is frozen at 58 metric-ready sessions; repairs publish immutable deltas.",
     "Clean pixels never feed Depth, Object6D, contact geometry, or action truth.",
-    "Formal Object6D remains DIRECT_OBSERVED_ONLY and KEEP_INVALID.",
+    "Formal Object6D remains DIRECT_OBSERVED_ONLY and KEEP_INVALID; current authority is blocked until zero-lens-undistortion encoded-domain Depth is admitted.",
     "FoundationStereo native confidence is absent and must not be fabricated.",
     "Human-video 3D is auxiliary visual evidence, not real Robot action ground truth.",
     "Visual Robot authority and physical deployment authority are separate.",
     "V5.2: one executor epoch, one canonical run signature and immutable finals are mandatory."
   ],
-  "generated_at": "2026-09-18T15:53:10+08:00",
-  "generation_id": "gov-012004-9e7a26031573",
-  "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
-  "governance_revision": 12004,
+  "generated_at": "2026-09-18T16:21:28+08:00",
+  "generation_id": "gov-012006-6e134603a08b",
+  "generator_code_sha": "6cdf7f83cb533932b37bdcdfc9037edaa7de74499c09575493a499386f10710d",
+  "governance_revision": 12006,
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "c1a65c42d4f9f52b0f56523b8730daeab27026fc"
+    "commit": "4b0b91e48defeea1f2203134d3c4388dccb30cf7"
   },
   "schema_version": "chaoyang-current-authority-index-v1",
   "stages": [
@@ -391,9 +436,9 @@
       "total": 156
     },
     {
-      "authority_scope": "VISUAL_OBJECT6D_CANDIDATE_INPUT",
-      "blocked": 0,
-      "denominator_semantics": "Only three-lane A/B sessions with verified metric calibration.",
+      "authority_scope": "NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN",
+      "blocked": 58,
+      "denominator_semantics": "The historical 58 remap-derived terminals are retained as files but all 58 are blocked from current consumption because decoded VST video was lens-undistorted a second time.",
       "evidence": [
         {
           "bytes": 9691,
@@ -409,18 +454,23 @@
           "bytes": 2241,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "grade_c": 0,
-      "passed": 58,
+      "passed": 0,
       "running": 0,
       "stage": "Depth",
       "total": 58
     },
     {
-      "authority_scope": "OBSERVED_ONLY_KEEP_INVALID",
-      "blocked": 0,
-      "denominator_semantics": "Visible-surface geometric estimates, not contact or external pose truth.",
+      "authority_scope": "NO_CURRENT_OBJECT6D_AUTHORITY_BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN",
+      "blocked": 58,
+      "denominator_semantics": "The historical 58 Object6D terminals depended on withdrawn remap-derived Depth and therefore have no current downstream authority.",
       "evidence": [
         {
           "bytes": 22674,
@@ -431,10 +481,15 @@
           "bytes": 2241,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "grade_c": 0,
-      "passed": 58,
+      "passed": 0,
       "running": 0,
       "stage": "Object6D",
       "total": 58
@@ -732,9 +787,9 @@
       "total": 58
     },
     {
-      "authority_scope": "POKER042_HYPOTHESIS_ONLY_NO_CONTACT_AUTHORITY",
+      "authority_scope": "NO_CURRENT_CONTACT_AUTHORITY_UPSTREAM_OBJECT6D_WITHDRAWN",
       "blocked": 2,
-      "denominator_semantics": "Poker042 has a full-session HYPOTHESIS_ONLY sidecar plus a Chinese four-keyframe development diagnostic; Chips034 lacks formal Object6D. Neither is contact truth.",
+      "denominator_semantics": "The two historical hypotheses are blocked from current consumption because their Object6D/Stereo geometry input has been withdrawn; neither was contact truth.",
       "evidence": [
         {
           "bytes": 12660,
@@ -747,14 +802,14 @@
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
-          "bytes": 4424,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
-          "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
-        },
-        {
           "bytes": 860,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/AGENT_REVIEW.json",
           "sha256": "a2b6dc7699dcc936addd445ca4a8d02cc18774f27d05dde2a9f40a23c6fc085c"
+        },
+        {
+          "bytes": 1262130,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
+          "sha256": "eae4585f04e84f517285875224fcef4188779de862fa7fab307e6b6a9053a5d9"
         },
         {
           "bytes": 2458677,
@@ -762,9 +817,14 @@
           "sha256": "342dc25c4f6fe554e35adfc68aeddc7f8c1b06ee65d0df7e5836d237ffa9a600"
         },
         {
-          "bytes": 1262130,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
-          "sha256": "eae4585f04e84f517285875224fcef4188779de862fa7fab307e6b6a9053a5d9"
+          "bytes": 4424,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+          "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "grade_c": 0,

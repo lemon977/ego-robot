@@ -1,9 +1,9 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-18T15:53:10+08:00",
-  "generation_id": "gov-012004-9e7a26031573",
-  "governance_revision": 12004,
+  "generated_at": "2026-09-18T16:21:28+08:00",
+  "generation_id": "gov-012006-6e134603a08b",
+  "governance_revision": 12006,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
@@ -31,9 +31,9 @@
       "stage": "governance"
     },
     {
-      "bytes": 5805,
+      "bytes": 7506,
       "path": "/mnt/workspace/code/chaoyang/tests/test_current_baseline_registry_v2.py",
-      "sha256": "b4dc0a4a2453cba60f9f7ed569cc0bf065043887ea7e6324f6d479d448033a60",
+      "sha256": "b0133dbd68a1ab2523dd06b617364970001c3af2477afb6093e21d12eeaf7893",
       "stage": "governance"
     },
     {
@@ -119,6 +119,18 @@
       "path": "/mnt/workspace/code/chaoyang/tests/test_0915_foundationstereo_single_session_canary_v1.py",
       "sha256": "1ebc6f722e55db8d9587433766ee3308f08ab131b077a582fbe28f2396da6ce7",
       "stage": "depth_object6d"
+    },
+    {
+      "bytes": 2023,
+      "path": "/mnt/workspace/code/chaoyang/tests/pipeline/test_vst_encoded_video_domain.py",
+      "sha256": "951f04f713497772e0efeefd9bc2af353a6bb93ed0e498d7ba1eced3291a2230",
+      "stage": "depth_object6d"
+    },
+    {
+      "bytes": 2158,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_withdraw_vst_remap_geometry_authority_v1.py",
+      "sha256": "96c9647354ab0efdb41a2c13f2cb1cae4bc0fdd071da029cb169a54387582fa8",
+      "stage": "governance"
     },
     {
       "bytes": 10991,

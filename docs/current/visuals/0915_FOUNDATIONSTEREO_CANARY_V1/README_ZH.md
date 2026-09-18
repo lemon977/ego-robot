@@ -1,12 +1,16 @@
 # 0915 FoundationStereo 单会话质量复核
 
-状态：`REJECTED_QUALITY`
+状态：`REJECTED_QUALITY / WITHDRAWN_WRONG_IMAGE_DOMAIN`
 
 会话：`play_cards_0915_001`
 
-这是物理双目、同会话标定和冻结 FoundationStereo checkpoint 上的完整 150 帧
-bounded canary。模型单次加载，完成 300 次推理及整段 SBS/审阅视频解码；运行、GPU
-租约、writer fence 和发布均正常。拒绝原因是深度质量门，而不是环境或运行失败。
+> **不要把本视频当作正确 VST 画面或 Depth 基线。** 用户已确认所有 VST 编码视频本来
+> 没有畸变；本任务却再次应用了 `equiDis62` lens-undistortion，所以左栏出现弯曲。
+
+这是错误图像域上的完整 150 帧 bounded canary。模型单次加载，完成 300 次推理及整段
+SBS/审阅视频解码；运行、GPU 租约、writer fence 和发布均正常。不可变执行终态仍保留
+为 `REJECTED_QUALITY`，但其算法证据 authority 已撤销为
+`WITHDRAWN_WRONG_IMAGE_DOMAIN`。
 
 - [完整 150 帧深度审阅视频](0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4)
 - [Git 内结果收据](../../../../tasks/receipts/0915_FOUNDATIONSTEREO_SINGLE_SESSION_CANARY_V1_RESULT.json)
@@ -28,8 +32,7 @@ bounded canary。模型单次加载，完成 300 次推理及整段 SBS/审阅�
 - 左右一致性残差的跨帧 P90：`17.8653 px`，门限 `<= 5 px`
 - 帧级深度中位数步长 P90：`0.4290 m`，门限 `<= 0.35 m`
 
-因此 `consumption_authorized=false`、授权 scope 为空，结果不能作为
+此外，本运行的 lens-undistortion 违反当前 VST 编码域合同。因此无论数值门结果如何，
+`consumption_authorized=false`、授权 scope 为空，结果不能作为
 `VISUAL_OBJECT6D_CANDIDATE_INPUT`。Planar Object6D 没有启动，也没有通过降低门限或
-补造 confidence 绕过拒绝。当前深度只声明 rectified-left optical-Z 内部量纲一致，外部
-毫米精度仍为 `UNVERIFIED`。
-
+补造 confidence 绕过拒绝。视频只保留为重复去畸变失败证据。

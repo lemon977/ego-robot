@@ -2,17 +2,17 @@
 
 ## 当前决定
 
-- **0915 全批仍停止，单会话证据链已进入下一轮 bounded 优化。** 单样本复核暴露 VST 图像域疑点：旧输入
-  对 SBS 物理左目额外执行了 `equiDis62 → pinhole` 重映射。用户已经确认
-  `sourceIndex=1 + resize-only`，并接受该输入上的 HaWoR 单样本结果；同一会话
+- **0915 全批仍停止。** 用户已确认所有 VST 编码视频本来没有畸变；旧输入对 SBS
+  物理眼额外执行的 `equiDis62 → pinhole` 是重复 lens-undistortion。当前统一边界为
+  sourceIndex-aware crop + resize-only。用户已接受该输入上的 HaWoR 单样本结果；同一会话
   SAM3.1 严格角色 canary 已完成且用户接受其作为下一轮起点，但弱角色没有质量通过；这不恢复 220 会话任务，详见
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
 - 单会话 A/B 已以 `BLOCKED_EXTERNAL` 封账：当前 remap 的输出位移 P50 为
   102.24 px、P95 为 241.02 px；legacy processed 单目来自 SBS `sourceIndex=0`
   物理右目。浅层证据见
   [`visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。
-- 用户已确认物理左目 `sourceIndex=1 + resize-only` 为正确单目画面，并确认单会话
-  HaWoR 视觉结果无明显问题。双目 Depth 的矫正方式继续为 `NOT_EVALUATED`；
+- 用户已确认所有 VST 编码视频已经无畸变，并确认单会话 HaWoR 视觉结果无明显问题。
+  双目 Depth 的编码域标定继续为 `NOT_EVALUATED`；
   `play_cards_0915_001` 的 SAM3.1 Mask canary 已运行并完成本轮人工判断。
 - resize-only raw HaWoR canary 的直接观测为左手 148/150、右手 145/150；后继
   `hawor_bounded_v2` 通过冻结数值门，短缺口连续性层通过单样本人工复核。相关临时
@@ -24,12 +24,12 @@
   [`visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md`](visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)。
 - 0916 只做 240 会话数据清洗，不进入 HaWoR、Mask、Depth、Contact 或 Robot。
 
-## 当前 bounded 执行 DAG
+## 已封账 bounded 执行 DAG
 
 当前治理只允许一个 `next_task`，因此执行路由保持串行；这不等于算法依赖串行：
 
 1. `0915_stereo_interaction_cpu_canary_v1`：同一 coordinator 下并行运行两个独立 writer
-   lane。Stereo lane 做 raw-resize 与 rectified 域预检；Interaction lane 只做 2D
+   lane。Stereo lane 曾做 raw-resize 与错误的 `equiDis62` rectified 域预检；Interaction lane 只做 2D
    adjacency/approach/co-motion 和可选触觉支持。
 2. `0915_sam31_weak_role_canary_v1`：只绑定 SAM3.1，算法上不消费 Stereo/Interaction
    结果；目标仅为双前臂、逐个可见 sleeve、黄色线缆和 `playing_card_02`，v5 双手及
@@ -39,9 +39,9 @@
    MANO capsule、palm/wrist/forearm corridor、可替换 appearance profile 的 cable
    region、逐像素来源位图和 feather alpha。不重跑 SAM，不运行 inpaint；结果必须独立
    人工验收，并禁止反哺几何证据链。
-4. `0915_foundationstereo_single_session_canary_v1`：只有 Stereo lane 内部 admission
-   通过才可注册。输出为 rectified-left optical-Z，单位米，尺度源为 rectified `fx ×`
-   same-session factory baseline；外部精度保持 `UNVERIFIED`。
+4. `0915_foundationstereo_single_session_canary_v1`：历史上由随后撤销的 Stereo admission
+   注册；其 rectified-left optical-Z 来自重复 lens-undistortion，当前为错误图像域证据，
+   不得注册或复活。
 5. `0915_planar_object6d_single_session_canary_v1`：先只处理稳定的 `card00/card01`，分别
    输出 translation、plane normal、in-plane rotation 的可观测性及平面残差；不生成统一
    置信度，不补遮挡姿态。
@@ -49,11 +49,12 @@
 SAM 弱角色与 FoundationStereo 是独立 GPU 任务并通过中央租约串行；不通过扩展多
 `next_task` 来制造伪并行。任何 bounded 结果都不自动授权全批。
 
-第 1 个任务已经完成：两个 CPU lane 都有独立 writer fence、运行签名与终态，合并结果
-为 `PASSED`。Stereo lane 为 `PASS_GPU_DEPTH_ADMISSION`；raw resize-only 垂直误差
+第 1 个任务已经完成：两个 CPU lane 都有独立 writer fence、运行签名与终态，合并执行
+结果为 `PASSED`。Stereo lane 曾发布 `PASS_GPU_DEPTH_ADMISSION`，该 admission 因重复
+lens-undistortion 已撤销；raw resize-only 垂直误差
 median/P90/P95 为 1.955/2.804/3.121 px，单会话 rectified 候选为
-0.628/1.901/3.881 px。该 PASS 是池化 admission；frame 81/94 仍有逐帧尾部超门，
-后继 Depth 必须单独置 invalid。Interaction v0a 在 4500 个指尖—物体配对中记录 59 个 2D
+0.628/1.901/3.881 px，但后者只作为失败实验数值保留；frame 81/94 还有逐帧尾部超门。
+Interaction v0a 在 4500 个指尖—物体配对中记录 59 个 2D
 邻接、1378 个 2D 接近、804 个 2D 共动与 16 个触觉支持假设；这些均为开发级弱证据。
 浅层复核见
 [`visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md`](visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)。
@@ -83,13 +84,23 @@ V2 核心、schema、配置与 16 项合成合同测试已实现，真实视频 
 FoundationStereo/Object6D 与 Clean 解耦。V1 复核见
 [`visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md`](visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)。
 
-第 4 个任务已经完成 150 帧 FoundationStereo GPU canary。模型单次加载、300 次双向
-推理、SBS 与审阅视频完整解码均通过，GPU 租约正常释放；终态仍为
-`REJECTED_QUALITY`。失败门为左右一致性残差跨帧 P90 `17.8653 px > 5 px`，以及帧级
+第 4 个任务曾完成 150 帧 FoundationStereo GPU canary。模型单次加载、300 次双向
+推理、SBS 与审阅视频完整解码均通过，GPU 租约正常释放；不可变执行终态为
+`REJECTED_QUALITY`。用户随后确认全部 VST 编码视频已经无畸变，而该任务再次应用了
+`equiDis62`，所以当前证据 authority 为 `WITHDRAWN_WRONG_IMAGE_DOMAIN`。其失败门为
+左右一致性残差跨帧 P90 `17.8653 px > 5 px`，以及帧级
 深度中位数步长 P90 `0.4290 m > 0.35 m`；其余 6 个质量门通过。该结果不授权
 `VISUAL_OBJECT6D_CANDIDATE_INPUT`，因此第 5 个 Planar Object6D 任务没有启动。浅层
 视频与数值见
 [`visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md`](visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md)。
+
+新的 Depth 任务必须以
+[`VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json`](../../tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json)
+为硬前置：解码视频不得使用任何 lens-undistortion。若需 stereo epipolar alignment，必须
+另行固定编码域标定并先做 raw resize-only 对照；旧 FoundationStereo 任务不得复活。
+同一复核已覆盖旧 exact78 worker：它也对解码 VST 像素执行 `make_map/remap_pair`。当前
+Depth 与 Object6D 的原 `58 passed` 均已撤回，账本各记为 `0 passed / 58 blocked`；相关
+Contact/Occlusion 假设不再拥有当前消费资格。历史产物未删除，也不能作为新任务输入。
 
 ## 输入与禁止项
 

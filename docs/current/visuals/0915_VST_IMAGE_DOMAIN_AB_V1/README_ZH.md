@@ -49,22 +49,16 @@ HaWoR、SAM3.1、Depth 或 Robot 的质量，也不授权恢复批处理。
 - 下一轮单目 canary 的唯一合理候选是 `sourceIndex=1 + resize-only`，但仍需用户先对
   A/B 画面作视觉确认。
 
-还不能确认：
+后续用户进一步确认：当前项目所有 VST 编码视频本来已经没有畸变。随采集保存的
+`pxrcapture_rawfisheye_sbs_hevc`、`RAW (distorted) fisheye` 和 `equiDis62` 字段只保留
+为采集侧 provenance，不能对解码像素再次执行 lens-undistortion。因此 A 不再只是单目
+候选，而是所有视觉消费者的编码域基线。
 
-- 原始 SBS 在物理意义上已经无畸变。随采集保存的本地元数据明确写着
-  `pxrcapture_rawfisheye_sbs_hevc` 和 `RAW (distorted) fisheye`。
-- 当前 `equiDis62` 投影公式、系数顺序、正反映射方向和 PICO 编码像素域是一致的。
-  目前没有随 `.h264` 保存的机器可读 `isRgbDistorted` 标记，也没有项目内固定的官方
-  模型约定来证明这一点。
-- 双目 Depth 可以直接消费 A。双目矫正需要另做左右目极线、尺度和标定板验证，不能
-  从单目视觉确认外推。
-
-PICO 官方 SpatialMP4 工具公开了 `IsRgbDistorted()` 和 RGB distortion model 查询，说明
-编码流是否畸变应当由容器/采集证据显式判定；本样本现有输入是裸 `.h264`，该标记不可读。
-参考：[PICO SpatialMP4](https://github.com/Pico-Developer/SpatialMP4)。
+这项确认仍不自动证明 metric stereo：双目 Depth 若需要极线对齐，必须另建编码域、
+零镜头畸变的标定与验证，不能把旧 `equiDis62` remap 换个名称继续使用。
 
 ## 下一步停止线
 
-用户已确认“A明显是对的”。当前只新建一个单会话、物理左目 resize-only 的 HaWoR
-canary；SAM3.1 及后续阶段仍需等待该 canary 复核。Depth 保持独立
-`NOT_EVALUATED`，不得恢复 220 会话批处理。
+用户已确认“A明显是对的”，并确认所有 VST 编码视频已经无畸变。当前只允许
+sourceIndex-aware crop + resize-only；Depth 保持独立 `NOT_EVALUATED`，不得恢复旧
+`equiDis62` remap 或 220 会话批处理。

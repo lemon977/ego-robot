@@ -36,14 +36,17 @@ Clean不得反喂Depth、Object6D或Contact真值；Compositor不得反向决定
 
 | 域 | 典型尺寸 | 用途 | 是否公制几何主域 |
 |---|---:|---|---|
-| 原始SBS | 4096×1536 | 两眼原始采集，每眼2048×1536 | 标定来源 |
+| VST编码SBS | 4096×1536 | 两眼编码视频，每眼2048×1536；已无镜头畸变 | 当前视觉源域 |
 | selected-left | 1280×960 | HaWoR、Mask、Clean、Robotized、HumanEgo统一RGB网格 | 否 |
-| rectified stereo | 1280×960/eye | 双目极线校正后的匹配域 | 是 |
-| FoundationStereo推理 | 640×480/eye | 降采样后视差推理 | 是，需同步缩放K |
+| encoded-domain stereo | 尚未发布 | 零 lens-undistortion 的双目极线/标定候选 | `BLOCKED` |
+| FoundationStereo推理 | 尚未授权 | 只能在 encoded-domain stereo 通过后建立 | `BLOCKED` |
 | ProPainter工作域 | 960×720 | 仅补Clean剩余UNKNOWN区 | 否 |
 | 中文review | 任意拼图尺寸 | 人工审阅 | 绝不是数据输入 |
 
-1280×960 的 handle MP4 是 acquisition-aligned 视觉消费域；不能仅因尺寸相同就称为双目metric rectification。任何resize、undistort、rectify都必须同步记录像素中心约定、K和registration。
+所有 VST 编码视频像素已经无畸变。当前只允许按 `sourceIndex` 裁出物理眼再 resize；
+`camera_params.json` 中的畸变字段只保留作采集 provenance，不得用于 decoded-video
+undistort/remap。若双目需要极线对齐，必须另建编码域、零 lens-undistortion 的标定，
+同步记录像素中心约定、K和registration，并在运行 FoundationStereo 前完成人工复核。
 
 统一变换记号 `T_A_B` 表示把B坐标表示到A。重要坐标包括 raw eye、rectified-left、selected-left、camera、world、robot-base、tool/flange和hand-root。
 
@@ -86,23 +89,36 @@ clean_removal = expanded_role_union - current_visible_object_mask_union
 
 ## 6. FoundationStereo Depth
 
-输入是同帧rectified左右图、同会话内参/外参和冻结checkpoint。网络输出视差`d`，公制optical-Z按：
+当前 0915 FoundationStereo 处于 `BLOCKED_PENDING_ENCODED_VST_STEREO_CALIBRATION`。
+旧 canary 对已无畸变的编码视频再次应用 `equiDis62`，其证据已撤销。未来输入只能来自
+零 lens-undistortion 的编码域双目标定；在该标定通过后，网络输出视差 `d`，公制
+optical-Z 才可按：
 
 ```text
 Z = fx * baseline / disparity
 ```
 
-其中`fx`必须属于当前推理分辨率，baseline来自同设备且身份可验证的双目标定。每帧保存`disparity_px`、`depth_m`、`depth_valid`及到selected-left的registration。
+其中 `fx` 必须属于编码域当前推理分辨率，baseline 来自同设备且身份可验证的双目标定。
+不得从 capture-side `equiDis62` 参数推导 encoded-video `fx`。每帧保存
+`disparity_px`、`depth_m`、`depth_valid`及到 selected-left 的 registration。
 
 当前接口没有FoundationStereo原生confidence。下游只能使用`depth_quality_evidence`，例如finite disparity、registration、遮挡边缘、低纹理、局部一致性和有效范围；这些不能改名为模型confidence。
 
 可信边界：公式重算、SIFT registration和内部几何闭环证明代码/图像域一致，不证明30/50/70/100cm真实距离误差。外部平面标定完成前，不得宣称毫米级物理精度。
+
+旧 exact78 FoundationStereo worker 也对解码帧执行了 `make_map/remap_pair`，所以旧
+Depth `58/58` 已从当前权威撤回并记为 `0 passed / 58 blocked`。旧文件可用于追溯错误，
+不能用于回归真值、Object6D 输入或任何下游几何声明。
 
 ## 7. Object6D observed-only
 
 Object6D读取原始RGB对应的物体身份Mask、有效Depth、K、registration和c2w。对Mask内有效点反投影，使用稳健中心、SVD/PCA轴与法向生成camera/world SE(3)。
 
 正式规则是`DIRECT_OBSERVED_ONLY + KEEP_INVALID`：遮挡帧不插值、不传播、不用Clean补出的像素。Chips三个physical instance分别输出，禁止union。平面/点云residual只是内部拟合，不是物体真实pose误差或接触真值。
+
+当前没有有效 Object6D authority：旧 58 条结果全部依赖已撤回的 remap-derived Depth，
+现记为 `0 passed / 58 blocked`。必须先完成新的 encoded-domain Depth admission，再在相同
+像素/相机域新建 Object6D canary；旧 Contact/Occlusion sidecar 不能反向恢复其权威。
 
 ## 8. Clean
 

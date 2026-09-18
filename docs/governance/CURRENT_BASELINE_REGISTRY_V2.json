@@ -348,28 +348,13 @@
       ]
     },
     {
-      "algorithm_id": "foundationstereo_corrected_metric_v1",
-      "authorized_scope": "VISUAL_OBJECT6D_CANDIDATE_INPUT",
+      "algorithm_id": "foundationstereo_encoded_vst_domain_blocked_v2",
+      "authorized_scope": "NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN",
       "code_closure": [
         {
-          "bytes": 25542,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py",
-          "sha256": "36344bd4f7627bfa86416d1c61ef180a50bc6cc486c48987411b55aa217d1c54"
-        },
-        {
-          "bytes": 24752,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/analyze_0915_stereo_domain_preflight_v1.py",
-          "sha256": "a4a7875fd0960a1b9aff50dd7f7821caa0991d5bdae6cc5e44cc1bb57d441174"
-        },
-        {
-          "bytes": 31197,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_stereo_interaction_cpu_canary_v1.py",
-          "sha256": "64cc40ebc6a82a65008d1e255c5343cc6fc9a2b94396af4d5e2655341fcc89d3"
-        },
-        {
-          "bytes": 63491,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_foundationstereo_single_session_canary_v1.py",
-          "sha256": "5ea1d946c534df6c621be90e641e7dc9cba3ddfb46851a5f61f477479da07a1f"
+          "bytes": 3046,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/vst_encoded_video_domain.py",
+          "sha256": "fd2c7ddbfebd363437e2c2f2d5f95a430717b65988011b920391e5426b83b634"
         },
         {
           "bytes": 19267,
@@ -383,9 +368,9 @@
         }
       ],
       "current_counts": {
-        "blocked": 0,
+        "blocked": 58,
         "grade_c": 0,
-        "passed": 58,
+        "passed": 0,
         "running": 0,
         "total": 58
       },
@@ -404,17 +389,25 @@
           "bytes": 2241,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
-      "input_authority": "REGISTERED_RECTIFIED_STEREO_AND_SAME_SESSION_CALIBRATION",
+      "input_authority": "BLOCKED_PENDING_ENCODED_VST_ZERO_LENS_UNDISTORTION_STEREO_CALIBRATION",
       "known_limitations": [
-        "FoundationStereo exposes no native confidence in this contract.",
-        "Internal metric closure is not external millimetre accuracy.",
-        "The 0915 single-session 150-frame canary is REJECTED_QUALITY: LR residual P90 across per-frame P90 is 17.8653 px above the 5 px limit and temporal median-depth step P90 is 0.4290 m above the 0.35 m limit.",
-        "The rejected result has consumption_authorized=false and cannot feed Object6D."
+        "All decoded VST video is already undistorted; camera_params distortion fields are capture provenance and must not be applied to encoded pixels.",
+        "The prior 0915 FoundationStereo canary used equiDis62 remapping and is WITHDRAWN_WRONG_IMAGE_DOMAIN in addition to its immutable REJECTED_QUALITY terminal.",
+        "No current encoded-domain stereo intrinsics/epipolar calibration or metric Depth authority is published.",
+        "FoundationStereo exposes no native confidence, and internal metric closure would not by itself establish external millimetre accuracy."
       ],
-      "output_schema": "depth_m+depth_valid+registration",
+      "output_schema": "NOT_EVALUATED",
       "quality_gates": [
+        "encoded_VST_video_no_lens_undistortion",
+        "sourceIndex_crop_then_resize_only",
+        "encoded_domain_stereo_calibration",
         "Z_equals_fB_over_d_recompute",
         "registration",
         "valid_range",
@@ -457,6 +450,11 @@
           "bytes": 3422,
           "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_FOUNDATIONSTEREO_SINGLE_SESSION_CANARY_V1_RESULT.json",
           "sha256": "d6cbd75f85e1e389451f6e041e8c19ce4e6a785b237cf625e4a73490de5139db"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "schema_artifact": {
@@ -464,9 +462,10 @@
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Depth",
-      "successor_requirement": "Diagnose LR reprojection direction/occlusion handling and temporal outliers in a new bounded task without lowering gates. External 30/50/70/100 cm validation remains required for physical accuracy claims.",
+      "successor_requirement": "Create a fresh encoded-video-domain stereo calibration canary with zero lens-undistortion, raw resize-only visual reference, explicit epipolar-only transform if needed, and user review before any FoundationStereo rerun. External 30/50/70/100 cm validation remains required for physical accuracy claims.",
       "superseded_implementations": [
-        "uncorrected and preview-only depth"
+        "uncorrected and preview-only depth",
+        "0915 equiDis62-remapped FoundationStereo canary"
       ],
       "weights": [
         {
@@ -478,39 +477,9 @@
       ]
     },
     {
-      "algorithm_id": "object6d_observed_visible_surface_v1",
-      "authorized_scope": "OBSERVED_ONLY_KEEP_INVALID",
+      "algorithm_id": "object6d_blocked_upstream_depth_wrong_vst_domain_v2",
+      "authorized_scope": "NO_CURRENT_OBJECT6D_AUTHORITY_BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN",
       "code_closure": [
-        {
-          "bytes": 44263,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_visual_fixed_instance_object6d.py",
-          "sha256": "999b0b95993d50e336f2c2fa3ee5215169ea07cc4a844b51277627b7a71c648b"
-        },
-        {
-          "bytes": 7239,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/adapt_object6d_rectified_to_selected_v71.py",
-          "sha256": "a5a65499f10cfba27a71a45cc31231cc6b73ec85b76e183c7061e0bab229c556"
-        },
-        {
-          "bytes": 6571,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_object6d_coordinate_domain_v71.py",
-          "sha256": "b9371060fe861d85dc10ce7c2b7a5da7ad5f5bfdf82fc54f1b4955834a544efc"
-        },
-        {
-          "bytes": 4290,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_object6d_selected_camera_adapter_batch_v71.py",
-          "sha256": "d87da58d3f293ecd85c290715f59eeadef41f6357165a4605d21eca8830e04cd"
-        },
-        {
-          "bytes": 22342,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_planar_object6d_single_session_canary_v1.py",
-          "sha256": "dc07f28a2d406135c8ebd1910e31c4a4d23d198833c14d4c68cc9652bb3fb05f"
-        },
-        {
-          "bytes": 17502,
-          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object_pose_hypothesis_v2.py",
-          "sha256": "e869d16892d7e12ef084d4bbd3a719b9ba7224770c7398efbc518d2bf3a4dc22"
-        },
         {
           "bytes": 16999,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object6d_planar_observability_v1.py",
@@ -523,9 +492,9 @@
         }
       ],
       "current_counts": {
-        "blocked": 0,
+        "blocked": 58,
         "grade_c": 0,
-        "passed": 58,
+        "passed": 0,
         "running": 0,
         "total": 58
       },
@@ -539,17 +508,23 @@
           "bytes": 2241,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260911_exact78_depth_object6d_successor_v3_delta32/TERMINAL_AUDIT.json",
           "sha256": "7b0587714c8360b7f0cc3312dcb3f60843128d18999bfb41786ac2985bc0d219"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
-      "input_authority": "DEPTH_B_AND_OBJECT_MASK_B",
+      "input_authority": "BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN",
       "known_limitations": [
-        "Only visible-surface geometry is measured; occluded frames remain invalid.",
+        "All 58 historical current Object6D terminals depended on FoundationStereo Depth produced after forbidden lens remapping of already-undistorted VST video; their current authority is withdrawn.",
+        "Only visible-surface geometry may be measured after a future encoded-domain Depth admission; occluded frames must remain invalid.",
         "Plane residual is not external pose truth.",
-        "Legacy T_object_to_camera is in the rectified-depth camera. Its legacy T_object_to_world omitted rectified-to-selected registration and is forbidden for Robot/Contact consumption without the immutable selected-camera adapter.",
-        "The current 0915 FoundationStereo canary is REJECTED_QUALITY and grants no Object6D input scope; the planar single-session successor was not executed."
+        "The 0915 planar single-session successor was never executed and remains blocked upstream."
       ],
-      "output_schema": "camera_world_SE3_observed_only",
+      "output_schema": "NOT_EVALUATED",
       "quality_gates": [
+        "encoded_domain_depth_admitted",
         "mask_depth_valid",
         "finite_SE3",
         "proper_rotation",
@@ -558,29 +533,9 @@
       ],
       "related_current_releases": [
         {
-          "bytes": 1731,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/RESULT.json",
-          "sha256": "769d22f7a2c9cb3a91d06fb0051742b08a370bb30d5237ddbc14e7c4716f70fd"
-        },
-        {
-          "bytes": 2379,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/selected_camera_adapter_R7_2/get_potato_chips_0902_023/physical_object_0/RESULT.json",
-          "sha256": "5e20a55bb43506610faa153b0a2144954b512be1c66abc2ec3581e4ebcafea21"
-        },
-        {
-          "bytes": 94920,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/coordinate_domain_audit_R7_3/RESULT.json",
-          "sha256": "0453ba5800d6063e29136080c82ec05eb54c01c31eb2e648212b573fc724ea3e"
-        },
-        {
-          "bytes": 62655,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260914_chaoyang_v71/object_pose/selected_camera_adapter_batch_R7_3/RESULT.json",
-          "sha256": "3ac45ea96a3f5d7a5ae052f927340963edee7fe65f949140826fbb5f84fff277"
-        },
-        {
-          "bytes": 24774,
-          "path": "/mnt/workspace/code/chaoyang/docs/research/current/CONTACT_OCCLUSION_METHODS_V71_ZH.md",
-          "sha256": "341424782c90c0f0f2bafb73d6cf3f42bc887336ac3f9ba6276077ca1f93c77a"
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "schema_artifact": {
@@ -588,10 +543,11 @@
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Object6D",
-      "successor_requirement": "Use the selected-camera coordinate adapter before Robot/Contact development, then run bounded direct/tracked/attachment canaries; hypothesis sidecars cannot overwrite formal Object6D.",
+      "successor_requirement": "First admit a fresh zero-lens-undistortion encoded-domain Depth canary. Then create a new bounded Object6D successor in that same pixel/camera domain; old rectified-depth products and dependent Contact/Occlusion sidecars cannot seed authority.",
       "superseded_implementations": [
         "filled occlusion pose previews",
-        "rectified pose multiplied directly by selected-camera c2w"
+        "rectified pose multiplied directly by selected-camera c2w",
+        "58 remap-derived exact78 Object6D terminals"
       ],
       "weights": "NOT_APPLICABLE"
     },
@@ -1020,7 +976,7 @@
     },
     {
       "algorithm_id": "contact_evidence_dag_v71_geometry_v2",
-      "authorized_scope": "POKER042_HYPOTHESIS_ONLY_NO_CONTACT_AUTHORITY",
+      "authorized_scope": "NO_CURRENT_CONTACT_AUTHORITY_UPSTREAM_OBJECT6D_WITHDRAWN",
       "code_closure": [
         {
           "bytes": 11488,
@@ -1067,14 +1023,14 @@
           "sha256": "08f74bb21c7ca0b9ef72bdaeb1930a98bf4984550050368230c5aa9d153e09be"
         },
         {
-          "bytes": 4424,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
-          "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
-        },
-        {
           "bytes": 860,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/AGENT_REVIEW.json",
           "sha256": "a2b6dc7699dcc936addd445ca4a8d02cc18774f27d05dde2a9f40a23c6fc085c"
+        },
+        {
+          "bytes": 1262130,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
+          "sha256": "eae4585f04e84f517285875224fcef4188779de862fa7fab307e6b6a9053a5d9"
         },
         {
           "bytes": 2458677,
@@ -1082,9 +1038,14 @@
           "sha256": "342dc25c4f6fe554e35adfc68aeddc7f8c1b06ee65d0df7e5836d237ffa9a600"
         },
         {
-          "bytes": 1262130,
-          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/Poker042_HYPOTHESIS_ONLY_中文4关键帧诊断.mp4",
-          "sha256": "eae4585f04e84f517285875224fcef4188779de862fa7fab307e6b6a9053a5d9"
+          "bytes": 4424,
+          "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3_visual_v1/poker/play_cards_0902_042/RESULT.json",
+          "sha256": "9d1d045ce921fcd5f5deba28cc45008bc10b282fa8e24e5b6cb80a68ba5d4696"
+        },
+        {
+          "bytes": 2852,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+          "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
       "input_authority": "HAWOR_OBJECT_MASK_DIRECT_OBJECT6D",
@@ -1845,9 +1806,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-18T15:53:10+08:00",
-  "generation_id": "gov-012004-9e7a26031573",
-  "governance_revision": 12004,
+  "generated_at": "2026-09-18T16:21:28+08:00",
+  "generation_id": "gov-012006-6e134603a08b",
+  "governance_revision": 12006,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",
@@ -1916,10 +1877,10 @@
           "status": "UNKNOWN_VERIFICATION_REQUIRED"
         }
       },
-      "current_contract": "H0 admission branches to H1 hand, H2 tactile, H3 same-session Stereo and H4 sensor-role Mask independently.",
+      "current_contract": "H0 admission branches to H1 hand, H2 tactile and H4 sensor-role Mask independently. H3 Stereo is blocked until a zero-lens-undistortion encoded-domain calibration successor is published.",
       "known_limitations": [
         "H3/H4 full GPU batches are not authorized by a bounded canary.",
-        "H3 must estimate rectification from the same session and never reuse the fixed exact78 rotation.",
+        "All decoded VST video is already undistorted. H3 must not apply equiDis62 or any other lens-undistortion remap; any epipolar-only alignment needs a fresh encoded-domain calibration and review.",
         "H4 seed prompts are sensor-domain glove/Controller/object prompts; exact78 bare-hand prompts are not reusable.",
         "Stereo optical-Z is visible-surface engineering depth, not external metric or wrist truth."
       ],

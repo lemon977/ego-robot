@@ -1,0 +1,55 @@
+{
+  "schema_version": "vst-encoded-video-domain-user-confirmation-v1",
+  "status": "CONFIRMED_ENCODED_VIDEO_ALREADY_UNDISTORTED",
+  "confirmed_at": "2026-09-18T16:07:17+08:00",
+  "authority": "PROJECT_OWNER_USER_CONFIRMATION",
+  "user_statement": "现在的视频数据都不需要去畸变，VST 数据本来就是没有畸变的。",
+  "scope": "ALL_DECODED_VST_VIDEO_PIXELS_CONSUMED_BY_CURRENT_PIPELINE",
+  "encoded_video_domain": "VST_ENCODED_ALREADY_UNDISTORTED",
+  "admitted_visual_transform": "SOURCE_INDEX_CROP_THEN_RESIZE_ONLY",
+  "prohibited_operations": [
+    "EQUIDIS62_UNDISTORT",
+    "EQUIDIS62_TO_PINHOLE",
+    "LENS_UNDISTORTION_REMAP"
+  ],
+  "camera_params_policy": "DISTORTION_FIELDS_RETAINED_AS_CAPTURE_PROVENANCE_NOT_APPLIED_TO_ENCODED_VIDEO_PIXELS",
+  "stereo_policy": "LENS_UNDISTORTION_FORBIDDEN; ANY_FUTURE_EPIPOLAR_ALIGNMENT_REQUIRES_A_SEPARATE_ENCODED_DOMAIN_CALIBRATION_AND_FRESH_USER_REVIEW",
+  "invalidated_experiment": {
+    "task_id": "0915_foundationstereo_single_session_canary_v1",
+    "authority_status": "WITHDRAWN_WRONG_IMAGE_DOMAIN",
+    "terminal_execution_status_preserved": "REJECTED_QUALITY",
+    "result_receipt": {
+      "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_FOUNDATIONSTEREO_SINGLE_SESSION_CANARY_V1_RESULT.json",
+      "bytes": 3422,
+      "sha256": "d6cbd75f85e1e389451f6e041e8c19ce4e6a785b237cf625e4a73490de5139db"
+    },
+    "review_video": {
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_FOUNDATIONSTEREO_CANARY_V1/0915_FOUNDATIONSTEREO_DEPTH_REVIEW.mp4",
+      "bytes": 5234398,
+      "sha256": "8a9c209e44092f223a148f9f43b8e67169b42091c5cd0b315e4e617ff147d318"
+    }
+  },
+  "withdrawn_current_authority": {
+    "reason": "The exact78 FoundationStereo worker also applied make_map/remap_pair to decoded VST pixels, so its Depth and dependent Object6D products are in the wrong image domain.",
+    "offending_worker": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_foundationstereo_corrected_depth_worker.py",
+      "bytes": 25542,
+      "sha256": "36344bd4f7627bfa86416d1c61ef180a50bc6cc486c48987411b55aa217d1c54"
+    },
+    "depth": {
+      "prior_current_count": 58,
+      "new_authorized_count": 0,
+      "status": "WITHDRAWN_WRONG_IMAGE_DOMAIN"
+    },
+    "object6d": {
+      "prior_current_count": 58,
+      "new_authorized_count": 0,
+      "status": "BLOCKED_UPSTREAM_DEPTH_WRONG_IMAGE_DOMAIN"
+    },
+    "dependent_contact_hypotheses": "WITHDRAWN_FROM_CURRENT_CONSUMPTION",
+    "historical_artifacts_deleted": false
+  },
+  "source_data_modified": false,
+  "rerun_authorized": false,
+  "claim_limit": "This confirmation governs decoded VST video pixels. It does not itself provide encoded-domain stereo intrinsics, epipolar calibration, metric depth accuracy, Object6D authority, or permission to rerun a terminal task."
+}
