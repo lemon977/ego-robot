@@ -2,25 +2,26 @@
 
 ## 当前决定
 
-- **0915 全批仍停止，单会话 Mask 可继续。** 单样本复核暴露 VST 图像域疑点：旧输入
+- **0915 全批仍停止，单会话 Mask 已完成并等待视觉验收。** 单样本复核暴露 VST 图像域疑点：旧输入
   对 SBS 物理左目额外执行了 `equiDis62 → pinhole` 重映射。用户已经确认
-  `sourceIndex=1 + resize-only`，并接受该输入上的 HaWoR 单样本结果；当前只解除同一
-  会话 SAM3.1 Mask canary，不恢复 220 会话任务，详见
+  `sourceIndex=1 + resize-only`，并接受该输入上的 HaWoR 单样本结果；同一会话
+  SAM3.1 严格角色 canary 已完成，但不恢复 220 会话任务，详见
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
 - 单会话 A/B 已以 `BLOCKED_EXTERNAL` 封账：当前 remap 的输出位移 P50 为
   102.24 px、P95 为 241.02 px；legacy processed 单目来自 SBS `sourceIndex=0`
   物理右目。浅层证据见
   [`visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。
 - 用户已确认物理左目 `sourceIndex=1 + resize-only` 为正确单目画面，并确认单会话
-  HaWoR 视觉结果无明显问题。双目 Depth 的矫正方式继续为 `NOT_EVALUATED`；当前只
-  授权 `play_cards_0915_001` 的 SAM3.1 Mask canary。
+  HaWoR 视觉结果无明显问题。双目 Depth 的矫正方式继续为 `NOT_EVALUATED`；
+  `play_cards_0915_001` 的 SAM3.1 Mask canary 已运行，正在等待人工视觉验收。
 - resize-only raw HaWoR canary 的直接观测为左手 148/150、右手 145/150；后继
   `hawor_bounded_v2` 通过冻结数值门，短缺口连续性层通过单样本人工复核。相关临时
   运行与可视化已经带收据清理，未自动注册 220 会话后继。
 - 0915 Mask 模型已经由用户确定为 **SAM3.1**，这是本任务唯一可执行的 Mask 权重。
 - 不创建 SAM2.1 或 Cutie challenger，不执行胜者选择，也不因历史对比材料改变当前路线。
-- 原定全批执行顺序仍失效，不得从已取消的 HaWoR 任务续跑。Mask 必须从新的、独立的
-  `play_cards_0915_001` SAM3.1 单会话 canary 任务开始。
+- 原定全批执行顺序仍失效，不得从已取消的 HaWoR 任务续跑。Mask 已从新的、独立的
+  `play_cards_0915_001` SAM3.1 单会话 canary 任务开始并封账；浅层复核见
+  [`visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md`](visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)。
 - 0916 只做 240 会话数据清洗，不进入 HaWoR、Mask、Depth、Contact 或 Robot。
 
 ## 输入与禁止项
@@ -41,6 +42,10 @@
 4. 输入准备、CAD、0916 清洗和后处理/Robot 均为 `weights=ABSENT`。
 
 SAM3.1 角色合同区分左右皮肤/前臂、左右手指皮套、左右线缆以及任务物体实例；禁止创建 tracker/controller 角色。任务物体按可见物理实例分离，离屏后保持未知，只有具备重识别证据才恢复旧 ID。
+
+单会话执行结果为：左右手 145/150、148/150 帧有证据；三张牌 143/150、146/150、
+95/150；前臂、皮套和线缆没有稳定过门。每帧保存 `seeded/tracked/reseeded/unknown`，
+当前任务 `PASSED` 只表示执行与证据发布完成，不表示所有角色质量通过。
 
 ## Robot 与标定边界
 

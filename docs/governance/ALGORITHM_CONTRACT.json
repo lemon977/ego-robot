@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T11:52:21+08:00",
-  "generation_id": "gov-011904-46a66b9f69bc",
-  "governance_revision": 11904,
+  "generated_at": "2026-09-18T12:54:49+08:00",
+  "generation_id": "gov-011956-2d7872e05c01",
+  "governance_revision": 11956,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -505,9 +505,19 @@
           "sha256": "8d22d484174386471e466f8de3158018d114485a3d7f9bf15d21a7e8a7ffc4c6"
         },
         {
+          "bytes": 38753,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+          "sha256": "53695dfcbd88e2b058996b84f3ebcfced6ae5eaed5230f51a7681bf1c3234c0a"
+        },
+        {
           "bytes": 34274,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
           "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        },
+        {
+          "bytes": 9760,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+          "sha256": "94a0e0dc9912ff180dc84c5a768cbc9f3479b2a552e45504569c73e410a60bca"
         },
         {
           "bytes": 19267,
@@ -518,7 +528,8 @@
       "implementation_revision": "R7_1_R3",
       "input_authority": "HAWOR_A_B",
       "known_limitations": [
-        "Four role masks are independent; C sessions are not downstream-authorized."
+        "Four exact78 role masks are independent; C sessions are not downstream-authorized.",
+        "The 0915 strict-role path is a one-session development canary awaiting user visual review; it does not authorize a batch."
       ],
       "output_schema": "exact78-role-mask-successor-finalize-result-v3",
       "quality_gates": {

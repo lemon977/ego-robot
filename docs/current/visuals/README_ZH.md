@@ -4,6 +4,17 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
+## 0915 SAM3.1 严格角色单会话（待人工视觉验收）
+
+- [`0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md`](0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)
+- [`0915_SAM31_STRICT_ROLE_CANARY_V1/0915_SAM31_STRICT_ROLE_REVIEW.mp4`](0915_SAM31_STRICT_ROLE_CANARY_V1/0915_SAM31_STRICT_ROLE_REVIEW.mp4)
+- [`0915_SAM31_STRICT_ROLE_CANARY_V1/0915_SAM31_STRICT_ROLE_CONTACT_SHEET.jpg`](0915_SAM31_STRICT_ROLE_CANARY_V1/0915_SAM31_STRICT_ROLE_CONTACT_SHEET.jpg)
+
+这是 `play_cards_0915_001` 在 resize-only 物理左目上的 150 帧 SAM3.1 结果。左右手分别有
+145/150 和 148/150 帧证据；前臂仅 7/150 和 90/150，皮套与线缆各只有 5–8 帧，保持
+`unknown`；三张牌分别为 143/150、146/150 和 95/150。执行已完成，但不构成 11 个角色
+全部过门或 220 会话批量授权。
+
 ## 0915 HaWoR bounded_v2 单会话基线（已完成人工复核）
 
 - [`0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md`](0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md)

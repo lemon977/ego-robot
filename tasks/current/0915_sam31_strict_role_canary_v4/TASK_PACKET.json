@@ -1,0 +1,61 @@
+{
+  "budgets": {
+    "gpu_hours": 2,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "One-session development masks for human review. Empty masks remain unknown unless absence is evidenced; no alternate model, batch authority, tracker/controller instance, ground truth, contact truth, hidden-shape claim or deployment authority.",
+  "expected_resource": "SERIAL_GPU_SINGLE_SESSION_CANARY; exactly one SAM3.1 checkpoint",
+  "objective": "Run the same strict-role canary through the pinned multiplex full semantic propagation route, using points for seed selection and quality evidence after the v3 point-refinement partial route failed temporal continuity.",
+  "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V4",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_sam31_strict_role_canary_v3=CANCELLED_EARLY_POINT_PARTIAL_ROUTE_DIAGNOSTIC",
+    "0915_hawor_resize_only_canary_v1=PASSED",
+    "user_accepted_resize_only_bounded_hawor_canary",
+    "governance_PASS_FRESH",
+    "central_GPU_lease",
+    "multiplex_semantic_full_propagation",
+    "points_selection_and_quality_only",
+    "single_session_play_cards_0915_001",
+    "SAM3.1_ONLY_USER_LOCKED",
+    "PICO26_NOT_CONSUMED",
+    "no_batch_expansion"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/RESULT.json",
+    "src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+    "src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+    "contracts/visual_role_mask_v2.schema.json",
+    "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+    "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "required_outputs": [
+    "PROMPT_PLAN.json",
+    "ROLE_MANIFEST.json",
+    "TEMPORAL_STATE_LEDGER.json",
+    "QUALITY_TRIGGER_LEDGER.json",
+    "RESULT.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+    "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V3_RESULT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_sam31_strict_role_canary_v4",
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "write_set": [
+    "_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001",
+    "docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1",
+    "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V3_RESULT.json"
+  ]
+}

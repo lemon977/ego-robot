@@ -1,0 +1,57 @@
+{
+  "budgets": {
+    "gpu_hours": 2,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "One-session development masks for human review. Empty masks remain unknown unless absence is evidenced; no alternate model, batch authority, tracker/controller instance, ground truth, contact truth, hidden-shape claim or deployment authority.",
+  "expected_resource": "SERIAL_GPU_SINGLE_SESSION_CANARY; exactly one SAM3.1 checkpoint",
+  "objective": "Run pinned SAM3.1 on only play_cards_0915_001 in the confirmed resize-only pixel domain, with separate hand/forearm/sleeve/cable/object roles, initial visual boxes, quality-triggered finite reseeding, and explicit temporal states.",
+  "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_hawor_resize_only_canary_v1=PASSED",
+    "user_accepted_resize_only_bounded_hawor_canary",
+    "governance_PASS_FRESH",
+    "central_GPU_lease",
+    "single_session_play_cards_0915_001",
+    "SAM3.1_ONLY_USER_LOCKED",
+    "PICO26_NOT_CONSUMED",
+    "no_batch_expansion"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
+    "src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+    "src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+    "contracts/visual_role_mask_v2.schema.json",
+    "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001",
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "required_outputs": [
+    "PROMPT_PLAN.json",
+    "ROLE_MANIFEST.json",
+    "TEMPORAL_STATE_LEDGER.json",
+    "QUALITY_TRIGGER_LEDGER.json",
+    "RESULT.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+    "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V1_RESULT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_sam31_strict_role_canary_v1",
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "write_set": [
+    "_run/current/0915_sam31_strict_role_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1",
+    "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V1_RESULT.json"
+  ]
+}

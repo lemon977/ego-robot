@@ -49,9 +49,13 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
   独立未决问题；后续 Mask 路线固定为 SAM3.1，不运行 SAM2.1/Cutie 选型。
 - 0916 独立清洗已经完成；0915/0916 状态见
   [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。
-- 用户已确认 resize-only 图像域和单样本 HaWoR 视觉结果；下一阶段允许在同一会话
-  `play_cards_0915_001` 上建立一个 SAM3.1 Mask canary。只能绑定已固定的 SAM3.1
-  权重，不得创建 SAM2.1/Cutie 候选、胜者选择任务或自动扩到 220 会话。
+- 用户已确认 resize-only 图像域和单样本 HaWoR 视觉结果；同一会话
+  `play_cards_0915_001` 的 SAM3.1 严格角色 canary 已执行完成，当前等待用户视觉验收。
+  左右手与前两张牌形成可审阅单样本结果，前臂、皮套、线缆和第三张牌仍有大量
+  `unknown`，不得解释为角色不在画面，也不得进入批量 Clean/Contact。复核入口见
+  [`0915_SAM31_STRICT_ROLE_CANARY_V1`](visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)。
+  只能使用已固定的 SAM3.1 权重，不得创建 SAM2.1/Cutie 候选、胜者选择任务或自动扩到
+  220 会话。
 
 如果用户提出新目标，应建立新的、有限收敛的任务包并发布新的治理 revision；不要把旧任务包改回 `PENDING`。任务包至少固定输入、代码、配置、权重或 `ABSENT`、标定或 `ABSENT`、输出 schema、质量门、预算、终止条件和回滚路径。
 

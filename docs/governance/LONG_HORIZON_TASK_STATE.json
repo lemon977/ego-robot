@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T11:52:21+08:00",
-  "generation_id": "gov-011904-46a66b9f69bc",
+  "generated_at": "2026-09-18T12:54:49+08:00",
+  "generation_id": "gov-011956-2d7872e05c01",
   "generator_code_sha": "658eb0d20d36aec2c0e8ca8f7c0965128e8343d159da6d751a6938b3e62d6b1a",
-  "governance_revision": 11904,
+  "governance_revision": 11956,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -329,11 +329,146 @@
       "session": null,
       "status": "PASSED",
       "task_id": "0915_hawor_resize_only_canary_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:10:56+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_hawor_resize_only_canary_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_sam31_strict_role_canary_v1",
+      "task_packet": {
+        "bytes": 2385,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v1/TASK_PACKET.json",
+        "sha256": "b6fc47cb52a779ecd69c8bac20bf0a7926bf0ec35b8373188fbcc6bb019bdfcd"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:13:37+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 364,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8813b3329b018274b0083b7e1ee8b45c05dec59ef72e344cb7377accbb06fee5"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:14:18+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_sam31_strict_role_canary_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_sam31_strict_role_canary_v2",
+      "task_packet": {
+        "bytes": 2699,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v2/TASK_PACKET.json",
+        "sha256": "7d54f6c7f06f5f84221dfaef8817c482ac8a5dc54afa1a9a2bdb71d50e5b7e00"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:23:33+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 1227,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "f8908b70f6674c5eb3ec109e1d8114456519da6922a9f0e00c628babd894dd7a"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v2"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:24:36+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_sam31_strict_role_canary_v2",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_sam31_strict_role_canary_v3",
+      "task_packet": {
+        "bytes": 2663,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v3/TASK_PACKET.json",
+        "sha256": "ba4079c9b7ed65b19ec2e55951923ab58102ac1ad7c47939d8c71cca47ae776d"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:29:58+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 1151,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/RESULT.json",
+        "sha256": "098db0b6b271433915a9c078870da894aba3d6a2d03be2a2f7717af1d4f4556e"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v3"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:31:08+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_sam31_strict_role_canary_v3",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_sam31_strict_role_canary_v4",
+      "task_packet": {
+        "bytes": 2795,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v4/TASK_PACKET.json",
+        "sha256": "58302a69d2b63db95e00db25ef21bdbf90213cbc0f2aae6849d19c74189fa292"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:35:30+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 1228,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001/RESULT.json",
+        "sha256": "7302fdef2cbe4f0432d5729e1b871cb72b24f43af82b49414cd2dc1283568c99"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v4"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:36:39+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_sam31_strict_role_canary_v4",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_sam31_strict_role_canary_v5",
+      "task_packet": {
+        "bytes": 2765,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v5/TASK_PACKET.json",
+        "sha256": "b868e6d7a6d579203af068f692654eef67db579e60a06f60bf4bd391889e6c3d"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T12:47:38+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 1685,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/RESULT.json",
+        "sha256": "2002a3022235b3ee2da474c096f962edfcaaf36892d947f9492586d89d602c4a"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_sam31_strict_role_canary_v5"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "4826cbb247e6de5301b9fc05e12b7b1938c1f2f1"
+    "commit": "1f06438c03a8dfb74d463e4ec8f769500f61cb94"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -474,6 +609,121 @@
         "sha256": "7fdd91ddacf13bc0023f9c1011339ff10df8f3ccdb5d9e01643388a104f2344a"
       },
       "updated_at": "2026-09-18T10:58:55+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 364,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8813b3329b018274b0083b7e1ee8b45c05dec59ef72e344cb7377accbb06fee5"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v1",
+      "task_packet": {
+        "bytes": 2385,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v1/TASK_PACKET.json",
+        "sha256": "b6fc47cb52a779ecd69c8bac20bf0a7926bf0ec35b8373188fbcc6bb019bdfcd"
+      },
+      "updated_at": "2026-09-18T12:13:37+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V2",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1227,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "f8908b70f6674c5eb3ec109e1d8114456519da6922a9f0e00c628babd894dd7a"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v2",
+      "task_packet": {
+        "bytes": 2699,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v2/TASK_PACKET.json",
+        "sha256": "7d54f6c7f06f5f84221dfaef8817c482ac8a5dc54afa1a9a2bdb71d50e5b7e00"
+      },
+      "updated_at": "2026-09-18T12:23:33+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V3",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1151,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/RESULT.json",
+        "sha256": "098db0b6b271433915a9c078870da894aba3d6a2d03be2a2f7717af1d4f4556e"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v3",
+      "task_packet": {
+        "bytes": 2663,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v3/TASK_PACKET.json",
+        "sha256": "ba4079c9b7ed65b19ec2e55951923ab58102ac1ad7c47939d8c71cca47ae776d"
+      },
+      "updated_at": "2026-09-18T12:29:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V4",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1228,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001/RESULT.json",
+        "sha256": "7302fdef2cbe4f0432d5729e1b871cb72b24f43af82b49414cd2dc1283568c99"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v4",
+      "task_packet": {
+        "bytes": 2795,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v4/TASK_PACKET.json",
+        "sha256": "58302a69d2b63db95e00db25ef21bdbf90213cbc0f2aae6849d19c74189fa292"
+      },
+      "updated_at": "2026-09-18T12:35:30+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V5",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1685,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/RESULT.json",
+        "sha256": "2002a3022235b3ee2da474c096f962edfcaaf36892d947f9492586d89d602c4a"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_sam31_strict_role_canary_v5",
+      "task_packet": {
+        "bytes": 2765,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v5/TASK_PACKET.json",
+        "sha256": "b868e6d7a6d579203af068f692654eef67db579e60a06f60bf4bd391889e6c3d"
+      },
+      "updated_at": "2026-09-18T12:47:38+08:00"
     }
   ]
 }

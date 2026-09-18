@@ -19,6 +19,11 @@ TASK_ORDER = (
     "0915_hawor_full_v1",
     "0915_vst_image_domain_ab_v1",
     "0915_hawor_resize_only_canary_v1",
+    "0915_sam31_strict_role_canary_v1",
+    "0915_sam31_strict_role_canary_v2",
+    "0915_sam31_strict_role_canary_v3",
+    "0915_sam31_strict_role_canary_v4",
+    "0915_sam31_strict_role_canary_v5",
     "0915_sam31_mask_full_v1",
     "0915_foundationstereo_full_v1",
     "0915_post_geometry_robot_v1",
@@ -29,6 +34,8 @@ INPUT_ATTEMPT = "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001"
 HAWOR_ATTEMPT = "_run/current/0915_hawor_full_v1/attempts/attempt_0001"
 VST_AB_ATTEMPT = "_run/current/0915_vst_image_domain_ab_v1/attempts/attempt_0001"
 HAWOR_RESIZE_CANARY_ATTEMPT = "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001"
+MASK_STRICT_CANARY_ATTEMPT = "_run/current/0915_sam31_strict_role_canary_v1/attempts/attempt_0001"
+MASK_STRICT_CANARY_V2_ATTEMPT = "_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001"
 DEPTH_ATTEMPT = "_run/current/0915_foundationstereo_full_v1/attempts/attempt_0001"
 MASK_ATTEMPT = "_run/current/0915_sam31_mask_full_v1/attempts/attempt_0001"
 
@@ -204,6 +211,94 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
             "domain; no SAM, Depth, batch, physical-3D or deployment authority."
         ),
     },
+    "0915_sam31_strict_role_canary_v1": {
+        "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY",
+        "objective": (
+            "Run pinned SAM3.1 on only play_cards_0915_001 in the confirmed resize-only "
+            "pixel domain, with separate hand/forearm/sleeve/cable/object roles, initial "
+            "visual boxes, quality-triggered finite reseeding, and explicit temporal states."
+        ),
+        "read_set": [
+            "docs/governance/CURRENT_STATUS_RECEIPT.json",
+            "tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
+            "src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+            "src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+            "contracts/visual_role_mask_v2.schema.json",
+            HAWOR_RESIZE_CANARY_ATTEMPT,
+            "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+        ],
+        "write_set": [
+            MASK_STRICT_CANARY_ATTEMPT,
+            "docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1",
+            "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V1_RESULT.json",
+        ],
+        "prerequisites": [
+            "0915_hawor_resize_only_canary_v1=PASSED",
+            "user_accepted_resize_only_bounded_hawor_canary",
+            "governance_PASS_FRESH", "central_GPU_lease",
+            "single_session_play_cards_0915_001", "SAM3.1_ONLY_USER_LOCKED",
+            "PICO26_NOT_CONSUMED", "no_batch_expansion",
+        ],
+        "weights": ["assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"],
+        "required_outputs": [
+            "PROMPT_PLAN.json", "ROLE_MANIFEST.json", "TEMPORAL_STATE_LEDGER.json",
+            "QUALITY_TRIGGER_LEDGER.json", "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+            "0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+            "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V1_RESULT.json",
+        ],
+        "budgets": {"gpu_hours": 2, "runtime_attempts": 1},
+        "expected_resource": "SERIAL_GPU_SINGLE_SESSION_CANARY; exactly one SAM3.1 checkpoint",
+        "claim_limit": (
+            "One-session development masks for human review. Empty masks remain unknown "
+            "unless absence is evidenced; no alternate model, batch authority, tracker/controller "
+            "instance, ground truth, contact truth, hidden-shape claim or deployment authority."
+        ),
+    },
+    "0915_sam31_strict_role_canary_v2": {
+        "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V2",
+        "objective": (
+            "Run pinned SAM3.1 on only play_cards_0915_001 in the confirmed resize-only "
+            "pixel domain, using the accepted bounded HaWoR successor, separate role "
+            "instances, quality-triggered finite reseeding, and explicit temporal states."
+        ),
+        "read_set": [
+            "docs/governance/CURRENT_STATUS_RECEIPT.json",
+            f"{MASK_STRICT_CANARY_ATTEMPT}/RESULT.json",
+            "src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+            "src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+            "contracts/visual_role_mask_v2.schema.json",
+            f"{HAWOR_RESIZE_CANARY_ATTEMPT}/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+            "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+            "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+        ],
+        "write_set": [
+            MASK_STRICT_CANARY_V2_ATTEMPT,
+            "docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1",
+            "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V1_RESULT.json",
+        ],
+        "prerequisites": [
+            "0915_sam31_strict_role_canary_v1=CANCELLED_READ_SET_CORRECTION",
+            "0915_hawor_resize_only_canary_v1=PASSED",
+            "user_accepted_resize_only_bounded_hawor_canary",
+            "governance_PASS_FRESH", "central_GPU_lease",
+            "single_session_play_cards_0915_001", "SAM3.1_ONLY_USER_LOCKED",
+            "PICO26_NOT_CONSUMED", "no_batch_expansion",
+        ],
+        "weights": ["assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"],
+        "required_outputs": [
+            "PROMPT_PLAN.json", "ROLE_MANIFEST.json", "TEMPORAL_STATE_LEDGER.json",
+            "QUALITY_TRIGGER_LEDGER.json", "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+            "0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+            "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V1_RESULT.json",
+        ],
+        "budgets": {"gpu_hours": 2, "runtime_attempts": 1},
+        "expected_resource": "SERIAL_GPU_SINGLE_SESSION_CANARY; exactly one SAM3.1 checkpoint",
+        "claim_limit": (
+            "One-session development masks for human review. Empty masks remain unknown "
+            "unless absence is evidenced; no alternate model, batch authority, tracker/controller "
+            "instance, ground truth, contact truth, hidden-shape claim or deployment authority."
+        ),
+    },
     "0915_foundationstereo_full_v1": {
         "phase": "0915_FOUNDATIONSTEREO_PHYSICAL_LEFT_FULL",
         "objective": (
@@ -296,6 +391,133 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
     },
 }
 
+# Corrective successor for the v2 pre-inference import-path failure.  It keeps
+# the algorithm, inputs and gates byte-for-byte scoped to the same canary; only
+# the entry-point environment closure is corrected.
+TASK_SPECS["0915_sam31_strict_role_canary_v3"] = deepcopy(
+    TASK_SPECS["0915_sam31_strict_role_canary_v2"]
+)
+TASK_SPECS["0915_sam31_strict_role_canary_v3"].update({
+    "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V3",
+    "objective": (
+        "Correct the repository-local vendor/SAM3 import closure and run the same "
+        "pinned, single-session strict-role SAM3.1 canary specified by v2."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        "_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/RESULT.json",
+        "src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+        "src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+        "contracts/visual_role_mask_v2.schema.json",
+        f"{HAWOR_RESIZE_CANARY_ATTEMPT}/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+    ],
+    "write_set": [
+        "_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001",
+        "docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1",
+        "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V2_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_sam31_strict_role_canary_v2=FAILED_RUNTIME_FINAL_PRE_MODEL_IMPORT_PATH",
+        "0915_hawor_resize_only_canary_v1=PASSED",
+        "user_accepted_resize_only_bounded_hawor_canary",
+        "governance_PASS_FRESH", "central_GPU_lease",
+        "repository_local_vendor_SAM3", "single_session_play_cards_0915_001",
+        "SAM3.1_ONLY_USER_LOCKED", "PICO26_NOT_CONSUMED", "no_batch_expansion",
+    ],
+    "required_outputs": [
+        "PROMPT_PLAN.json", "ROLE_MANIFEST.json", "TEMPORAL_STATE_LEDGER.json",
+        "QUALITY_TRIGGER_LEDGER.json", "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+        "0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+        "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V2_RESULT.json",
+    ],
+})
+
+TASK_SPECS["0915_sam31_strict_role_canary_v4"] = deepcopy(
+    TASK_SPECS["0915_sam31_strict_role_canary_v3"]
+)
+TASK_SPECS["0915_sam31_strict_role_canary_v4"].update({
+    "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V4",
+    "objective": (
+        "Run the same strict-role canary through the pinned multiplex full semantic "
+        "propagation route, using points for seed selection and quality evidence after "
+        "the v3 point-refinement partial route failed temporal continuity."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        "_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/RESULT.json",
+        "src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+        "src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+        "contracts/visual_role_mask_v2.schema.json",
+        f"{HAWOR_RESIZE_CANARY_ATTEMPT}/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+    ],
+    "write_set": [
+        "_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001",
+        "docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1",
+        "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V3_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_sam31_strict_role_canary_v3=CANCELLED_EARLY_POINT_PARTIAL_ROUTE_DIAGNOSTIC",
+        "0915_hawor_resize_only_canary_v1=PASSED",
+        "user_accepted_resize_only_bounded_hawor_canary",
+        "governance_PASS_FRESH", "central_GPU_lease",
+        "multiplex_semantic_full_propagation", "points_selection_and_quality_only",
+        "single_session_play_cards_0915_001", "SAM3.1_ONLY_USER_LOCKED",
+        "PICO26_NOT_CONSUMED", "no_batch_expansion",
+    ],
+    "required_outputs": [
+        "PROMPT_PLAN.json", "ROLE_MANIFEST.json", "TEMPORAL_STATE_LEDGER.json",
+        "QUALITY_TRIGGER_LEDGER.json", "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+        "0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+        "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V3_RESULT.json",
+    ],
+})
+
+TASK_SPECS["0915_sam31_strict_role_canary_v5"] = deepcopy(
+    TASK_SPECS["0915_sam31_strict_role_canary_v4"]
+)
+TASK_SPECS["0915_sam31_strict_role_canary_v5"].update({
+    "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V5",
+    "objective": (
+        "Continue the same strict-role canary while converting the pinned tracker's "
+        "no-points reverse-direction exception into explicit direction-level unknown "
+        "evidence instead of aborting the session."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        "_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001/RESULT.json",
+        "src/chaoyang/ops/run_0915_sam31_strict_role_canary_v1.py",
+        "src/chaoyang/pipeline/sam31_0915_strict_role_contract_v1.py",
+        "contracts/visual_role_mask_v2.schema.json",
+        f"{HAWOR_RESIZE_CANARY_ATTEMPT}/input/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+    ],
+    "write_set": [
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+        "docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1",
+        "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V4_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_sam31_strict_role_canary_v4=FAILED_RUNTIME_FINAL_DIRECTION_EXCEPTION",
+        "0915_hawor_resize_only_canary_v1=PASSED",
+        "user_accepted_resize_only_bounded_hawor_canary",
+        "governance_PASS_FRESH", "central_GPU_lease",
+        "direction_level_fail_closed_unknown", "multiplex_semantic_full_propagation",
+        "single_session_play_cards_0915_001", "SAM3.1_ONLY_USER_LOCKED",
+        "PICO26_NOT_CONSUMED", "no_batch_expansion",
+    ],
+    "required_outputs": [
+        "PROMPT_PLAN.json", "ROLE_MANIFEST.json", "TEMPORAL_STATE_LEDGER.json",
+        "QUALITY_TRIGGER_LEDGER.json", "RESULT.json", "GPU_COMMAND_RECEIPT.json",
+        "0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+        "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V4_RESULT.json",
+    ],
+})
+
 
 def build_packet(task_id: str) -> dict[str, Any]:
     if task_id not in TASK_SPECS:
@@ -324,7 +546,14 @@ def validate_packet_policy(packet: dict[str, Any]) -> None:
         raise ValueError(f"{task_id}: algorithm task must bind exactly one logical weight")
     if len(packet.get("read_set", [])) > 8:
         raise ValueError(f"{task_id}: read_set exceeds bounded packet limit")
-    if task_id == "0915_sam31_mask_full_v1":
+    if task_id in {
+        "0915_sam31_strict_role_canary_v1",
+        "0915_sam31_strict_role_canary_v2",
+        "0915_sam31_strict_role_canary_v3",
+        "0915_sam31_strict_role_canary_v4",
+        "0915_sam31_strict_role_canary_v5",
+        "0915_sam31_mask_full_v1",
+    }:
         encoded = str(packet).lower()
         if weights != ["assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"]:
             raise ValueError("0915 Mask must bind exactly the pinned SAM3.1 checkpoint")

@@ -1,0 +1,31 @@
+{
+  "batch_started": false,
+  "claim_limit": "One-session development masks for human review. Empty masks remain unknown unless absence is evidenced; no alternate model, batch authority, tracker/controller instance, ground truth, contact truth, hidden-shape claim or deployment authority.",
+  "controller_role_created": false,
+  "first_blocker": "SAM31_RUNTIME_FAILED",
+  "gpu_command_receipt": {
+    "bytes": 3122,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "c8a6db3bbc91b89ab1711b944d0bd7ddccf23eb357d03ee42b27eb859ea2782d"
+  },
+  "image_domain": "PHYSICAL_LEFT_SOURCE_INDEX_1_RESIZE_ONLY_NO_REMAP",
+  "next_authority": "USER_VISUAL_REVIEW_REQUIRED_NO_AUTOMATIC_BATCH_SUCCESSOR",
+  "pico26_consumed": false,
+  "result": {
+    "bytes": 1227,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/RESULT.json",
+    "sha256": "f8908b70f6674c5eb3ec109e1d8114456519da6922a9f0e00c628babd894dd7a"
+  },
+  "schema_version": "0915-sam31-strict-role-canary-result-v1",
+  "session_admission": "NOT_PRODUCED",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "FAILED_RUNTIME_FINAL",
+  "task_id": "0915_sam31_strict_role_canary_v2",
+  "tracker_role_created": false,
+  "visual": null,
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "worker_result": null
+}

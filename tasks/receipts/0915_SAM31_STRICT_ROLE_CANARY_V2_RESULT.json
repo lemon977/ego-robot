@@ -1,0 +1,32 @@
+{
+  "batch_started": false,
+  "claim_limit": "Early diagnostic only; partial anchor-only masks are rejected and have no Mask authority.",
+  "completed_instances": 2,
+  "execution_started": true,
+  "expected_instances": 11,
+  "first_blocker": "POINT_REFINEMENT_PROPAGATION_ID_OR_ROUTE_NOT_CONTINUOUS",
+  "gpu_started": true,
+  "gpu_wrapper_interrupted_after_early_fail_closed_cross_check": true,
+  "partial_artifacts": [
+    {
+      "bytes": 24076,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/masks/left_hand_00.npz",
+      "sha256": "e95236fc8b12c5ec65bcc7a7d372c1eab94be5178b316d027cb81b131fe988b6"
+    },
+    {
+      "bytes": 24963,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/masks/right_hand_00.npz",
+      "sha256": "89b339fc1666fb37a6c058972e44935c2bcdce17cbe0ee41a60762026facf535"
+    }
+  ],
+  "result": {
+    "bytes": 1151,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/RESULT.json",
+    "sha256": "098db0b6b271433915a9c078870da894aba3d6a2d03be2a2f7717af1d4f4556e"
+  },
+  "schema_version": "0915-sam31-strict-role-canary-result-v1",
+  "session_admission": "NOT_PRODUCED",
+  "session_id": "play_cards_0915_001",
+  "status": "CANCELLED",
+  "task_id": "0915_sam31_strict_role_canary_v3"
+}

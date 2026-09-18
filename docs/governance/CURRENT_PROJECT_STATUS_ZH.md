@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T11:52:21+08:00`
-- governance revision：`11904`
-- generation id：`gov-011904-46a66b9f69bc`
+- 状态生成时间：`2026-09-18T12:54:49+08:00`
+- governance revision：`11956`
+- generation id：`gov-011956-2d7872e05c01`
 - freshness：`FRESH`（age=0s）
 - generator code SHA：`658eb0d20d36aec2c0e8ca8f7c0965128e8343d159da6d751a6938b3e62d6b1a`
-- repository：`4826cbb247e6de5301b9fc05e12b7b1938c1f2f1` / `task/0915-full-funnel-0916-clean-v1`
+- repository：`1f06438c03a8dfb74d463e4ec8f769500f61cb94` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -98,19 +98,19 @@
 
 ### PASSED
 
+- `0915_sam31_strict_role_canary_v5` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/RESULT.json / `2026-09-18T12:47:38+08:00`
 - `0915_hawor_resize_only_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json / `2026-09-18T10:58:55+08:00`
 - `0915_input_prepare_cad_v2` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T05:37:48+08:00`
-- `baseline_e2e_pair_v1` / `get_potato_chips_0902_103+get_potato_chips_0915_001` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/receipts/BASELINE_E2E_PAIR_V1_COMPLETION.json / `2026-09-17T19:00:19+08:00`
-- `clean_baseline_v1` / `-` / `PASSED` / no-result / `2026-09-17T11:35:00+08:00`
 
 ### FAILED_QUALITY_C
 
-- `0915_leftmono_e2e_v1` / `get_potato_chips_0915_001` / `FAILED_QUALITY_C` / /mnt/workspace/code/chaoyang/tasks/receipts/0915_LEFTMONO_E2E_V1_COMPLETION.json / `2026-09-17T20:08:33+08:00`
+- 无。
 
 ### FAILED_RUNTIME
 
+- `0915_sam31_strict_role_canary_v4` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001/RESULT.json / `2026-09-18T12:35:30+08:00`
+- `0915_sam31_strict_role_canary_v2` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T12:23:33+08:00`
 - `0915_input_prepare_cad_v1` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T04:12:13+08:00`
-- `0915_0916_input_audit_clean_v1` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_0916_input_audit_clean_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T04:09:09+08:00`
 
 ### BLOCKED
 

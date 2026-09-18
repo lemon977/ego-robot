@@ -121,6 +121,70 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
         raise RuntimeError(
             "SAM3.1 remains blocked pending a separate user review of the resize-only HaWoR canary"
         )
+    elif task_id == "0915_sam31_strict_role_canary_v2":
+        if predecessor.get("status") != "CANCELLED":
+            raise RuntimeError("strict-role v2 requires the terminal read-set correction")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("strict-role v1 cancellation result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("execution_started") is not False
+            or result.get("gpu_started") is not False
+            or result.get("first_blocker")
+            != "TASK_PACKET_READ_SET_OMITS_ACCEPTED_BOUNDED_HAWOR_SUCCESSOR"
+        ):
+            raise RuntimeError("strict-role v1 was not the exact pre-execution read-set correction")
+    elif task_id == "0915_sam31_strict_role_canary_v3":
+        if predecessor.get("status") != "FAILED_RUNTIME_FINAL":
+            raise RuntimeError("strict-role v3 requires the terminal v2 import-path failure")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("strict-role v2 failure result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        gpu_ref = result.get("gpu_command_receipt")
+        if not isinstance(gpu_ref, dict) or validate_artifact_ref(gpu_ref):
+            raise RuntimeError("strict-role v2 GPU failure receipt is not bound")
+        gpu = load_json(Path(gpu_ref["path"]))
+        if (
+            result.get("session_admission") != "NOT_PRODUCED"
+            or gpu.get("returncode") != 1
+            or "ModuleNotFoundError: No module named 'sam3'"
+            not in str(gpu.get("stderr_tail"))
+        ):
+            raise RuntimeError("strict-role v2 was not the exact pre-model vendor import failure")
+    elif task_id == "0915_sam31_strict_role_canary_v4":
+        if predecessor.get("status") != "CANCELLED":
+            raise RuntimeError("strict-role v4 requires the terminal v3 early diagnostic")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("strict-role v3 cancellation result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("completed_instances") != 2
+            or result.get("session_admission") != "NOT_PRODUCED"
+            or result.get("first_blocker")
+            != "POINT_REFINEMENT_PROPAGATION_ID_OR_ROUTE_NOT_CONTINUOUS"
+        ):
+            raise RuntimeError("strict-role v3 was not the exact two-hand early diagnostic")
+    elif task_id == "0915_sam31_strict_role_canary_v5":
+        if predecessor.get("status") != "FAILED_RUNTIME_FINAL":
+            raise RuntimeError("strict-role v5 requires the terminal v4 direction failure")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("strict-role v4 failure result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        gpu_ref = result.get("gpu_command_receipt")
+        if not isinstance(gpu_ref, dict) or validate_artifact_ref(gpu_ref):
+            raise RuntimeError("strict-role v4 GPU failure receipt is not bound")
+        gpu = load_json(Path(gpu_ref["path"]))
+        if (
+            result.get("session_admission") != "NOT_PRODUCED"
+            or "RuntimeError: No points are provided; please add points first"
+            not in str(gpu.get("stderr_tail"))
+            or '"completed_instances": 2' not in str(gpu.get("stdout_tail"))
+        ):
+            raise RuntimeError("strict-role v4 was not the exact direction-level exception")
     elif predecessor.get("status") != "PASSED":
         raise RuntimeError(f"predecessor did not pass: {predecessor_id}")
     return predecessor

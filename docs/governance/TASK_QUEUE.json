@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T11:52:21+08:00",
-  "generation_id": "gov-011904-46a66b9f69bc",
-  "governance_revision": 11904,
+  "generated_at": "2026-09-18T12:54:49+08:00",
+  "generation_id": "gov-011956-2d7872e05c01",
+  "governance_revision": 11956,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -40,6 +40,26 @@
       "attempt": 0,
       "gpu_id": null,
       "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V2",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v2",
+      "updated_at": "2026-09-18T12:23:33+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V4",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v4",
+      "updated_at": "2026-09-18T12:35:30+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
       "phase": "0915_HAWOR_PHYSICAL_LEFT_RESIZE_ONLY_CANARY",
       "session": null,
       "status": "PASSED",
@@ -60,11 +80,41 @@
       "attempt": 0,
       "gpu_id": null,
       "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V5",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_sam31_strict_role_canary_v5",
+      "updated_at": "2026-09-18T12:47:38+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
       "phase": "0915_HAWOR_PHYSICAL_LEFT_FULL",
       "session": null,
       "status": "CANCELLED",
       "task_id": "0915_hawor_full_v1",
       "updated_at": "2026-09-18T10:22:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY",
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v1",
+      "updated_at": "2026-09-18T12:13:37+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V3",
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v3",
+      "updated_at": "2026-09-18T12:29:58+08:00"
     }
   ]
 }

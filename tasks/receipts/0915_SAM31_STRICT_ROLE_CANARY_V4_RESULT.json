@@ -1,0 +1,39 @@
+{
+  "batch_started": false,
+  "claim_limit": "One-session development masks for human review. Empty masks remain unknown unless absence is evidenced; no alternate model, batch authority, tracker/controller instance, ground truth, contact truth, hidden-shape claim or deployment authority.",
+  "controller_role_created": false,
+  "first_blocker": null,
+  "gpu_command_receipt": {
+    "bytes": 27492,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "f4779647c3c9936eb1eab80a00414d062273bdd81bac01a9548984d64935c873"
+  },
+  "image_domain": "PHYSICAL_LEFT_SOURCE_INDEX_1_RESIZE_ONLY_NO_REMAP",
+  "next_authority": "USER_VISUAL_REVIEW_REQUIRED_NO_AUTOMATIC_BATCH_SUCCESSOR",
+  "pico26_consumed": false,
+  "result": {
+    "bytes": 1685,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/RESULT.json",
+    "sha256": "2002a3022235b3ee2da474c096f962edfcaaf36892d947f9492586d89d602c4a"
+  },
+  "schema_version": "0915-sam31-strict-role-canary-result-v1",
+  "session_admission": "AWAITING_USER_VISUAL_REVIEW",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_sam31_strict_role_canary_v5",
+  "tracker_role_created": false,
+  "visual": {
+    "bytes": 1467370,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/0915_SAM31_STRICT_ROLE_REVIEW.mp4",
+    "sha256": "30d9e94e6cd8c3926110a87d2426168a648693a43b9f1bdb3828fcdb77fc76b0"
+  },
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "worker_result": {
+    "bytes": 5945,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/SAM31_WORKER_RESULT.json",
+    "sha256": "954698617f13076d372c0f353b3b24a2b006c1f4f197cc81f34c8a4670112706"
+  }
+}

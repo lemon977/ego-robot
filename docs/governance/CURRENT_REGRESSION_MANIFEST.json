@@ -1,9 +1,9 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-18T11:52:21+08:00",
-  "generation_id": "gov-011904-46a66b9f69bc",
-  "governance_revision": 11904,
+  "generated_at": "2026-09-18T12:54:49+08:00",
+  "generation_id": "gov-011956-2d7872e05c01",
+  "governance_revision": 11956,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
@@ -52,6 +52,12 @@
       "bytes": 2081,
       "path": "/mnt/workspace/code/chaoyang/tests/test_run_exact78_role_mask_successor_v3.py",
       "sha256": "08e3b2b5c52b954c3470e63967895039eaf2770f104f992a23af9ecc7f1c20fc",
+      "stage": "role_mask"
+    },
+    {
+      "bytes": 5700,
+      "path": "/mnt/workspace/code/chaoyang/tests/test_0915_sam31_strict_role_canary_v1.py",
+      "sha256": "b3e29d6b979e6b790402476e4e7d763405b87ae4edf5e763d45fd72710e0b064",
       "stage": "role_mask"
     },
     {
