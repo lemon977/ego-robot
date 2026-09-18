@@ -1122,6 +1122,21 @@
           "bytes": 8660,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_occlusion_contracts_r3.py",
           "sha256": "d65c713bcfef868929bbf5e18effd7c17beb83a3aff2a152c69bd24764537fa7"
+        },
+        {
+          "bytes": 30153,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py",
+          "sha256": "531a8433544f5ae0ca25413d037b7ce87a569753f103235f60bfa5011f68f6c4"
+        },
+        {
+          "bytes": 46878,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_human_stereo_surface_association_canary_v1.py",
+          "sha256": "602cb087d08a501a3f010451aebed28e7b6e4a549bb196b18b05257685659da4"
+        },
+        {
+          "bytes": 21941,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_human_stereo_alignment_bound_audit_v1.py",
+          "sha256": "e6c365d9c6a6ea43aa05f70d7ed49892a3c0d16115b9b1e93492dd7d1cd34fc8"
         }
       ],
       "current_counts": {
@@ -1172,6 +1187,8 @@
       "known_limitations": [
         "Poker/Chips geometry and evidence-direction fixtures pass, but no real-session Contact authority exists.",
         "Interaction v0a is image-plane-only adjacency/approach/co-motion with optional aligned tactile support; it explicitly contains no relative Z, occlusion order or contact truth.",
+        "The bounded 0915 surface-association successor compares frozen MANO visible surfaces with direct Stereo on a non-contact hold-out and rechecks the unchanged 5 mm finite-patch gate; it cannot create Contact truth or deployment authority.",
+        "The 0915 bound audit reproduces a bounded hold-out P90 of 19.33 mm but revokes metric translation authority: scale is clipped to the frozen 0.8 lower edge while the unconstrained optimum is 0.783730. Contact remains zero windows with a closest finite-patch distance of 6.60 mm.",
         "Attachment-propagated pose cannot prove Contact, Object6D, tactile support, or gold accuracy.",
         "Hypotheses are not physical contact truth."
       ],
@@ -1208,6 +1225,21 @@
           "bytes": 1390,
           "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/attempts/attempt_0005_final_contract_hardening/RUN_RECEIPT.json",
           "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
+        },
+        {
+          "bytes": 4009,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1_RESULT.json",
+          "sha256": "cf29bd76239dfa84423fd89c7964199d9ed5bf4a3049f0a7fbf826e163cc1add"
+        },
+        {
+          "bytes": 3199,
+          "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1_RESULT.json",
+          "sha256": "75ebe9fdf2146ad19d50113cefd0a7787388e31f105fc76d56a0dec4ebbf7d42"
+        },
+        {
+          "bytes": 4615,
+          "path": "/mnt/workspace/code/chaoyang/docs/current/INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md",
+          "sha256": "5794550182ea8898e01f7cfddc0f862bb2efd39143b632168ad4c8208310cc70"
         }
       ],
       "schema_artifact": {
@@ -1216,10 +1248,11 @@
         "sha256": "803c666f0b9aebdf9a596972b7f93648bb048d6b43434538284e32184beb8f7a"
       },
       "stage": "Contact",
-      "successor_requirement": "Use direct/tracked Object evidence to seed Contact, then attachment only in the downstream direction; freeze independent gold labels before authority.",
+      "successor_requirement": "Explain the MANO-surface/Stereo scale mismatch using new independent non-contact evidence before changing bounds; do not use Contact/object fitting or the same hold-out to self-authorize. Use direct/tracked Object evidence to seed Contact, then attachment only downstream; freeze independent gold labels before authority.",
       "superseded_implementations": [
         "robot-render-dependent contact loop",
-        "attachment-contact self-certification"
+        "attachment-contact self-certification",
+        "bounded-fit residual pass as sufficient metric-translation authority"
       ],
       "weights": "NOT_APPLICABLE"
     },
@@ -1926,9 +1959,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-18T19:14:02+08:00",
-  "generation_id": "gov-012065-a5c30c5098fd",
-  "governance_revision": 12065,
+  "generated_at": "2026-09-18T19:47:26+08:00",
+  "generation_id": "gov-012075-a3a8a7cce875",
+  "governance_revision": 12075,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",

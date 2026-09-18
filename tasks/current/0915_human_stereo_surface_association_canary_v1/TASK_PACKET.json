@@ -1,0 +1,89 @@
+{
+  "algorithm_prerequisites": {
+    "alignment": [
+      "front_visible_MANO_surface_samples",
+      "direct_Stereo_surface_samples",
+      "whole_frame_hand_contact_exclusion",
+      "frame_id_mod_5_holdout"
+    ],
+    "contact": [
+      "unchanged_5mm_gate",
+      "finite_visible_object_patch"
+    ],
+    "finger_surface": [
+      "projected_tip_anchor",
+      "same_connected_depth_component",
+      "SAM_hand_admitted",
+      "task_object_pixels_excluded"
+    ],
+    "not_dependencies": [
+      "Removal",
+      "Clean",
+      "archive",
+      "short_gap_inferred"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 2
+  },
+  "claim_limit": "Single-session development diagnosis only. A better held-out residual cannot create Contact truth; Contact still requires the unchanged 5 mm finite visible patch gate. No control, deployment, external metric-accuracy, hidden geometry, or model-rerun authority.",
+  "expected_resource": "CPU_ONLY_FROZEN_150_FRAME_MANO_SURFACE_DIAGNOSTIC",
+  "objective": "On the frozen 150-frame play_cards_0915_001 evidence bundle, diagnose the joint-centre versus visible-surface alignment error, compare it against a MANO-surface-to-Stereo-surface alignment on a frozen non-contact split, and recheck centre-connected finger surface association and finite-patch Contact without changing the 5 mm gate or fitting on object/contact evidence.",
+  "phase": "0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_interaction_contact_robot_dev_v3=PASSED_R0_COMPLETE_R1_BLOCKED_LOCAL_EVIDENCE",
+    "HaWoR_SAM31_FoundationStereo_Object6D_v2_FROZEN_NO_RERUN",
+    "MANO_parameters_consumed_without_HaWoR_inference",
+    "non_contact_frame_hand_split_frozen_before_fit",
+    "contact_or_object_fit_FORBIDDEN",
+    "fixed_48mm_bias_FORBIDDEN",
+    "Contact_distance_gate_fixed_5mm",
+    "finite_visible_patch_required",
+    "Removal_Clean_FORBIDDEN",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN",
+    "development_relative_non_control_non_deployable",
+    "governance_PASS_FRESH"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001",
+    "_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001",
+    "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+    "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+    "assets/models/vendor/hawor/mano",
+    "src/chaoyang/ops/run_0915_human_stereo_surface_association_canary_v1.py",
+    "src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "MANO_SURFACE_ASSOCIATION_V1.json",
+    "HUMAN_STEREO_ALIGNMENT_CHECK_V2.json",
+    "FINGERTIP_SURFACE_ASSOCIATION_COMPARISON_V1.json",
+    "INTERACTION_CONTACT_RECHECK_V1.json",
+    "DOWNSTREAM_DECISION_V1.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_human_stereo_surface_association_canary_v1",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1",
+    "tasks/receipts/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1_RESULT.json"
+  ]
+}

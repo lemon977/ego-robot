@@ -1,0 +1,75 @@
+{
+  "alignment_status": "PASS_DEVELOPMENT_ALIGNMENT",
+  "artifacts": {
+    "alignment": {
+      "bytes": 2492,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/HUMAN_STEREO_ALIGNMENT_CHECK_V2.json",
+      "sha256": "fd7cf86ceb9f4859b973a4dad179bc58610defdb388b535d7918663b40f9d5ca"
+    },
+    "contact_recheck": {
+      "bytes": 6325,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/INTERACTION_CONTACT_RECHECK_V1.json",
+      "sha256": "bf0a72cfa08dbd772085dc091932ebf9444cf8125c7b768408c14152c7ab60ec"
+    },
+    "diagnostic_png": {
+      "bytes": 222106,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1/SURFACE_ALIGNMENT_DIAGNOSTIC.png",
+      "sha256": "d77374c26e34e09264bcc8a3e9f80f80bd6b48f0068c2dcb870eb296e48ff47e"
+    },
+    "downstream_decision": {
+      "bytes": 571,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/DOWNSTREAM_DECISION_V1.json",
+      "sha256": "4e8f1540c96619894fa2c61ae1bc5de6d1eef9187ddc3fc8d8082755018e7bd1"
+    },
+    "finger_comparison": {
+      "bytes": 523,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/FINGERTIP_SURFACE_ASSOCIATION_COMPARISON_V1.json",
+      "sha256": "62ae126ac60ef23f1e7b3ccdab3f4ec3e4d35484ea2a0972089dc35963046003"
+    },
+    "metrics": {
+      "bytes": 879,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/METRICS.json",
+      "sha256": "e6c218f599495c4b61657349e58e4d234bd226461e976a3011f8e8b0e6f5fef7"
+    },
+    "surface_association": {
+      "bytes": 146274,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/MANO_SURFACE_ASSOCIATION_V1.json",
+      "sha256": "5301a95f999de8e0851ab74db57310358ccccc0ef0ee905c31b42deb682b902b"
+    },
+    "visual_readme": {
+      "bytes": 939,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1/README_ZH.md",
+      "sha256": "4cbab88558e516832f710c40dac109a67f2db257b95d92a1211a8fd57ecd4451"
+    }
+  },
+  "calibration_authority": "DEVELOPMENT_ONLY",
+  "claim_limit": "Single-session development diagnosis only. A better held-out residual cannot create Contact truth; Contact still requires the unchanged 5 mm finite visible patch gate. No control, deployment, external metric-accuracy, hidden geometry, or model-rerun authority.",
+  "contact_window_count": 0,
+  "control_ground_truth": false,
+  "gpu_used": false,
+  "model_rerun_performed": false,
+  "physical_deployment_authorized": false,
+  "r1_status": "BLOCKED_LOCAL_EVIDENCE",
+  "removal_or_clean_consumed": false,
+  "result": {
+    "bytes": 3751,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "4a525a6b66456837f546d3073a9e5eae5b3483afb6279422a0a119f163542dfc"
+  },
+  "run_signature": {
+    "bytes": 45413,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "e3fcd180904024193429dffd363379432ba43c04c533957d32904a1254bdd7ba"
+  },
+  "schema_version": "0915-human-stereo-surface-association-result-v1",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_human_stereo_surface_association_canary_v1",
+  "weights": "ABSENT",
+  "writer_claim": {
+    "bytes": 908,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "e3b3723749ff541f8cbb2a5ba26143e33caeae37ca18491f7856c65733a1dfb9"
+  }
+}

@@ -159,12 +159,15 @@ raw resize-only 匹配统计保留为诊断；消费 `equiDis62` 的 rectified �
 
 - 单样本 Interaction → Contact → Kai22 开发链已经完成，入口见
   [`INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md`](INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md)。
-  Object6D 逐帧 QA 通过，牌尺寸因完整边界不可观测保持 `UNKNOWN`。非接触 Human/Stereo
-  对齐 hold-out median 为 `13.56 mm`，但 P90 为 `36.79 mm`，未过冻结的 30 mm 门；
-  4,500 条固定配对中最近有限 patch 距离为 `6.60 mm`，没有五帧 Contact 窗口。
+  Object6D 逐帧 QA 通过，牌尺寸因完整边界不可观测保持 `UNKNOWN`。旧 joint-centre
+  对齐 hold-out P90 为 `36.91 mm`；冻结 MANO 前表面候选把有界结果改善到
+  median/P90 `7.87/19.33 mm`，但尺度正好卡在 `0.8` 下界，无约束最优值为 `0.783730`。
+  因此最终对齐状态是 `REJECTED_BOUNDED_FIT_SATURATION`，不授权公制 wrist-object 平移。
+  4,500 条固定配对中最近有限 patch 距离仍为 `6.60 mm`，没有五帧 Contact 窗口。
   因而 Kai22 R0 已在 293/293 direct-observed side-frame 交付，R1 正确终态为
   `BLOCKED_LOCAL_EVIDENCE`，R2 未运行。不得统一减去 48 mm、放宽 5 mm Contact 门或把
-  未修改的 R0 称为 Contact-aware refinement。三段浅层视频均完整解码 150 帧。
+  未修改的 R0 称为 Contact-aware refinement，也不得仅放宽尺度边界后用同一数据自证。
+  三段浅层视频均完整解码 150 帧；新增表面关联和尺度边界浅层诊断图见该入口。
 
 - Removal Envelope V2 真实 150 帧 canary 已完成并终态为 `REJECTED_QUALITY`，浅层入口见
   [`0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1`](visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1/README_ZH.md)。

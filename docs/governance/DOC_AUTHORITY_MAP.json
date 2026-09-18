@@ -25,23 +25,23 @@
     },
     {
       "authorized_scope": "CURRENT_SHALLOW_ENTRY",
-      "bytes": 3884,
+      "bytes": 4071,
       "claim_limit": "Unique shallow entry only; machine facts remain receipt-bound.",
       "document_id": "current_navigation",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/README_ZH.md",
-      "sha256": "52ac8fb916d28a54a7e11eeb80e285f25eac76aa83b95654e1bec2f97dcd7bb8",
+      "sha256": "dd30675d1f927142cb4dd4895e188fc1f9b32bfa975c5d622ec1737ae6fe66b4",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_AI_WORK_HANDOFF",
-      "bytes": 18015,
+      "bytes": 18339,
       "claim_limit": "Reading order, task naming, resource boundaries and candidate optimization lanes; it does not authorize execution without a current task packet.",
       "document_id": "ai_work_entry",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI_WORK_ENTRY_ZH.md",
-      "sha256": "276db7a6122891b2742434c7d54c298517db7f36dc958c6e91fa8c25f002acb4",
+      "sha256": "9d15a40931cd64058e29312a77a93d120ba0c40e934e78c1ec62ec92b80effc1",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -114,23 +114,23 @@
     },
     {
       "authorized_scope": "PROJECT_REALTIME_STATUS",
-      "bytes": 14795,
+      "bytes": 14803,
       "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "e1216d3fe0f751a0c6aa1764fbe75295f2a8f50a86fc06175325bfc209479f7b",
+      "sha256": "9a32ce8e865d1f951b77da2589edc21a74639c6eb133e4afdd52dccde4fd31b1",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_STAGE_BASELINES",
-      "bytes": 12139,
+      "bytes": 12829,
       "claim_limit": "Generated algorithm summary; live counts come from the task ledger.",
       "document_id": "current_stage_baselines",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_STAGE_BASELINES_ZH.md",
-      "sha256": "d6a77ff3bab572a116a758e4b7e768b714f3d1fbb175a447ce5ccc3a4d6de851",
+      "sha256": "b85283bd9722b2e43916450f4cba56c991b84f82e236273c1dbe7e46d9c2801d",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -158,12 +158,12 @@
     },
     {
       "authorized_scope": "CURRENT_SHALLOW_VISUAL_NAVIGATION",
-      "bytes": 30238,
+      "bytes": 30961,
       "claim_limit": "Navigation to bounded visual-review evidence only; videos do not confer geometry, contact, training or physical authority.",
       "document_id": "current_shallow_visual_navigation",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/README_ZH.md",
-      "sha256": "b838620337968f848a4fa194086e269da704a2bb428f2cb4dfa770554a8b0c95",
+      "sha256": "a363d842aca1c8ce1d95ee275c7c5980ea019eddbc7c403af4cc05bceb659ca5",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -241,9 +241,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-18T19:14:02+08:00",
-  "generation_id": "gov-012065-a5c30c5098fd",
-  "governance_revision": 12065,
+  "generated_at": "2026-09-18T19:47:26+08:00",
+  "generation_id": "gov-012075-a3a8a7cce875",
+  "governance_revision": 12075,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T19:14:02+08:00",
-  "generation_id": "gov-012065-a5c30c5098fd",
-  "governance_revision": 12065,
+  "generated_at": "2026-09-18T19:47:26+08:00",
+  "generation_id": "gov-012075-a3a8a7cce875",
+  "governance_revision": 12075,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -115,6 +115,26 @@
       "status": "PASSED",
       "task_id": "0915_hawor_resize_only_canary_v1",
       "updated_at": "2026-09-18T10:58:55+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_alignment_bound_audit_v1",
+      "updated_at": "2026-09-18T19:45:45+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_surface_association_canary_v1",
+      "updated_at": "2026-09-18T19:40:54+08:00"
     },
     {
       "attempt": 0,

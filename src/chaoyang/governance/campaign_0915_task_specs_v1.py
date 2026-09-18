@@ -39,6 +39,8 @@ TASK_ORDER = (
     "0915_interaction_contact_robot_dev_v1",
     "0915_interaction_contact_robot_dev_v2",
     "0915_interaction_contact_robot_dev_v3",
+    "0915_human_stereo_surface_association_canary_v1",
+    "0915_human_stereo_alignment_bound_audit_v1",
 )
 
 INPUT_ATTEMPT_V1 = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
@@ -63,6 +65,8 @@ OBJECT6D_OBSERVABILITY_V2_ATTEMPT = "_run/current/0915_planar_object6d_observabi
 INTERACTION_CONTACT_ROBOT_DEV_ATTEMPT = "_run/current/0915_interaction_contact_robot_dev_v1/attempts/attempt_0001"
 INTERACTION_CONTACT_ROBOT_DEV_V2_ATTEMPT = "_run/current/0915_interaction_contact_robot_dev_v2/attempts/attempt_0001"
 INTERACTION_CONTACT_ROBOT_DEV_V3_ATTEMPT = "_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001"
+HUMAN_STEREO_SURFACE_ASSOCIATION_ATTEMPT = "_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001"
+HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_ATTEMPT = "_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001"
 
 
 TASK_SPECS: dict[str, dict[str, Any]] = {
@@ -1128,6 +1132,126 @@ TASK_SPECS["0915_interaction_contact_robot_dev_v3"].update({
 })
 
 
+TASK_SPECS["0915_human_stereo_surface_association_canary_v1"] = {
+    "phase": "0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1",
+    "objective": (
+        "On the frozen 150-frame play_cards_0915_001 evidence bundle, diagnose the "
+        "joint-centre versus visible-surface alignment error, compare it against a "
+        "MANO-surface-to-Stereo-surface alignment on a frozen non-contact split, and "
+        "recheck centre-connected finger surface association and finite-patch Contact "
+        "without changing the 5 mm gate or fitting on object/contact evidence."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        OBJECT6D_OBSERVABILITY_V2_ATTEMPT,
+        ENCODED_DEPTH_CANARY_ATTEMPT,
+        MASK_STRICT_CANARY_V5_ATTEMPT,
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "assets/models/vendor/hawor/mano",
+        "src/chaoyang/ops/run_0915_human_stereo_surface_association_canary_v1.py",
+        "src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py",
+    ],
+    "write_set": [
+        HUMAN_STEREO_SURFACE_ASSOCIATION_ATTEMPT,
+        "docs/current/visuals/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1",
+        "tasks/receipts/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_interaction_contact_robot_dev_v3=PASSED_R0_COMPLETE_R1_BLOCKED_LOCAL_EVIDENCE",
+        "HaWoR_SAM31_FoundationStereo_Object6D_v2_FROZEN_NO_RERUN",
+        "MANO_parameters_consumed_without_HaWoR_inference",
+        "non_contact_frame_hand_split_frozen_before_fit",
+        "contact_or_object_fit_FORBIDDEN", "fixed_48mm_bias_FORBIDDEN",
+        "Contact_distance_gate_fixed_5mm", "finite_visible_patch_required",
+        "Removal_Clean_FORBIDDEN", "weights_ABSENT", "gpu_FORBIDDEN",
+        "development_relative_non_control_non_deployable", "governance_PASS_FRESH",
+    ],
+    "algorithm_prerequisites": {
+        "alignment": [
+            "front_visible_MANO_surface_samples", "direct_Stereo_surface_samples",
+            "whole_frame_hand_contact_exclusion", "frame_id_mod_5_holdout",
+        ],
+        "finger_surface": [
+            "projected_tip_anchor", "same_connected_depth_component",
+            "SAM_hand_admitted", "task_object_pixels_excluded",
+        ],
+        "contact": ["unchanged_5mm_gate", "finite_visible_object_patch"],
+        "not_dependencies": ["Removal", "Clean", "archive", "short_gap_inferred"],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "CLAIM.json", "RUN_SIGNATURE.json", "MANO_SURFACE_ASSOCIATION_V1.json",
+        "HUMAN_STEREO_ALIGNMENT_CHECK_V2.json",
+        "FINGERTIP_SURFACE_ASSOCIATION_COMPARISON_V1.json",
+        "INTERACTION_CONTACT_RECHECK_V1.json", "DOWNSTREAM_DECISION_V1.json",
+        "METRICS.json", "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1, "wall_clock_hours": 2},
+    "expected_resource": "CPU_ONLY_FROZEN_150_FRAME_MANO_SURFACE_DIAGNOSTIC",
+    "claim_limit": (
+        "Single-session development diagnosis only. A better held-out residual cannot "
+        "create Contact truth; Contact still requires the unchanged 5 mm finite visible "
+        "patch gate. No control, deployment, external metric-accuracy, hidden geometry, "
+        "or model-rerun authority."
+    ),
+}
+
+
+TASK_SPECS["0915_human_stereo_alignment_bound_audit_v1"] = {
+    "phase": "0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1",
+    "objective": (
+        "Audit the immutable MANO-surface alignment fit for optimizer-bound saturation, "
+        "withdraw metric wrist-translation authority when the unconstrained optimum lies "
+        "outside the frozen scale interval, and carry forward the unchanged finite-patch "
+        "Contact result without rerunning any model or changing the 5 mm gate."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        "tasks/receipts/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1_RESULT.json",
+        HUMAN_STEREO_SURFACE_ASSOCIATION_ATTEMPT + "/MANO_SURFACE_ASSOCIATION_V1.json",
+        HUMAN_STEREO_SURFACE_ASSOCIATION_ATTEMPT + "/HUMAN_STEREO_ALIGNMENT_CHECK_V2.json",
+        HUMAN_STEREO_SURFACE_ASSOCIATION_ATTEMPT + "/INTERACTION_CONTACT_RECHECK_V1.json",
+        "src/chaoyang/ops/run_0915_human_stereo_alignment_bound_audit_v1.py",
+    ],
+    "write_set": [
+        HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_ATTEMPT,
+        "docs/current/visuals/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1",
+        "tasks/receipts/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_human_stereo_surface_association_canary_v1=PASSED_DIAGNOSTIC",
+        "immutable_surface_rows_and_contact_recheck_only",
+        "unconstrained_fit_must_be_inside_frozen_scale_bounds",
+        "bound_saturation_revokes_metric_translation_authority",
+        "contact_or_object_fit_FORBIDDEN", "fixed_48mm_bias_FORBIDDEN",
+        "Contact_distance_gate_fixed_5mm", "finite_visible_patch_required",
+        "HaWoR_SAM31_FoundationStereo_Object6D_v2_FROZEN_NO_RERUN",
+        "Removal_Clean_FORBIDDEN", "weights_ABSENT", "gpu_FORBIDDEN",
+        "development_relative_non_control_non_deployable", "governance_PASS_FRESH",
+    ],
+    "algorithm_prerequisites": {
+        "alignment": [
+            "same_frozen_non_contact_rows", "same_frame_id_mod_5_holdout",
+            "report_bounded_and_unconstrained_fit", "reject_bound_saturation",
+        ],
+        "contact": ["carry_forward_only", "unchanged_5mm_gate", "finite_visible_object_patch"],
+        "not_dependencies": ["Removal", "Clean", "archive", "short_gap_inferred"],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "CLAIM.json", "RUN_SIGNATURE.json", "ALIGNMENT_BOUND_SATURATION_AUDIT_V1.json",
+        "DOWNSTREAM_DECISION_V2.json", "METRICS.json", "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1, "wall_clock_hours": 1},
+    "expected_resource": "CPU_ONLY_IMMUTABLE_ALIGNMENT_AUDIT",
+    "claim_limit": (
+        "Single-session correctness audit only. It may revoke metric-translation authority "
+        "but cannot create Contact, alter frozen evidence, relax the 5 mm finite-patch gate, "
+        "rerun a model, modify q22/wrist, or authorize control/deployment."
+    ),
+}
+
+
 def build_packet(task_id: str) -> dict[str, Any]:
     if task_id not in TASK_SPECS:
         raise KeyError(task_id)
@@ -1174,6 +1298,10 @@ def validate_packet_policy(packet: dict[str, Any]) -> None:
 
 
 def predecessor_task(task_id: str) -> str | None:
+    if task_id == "0915_human_stereo_alignment_bound_audit_v1":
+        return "0915_human_stereo_surface_association_canary_v1"
+    if task_id == "0915_human_stereo_surface_association_canary_v1":
+        return "0915_interaction_contact_robot_dev_v3"
     if task_id == "0915_interaction_contact_robot_dev_v3":
         return "0915_interaction_contact_robot_dev_v2"
     if task_id == "0915_interaction_contact_robot_dev_v2":

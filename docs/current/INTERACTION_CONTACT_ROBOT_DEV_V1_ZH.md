@@ -11,16 +11,18 @@
 - [`INTERACTION_CONTACT_REVIEW.mp4`](visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/INTERACTION_CONTACT_REVIEW.mp4)
 - [`KAI22_R0_VS_R1_REVIEW.mp4`](visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/KAI22_R0_VS_R1_REVIEW.mp4)
 - [`METRICS.json`](visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/METRICS.json)
+- [`Human/Stereo 表面关联诊断`](visuals/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1/README_ZH.md)
+- [`Human/Stereo 尺度边界审计`](visuals/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/README_ZH.md)
 
 ## 终态
 
 - Object6D QA：`PASS`。三张牌逐帧字段闭合，法向先统一符号；visible-surface centroid 明确不是物体固定中心。跨帧中心/法向变化只作诊断，不作 15 mm 固定中心硬门。
 - 自动尺寸：`UNKNOWN`。现有 Object6D v2 没有任何完整边界观测，因此未使用标准牌尺寸，也未把遮挡边界补成完整矩形。
-- Human/Stereo alignment：`REJECTED_HELDOUT_ALIGNMENT`。非接触可见手表面有 318 条训练记录和 78 条冻结 hold-out；拟合为 `scale=0.90175`、`offset=-49.97 mm`。hold-out 绝对残差 median 为 `13.56 mm`，但 P90 为 `36.79 mm > 30 mm`，所以不授权公制 wrist—object translation。该 offset 由非接触手表面拟合，不是对所有 hand/object 配对统一减去 48 mm。
-- Interaction：共 4,500 条固定 hand/finger/object 记录；1,034 条具备 finger-associated visible surface 与有限 object patch。最近有限 patch 距离为 `6.60 mm`，仍高于冻结的 `5 mm` Contact 门；只有 4 条投影落在直接可见 patch 内。
-- Contact：`UNKNOWN=3466`、`NO_EVIDENCE=1032`、`APPROACH=2`，没有 `CONTACT_CANDIDATE`，也没有同一 hand/finger/object 的五帧连续合格窗口。大不确定度没有扩大 5 mm 门，缺失不确定度保持 unknown；无限平面命中不能越过有限 patch 门。
+- Human/Stereo alignment 最终状态：`REJECTED_BOUNDED_FIT_SATURATION`。旧 joint-centre ↔ visible-surface 对齐的 hold-out median/P90 为 `13.55/36.91 mm`；改用冻结 MANO 前表面后，有界拟合为 `scale=0.800000`、`offset=3.54 mm`，hold-out median/P90 改善为 `7.87/19.33 mm`。但独立审计复现的无约束最优尺度为 `0.783730`，落在冻结 `[0.8, 1.2]` 区间外；因此边界裁剪后的数值通过不能授权公制 wrist—object translation。两次拟合都只用非接触手表面，不是统一减去 48 mm，也没有用牌面/Contact 自证。
+- Interaction 复核：固定分母仍为 4,500 条 hand/finger/object 记录；中心连通表面采样把合格 fingertip surface observation 从 `406` 增到 `436`，但最近有限 patch 距离仍为 `6.60 mm > 5 mm`，只有 4 条投影落在直接可见 patch 内。
+- Contact 复核：`UNKNOWN=3468`、`NO_EVIDENCE=1030`、`APPROACH=2`，没有 `CONTACT_CANDIDATE`，也没有同一 hand/finger/object 的五帧连续合格窗口。大不确定度没有扩大 5 mm 门，缺失不确定度保持 unknown；无限平面命中不能越过有限 patch 门。
 - Kai22 R0：`COMPLETED_DEVELOPMENT_BASELINE`。293/293 个 direct-observed side-frame 完成 q22 retarget；左右各 22 个关节顺序与 pinned URDF 一致，中间代表帧各 23 个 link FK 均有限。R0 不依赖 Contact。
-- Kai22 R1：`BLOCKED_LOCAL_EVIDENCE`。首阻塞为 alignment hold-out 未通过，第二阻塞为没有五帧局部 Contact 窗口；没有修改 q22/wrist，也没有把 R0 冒充 refinement。
+- Kai22 R1：`BLOCKED_LOCAL_EVIDENCE`。首阻塞为 alignment 尺度边界饱和，第二阻塞为没有五帧局部 Contact 窗口；没有修改 q22/wrist，也没有把 R0 冒充 refinement。
 - Kai22 R2：`NOT_RUN_OPTIONAL_R1_NOT_CLOSED`，不反向阻塞 R0/R1 的诚实终态。
 
 三个视频均为 1280×480、30 FPS、完整解码 150 帧。画面来自正确的 physical-left encoded resize-only 域，未做 lens undistortion。
@@ -42,4 +44,4 @@
 
 正式成功运行是 corrective V3。V1 在 R0 前因 HaWoR provenance 枚举名假设错误早停；V2 在 R0 完成后因尺寸 schema 漏列预算字段早停。两次都没有重跑模型或修改源数据，失败收据保留在 `tasks/receipts/`，没有通过删除失败证据换取干净状态。
 
-下一步若继续 R1，不能放宽 5 mm 门或删除困难帧。应先独立解决 hold-out 尾部残差，并建立不依赖 Contact 自证的 KaiHand pad ↔ Human wrist 局部坐标映射；在此之前正确状态仍是 R1 阻塞。
+下一步若继续 R1，不能放宽 5 mm 门或删除困难帧。应先用独立、非接触证据解释为什么 MANO-surface ↔ Stereo-surface 的无约束尺度为 `0.783730`，并建立不依赖 Contact 自证的 KaiHand pad ↔ Human wrist 局部坐标映射；不得把尺度下界改小后沿用同一 hold-out 自我授权。在此之前正确状态仍是 R1 阻塞。

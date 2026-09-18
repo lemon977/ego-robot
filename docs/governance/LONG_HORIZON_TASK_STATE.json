@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T19:14:02+08:00",
-  "generation_id": "gov-012065-a5c30c5098fd",
-  "generator_code_sha": "30b9424d95353d99ca1cbbd702d78722bf5baeda1ac084781cf5659af0944f86",
-  "governance_revision": 12065,
+  "generated_at": "2026-09-18T19:47:26+08:00",
+  "generation_id": "gov-012075-a3a8a7cce875",
+  "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
+  "governance_revision": 12075,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -761,11 +761,65 @@
       "session": null,
       "status": "PASSED",
       "task_id": "0915_interaction_contact_robot_dev_v3"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:36:40+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_interaction_contact_robot_dev_v3",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_human_stereo_surface_association_canary_v1",
+      "task_packet": {
+        "bytes": 3734,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_human_stereo_surface_association_canary_v1/TASK_PACKET.json",
+        "sha256": "312af76781af174e79bdccfcd1c08523bfc4b6f6982bff49754441185ea3f91b"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:40:54+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 3751,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "4a525a6b66456837f546d3073a9e5eae5b3483afb6279422a0a119f163542dfc"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_surface_association_canary_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:45:25+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_human_stereo_surface_association_canary_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_human_stereo_alignment_bound_audit_v1",
+      "task_packet": {
+        "bytes": 3295,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_human_stereo_alignment_bound_audit_v1/TASK_PACKET.json",
+        "sha256": "42fc86e481a682afe81cbd8cc092d5a65b05d921fa8f066c6337c00f60847fba"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:45:45+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 2946,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "122955d4c2cbe7b4f5eabb183872c30f05950a265afe1ab7d3caa28438ef17ad"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_alignment_bound_audit_v1"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "bf71cb6194861194a3c5166d823a1c50d28a8dd9"
+    "commit": "b02d5cd980281eb4999146b6d710f7af3ebedd26"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -1274,6 +1328,52 @@
         "sha256": "ff2ae68a3158e8b8750099c55175cbed5eb30d0089454889a3f43e4e2ca46bdf"
       },
       "updated_at": "2026-09-18T19:14:02+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3751,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "4a525a6b66456837f546d3073a9e5eae5b3483afb6279422a0a119f163542dfc"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_surface_association_canary_v1",
+      "task_packet": {
+        "bytes": 3734,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_human_stereo_surface_association_canary_v1/TASK_PACKET.json",
+        "sha256": "312af76781af174e79bdccfcd1c08523bfc4b6f6982bff49754441185ea3f91b"
+      },
+      "updated_at": "2026-09-18T19:40:54+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2946,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "122955d4c2cbe7b4f5eabb183872c30f05950a265afe1ab7d3caa28438ef17ad"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_alignment_bound_audit_v1",
+      "task_packet": {
+        "bytes": 3295,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_human_stereo_alignment_bound_audit_v1/TASK_PACKET.json",
+        "sha256": "42fc86e481a682afe81cbd8cc092d5a65b05d921fa8f066c6337c00f60847fba"
+      },
+      "updated_at": "2026-09-18T19:45:45+08:00"
     }
   ]
 }

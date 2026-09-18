@@ -905,6 +905,39 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             or result.get("model_rerun_performed") is not False
         ):
             raise RuntimeError("V2 was not the exact post-R0 sidecar-schema failure")
+    elif task_id == "0915_human_stereo_surface_association_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("surface association requires the terminal V3 development canary")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("Interaction/Contact/Robot V3 result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("task_id") != "0915_interaction_contact_robot_dev_v3"
+            or result.get("development_terminal")
+            != "R0_COMPLETE_R1_BLOCKED_LOCAL_EVIDENCE"
+            or result.get("r0_status") != "COMPLETED_DEVELOPMENT_BASELINE"
+            or result.get("r1_status") != "BLOCKED_LOCAL_EVIDENCE"
+            or result.get("model_rerun_performed") is not False
+            or result.get("removal_or_clean_consumed") is not False
+        ):
+            raise RuntimeError("V3 is not the exact frozen R0-complete/R1-blocked predecessor")
+    elif task_id == "0915_human_stereo_alignment_bound_audit_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("alignment bound audit requires the terminal surface canary")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("surface-association result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("task_id") != "0915_human_stereo_surface_association_canary_v1"
+            or result.get("alignment_status") != "PASS_DEVELOPMENT_ALIGNMENT"
+            or result.get("contact_window_count") != 0
+            or result.get("r1_status") != "BLOCKED_LOCAL_EVIDENCE"
+            or result.get("model_rerun_performed") is not False
+            or result.get("removal_or_clean_consumed") is not False
+        ):
+            raise RuntimeError("surface canary is not the exact immutable audit predecessor")
     elif task_id == "0915_foundationstereo_single_session_canary_v1":
         confirmation = load_json(VST_ENCODED_DOMAIN_CONFIRMATION)
         if (

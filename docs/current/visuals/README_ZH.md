@@ -12,8 +12,18 @@
 - [`0915_INTERACTION_CONTACT_ROBOT_DEV_V1/KAI22_R0_VS_R1_REVIEW.mp4`](0915_INTERACTION_CONTACT_ROBOT_DEV_V1/KAI22_R0_VS_R1_REVIEW.mp4)
 
 三段均为正确 encoded physical-left resize-only 图像域的 150 帧视频。Object6D QA 通过；
-对齐 hold-out P90 为 `36.79 mm`，最近有限 patch 距离为 `6.60 mm`，没有五帧 Contact
-窗口。Kai22 R0 独立完成，R1 明确显示 `BLOCKED_LOCAL_EVIDENCE`，没有伪造 refinement。
+最近有限 patch 距离为 `6.60 mm`，没有五帧 Contact 窗口。Kai22 R0 独立完成，R1 明确
+显示 `BLOCKED_LOCAL_EVIDENCE`，没有伪造 refinement。
+
+后续只读诊断没有重跑模型：
+
+- [`0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1/README_ZH.md`](0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1/README_ZH.md)
+- [`0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/README_ZH.md`](0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/README_ZH.md)
+- [`0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/ALIGNMENT_BOUND_SATURATION_AUDIT.png`](0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/ALIGNMENT_BOUND_SATURATION_AUDIT.png)
+
+MANO 前表面候选把有界 hold-out P90 从 joint-centre 口径的 `36.91 mm` 改善到
+`19.33 mm`，但拟合尺度卡在 `0.8` 下界，无约束最优尺度为 `0.783730`。最终 authority
+为 `REJECTED_BOUNDED_FIT_SATURATION`，不允许公制 wrist-object 平移；Contact 结果未改变。
 
 ## 旧 exact78 批量基线对照
 

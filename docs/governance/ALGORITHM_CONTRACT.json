@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T19:14:02+08:00",
-  "generation_id": "gov-012065-a5c30c5098fd",
-  "governance_revision": 12065,
+  "generated_at": "2026-09-18T19:47:26+08:00",
+  "generation_id": "gov-012075-a3a8a7cce875",
+  "governance_revision": 12075,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -939,6 +939,21 @@
           "bytes": 8660,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/contact_occlusion_contracts_r3.py",
           "sha256": "d65c713bcfef868929bbf5e18effd7c17beb83a3aff2a152c69bd24764537fa7"
+        },
+        {
+          "bytes": 30153,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py",
+          "sha256": "531a8433544f5ae0ca25413d037b7ce87a569753f103235f60bfa5011f68f6c4"
+        },
+        {
+          "bytes": 46878,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_human_stereo_surface_association_canary_v1.py",
+          "sha256": "602cb087d08a501a3f010451aebed28e7b6e4a549bb196b18b05257685659da4"
+        },
+        {
+          "bytes": 21941,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_human_stereo_alignment_bound_audit_v1.py",
+          "sha256": "e6c365d9c6a6ea43aa05f70d7ed49892a3c0d16115b9b1e93492dd7d1cd34fc8"
         }
       ],
       "implementation_revision": "R7_1_R3",
@@ -946,6 +961,8 @@
       "known_limitations": [
         "Poker/Chips geometry and evidence-direction fixtures pass, but no real-session Contact authority exists.",
         "Interaction v0a is image-plane-only adjacency/approach/co-motion with optional aligned tactile support; it explicitly contains no relative Z, occlusion order or contact truth.",
+        "The bounded 0915 surface-association successor compares frozen MANO visible surfaces with direct Stereo on a non-contact hold-out and rechecks the unchanged 5 mm finite-patch gate; it cannot create Contact truth or deployment authority.",
+        "The 0915 bound audit reproduces a bounded hold-out P90 of 19.33 mm but revokes metric translation authority: scale is clipped to the frozen 0.8 lower edge while the unconstrained optimum is 0.783730. Contact remains zero windows with a closest finite-patch distance of 6.60 mm.",
         "Attachment-propagated pose cannot prove Contact, Object6D, tactile support, or gold accuracy.",
         "Hypotheses are not physical contact truth."
       ],
@@ -972,10 +989,11 @@
         ]
       },
       "stage": "Contact",
-      "successor_requirement": "Use direct/tracked Object evidence to seed Contact, then attachment only in the downstream direction; freeze independent gold labels before authority.",
+      "successor_requirement": "Explain the MANO-surface/Stereo scale mismatch using new independent non-contact evidence before changing bounds; do not use Contact/object fitting or the same hold-out to self-authorize. Use direct/tracked Object evidence to seed Contact, then attachment only downstream; freeze independent gold labels before authority.",
       "superseded_implementations": [
         "robot-render-dependent contact loop",
-        "attachment-contact self-certification"
+        "attachment-contact self-certification",
+        "bounded-fit residual pass as sufficient metric-translation authority"
       ],
       "weights": "NOT_APPLICABLE"
     },

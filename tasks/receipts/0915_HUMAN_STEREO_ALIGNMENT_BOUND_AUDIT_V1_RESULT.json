@@ -1,0 +1,64 @@
+{
+  "artifacts": {
+    "bound_audit": {
+      "bytes": 3361,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/ALIGNMENT_BOUND_SATURATION_AUDIT_V1.json",
+      "sha256": "02f642410623968e91f38cefbb9d2870e045ccd13c3ceaa7853461c167b60f8b"
+    },
+    "diagnostic_png": {
+      "bytes": 188160,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/ALIGNMENT_BOUND_SATURATION_AUDIT.png",
+      "sha256": "68435fdbc0b146ed6fb887367aa54252c53e1914d86ef699bec53d9d993d460d"
+    },
+    "downstream_decision": {
+      "bytes": 825,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/DOWNSTREAM_DECISION_V2.json",
+      "sha256": "12e1d61549b099cf3415864a351b25e116b83fd56ec86719ba1c9edcaaf99731"
+    },
+    "metrics": {
+      "bytes": 397,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/METRICS.json",
+      "sha256": "28d956b10a40487946a56ec65e8e0376b9e6cb85c8e56ac98f1daf31162f500e"
+    },
+    "visual_readme": {
+      "bytes": 864,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/README_ZH.md",
+      "sha256": "2907d8e71fce6684ebef8111df63b059d35393d7f479aba136a1193ad421948b"
+    }
+  },
+  "calibration_authority": "DEVELOPMENT_ONLY",
+  "claim_limit": "Single-session correctness audit only. It may revoke metric-translation authority but cannot create Contact, alter frozen evidence, relax the 5 mm finite-patch gate, rerun a model, modify q22/wrist, or authorize control/deployment.",
+  "contact_window_count": 0,
+  "control_ground_truth": false,
+  "diagnostic_status": "REJECTED_BOUNDED_FIT_SATURATION",
+  "gpu_used": false,
+  "metric_translation_authorized": false,
+  "model_rerun_performed": false,
+  "physical_deployment_authorized": false,
+  "q22_or_wrist_modified": false,
+  "r0_status": "COMPLETED_DEVELOPMENT_BASELINE",
+  "r1_status": "BLOCKED_LOCAL_EVIDENCE",
+  "r2_status": "NOT_RUN_R1_NOT_EXECUTED",
+  "removal_or_clean_consumed": false,
+  "result": {
+    "bytes": 2946,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "122955d4c2cbe7b4f5eabb183872c30f05950a265afe1ab7d3caa28438ef17ad"
+  },
+  "run_signature": {
+    "bytes": 2176,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "2114939cc3564b770fb39c59fa9ce139b881ff599dcf4c077d86959c82d07377"
+  },
+  "schema_version": "0915-human-stereo-alignment-bound-audit-result-v1",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_human_stereo_alignment_bound_audit_v1",
+  "weights": "ABSENT",
+  "writer_claim": {
+    "bytes": 895,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "6732db8cbbf8bc67e9be5f0eea3946384c293309633fe20c8443f1be9fcf0b18"
+  }
+}

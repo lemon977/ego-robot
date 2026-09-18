@@ -1,0 +1,80 @@
+{
+  "algorithm_prerequisites": {
+    "alignment": [
+      "same_frozen_non_contact_rows",
+      "same_frame_id_mod_5_holdout",
+      "report_bounded_and_unconstrained_fit",
+      "reject_bound_saturation"
+    ],
+    "contact": [
+      "carry_forward_only",
+      "unchanged_5mm_gate",
+      "finite_visible_object_patch"
+    ],
+    "not_dependencies": [
+      "Removal",
+      "Clean",
+      "archive",
+      "short_gap_inferred"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 1
+  },
+  "claim_limit": "Single-session correctness audit only. It may revoke metric-translation authority but cannot create Contact, alter frozen evidence, relax the 5 mm finite-patch gate, rerun a model, modify q22/wrist, or authorize control/deployment.",
+  "expected_resource": "CPU_ONLY_IMMUTABLE_ALIGNMENT_AUDIT",
+  "objective": "Audit the immutable MANO-surface alignment fit for optimizer-bound saturation, withdraw metric wrist-translation authority when the unconstrained optimum lies outside the frozen scale interval, and carry forward the unchanged finite-patch Contact result without rerunning any model or changing the 5 mm gate.",
+  "phase": "0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_human_stereo_surface_association_canary_v1=PASSED_DIAGNOSTIC",
+    "immutable_surface_rows_and_contact_recheck_only",
+    "unconstrained_fit_must_be_inside_frozen_scale_bounds",
+    "bound_saturation_revokes_metric_translation_authority",
+    "contact_or_object_fit_FORBIDDEN",
+    "fixed_48mm_bias_FORBIDDEN",
+    "Contact_distance_gate_fixed_5mm",
+    "finite_visible_patch_required",
+    "HaWoR_SAM31_FoundationStereo_Object6D_v2_FROZEN_NO_RERUN",
+    "Removal_Clean_FORBIDDEN",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN",
+    "development_relative_non_control_non_deployable",
+    "governance_PASS_FRESH"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1_RESULT.json",
+    "_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/MANO_SURFACE_ASSOCIATION_V1.json",
+    "_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/HUMAN_STEREO_ALIGNMENT_CHECK_V2.json",
+    "_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/INTERACTION_CONTACT_RECHECK_V1.json",
+    "src/chaoyang/ops/run_0915_human_stereo_alignment_bound_audit_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "ALIGNMENT_BOUND_SATURATION_AUDIT_V1.json",
+    "DOWNSTREAM_DECISION_V2.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_human_stereo_alignment_bound_audit_v1",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1",
+    "tasks/receipts/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1_RESULT.json"
+  ]
+}
