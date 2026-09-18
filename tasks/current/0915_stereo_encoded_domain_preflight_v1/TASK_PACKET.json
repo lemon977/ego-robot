@@ -1,0 +1,65 @@
+{
+  "algorithm_prerequisites": {
+    "not_dependencies": [
+      "Clean",
+      "Removal_Envelope",
+      "old_rectified_depth"
+    ],
+    "stereo_preflight": [
+      "same_session_SBS",
+      "same_session_camera_params"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Single-session encoded-pixel epipolar diagnosis only. It may authorize a separate FoundationStereo canary but creates no Depth, metric-accuracy, Object6D, Contact or Robot authority.",
+  "expected_resource": "CPU_ONLY_FULL_150_FRAME_ENCODED_STEREO_DIAGNOSTIC",
+  "objective": "Measure all 150 sourceIndex-aware encoded VST stereo frames after crop and resize only, including frames 81 and 94, and decide whether direct FoundationStereo input is admissible or encoded-domain epipolar alignment is still required.",
+  "phase": "0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "wrong_domain_foundationstereo_terminal=REJECTED_QUALITY",
+    "VST_ENCODED_VIDEO_ALREADY_UNDISTORTED",
+    "sourceIndex_crop_then_resize_only",
+    "zero_lens_undistortion",
+    "single_session_play_cards_0915_001",
+    "governance_PASS_FRESH",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN",
+    "source_read_only"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_CPU_NEXT_TASKS_USER_AUTHORIZATION.json",
+    "tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+    "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json",
+    "src/chaoyang/ops/run_0915_stereo_encoded_domain_preflight_v1.py",
+    "src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915/cleaned/playing_cards/play_cards_0915_001"
+  ],
+  "required_outputs": [
+    "WRITER_CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "PER_FRAME_METRICS.json",
+    "ENCODED_STEREO_PREFLIGHT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_stereo_encoded_domain_preflight_v1",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1"
+  ]
+}

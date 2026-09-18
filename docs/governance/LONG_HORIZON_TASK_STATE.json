@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T16:21:28+08:00",
-  "generation_id": "gov-012006-6e134603a08b",
-  "generator_code_sha": "6cdf7f83cb533932b37bdcdfc9037edaa7de74499c09575493a499386f10710d",
-  "governance_revision": 12006,
+  "generated_at": "2026-09-18T17:24:53+08:00",
+  "generation_id": "gov-012032-27509b9465df",
+  "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
+  "governance_revision": 12032,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -572,11 +572,65 @@
       "session": null,
       "status": "REJECTED_QUALITY",
       "task_id": "0915_foundationstereo_single_session_canary_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T17:06:31+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_foundationstereo_single_session_canary_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_stereo_encoded_domain_preflight_v1",
+      "task_packet": {
+        "bytes": 2453,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_stereo_encoded_domain_preflight_v1/TASK_PACKET.json",
+        "sha256": "7eedd4d784b606cae400fb03f1a9bd6c370a4bfdbd1b67da155f2b605ee4a34c"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T17:08:21+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 1696,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "4c8b4d36980a7e11a3602db862eca3ba00f2ad42cd18aa7f11aa4f4c9dfdbcda"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_stereo_encoded_domain_preflight_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T17:08:28+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_stereo_encoded_domain_preflight_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_removal_envelope_v2_real_canary_v1",
+      "task_packet": {
+        "bytes": 2805,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_removal_envelope_v2_real_canary_v1/TASK_PACKET.json",
+        "sha256": "c065ff86876038e9959dde3077b3b9811e9285bc6619db5e01e4a098d3dd4909"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T17:20:36+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 2110,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9234b3aa362f5d88549e9a5457eb69d0ee9b8382f0dfc9b677febad9d7d24ea0"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_removal_envelope_v2_real_canary_v1"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "4b0b91e48defeea1f2203134d3c4388dccb30cf7"
+    "commit": "b4918fe4817c432914be7079e3874f918ea40351"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -924,6 +978,52 @@
         "sha256": "98a4e34cf569ba16e6777b265ec09a0b2064369c3ee09ac4588d797ffcdbf194"
       },
       "updated_at": "2026-09-18T15:51:22+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1696,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "4c8b4d36980a7e11a3602db862eca3ba00f2ad42cd18aa7f11aa4f4c9dfdbcda"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_stereo_encoded_domain_preflight_v1",
+      "task_packet": {
+        "bytes": 2453,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_stereo_encoded_domain_preflight_v1/TASK_PACKET.json",
+        "sha256": "7eedd4d784b606cae400fb03f1a9bd6c370a4bfdbd1b67da155f2b605ee4a34c"
+      },
+      "updated_at": "2026-09-18T17:08:21+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2110,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9234b3aa362f5d88549e9a5457eb69d0ee9b8382f0dfc9b677febad9d7d24ea0"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_removal_envelope_v2_real_canary_v1",
+      "task_packet": {
+        "bytes": 2805,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_removal_envelope_v2_real_canary_v1/TASK_PACKET.json",
+        "sha256": "c065ff86876038e9959dde3077b3b9811e9285bc6619db5e01e4a098d3dd4909"
+      },
+      "updated_at": "2026-09-18T17:20:36+08:00"
     }
   ]
 }

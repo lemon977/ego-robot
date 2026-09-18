@@ -123,6 +123,26 @@ raw resize-only 匹配统计保留为诊断；消费 `equiDis62` 的 rectified �
   已分别改记为 `0 passed / 58 blocked`。依赖这批几何的 Contact/Occlusion 声明已撤回，
   后续不得把历史文件或旧内部一致性指标当作当前 Depth/Object6D authority。
 
+- 新的 CPU-only encoded-domain Stereo preflight 已在 `play_cards_0915_001` 全 150 帧完成，
+  浅层入口见
+  [`0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1`](visuals/0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1/README_ZH.md)。
+  它只做 `sourceIndex` 裁切和 resize，未消费 distortion、未做 lens remap、未使用 GPU。
+  34,280 个 robust matches 的 `|dy|` median/P90/P95 为
+  `1.9432 / 2.8167 / 3.0964 px`，150/150 帧满足最小匹配门，frame 81/94 均无局部异常，
+  因此结论为 `PASS_DIRECT_FOUNDATION_INPUT`：本会话不需要额外 encoded-domain 极线 remap。
+  但物理左减物理右的视差符号以 `0.9994` 一致率为负；FoundationStereo 后续 GPU
+  successor 必须显式固定“两眼同时水平镜像→模型→输出镜像回来”的正视差 model adapter。
+  该适配不等于去畸变，也不得把本 preflight 宣称为 Depth 或外部毫米精度。
+
+- Removal Envelope V2 真实 150 帧 canary 已完成并终态为 `REJECTED_QUALITY`，浅层入口见
+  [`0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1`](visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1/README_ZH.md)。
+  V2 没有重跑 SAM、没有 inpaint、没有 GPU；repair P95 贡献仅 `0.00293`，面积膨胀 P95
+  `1.00294`，保护物体核心损伤 `0 px`，且相对 semantic baseline 没有增加闪烁。
+  但最终 temporal area derivative P95 仍为 `0.8424`，几乎等于原 SAM base 的 `0.8437`；
+  说明 V2 的保守 repair 不会制造 V1 的大片误擦，却也无法修复上游 SAM 闪烁。全片严格稳定
+  背景 hook 只覆盖 `0.00163`，同样未过门。不得继续调 repair 半径，也不得进入 inpaint/扩批；
+  下一次 Clean 实验必须先解决 semantic temporal admission，并重新设计局部背景 QA。
+
 如果用户提出新目标，应建立新的、有限收敛的任务包并发布新的治理 revision；不要把旧任务包改回 `PENDING`。任务包至少固定输入、代码、配置、权重或 `ABSENT`、标定或 `ABSENT`、输出 schema、质量门、预算、终止条件和回滚路径。
 
 ## 脚本和任务命名

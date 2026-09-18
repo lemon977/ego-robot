@@ -88,14 +88,19 @@ def test_clean_registry_does_not_overclaim_stereo_or_contact_preservation() -> N
 def test_depth_registry_forbids_lens_undistortion_on_encoded_vst_video() -> None:
     registry = _load("docs/governance/CURRENT_BASELINE_REGISTRY_V2.json")
     depth = next(entry for entry in registry["entries"] if entry["stage"] == "Depth")
-    assert depth["algorithm_id"] == "foundationstereo_encoded_vst_domain_blocked_v2"
-    assert depth["input_authority"].startswith("BLOCKED_PENDING_ENCODED_VST")
+    assert depth["algorithm_id"] == "foundationstereo_encoded_vst_domain_preflight_pass_v3"
+    assert depth["input_authority"] == "ENCODED_VST_PREFLIGHT_PASS_NO_CURRENT_DEPTH"
     names = {Path(reference["path"]).name for reference in depth["code_closure"]}
     assert "vst_encoded_video_domain.py" in names
+    assert "stereo_encoded_domain_preflight_v1.py" in names
+    assert "run_0915_stereo_encoded_domain_preflight_v1.py" in names
     assert "run_0915_foundationstereo_single_session_canary_v1.py" not in names
     limitations = "\n".join(depth["known_limitations"])
     assert "already undistorted" in limitations
     assert "WITHDRAWN_WRONG_IMAGE_DOMAIN" in limitations
+    assert "34,280" not in limitations  # machine text remains locale-neutral
+    assert "1.943/2.817/3.096" in limitations
+    assert "simultaneous horizontal-flip adapter" in limitations
 
 
 def test_depth_and_object6d_have_no_current_authorized_outputs() -> None:

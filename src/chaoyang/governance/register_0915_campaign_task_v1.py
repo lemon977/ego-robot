@@ -534,6 +534,71 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             or result.get("session_id") != "play_cards_0915_001"
         ):
             raise RuntimeError("CPU evidence predecessor did not close both fenced lanes")
+    elif task_id == "0915_stereo_encoded_domain_preflight_v1":
+        if predecessor.get("status") != "REJECTED_QUALITY":
+            raise RuntimeError(
+                "encoded-domain preflight requires the historical wrong-domain "
+                "FoundationStereo terminal"
+            )
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("historical FoundationStereo result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("task_id") != FOUNDATION_TASK_ID
+            or result.get("status") != "REJECTED_QUALITY"
+            or result.get("consumption_authorized") is not False
+        ):
+            raise RuntimeError("historical FoundationStereo terminal identity mismatch")
+        confirmation = load_json(VST_ENCODED_DOMAIN_CONFIRMATION)
+        if (
+            confirmation.get("status")
+            != "CONFIRMED_ENCODED_VIDEO_ALREADY_UNDISTORTED"
+            or confirmation.get("admitted_visual_transform")
+            != "SOURCE_INDEX_CROP_THEN_RESIZE_ONLY"
+            or "EQUIDIS62_TO_PINHOLE"
+            not in confirmation.get("prohibited_operations", [])
+        ):
+            raise RuntimeError("VST encoded-video domain confirmation is invalid")
+        authorization = load_json(
+            REPO_ROOT / "tasks/receipts/0915_CPU_NEXT_TASKS_USER_AUTHORIZATION.json"
+        )
+        if (
+            authorization.get("status") != "CONFIRMED"
+            or authorization.get("authorized_session") != FOUNDATION_SESSION_ID
+            or authorization.get("authorized_tasks_in_order", [None])[0] != task_id
+            or authorization.get("execution_policy", {}).get("gpu_allowed") is not False
+            or authorization.get("execution_policy", {}).get("lens_undistortion_allowed")
+            is not False
+        ):
+            raise RuntimeError("encoded-domain preflight lacks exact user authorization")
+    elif task_id == "0915_removal_envelope_v2_real_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError("Removal V2 real canary requires terminal CPU routing")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("encoded-domain preflight result is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("task_id") != "0915_stereo_encoded_domain_preflight_v1"
+            or result.get("status") != "PASSED"
+            or result.get("gpu_used") is not False
+        ):
+            raise RuntimeError("Removal V2 routing predecessor did not close safely")
+        authorization = load_json(
+            REPO_ROOT / "tasks/receipts/0915_CPU_NEXT_TASKS_USER_AUTHORIZATION.json"
+        )
+        if (
+            authorization.get("status") != "CONFIRMED"
+            or authorization.get("authorized_session") != FOUNDATION_SESSION_ID
+            or authorization.get("authorized_tasks_in_order", [None, None])[1]
+            != task_id
+            or authorization.get("execution_policy", {}).get("sam_rerun_allowed")
+            is not False
+            or authorization.get("execution_policy", {}).get("inpaint_allowed")
+            is not False
+        ):
+            raise RuntimeError("Removal V2 real canary lacks exact user authorization")
     elif task_id == "0915_foundationstereo_single_session_canary_v1":
         confirmation = load_json(VST_ENCODED_DOMAIN_CONFIRMATION)
         if (

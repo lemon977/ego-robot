@@ -47,13 +47,14 @@
     "quality": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["status", "area_inflation", "background_spill", "temporal_area_derivative", "repair_contribution"],
+      "required": ["status", "area_inflation", "background_spill", "temporal_area_derivative", "repair_contribution", "protected_object_core_damage"],
       "properties": {
         "status": {"enum": ["PASS", "REJECTED_QUALITY", "UNKNOWN_FAIL_CLOSED"]},
         "area_inflation": {"$ref": "#/$defs/gate"},
         "background_spill": {"$ref": "#/$defs/gate"},
         "temporal_area_derivative": {"$ref": "#/$defs/gate"},
-        "repair_contribution": {"$ref": "#/$defs/gate"}
+        "repair_contribution": {"$ref": "#/$defs/gate"},
+        "protected_object_core_damage": {"$ref": "#/$defs/gate"}
       }
     },
     "consumer_firewall": {

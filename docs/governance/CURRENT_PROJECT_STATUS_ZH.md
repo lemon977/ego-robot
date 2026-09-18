@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T16:21:28+08:00`
-- governance revision：`12006`
-- generation id：`gov-012006-6e134603a08b`
+- 状态生成时间：`2026-09-18T17:24:53+08:00`
+- governance revision：`12032`
+- generation id：`gov-012032-27509b9465df`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`6cdf7f83cb533932b37bdcdfc9037edaa7de74499c09575493a499386f10710d`
-- repository：`4b0b91e48defeea1f2203134d3c4388dccb30cf7` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120`
+- repository：`b4918fe4817c432914be7079e3874f918ea40351` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -99,11 +99,11 @@
 
 ### PASSED
 
+- `0915_stereo_encoded_domain_preflight_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T17:08:21+08:00`
 - `0915_removal_envelope_single_session_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T14:56:58+08:00`
 - `0915_sam31_weak_role_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T14:11:17+08:00`
 - `0915_stereo_interaction_cpu_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T13:56:44+08:00`
 - `0915_sam31_strict_role_canary_v5` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/RESULT.json / `2026-09-18T12:47:38+08:00`
-- `0915_hawor_resize_only_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json / `2026-09-18T10:58:55+08:00`
 
 ### FAILED_QUALITY_C
 

@@ -1,0 +1,79 @@
+{
+  "algorithm_prerequisites": {
+    "forbidden_consumers": [
+      "Depth",
+      "Object6D",
+      "Contact",
+      "RobotGeometry",
+      "ControlGroundTruth"
+    ],
+    "not_dependencies": [
+      "stereo_preflight_result",
+      "Depth",
+      "Object6D"
+    ],
+    "removal": [
+      "sealed_admitted_SAM_base",
+      "real_foreground_proposals",
+      "direct_observed_MANO",
+      "stable_background_hook",
+      "cable_reverse_pass_support"
+    ]
+  },
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Visual Clean-mask comparison only. PASS still requires user visual review before Clean authority. Removal and feather are never geometry, Contact, Robot control truth or physical-deployment evidence.",
+  "expected_resource": "CPU_ONLY_150_FRAME_VISUAL_CLEAN_MASK_CANARY",
+  "objective": "Evaluate the conservative SAM-base-plus-validated-local-repairs V2 design on all 150 resize-only frames without rerunning SAM or inpainting, and compare it quantitatively against the sealed semantic baseline.",
+  "phase": "0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "routing_predecessor_0915_stereo_encoded_domain_preflight_v1=PASSED",
+    "algorithm_independent_of_stereo_preflight_result",
+    "strict_and_weak_SAM_outputs_read_only",
+    "accepted_bounded_HaWoR",
+    "single_session_play_cards_0915_001",
+    "governance_PASS_FRESH",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN",
+    "no_SAM_rerun",
+    "no_inpaint"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_CPU_NEXT_TASKS_USER_AUTHORIZATION.json",
+    "src/chaoyang/ops/run_0915_removal_envelope_v2_real_canary_v1.py",
+    "src/chaoyang/pipeline/removal_envelope_v2.py",
+    "configs/systems/clean/removal_envelope_0915_play_cards_001_v2.json",
+    "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001",
+    "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+    "_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001"
+  ],
+  "required_outputs": [
+    "WRITER_CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "STABLE_BACKGROUND.npz",
+    "V2_MASK_LAYERS.npz",
+    "FRAME_QUALITY_LEDGER.json",
+    "REMOVAL_ENVELOPE_V2_REAL_SUMMARY.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_removal_envelope_v2_real_canary_v1",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1"
+  ]
+}

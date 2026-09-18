@@ -348,13 +348,23 @@
       ]
     },
     {
-      "algorithm_id": "foundationstereo_encoded_vst_domain_blocked_v2",
+      "algorithm_id": "foundationstereo_encoded_vst_domain_preflight_pass_v3",
       "authorized_scope": "NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN",
       "code_closure": [
         {
           "bytes": 3046,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/vst_encoded_video_domain.py",
           "sha256": "fd2c7ddbfebd363437e2c2f2d5f95a430717b65988011b920391e5426b83b634"
+        },
+        {
+          "bytes": 9699,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
+          "sha256": "c9a127cfd4e235e2c2c4c32f8031b6c6d85205f1bac25af25ac99e84084f5c04"
+        },
+        {
+          "bytes": 16606,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_stereo_encoded_domain_preflight_v1.py",
+          "sha256": "2a059cab27d3eafb48b77c430ee3d87d1bd277c0531d30a16cbbb40d4afca13c"
         },
         {
           "bytes": 19267,
@@ -396,11 +406,12 @@
           "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
         }
       ],
-      "input_authority": "BLOCKED_PENDING_ENCODED_VST_ZERO_LENS_UNDISTORTION_STEREO_CALIBRATION",
+      "input_authority": "ENCODED_VST_PREFLIGHT_PASS_NO_CURRENT_DEPTH",
       "known_limitations": [
         "All decoded VST video is already undistorted; camera_params distortion fields are capture provenance and must not be applied to encoded pixels.",
         "The prior 0915 FoundationStereo canary used equiDis62 remapping and is WITHDRAWN_WRONG_IMAGE_DOMAIN in addition to its immutable REJECTED_QUALITY terminal.",
-        "No current encoded-domain stereo intrinsics/epipolar calibration or metric Depth authority is published.",
+        "The fresh 150-frame encoded-pixel preflight passed horizontal epipolar gates at median/P90/P95 |dy| 1.943/2.817/3.096 px, but it produced no Depth.",
+        "Physical left-to-right correspondences have a stable negative left-minus-right disparity sign; a future FoundationStereo task must pin its model-facing simultaneous horizontal-flip adapter and unflip the output, without lens remapping.",
         "FoundationStereo exposes no native confidence, and internal metric closure would not by itself establish external millimetre accuracy."
       ],
       "output_schema": "NOT_EVALUATED",
@@ -455,6 +466,11 @@
           "bytes": 2852,
           "path": "/mnt/workspace/code/chaoyang/tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
           "sha256": "db7d1d64f38e54154790520906b1423e093793803b9463ed371172c04db4d0fc"
+        },
+        {
+          "bytes": 1696,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001/RESULT.json",
+          "sha256": "4c8b4d36980a7e11a3602db862eca3ba00f2ad42cd18aa7f11aa4f4c9dfdbcda"
         }
       ],
       "schema_artifact": {
@@ -462,10 +478,11 @@
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Depth",
-      "successor_requirement": "Create a fresh encoded-video-domain stereo calibration canary with zero lens-undistortion, raw resize-only visual reference, explicit epipolar-only transform if needed, and user review before any FoundationStereo rerun. External 30/50/70/100 cm validation remains required for physical accuracy claims.",
+      "successor_requirement": "Run one fresh FoundationStereo encoded-domain GPU canary from the preflight-passed crop+resize pixels, pin the simultaneous horizontal-flip positive-disparity adapter, unflip outputs into the physical-left domain, and retain external accuracy as UNVERIFIED. External 30/50/70/100 cm validation remains required for physical accuracy claims.",
       "superseded_implementations": [
         "uncorrected and preview-only depth",
-        "0915 equiDis62-remapped FoundationStereo canary"
+        "0915 equiDis62-remapped FoundationStereo canary",
+        "extra encoded-domain epipolar remap for play_cards_0915_001"
       ],
       "weights": [
         {
@@ -586,19 +603,24 @@
           "sha256": "674788d2d96214d6612a37d5a6d06427cf7c95b1ce09e87598b732d18aea8f81"
         },
         {
-          "bytes": 34955,
+          "bytes": 32445,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_removal_envelope_v2_real_canary_v1.py",
+          "sha256": "ec08e66b8c9c68d7228cd6df62256567a8b460b7e9c2421f55c4de68c1220fa2"
+        },
+        {
+          "bytes": 36355,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/removal_envelope_v2.py",
-          "sha256": "0e2f4f0c99a9b55e8220f69048603dcbf046cd9757dc21c7469699d2559170d2"
+          "sha256": "b98bbc572b61b5153f93298df6c337d26be5eacc398513ac3daefb361cf2a5c1"
         },
         {
-          "bytes": 2977,
+          "bytes": 3075,
           "path": "/mnt/workspace/code/chaoyang/contracts/removal_envelope_v2.schema.json",
-          "sha256": "ba9c99e38165146fed3798c709c11c2a379c672a57d3ca06457beab34747158e"
+          "sha256": "e54fed1b7bfb16fa88270a76d7442fd858787054f1ac296fa00ff87e374c25dc"
         },
         {
-          "bytes": 2469,
+          "bytes": 2603,
           "path": "/mnt/workspace/code/chaoyang/configs/systems/clean/removal_envelope_0915_play_cards_001_v2.json",
-          "sha256": "104f1495d1262001f293c404b9a4085943a927ce0661c1733aabe66df9a38253"
+          "sha256": "689818bcd1bed08078b42c92223a6401cfd8450f4122c8f924a67e6ea9739ca6"
         },
         {
           "bytes": 19267,
@@ -904,7 +926,8 @@
         "A structural Grade-B terminal proves frame/provenance/decode closure, not contact-boundary or semantic inpainting correctness.",
         "Generated pixels are visual completion, not physical background truth.",
         "Clean never feeds Depth/Object6D/contact truth.",
-        "Removal Envelope V1 is REJECTED_QUALITY and retained only as a failed experiment. V2 has a tested conservative core but no real-video canary authority: admitted SAM semantic evidence is the base and weak priors may only create validated local repairs."
+        "Removal Envelope V1 is REJECTED_QUALITY and retained only as a failed experiment.",
+        "Removal Envelope V2 real-video canary is also REJECTED_QUALITY: repairs stayed bounded (P95 contribution 0.00293, area inflation 1.00294, protected-object damage 0) and did not worsen relative flicker, but absolute temporal derivative P95 remained 0.8424 because the sealed SAM base itself flickers. The stable-background hook was also too sparse at 0.00163 of pixels."
       ],
       "output_schema": "clean_frames+master+review+source_map+result",
       "quality_gates": [
@@ -941,9 +964,14 @@
           "sha256": "1191dfa1c780d88f2cee5a431f804764027d1b9fd1cc29927e937bc865b36614"
         },
         {
-          "bytes": 2450,
+          "bytes": 3431,
           "path": "/mnt/workspace/code/chaoyang/docs/current/REMOVAL_ENVELOPE_V2_ZH.md",
-          "sha256": "5781d1b633696762ae010bc3e0e1cb886791a6d0101567f8c4cd658d3ae37b69"
+          "sha256": "fa2f9108daaf0f730a0b7d0ee71bf2f67c439be5be2aeab72fccebc62cb25fd9"
+        },
+        {
+          "bytes": 2110,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001/RESULT.json",
+          "sha256": "9234b3aa362f5d88549e9a5457eb69d0ee9b8382f0dfc9b677febad9d7d24ea0"
         }
       ],
       "schema_artifact": {
@@ -951,7 +979,7 @@
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Clean",
-      "successor_requirement": "Integrate the weightless, single-session Removal Envelope V2 runner with real foreground proposals, a stable-background QA hook and cable reverse-pass support. Keep SAM semantic foreground as the only base; MANO/sleeve/forearm/cable may add only validated local repairs. Missing evidence stays UNKNOWN. Keep removal/feather forbidden to Depth/Object6D/Contact/Robot geometry. Inpaint remains a separate weighted task.",
+      "successor_requirement": "Do not tune V2 repair radii. First stabilize or temporally admit the SAM semantic base and replace the whole-video exact-stability background hook with a bounded local/background model; only then create a new finite Clean canary. Keep removal/feather forbidden to Depth/Object6D/Contact/Robot geometry. Inpaint remains a separate weighted task.",
       "superseded_implementations": [
         "unproven clean previews",
         "the inaccurate label that the current identical-coordinate donor uses Stereo geometry"
@@ -1806,9 +1834,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-18T16:21:28+08:00",
-  "generation_id": "gov-012006-6e134603a08b",
-  "governance_revision": 12006,
+  "generated_at": "2026-09-18T17:24:53+08:00",
+  "generation_id": "gov-012032-27509b9465df",
+  "governance_revision": 12032,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",

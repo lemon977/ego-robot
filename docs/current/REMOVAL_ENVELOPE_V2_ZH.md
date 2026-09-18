@@ -1,8 +1,22 @@
 # Removal Envelope V2 保守修补合同
 
-状态：核心实现与合同测试 `PASS`；真实视频 Canary 尚未运行，质量 authority 为
-`NOT_EVALUATED`。V1 已被人工复核判为 `REJECTED_QUALITY`，V2 是独立后继，不修改或覆盖
-V1 证据。
+状态：核心实现与合同测试 `PASS`；真实 150 帧 Canary 为 `REJECTED_QUALITY`。V1 已被
+人工复核判为 `REJECTED_QUALITY`，V2 是独立后继，不修改或覆盖 V1 证据。
+
+## 真实视频结论（2026-09-18）
+
+`play_cards_0915_001` 的 150 帧真实 canary 已执行。V2 的“SAM 主体 + 有条件局部
+repair”成功避免了 V1 的无约束膨胀：area inflation P95 为 `1.00294`，repair
+contribution P95 为 `0.00293`，repair-majority 帧为 `0`，protected visible-object
+core damage 为 `0 px`。但 temporal area derivative P95 仍为 `0.8424`，和封存
+semantic base 的 `0.8437` 基本相同；V2 没有新增闪烁，也没有消除 SAM 原有闪烁。
+另一个失败门是 whole-video stable-background hook 仅覆盖 `0.00163` 的像素，不能作为
+充分背景误擦审计区域。
+
+结论：V2 保守结构保留，但本 canary 不成为 Clean authority，不进入 inpaint 或批量。
+下一任务不能继续调 MANO/cable/forearm repair 半径；应先改善 SAM semantic temporal
+admission，并把背景 QA 改成局部、分段或相机运动补偿后的稳定背景证据。浅层复核见
+[`0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1`](visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1/README_ZH.md)。
 
 V2 固定采用：
 
@@ -49,5 +63,5 @@ object evidence 独立推进，不依赖 Clean。
 - `configs/systems/clean/removal_envelope_0915_play_cards_001_v2.json`
 - `tests/pipeline/test_removal_envelope_v2.py`
 
-当前只有合成合同测试证据，不存在 V2 真实视频或视觉 PASS 结论。下一步必须另建有限
-runner 和新鲜 task packet，接入真实 proposal/background/reverse-pass 后再运行单样本 Canary。
+真实 runner、proposal、background hook 与 cable reverse-pass 已接入并运行，但质量未过门。
+不得把结构门或完整执行误报为视觉 PASS。

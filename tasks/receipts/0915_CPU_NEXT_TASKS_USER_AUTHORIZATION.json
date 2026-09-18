@@ -1,0 +1,26 @@
+{
+  "schema_version": "0915-cpu-next-tasks-user-authorization-v1",
+  "created_at": "2026-09-18T16:20:00+08:00",
+  "status": "CONFIRMED",
+  "authorized_session": "play_cards_0915_001",
+  "authorized_tasks_in_order": [
+    "0915_stereo_encoded_domain_preflight_v1",
+    "0915_removal_envelope_v2_real_canary_v1"
+  ],
+  "execution_policy": {
+    "current_task_router": "SERIAL_A_THEN_B",
+    "gpu_allowed": false,
+    "weights": "ABSENT",
+    "source_data_read_only": true,
+    "lens_undistortion_allowed": false,
+    "sam_rerun_allowed": false,
+    "inpaint_allowed": false,
+    "automatic_batch_expansion": false
+  },
+  "authorized_scope": [
+    "ENCODED_VST_SOURCEINDEX_CROP_RESIZE_ONLY_STEREO_PREFLIGHT",
+    "REMOVAL_ENVELOPE_V2_REAL_150_FRAME_CANARY",
+    "SHALLOW_VISUAL_REVIEW_ARTIFACTS"
+  ],
+  "claim_limit": "Two bounded CPU-only single-session tasks. This receipt grants no GPU, Depth, Object6D, Contact, Clean batch, Robot or deployment authority."
+}

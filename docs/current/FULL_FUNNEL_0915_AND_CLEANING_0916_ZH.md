@@ -102,6 +102,19 @@ FoundationStereo/Object6D 与 Clean 解耦。V1 复核见
 Depth 与 Object6D 的原 `58 passed` 均已撤回，账本各记为 `0 passed / 58 blocked`；相关
 Contact/Occlusion 假设不再拥有当前消费资格。历史产物未删除，也不能作为新任务输入。
 
+后继 `0915_stereo_encoded_domain_preflight_v1` 已按正确图像域完成全部 150 帧 CPU
+复核：只按 `sourceIndex` 裁切左右眼再 resize，不做镜头去畸变或 remap。34,280 个
+robust matches 的 `|dy|` median/P90/P95 为 `1.9432/2.8167/3.0964 px`，frame 81/94
+无单帧异常，结论为 `PASS_DIRECT_FOUNDATION_INPUT`。这只解除“是否需要额外极线 remap”
+的问题，不产生 Depth；后续 FoundationStereo 仍需新任务、GPU 租约和显式正视差
+水平镜像 adapter，且外部精度保持 `UNVERIFIED`。
+
+`0915_removal_envelope_v2_real_canary_v1` 也已在 150 帧实片上运行，终态
+`REJECTED_QUALITY`。V2 的 repair contribution P95 为 `0.00293`、area inflation P95
+为 `1.00294`、物体保护核心损伤为 `0 px`，证明保守结构没有重演 V1 的大片误擦；但
+temporal derivative P95 仍为 `0.8424`，与 SAM semantic base 的 `0.8437` 几乎相同，
+没有解决闪烁。不得进入 inpaint 或批量 Clean。
+
 ## 输入与禁止项
 
 - 0915 逻辑发布身份仍为 `chips_cards_hands__0915`，固定 220 会话、58,686 帧；当前挂载

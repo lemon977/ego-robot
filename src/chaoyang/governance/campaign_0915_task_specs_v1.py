@@ -32,6 +32,8 @@ TASK_ORDER = (
     "0915_sam31_mask_full_v1",
     "0915_foundationstereo_full_v1",
     "0915_post_geometry_robot_v1",
+    "0915_stereo_encoded_domain_preflight_v1",
+    "0915_removal_envelope_v2_real_canary_v1",
 )
 
 INPUT_ATTEMPT_V1 = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
@@ -48,6 +50,8 @@ WEAK_ROLE_ATTEMPT = "_run/current/0915_sam31_weak_role_canary_v1/attempts/attemp
 REMOVAL_ENVELOPE_ATTEMPT = "_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001"
 DEPTH_CANARY_ATTEMPT = "_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001"
 OBJECT6D_CANARY_ATTEMPT = "_run/current/0915_planar_object6d_single_session_canary_v1/attempts/attempt_0001"
+ENCODED_STEREO_PREFLIGHT_ATTEMPT = "_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001"
+REMOVAL_ENVELOPE_V2_ATTEMPT = "_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001"
 
 
 TASK_SPECS: dict[str, dict[str, Any]] = {
@@ -780,6 +784,108 @@ TASK_SPECS["0915_sam31_strict_role_canary_v5"].update({
 })
 
 
+TASK_SPECS["0915_stereo_encoded_domain_preflight_v1"] = {
+    "phase": "0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1",
+    "objective": (
+        "Measure all 150 sourceIndex-aware encoded VST stereo frames after crop and "
+        "resize only, including frames 81 and 94, and decide whether direct "
+        "FoundationStereo input is admissible or encoded-domain epipolar alignment "
+        "is still required."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        "tasks/receipts/0915_CPU_NEXT_TASKS_USER_AUTHORIZATION.json",
+        "tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+        "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json",
+        "src/chaoyang/ops/run_0915_stereo_encoded_domain_preflight_v1.py",
+        "src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
+        "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915/cleaned/playing_cards/play_cards_0915_001",
+    ],
+    "write_set": [
+        ENCODED_STEREO_PREFLIGHT_ATTEMPT,
+        "docs/current/visuals/0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1",
+    ],
+    "prerequisites": [
+        "wrong_domain_foundationstereo_terminal=REJECTED_QUALITY",
+        "VST_ENCODED_VIDEO_ALREADY_UNDISTORTED",
+        "sourceIndex_crop_then_resize_only", "zero_lens_undistortion",
+        "single_session_play_cards_0915_001", "governance_PASS_FRESH",
+        "weights_ABSENT", "gpu_FORBIDDEN", "source_read_only",
+    ],
+    "algorithm_prerequisites": {
+        "stereo_preflight": ["same_session_SBS", "same_session_camera_params"],
+        "not_dependencies": ["Clean", "Removal_Envelope", "old_rectified_depth"],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "WRITER_CLAIM.json", "RUN_SIGNATURE.json", "PER_FRAME_METRICS.json",
+        "ENCODED_STEREO_PREFLIGHT.json", "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+    "expected_resource": "CPU_ONLY_FULL_150_FRAME_ENCODED_STEREO_DIAGNOSTIC",
+    "claim_limit": (
+        "Single-session encoded-pixel epipolar diagnosis only. It may authorize a "
+        "separate FoundationStereo canary but creates no Depth, metric-accuracy, "
+        "Object6D, Contact or Robot authority."
+    ),
+}
+
+
+TASK_SPECS["0915_removal_envelope_v2_real_canary_v1"] = {
+    "phase": "0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1",
+    "objective": (
+        "Evaluate the conservative SAM-base-plus-validated-local-repairs V2 design "
+        "on all 150 resize-only frames without rerunning SAM or inpainting, and "
+        "compare it quantitatively against the sealed semantic baseline."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        "tasks/receipts/0915_CPU_NEXT_TASKS_USER_AUTHORIZATION.json",
+        "src/chaoyang/ops/run_0915_removal_envelope_v2_real_canary_v1.py",
+        "src/chaoyang/pipeline/removal_envelope_v2.py",
+        "configs/systems/clean/removal_envelope_0915_play_cards_001_v2.json",
+        "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001",
+        "_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001",
+        "_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001",
+    ],
+    "write_set": [
+        REMOVAL_ENVELOPE_V2_ATTEMPT,
+        "docs/current/visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1",
+    ],
+    "prerequisites": [
+        "routing_predecessor_0915_stereo_encoded_domain_preflight_v1=PASSED",
+        "algorithm_independent_of_stereo_preflight_result",
+        "strict_and_weak_SAM_outputs_read_only", "accepted_bounded_HaWoR",
+        "single_session_play_cards_0915_001", "governance_PASS_FRESH",
+        "weights_ABSENT", "gpu_FORBIDDEN", "no_SAM_rerun", "no_inpaint",
+    ],
+    "algorithm_prerequisites": {
+        "removal": [
+            "sealed_admitted_SAM_base", "real_foreground_proposals",
+            "direct_observed_MANO", "stable_background_hook",
+            "cable_reverse_pass_support",
+        ],
+        "not_dependencies": ["stereo_preflight_result", "Depth", "Object6D"],
+        "forbidden_consumers": [
+            "Depth", "Object6D", "Contact", "RobotGeometry", "ControlGroundTruth",
+        ],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "WRITER_CLAIM.json", "RUN_SIGNATURE.json", "STABLE_BACKGROUND.npz",
+        "V2_MASK_LAYERS.npz", "FRAME_QUALITY_LEDGER.json",
+        "REMOVAL_ENVELOPE_V2_REAL_SUMMARY.json", "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1},
+    "expected_resource": "CPU_ONLY_150_FRAME_VISUAL_CLEAN_MASK_CANARY",
+    "claim_limit": (
+        "Visual Clean-mask comparison only. PASS still requires user visual review "
+        "before Clean authority. Removal and feather are never geometry, Contact, "
+        "Robot control truth or physical-deployment evidence."
+    ),
+}
+
+
 def build_packet(task_id: str) -> dict[str, Any]:
     if task_id not in TASK_SPECS:
         raise KeyError(task_id)
@@ -826,5 +932,9 @@ def validate_packet_policy(packet: dict[str, Any]) -> None:
 
 
 def predecessor_task(task_id: str) -> str | None:
+    if task_id == "0915_stereo_encoded_domain_preflight_v1":
+        return "0915_foundationstereo_single_session_canary_v1"
+    if task_id == "0915_removal_envelope_v2_real_canary_v1":
+        return "0915_stereo_encoded_domain_preflight_v1"
     index = TASK_ORDER.index(task_id)
     return TASK_ORDER[index - 1] if index else "0915_0916_input_audit_clean_v1"

@@ -30,6 +30,9 @@
   "maximum_background_spill_ratio": 0.03,
   "maximum_temporal_area_derivative": 0.35,
   "maximum_repair_contribution_ratio": 0.25,
+  "object_core_erosion_radius_px": 4,
+  "object_hand_interaction_radius_px": 10,
+  "maximum_protected_object_core_damage_ratio": 0.0,
   "cable_profile": {
     "profile_id": "device_yellow_cable_0915_play_cards_001_v2",
     "profile_semantics": "CURRENT_INSTANCE_APPEARANCE_PRIOR_NOT_CABLE_CLASS_DEFINITION",
