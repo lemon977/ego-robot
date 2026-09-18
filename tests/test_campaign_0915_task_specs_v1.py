@@ -32,9 +32,14 @@ def test_campaign_has_finite_serial_order() -> None:
         "0915_sam31_mask_full_v1",
         "0915_foundationstereo_full_v1",
         "0915_post_geometry_robot_v1",
+        "0915_stereo_encoded_domain_preflight_v1",
+        "0915_removal_envelope_v2_real_canary_v1",
     )
     assert predecessor_task(TASK_ORDER[0]) == "0915_0916_input_audit_clean_v1"
-    assert predecessor_task(TASK_ORDER[-1]) == TASK_ORDER[-2]
+    assert predecessor_task("0915_stereo_encoded_domain_preflight_v1") == (
+        "0915_foundationstereo_single_session_canary_v1"
+    )
+    assert predecessor_task(TASK_ORDER[-1]) == "0915_stereo_encoded_domain_preflight_v1"
 
 
 def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
@@ -47,7 +52,9 @@ def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
                 "0915_stereo_interaction_cpu_canary_v1",
                 "0915_removal_envelope_single_session_canary_v1",
                 "0915_planar_object6d_single_session_canary_v1",
-                TASK_ORDER[-1],
+                "0915_post_geometry_robot_v1",
+                "0915_stereo_encoded_domain_preflight_v1",
+                "0915_removal_envelope_v2_real_canary_v1",
             }
         else:
             assert len(packet["weights"]) == 1

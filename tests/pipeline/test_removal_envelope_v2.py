@@ -275,12 +275,45 @@ def test_quality_reports_contributions_and_fails_on_background_spill() -> None:
         "semantic_base_pixels", "removal_pixels", "repair_added_pixels",
         "area_inflation", "background_spill_ratio",
         "temporal_area_derivative", "repair_contribution_ratio",
+        "protected_object_core_pixels", "protected_object_core_damage_pixels",
+        "protected_object_core_damage_ratio",
     }
     assert set(result["provenance"]["exclusive_repair_contribution_pixels"]) == {
         "validated_mano_gap_repair", "validated_attached_sleeve_repair",
         "validated_cable_instance",
     }
     assert np.array_equal(result["source_bits"] != 0, result["removal_envelope"])
+
+
+def test_visible_object_core_is_protected_without_preserving_hand_boundary() -> None:
+    shape = (140, 140)
+    masks = semantic(shape)
+    masks["hand"][55:95, 30:75] = True
+    masks["equipment"][60:105, 60:110] = True
+    task_object = np.zeros(shape, bool)
+    task_object[65:115, 70:125] = True
+    builder = RemovalEnvelopeV2Builder(shape, settings())
+    result = builder.step(
+        frame_bgr=np.zeros((*shape, 3), np.uint8),
+        semantic_masks=masks,
+        foreground_proposals=np.zeros(shape, bool),
+        sleeve_candidate_mask=np.zeros(shape, bool),
+        cable_candidate_mask=np.zeros(shape, bool),
+        reverse_cable_support_mask=None,
+        task_object_mask=task_object,
+        joints_2d=np.stack((hand(45), hand(95))),
+        observed=np.ones(2, bool),
+        stable_background_mask=np.zeros(shape, bool),
+    )
+    core = result["protected_object_core"]
+    assert core.any()
+    assert not np.any(result["removal_envelope"] & core)
+    # The hand/object interaction boundary remains removable; only a visible
+    # interior away from the hand is protected.
+    assert np.any(result["removal_envelope"] & task_object)
+    gate = result["quality"]["gates"]["protected_object_core_damage"]
+    assert gate["status"] == "PASS"
+    assert gate["value"] == 0.0
 
 
 def test_missing_background_hook_keeps_quality_unknown() -> None:

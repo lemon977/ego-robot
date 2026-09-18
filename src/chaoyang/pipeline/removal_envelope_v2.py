@@ -112,6 +112,9 @@ class RemovalEnvelopeV2Config:
     maximum_background_spill_ratio: float = 0.03
     maximum_temporal_area_derivative: float = 0.35
     maximum_repair_contribution_ratio: float = 0.25
+    object_core_erosion_radius_px: int = 4
+    object_hand_interaction_radius_px: int = 10
+    maximum_protected_object_core_damage_ratio: float = 0.0
 
 
 def _mask(value: np.ndarray, shape: tuple[int, int], name: str) -> np.ndarray:
@@ -616,6 +619,7 @@ class RemovalEnvelopeV2Builder:
         removal: np.ndarray,
         repair_union: np.ndarray,
         stable_background: np.ndarray | None,
+        protected_object_core: np.ndarray,
     ) -> dict[str, Any]:
         base_pixels = int(semantic_base.sum())
         removal_pixels = int(removal.sum())
@@ -630,6 +634,12 @@ class RemovalEnvelopeV2Builder:
         background_spill = (
             int((removal & stable_background).sum()) / max(1, removal_pixels)
             if stable_background is not None and removal_pixels else None
+        )
+        protected_object_pixels = int(protected_object_core.sum())
+        protected_object_damage = int((removal & protected_object_core).sum())
+        protected_object_damage_ratio = (
+            protected_object_damage / protected_object_pixels
+            if protected_object_pixels else 0.0
         )
 
         def gate(value: float | None, maximum: float, warmup: bool = False) -> dict[str, Any]:
@@ -656,6 +666,10 @@ class RemovalEnvelopeV2Builder:
             "repair_contribution": gate(
                 repair_ratio, self.config.maximum_repair_contribution_ratio,
             ),
+            "protected_object_core_damage": gate(
+                protected_object_damage_ratio,
+                self.config.maximum_protected_object_core_damage_ratio,
+            ),
         }
         statuses = {record["status"] for record in gates.values()}
         if "FAIL" in statuses:
@@ -676,6 +690,9 @@ class RemovalEnvelopeV2Builder:
                 "background_spill_ratio": background_spill,
                 "temporal_area_derivative": temporal_derivative,
                 "repair_contribution_ratio": repair_ratio,
+                "protected_object_core_pixels": protected_object_pixels,
+                "protected_object_core_damage_pixels": protected_object_damage,
+                "protected_object_core_damage_ratio": protected_object_damage_ratio,
             },
         }
 
@@ -767,7 +784,15 @@ class RemovalEnvelopeV2Builder:
             ):
                 self._last_forearm = None
                 self._last_wrist_centroid = None
-        semantic_base = semantic["hand"] | selected_forearm | semantic["equipment"]
+        protected_object_core = (
+            _erode(task_object, self.config.object_core_erosion_radius_px)
+            & ~_dilate(
+                semantic["hand"], self.config.object_hand_interaction_radius_px,
+            )
+        )
+        selected_forearm &= ~protected_object_core
+        admitted_equipment = semantic["equipment"] & ~protected_object_core
+        semantic_base = semantic["hand"] | selected_forearm | admitted_equipment
         mano_line = _mano_centerline(joints, direct, self.shape)
         mano_repair, mano_record = _mano_gap_repair(
             semantic["hand"], task_object, joints, direct, self.config,
@@ -796,7 +821,7 @@ class RemovalEnvelopeV2Builder:
         source_masks = {
             "admitted_sam_hand": semantic["hand"],
             "selected_sam_forearm": selected_forearm,
-            "admitted_sam_equipment": semantic["equipment"],
+            "admitted_sam_equipment": admitted_equipment,
             **repair_sources,
         }
         source_bits = np.zeros(self.shape, np.uint16)
@@ -815,6 +840,7 @@ class RemovalEnvelopeV2Builder:
             removal=removal,
             repair_union=repair_union,
             stable_background=background,
+            protected_object_core=protected_object_core,
         )
         return {
             "semantic_base": semantic_base,
@@ -822,6 +848,7 @@ class RemovalEnvelopeV2Builder:
             "mano_gap_repair": mano_repair,
             "attached_sleeve_repair": sleeve_repair,
             "cable_instance": cable,
+            "protected_object_core": protected_object_core,
             "removal_envelope": removal,
             "source_bits": source_bits,
             "feather_alpha": feather,
