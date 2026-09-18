@@ -85,6 +85,39 @@ def test_clean_registry_does_not_overclaim_stereo_or_contact_preservation() -> N
     assert "structural Grade-B" in limitations
 
 
+def test_depth_registry_forbids_lens_undistortion_on_encoded_vst_video() -> None:
+    registry = _load("docs/governance/CURRENT_BASELINE_REGISTRY_V2.json")
+    depth = next(entry for entry in registry["entries"] if entry["stage"] == "Depth")
+    assert depth["algorithm_id"] == "foundationstereo_encoded_vst_domain_blocked_v2"
+    assert depth["input_authority"].startswith("BLOCKED_PENDING_ENCODED_VST")
+    names = {Path(reference["path"]).name for reference in depth["code_closure"]}
+    assert "vst_encoded_video_domain.py" in names
+    assert "run_0915_foundationstereo_single_session_canary_v1.py" not in names
+    limitations = "\n".join(depth["known_limitations"])
+    assert "already undistorted" in limitations
+    assert "WITHDRAWN_WRONG_IMAGE_DOMAIN" in limitations
+
+
+def test_depth_and_object6d_have_no_current_authorized_outputs() -> None:
+    registry = _load("docs/governance/CURRENT_BASELINE_REGISTRY_V2.json")
+    depth = next(entry for entry in registry["entries"] if entry["stage"] == "Depth")
+    object6d = next(
+        entry for entry in registry["entries"] if entry["stage"] == "Object6D"
+    )
+    assert depth["authorized_scope"] == "NO_CURRENT_DEPTH_AUTHORITY_WRONG_VST_IMAGE_DOMAIN"
+    assert depth["current_counts"] == {
+        "total": 58,
+        "passed": 0,
+        "grade_c": 0,
+        "running": 0,
+        "blocked": 58,
+    }
+    assert object6d["algorithm_id"] == "object6d_blocked_upstream_depth_wrong_vst_domain_v2"
+    assert object6d["input_authority"] == "BLOCKED_UPSTREAM_DEPTH_WRONG_VST_IMAGE_DOMAIN"
+    assert object6d["authorized_scope"].startswith("NO_CURRENT_OBJECT6D_AUTHORITY")
+    assert object6d["current_counts"] == depth["current_counts"]
+
+
 def test_goldset_is_not_silently_promoted() -> None:
     result = _load(
         "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/"

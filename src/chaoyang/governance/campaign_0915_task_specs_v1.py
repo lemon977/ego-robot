@@ -566,8 +566,9 @@ TASK_SPECS["0915_removal_envelope_single_session_canary_v1"] = {
 TASK_SPECS["0915_foundationstereo_single_session_canary_v1"] = {
     "phase": "0915_FOUNDATIONSTEREO_SINGLE_SESSION_METRIC_CANARY",
     "objective": (
-        "Run the pinned FoundationStereo checkpoint on the CPU-preflight-selected "
-        "rectified stereo domain for play_cards_0915_001 and publish optical-Z in metres."
+        "Historical wrong-image-domain task definition retained for immutable ledger "
+        "closure only; registration is forbidden and a fresh encoded-video-domain "
+        "successor must use zero lens-undistortion."
     ),
     "read_set": [
         "docs/governance/CURRENT_STATUS_RECEIPT.json",
@@ -584,10 +585,10 @@ TASK_SPECS["0915_foundationstereo_single_session_canary_v1"] = {
         "docs/current/visuals/0915_FOUNDATIONSTEREO_CANARY_V1",
     ],
     "prerequisites": [
-        "routing_predecessor_0915_removal_envelope_single_session_canary_v1=PASSED_EXECUTION_ONLY",
-        "0915_stereo_preflight.gpu_depth_allowed=true",
-        "governance_PASS_FRESH", "central_GPU_lease",
-        "same_session_rectification", "external_accuracy_UNVERIFIED",
+        "HISTORICAL_TERMINAL_DO_NOT_REGISTER",
+        "VST_ENCODED_VIDEO_ALREADY_UNDISTORTED",
+        "EQUIDIS62_LENS_UNDISTORTION_FORBIDDEN",
+        "FRESH_SUCCESSOR_TASK_REQUIRED",
     ],
     "algorithm_prerequisites": {
         "depth": ["stereo_preflight_PASS_GPU_DEPTH_ADMISSION"],
@@ -603,8 +604,8 @@ TASK_SPECS["0915_foundationstereo_single_session_canary_v1"] = {
     "budgets": {"gpu_hours": 2, "runtime_attempts": 1},
     "expected_resource": "SERIAL_GPU_SINGLE_SESSION_FOUNDATIONSTEREO",
     "claim_limit": (
-        "Rectified-left optical-Z in metres from calibrated fx*baseline/disparity; "
-        "external accuracy remains unverified and no native model confidence is claimed."
+        "WITHDRAWN_WRONG_IMAGE_DOMAIN. The immutable historical run used redundant "
+        "equiDis62 lens-undistortion and grants no Depth or Object6D authority."
     ),
 }
 

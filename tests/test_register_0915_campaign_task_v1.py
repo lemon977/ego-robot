@@ -320,6 +320,15 @@ def test_sam_full_batch_registration_is_fail_closed_after_bounded_canaries() -> 
         subject._validate_predecessor(state, "0915_sam31_mask_full_v1")
 
 
+def test_wrong_domain_foundationstereo_task_cannot_be_registered_again() -> None:
+    state = _state("0915_removal_envelope_single_session_canary_v1")
+    with pytest.raises(RuntimeError, match="zero lens-undistortion"):
+        subject._validate_predecessor(
+            state,
+            "0915_foundationstereo_single_session_canary_v1",
+        )
+
+
 def test_object6d_registration_requires_explicit_depth_consumption_scope(
     tmp_path: Path, monkeypatch,
 ) -> None:
