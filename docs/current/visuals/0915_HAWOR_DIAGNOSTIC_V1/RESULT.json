@@ -1,0 +1,46 @@
+{
+  "artifacts": {
+    "contact_sheet": {
+      "bytes": 891063,
+      "path": "play_cards_0915_001_HAWOR_CONTACT_SHEET.jpg",
+      "sha256": "5cfebfd9ab97ac6df363049837cf8dea67eec76d827120a6cc97be33ff27495d"
+    },
+    "review": {
+      "bytes": 4998898,
+      "path": "play_cards_0915_001_HAWOR_PHYSICAL_LEFT_REVIEW.mp4",
+      "sha256": "29f22f3552c6981c13ddf1d9570db218e39f50d5bd857d9afb874cb5780d869b"
+    }
+  },
+  "claim_limit": "Review-only rendering of frozen HaWoR observations; it does not alter detections, fill missing hands, or grant anatomical ground-truth authority.",
+  "frame_count": 150,
+  "full_decode": "PASS_FFMPEG_XERROR",
+  "inputs": {
+    "hawor_npz": {
+      "bytes": 242685,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_full_v1/attempts/attempt_0001/hawor/sessions/playing_cards/play_cards_0915_001/HAWOR_RAW_MANO21.npz",
+      "sha256": "095abdfa5cea0335794ac75f82ed2dd9a5f00be71ae4a7aba94686cbbddc71f7"
+    },
+    "session_result": {
+      "bytes": 3357,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_full_v1/attempts/attempt_0001/hawor/sessions/playing_cards/play_cards_0915_001/RESULT.json",
+      "sha256": "7275c6caea40e9df146702e8a96863aae53ea200b02ba01517dbe689b01530dc"
+    },
+    "video": {
+      "bytes": 3663746,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/prepared_physical_left/sessions/playing_cards/play_cards_0915_001/leftmono/LEFT_MONO_RECTIFIED.mp4",
+      "sha256": "884b941f3534c0e7a17ddbf5e2fee423e50b3dcbfcddd740b5f78f32beebc617"
+    }
+  },
+  "observed_fraction": {
+    "left": 0.6266666666666667,
+    "right": 0.6333333333333333
+  },
+  "observed_frames": {
+    "bilateral": 39,
+    "left": 94,
+    "right": 95
+  },
+  "schema_version": "0915-hawor-batch-diagnostic-v1",
+  "session_id": "play_cards_0915_001",
+  "status": "PASS_REVIEW_ONLY"
+}

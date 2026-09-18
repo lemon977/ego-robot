@@ -4,6 +4,14 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
+## 0915 HaWoR 当前批次诊断
+
+- [`0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md`](0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md)
+
+该目录把当前 `play_cards_0915_001` 的冻结 HaWoR NPZ 叠加回物理左目 RGB，用于复核
+OBS/MISS、左右手身份和投影。它同时记录了当前“全片双手各 95%”分母与既有 chips_001
+开发证据不一致的问题；该诊断不是算法结果改写。
+
 ## 0. 0916 独立清洗
 
 - [`0916_CLEANING_V1/README_ZH.md`](0916_CLEANING_V1/README_ZH.md)
