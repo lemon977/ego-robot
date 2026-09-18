@@ -157,6 +157,15 @@ raw resize-only 匹配统计保留为诊断；消费 `equiDis62` 的 rectified �
   [`0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2`](visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md)。
   Interaction/Contact 前仍需逐帧几何叠加审阅和实测牌宽高。
 
+- 单样本 Interaction → Contact → Kai22 开发链已经完成，入口见
+  [`INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md`](INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md)。
+  Object6D 逐帧 QA 通过，牌尺寸因完整边界不可观测保持 `UNKNOWN`。非接触 Human/Stereo
+  对齐 hold-out median 为 `13.56 mm`，但 P90 为 `36.79 mm`，未过冻结的 30 mm 门；
+  4,500 条固定配对中最近有限 patch 距离为 `6.60 mm`，没有五帧 Contact 窗口。
+  因而 Kai22 R0 已在 293/293 direct-observed side-frame 交付，R1 正确终态为
+  `BLOCKED_LOCAL_EVIDENCE`，R2 未运行。不得统一减去 48 mm、放宽 5 mm Contact 门或把
+  未修改的 R0 称为 Contact-aware refinement。三段浅层视频均完整解码 150 帧。
+
 - Removal Envelope V2 真实 150 帧 canary 已完成并终态为 `REJECTED_QUALITY`，浅层入口见
   [`0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1`](visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1/README_ZH.md)。
   V2 没有重跑 SAM、没有 inpaint、没有 GPU；repair P95 贡献仅 `0.00293`，面积膨胀 P95

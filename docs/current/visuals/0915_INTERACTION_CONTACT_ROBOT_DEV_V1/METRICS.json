@@ -1,0 +1,60 @@
+{
+  "admitted_contact_window_count": 0,
+  "alignment_metric_translation_authorized": false,
+  "alignment_status": "REJECTED_HELDOUT_ALIGNMENT",
+  "authority": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE",
+  "contact_state_counts": {
+    "APPROACH": 2,
+    "NO_EVIDENCE": 1032,
+    "UNKNOWN": 3466
+  },
+  "contact_window_count": 0,
+  "dimension_status": "UNKNOWN",
+  "frame_count": 150,
+  "interaction_record_count": 4500,
+  "object6d_qa_status": "PASS",
+  "r0_status": "COMPLETED_DEVELOPMENT_BASELINE",
+  "r1_first_blocker": "HUMAN_STEREO_ALIGNMENT_NOT_ADMITTED",
+  "r1_status": "BLOCKED_LOCAL_EVIDENCE",
+  "r2_status": "NOT_RUN_OPTIONAL_R1_NOT_CLOSED",
+  "reviews": {
+    "INTERACTION_CONTACT_REVIEW.mp4": {
+      "bytes": 2012631,
+      "fps": 30.0,
+      "frame_count": 150,
+      "full_decode": true,
+      "geometry": [
+        1280,
+        480
+      ],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/INTERACTION_CONTACT_REVIEW.mp4",
+      "sha256": "72ee748e9b95abb75424657cf56657f566071346e876af2ed5031e247ed16568"
+    },
+    "KAI22_R0_VS_R1_REVIEW.mp4": {
+      "bytes": 2254770,
+      "fps": 30.0,
+      "frame_count": 150,
+      "full_decode": true,
+      "geometry": [
+        1280,
+        480
+      ],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/KAI22_R0_VS_R1_REVIEW.mp4",
+      "sha256": "ee814925a0b3ae68cc64787e44674b5729e6cc5c1426d50e94298b78e28a73e0"
+    },
+    "OBJECT6D_GEOMETRY_REVIEW.mp4": {
+      "bytes": 2211175,
+      "fps": 30.0,
+      "frame_count": 150,
+      "full_decode": true,
+      "geometry": [
+        1280,
+        480
+      ],
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/OBJECT6D_GEOMETRY_REVIEW.mp4",
+      "sha256": "ebf4b84e6158c9c53787001f7e045f12781bb5bda45c579d15a74d5f41394ae1"
+    }
+  },
+  "schema_version": "0915-interaction-contact-robot-dev-metrics-v1",
+  "session_id": "play_cards_0915_001"
+}

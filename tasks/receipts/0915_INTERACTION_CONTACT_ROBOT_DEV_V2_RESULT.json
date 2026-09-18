@@ -1,0 +1,14 @@
+{
+  "schema_version": "0915-interaction-contact-robot-dev-result-v2",
+  "task_id": "0915_interaction_contact_robot_dev_v2",
+  "session_id": "play_cards_0915_001",
+  "status": "FAILED_RUNTIME_FINAL",
+  "first_blocker": "CARD_DIMENSION_SCHEMA_OMITTED_BOUNDED_BUDGET_FIELDS_AFTER_R0",
+  "execution_scope_reached": "R0_COMPLETED_OBJECT6D_QA_COMPUTED",
+  "r0_output_produced": true,
+  "model_rerun_performed": false,
+  "gpu_used": false,
+  "source_mutated": false,
+  "weights": "ABSENT",
+  "corrective_successor_required": true
+}

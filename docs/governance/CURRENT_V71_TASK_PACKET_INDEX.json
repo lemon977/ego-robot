@@ -1,12 +1,12 @@
 {
   "execution_revision": "0915_FULL_FUNNEL_V1",
-  "generated_at": "2026-09-18T18:15:17+08:00",
-  "generation_id": "gov-012057-d85411e095b7",
-  "governance_revision": 12057,
-  "index_bytes": 856,
+  "generated_at": "2026-09-18T19:14:02+08:00",
+  "generation_id": "gov-012065-a5c30c5098fd",
+  "governance_revision": 12065,
+  "index_bytes": 837,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "fea82d19bb08b463299d8e5b5077ac541c9c62dc9a63677c7b4110b40ef25428",
-  "packet_revision": "0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2_TERMINAL",
+  "index_sha256": "20e5e47cdb712f15ee175d645fd839d4532ffee89f1e3d704bad2987908cb373",
+  "packet_revision": "0915_INTERACTION_CONTACT_ROBOT_DEV_V3_TERMINAL",
   "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }

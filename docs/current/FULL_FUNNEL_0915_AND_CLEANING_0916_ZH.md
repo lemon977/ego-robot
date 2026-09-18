@@ -120,7 +120,12 @@ full extent 保持 `UNOBSERVABLE`，不得补造隐藏中心或完整 6DoF。
 该 canary 已完成：三张牌的 visible-surface center 分别为 `143/146/95` 帧，plane
 normal 分别为 `139/113/48` 帧；第三张牌遮挡较多时保持 unknown。时间轴见
 [`visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md`](visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md)。
-这只是字段级内部可观测性，不是外部 pose accuracy；Contact/Robot 尚未放行。
+这只是字段级内部可观测性，不是外部 pose accuracy。后继单样本开发链已完成：
+Object6D QA 通过，但非接触 Human/Stereo 对齐的 hold-out P90 为 `36.79 mm`，未过
+`30 mm` 门；最近有限 object patch 距离为 `6.60 mm`，没有同一 hand/finger/object
+连续五帧的 Contact 窗口。因此 Kai22 R0 已交付，R1 为 `BLOCKED_LOCAL_EVIDENCE`，R2
+未运行。完整口径见
+[`INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md`](INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md)。
 
 `0915_removal_envelope_v2_real_canary_v1` 也已在 150 帧实片上运行，终态
 `REJECTED_QUALITY`。V2 的 repair contribution P95 为 `0.00293`、area inflation P95

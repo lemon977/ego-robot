@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/human-stereo-alignment-check-v1",
+  "title": "HUMAN_STEREO_ALIGNMENT_CHECK_V1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "session_id", "status", "fit_scope", "fit_data_policy", "contact_or_object_fit_used", "fixed_48mm_bias_used", "metric_translation_authorized", "input_artifacts"],
+  "properties": {
+    "schema_version": {"const": "HUMAN_STEREO_ALIGNMENT_CHECK_V1"},
+    "session_id": {"type": "string"},
+    "status": {"enum": ["PASS_DEVELOPMENT_ALIGNMENT", "REJECTED_HELDOUT_ALIGNMENT", "BLOCKED_INSUFFICIENT_NON_CONTACT_ALIGNMENT_EVIDENCE"]},
+    "fit_scope": {"const": "SESSION_STATIC_RAY_DEPTH_SCALE_OFFSET"},
+    "fit_data_policy": {"const": "NON_CONTACT_VISIBLE_HAND_SURFACE_ONLY"},
+    "contact_or_object_fit_used": {"const": false},
+    "fixed_48mm_bias_used": {"const": false},
+    "metric_translation_authorized": {"type": "boolean"},
+    "input_artifacts": {"type": "array", "minItems": 1}
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "schema_version": "0915-interaction-contact-robot-dev-result-v1",
+  "task_id": "0915_interaction_contact_robot_dev_v1",
+  "session_id": "play_cards_0915_001",
+  "status": "FAILED_RUNTIME_FINAL",
+  "first_blocker": "HAWOR_PROVENANCE_ENUM_ASSUMPTION_MISMATCH_BEFORE_R0",
+  "execution_scope_reached": "INPUT_VALIDATION_ONLY",
+  "algorithm_outputs_produced": false,
+  "model_rerun_performed": false,
+  "gpu_used": false,
+  "source_mutated": false,
+  "weights": "ABSENT",
+  "corrective_successor_required": true
+}

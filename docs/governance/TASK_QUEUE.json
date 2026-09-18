@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T18:15:17+08:00",
-  "generation_id": "gov-012057-d85411e095b7",
-  "governance_revision": 12057,
+  "generated_at": "2026-09-18T19:14:02+08:00",
+  "generation_id": "gov-012065-a5c30c5098fd",
+  "governance_revision": 12065,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -60,6 +60,26 @@
       "attempt": 0,
       "gpu_id": null,
       "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V1",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v1",
+      "updated_at": "2026-09-18T19:08:46+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V2",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v2",
+      "updated_at": "2026-09-18T19:10:49+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
       "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V2",
       "session": null,
       "status": "FAILED_RUNTIME_FINAL",
@@ -105,6 +125,16 @@
       "status": "PASSED",
       "task_id": "0915_input_prepare_cad_v2",
       "updated_at": "2026-09-18T05:37:48+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V3",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_interaction_contact_robot_dev_v3",
+      "updated_at": "2026-09-18T19:14:02+08:00"
     },
     {
       "attempt": 0,

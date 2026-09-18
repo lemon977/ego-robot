@@ -1,0 +1,125 @@
+{
+  "artifacts": {
+    "alignment": {
+      "bytes": 88681,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/HUMAN_STEREO_ALIGNMENT_CHECK_V1.json",
+      "sha256": "7a41c256d5661580d3613526c4949ff9c0d265f795a6e512fad9d193144a5e8c"
+    },
+    "card_dimensions": {
+      "bytes": 1079,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/CARD_DIMENSION_ESTIMATE_V1.json",
+      "sha256": "1ea2b11a0e34a46ebafe83be0c3b395d8e0b17f102bb4dc204a7af61bb83e0f1"
+    },
+    "contact": {
+      "bytes": 2504508,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/CONTACT_CANDIDATE_V1.json",
+      "sha256": "401df5c5fef8490bfe2b866e5f3946731bc85d0a5c6e04cc056dca403f6a463b"
+    },
+    "interaction": {
+      "bytes": 5909558,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/INTERACTION_EVIDENCE_V1.json",
+      "sha256": "82b310ac1c265eb788bab8e2efcf040e25405110efc39244648221d43fba9bb3"
+    },
+    "metrics": {
+      "bytes": 2024,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/METRICS.json",
+      "sha256": "bcb6deb40059c7b524edcdef073547f54145c3be4e08e044aaf04def8f0f89fa"
+    },
+    "object6d_qa": {
+      "bytes": 2069,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/OBJECT6D_GEOMETRY_QA_V1.json",
+      "sha256": "3966f465e164debc51a52684a03e8aff16cd24702eced97a018478541d9e4ea1"
+    },
+    "r0": {
+      "bytes": 4552,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/KAI22_R0_BASELINE_V1.json",
+      "sha256": "f0ed6102e0bcd5d1a42633ee1679b749b5a9b79a75d57713096b8ddf4288ef21"
+    },
+    "r1": {
+      "bytes": 2636,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/KAI22_R1_LOCAL_REFINEMENT_V1.json",
+      "sha256": "8e334812d8c4063c20ad9138e1cecf8d996261aa0dc7a7b87c398d7be8eac413"
+    },
+    "r2": {
+      "bytes": 251,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/KAI22_R2_ARM_VISUAL_V1.json",
+      "sha256": "faf1f1037991b74b5c5d61c39699600be27d06368ff8eb8f55fe348d4f6f28cb"
+    },
+    "reviews": {
+      "INTERACTION_CONTACT_REVIEW.mp4": {
+        "bytes": 2012631,
+        "fps": 30.0,
+        "frame_count": 150,
+        "full_decode": true,
+        "geometry": [
+          1280,
+          480
+        ],
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/INTERACTION_CONTACT_REVIEW.mp4",
+        "sha256": "72ee748e9b95abb75424657cf56657f566071346e876af2ed5031e247ed16568"
+      },
+      "KAI22_R0_VS_R1_REVIEW.mp4": {
+        "bytes": 2254770,
+        "fps": 30.0,
+        "frame_count": 150,
+        "full_decode": true,
+        "geometry": [
+          1280,
+          480
+        ],
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/KAI22_R0_VS_R1_REVIEW.mp4",
+        "sha256": "ee814925a0b3ae68cc64787e44674b5729e6cc5c1426d50e94298b78e28a73e0"
+      },
+      "OBJECT6D_GEOMETRY_REVIEW.mp4": {
+        "bytes": 2211175,
+        "fps": 30.0,
+        "frame_count": 150,
+        "full_decode": true,
+        "geometry": [
+          1280,
+          480
+        ],
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/OBJECT6D_GEOMETRY_REVIEW.mp4",
+        "sha256": "ebf4b84e6158c9c53787001f7e045f12781bb5bda45c579d15a74d5f41394ae1"
+      }
+    },
+    "visual_readme": {
+      "bytes": 1407,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1/README_ZH.md",
+      "sha256": "9c772d4df97c37993988c18e587e8d8b9b8b870d507d6f7727034999a7092316"
+    }
+  },
+  "authority": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE",
+  "calibration_authority": "DEVELOPMENT_ONLY",
+  "claim_limit": "DEVELOPMENT_RELATIVE / NON_CONTROL / NON_DEPLOYABLE only. Automatic gates authorize continued development, not visual acceptance or physical correctness. R0 must be delivered; R1 may be BLOCKED_LOCAL_EVIDENCE; R2 never blocks R1.",
+  "control_ground_truth": false,
+  "development_terminal": "R0_COMPLETE_R1_BLOCKED_LOCAL_EVIDENCE",
+  "gpu_used": false,
+  "model_rerun_performed": false,
+  "physical_deployment_authorized": false,
+  "r0_status": "COMPLETED_DEVELOPMENT_BASELINE",
+  "r1_status": "BLOCKED_LOCAL_EVIDENCE",
+  "r2_status": "NOT_RUN_OPTIONAL_R1_NOT_CLOSED",
+  "removal_or_clean_consumed": false,
+  "result": {
+    "bytes": 5580,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/RESULT.json",
+    "sha256": "41e5676cbc1d7238d36d439a79094069d50012a2851b1f5c9ac761e26bcbd2a3"
+  },
+  "run_signature": {
+    "bytes": 89601,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "a0c2f96ac41a0db55fd7c64b098b0736dc25de0c2b3d6558827d0ffe36e2a317"
+  },
+  "schema_version": "0915-interaction-contact-robot-dev-result-v1",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_interaction_contact_robot_dev_v3",
+  "weights": "ABSENT",
+  "writer_claim": {
+    "bytes": 875,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/CLAIM.json",
+    "sha256": "b58c6046e584463ccbad8e80a543d8e0a0aafb59f24c0a73fdde1cbb7b1e64b5"
+  }
+}

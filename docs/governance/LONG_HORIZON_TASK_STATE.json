@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T18:15:17+08:00",
-  "generation_id": "gov-012057-d85411e095b7",
-  "generator_code_sha": "678dcb60fed65bce8890395f6fc71b5f9def9c68e85f64b3a9b46794b2c90cfe",
-  "governance_revision": 12057,
+  "generated_at": "2026-09-18T19:14:02+08:00",
+  "generation_id": "gov-012065-a5c30c5098fd",
+  "generator_code_sha": "30b9424d95353d99ca1cbbd702d78722bf5baeda1ac084781cf5659af0944f86",
+  "governance_revision": 12065,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -680,11 +680,92 @@
       "session": null,
       "status": "PASSED",
       "task_id": "0915_planar_object6d_observability_canary_v2"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:07:50+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_planar_object6d_observability_canary_v2",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_interaction_contact_robot_dev_v1",
+      "task_packet": {
+        "bytes": 3500,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v1/TASK_PACKET.json",
+        "sha256": "04b838cad2bdc646c927d9a9345d9eca683e05637236da21094ee884576649a5"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:08:46+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 751,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "c5226d0fa6f29d22e22992d2aa5653c23b0b5fb32741d9b1cf74e47fe9a181e0"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:09:50+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_interaction_contact_robot_dev_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_interaction_contact_robot_dev_v2",
+      "task_packet": {
+        "bytes": 3465,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v2/TASK_PACKET.json",
+        "sha256": "dbb61a19a8c610b16628db9543ee103e1efadf0f41ba8e9f2d78762a6bac8ce1"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:10:49+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 525,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "c551be10dd91dbc004055ad5c0bf955f3857fb5ad06b05150fb7ab42e0c89be1"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v2"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:11:23+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_interaction_contact_robot_dev_v2",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_interaction_contact_robot_dev_v3",
+      "task_packet": {
+        "bytes": 3301,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v3/TASK_PACKET.json",
+        "sha256": "ff2ae68a3158e8b8750099c55175cbed5eb30d0089454889a3f43e4e2ca46bdf"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T19:14:02+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 5580,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/RESULT.json",
+        "sha256": "41e5676cbc1d7238d36d439a79094069d50012a2851b1f5c9ac761e26bcbd2a3"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_interaction_contact_robot_dev_v3"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "fef8016d028db1802ae767e0abbcfe857c3a2f42"
+    "commit": "bf71cb6194861194a3c5166d823a1c50d28a8dd9"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -1124,6 +1205,75 @@
         "sha256": "dafc99c798b197ef71874f2be2ab4d25ef5517c9304d6880da6336161e817360"
       },
       "updated_at": "2026-09-18T18:13:34+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 751,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "c5226d0fa6f29d22e22992d2aa5653c23b0b5fb32741d9b1cf74e47fe9a181e0"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v1",
+      "task_packet": {
+        "bytes": 3500,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v1/TASK_PACKET.json",
+        "sha256": "04b838cad2bdc646c927d9a9345d9eca683e05637236da21094ee884576649a5"
+      },
+      "updated_at": "2026-09-18T19:08:46+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V2",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 525,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "c551be10dd91dbc004055ad5c0bf955f3857fb5ad06b05150fb7ab42e0c89be1"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v2",
+      "task_packet": {
+        "bytes": 3465,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v2/TASK_PACKET.json",
+        "sha256": "dbb61a19a8c610b16628db9543ee103e1efadf0f41ba8e9f2d78762a6bac8ce1"
+      },
+      "updated_at": "2026-09-18T19:10:49+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V3",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5580,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/RESULT.json",
+        "sha256": "41e5676cbc1d7238d36d439a79094069d50012a2851b1f5c9ac761e26bcbd2a3"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_interaction_contact_robot_dev_v3",
+      "task_packet": {
+        "bytes": 3301,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v3/TASK_PACKET.json",
+        "sha256": "ff2ae68a3158e8b8750099c55175cbed5eb30d0089454889a3f43e4e2ca46bdf"
+      },
+      "updated_at": "2026-09-18T19:14:02+08:00"
     }
   ]
 }

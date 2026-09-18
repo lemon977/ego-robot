@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T18:15:17+08:00`
-- governance revision：`12057`
-- generation id：`gov-012057-d85411e095b7`
+- 状态生成时间：`2026-09-18T19:14:02+08:00`
+- governance revision：`12065`
+- generation id：`gov-012065-a5c30c5098fd`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`678dcb60fed65bce8890395f6fc71b5f9def9c68e85f64b3a9b46794b2c90cfe`
-- repository：`fef8016d028db1802ae767e0abbcfe857c3a2f42` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`30b9424d95353d99ca1cbbd702d78722bf5baeda1ac084781cf5659af0944f86`
+- repository：`bf71cb6194861194a3c5166d823a1c50d28a8dd9` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -99,11 +99,11 @@
 
 ### PASSED
 
+- `0915_interaction_contact_robot_dev_v3` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/RESULT.json / `2026-09-18T19:14:02+08:00`
 - `0915_planar_object6d_observability_canary_v2` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T18:13:34+08:00`
 - `0915_foundationstereo_encoded_domain_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T18:00:15+08:00`
 - `0915_stereo_encoded_domain_preflight_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T17:08:21+08:00`
 - `0915_removal_envelope_single_session_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T14:56:58+08:00`
-- `0915_sam31_weak_role_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T14:11:17+08:00`
 
 ### FAILED_QUALITY_C
 
@@ -111,7 +111,8 @@
 
 ### FAILED_RUNTIME
 
-- `0915_sam31_strict_role_canary_v4` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001/RESULT.json / `2026-09-18T12:35:30+08:00`
+- `0915_interaction_contact_robot_dev_v2` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T19:10:49+08:00`
+- `0915_interaction_contact_robot_dev_v1` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T19:08:46+08:00`
 
 ### BLOCKED
 

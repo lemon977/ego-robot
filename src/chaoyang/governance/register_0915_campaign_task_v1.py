@@ -874,6 +874,37 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             raise RuntimeError(
                 "Object6D observability v2 lacks the exact entity/observability lock"
             )
+    elif task_id == "0915_interaction_contact_robot_dev_v2":
+        if predecessor.get("status") != "FAILED_RUNTIME_FINAL":
+            raise RuntimeError("Interaction/Contact/Robot V2 requires the V1 enum-only early stop")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("Interaction/Contact/Robot V1 failure is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("first_blocker")
+            != "HAWOR_PROVENANCE_ENUM_ASSUMPTION_MISMATCH_BEFORE_R0"
+            or result.get("execution_scope_reached") != "INPUT_VALIDATION_ONLY"
+            or result.get("algorithm_outputs_produced") is not False
+            or result.get("model_rerun_performed") is not False
+        ):
+            raise RuntimeError("V1 was not the exact pre-R0 provenance-enum failure")
+    elif task_id == "0915_interaction_contact_robot_dev_v3":
+        if predecessor.get("status") != "FAILED_RUNTIME_FINAL":
+            raise RuntimeError("Interaction/Contact/Robot V3 requires the V2 schema-only stop")
+        result_ref = predecessor.get("result")
+        if not isinstance(result_ref, dict) or validate_artifact_ref(result_ref):
+            raise RuntimeError("Interaction/Contact/Robot V2 failure is not bound")
+        result = load_json(Path(result_ref["path"]))
+        if (
+            result.get("first_blocker")
+            != "CARD_DIMENSION_SCHEMA_OMITTED_BOUNDED_BUDGET_FIELDS_AFTER_R0"
+            or result.get("execution_scope_reached")
+            != "R0_COMPLETED_OBJECT6D_QA_COMPUTED"
+            or result.get("r0_output_produced") is not True
+            or result.get("model_rerun_performed") is not False
+        ):
+            raise RuntimeError("V2 was not the exact post-R0 sidecar-schema failure")
     elif task_id == "0915_foundationstereo_single_session_canary_v1":
         confirmation = load_json(VST_ENCODED_DOMAIN_CONFIRMATION)
         if (

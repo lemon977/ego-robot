@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/kai22-robot-development-v1",
+  "title": "KAI22_R0_R1_DEVELOPMENT_V1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "session_id", "authority", "control_ground_truth", "physical_deployment_authorized", "calibration_authority", "r0", "r1", "r2"],
+  "properties": {
+    "schema_version": {"const": "KAI22_R0_R1_DEVELOPMENT_V1"},
+    "session_id": {"type": "string"},
+    "authority": {"const": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE"},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false},
+    "calibration_authority": {"const": "DEVELOPMENT_ONLY"},
+    "r0": {"type": "object", "required": ["schema_version", "status"]},
+    "r1": {"type": "object", "required": ["schema_version", "status", "collision"]},
+    "r2": {"type": "object", "required": ["schema_version", "status", "blocks_r1"]}
+  }
+}

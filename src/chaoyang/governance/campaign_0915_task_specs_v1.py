@@ -36,6 +36,9 @@ TASK_ORDER = (
     "0915_removal_envelope_v2_real_canary_v1",
     "0915_foundationstereo_encoded_domain_canary_v1",
     "0915_planar_object6d_observability_canary_v2",
+    "0915_interaction_contact_robot_dev_v1",
+    "0915_interaction_contact_robot_dev_v2",
+    "0915_interaction_contact_robot_dev_v3",
 )
 
 INPUT_ATTEMPT_V1 = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001"
@@ -57,6 +60,9 @@ ENCODED_STEREO_PREFLIGHT_ATTEMPT = "_run/current/0915_stereo_encoded_domain_pref
 REMOVAL_ENVELOPE_V2_ATTEMPT = "_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001"
 ENCODED_DEPTH_CANARY_ATTEMPT = "_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001"
 OBJECT6D_OBSERVABILITY_V2_ATTEMPT = "_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001"
+INTERACTION_CONTACT_ROBOT_DEV_ATTEMPT = "_run/current/0915_interaction_contact_robot_dev_v1/attempts/attempt_0001"
+INTERACTION_CONTACT_ROBOT_DEV_V2_ATTEMPT = "_run/current/0915_interaction_contact_robot_dev_v2/attempts/attempt_0001"
+INTERACTION_CONTACT_ROBOT_DEV_V3_ATTEMPT = "_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001"
 
 
 TASK_SPECS: dict[str, dict[str, Any]] = {
@@ -998,6 +1004,130 @@ TASK_SPECS["0915_planar_object6d_observability_canary_v2"] = {
 }
 
 
+TASK_SPECS["0915_interaction_contact_robot_dev_v1"] = {
+    "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V1",
+    "objective": (
+        "On the fixed 150-frame play_cards_0915_001 evidence bundle, publish Object6D "
+        "QA, bounded non-contact Human/Stereo alignment, finite-patch Interaction and "
+        "Contact candidates, an unconditional Kai22 R0 baseline, and only where locally "
+        "admitted an R1 q22+wrist refinement."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        OBJECT6D_OBSERVABILITY_V2_ATTEMPT,
+        ENCODED_DEPTH_CANARY_ATTEMPT,
+        MASK_STRICT_CANARY_V5_ATTEMPT,
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915/cleaned/playing_cards/play_cards_0915_001",
+        "src/chaoyang/ops/run_0915_interaction_contact_robot_dev_v1.py",
+        "src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py",
+    ],
+    "write_set": [
+        INTERACTION_CONTACT_ROBOT_DEV_ATTEMPT,
+        "docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1",
+        "tasks/receipts/0915_INTERACTION_CONTACT_ROBOT_DEV_V1_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_planar_object6d_observability_canary_v2=PASSED",
+        "single_session_play_cards_0915_001", "exact_150_frames",
+        "HaWoR_SAM31_FoundationStereo_Object6D_v2_FROZEN_NO_RERUN",
+        "Removal_Clean_FORBIDDEN", "weights_ABSENT", "gpu_FORBIDDEN",
+        "development_relative_non_control_non_deployable", "governance_PASS_FRESH",
+    ],
+    "algorithm_prerequisites": {
+        "r0": ["direct_observed_HaWoR", "pinned_Kai22_URDF"],
+        "interaction": ["finite_visible_object_patch", "finger_associated_visible_surface"],
+        "contact": ["fixed_5mm_proximity", "complete_bounded_internal_uncertainty"],
+        "r1": ["alignment_heldout_PASS", "fixed_pair_local_contact_window"],
+        "not_dependencies": ["Removal", "Clean", "archive", "short_gap_inferred"],
+    },
+    "weights": "ABSENT",
+    "required_outputs": [
+        "CLAIM.json", "RUN_SIGNATURE.json", "OBJECT6D_GEOMETRY_QA_V1.json",
+        "CARD_DIMENSION_ESTIMATE_V1.json", "HUMAN_STEREO_ALIGNMENT_CHECK_V1.json",
+        "INTERACTION_EVIDENCE_V1.json", "CONTACT_CANDIDATE_V1.json",
+        "KAI22_R0_BASELINE_V1.npz", "KAI22_R0_BASELINE_V1.json",
+        "KAI22_R1_LOCAL_REFINEMENT_V1.npz", "KAI22_R1_LOCAL_REFINEMENT_V1.json",
+        "KAI22_R2_ARM_VISUAL_V1.json", "METRICS.json", "RESULT.json", "RUN_RECEIPT.json",
+    ],
+    "budgets": {"gpu_hours": 0, "runtime_attempts": 1, "wall_clock_hours": 6},
+    "expected_resource": "CPU_ONLY_SINGLE_SESSION_150_FRAME_DEVELOPMENT_EVIDENCE_CHAIN",
+    "claim_limit": (
+        "DEVELOPMENT_RELATIVE / NON_CONTROL / NON_DEPLOYABLE only. Automatic gates "
+        "authorize continued development, not visual acceptance or physical correctness. "
+        "R0 must be delivered; R1 may be BLOCKED_LOCAL_EVIDENCE; R2 never blocks R1."
+    ),
+}
+
+
+TASK_SPECS["0915_interaction_contact_robot_dev_v2"] = deepcopy(
+    TASK_SPECS["0915_interaction_contact_robot_dev_v1"]
+)
+TASK_SPECS["0915_interaction_contact_robot_dev_v2"].update({
+    "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V2",
+    "objective": (
+        "Correct only the V1 pre-execution HaWoR provenance enum validator, then run "
+        "the unchanged fixed 150-frame Object6D QA, non-contact Human/Stereo alignment, "
+        "finite-patch Contact, Kai22 R0, and fail-closed local R1 workflow."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        INTERACTION_CONTACT_ROBOT_DEV_ATTEMPT + "/RESULT.json",
+        OBJECT6D_OBSERVABILITY_V2_ATTEMPT,
+        ENCODED_DEPTH_CANARY_ATTEMPT,
+        MASK_STRICT_CANARY_V5_ATTEMPT,
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "src/chaoyang/ops/run_0915_interaction_contact_robot_dev_v2.py",
+        "src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py",
+    ],
+    "write_set": [
+        INTERACTION_CONTACT_ROBOT_DEV_V2_ATTEMPT,
+        "docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1",
+        "tasks/receipts/0915_INTERACTION_CONTACT_ROBOT_DEV_V2_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_interaction_contact_robot_dev_v1=FAILED_RUNTIME_FINAL_PRE_R0_ENUM_ONLY",
+        "observed_provenance=BOUNDED_PARAMETER_FIT", "missing_provenance=MISSING",
+        "boolean_observed_axis_remains_authority", "short_gap_inferred_FORBIDDEN",
+        "all_v1_algorithm_thresholds_and_boundaries_unchanged",
+        "weights_ABSENT", "gpu_FORBIDDEN", "governance_PASS_FRESH",
+    ],
+})
+
+
+TASK_SPECS["0915_interaction_contact_robot_dev_v3"] = deepcopy(
+    TASK_SPECS["0915_interaction_contact_robot_dev_v2"]
+)
+TASK_SPECS["0915_interaction_contact_robot_dev_v3"].update({
+    "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V3",
+    "objective": (
+        "Correct only the V2 CARD_DIMENSION_ESTIMATE_V1 schema field list, then run "
+        "the unchanged fixed 150-frame development evidence chain to terminal."
+    ),
+    "read_set": [
+        "docs/governance/CURRENT_STATUS_RECEIPT.json",
+        INTERACTION_CONTACT_ROBOT_DEV_V2_ATTEMPT + "/RESULT.json",
+        OBJECT6D_OBSERVABILITY_V2_ATTEMPT,
+        ENCODED_DEPTH_CANARY_ATTEMPT,
+        MASK_STRICT_CANARY_V5_ATTEMPT,
+        "_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+        "src/chaoyang/ops/run_0915_interaction_contact_robot_dev_v3.py",
+        "src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py",
+    ],
+    "write_set": [
+        INTERACTION_CONTACT_ROBOT_DEV_V3_ATTEMPT,
+        "docs/current/visuals/0915_INTERACTION_CONTACT_ROBOT_DEV_V1",
+        "tasks/receipts/0915_INTERACTION_CONTACT_ROBOT_DEV_V3_RESULT.json",
+    ],
+    "prerequisites": [
+        "0915_interaction_contact_robot_dev_v2=FAILED_RUNTIME_FINAL_AFTER_R0_SCHEMA_ONLY",
+        "dimension_budget_fields_added_to_schema", "R0_algorithm_unchanged",
+        "all_interaction_contact_robot_thresholds_unchanged",
+        "weights_ABSENT", "gpu_FORBIDDEN", "governance_PASS_FRESH",
+    ],
+})
+
+
 def build_packet(task_id: str) -> dict[str, Any]:
     if task_id not in TASK_SPECS:
         raise KeyError(task_id)
@@ -1044,6 +1174,12 @@ def validate_packet_policy(packet: dict[str, Any]) -> None:
 
 
 def predecessor_task(task_id: str) -> str | None:
+    if task_id == "0915_interaction_contact_robot_dev_v3":
+        return "0915_interaction_contact_robot_dev_v2"
+    if task_id == "0915_interaction_contact_robot_dev_v2":
+        return "0915_interaction_contact_robot_dev_v1"
+    if task_id == "0915_interaction_contact_robot_dev_v1":
+        return "0915_planar_object6d_observability_canary_v2"
     if task_id == "0915_planar_object6d_observability_canary_v2":
         return "0915_foundationstereo_encoded_domain_canary_v1"
     if task_id == "0915_foundationstereo_encoded_domain_canary_v1":
