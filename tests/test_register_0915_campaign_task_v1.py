@@ -329,6 +329,54 @@ def test_wrong_domain_foundationstereo_task_cannot_be_registered_again() -> None
         )
 
 
+def test_encoded_foundationstereo_requires_passed_preflight_and_exact_adapter(
+    tmp_path: Path, monkeypatch,
+) -> None:
+    preflight_result = tmp_path / "RESULT.json"
+    _write_json(preflight_result, {
+        "task_id": "0915_stereo_encoded_domain_preflight_v1",
+        "status": "PASSED",
+        "preflight_decision": "PASS_DIRECT_FOUNDATION_INPUT",
+        "gpu_successor_authorized": True,
+        "source_mutated": False,
+    })
+    confirmation = tmp_path / "USER_CONFIRMATION.json"
+    _write_json(confirmation, {
+        "status": "CONFIRMED",
+        "authorized_session": subject.FOUNDATION_SESSION_ID,
+        "authorized_tasks_in_order": [
+            "0915_foundationstereo_encoded_domain_canary_v1",
+            "0915_planar_object6d_observability_canary_v2",
+        ],
+        "foundationstereo_adapter": {
+            "physical_left_source_index": 1,
+            "physical_right_source_index": 0,
+            "swap_physical_cameras": False,
+            "horizontal_reflection_for_disparity_sign": True,
+            "reflect_both_eyes": True,
+            "output_spatial_unflip_to_physical_left": True,
+            "final_rgb_depth_pixel_alignment_required": True,
+            "lens_undistortion_allowed": False,
+            "lens_remap_allowed": False,
+        },
+    })
+    monkeypatch.setattr(subject, "FOUNDATION_OBJECT6D_USER_CONFIRMATION", confirmation)
+    state = _state("0915_stereo_encoded_domain_preflight_v1")
+    state["tasks"][0]["result"] = subject.artifact_ref(preflight_result)
+    predecessor = subject._validate_predecessor(
+        state, "0915_foundationstereo_encoded_domain_canary_v1",
+    )
+    assert predecessor["task_id"] == "0915_stereo_encoded_domain_preflight_v1"
+
+    bad = json.loads(confirmation.read_text(encoding="utf-8"))
+    bad["foundationstereo_adapter"]["swap_physical_cameras"] = True
+    _write_json(confirmation, bad)
+    with pytest.raises(RuntimeError, match="exact user-confirmed adapter"):
+        subject._validate_predecessor(
+            state, "0915_foundationstereo_encoded_domain_canary_v1",
+        )
+
+
 def test_object6d_registration_requires_explicit_depth_consumption_scope(
     tmp_path: Path, monkeypatch,
 ) -> None:

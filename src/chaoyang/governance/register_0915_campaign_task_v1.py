@@ -46,6 +46,12 @@ FOUNDATION_RUNTIME_CLOSURE = (
 VST_ENCODED_DOMAIN_CONFIRMATION = (
     REPO_ROOT / "tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json"
 )
+FOUNDATION_OBJECT6D_USER_CONFIRMATION = (
+    REPO_ROOT
+    / "tasks/receipts/0915_FOUNDATIONSTEREO_OBJECT6D_USER_CONFIRMATION_V1.json"
+)
+ENCODED_FOUNDATION_TASK_ID = "0915_foundationstereo_encoded_domain_canary_v1"
+ENCODED_DEPTH_REFERENCE = "PHYSICAL_LEFT_ENCODED_RESIZE_ONLY_OPTICAL_Z"
 
 
 def _canonical_sha256(value: Any) -> str:
@@ -336,6 +342,201 @@ def validate_foundationstereo_object6d_admission(
     }
 
 
+def validate_encoded_foundationstereo_object6d_admission(
+    result_path: Path,
+) -> dict[str, Any]:
+    """Admit only the user-confirmed encoded-domain Depth closure to Object6D."""
+
+    result_path = result_path.resolve(strict=True)
+    root = result_path.parent
+    result = load_json(result_path)
+    if (
+        result.get("schema_version")
+        != "0915-foundationstereo-encoded-canary-result-v1"
+        or result.get("task_id") != ENCODED_FOUNDATION_TASK_ID
+        or result.get("session_id") != FOUNDATION_SESSION_ID
+        or result.get("status") != "PASSED"
+        or result.get("depth_admission") != "PASS"
+        or result.get("first_blocker") is not None
+        or result.get("external_accuracy") != "UNVERIFIED"
+        or result.get("consumption_authorized") is not True
+        or result.get("authorized_scopes") != [FOUNDATION_OBJECT6D_SCOPE]
+        or result.get("horizontal_reflection_for_disparity_sign") is not True
+        or result.get("lens_undistortion_applied") is not False
+        or result.get("output_domain") != "ORIGINAL_PHYSICAL_LEFT_640x480"
+        or result.get("weights") != [FOUNDATION_WEIGHT]
+        or result.get("source_mutated") is not False
+    ):
+        raise RuntimeError("encoded Object6D depth admission terminal mismatch")
+
+    paths: dict[str, Path] = {}
+    refs: dict[str, dict[str, Any]] = {}
+    for field, filename in {
+        "adapter_contract": "ADAPTER_CONTRACT.json",
+        "rgb_alignment_qa": "RGB_ALIGNMENT_QA.json",
+        "depth_contract": "DEPTH_CONTRACT.json",
+        "depth_summary": "DEPTH_SUMMARY.json",
+        "depth_worker_result": "DEPTH_WORKER_RESULT.json",
+        "gpu_command_receipt": "GPU_COMMAND_RECEIPT.json",
+        "run_signature": "RUN_SIGNATURE.json",
+        "writer_claim": "CLAIM.json",
+    }.items():
+        paths[field], refs[field] = _bound_file(result, field, root, filename)
+
+    adapter = load_json(paths["adapter_contract"])
+    if (
+        adapter.get("schema_version")
+        != "0915-foundationstereo-encoded-adapter-contract-v1"
+        or adapter.get("horizontal_reflection_for_disparity_sign") is not True
+        or adapter.get("both_eyes_reflected") is not True
+        or adapter.get("camera_swap") is not False
+        or adapter.get("physical_source_indices") != {"left": 1, "right": 0}
+        or adapter.get("lens_undistortion_applied") is not False
+        or adapter.get("lens_remap_applied") is not False
+        or adapter.get("output_spatial_unflip") is not True
+        or adapter.get("output_domain") != "ORIGINAL_PHYSICAL_LEFT_640x480"
+        or adapter.get("mirrored_principal_point_rule")
+        != "cx_mirrored_px = width_px - 1 - cx_physical_px"
+    ):
+        raise RuntimeError("encoded Object6D adapter contract mismatch")
+
+    alignment = load_json(paths["rgb_alignment_qa"])
+    if (
+        alignment.get("schema_version")
+        != "0915-foundationstereo-pixelwise-rgb-alignment-v1"
+        or alignment.get("frame_count") != 150
+        or alignment.get("depth_grid_domain")
+        != "ORIGINAL_PHYSICAL_LEFT_640x480"
+        or alignment.get("maximum_absolute_channel_error") != 0
+        or alignment.get("mismatched_pixels") != 0
+        or alignment.get("coordinate_roundtrip_max_abs_error_px") != 0.0
+        or alignment.get("first_frame_physical_left_depth_rgb_sha256")
+        != alignment.get("first_frame_unflipped_model_left_sha256")
+    ):
+        raise RuntimeError("encoded Object6D pixel-alignment proof mismatch")
+
+    contract = load_json(paths["depth_contract"])
+    physical_k = contract.get("physical_left_intrinsics")
+    mirrored_k = contract.get("model_mirrored_intrinsics")
+    if (
+        contract.get("schema_version")
+        != "0915-foundationstereo-encoded-depth-contract-v1"
+        or contract.get("task_id") != ENCODED_FOUNDATION_TASK_ID
+        or contract.get("session_id") != FOUNDATION_SESSION_ID
+        or contract.get("depth_reference") != ENCODED_DEPTH_REFERENCE
+        or contract.get("frame_count") != 150
+        or contract.get("frame_geometry") != [640, 480]
+        or contract.get("depth_to_physical_left_rgb")
+        != "IDENTITY_640x480_AFTER_OUTPUT_UNFLIP"
+        or contract.get("depth_to_sam_resize_homography")
+        != [[2.0, 0.0, 0.5], [0.0, 2.0, 0.5], [0.0, 0.0, 1.0]]
+        or not isinstance(physical_k, list)
+        or not isinstance(mirrored_k, list)
+        or abs(float(mirrored_k[0][2]) - (639.0 - float(physical_k[0][2])))
+        > 1e-9
+        or contract.get("native_model_confidence") != "ABSENT_NOT_FABRICATED"
+        or contract.get("occluded_or_hidden_geometry")
+        != "INVALID_NOT_COMPLETED"
+        or contract.get("external_accuracy") != "UNVERIFIED"
+        or contract.get("consumption_authorized") is not True
+        or contract.get("authorized_scopes") != [FOUNDATION_OBJECT6D_SCOPE]
+    ):
+        raise RuntimeError("encoded Object6D depth contract mismatch")
+
+    summary = load_json(paths["depth_summary"])
+    quality = summary.get("quality", {})
+    gates = quality.get("gates", {}) if isinstance(quality, dict) else {}
+    if (
+        summary.get("schema_version")
+        != "0915-foundationstereo-encoded-depth-summary-v1"
+        or summary.get("task_id") != ENCODED_FOUNDATION_TASK_ID
+        or summary.get("status") != "PASS"
+        or summary.get("frame_count") != 150
+        or summary.get("model_load_count") != 1
+        or summary.get("model_inference_count") != 300
+        or quality.get("passed") is not True
+        or not gates
+        or not all(value is True for value in gates.values())
+        or summary.get("source_mutated") is not False
+    ):
+        raise RuntimeError("encoded Object6D depth summary mismatch")
+
+    signature = load_json(paths["run_signature"])
+    signature_digest = signature.get("run_signature_sha256")
+    unsigned_signature = {
+        key: value for key, value in signature.items()
+        if key != "run_signature_sha256"
+    }
+    if (
+        signature.get("schema_version")
+        != "0915-foundationstereo-encoded-run-signature-v1"
+        or signature.get("task_id") != ENCODED_FOUNDATION_TASK_ID
+        or signature.get("session_id") != FOUNDATION_SESSION_ID
+        or signature.get("weights") != [FOUNDATION_WEIGHT]
+        or signature.get("adapter", {}).get("model_adapter")
+        != "SIMULTANEOUS_HORIZONTAL_REFLECTION_NO_CAMERA_SWAP"
+        or signature.get("adapter", {}).get("output_transform")
+        != "HORIZONTAL_UNFLIP_TO_PHYSICAL_LEFT"
+        or signature.get("pixel_domain", {}).get("lens_undistortion_applied")
+        is not False
+        or signature_digest != _canonical_sha256(unsigned_signature)
+    ):
+        raise RuntimeError("encoded Object6D run signature mismatch")
+
+    claim = load_json(paths["writer_claim"])
+    if (
+        claim.get("schema_version")
+        != "0915-foundationstereo-encoded-writer-claim-v1"
+        or claim.get("task_id") != ENCODED_FOUNDATION_TASK_ID
+        or claim.get("status") != "CLAIMED"
+        or claim.get("run_signature_sha256") != signature_digest
+        or claim.get("unique_write_root") != str(root)
+        or claim.get("weights") != [FOUNDATION_WEIGHT]
+    ):
+        raise RuntimeError("encoded Object6D writer claim mismatch")
+
+    gpu = load_json(paths["gpu_command_receipt"])
+    worker = load_json(paths["depth_worker_result"])
+    if (
+        gpu.get("schema_version") != "v71-gpu-command-receipt-v1"
+        or gpu.get("status") != "PASSED"
+        or gpu.get("task_id") != ENCODED_FOUNDATION_TASK_ID
+        or gpu.get("returncode") != 0
+        or gpu.get("error") is not None
+        or worker.get("schema_version")
+        != "0915-foundationstereo-encoded-worker-result-v1"
+        or worker.get("task_id") != ENCODED_FOUNDATION_TASK_ID
+        or worker.get("status") != "COMPLETED"
+        or worker.get("consumption_authorized") is not True
+        or worker.get("authorized_scopes") != [FOUNDATION_OBJECT6D_SCOPE]
+        or worker.get("source_mutated") is not False
+        or worker.get("adapter_contract") != refs["adapter_contract"]
+        or worker.get("rgb_alignment_qa") != refs["rgb_alignment_qa"]
+        or worker.get("depth_contract") != refs["depth_contract"]
+        or worker.get("depth_summary") != refs["depth_summary"]
+    ):
+        raise RuntimeError("encoded Object6D GPU/worker closure mismatch")
+
+    frames = sorted((root / "frames").glob("*.npz"))
+    if len(frames) != 150 or [path.stem for path in frames] != [
+        f"{index:06d}" for index in range(150)
+    ]:
+        raise RuntimeError("encoded Object6D immutable depth frame axis mismatch")
+    return {
+        "result": result,
+        "adapter": adapter,
+        "alignment": alignment,
+        "contract": contract,
+        "summary": summary,
+        "run_signature": signature,
+        "writer_claim": claim,
+        "gpu_receipt": gpu,
+        "worker": worker,
+        "references": refs,
+        "frames": frames,
+    }
+
+
 def _validate_materialized_read_closure(
     packet: dict[str, Any], *, repo_root: Path = REPO_ROOT,
 ) -> list[str]:
@@ -599,6 +800,80 @@ def _validate_predecessor(state: dict[str, Any], task_id: str) -> dict[str, Any]
             is not False
         ):
             raise RuntimeError("Removal V2 real canary lacks exact user authorization")
+    elif task_id == "0915_foundationstereo_encoded_domain_canary_v1":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError(
+                "encoded-domain FoundationStereo requires the passed encoded-domain "
+                "stereo preflight"
+            )
+        predecessor_ref = predecessor.get("result")
+        if not isinstance(predecessor_ref, dict) or validate_artifact_ref(predecessor_ref):
+            raise RuntimeError("encoded-domain stereo preflight result is not bound")
+        stereo_result = load_json(Path(predecessor_ref["path"]))
+        if (
+            stereo_result.get("task_id")
+            != "0915_stereo_encoded_domain_preflight_v1"
+            or stereo_result.get("status") != "PASSED"
+            or stereo_result.get("preflight_decision")
+            != "PASS_DIRECT_FOUNDATION_INPUT"
+            or stereo_result.get("gpu_successor_authorized") is not True
+            or stereo_result.get("source_mutated") is not False
+        ):
+            raise RuntimeError("encoded-domain stereo preflight did not authorize GPU Depth")
+
+        confirmation = load_json(FOUNDATION_OBJECT6D_USER_CONFIRMATION)
+        adapter = confirmation.get("foundationstereo_adapter", {})
+        if (
+            confirmation.get("status") != "CONFIRMED"
+            or confirmation.get("authorized_session") != FOUNDATION_SESSION_ID
+            or confirmation.get("authorized_tasks_in_order", [None])[0] != task_id
+            or adapter.get("physical_left_source_index") != 1
+            or adapter.get("physical_right_source_index") != 0
+            or adapter.get("swap_physical_cameras") is not False
+            or adapter.get("horizontal_reflection_for_disparity_sign") is not True
+            or adapter.get("reflect_both_eyes") is not True
+            or adapter.get("output_spatial_unflip_to_physical_left") is not True
+            or adapter.get("final_rgb_depth_pixel_alignment_required") is not True
+            or adapter.get("lens_undistortion_allowed") is not False
+            or adapter.get("lens_remap_allowed") is not False
+        ):
+            raise RuntimeError(
+                "encoded-domain FoundationStereo lacks the exact user-confirmed adapter"
+            )
+    elif task_id == "0915_planar_object6d_observability_canary_v2":
+        if predecessor.get("status") != "PASSED":
+            raise RuntimeError(
+                "Object6D observability v2 requires the encoded Depth terminal"
+            )
+        depth_ref = predecessor.get("result")
+        if not isinstance(depth_ref, dict) or validate_artifact_ref(depth_ref):
+            raise RuntimeError("encoded Depth result is not bound")
+        validate_encoded_foundationstereo_object6d_admission(
+            Path(depth_ref["path"])
+        )
+        confirmation = load_json(FOUNDATION_OBJECT6D_USER_CONFIRMATION)
+        entities = confirmation.get("object6d_entities", {})
+        if (
+            confirmation.get("status") != "CONFIRMED"
+            or confirmation.get("authorized_session") != FOUNDATION_SESSION_ID
+            or confirmation.get("authorized_tasks_in_order", [None, None])[1]
+            != task_id
+            or entities.get("task_objects")
+            != ["playing_card_00", "playing_card_01", "playing_card_02"]
+            or entities.get("support_entities") != ["black_card_tray"]
+            or entities.get("card_and_tray_single_rigid_body") is not False
+            or entities.get("semantic_groups", {}).get("card_set", {}).get(
+                "rigid_pose_authority"
+            ) != "NONE"
+            or entities.get("independent_observability_fields")
+            != ["center_xyz", "plane_normal", "inplane_rotation", "full_extent"]
+            or entities.get("unknown_must_not_be_completed") is not True
+            or entities.get("measured_card_dimensions")
+            != "ABSENT_PENDING_USER_MEASUREMENT"
+        ):
+            raise RuntimeError(
+                "Object6D observability v2 lacks the exact entity/observability lock"
+            )
     elif task_id == "0915_foundationstereo_single_session_canary_v1":
         confirmation = load_json(VST_ENCODED_DOMAIN_CONFIRMATION)
         if (

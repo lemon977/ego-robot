@@ -34,12 +34,19 @@ def test_campaign_has_finite_serial_order() -> None:
         "0915_post_geometry_robot_v1",
         "0915_stereo_encoded_domain_preflight_v1",
         "0915_removal_envelope_v2_real_canary_v1",
+        "0915_foundationstereo_encoded_domain_canary_v1",
+        "0915_planar_object6d_observability_canary_v2",
     )
     assert predecessor_task(TASK_ORDER[0]) == "0915_0916_input_audit_clean_v1"
     assert predecessor_task("0915_stereo_encoded_domain_preflight_v1") == (
         "0915_foundationstereo_single_session_canary_v1"
     )
-    assert predecessor_task(TASK_ORDER[-1]) == "0915_stereo_encoded_domain_preflight_v1"
+    assert predecessor_task("0915_foundationstereo_encoded_domain_canary_v1") == (
+        "0915_stereo_encoded_domain_preflight_v1"
+    )
+    assert predecessor_task(TASK_ORDER[-1]) == (
+        "0915_foundationstereo_encoded_domain_canary_v1"
+    )
 
 
 def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
@@ -55,6 +62,7 @@ def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
                 "0915_post_geometry_robot_v1",
                 "0915_stereo_encoded_domain_preflight_v1",
                 "0915_removal_envelope_v2_real_canary_v1",
+                "0915_planar_object6d_observability_canary_v2",
             }
         else:
             assert len(packet["weights"]) == 1
@@ -122,3 +130,17 @@ def test_resize_only_hawor_canary_is_single_session_one_weight() -> None:
     encoded = str(packet)
     assert "play_cards_0915_001" in encoded
     assert "PICO26_NOT_CONSUMED" in encoded
+
+
+def test_encoded_object6d_v2_packet_is_cpu_only_and_entity_locked() -> None:
+    packet = build_packet("0915_planar_object6d_observability_canary_v2")
+    assert packet["weights"] == "ABSENT"
+    assert packet["budgets"]["gpu_hours"] == 0
+    assert predecessor_task(packet["task_id"]) == (
+        "0915_foundationstereo_encoded_domain_canary_v1"
+    )
+    encoded = str(packet)
+    assert "three_cards_independent" in encoded
+    assert "black_tray_separate_support_entity" in encoded
+    assert "card_set_semantic_only" in encoded
+    assert "old_rectified_depth" in encoded
