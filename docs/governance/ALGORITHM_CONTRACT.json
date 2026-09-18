@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T11:00:26+08:00",
-  "generation_id": "gov-011901-d3181da93996",
-  "governance_revision": 11901,
+  "generated_at": "2026-09-18T11:22:26+08:00",
+  "generation_id": "gov-011902-d33ee2937b3b",
+  "governance_revision": 11902,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -449,9 +449,9 @@
       "algorithm_id": "hawor_bounded_v2",
       "code_closure": [
         {
-          "bytes": 33523,
+          "bytes": 36021,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
-          "sha256": "135c011f24f9d2828dea6f610f9762edb6d05c7f4053c3c9e91653012a010a19"
+          "sha256": "980fae936217ff2cd3cb75b967db738cc30c066c78db2097175c31d68e491419"
         },
         {
           "bytes": 7326,

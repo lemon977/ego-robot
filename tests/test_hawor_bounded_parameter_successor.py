@@ -2,8 +2,10 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
+import pytest
 from scipy.spatial.transform import Rotation
 
 
@@ -12,6 +14,39 @@ SPEC = importlib.util.spec_from_file_location("hawor_bounded_parameter_successor
 assert SPEC is not None and SPEC.loader is not None
 MODULE = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(MODULE)
+
+
+def prepare_runtime_guard_fixture(monkeypatch: pytest.MonkeyPatch, tmp_path: Path) -> Path:
+    environment = tmp_path / "hawor-py310-v1"
+    marker = environment / ".chaoyang-hardlink-snapshot/manifest.json.gz"
+    smplx = environment / "lib/python3.10/site-packages/smplx/__init__.py"
+    marker.parent.mkdir(parents=True)
+    smplx.parent.mkdir(parents=True)
+    marker.write_bytes(b"manifest")
+    smplx.write_text("", encoding="utf-8")
+    monkeypatch.setattr(MODULE, "EXPECTED_HAWOR_ENV_ROOT", environment)
+    monkeypatch.setattr(MODULE.sys, "prefix", str(environment))
+    monkeypatch.setenv("CHA0YANG_HAWOR_ENV_ROOT", str(environment))
+    monkeypatch.setattr(MODULE.importlib.util, "find_spec", lambda name: SimpleNamespace(origin=str(smplx)))
+    return environment
+
+
+def test_runtime_guard_accepts_published_launcher_environment(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path,
+) -> None:
+    environment = prepare_runtime_guard_fixture(monkeypatch, tmp_path)
+    result = MODULE.validate_runtime_environment()
+    assert result["status"] == "PASS_FIXED_HAWOR_RUNTIME"
+    assert result["environment_root"] == str(environment.resolve())
+
+
+def test_runtime_guard_rejects_system_python_before_input_preflight(
+    monkeypatch: pytest.MonkeyPatch, tmp_path: Path,
+) -> None:
+    prepare_runtime_guard_fixture(monkeypatch, tmp_path)
+    monkeypatch.setattr(MODULE.sys, "prefix", "/usr/local")
+    with pytest.raises(RuntimeError, match="WRONG_RUNTIME_ENTRYPOINT"):
+        MODULE.validate_runtime_environment()
 
 
 def test_segments_never_bridge_missing_frames() -> None:
@@ -33,4 +68,3 @@ def test_rotation_fit_and_backtrack_remain_on_so3() -> None:
     products = np.transpose(candidate, (0, 2, 1)) @ candidate
     assert np.max(np.abs(products - np.eye(3))) < 1e-10
     assert np.min(np.linalg.det(candidate)) > 0.999999
-

@@ -1,0 +1,81 @@
+{
+  "schema_version": "0915-hawor-bounded-v2-canary-result-v1",
+  "created_at": "2026-09-18T11:21:40+08:00",
+  "status": "PASS_NUMERIC_NEEDS_HUMAN_REVIEW",
+  "session_id": "play_cards_0915_001",
+  "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY_NO_REMAP",
+  "algorithm_id": "hawor_bounded_v2",
+  "runtime_environment": {
+    "status": "PASS_FIXED_HAWOR_RUNTIME",
+    "root": "/mnt/workspace/code/chaoyang/_run/current/environments/hawor-py310-v1",
+    "launcher": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/hawor_python.sh",
+    "smplx_origin": "/mnt/workspace/code/chaoyang/_run/current/environments/hawor-py310-v1/lib/python3.10/site-packages/smplx/__init__.py",
+    "gpu_calls": 0
+  },
+  "metrics": {
+    "left": {
+      "observed_frames_raw": 148,
+      "observed_frames_candidate": 148,
+      "wrist_step_p95_mm_raw": 18.880620956420888,
+      "wrist_step_p95_mm_candidate": 5.065081691741943,
+      "all_joint_acceleration_p95_mm_raw": 30.293770122528063,
+      "all_joint_acceleration_p95_mm_candidate": 3.090034902095794,
+      "bone_length_cv_max_raw": 0.02859707735478878,
+      "bone_length_cv_max_candidate": 0.02050938457250595,
+      "reprojection_p95_px": 8.754933977127067
+    },
+    "right": {
+      "observed_frames_raw": 145,
+      "observed_frames_candidate": 145,
+      "wrist_step_p95_mm_raw": 21.762121868133534,
+      "wrist_step_p95_mm_candidate": 14.251000928878774,
+      "all_joint_acceleration_p95_mm_raw": 31.73744964599603,
+      "all_joint_acceleration_p95_mm_candidate": 5.594459533691398,
+      "bone_length_cv_max_raw": 0.08272100239992142,
+      "bone_length_cv_max_candidate": 0.06343738734722137,
+      "reprojection_p95_px": 8.986771392822247
+    },
+    "selected_backtracking_alpha": 1.0,
+    "identity_switch_count": 0
+  },
+  "evidence": {
+    "contract": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/CONTRACT.json",
+      "sha256": "7770bb2e08ba55992b2cf4bfb1e4670efd13295267b5370402bef30f5c971094"
+    },
+    "guarded_run_result": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/RESULT.json",
+      "bytes": 1947,
+      "sha256": "0161defd65d62adc7efbcced6740373ab7d223c9c745ab94b1d8bf7ae1dc01df"
+    },
+    "session_result": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/RESULT.json",
+      "bytes": 6606,
+      "sha256": "05429e832123fbe9d518e52bb90cbe7f1e9268d4c6264ae63ef6d423dc1991a9"
+    },
+    "bounded_npz": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_bounded_v2_canary/attempts/attempt_0001/bounded_output_guarded_identity_fixed/play_cards_0915_001/HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
+      "bytes": 364941,
+      "sha256": "ae3077a5091979707d6947c88368587078ccfc4050d42b6f21e1f17474c7f9fa"
+    },
+    "review_video": {
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_REVIEW.mp4",
+      "bytes": 749828,
+      "sha256": "3b9b8b39c1f3d856181b27222454cbb3a24d8dcc21a60e1484286d1445193dcb",
+      "frames": 150,
+      "fps": 30,
+      "resolution": [1280, 960],
+      "full_decode_pass": true
+    },
+    "contact_sheet": {
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_CONTACT_SHEET.jpg",
+      "bytes": 297075,
+      "sha256": "9ea5f79179d4c5056fb5af48b3d225f399a4b6ee0d229fe797d2ef84d7346be6"
+    },
+    "producer": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
+      "sha256": "980fae936217ff2cd3cb75b967db738cc30c066c78db2097175c31d68e491419"
+    }
+  },
+  "claim_limit": "One-session bounded MANO temporal canary. Numeric gates passed, but human full-video review is still required; no batch, SAM3.1, Robot, control-ground-truth or physical-deployment authority."
+}

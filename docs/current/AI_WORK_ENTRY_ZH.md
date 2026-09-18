@@ -74,6 +74,9 @@ H4 自动 glove/Controller Mask-to-Clean 路线已经被当前策略拒绝，除
 - 模型根：`<repo>/assets/models`
 - FoundationStereo 环境：`<repo>/_run/current/environments/foundationstereo-py311-v1`
 - HaWoR 环境：`<repo>/_run/current/environments/hawor-py310-v1`
+- HaWoR 算子必须通过 `src/chaoyang/ops/hawor_python.sh <runner.py> ...` 启动；不得用系统
+  `python` 直接运行。HaWoR runner 必须在读取输入或通过 preflight 前以
+  `WRONG_RUNTIME_ENTRYPOINT` 拒绝错误解释器。
 
 不得移动、删除或改写原始数据；不得把临时结果写到约定路径之外。GPU 工作必须经过租约，治理、哈希、文档、归档和普通测试使用 CPU。
 

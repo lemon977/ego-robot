@@ -19,7 +19,9 @@ REQUIRED_ROOTS = {
     "tasks", "assets", "vendor", "archive", "_run",
 }
 FORBIDDEN_ROOTS = {"pipeline", "HumanEgo", "tools", "systems", "data", "third_party"}
-IGNORED_ALLOWLIST = ("archive/", "_run/current/", "assets/models/")
+IGNORED_ALLOWLIST = ("archive/", "_run/current/", "_run/caches/", "assets/models/")
+IGNORED_REVIEW_MEDIA_ROOT = "docs/current/visuals/"
+IGNORED_REVIEW_MEDIA_SUFFIXES = {".mp4"}
 CODE_SUFFIXES = {".py", ".yaml", ".yml", ".toml", ".sh", ".cmd", ".ps1"}
 LEGACY_IMPORT = re.compile(r"^\s*(?:from|import)\s+(?:pipeline|HumanEgo|tools)(?:[.\s]|$)", re.MULTILINE)
 HARDCODED_ROOT = "/mnt/workspace/code/" + "chaoyang"
@@ -50,6 +52,15 @@ def ignored_paths(root: Path) -> list[str]:
     return paths
 
 
+def allowed_ignored_path(path: str) -> bool:
+    if path.startswith(IGNORED_ALLOWLIST):
+        return True
+    return (
+        path.startswith(IGNORED_REVIEW_MEDIA_ROOT)
+        and Path(path).suffix.lower() in IGNORED_REVIEW_MEDIA_SUFFIXES
+    )
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path.cwd())
@@ -69,7 +80,7 @@ def main() -> int:
         errors.append("legacy repository roots remain: " + ", ".join(present_forbidden))
 
     ignored = ignored_paths(root)
-    bad_ignored = [path for path in ignored if not path.startswith(IGNORED_ALLOWLIST)]
+    bad_ignored = [path for path in ignored if not allowed_ignored_path(path)]
     if bad_ignored:
         errors.append(
             f"ignored files outside allowlist: {len(bad_ignored)} "

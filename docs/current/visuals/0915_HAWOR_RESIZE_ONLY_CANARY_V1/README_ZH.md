@@ -1,10 +1,14 @@
 # 0915 物理左目 resize-only HaWoR 单会话 canary
 
-状态：`EXECUTION_PASSED / SESSION_FAILED_QUALITY_C / USER_REVIEW_REQUIRED`
+状态：`EXECUTION_PASSED / RAW_DIAGNOSTIC_ONLY / BOUNDED_SUCCESSOR_AVAILABLE`
 
 本 canary 只运行 `play_cards_0915_001`。输入从 SBS 裁出物理左目
 `sourceIndex=1`，仅由 2048×1536 缩放为 1280×960；`rectified=false`、
 `remap_applied=false`。未启动 SAM3.1、Depth 或任何批处理。
+
+本目录是 raw HaWoR 诊断，不代表完整 HaWoR 基线。当前登记的 `hawor_bounded_v2`
+单会话结果请见
+[0915_HAWOR_BOUNDED_V2_CANARY_V1](../0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md)。
 
 ## 直接复核
 

@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import importlib.util
 import json
 import os
 from pathlib import Path
@@ -21,6 +22,57 @@ import subprocess
 import sys
 import time
 from typing import Any
+
+PROJECT = Path(__file__).resolve().parents[3]
+HAWOR_ROOT = PROJECT / "vendor/HaWoR"
+EXPECTED_HAWOR_ENV_ROOT = PROJECT / "_run/current/environments/hawor-py310-v1"
+HAWOR_ENV_LAUNCHER = PROJECT / "src/chaoyang/ops/hawor_python.sh"
+
+
+def validate_runtime_environment() -> dict[str, Any]:
+    """Fail before input preflight when the fixed HaWoR runtime was bypassed."""
+
+    expected_root = EXPECTED_HAWOR_ENV_ROOT.resolve()
+    marker = expected_root / ".chaoyang-hardlink-snapshot/manifest.json.gz"
+    prefix = Path(sys.prefix).resolve()
+    launcher_root_raw = os.environ.get("CHA0YANG_HAWOR_ENV_ROOT")
+    launcher_root = Path(launcher_root_raw).resolve() if launcher_root_raw else None
+    smplx_spec = importlib.util.find_spec("smplx")
+    smplx_origin = Path(smplx_spec.origin).resolve() if smplx_spec and smplx_spec.origin else None
+    failures: list[str] = []
+    if prefix != expected_root:
+        failures.append(f"sys.prefix={prefix} expected={expected_root}")
+    if launcher_root != expected_root:
+        failures.append(f"CHA0YANG_HAWOR_ENV_ROOT={launcher_root_raw!r} expected={expected_root}")
+    if not marker.is_file():
+        failures.append(f"published environment marker missing: {marker}")
+    if smplx_origin is None or expected_root not in smplx_origin.parents:
+        failures.append(f"smplx origin={smplx_origin} is not inside {expected_root}")
+    if failures:
+        command = f"{HAWOR_ENV_LAUNCHER} {Path(__file__).resolve()} <args>"
+        raise RuntimeError(
+            "WRONG_RUNTIME_ENTRYPOINT: fixed HaWoR environment was not entered through "
+            f"the canonical launcher; run `{command}`. " + "; ".join(failures)
+        )
+    return {
+        "status": "PASS_FIXED_HAWOR_RUNTIME",
+        "environment_root": str(expected_root),
+        "sys_executable": str(Path(sys.executable).resolve()),
+        "sys_prefix": str(prefix),
+        "snapshot_manifest": str(marker),
+        "smplx_origin": str(smplx_origin),
+        "launcher": str(HAWOR_ENV_LAUNCHER.resolve()),
+    }
+
+
+_BOOTSTRAP_RUNTIME_ENVIRONMENT: dict[str, Any] | None = None
+if __name__ == "__main__":
+    try:
+        _BOOTSTRAP_RUNTIME_ENVIRONMENT = validate_runtime_environment()
+    except RuntimeError as error:
+        print(str(error), file=sys.stderr)
+        raise SystemExit(78) from error
+
 
 os.environ["CUDA_VISIBLE_DEVICES"] = ""
 
@@ -33,8 +85,6 @@ from scipy.spatial.transform import Rotation  # noqa: E402
 import torch  # noqa: E402
 
 
-PROJECT = Path(__file__).resolve().parents[3]
-HAWOR_ROOT = PROJECT / "vendor/HaWoR"
 FONT_PATH = Path("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc")
 MANO_NAMES = (
     "wrist", "thumb_cmc", "thumb_mcp", "thumb_ip", "thumb_tip",
@@ -597,6 +647,7 @@ def main() -> int:
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args()
+    runtime_environment = _BOOTSTRAP_RUNTIME_ENVIRONMENT or validate_runtime_environment()
     output_root = args.output_root.resolve()
     contract_path = args.contract.resolve(strict=True)
     if output_root.exists():
@@ -616,7 +667,12 @@ def main() -> int:
     if not all(item["raw_sha_match"] and item["video_sha_match"] for item in checks):
         raise RuntimeError("preflight input SHA mismatch")
     if args.preflight_only:
-        print(json.dumps({"status": "PASS_PREFLIGHT_CPU", "checks": checks, "gpu_calls": 0}, ensure_ascii=False))
+        print(json.dumps({
+            "status": "PASS_PREFLIGHT_CPU",
+            "runtime_environment": runtime_environment,
+            "checks": checks,
+            "gpu_calls": 0,
+        }, ensure_ascii=False))
         return 0
     output_root.mkdir(parents=True)
     rows = []
@@ -632,6 +688,7 @@ def main() -> int:
         "claim_limit": "CPU single-track parameter temporal canary only; neither overlap-gauge fusion nor batch authority.",
         "contract": evidence(contract_path),
         "producer": evidence(Path(__file__)),
+        "runtime_environment": runtime_environment,
         "canaries": rows,
         "gpu_calls": 0,
     }

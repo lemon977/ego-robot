@@ -4,7 +4,18 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
-## 0915 物理左目 resize-only HaWoR canary（当前优先复核）
+## 0915 HaWoR bounded_v2 单会话基线（当前优先复核）
+
+- [`0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md`](0915_HAWOR_BOUNDED_V2_CANARY_V1/README_ZH.md)
+- [`0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_REVIEW.mp4`](0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_REVIEW.mp4)
+- [`0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_CONTACT_SHEET.jpg`](0915_HAWOR_BOUNDED_V2_CANARY_V1/0915_HAWOR_RAW_VS_BOUNDED_V2_CONTACT_SHEET.jpg)
+
+这是用户确认的物理左目 resize-only 输入经过 raw HaWoR 和当前登记的
+`hawor_bounded_v2` 后处理后的 150 帧全片。观测覆盖保持左 148/150、右 145/150；
+wrist step P95 从左 18.88 降至 5.07 mm、右 21.76 降至 14.25 mm，右手骨长 CV
+从 0.08272 降至 0.06344。数值门通过，仍等待人工全片复核。
+
+## 0915 物理左目 resize-only HaWoR raw 诊断
 
 - [`0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md`](0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)
 - [`0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_REVIEW.mp4`](0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_REVIEW.mp4)
@@ -12,7 +23,8 @@
 
 固定 150 帧输入未执行 remap。HaWoR 观测左手 148 帧、右手 145 帧；左手通过冻结
 数值门，右手因画面内关节比例 81.58% 及骨长 CV 0.08272 未通过，整体为
-`FAILED_QUALITY_C`。等待用户复核，不自动进入 SAM3.1。
+`FAILED_QUALITY_C`。该目录只描述 raw 输出，不是最终 HaWoR 基线；最终审阅应使用上面的
+`hawor_bounded_v2` 目录。不自动进入 SAM3.1。
 
 ## 0915 VST 图像域 A/B（当前优先复核）
 
