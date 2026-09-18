@@ -94,6 +94,6 @@ def test_vst_research_requires_exact_cancelled_image_domain_hold(
 
 
 def test_sam_registration_is_fail_closed_pending_canary_review() -> None:
-    state = _state("0915_hawor_resize_only_canary_v1")
+    state = _state("0915_sam31_strict_role_canary_v5")
     with pytest.raises(RuntimeError, match="separate user review"):
         subject._validate_predecessor(state, "0915_sam31_mask_full_v1")
