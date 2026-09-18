@@ -39,6 +39,8 @@ def test_campaign_has_finite_serial_order() -> None:
         "0915_interaction_contact_robot_dev_v1",
         "0915_interaction_contact_robot_dev_v2",
         "0915_interaction_contact_robot_dev_v3",
+        "0915_human_stereo_surface_association_canary_v1",
+        "0915_human_stereo_alignment_bound_audit_v1",
     )
     assert predecessor_task(TASK_ORDER[0]) == "0915_0916_input_audit_clean_v1"
     assert predecessor_task("0915_stereo_encoded_domain_preflight_v1") == (
@@ -50,7 +52,15 @@ def test_campaign_has_finite_serial_order() -> None:
     assert predecessor_task("0915_planar_object6d_observability_canary_v2") == (
         "0915_foundationstereo_encoded_domain_canary_v1"
     )
-    assert predecessor_task(TASK_ORDER[-1]) == "0915_interaction_contact_robot_dev_v2"
+    assert predecessor_task("0915_interaction_contact_robot_dev_v3") == (
+        "0915_interaction_contact_robot_dev_v2"
+    )
+    assert predecessor_task("0915_human_stereo_surface_association_canary_v1") == (
+        "0915_interaction_contact_robot_dev_v3"
+    )
+    assert predecessor_task(TASK_ORDER[-1]) == (
+        "0915_human_stereo_surface_association_canary_v1"
+    )
 
 
 def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
@@ -70,6 +80,8 @@ def test_every_algorithm_packet_has_exactly_one_logical_weight() -> None:
                 "0915_interaction_contact_robot_dev_v1",
                 "0915_interaction_contact_robot_dev_v2",
                 "0915_interaction_contact_robot_dev_v3",
+                "0915_human_stereo_surface_association_canary_v1",
+                "0915_human_stereo_alignment_bound_audit_v1",
             }
         else:
             assert len(packet["weights"]) == 1
@@ -151,3 +163,32 @@ def test_encoded_object6d_v2_packet_is_cpu_only_and_entity_locked() -> None:
     assert "black_tray_separate_support_entity" in encoded
     assert "card_set_semantic_only" in encoded
     assert "old_rectified_depth" in encoded
+
+
+def test_surface_association_successor_is_bounded_and_cannot_relax_contact() -> None:
+    packet = build_packet("0915_human_stereo_surface_association_canary_v1")
+    assert packet["weights"] == "ABSENT"
+    assert packet["budgets"]["gpu_hours"] == 0
+    assert len(packet["read_set"]) == 8
+    assert predecessor_task(packet["task_id"]) == "0915_interaction_contact_robot_dev_v3"
+    encoded = str(packet)
+    assert "Contact_distance_gate_fixed_5mm" in encoded
+    assert "finite_visible_patch_required" in encoded
+    assert "contact_or_object_fit_FORBIDDEN" in encoded
+    assert "fixed_48mm_bias_FORBIDDEN" in encoded
+    assert "Removal_Clean_FORBIDDEN" in encoded
+
+
+def test_alignment_bound_audit_is_read_only_and_fail_closed() -> None:
+    packet = build_packet("0915_human_stereo_alignment_bound_audit_v1")
+    assert packet["weights"] == "ABSENT"
+    assert packet["budgets"]["gpu_hours"] == 0
+    assert len(packet["read_set"]) == 6
+    assert predecessor_task(packet["task_id"]) == (
+        "0915_human_stereo_surface_association_canary_v1"
+    )
+    encoded = str(packet)
+    assert "reject_bound_saturation" in encoded
+    assert "Contact_distance_gate_fixed_5mm" in encoded
+    assert "contact_or_object_fit_FORBIDDEN" in encoded
+    assert "fixed_48mm_bias_FORBIDDEN" in encoded
