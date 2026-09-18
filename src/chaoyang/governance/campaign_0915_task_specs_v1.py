@@ -18,6 +18,7 @@ TASK_ORDER = (
     "0915_input_prepare_cad_v2",
     "0915_hawor_full_v1",
     "0915_vst_image_domain_ab_v1",
+    "0915_hawor_resize_only_canary_v1",
     "0915_sam31_mask_full_v1",
     "0915_foundationstereo_full_v1",
     "0915_post_geometry_robot_v1",
@@ -27,6 +28,7 @@ INPUT_ATTEMPT_V1 = "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001
 INPUT_ATTEMPT = "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001"
 HAWOR_ATTEMPT = "_run/current/0915_hawor_full_v1/attempts/attempt_0001"
 VST_AB_ATTEMPT = "_run/current/0915_vst_image_domain_ab_v1/attempts/attempt_0001"
+HAWOR_RESIZE_CANARY_ATTEMPT = "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001"
 DEPTH_ATTEMPT = "_run/current/0915_foundationstereo_full_v1/attempts/attempt_0001"
 MASK_ATTEMPT = "_run/current/0915_sam31_mask_full_v1/attempts/attempt_0001"
 
@@ -159,6 +161,47 @@ TASK_SPECS: dict[str, dict[str, Any]] = {
         "claim_limit": (
             "Single-session VST image-domain diagnosis only; no model inference, "
             "camera-calibration promotion, full-batch baseline or source mutation."
+        ),
+    },
+    "0915_hawor_resize_only_canary_v1": {
+        "phase": "0915_HAWOR_PHYSICAL_LEFT_RESIZE_ONLY_CANARY",
+        "objective": (
+            "Run pinned HaWoR on only play_cards_0915_001 using the user-confirmed "
+            "physical-left sourceIndex=1 passthrough pixels with resize only."
+        ),
+        "read_set": [
+            "docs/governance/CURRENT_STATUS_RECEIPT.json",
+            "tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json",
+            "tasks/receipts/0915_VST_IMAGE_DOMAIN_USER_CONFIRMATION.json",
+            "src/chaoyang/ops/run_0915_hawor_resize_only_canary_v1.py",
+            "src/chaoyang/ops/run_play_cards_0910_001_hawor_raw.py",
+            "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/playing_cards/play_cards_0915_001",
+            "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json",
+        ],
+        "write_set": [
+            HAWOR_RESIZE_CANARY_ATTEMPT,
+            "docs/current/visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1",
+            "tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
+        ],
+        "prerequisites": [
+            "0915_vst_image_domain_ab_v1=BLOCKED_EXTERNAL_REVIEW_COMPLETE",
+            "user_confirmed_A_physical_left_sourceIndex1_resize_only",
+            "governance_PASS_FRESH", "central_GPU_lease",
+            "single_session_play_cards_0915_001", "PICO26_NOT_CONSUMED",
+        ],
+        "weights": ["assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"],
+        "required_outputs": [
+            "INPUT_DOMAIN.json", "hawor/HAWOR_RAW_MANO21.npz",
+            "HAWOR_METRICS.json", "GPU_COMMAND_RECEIPT.json", "RESULT.json",
+            "0915_HAWOR_RESIZE_ONLY_REVIEW.mp4",
+            "0915_HAWOR_RESIZE_ONLY_CONTACT_SHEET.jpg",
+            "tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
+        ],
+        "budgets": {"gpu_hours": 1, "runtime_attempts": 1},
+        "expected_resource": "SERIAL_GPU_CANARY; one logical HaWoR bundle",
+        "claim_limit": (
+            "One-session development HaWoR evidence on the confirmed monocular pixel "
+            "domain; no SAM, Depth, batch, physical-3D or deployment authority."
         ),
     },
     "0915_foundationstereo_full_v1": {

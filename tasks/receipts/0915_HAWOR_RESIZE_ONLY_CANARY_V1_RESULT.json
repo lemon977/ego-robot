@@ -1,0 +1,68 @@
+{
+  "batch_started": false,
+  "claim_limit": "One-session development HaWoR evidence on the confirmed monocular pixel domain; no SAM, Depth, batch, physical-3D or deployment authority.",
+  "depth_started": false,
+  "gpu_command_receipt": {
+    "bytes": 17676,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "fff2af7294daf31afac4c8bd3450571ffff35de1e188fbde0d8e3e5bf23d0ce1"
+  },
+  "hawor_metrics": {
+    "bytes": 1999,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/HAWOR_METRICS.json",
+    "sha256": "d31cb303bf6847eaf6b16783188c9cdba38ee842029044e72246325689c46e0f"
+  },
+  "hawor_npz": {
+    "bytes": 364177,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/hawor/HAWOR_RAW_MANO21.npz",
+    "sha256": "ed896b0f683824a1c2f4762cb0e24752c699896c4946af067ac0d26b13777991"
+  },
+  "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
+  "input_domain": {
+    "bytes": 2096,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/INPUT_DOMAIN.json",
+    "sha256": "109645594a1306d0aecc39adb236d4b66fbac953423dbb1de57378d6fa66d297"
+  },
+  "next_authority": "USER_REVIEW_REQUIRED_NO_AUTOMATIC_SUCCESSOR",
+  "numeric_mask_gate_pass": false,
+  "observed_frames": {
+    "bilateral": 143,
+    "left": 148,
+    "right": 145
+  },
+  "result": {
+    "bytes": 2622,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "b06920fc63f5ab66567df165e061a188e93703b35676f546854ac7a03a47ea55"
+  },
+  "sam31_started": false,
+  "schema_version": "0915-hawor-resize-only-canary-result-v1",
+  "session_admission": "FAILED_QUALITY_C",
+  "session_id": "play_cards_0915_001",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_hawor_resize_only_canary_v1",
+  "visuals": {
+    "contact_sheet": {
+      "bytes": 497299,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_CONTACT_SHEET.jpg",
+      "sha256": "5084c80c4b77b04ac4d6817c7accace6843894ae90a632e98452a18c399162ff"
+    },
+    "review": {
+      "bytes": 2834261,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_REVIEW.mp4",
+      "sha256": "18b46b838a4181296c39a8d112884e3572589943816f713ed2c9d45ca5769fb6"
+    },
+    "review_decode": {
+      "fps": "30/1",
+      "frames": 150,
+      "height": 960,
+      "status": "PASS_FULL_DECODE",
+      "width": 1280
+    }
+  },
+  "wall_seconds": 137.30248188972473,
+  "weights": [
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ]
+}

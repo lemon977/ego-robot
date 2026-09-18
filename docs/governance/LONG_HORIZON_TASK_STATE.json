@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T10:39:39+08:00",
-  "generation_id": "gov-011891-b3df110a8065",
+  "generated_at": "2026-09-18T11:00:26+08:00",
+  "generation_id": "gov-011901-d3181da93996",
   "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
-  "governance_revision": 11891,
+  "governance_revision": 11901,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -302,11 +302,38 @@
       "session": null,
       "status": "BLOCKED_EXTERNAL",
       "task_id": "0915_vst_image_domain_ab_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T10:55:21+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_vst_image_domain_ab_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_hawor_resize_only_canary_v1",
+      "task_packet": {
+        "bytes": 2217,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_resize_only_canary_v1/TASK_PACKET.json",
+        "sha256": "7fdd91ddacf13bc0023f9c1011339ff10df8f3ccdb5d9e01643388a104f2344a"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T10:58:55+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 2865,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
+        "sha256": "724201a507dd424982470d8177bbf5f10057fa5dd937b8cc1a42f854d5e94d45"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_hawor_resize_only_canary_v1"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "221c99c0a6adac74808cd4d00827f54a586d08b5"
+    "commit": "0d2d858d61a027fcf1d3b36f3bdd1ed1a4b21de6"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -424,6 +451,29 @@
         "sha256": "3e4d8badce77c83633e4a8e0e1814bfbb8abbd580a371e04c1ca336ab7137402"
       },
       "updated_at": "2026-09-18T10:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HAWOR_PHYSICAL_LEFT_RESIZE_ONLY_CANARY",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2865,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
+        "sha256": "724201a507dd424982470d8177bbf5f10057fa5dd937b8cc1a42f854d5e94d45"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_hawor_resize_only_canary_v1",
+      "task_packet": {
+        "bytes": 2217,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_resize_only_canary_v1/TASK_PACKET.json",
+        "sha256": "7fdd91ddacf13bc0023f9c1011339ff10df8f3ccdb5d9e01643388a104f2344a"
+      },
+      "updated_at": "2026-09-18T10:58:55+08:00"
     }
   ]
 }

@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T10:39:39+08:00`
-- governance revision：`11891`
-- generation id：`gov-011891-b3df110a8065`
+- 状态生成时间：`2026-09-18T11:00:26+08:00`
+- governance revision：`11901`
+- generation id：`gov-011901-d3181da93996`
 - freshness：`FRESH`（age=0s）
 - generator code SHA：`aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120`
-- repository：`221c99c0a6adac74808cd4d00827f54a586d08b5` / `task/0915-full-funnel-0916-clean-v1`
+- repository：`0d2d858d61a027fcf1d3b36f3bdd1ed1a4b21de6` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -98,6 +98,7 @@
 
 ### PASSED
 
+- `0915_hawor_resize_only_canary_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json / `2026-09-18T10:58:55+08:00`
 - `0915_input_prepare_cad_v2` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T05:37:48+08:00`
 - `baseline_e2e_pair_v1` / `get_potato_chips_0902_103+get_potato_chips_0915_001` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/receipts/BASELINE_E2E_PAIR_V1_COMPLETION.json / `2026-09-17T19:00:19+08:00`
 - `clean_baseline_v1` / `-` / `PASSED` / no-result / `2026-09-17T11:35:00+08:00`

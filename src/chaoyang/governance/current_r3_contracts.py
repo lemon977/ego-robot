@@ -226,6 +226,17 @@ def build_algorithm_contract(
                 "authority_promoted": False,
                 "claim_limit": "Image-domain A/B only; no model, calibration, full-batch or physical-accuracy authority.",
             },
+            "hawor_resize_only_canary_v1": {
+                "execution_scope": "PLAY_CARDS_0915_001_ONLY",
+                "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1",
+                "gpu_required": True,
+                "code_closure": [artifact_ref(
+                    repo_root / "src/chaoyang/ops/run_0915_hawor_resize_only_canary_v1.py"
+                )],
+                "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
+                "authority_promoted": False,
+                "claim_limit": "One-session HaWoR development canary only; no SAM, Depth, batch or physical authority.",
+            },
             "handle_data_cleaning_v4_0916": {
                 "execution_status": "PENDING_NEW_BOUNDED_TASK",
                 "input_root": "/mnt/data/egodata/datasets/ego/chips_cards_handle_highview_0916",

@@ -1,6 +1,6 @@
 # 0915 VST 图像域单会话 A/B
 
-状态：`BLOCKED_EXTERNAL / PENDING_USER_VISUAL_CONFIRMATION`
+状态：`USER_CONFIRMED_A / MONOCULAR_ONLY`
 
 本目录只回答一个问题：`play_cards_0915_001` 的物理左目在进入单目
 HaWoR/SAM3.1 前，是否应沿用当前 `equiDis62 → 90° pinhole` 重映射。它不评价
@@ -65,6 +65,6 @@ PICO 官方 SpatialMP4 工具公开了 `IsRgbDistorted()` 和 RGB distortion mod
 
 ## 下一步停止线
 
-用户确认 A 是正确的采集画面后，只能新建一个单会话、物理左目 resize-only 的
-HaWoR canary；SAM3.1 及后续阶段仍需等待该 canary 复核。Depth 保持独立
-`NOT_EVALUATED`。在确认前不得恢复 220 会话批处理。
+用户已确认“A明显是对的”。当前只新建一个单会话、物理左目 resize-only 的 HaWoR
+canary；SAM3.1 及后续阶段仍需等待该 canary 复核。Depth 保持独立
+`NOT_EVALUATED`，不得恢复 220 会话批处理。

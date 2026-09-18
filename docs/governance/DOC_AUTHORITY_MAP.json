@@ -25,23 +25,23 @@
     },
     {
       "authorized_scope": "CURRENT_SHALLOW_ENTRY",
-      "bytes": 1608,
+      "bytes": 1756,
       "claim_limit": "Unique shallow entry only; machine facts remain receipt-bound.",
       "document_id": "current_navigation",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/README_ZH.md",
-      "sha256": "360a77914f0943181ab75980bcd1f3c5a9f76a47264c066a02486f813a0817b9",
+      "sha256": "ab6bf22393c31bb39326513c8984417975a03feea730b0aad8c0f29116a6220a",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_AI_WORK_HANDOFF",
-      "bytes": 6425,
+      "bytes": 6741,
       "claim_limit": "Reading order, task naming, resource boundaries and candidate optimization lanes; it does not authorize execution without a current task packet.",
       "document_id": "ai_work_entry",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI_WORK_ENTRY_ZH.md",
-      "sha256": "ce9c9503c22d8e98bdbf57654ec3bcf6f86e01997875143fde6cc3b7ee7777f4",
+      "sha256": "7ec9f79f273012834178ddcc9c7c0bf03715c6af8f5f57696dd77531fa003130",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -114,12 +114,12 @@
     },
     {
       "authorized_scope": "PROJECT_REALTIME_STATUS",
-      "bytes": 14248,
+      "bytes": 14423,
       "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "17e54c8c32307e79372a29cbc7a3bdfff9d3dda4bcfdec2fecfa208222332834",
+      "sha256": "d0990d3066c170a1049daff5870c982e6901637365a90baa78d7d41edd38c593",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -158,12 +158,12 @@
     },
     {
       "authorized_scope": "CURRENT_SHALLOW_VISUAL_NAVIGATION",
-      "bytes": 20379,
+      "bytes": 21111,
       "claim_limit": "Navigation to bounded visual-review evidence only; videos do not confer geometry, contact, training or physical authority.",
       "document_id": "current_shallow_visual_navigation",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/README_ZH.md",
-      "sha256": "fa4a9d08ed3568406714beb8592284eb522afd2d1d8f120dab7a56ea26ce4621",
+      "sha256": "2bc97641794e1fe96203e07766330153bd5fdffb3b0f2ed7a6b85498f0e5c411",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -241,9 +241,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-18T10:39:39+08:00",
-  "generation_id": "gov-011891-b3df110a8065",
-  "governance_revision": 11891,
+  "generated_at": "2026-09-18T11:00:26+08:00",
+  "generation_id": "gov-011901-d3181da93996",
+  "governance_revision": 11901,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

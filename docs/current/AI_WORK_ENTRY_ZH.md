@@ -34,8 +34,11 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
   建立权威；现有派生结果不得作为基线。先读
   [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)，再复核
   [`单会话 A/B`](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)。A/B 已证明当前
-  remap 是百像素级变换，且 legacy 单目是物理右目；当前只等待用户确认物理左目
-  `sourceIndex=1 + resize-only`，Depth 仍为独立未决问题。
+  remap 是百像素级变换，且 legacy 单目是物理右目。用户已经确认物理左目
+  `sourceIndex=1 + resize-only` 为正确单目画面；当前最多只允许一个单会话 HaWoR
+  canary。该 canary 已完成但因右手画面边界/骨长门保持 `FAILED_QUALITY_C`，等待
+  用户复核；Depth 仍为独立未决问题，SAM3.1 和全批均未授权。复核入口见
+  [`0915_HAWOR_RESIZE_ONLY_CANARY_V1`](visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)。
 - 0916 独立清洗已经完成；0915/0916 状态见
   [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。
 - 用户仍将未来 Mask 模型锁定为 SAM3.1，但图像域问题未解决前不得运行它，也不得

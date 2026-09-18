@@ -1,0 +1,55 @@
+{
+  "budgets": {
+    "gpu_hours": 1,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "One-session development HaWoR evidence on the confirmed monocular pixel domain; no SAM, Depth, batch, physical-3D or deployment authority.",
+  "expected_resource": "SERIAL_GPU_CANARY; one logical HaWoR bundle",
+  "objective": "Run pinned HaWoR on only play_cards_0915_001 using the user-confirmed physical-left sourceIndex=1 passthrough pixels with resize only.",
+  "phase": "0915_HAWOR_PHYSICAL_LEFT_RESIZE_ONLY_CANARY",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_vst_image_domain_ab_v1=BLOCKED_EXTERNAL_REVIEW_COMPLETE",
+    "user_confirmed_A_physical_left_sourceIndex1_resize_only",
+    "governance_PASS_FRESH",
+    "central_GPU_lease",
+    "single_session_play_cards_0915_001",
+    "PICO26_NOT_CONSUMED"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json",
+    "tasks/receipts/0915_VST_IMAGE_DOMAIN_USER_CONFIRMATION.json",
+    "src/chaoyang/ops/run_0915_hawor_resize_only_canary_v1.py",
+    "src/chaoyang/ops/run_play_cards_0910_001_hawor_raw.py",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915/cleaned/playing_cards/play_cards_0915_001",
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "required_outputs": [
+    "INPUT_DOMAIN.json",
+    "hawor/HAWOR_RAW_MANO21.npz",
+    "HAWOR_METRICS.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "RESULT.json",
+    "0915_HAWOR_RESIZE_ONLY_REVIEW.mp4",
+    "0915_HAWOR_RESIZE_ONLY_CONTACT_SHEET.jpg",
+    "tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_hawor_resize_only_canary_v1",
+  "weights": [
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "write_set": [
+    "_run/current/0915_hawor_resize_only_canary_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1",
+    "tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json"
+  ]
+}

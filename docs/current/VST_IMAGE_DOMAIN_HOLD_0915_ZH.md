@@ -1,6 +1,6 @@
 # 0915 VST 图像域停止线
 
-状态：`RESEARCHED_PENDING_USER_CONFIRMATION`
+状态：`MONOCULAR_A_CONFIRMED / HAWOR_CANARY_COMPLETE_REVIEW_REQUIRED`
 
 本页是 0915 裸手视觉链当前最高优先级的停止说明。用户在单样本复核中指出，
 现有画面出现不应有的弯曲，怀疑原始 VST 像素被再次去畸变。该问题解决前，
@@ -54,6 +54,14 @@ resize-only 画面称为物理 pinhole 或已完成外部标定。当前真正�
 4. 若未来恢复矫正，必须固定 PICO 模型约定、系数顺序、正反映射方向和编码域证据，
    禁止再以项目内假设替代采集 SDK/container 的 distortion state。
 
-单会话 A/B 任务已以 `BLOCKED_EXTERNAL` 封账，当前没有可执行的 0915 算法任务。
-下一步只等待用户对浅层 A/B 的确认；确认后必须新建有限 canary 任务，不能复活已
-取消的批量任务。
+用户已明确确认“A 明显是对的”。因此 0915 单目候选正式锁定为物理左目
+`sourceIndex=1 + resize-only`，禁止沿用已停止的 `equiDis62 → FOV90 pinhole` 路径。
+该确认只授权 `play_cards_0915_001` 的单会话 HaWoR canary；SAM3.1、Depth 和 220
+会话扩批仍未授权。确认收据见
+[`0915_VST_IMAGE_DOMAIN_USER_CONFIRMATION.json`](../../tasks/receipts/0915_VST_IMAGE_DOMAIN_USER_CONFIRMATION.json)。
+
+该 canary 已完成：左手观测 148/150、右手 145/150；左手通过冻结数值门，右手因
+关节在画面内比例 81.58% 和骨长 CV 0.08272 未通过，整体保持
+`FAILED_QUALITY_C`。浅层复核见
+[`visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md`](visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)。
+当前再次停止，等待用户复核骨架；不得自动进入 SAM3.1 或全批。

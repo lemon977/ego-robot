@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T10:39:39+08:00",
-  "generation_id": "gov-011891-b3df110a8065",
-  "governance_revision": 11891,
+  "generated_at": "2026-09-18T11:00:26+08:00",
+  "generation_id": "gov-011901-d3181da93996",
+  "governance_revision": 11901,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -164,6 +164,21 @@
       "target_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916",
       "weights": "ABSENT",
       "workers_max": 2
+    },
+    "hawor_resize_only_canary_v1": {
+      "authority_promoted": false,
+      "claim_limit": "One-session HaWoR development canary only; no SAM, Depth, batch or physical authority.",
+      "code_closure": [
+        {
+          "bytes": 17558,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_resize_only_canary_v1.py",
+          "sha256": "e08740ba3b070f749968e569d8dd90532783a4a53568965152b70b18f7ad3845"
+        }
+      ],
+      "execution_scope": "PLAY_CARDS_0915_001_ONLY",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
+      "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1"
     },
     "mask_baseline": {
       "challenger_is_current_authority": false,

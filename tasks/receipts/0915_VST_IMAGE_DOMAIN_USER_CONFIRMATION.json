@@ -1,0 +1,16 @@
+{
+  "schema_version": "0915-vst-image-domain-user-confirmation-v1",
+  "task_id": "0915_vst_image_domain_ab_v1",
+  "status": "CONFIRMED",
+  "confirmed_at": "2026-09-18T10:48:00+08:00",
+  "user_statement": "a明显是对的",
+  "confirmed_candidate": "A_PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
+  "authorized_next_scope": "ONE_SESSION_HAWOR_CANARY_ONLY",
+  "not_authorized": [
+    "SAM3.1",
+    "FOUNDATIONSTEREO",
+    "FULL_BATCH",
+    "STEREO_DOMAIN_PROMOTION"
+  ],
+  "claim_limit": "Confirms the displayed monocular VST image-domain candidate only; it does not establish a physical pinhole model, stereo rectification, model quality, or batch authority."
+}

@@ -4,6 +4,16 @@
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
+## 0915 物理左目 resize-only HaWoR canary（当前优先复核）
+
+- [`0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md`](0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)
+- [`0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_REVIEW.mp4`](0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_REVIEW.mp4)
+- [`0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_CONTACT_SHEET.jpg`](0915_HAWOR_RESIZE_ONLY_CANARY_V1/0915_HAWOR_RESIZE_ONLY_CONTACT_SHEET.jpg)
+
+固定 150 帧输入未执行 remap。HaWoR 观测左手 148 帧、右手 145 帧；左手通过冻结
+数值门，右手因画面内关节比例 81.58% 及骨长 CV 0.08272 未通过，整体为
+`FAILED_QUALITY_C`。等待用户复核，不自动进入 SAM3.1。
+
 ## 0915 VST 图像域 A/B（当前优先复核）
 
 - [`0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md`](0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)

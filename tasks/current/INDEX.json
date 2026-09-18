@@ -1,17 +1,17 @@
 {
   "claim_limit": "This 0915 task is terminal. No successor is executable until a separate CAS registration publishes exactly one new packet.",
   "execution_revision": "0915_FULL_FUNNEL_V1",
-  "generated_at": "2026-09-18T10:37:47+08:00",
-  "generation_id": "gov-011890-7924fe6e3b89",
-  "governance_revision": 11890,
-  "packet_revision": "0915_VST_IMAGE_DOMAIN_AB_V1_TERMINAL",
+  "generated_at": "2026-09-18T10:58:55+08:00",
+  "generation_id": "gov-011900-abc6da2858e6",
+  "governance_revision": 11900,
+  "packet_revision": "0915_HAWOR_RESIZE_ONLY_CANARY_V1_TERMINAL",
   "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1135,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/finalize_0915_vst_image_domain_ab_v1/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "d75fc61c5e2426dfe7f7260269cf4b6f37a9ac0d4d0d344f33f0a395e4f25ece"
+    "bytes": 1229,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/finalize_0915_hawor_resize_only_canary_v1/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "52b85d67114712bd396230ff9c6bcff50401119cdc0f0313e98a0a56ed552183"
   },
   "task_packets": []
 }
