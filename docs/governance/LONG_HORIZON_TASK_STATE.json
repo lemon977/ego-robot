@@ -73,24 +73,12 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T00:19:21+08:00",
-  "generation_id": "gov-011190-360ad3d91b58",
-  "generator_code_sha": "311988bbf93d095c9a887b2858f4f931a93f5050a92d3ce10e360a60b2225534",
-  "governance_revision": 11190,
+  "generated_at": "2026-09-18T10:22:47+08:00",
+  "generation_id": "gov-011886-8b68faeddc5a",
+  "generator_code_sha": "e7b56868309a33e60b6aa130d4773272040797d0b45d622b3f359abbe354bb95",
+  "governance_revision": 11886,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
-  "next_task": {
-    "expected_resource": "LOW_PRIORITY_CPU_IO; max two cleaning workers; weights ABSENT",
-    "prerequisites": [
-      "governance_PASS_FRESH",
-      "git_main_fast_forwarded_to_5c766fc",
-      "0915_processed_root_read_only",
-      "0916_source_root_read_only",
-      "no_active_task"
-    ],
-    "session": null,
-    "stop_condition": "220-session processed self-containment terminal plus 240-session 0916 cleaning terminal.",
-    "task_id": "0915_0916_input_audit_clean_v1"
-  },
+  "next_task": null,
   "rc1_budget": {
     "checkpoint_gpu_hours_limit": 48,
     "checkpoint_gpu_hours_used": 0,
@@ -193,11 +181,105 @@
         "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_0916_input_audit_clean_v1/TASK_PACKET.json",
         "sha256": "c0fe44e0e7f4c75f50b4a4af655c7d292f0dbf125e2cefb50ecdf3edc1773cf3"
       }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-18T04:09:09+08:00",
+      "message": "0915 processed self-containment and 0916 cleaning reached a bounded terminal.",
+      "result": {
+        "bytes": 1043,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_0916_input_audit_clean_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "bc1cc48a5648ce5596160826007766b84846328d430e41e79c0f556286caa398"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_0916_input_audit_clean_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T04:10:19+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_0916_input_audit_clean_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_input_prepare_cad_v1",
+      "task_packet": {
+        "bytes": 1641,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v1/TASK_PACKET.json",
+        "sha256": "3c5fbb0e1791ac60bbc98ed20e3a0bfcbd78b8339d9c07af5191d7a525e27e64"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T04:12:13+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 740,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "d79a2290b726ad7c9f5df4795c3c19c4376adecabec676bedb3fffc8b50e65c5"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_input_prepare_cad_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T04:14:46+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_input_prepare_cad_v1",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_input_prepare_cad_v2",
+      "task_packet": {
+        "bytes": 1868,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v2/TASK_PACKET.json",
+        "sha256": "fb9544fe46234c30107daefe79a39e45e1850d13e2ea29747d4037fc11c55555"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T05:37:48+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 1482,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "23e175652438a5c3b9c59e4bd79ad726f8de1d5ebc217e2e9d809f0fe090a60d"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_input_prepare_cad_v2"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T05:37:55+08:00",
+      "message": "Registered one finite 0915 campaign task; execution not started.",
+      "predecessor": "0915_input_prepare_cad_v2",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_hawor_full_v1",
+      "task_packet": {
+        "bytes": 1577,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_full_v1/TASK_PACKET.json",
+        "sha256": "b7005278c4bffb7cb56fddb7fa62c02ca54ee1c0ceb60f8661c32d7cb9a0afcf"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-18T10:22:47+08:00",
+      "message": "Finite 0915 campaign task reached a recorded terminal.",
+      "result": {
+        "bytes": 1286,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
+        "sha256": "5cafcedf259de75fc5f28a96ac8d429046dfe9867d424ee8f6ba4ddd59fa98e0"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_hawor_full_v1"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "1229e814e8fee684a1a34a01dc3e4c311fa64bef"
+    "commit": "06c8ffdeba912d9e367281fe2403f4084e4aa7f6"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -209,15 +291,89 @@
       "pid": null,
       "plan_execution_revision": "0915_0916_V1",
       "proc_start_ticks": null,
+      "result": {
+        "bytes": 1043,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_0916_input_audit_clean_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "bc1cc48a5648ce5596160826007766b84846328d430e41e79c0f556286caa398"
+      },
       "session": null,
-      "status": "PENDING",
+      "status": "FAILED_RUNTIME_FINAL",
       "task_id": "0915_0916_input_audit_clean_v1",
       "task_packet": {
         "bytes": 1990,
         "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_0916_input_audit_clean_v1/TASK_PACKET.json",
         "sha256": "c0fe44e0e7f4c75f50b4a4af655c7d292f0dbf125e2cefb50ecdf3edc1773cf3"
       },
-      "updated_at": "2026-09-18T00:18:28+08:00"
+      "updated_at": "2026-09-18T04:09:09+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INPUT_AUDIT_PREPARE_AND_CAD",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 740,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "d79a2290b726ad7c9f5df4795c3c19c4376adecabec676bedb3fffc8b50e65c5"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_input_prepare_cad_v1",
+      "task_packet": {
+        "bytes": 1641,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v1/TASK_PACKET.json",
+        "sha256": "3c5fbb0e1791ac60bbc98ed20e3a0bfcbd78b8339d9c07af5191d7a525e27e64"
+      },
+      "updated_at": "2026-09-18T04:12:13+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INPUT_AUDIT_PREPARE_AND_CAD",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1482,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "23e175652438a5c3b9c59e4bd79ad726f8de1d5ebc217e2e9d809f0fe090a60d"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_input_prepare_cad_v2",
+      "task_packet": {
+        "bytes": 1868,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v2/TASK_PACKET.json",
+        "sha256": "fb9544fe46234c30107daefe79a39e45e1850d13e2ea29747d4037fc11c55555"
+      },
+      "updated_at": "2026-09-18T05:37:48+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HAWOR_PHYSICAL_LEFT_FULL",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1286,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
+        "sha256": "5cafcedf259de75fc5f28a96ac8d429046dfe9867d424ee8f6ba4ddd59fa98e0"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_hawor_full_v1",
+      "task_packet": {
+        "bytes": 1577,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_full_v1/TASK_PACKET.json",
+        "sha256": "b7005278c4bffb7cb56fddb7fa62c02ca54ee1c0ceb60f8661c32d7cb9a0afcf"
+      },
+      "updated_at": "2026-09-18T10:22:47+08:00"
     }
   ]
 }

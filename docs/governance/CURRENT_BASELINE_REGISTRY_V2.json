@@ -185,10 +185,11 @@
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Role Mask",
-      "successor_requirement": "Freeze true four-role human-left/right and tracker-left/right prompts before any SAM2.1/Cutie role successor; current S1 object prompts are forbidden for this stage.",
+      "successor_requirement": "SAM3.1 is user-locked as the only executable Mask model. Improve its prompts, temporal identity and fail-closed quality gates without registering an alternate model route; current S1 object prompts remain forbidden for this role stage.",
       "superseded_implementations": [
         "metadata-only masks",
-        "zero-reject full-session refresh gate"
+        "zero-reject full-session refresh gate",
+        "SAM2.1/Cutie challenger selection"
       ],
       "weights": [
         {
@@ -242,7 +243,7 @@
       "known_limitations": [
         "Chips physical instances may never be unioned to pass an identity gate.",
         "Predecessor-derived re-entry intervals support development coverage and stability only, not accuracy.",
-        "Every real Cutie/SAM2.1 attempt re-hashes the pinned large weights before GPU lease acquisition."
+        "SAM3.1 is the only executable model for this Mask stage; no model-selection or challenger task is authorized."
       ],
       "output_schema": "exact78-mask-lane-batch-result-v1",
       "quality_gates": [
@@ -284,39 +285,16 @@
         "status": "UNKNOWN_VERIFICATION_REQUIRED"
       },
       "stage": "Object Mask",
-      "successor_requirement": "Run the frozen causal SAM2.1/Cutie task-object occlusion/re-entry development canary after Clean closes, then publish a non-Gold comparison receipt before deciding whether to expand to one failure canary plus two A/B regressions.",
+      "successor_requirement": "Improve SAM3.1 causal prompts, temporal identity, occlusion re-entry and object leakage gates on bounded canaries, then expand the same pinned SAM3.1 implementation only after those gates pass.",
       "superseded_implementations": [
-        "class-only union masks"
+        "class-only union masks",
+        "SAM2.1/Cutie challenger selection"
       ],
       "weights": [
         {
           "bytes": 3502755717,
           "path": "/mnt/workspace/code/chaoyang/assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
           "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6",
-          "verification": "PINNED_FULL_SHA256_VERIFIED"
-        },
-        {
-          "bytes": 140443788,
-          "path": "/mnt/workspace/code/chaoyang/assets/models/cutie/cutie-base-mega.pth",
-          "sha256": "9c05402ee36d3a356fb72715d263ba7e1ea06ad3bada48c1306491792da43023",
-          "verification": "PINNED_FULL_SHA256_VERIFIED"
-        },
-        {
-          "bytes": 102502400,
-          "path": "/mnt/workspace/code/chaoyang/assets/models/cutie/torch_home/hub/checkpoints/resnet50-19c8e357.pth",
-          "sha256": "19c8e3572231adff6824a2da93fd67b5986919a2e65f8b6007eab4edee220097",
-          "verification": "PINNED_FULL_SHA256_VERIFIED"
-        },
-        {
-          "bytes": 46827520,
-          "path": "/mnt/workspace/code/chaoyang/assets/models/cutie/torch_home/hub/checkpoints/resnet18-5c106cde.pth",
-          "sha256": "5c106cde386e87d4033832f2996f5493238eda96ccf559d1d62760c4de0613f8",
-          "verification": "PINNED_FULL_SHA256_VERIFIED"
-        },
-        {
-          "bytes": 898083611,
-          "path": "/mnt/workspace/code/chaoyang/assets/models/sam2_1_hiera_large/sam2.1_hiera_large.pt",
-          "sha256": "2647878d5dfa5098f2f8649825738a9345572bae2d4350a2468587ece47dd318",
           "verification": "PINNED_FULL_SHA256_VERIFIED"
         }
       ]
@@ -1712,9 +1690,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-18T00:19:21+08:00",
-  "generation_id": "gov-011190-360ad3d91b58",
-  "governance_revision": 11190,
+  "generated_at": "2026-09-18T10:22:47+08:00",
+  "generation_id": "gov-011886-8b68faeddc5a",
+  "governance_revision": 11886,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",

@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-18T00:19:21+08:00`
-- governance revision：`11190`
-- generation id：`gov-011190-360ad3d91b58`
+- 状态生成时间：`2026-09-18T10:22:47+08:00`
+- governance revision：`11886`
+- generation id：`gov-011886-8b68faeddc5a`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`311988bbf93d095c9a887b2858f4f931a93f5050a92d3ce10e360a60b2225534`
-- repository：`1229e814e8fee684a1a34a01dc3e4c311fa64bef` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`e7b56868309a33e60b6aa130d4773272040797d0b45d622b3f359abbe354bb95`
+- repository：`06c8ffdeba912d9e367281fe2403f4084e4aa7f6` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -98,6 +98,7 @@
 
 ### PASSED
 
+- `0915_input_prepare_cad_v2` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json / `2026-09-18T05:37:48+08:00`
 - `baseline_e2e_pair_v1` / `get_potato_chips_0902_103+get_potato_chips_0915_001` / `PASSED` / /mnt/workspace/code/chaoyang/tasks/receipts/BASELINE_E2E_PAIR_V1_COMPLETION.json / `2026-09-17T19:00:19+08:00`
 - `clean_baseline_v1` / `-` / `PASSED` / no-result / `2026-09-17T11:35:00+08:00`
 
@@ -107,7 +108,8 @@
 
 ### FAILED_RUNTIME
 
-- 无。
+- `0915_input_prepare_cad_v1` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T04:12:13+08:00`
+- `0915_0916_input_audit_clean_v1` / `-` / `FAILED_RUNTIME_FINAL` / /mnt/workspace/code/chaoyang/_run/current/0915_0916_input_audit_clean_v1/attempts/attempt_0001/RESULT.json / `2026-09-18T04:09:09+08:00`
 
 ### BLOCKED
 
@@ -115,11 +117,7 @@
 
 ## H. 下一任务
 
-- next_task_id：`0915_0916_input_audit_clean_v1`
-- next_session：`-`
-- prerequisites：`governance_PASS_FRESH, git_main_fast_forwarded_to_5c766fc, 0915_processed_root_read_only, 0916_source_root_read_only, no_active_task`
-- expected_resource：`LOW_PRIORITY_CPU_IO; max two cleaning workers; weights ABSENT`
-- stop_condition：`220-session processed self-containment terminal plus 240-session 0916 cleaning terminal.`
+状态机当前未选择下一任务。
 
 ## 固定读取协议
 

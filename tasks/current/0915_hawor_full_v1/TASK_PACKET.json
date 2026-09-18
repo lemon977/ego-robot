@@ -1,0 +1,45 @@
+{
+  "budgets": {
+    "gpu_hours": 72,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Development monocular hand reconstruction; no missing-hand fill or physical 3D truth.",
+  "expected_resource": "SERIAL_GPU_FULL_BATCH; one logical HaWoR bundle",
+  "objective": "Run the pinned HaWoR logical inference bundle persistently on every prepared physical-left session and publish fail-closed per-session terminals.",
+  "phase": "0915_HAWOR_PHYSICAL_LEFT_FULL",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_input_prepare_cad_v2=PASSED",
+    "governance_PASS_FRESH",
+    "central_GPU_lease",
+    "physical_left_only",
+    "PICO26_NOT_CONSUMED"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/prepared_physical_left/BATCH_RESULT.json",
+    "src/chaoyang/ops/run_0915_hawor_persistent_worker_v1.py",
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "required_outputs": [
+    "hawor/BATCH_RESULT.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "RESULT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_hawor_full_v1",
+  "weights": [
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "write_set": [
+    "_run/current/0915_hawor_full_v1/attempts/attempt_0001"
+  ]
+}

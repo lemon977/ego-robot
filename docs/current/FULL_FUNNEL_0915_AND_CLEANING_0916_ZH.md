@@ -2,9 +2,14 @@
 
 ## 当前决定
 
+- **0915 全链已停止。** 单样本复核暴露 VST 图像域疑点：当前输入准备对 SBS
+  物理左目额外执行了 `equiDis62 → pinhole` 重映射，用户观察到画面弯曲。问题解决前
+  不再运行或恢复任何 0915 模型任务，详见
+  [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
 - 0915 Mask 模型已经由用户确定为 **SAM3.1**，这是本任务唯一可执行的 Mask 权重。
 - 不创建 SAM2.1 或 Cutie challenger，不执行胜者选择，也不因历史对比材料改变当前路线。
-- 固定执行顺序为：processed-only 审计与物理左目准备 → HaWoR → SAM3.1 → FoundationStereo → Object6D/Clean/Contact/Robot 与 220 会话账本。
+- 原定执行顺序现已失效，不得从已取消的 HaWoR 任务续跑。确认 VST 像素域后必须从
+  新的单帧/单会话 canary 任务重新开始。
 - 0916 只做 240 会话数据清洗，不进入 HaWoR、Mask、Depth、Contact 或 Robot。
 
 ## 输入与禁止项
@@ -38,8 +43,17 @@ SAM3.1 角色合同区分左右皮肤/前臂、左右手指皮套、左右线缆
 
 当前任务在 `task/0915-full-funnel-0916-clean-v1` 分支执行，未推送远端。0916 双 CPU worker 清洗已经提交：240/240 会话终态，222 个 `CLEANED`、18 个 `REJECTED`、0 个运行失败。分任务为 playing_cards 128/2、potato_chips 94/16；拒绝原因为 17 个 `TACTILE_QUALITY` 和 1 个 `VISUAL_OR_TRACKING_CONTENT`。浅层复核见 [`visuals/0916_CLEANING_V1/README_ZH.md`](visuals/0916_CLEANING_V1/README_ZH.md)。
 
+0915 `0915_hawor_full_v1` 已按用户要求取消，不是失败后可自动恢复的任务。停止时旧
+重映射输入上记录 120 个已触达会话（119 个旧质量 C、1 个停止造成的运行失败）；
+这些数字不评价正确 VST 图像域上的 HaWoR。终止收据见
+[`0915_HAWOR_FULL_V1_USER_STOP.json`](../../tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json)。
+
+现有 `play_cards_0915_001` HaWoR/SAM3.1/Depth/Robot 可视化已经降级为问题复现证据，
+不再是 0915 基线，也不能支持此前“相机参数没有问题”的结论。
+
 组合输入任务因旧版 v1 自包含审计被终止而如实封为 `FAILED_RUNTIME_FINAL`；这不改变独立 0916 数据集的 `COMMITTED` 状态。0915 将在后继的 v2 processed-only 审计中重新核验，不能沿用或粉饰旧审计结果。
 
 首次六小时不可变进度收据见 [`../../tasks/receipts/0915_0916_FULL_FUNNEL_6H_PROGRESS.json`](../../tasks/receipts/0915_0916_FULL_FUNNEL_6H_PROGRESS.json)。它是时间点快照，不替代最终全阶段账本。
 
-最终必须满足：0915 的 220 个会话在全阶段账本中全部终态；0916 的 240 个会话全部终态且运行失败为 0 才可发布完成状态；浅层可视化、测试、治理、结构、Markdown 链接、SHA、视频完整解码和源树不变性全部通过。
+未来若重启 0915，仍必须满足 220 个会话在全阶段账本中全部终态；但在 VST 图像域
+单问题验收之前，不登记也不执行该任务。0916 的 240 个会话已满足全部终态且运行失败为 0。

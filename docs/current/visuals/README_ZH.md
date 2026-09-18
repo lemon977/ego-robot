@@ -9,9 +9,10 @@
 - [`0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md`](0915_HAWOR_DIAGNOSTIC_V1/README_ZH.md)
 - [`0915_ONE_SESSION_CANARY_V1/README_ZH.md`](0915_ONE_SESSION_CANARY_V1/README_ZH.md)
 
-该目录把当前 `play_cards_0915_001` 的冻结 HaWoR NPZ 叠加回物理左目 RGB，用于复核
-OBS/MISS、左右手身份和投影。它同时记录了当前“全片双手各 95%”分母与既有 chips_001
-开发证据不一致的问题；该诊断不是算法结果改写。
+**停止说明：** 两个 0915 目录消费了经 `equiDis62 → pinhole` 显式重映射的物理左目。
+用户观察到不应有的画面弯曲，而 VST 编码像素是否已经校正尚未确认。因此这些文件只
+保留为问题复现证据，不是 0915 基线，也不再支持相机、HaWoR、SAM3.1 或 Depth 正确性。
+当前停止线见 [`../VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](../VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
 
 ## 0. 0916 独立清洗
 

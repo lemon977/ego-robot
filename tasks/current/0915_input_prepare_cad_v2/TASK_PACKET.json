@@ -1,0 +1,47 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1
+  },
+  "claim_limit": "Corrective input proof, physical-left visual preparation and candidate STEP structure only; no model inference or calibration authority.",
+  "expected_resource": "LOW_PRIORITY_CPU_IO; weights ABSENT",
+  "objective": "Run the corrective tactile-v2 processed-only audit, prepare physical-left rectified RGB, and audit the candidate KaiHand STEP through direct module entry points after the v1 CLI routing failure.",
+  "phase": "0915_INPUT_AUDIT_PREPARE_AND_CAD_V2",
+  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "prerequisites": [
+    "0915_input_prepare_cad_v1=FAILED_RUNTIME_FINAL_CLI_ROUTE_ONLY",
+    "governance_PASS_FRESH",
+    "weights_ABSENT",
+    "direct_module_entrypoints",
+    "0915_processed_root_read_only"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json",
+    "src/chaoyang/ops/audit_0915_processed_self_containment_v2.py",
+    "src/chaoyang/ops/prepare_0915_physical_left_batch_v1.py",
+    "src/chaoyang/ops/audit_kaihand_adapter_step_v1.py",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915",
+    "assets/robot/hardware_handoff/kaihand_flange_adapter_v1/received_design/KAI_HAND固定件.STEP"
+  ],
+  "required_outputs": [
+    "SELF_CONTAINMENT_V2.json",
+    "prepared_physical_left/BATCH_RESULT.json",
+    "kaihand_adapter_step_audit/RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED"
+  ],
+  "task_id": "0915_input_prepare_cad_v2",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001"
+  ]
+}

@@ -33,6 +33,11 @@
 
 0915 原始目录使用单下划线，已发布标识因消费者兼容保留双下划线。0915 发布根中的 `SOURCE_PATH_REPAIR_20260917.json` 只修复元数据来源路径；未改原始数据，也未改已发布 payload。
 
+0915 processed 单目像素域按会话元数据保持 `passthrough_scaled_source_domain`，
+`video_rectification.rectified=false`。这项清洗事实不授权下游根据工厂 `equiDis62`
+参数再次去畸变；当前下游重映射已因图像弯曲疑点停止，见
+[`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
+
 每个发布根以以下文件为事实来源：
 
 - `DATASET_RESULT.json`：数据集终态与计数；

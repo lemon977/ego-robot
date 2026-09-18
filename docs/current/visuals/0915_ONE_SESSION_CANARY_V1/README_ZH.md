@@ -1,5 +1,10 @@
 # 0915 单样本全链基线复核 V1
 
+> **已撤销基线资格。** 本目录的 RGB 来自一次显式
+> `equiDis62 → 1280×960 FOV90 pinhole` 重映射。用户观察到画面弯曲，VST 编码
+> 像素域尚未确认；以下内容只用于复现问题，不能评价正确输入域上的任何模型。
+> 见 [`../../VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](../../VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
+
 本目录固定复核 `playing_cards/play_cards_0915_001`。输入来自 0915 processed-only
 物理左目，150 帧，1280×960；未使用 PICO26/controller 手部结果，未创建 tracker
 角色，源数据未修改。
@@ -34,12 +39,10 @@ Depth 只声明同会话内部一致的 optical-Z，不声明外部毫米精度�
 
 ## 结论
 
-这条样本没有显示出“整套相机内外参用错”的证据：物理左目语义、整流 held-out
-误差和 Depth 内部门均通过，HaWoR 在实际观测帧上大体贴合可见手。当前最先暴露的
-瓶颈是 SAM3.1 的实例语义和空间交互对象的时序记忆：中性文本把左右手臂合成一个
-人物实例；分侧空间种子可在锚点分开，但没有跨帧保持；牌对象也发生了明显 union
-泄漏。因此 Object6D/Contact 必须继续 fail-closed。
+此前“没有显示整套相机参数用错”的结论已撤销。held-out 极线误差只检验当前重映射
+内部的一致性，不能证明 VST 编码像素需要该重映射。由于图像域前提不成立，当前
+HaWoR、SAM3.1、Depth 与 Robot 现象都不能用于定位首要算法瓶颈；Object6D/Contact
+继续 fail-closed，整个 0915 链停止。
 
 完整逐帧产物与 GPU 收据位于：
 `_run/current/0915_one_session_full_funnel_canary_v1/attempts/attempt_0001/`。
-

@@ -1,0 +1,26 @@
+{
+  "authority_effect": {
+    "derived_0915_visual_results": "QUARANTINED_DEVELOPMENT_EVIDENCE_NOT_BASELINE",
+    "processed_0915_publication": "UNCHANGED",
+    "source_data": "UNCHANGED"
+  },
+  "created_at": "2026-09-18T10:21:12+08:00",
+  "first_blocker": "VST_IMAGE_DOMAIN_UNRESOLVED_POSSIBLE_REDUNDANT_UNDISTORTION",
+  "observed_partial_state": {
+    "completed": 120,
+    "failed_runtime": 1,
+    "quality_c": 119,
+    "session_count": 220,
+    "state": "RUNNING_AT_USER_STOP",
+    "state_artifact": {
+      "bytes": 441186,
+      "path": "_run/current/0915_hawor_full_v1/attempts/attempt_0001/hawor/STATE.json",
+      "sha256": "74da807385488c4b334e82c456af48f72c48b2778257ea5146d517724aeaac6a"
+    }
+  },
+  "reason": "User ordered all 0915 pipeline work stopped after observing curvature consistent with an unresolved VST image-domain mismatch. The current preparation explicitly remaps sourceIndex=1 with equiDis62 into a virtual pinhole image, but the encoded VST pixel-domain authority has not been established.",
+  "restart_policy": "DO_NOT_RESUME; discuss and prove one authoritative VST image domain, then register a new bounded single-frame/single-session task",
+  "schema_version": "0915-user-stop-receipt-v1",
+  "status": "CANCELLED",
+  "task_id": "0915_hawor_full_v1"
+}

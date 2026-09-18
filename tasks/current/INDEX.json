@@ -1,26 +1,17 @@
 {
-  "claim_limit": "Classified current routable weightless task; no algorithm execution or authority change.",
-  "execution_revision": "0915_0916_V1",
-  "generated_at": "2026-09-18T00:19:21+08:00",
-  "generation_id": "gov-011190-360ad3d91b58",
-  "governance_revision": 11190,
-  "packet_revision": "0915_0916_INPUT_AUDIT_CLEAN_V1_CLASSIFIED",
+  "claim_limit": "This 0915 task is terminal. No successor is executable until a separate CAS registration publishes exactly one new packet.",
+  "execution_revision": "0915_FULL_FUNNEL_V1",
+  "generated_at": "2026-09-18T10:22:47+08:00",
+  "generation_id": "gov-011886-8b68faeddc5a",
+  "governance_revision": 11886,
+  "packet_revision": "0915_HAWOR_FULL_V1_TERMINAL",
   "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
-  "status": "PASS",
+  "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1085,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_0916_input_audit_clean_v1/governance/attempts/attempt_0002_index_repair/PREDECESSOR_INVALID_INDEX.json",
-    "sha256": "6cb7ec6efb438993d486226a9be195bcc5aa57c365530bd37675bbd5f42a3e09"
+    "bytes": 1151,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/finalize_0915_hawor_user_stop_v1/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "5cad8df70af3a491d631e8b6c3e014dfd02c44cab164045d2dc5278872018401"
   },
-  "task_packets": [
-    {
-      "execution_allowed": true,
-      "execution_class": "CURRENT_LEDGER_ROUTABLE",
-      "packet_path": "tasks/current/0915_0916_input_audit_clean_v1/TASK_PACKET.json",
-      "packet_sha256": "c0fe44e0e7f4c75f50b4a4af655c7d292f0dbf125e2cefb50ecdf3edc1773cf3",
-      "task_id": "0915_0916_input_audit_clean_v1",
-      "weights": "ABSENT"
-    }
-  ]
+  "task_packets": []
 }

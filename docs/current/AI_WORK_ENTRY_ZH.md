@@ -29,7 +29,14 @@ PYTHONPATH=src python scripts/migration/validate_structure.py --allow-dirty
 - 空索引内的 revision 11169 是创建 revision；当前生效 revision 读取 `CURRENT_V71_TASK_PACKET_INDEX.json` 和 `CURRENT_STATUS_RECEIPT.json`。冻结 payload 的创建 revision 不要求被原地改写。
 - `tasks/receipts/HISTORICAL_TASK_CATALOG.json` 和 `archive/` 只用于查询/恢复，任何历史终态任务都不得直接重启。
 - 0911/0914/0915 数据清洗已经完成，见 [`DATA_CLEANING_0911_0915_ZH.md`](DATA_CLEANING_0911_0915_ZH.md)；它不是待办任务。
-- 正在执行的 0915 裸手全链与 0916 独立清洗见 [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。其中 Mask 已由用户锁定为 SAM3.1 唯一路线，不得再创建 SAM2.1/Cutie 候选或胜者选择任务。
+- 0915 裸手全链已经按用户要求停止。现有物理左目准备显式执行了
+  `equiDis62 → 1280×960 FOV90 pinhole` 重映射，而 VST 编码像素是否已经校正尚未
+  建立权威；现有派生结果不得作为基线。先读
+  [`VST_IMAGE_DOMAIN_HOLD_0915_ZH.md`](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)。
+- 0916 独立清洗已经完成；0915/0916 状态见
+  [`FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md`](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。
+- 用户仍将未来 Mask 模型锁定为 SAM3.1，但图像域问题未解决前不得运行它，也不得
+  创建 SAM2.1/Cutie 候选或胜者选择任务。
 
 如果用户提出新目标，应建立新的、有限收敛的任务包并发布新的治理 revision；不要把旧任务包改回 `PENDING`。任务包至少固定输入、代码、配置、权重或 `ABSENT`、标定或 `ABSENT`、输出 schema、质量门、预算、终止条件和回滚路径。
 
