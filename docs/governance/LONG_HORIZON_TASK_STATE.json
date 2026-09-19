@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-19T09:57:23+08:00",
-  "generation_id": "gov-012359-e915329344cc",
-  "generator_code_sha": "cee50518ec5db28239131428c622d9d32952d6b50f81d9a102a9ab4b137b7ab9",
-  "governance_revision": 12359,
+  "generated_at": "2026-09-19T14:21:29+08:00",
+  "generation_id": "gov-012362-8d04bae5bef9",
+  "generator_code_sha": "5fdf570ee15388a4e57c8f6db91b14336681277058ba5e5286db895b37890aa4",
+  "governance_revision": 12362,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -102,13 +102,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "created_at": "2026-09-17T11:35:00+08:00",
-      "message": "Historical tasks moved to catalog; no active execution task.",
-      "session": null,
-      "status": "PASSED",
-      "task_id": "clean_baseline_v1"
-    },
     {
       "attempt": 0,
       "created_at": "2026-09-17T18:49:34+08:00",
@@ -1453,11 +1446,40 @@
       "status": "REJECTED_QUALITY",
       "task_id": "0915_robot15h_robot_waves_v1",
       "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T14:19:28+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_window_release_audit_v1",
+      "task_packet": {
+        "bytes": 4620,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_window_release_audit_v1/TASK_PACKET.json",
+        "sha256": "9bff0b3812432bc081fd5f956777e35001ae58d82760cdbbbf247676c2bc715c"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T14:21:29+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2092,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "3465d5e4eea1830146814e2635daf08e9c9d2e4cddaaad85a08199cf796f8e0f"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_window_release_audit_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "422864532891a04d9ce527ffc7e2ac400fb62a27"
+    "commit": "c7c9cea7caa54f749f60763388c51d47b55b59cb"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2644,6 +2666,35 @@
         "sha256": "3d2b49560ba45a8b97dc99d60574d01a3747c97de045ab352e2025b3c4dddb62"
       },
       "updated_at": "2026-09-19T09:52:49+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_ROBOT15H_WINDOW_RELEASE_AUDIT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2092,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "3465d5e4eea1830146814e2635daf08e9c9d2e4cddaaad85a08199cf796f8e0f"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_window_release_audit_v1",
+      "task_packet": {
+        "bytes": 4620,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_window_release_audit_v1/TASK_PACKET.json",
+        "sha256": "9bff0b3812432bc081fd5f956777e35001ae58d82760cdbbbf247676c2bc715c"
+      },
+      "updated_at": "2026-09-19T14:21:29+08:00",
       "window_clock": {
         "bytes": 521,
         "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",

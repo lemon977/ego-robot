@@ -39,7 +39,7 @@
   "governance_status_min": {
     "bytes": 1664,
     "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_MIN.json",
-    "sha256": "a5a7380e235deb4d0ff8de0ad608c57ae06b6bf7d71e64adf6af6f9367821800"
+    "sha256": "60fcd1e6adb9b72fbdc11d0fb091ba069171643ec5428c459c9e01ea49ddfeff"
   },
   "governance_validation": {
     "errors": [],

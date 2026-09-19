@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-19T09:57:23+08:00",
-  "generation_id": "gov-012359-e915329344cc",
-  "governance_revision": 12359,
+  "generated_at": "2026-09-19T14:21:29+08:00",
+  "generation_id": "gov-012362-8d04bae5bef9",
+  "governance_revision": 12362,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -85,6 +85,16 @@
       "status": "REJECTED_QUALITY",
       "task_id": "0915_robot15h_sam31_waves_v1",
       "updated_at": "2026-09-19T03:31:59+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_ROBOT15H_WINDOW_RELEASE_AUDIT_V1",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_window_release_audit_v1",
+      "updated_at": "2026-09-19T14:21:29+08:00"
     },
     {
       "attempt": 0,

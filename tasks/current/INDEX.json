@@ -1,17 +1,17 @@
 {
   "claim_limit": "This Robot15h node is terminal.  No successor is executable until a new CAS registration publishes exactly one frozen DAG node.",
   "execution_revision": "0915_ROBOT_15H_V1",
-  "generated_at": "2026-09-19T09:52:49+08:00",
-  "generation_id": "gov-012358-67e7516726c8",
-  "governance_revision": 12358,
-  "packet_revision": "0915_ROBOT15H_ROBOT_WAVES_V1_TERMINAL",
+  "generated_at": "2026-09-19T14:21:29+08:00",
+  "generation_id": "gov-012362-8d04bae5bef9",
+  "governance_revision": 12362,
+  "packet_revision": "0915_ROBOT15H_WINDOW_RELEASE_AUDIT_V1_TERMINAL",
   "plan_revision": "0915_ROBOT_15H_V1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1183,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_waves_v1/finalization_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "a272836be74d2ddd1aa514e4590b6730065b111cbe92df1e097d291ed8b32187"
+    "bytes": 1219,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/finalization_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "7617ccdb2bc745b9c35af49ac473bf6ca1ee64468433defa5b5eb092367e09b4"
   },
   "task_packets": []
 }

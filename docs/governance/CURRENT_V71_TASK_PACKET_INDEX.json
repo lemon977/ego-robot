@@ -1,12 +1,12 @@
 {
   "execution_revision": "0915_ROBOT_15H_V1",
-  "generated_at": "2026-09-19T09:57:23+08:00",
-  "generation_id": "gov-012359-e915329344cc",
-  "governance_revision": 12359,
-  "index_bytes": 801,
+  "generated_at": "2026-09-19T14:21:29+08:00",
+  "generation_id": "gov-012362-8d04bae5bef9",
+  "governance_revision": 12362,
+  "index_bytes": 819,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "2c60b9dc61889a78f354c96d14aebce1af08945f850bf74a7b795c8f6705e456",
-  "packet_revision": "0915_ROBOT15H_ROBOT_WAVES_V1_TERMINAL",
+  "index_sha256": "bf7d9f1cda0ec0740b9221eb85879c721726499da0ed0608d2cc18d8eab16fde",
+  "packet_revision": "0915_ROBOT15H_WINDOW_RELEASE_AUDIT_V1_TERMINAL",
   "plan_revision": "0915_ROBOT_15H_V1",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }

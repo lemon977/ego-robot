@@ -36,12 +36,12 @@
     },
     {
       "authorized_scope": "CURRENT_AI_WORK_HANDOFF",
-      "bytes": 19010,
+      "bytes": 19214,
       "claim_limit": "Reading order, task naming, resource boundaries and candidate optimization lanes; it does not authorize execution without a current task packet.",
       "document_id": "ai_work_entry",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI_WORK_ENTRY_ZH.md",
-      "sha256": "e5f7bb3b50fb860bd4d0d2da1a25c2f8cdf14407c8e2efa1ece6ed782c80bef4",
+      "sha256": "7662611bd10b4879ab6d26241c636521b1a6878188064901aa0ec0358d1f2f86",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -119,7 +119,7 @@
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "8f3b949c339a6358488fce9331ab4700410e802d955d10a2b93fddfc41219552",
+      "sha256": "c5591de64404afc2894ab51501b4d86fc153130d9e2a318a769525c6c79a68ef",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -241,9 +241,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-19T09:57:23+08:00",
-  "generation_id": "gov-012359-e915329344cc",
-  "governance_revision": 12359,
+  "generated_at": "2026-09-19T14:21:29+08:00",
+  "generation_id": "gov-012362-8d04bae5bef9",
+  "governance_revision": 12362,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

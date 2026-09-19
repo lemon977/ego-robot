@@ -1,12 +1,13 @@
 # 0915 Robot 15 小时执行状态
 
-状态：`IN_PROGRESS`
+状态：`COMPLETED_WITH_FINAL_AUDIT_REJECTED_QUALITY`
 
 运行标识：`robot15h-0915-20260919T000959+0800`
 
 时间边界：T0 `2026-09-19 00:09:59+08:00`；算法候选最晚冻结 H9
 `09:09:59`；H13.5 后不启动新会话；H14 后 GPU/写入排空；H15
-`15:09:59` 前完成最终审计。本页只汇总当前正式执行事实；聊天、导出文件存在或任务顶层
+`15:09:59` 前完成最终审计。最终 audit 于 `14:19:38` 完成并诚实终态化为
+`REJECTED_QUALITY`。本页只汇总当前正式执行事实；聊天、导出文件存在或任务顶层
 `PASSED` 都不能替代逐能力质量门。
 
 ## 固定范围
@@ -95,13 +96,24 @@ PASS 只授权开发级 Depth/视觉 Object6D 候选输入，`external_accuracy=
 | R2 virtual arm | 12 | 4 | 4 | 0 | 4 | 8 |
 
 FoundationStereo 则为 W0 `4/4`、W1 `8/8` 内部门通过；这与 Robot 四层计数分开。最终
-H14 审计将把同一口径固化为 `CAMPAIGN_COUNTS.json`，不会把全部终态写成全部成功。
+H14 审计已把同一口径固化为 `CAMPAIGN_COUNTS.json`，没有把全部终态写成全部成功。
 
-## 尚未完成
+## H14/H15 封账结果
 
-1. H13.5 后不启动新会话；H14 排空 GPU/writer；运行完整测试、治理、结构、Markdown、
-   视频与 artifact SHA 审计。
-2. 本地提交且不 push，再在 H15 前执行最终 release audit。本页届时改为最终状态和真实计数。
+- H13.5 后没有启动新会话；H14 时 GPU lease 已释放、任务队列为空、没有 campaign worker。
+- 12 个冻结源视频重新哈希通过，内容漂移 0，且 `0916_consumed=false`。
+- 50 条 Robot15h 审阅视频共 12,824 帧完整解码；完整回归为 `1160 passed`，治理、结构和
+  diff check 均通过。
+- 第一次本地提交为 `c7c9cea`，commit evidence 证明当时工作树干净且未 push。
+- 最终 sidecar audit 全部通过；最终 reference audit 检查 282 个引用，其中 281 个有效、
+  1 个漂移。唯一漂移是早期 R2 不可变 RESULT 绑定的虚拟安装合同 SHA
+  `fb412c90...`（4,438 字节），与封账前通用治理引用刷新后仓库合同 SHA
+  `d86b18c...`（5,863 字节）不一致。
+- 未修改旧 R2 RESULT、未伪造旧合同、未放宽引用门，因此最终 audit 正确终态为
+  `REJECTED_QUALITY`。这不撤销 12/12 Depth 内部门结果，但阻止本轮发布“完整 SHA 闭合”
+  或任何 Robot 成功/部署结论。
+- 最终治理为 `12362 / gov-012362-8d04bae5bef9`，任务索引重新回到
+  `PASS_NO_ACTIVE_TASKS`；全程未 push。
 
 ## 已知审计限制
 
