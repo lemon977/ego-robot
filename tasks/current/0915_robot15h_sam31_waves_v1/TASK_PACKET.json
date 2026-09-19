@@ -1,0 +1,61 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "window_deadline_bound": true
+  },
+  "claim_limit": "W1 SAM3.1 prompt-source blocker only. The release-admitted W0 hand-proxy scope is not evidence that unanchored W1 inference is equivalent or quality admitted.",
+  "dag_dependencies": [
+    "0915_robot15h_release_candidate_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_PROMPT_SOURCE_GATE; GPU_FORBIDDEN; pinned SAM3.1 weight not loaded",
+  "objective": "Preserve the frozen direct-anchored SAM3.1 algorithm contract. The W1 hand scope cannot execute without same-session release-admitted HaWoR prompts, so publish explicit blockers rather than silently switching to text-only or invented boxes.",
+  "phase": "ROBOT15H_SAM31_W1_PROMPT_SOURCE_GATE",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_release_candidate_v1=PASSED",
+    "0915_robot15h_hawor_waves_v1=TERMINAL_REJECTED_QUALITY",
+    "same_session_release_admitted_HaWoR_prompt_source_REQUIRED",
+    "text_only_or_fabricated_box_substitution_FORBIDDEN",
+    "W1_source_video_open_count=ZERO",
+    "gpu_FORBIDDEN",
+    "single_pinned_SAM31_weight_identity_preserved"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/CAPABILITY_MATRIX.json",
+    "_run/current/0915_robot15h_hawor_waves_v1/attempts/attempt_0001/RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_wave_scope_gate_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "SCOPE_AUDIT.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_sam31_waves_v1",
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001",
+    "tasks/receipts/0915_ROBOT15H_SAM31_WAVES_V1_RESULT.json"
+  ]
+}

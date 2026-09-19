@@ -1,0 +1,44 @@
+{
+  "batch_result": {
+    "bytes": 5491,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "f0f2f16cacb915516aa9257000d1bd80f2ffdab100c52a4543be81107369dbaa"
+  },
+  "batch_terminal": "COMPLETED_ALL_TERMINAL",
+  "bounded_v2_result": {
+    "bytes": 3261,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/bounded_v2/RESULT.json",
+    "sha256": "12c062d8ef3b6852ec0ed8d0fda292aff18d8496be02129a66a5fc41208ff175"
+  },
+  "bounded_v2_returncode": 2,
+  "claim_limit": "Four-session wrist-local Kai22 R0 development evidence only. Missing frames remain invalid; no Contact, arm IK, control, training, deployment or measured calibration authority.",
+  "control_ground_truth": false,
+  "counts": {
+    "attempted": 4,
+    "failed_runtime": 0,
+    "r0_exported": 4,
+    "r0_rejected": 4,
+    "r0_success": 0,
+    "valid_side_frames": 1320
+  },
+  "physical_deployment_authorized": false,
+  "processed_mutated": false,
+  "result": {
+    "bytes": 1600,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "ec5a203c15c879896f448383ab2562842b809bc560af5c9d28d7b1cb2d978f43"
+  },
+  "schema_version": "0915-robot15h-kai22-r0-wave0-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_robot15h_kai22_r0_wave0_v1",
+  "training_eligible": false,
+  "user_visual_acceptance": "PENDING",
+  "visual_readme": {
+    "bytes": 1177,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_KAI22_R0_V1/README_ZH.md",
+    "sha256": "e5544e6e880ad2b566865247694ae6bb8e2adc49578b18d2fde0dc5f128e934c"
+  },
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

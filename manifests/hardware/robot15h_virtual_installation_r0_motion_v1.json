@@ -1,0 +1,222 @@
+{
+  "authority": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE",
+  "calibration": {
+    "camera_world_to_base": "ABSENT",
+    "measured_installation_transform": "ABSENT",
+    "physical_accuracy_authority": false,
+    "robot_tcp": "ABSENT"
+  },
+  "claim_limit": "Development-only fixed virtual installation using exact R0-relative motion at unit gain and a pinned numeric mount proxy. It authorizes virtual IK and proxy-space bilateral-only robot-self diagnostics, but grants no measured calibration, physical collision, object/environment collision, control, training, deployment, or real-robot accuracy authority.",
+  "collision_authorization": {
+    "coverage": "BILATERAL_VALID_FRAMES_ONLY_PARTIAL",
+    "environment_collision": "UNVERIFIED",
+    "object_collision": "UNVERIFIED",
+    "physical_collision_authority": false,
+    "proxy_space_robot_self_diagnostic_allowed": true,
+    "quality_admission_requires_all_valid_frames_checked": true,
+    "scope": "ROBOT_SELF_ONLY"
+  },
+  "contract_id": "ROBOT15H_VIRTUAL_INSTALLATION_R0_MOTION_V1",
+  "contract_schema": {
+    "bytes": 6530,
+    "path": "/mnt/workspace/code/chaoyang/contracts/robot15h_virtual_installation_r0_motion_v1.schema.json",
+    "sha256": "a6e6cfb6d6dac03826f64f66edc341e7c5cfaef91f53fe3f50ad4d4b46d9d599"
+  },
+  "development_only": true,
+  "mandatory_visual_labels": [
+    "VIRTUAL INSTALLATION / R0-RELATIVE MOTION",
+    "CALIBRATION ABSENT",
+    "NON-CONTROL / NON-DEPLOYABLE",
+    "PROXY-SPACE SELF DIAGNOSTIC; OBJECT/ENV UNVERIFIED"
+  ],
+  "motion_authorization": {
+    "base_pose": "IDENTITY_VIRTUAL_BASE_NOT_CAMERA_WORLD_CALIBRATION",
+    "dynamic_fields": [
+      "q22_init",
+      "relative_wrist_T",
+      "valid_side_frame",
+      "timestamps_s",
+      "frame_id"
+    ],
+    "hardware_motion_allowed": false,
+    "motion_scale": 1.0,
+    "per_session_mount_fit_allowed": false,
+    "r0_relative_virtual_ik_allowed": true,
+    "r0_relative_virtual_motion_allowed": true
+  },
+  "npz_schemas": {
+    "r0_input": {
+      "additional_fields_policy": "IGNORED_NOT_CONSUMED",
+      "required_fields": {
+        "frame_id": {
+          "dtype": "int64",
+          "shape": [
+            "T"
+          ]
+        },
+        "q22_init": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2,
+            22
+          ]
+        },
+        "relative_wrist_T": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2,
+            4,
+            4
+          ]
+        },
+        "timestamps_s": {
+          "dtype": "float64",
+          "shape": [
+            "T"
+          ]
+        },
+        "valid_side_frame": {
+          "dtype": "bool",
+          "shape": [
+            "T",
+            2
+          ]
+        }
+      },
+      "schema_id": "KAI22_R0_BASELINE_V1_NPZ"
+    },
+    "r2_output": {
+      "additional_fields_policy": "FORBIDDEN",
+      "required_fields": {
+        "T_actual_hand_root_world": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2,
+            4,
+            4
+          ]
+        },
+        "T_target_hand_root_world": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2,
+            4,
+            4
+          ]
+        },
+        "T_tool_hand_root": {
+          "dtype": "float64",
+          "shape": [
+            2,
+            4,
+            4
+          ]
+        },
+        "T_world_base": {
+          "dtype": "float64",
+          "shape": [
+            4,
+            4
+          ]
+        },
+        "ik_evaluations": {
+          "dtype": "int64",
+          "shape": [
+            "T",
+            2
+          ]
+        },
+        "numeric_pass": {
+          "dtype": "bool",
+          "shape": [
+            "T",
+            2
+          ]
+        },
+        "position_residual_mm": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2
+          ]
+        },
+        "q22_init": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2,
+            22
+          ]
+        },
+        "q_arm": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2,
+            7
+          ]
+        },
+        "q_hand": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2,
+            22
+          ]
+        },
+        "rotation_residual_deg": {
+          "dtype": "float64",
+          "shape": [
+            "T",
+            2
+          ]
+        },
+        "source_frames": {
+          "dtype": "int64",
+          "shape": [
+            "T"
+          ]
+        },
+        "timestamps_s": {
+          "dtype": "float64",
+          "shape": [
+            "T"
+          ]
+        },
+        "valid_side_frame": {
+          "dtype": "bool",
+          "shape": [
+            2,
+            "T"
+          ]
+        }
+      },
+      "schema_id": "KAI22_R2_VIRTUAL_ARM_V1_NPZ"
+    }
+  },
+  "output_authority": {
+    "control_ground_truth": false,
+    "object_environment_collision_verified": false,
+    "physical_deployment_authorized": false,
+    "training_eligible": false
+  },
+  "schema_version": "robot15h-virtual-installation-r0-motion-v1",
+  "source_contracts": {
+    "mount_numeric_proxy": {
+      "bytes": 5122,
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/hardware_handoff/kaihand_flange_adapter_v1/excluded_reference_only/MOUNT_VISUAL_PROXY_CONTRACT.json",
+      "role": "NUMERIC_TRANSFORM_PROVENANCE_ONLY_NOT_MOTION_OR_COLLISION_AUTHORITY",
+      "sha256": "9f7258480bfa41bbbe8b87e1752c3227d397c609f4c64fb69cd46d4845c2f731"
+    },
+    "robot_asset_pin": {
+      "bytes": 37840,
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/ROBOT_ASSET_PIN.json",
+      "sha256": "4bc508a45fd460610a73bc9fb6bf194d97a5cfdef5e863bd1069683921cd1330"
+    }
+  },
+  "status": "FROZEN_DEVELOPMENT_VIRTUAL_MOTION_CONTRACT"
+}

@@ -63,9 +63,9 @@
       "authorized_scope": "BOUNDED_V2_TERMINALS",
       "code_closure": [
         {
-          "bytes": 36126,
+          "bytes": 37147,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
-          "sha256": "c05e1413e124403ac7740243c1eb7e7b76488921e83df20cff7c5a3a1bb25b08"
+          "sha256": "91faf80669b3fb971db5f77362d50a80539a24483d1c959136520e4ce47c6df8"
         },
         {
           "bytes": 7326,
@@ -207,9 +207,9 @@
           "sha256": "b53d42d55dcc2db5d1b7b1c3719e1403126b5622116cf3b81a64de61dee6dd69"
         },
         {
-          "bytes": 1207,
+          "bytes": 1236,
           "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_SAM31_WEAK_ROLE_CANARY_V1_USER_VISUAL_REVIEW.json",
-          "sha256": "60563fea6a3d420e1651855e7da9b2941a7bbc32fefb9bbd1242b3aa4d35fe6a"
+          "sha256": "5e3ecfa3800dc07a29073d167cb9268eefad3ba108f9a696988b83995b97eb35"
         }
       ],
       "schema_artifact": {
@@ -318,9 +318,9 @@
           "sha256": "6c9e26030fbf48dc550d38655302b8782aa2cc4bc795fb35fd5f16a338d4781b"
         },
         {
-          "bytes": 2186,
+          "bytes": 2215,
           "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_REMOVAL_ENVELOPE_V1_USER_VISUAL_REVIEW.json",
-          "sha256": "1191dfa1c780d88f2cee5a431f804764027d1b9fd1cc29927e937bc865b36614"
+          "sha256": "29e304e319113f3388c8a89f99b87ad5688db759e82b244bbd3548be70282e7d"
         },
         {
           "bytes": 1906,
@@ -1051,9 +1051,9 @@
           "sha256": "c65817016556a7f6d40053edd968daf2bfac7f20ea85abbc5ad6e68e23034fbc"
         },
         {
-          "bytes": 2186,
+          "bytes": 2215,
           "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_REMOVAL_ENVELOPE_V1_USER_VISUAL_REVIEW.json",
-          "sha256": "1191dfa1c780d88f2cee5a431f804764027d1b9fd1cc29927e937bc865b36614"
+          "sha256": "29e304e319113f3388c8a89f99b87ad5688db759e82b244bbd3548be70282e7d"
         },
         {
           "bytes": 3431,
@@ -1959,9 +1959,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-18T19:47:26+08:00",
-  "generation_id": "gov-012075-a3a8a7cce875",
-  "governance_revision": 12075,
+  "generated_at": "2026-09-19T09:57:23+08:00",
+  "generation_id": "gov-012359-e915329344cc",
+  "governance_revision": 12359,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",

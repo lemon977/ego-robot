@@ -14,7 +14,7 @@
     "state": "RUNNING_AT_USER_STOP",
     "state_artifact": {
       "bytes": 441186,
-      "path": "_run/current/0915_hawor_full_v1/attempts/attempt_0001/hawor/STATE.json",
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_hawor_full_v1/attempts/attempt_0001/hawor/STATE.json",
       "sha256": "74da807385488c4b334e82c456af48f72c48b2778257ea5146d517724aeaac6a"
     }
   },

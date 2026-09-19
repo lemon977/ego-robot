@@ -1,0 +1,73 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 0.5
+  },
+  "claim_limit": "Development Interaction diagnosis only. Finger-associated visible surfaces are not anatomical fingertip truth, object geometry is directly visible finite support only, and no strict Contact, control, training, deployment or external metric accuracy authority is granted.",
+  "dag_dependencies": [
+    "0915_robot15h_hawor_wave0_recovery_v1",
+    "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+    "0915_robot15h_geometry_object6d_wave0_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_W0_INTERACTION_VISIBLE_SURFACE; weights ABSENT",
+  "objective": "For W0, associate only direct-observed HaWoR 2D finger projections with same-frame Stereo visible surfaces admitted by independent SAM hand roles, then measure relations to exact finite Object6D support without publishing Contact.",
+  "phase": "ROBOT15H_INTERACTION_W0_VISIBLE_SURFACE",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_hawor_wave0_recovery_v1=TERMINAL",
+    "0915_robot15h_sam31_task_object_wave0_recovery_v1=TERMINAL",
+    "0915_robot15h_geometry_object6d_wave0_v1=TERMINAL",
+    "direct_observed_HaWoR_2D_only",
+    "consumer_admitted_SAM_hand_role_required",
+    "finger_associated_visible_surface_not_anatomical_fingertip",
+    "same_frame_Stereo_visible_surface_only",
+    "exact_finite_visible_object_support_only",
+    "fragmented_support_largest_component_fraction_at_least_0_98",
+    "temporal_gap_resets_relative_motion",
+    "registered_valid_depth_fraction_not_a_quality_gate",
+    "HaWoR_absolute_Z_48mm_bias_contact_fit_and_Removal_FORBIDDEN",
+    "strict_Contact_publication_FORBIDDEN",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN"
+  ],
+  "read_set": [
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/hawor/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_sam31_temporal_identity_quality_v2/attempts/attempt_0001/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_interaction_wave0_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "INTERACTION_EVIDENCE_LEDGER.json",
+    "BATCH_RESULT.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_interaction_occlusion_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_INTERACTION_V1",
+    "tasks/receipts/0915_ROBOT15H_INTERACTION_OCCLUSION_V1_RESULT.json"
+  ]
+}

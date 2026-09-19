@@ -15,9 +15,9 @@
     "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-18T19:47:26+08:00",
-  "generation_id": "gov-012075-a3a8a7cce875",
-  "governance_revision": 12075,
+  "generated_at": "2026-09-19T09:57:23+08:00",
+  "generation_id": "gov-012359-e915329344cc",
+  "governance_revision": 12359,
   "next_task_id": null,
   "pair_status": {
     "chips": "BLOCKED_DATA_VOLUME",

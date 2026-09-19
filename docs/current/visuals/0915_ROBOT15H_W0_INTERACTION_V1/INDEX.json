@@ -1,0 +1,12 @@
+{
+  "schema_version": "0915-robot15h-interaction-wave0-visual-index-v1",
+  "status": "COMPLETE",
+  "task_id": "0915_robot15h_interaction_occlusion_v1",
+  "videos": [
+    {
+      "bytes": 4878323,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_INTERACTION_V1/play_cards_0915_119_INTERACTION_REVIEW.mp4",
+      "sha256": "20a685f0481c5d746712bd951d120a3edf7f27b9acaf97876db53e803404ec9e"
+    }
+  ]
+}

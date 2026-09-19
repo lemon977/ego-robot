@@ -1,0 +1,66 @@
+{
+  "authority": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE",
+  "batch_result": {
+    "bytes": 7632,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "ea0a46d4d9761c23713506bcdda76a2446fef6ef9a0d15e2352da2480f88e4d3"
+  },
+  "claim_limit": "Development counterfactual Robot trajectory authority only. R1-E remains blocked without strict Contact; an exported R1-H attempt is not adopted unless independent gates pass, and never grants training, control, deployment or truth.",
+  "completed_at": "2026-09-19T03:17:33+08:00",
+  "control_ground_truth": false,
+  "counts": {
+    "failed_runtime": 0,
+    "r1_e_adopted": 0,
+    "r1_e_attempted": 0,
+    "r1_e_blocked_local_evidence": 4,
+    "r1_e_exported": 0,
+    "r1_h_adopted": 0,
+    "r1_h_attempted": 1,
+    "r1_h_exported": 1,
+    "sessions_terminal": 4,
+    "sessions_total": 4
+  },
+  "first_blocker": "NO_OBJECT_INDEPENDENT_METRIC_WRIST_PLACEMENT",
+  "gpu_used": false,
+  "metrics": {
+    "bytes": 684,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/METRICS.json",
+    "sha256": "09156b0c723d2c9c5706908d0667aa1c91e8ecad9d2f1dba10fb67c31a7f01db"
+  },
+  "physical_deployment_authorized": false,
+  "r1_e_success": 0,
+  "r1_eligibility_ledger": {
+    "bytes": 8247,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/R1_ELIGIBILITY_LEDGER.json",
+    "sha256": "85687aef280a7869cdef601815467cac5d22bc01653a4ef3ba9ca6ea5c1b1edc"
+  },
+  "r1_h_adopted": 0,
+  "r1_h_success": 0,
+  "result": {
+    "bytes": 2704,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "2fc991550e85f4ce8ef85ad09dcafb5184b151195db99fc73a03df15bbdb2640"
+  },
+  "run_signature": {
+    "bytes": 2598,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "e515111d724bd0e5a6688ab1c635a53ff2be4e8747efd855f6a80880bf1d4c42"
+  },
+  "schema_version": "0915-robot15h-kai22-r1-wave0-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_robot15h_robot_relative_refinement_v1",
+  "training_eligible": false,
+  "visual_index": {
+    "bytes": 1284,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_R1_V1/INDEX.json",
+    "sha256": "d09cdcabcd3ba3056b2769484da28f65416fff4d8c73ee5263e7b3badfb8eef3"
+  },
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "writer_claim": {
+    "bytes": 646,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "ed1863bed1fb96caebb8676403eb76e0bffe8d5ba467833d5c797893831c3ede"
+  }
+}

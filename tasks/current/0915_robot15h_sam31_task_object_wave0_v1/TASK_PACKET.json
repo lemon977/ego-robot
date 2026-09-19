@@ -1,0 +1,66 @@
+{
+  "budgets": {
+    "gpu_hours": 1.5,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 2
+  },
+  "claim_limit": "Development visual task-object masks only. Text candidates are not ground truth; only admitted visible instances may feed visual Object6D candidates. No hidden shape, complete extent, Contact, control, training, deployment or cross-recording generalization authority.",
+  "dag_dependencies": [
+    "0915_robot15h_sam31_temporal_identity_quality_v2"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "ONE_SERIAL_GPU_LEASE_SAM31_W0_TASK_OBJECT; one persistent model load",
+  "objective": "Use the pinned SAM3.1 text route on the same physical-left resize-only W0 videos to initialize separate visible task-object instances, propagate each identity bidirectionally, and admit only quality-supported card or potato-chip instances for development Object6D consumption.",
+  "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_sam31_temporal_identity_quality_v2=TERMINAL",
+    "same_T0_W0_checkpoint_and_physical_left_resize_only_domain",
+    "task_specific_short_text_only_playing_card_or_potato_chip",
+    "no_manual_coordinate_or_session_specific_box",
+    "cards_and_chips_remain_separate_visible_physical_instances",
+    "empty_or_exited_instance_is_UNKNOWN_not_absent",
+    "support_tray_or_bowl_not_merged_into_task_object",
+    "raw_candidate_separate_from_semantic_admission",
+    "central_GPU_single_lease"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_sam31_temporal_identity_quality_v2/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/PREPARED_MANIFEST.json",
+    "src/chaoyang/ops/run_0915_robot15h_sam31_task_object_wave0_v1.py",
+    "src/chaoyang/pipeline/sam31_compat_adapter_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "OBJECT_IDENTITY_BATCH.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_sam31_task_object_wave0_v1",
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_SAM31_TASK_OBJECT_V1",
+    "tasks/receipts/0915_ROBOT15H_SAM31_TASK_OBJECT_WAVE0_V1_RESULT.json"
+  ]
+}

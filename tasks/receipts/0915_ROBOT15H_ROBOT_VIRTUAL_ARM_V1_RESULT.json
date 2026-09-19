@@ -1,0 +1,49 @@
+{
+  "batch_result": {
+    "bytes": 4935,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "9fd90f925f1eecc5a9b4fcd10ebb85136517e77943bc94fe5e8844faad826ed5"
+  },
+  "batch_terminal": "COMPLETED_ALL_TERMINAL",
+  "claim_limit": "Independent virtual design-frame Robot evidence only. R2 quality admission cannot exceed upstream R0 admission. Measured TCP/mount/camera-base calibration, object/environment collision, control, training and deployment remain absent.",
+  "control_ground_truth": false,
+  "counts": {
+    "attempted": 4,
+    "failed_runtime": 0,
+    "r2_exported": 4,
+    "r2_numeric_candidates": 4,
+    "r2_quality_admitted": 0,
+    "r2_quality_rejected": 4
+  },
+  "dynamic_input_policy": "R0_Q22_RELATIVE_WRIST_VALIDITY_FRAME_ID_TIMESTAMPS_ONLY_NO_OTHER_SESSION_INPUT",
+  "physical_deployment_authorized": false,
+  "processed_mutated": false,
+  "result": {
+    "bytes": 2016,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "e399c556db68f434774960189f1f8e83f7d02303c22afbe48b4337fcd75f4c8b"
+  },
+  "review_manifest": {
+    "bytes": 1596,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001/REVIEW_MANIFEST.json",
+    "sha256": "a87a38499e0a72cd158d89443896474cb2edabc7cc785f227f5e6dc9f271fadf"
+  },
+  "schema_version": "0915-robot15h-virtual-arm-wave0-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_robot15h_robot_virtual_arm_v1",
+  "training_eligible": false,
+  "user_visual_acceptance": "PENDING",
+  "virtual_installation_contract": {
+    "bytes": 5863,
+    "path": "/mnt/workspace/code/chaoyang/manifests/hardware/robot15h_virtual_installation_r0_motion_v1.json",
+    "sha256": "d86b18c71a4d45903e372b81ddcc90abbeb1b9289ddb9b5a28cbd38e3d8c7572"
+  },
+  "visual_readme": {
+    "bytes": 1365,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_VIRTUAL_R2_V1/README_ZH.md",
+    "sha256": "bce8a81a27a774c3ab30f4c09046e5f678bde020055fad4c71f5fb3fc9c77b12"
+  },
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

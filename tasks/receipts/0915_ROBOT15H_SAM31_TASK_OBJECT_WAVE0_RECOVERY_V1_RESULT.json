@@ -1,0 +1,38 @@
+{
+  "claim_limit": "Bounded recovery of the recorded empty-candidate serialization defect only. Development visible task-object masks remain non-ground-truth; no hidden shape, complete extent, Contact, control, training, deployment or generalization authority.",
+  "counts": {
+    "sessions_consumer_allowed": 2,
+    "sessions_failed_runtime": 0,
+    "sessions_quality_rejected": 2,
+    "sessions_total": 4,
+    "stable_visible_instances": 6
+  },
+  "execution_completed": true,
+  "first_blocker": null,
+  "gpu_command_receipt": {
+    "bytes": 27358,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "84b044a3e15453cc3e51b79e2996d43b4e25dfbcd712bb0b8d8432ce644e0df5"
+  },
+  "object_identity_batch": {
+    "bytes": 22377,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/OBJECT_IDENTITY_BATCH.json",
+    "sha256": "1b8f551d4f44f2ac5640a218b9b8e1f683b33d154cf5ec937254acd507ef16bb"
+  },
+  "object_mask_consumer_allowed": true,
+  "physical_deployment_authorized": false,
+  "result": {
+    "bytes": 1511,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "14c0be81f2e2724275e59b5262297397e5db2e1961480604e6296d1095e05256"
+  },
+  "schema_version": "0915-robot15h-sam31-task-object-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+  "training_eligible": false,
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

@@ -1,8 +1,33 @@
 # 当前可直接复核的可视化
 
-更新时间：2026-09-18（Asia/Shanghai）
+更新时间：2026-09-19（Asia/Shanghai）
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
+
+## 0915 Robot15h W1 FoundationStereo
+
+- [`0915_ROBOT15H_W1_FOUNDATIONSTEREO_V1/README_ZH.md`](0915_ROBOT15H_W1_FOUNDATIONSTEREO_V1/README_ZH.md)
+
+H9 后实际运行 8 个独立会话、2,332 帧，8/8 通过内部 encoded-domain Depth 门，全部审阅
+视频完整解码。外部毫米精度和 strict Contact 仍未获准；W1 Robot 因无质量准入的同会话
+HaWoR/R0 输入而 8/8 上游阻塞。
+
+## 0915 Robot15h W0 多会话证据
+
+- [`0915_ROBOT15H_W0_SUMMARY_V1/README_ZH.md`](0915_ROBOT15H_W0_SUMMARY_V1/README_ZH.md)
+- [`0915_ROBOT15H_W0_HAWOR_RECOVERY_V1/README_ZH.md`](0915_ROBOT15H_W0_HAWOR_RECOVERY_V1/README_ZH.md)
+- [`0915_ROBOT15H_W0_KAI22_R0_V1/README_ZH.md`](0915_ROBOT15H_W0_KAI22_R0_V1/README_ZH.md)
+- [`0915_ROBOT15H_W0_FOUNDATIONSTEREO_RECOVERY_V1/get_potato_chips_0915_042_FOUNDATIONSTEREO_REVIEW.mp4`](0915_ROBOT15H_W0_FOUNDATIONSTEREO_RECOVERY_V1/get_potato_chips_0915_042_FOUNDATIONSTEREO_REVIEW.mp4)
+- [`0915_ROBOT15H_W0_OBJECT6D_V1/INDEX.json`](0915_ROBOT15H_W0_OBJECT6D_V1/INDEX.json)
+- [`0915_ROBOT15H_W0_INTERACTION_V1/INDEX.json`](0915_ROBOT15H_W0_INTERACTION_V1/INDEX.json)
+- [`0915_ROBOT15H_W0_CONTACT_V1/INDEX.json`](0915_ROBOT15H_W0_CONTACT_V1/INDEX.json)
+- [`0915_ROBOT15H_W0_R1_V1/INDEX.json`](0915_ROBOT15H_W0_R1_V1/INDEX.json)
+- [`0915_ROBOT15H_W0_VIRTUAL_R2_V1/README_ZH.md`](0915_ROBOT15H_W0_VIRTUAL_R2_V1/README_ZH.md)
+
+这组目录覆盖 4 个独立 W0 录制。当前 strict HaWoR、R0、Contact、R1-E、R1-H adoption
+和 R2 质量准入均为 0；FoundationStereo 的内部 encoded-domain Depth 与两条 Poker
+Object6D 为窄范围开发级通过。总状态见
+[`../ROBOT15H_0915_EXECUTION_V1_ZH.md`](../ROBOT15H_0915_EXECUTION_V1_ZH.md)。
 
 ## 0915 Interaction → Contact → Kai22（R0 完成，R1 局部证据阻塞）
 

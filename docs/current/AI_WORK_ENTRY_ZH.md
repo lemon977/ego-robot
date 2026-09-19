@@ -6,6 +6,15 @@
 
 本页是交给后续 AI 的最小执行入口。事实仍以当前状态 receipt、文档权威表、算法合同和任务索引为准；聊天、历史目录及文件名中的 `current/latest/final` 均不授予执行权。
 
+当前存在一个带不可变 T0/H9/H13.5/H14/H15 时钟的 0915 Robot 15 小时正式执行窗口；
+继续或审阅前先读
+[`ROBOT15H_0915_EXECUTION_V1_ZH.md`](ROBOT15H_0915_EXECUTION_V1_ZH.md)。该窗口只处理
+单下划线 processed 0915 根；0916 不在范围内。W0 的数值导出、顶层执行 `PASSED` 与
+逐能力质量准入严格分开，尤其不能把 R0/R2 export 计为 Robot 成功。
+H9 后 W1 FoundationStereo 已实际完成 8 个会话、2,332 帧并通过内部 Depth 门；W1
+Robot 因缺同会话质量准入 HaWoR/R0 而 8/8 上游阻塞。该 Depth PASS 不授予公制 Contact
+或 Robot 成功，最终 H14/H15 审计仍未完成。
+
 ## 必须按顺序读取
 
 1. [`CURRENT_STATUS_RECEIPT.json`](../governance/CURRENT_STATUS_RECEIPT.json)

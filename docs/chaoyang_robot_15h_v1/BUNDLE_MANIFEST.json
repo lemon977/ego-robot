@@ -1,0 +1,35 @@
+{
+  "bundle": "chaoyang_robot_15h_v1",
+  "kind": "planning_documents_not_execution_results",
+  "repo_runtime_verified": false,
+  "files": [
+    {
+      "file": "00_START_HERE_ZH.md",
+      "bytes": 4468,
+      "sha256": "03fc9002b3b138df1b767ae3802539548b524b90b662fb734f0e32c15dbe6812"
+    },
+    {
+      "file": "01_EXECUTION_PLAN_15H_ZH.md",
+      "bytes": 38768,
+      "sha256": "60a68bbd630fd6bfac155668b1d6fed222ff46acf540576cd787acb732495495"
+    },
+    {
+      "file": "02_ALGORITHM_AUDIT_LIVE_ZH.md",
+      "bytes": 18042,
+      "sha256": "d6f804079cc69b7fc79ac88e9294e3061d160b1225f7794753677aa40ef4e5c6"
+    },
+    {
+      "file": "03_ALGORITHM_AUDIT_STATE.template.json",
+      "bytes": 31469,
+      "sha256": "ce5c1fdb44b818a4aa31786000169fbff5c6dc61d01602c93f8ae849b5338092"
+    }
+  ],
+  "validation": [
+    "UTF-8 readable",
+    "JSON parsed",
+    "proposed DAG acyclic",
+    "task time boxes within 15 hours",
+    "relative document links exist",
+    "Markdown code fences balanced"
+  ]
+}

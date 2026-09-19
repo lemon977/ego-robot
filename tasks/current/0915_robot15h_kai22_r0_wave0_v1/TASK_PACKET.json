@@ -1,0 +1,63 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 2
+  },
+  "claim_limit": "Four-session wrist-local Kai22 R0 development evidence only. Missing frames remain invalid; no Contact, arm IK, control, training, deployment or measured calibration authority.",
+  "dag_dependencies": [
+    "0915_robot15h_hawor_wave0_recovery_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_KAI22_R0_W0; weights ABSENT; pinned URDF",
+  "objective": "Apply the accepted fixed bounded-v2 MANO stabilizer to the four W0 HaWoR tracks, admit only numeric-pass candidates with raw direct-observed fallback, and export real pinned-URDF Kai22 q22/wrist-local R0 trajectories and reviews.",
+  "phase": "ROBOT15H_KAI22_R0_WAVE0",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_hawor_wave0_recovery_v1=PASSED",
+    "bounded_v2_parameters_frozen",
+    "numeric_pass_candidate_else_raw_direct_observed_fallback",
+    "missing_frames_remain_invalid",
+    "pinned_Kai22_URDF_and_joint_limits",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/hawor/BATCH_RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_kai22_r0_wave0_v1.py",
+    "src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
+    "tasks/receipts/0915_HAWOR_BOUNDED_V2_CANARY_V1_RESULT.json"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "BOUNDED_V2_CONTRACT.json",
+    "bounded_v2/RESULT.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_kai22_r0_wave0_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_KAI22_R0_V1",
+    "tasks/receipts/0915_ROBOT15H_KAI22_R0_WAVE0_V1_RESULT.json"
+  ]
+}

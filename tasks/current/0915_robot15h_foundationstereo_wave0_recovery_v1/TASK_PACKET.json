@@ -1,0 +1,64 @@
+{
+  "budgets": {
+    "gpu_hours": 1.5,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 2
+  },
+  "claim_limit": "Bounded runtime recovery for one interrupted W0 session plus SHA references to three predecessor atomic sessions. No metric Contact, control, training, deployment or external encoded-camera accuracy authority.",
+  "dag_dependencies": [
+    "0915_robot15h_foundationstereo_wave0_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "ONE_SERIAL_GPU_LEASE_FOUNDATIONSTEREO_W0_RECOVERY; one fresh model load for one session",
+  "objective": "Preserve and SHA-verify the three atomically completed predecessor sessions, rerun only the interrupted get_potato_chips_0915_042 session with one fresh pinned FoundationStereo model load, and close the exact four-session W0 denominator.",
+  "phase": "ROBOT15H_FOUNDATIONSTEREO_WAVE0_BOUNDED_RECOVERY",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_foundationstereo_wave0_v1=FAILED_RUNTIME_FINAL",
+    "same_T0_and_frozen_W0",
+    "three_atomic_predecessor_sessions_SHA_verified",
+    "rerun_only_get_potato_chips_0915_042",
+    "incomplete_staging_preserved_not_consumed",
+    "same_encoded_domain_and_quality_gates",
+    "central_GPU_single_lease"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/INTERRUPTION_EVIDENCE.json",
+    "_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/PREFLIGHT_BATCH.json",
+    "src/chaoyang/ops/run_0915_robot15h_foundationstereo_wave0_recovery_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "RECOVERY_SCOPE.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_foundationstereo_wave0_recovery_v1",
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_FOUNDATIONSTEREO_RECOVERY_V1",
+    "tasks/receipts/0915_ROBOT15H_FOUNDATIONSTEREO_WAVE0_RECOVERY_V1_RESULT.json"
+  ]
+}

@@ -1,17 +1,17 @@
 {
-  "claim_limit": "This 0915 task is terminal. No successor is executable until a separate CAS registration publishes exactly one new packet.",
-  "execution_revision": "0915_FULL_FUNNEL_V1",
-  "generated_at": "2026-09-18T19:45:45+08:00",
-  "generation_id": "gov-012074-82058138056d",
-  "governance_revision": 12074,
-  "packet_revision": "0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1_TERMINAL",
-  "plan_revision": "0915_FULL_FUNNEL_0916_CLEAN_V1",
+  "claim_limit": "This Robot15h node is terminal.  No successor is executable until a new CAS registration publishes exactly one frozen DAG node.",
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "generated_at": "2026-09-19T09:52:49+08:00",
+  "generation_id": "gov-012358-67e7516726c8",
+  "governance_revision": 12358,
+  "packet_revision": "0915_ROBOT15H_ROBOT_WAVES_V1_TERMINAL",
+  "plan_revision": "0915_ROBOT_15H_V1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1190,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/finalization_attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "e98f040dff1775b903553e78bf20b907014ac3ec137be5a3f45adab093dcc720"
+    "bytes": 1183,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_waves_v1/finalization_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "a272836be74d2ddd1aa514e4590b6730065b111cbe92df1e097d291ed8b32187"
   },
   "task_packets": []
 }

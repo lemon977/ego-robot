@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-18T19:47:26+08:00",
-  "generation_id": "gov-012075-a3a8a7cce875",
-  "governance_revision": 12075,
+  "generated_at": "2026-09-19T09:57:23+08:00",
+  "generation_id": "gov-012359-e915329344cc",
+  "governance_revision": 12359,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -35,6 +35,56 @@
       "status": "REJECTED_QUALITY",
       "task_id": "0915_removal_envelope_v2_real_canary_v1",
       "updated_at": "2026-09-18T17:20:36+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_W1_RELEASE_SCOPE_GATE",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_hawor_waves_v1",
+      "updated_at": "2026-09-19T03:31:37+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_ROBOT_W1_UPSTREAM_GATE",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_robot_waves_v1",
+      "updated_at": "2026-09-19T09:52:49+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0_QUALITY_V2",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_quality_v2",
+      "updated_at": "2026-09-19T02:13:50+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0_RUNTIME_RECOVERY",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_recovery_v1",
+      "updated_at": "2026-09-19T01:48:26+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_W1_PROMPT_SOURCE_GATE",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_waves_v1",
+      "updated_at": "2026-09-19T03:31:59+08:00"
     },
     {
       "attempt": 0,
@@ -75,6 +125,46 @@
       "status": "FAILED_RUNTIME_FINAL",
       "task_id": "0915_interaction_contact_robot_dev_v2",
       "updated_at": "2026-09-18T19:10:49+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_WAVE0_ENCODED_DOMAIN",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_foundationstereo_wave0_v1",
+      "updated_at": "2026-09-19T01:24:56+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_hawor_wave0_v1",
+      "updated_at": "2026-09-19T00:32:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_v1",
+      "updated_at": "2026-09-19T02:17:19+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0",
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_temporal_identity_v1",
+      "updated_at": "2026-09-19T01:37:35+08:00"
     },
     {
       "attempt": 0,
@@ -175,6 +265,136 @@
       "status": "PASSED",
       "task_id": "0915_removal_envelope_single_session_canary_v1",
       "updated_at": "2026-09-18T14:56:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_CONTACT_W0_DUAL_EVIDENCE_DIAGNOSTIC",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_contact_dual_evidence_v1",
+      "updated_at": "2026-09-19T03:17:03+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_WAVE0_BOUNDED_RECOVERY",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_wave0_recovery_v1",
+      "updated_at": "2026-09-19T01:35:55+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_W1_ENCODED_DOMAIN",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_waves_v1",
+      "updated_at": "2026-09-19T09:52:46+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_OBJECT6D_W0_VISIBLE_PATCH",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+      "updated_at": "2026-09-19T02:42:32+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY_RECOVERY",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_hawor_wave0_recovery_v1",
+      "updated_at": "2026-09-19T00:42:27+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_INTERACTION_W0_DIRECT_OBSERVED_VISIBLE_SURFACE",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_interaction_occlusion_v1",
+      "updated_at": "2026-09-19T03:15:20+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_KAI22_R0_WAVE0",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_kai22_r0_wave0_v1",
+      "updated_at": "2026-09-19T00:54:03+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_ROBOT15H_RELEASE_CANDIDATE_V1",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_release_candidate_v1",
+      "updated_at": "2026-09-19T03:24:29+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_KAI22_R1_E_AND_R1_H_WAVE0",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_relative_refinement_v1",
+      "updated_at": "2026-09-19T03:18:04+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_ROBOT_VIRTUAL_ARM_WAVE0",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_virtual_arm_v1",
+      "updated_at": "2026-09-19T03:23:03+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0_EMPTY_CANDIDATE_RECOVERY",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+      "updated_at": "2026-09-19T02:24:06+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HUMAN_STEREO_SCALE_CAUSE_AUDIT",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_scale_cause_audit_v1",
+      "updated_at": "2026-09-19T01:00:08+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_WINDOW_START_INVENTORY",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_window_start_inventory_v1",
+      "updated_at": "2026-09-19T00:23:33+08:00"
     },
     {
       "attempt": 0,

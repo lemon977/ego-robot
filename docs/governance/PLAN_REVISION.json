@@ -5,9 +5,9 @@
     "sha256": "76752afc63b6af01d5c65493ad95d7381b250e9f717dcbc480d7f259198bee07"
   },
   "architecture_contract": {
-    "bytes": 6639,
+    "bytes": 6721,
     "path": "/mnt/workspace/code/chaoyang/docs/governance/CHAOYANG_V7_1_R3_EXECUTION_PLAN_ZH.md",
-    "sha256": "c30b643a5d910fcbba9cb8f77dc505e20cfcdceb9331703d92a9eba74916ad03"
+    "sha256": "8faa5096dca264309e2aeab42acd0cc6e4e0446b25d3a556fcafcf21d9e9d0b2"
   },
   "artifact_revision_policy": "IMMUTABLE_RC1",
   "canonical_plan_path": "docs/governance/CHAOYANG_RC1_FINAL_DELIVERY_PLAN_ZH.md",

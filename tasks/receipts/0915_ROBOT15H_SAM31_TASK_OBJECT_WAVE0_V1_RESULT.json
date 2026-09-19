@@ -1,0 +1,38 @@
+{
+  "claim_limit": "Development visual task-object masks only. Text candidates are not ground truth; only admitted visible instances may feed visual Object6D candidates. No hidden shape, complete extent, Contact, control, training, deployment or cross-recording generalization authority.",
+  "counts": {
+    "sessions_consumer_allowed": 2,
+    "sessions_failed_runtime": 2,
+    "sessions_quality_rejected": 0,
+    "sessions_total": 4,
+    "stable_visible_instances": 6
+  },
+  "execution_completed": false,
+  "first_blocker": "SAM31_TASK_OBJECT_RUNTIME_FAILED",
+  "gpu_command_receipt": {
+    "bytes": 27272,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "4d066b1977b6eb76f195e4fa39b1d4aa679de7138a83e8dadba0e1879a8c355d"
+  },
+  "object_identity_batch": {
+    "bytes": 19531,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001/OBJECT_IDENTITY_BATCH.json",
+    "sha256": "ea8fe1e7101d3783ff63f73e95ce3b0fc0bd7dc47f1f4e158a7140843eff3b69"
+  },
+  "object_mask_consumer_allowed": true,
+  "physical_deployment_authorized": false,
+  "result": {
+    "bytes": 1556,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "2e9fc6ba6cd872d7b58c929480cb52be029c369a0a75f993e3d074561d268857"
+  },
+  "schema_version": "0915-robot15h-sam31-task-object-result-v1",
+  "source_mutated": false,
+  "status": "FAILED_RUNTIME_FINAL",
+  "task_id": "0915_robot15h_sam31_task_object_wave0_v1",
+  "training_eligible": false,
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

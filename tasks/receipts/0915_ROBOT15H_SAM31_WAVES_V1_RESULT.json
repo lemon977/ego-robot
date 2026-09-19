@@ -1,0 +1,39 @@
+{
+  "batch_result": {
+    "bytes": 4406,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "8dadb428c4e4e78d62b8f17e3718aa0635a3b70e4af059aa620028035b4af50a"
+  },
+  "claim_limit": "W1 SAM3.1 prompt-source blocker only. The release-admitted W0 hand-proxy scope is not evidence that unanchored W1 inference is equivalent or quality admitted.",
+  "control_ground_truth": false,
+  "counts": {
+    "attempted": 0,
+    "blocked": 8,
+    "exported": 0,
+    "failed_runtime": 0,
+    "quality_admitted": 0,
+    "total": 8,
+    "unrun": 0
+  },
+  "first_blocker": "MISSING_RELEASE_ADMITTED_HAWOR_PROMPT_SOURCE",
+  "physical_deployment_authorized": false,
+  "result": {
+    "bytes": 1315,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "9b4cba37c4a63901aeaf0fb85a50bd22553f6621220963b8730a9b398773a40e"
+  },
+  "schema_version": "0915-robot15h-w1-scope-gate-result-v1",
+  "scope_audit": {
+    "bytes": 3204,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001/SCOPE_AUDIT.json",
+    "sha256": "d2e4301abb9b9fecc112d16a77dd2f5f7bec349f77bdf403eececa5b30ec2f8a"
+  },
+  "source_mutated": false,
+  "status": "REJECTED_QUALITY",
+  "task_id": "0915_robot15h_sam31_waves_v1",
+  "training_eligible": false,
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

@@ -1,0 +1,71 @@
+{
+  "budgets": {
+    "gpu_hours": 4.5,
+    "runtime_attempts": 1,
+    "window_deadline_bound": true
+  },
+  "claim_limit": "W1 encoded-domain development depth for visual/Object6D candidate use only. External metric accuracy, strict Contact, control, training and physical deployment remain unauthorized.",
+  "dag_dependencies": [
+    "0915_robot15h_release_candidate_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "GPU0_SINGLE_V71_LEASE_SERIAL; one pinned FoundationStereo weight",
+  "objective": "Run one pinned FoundationStereo model over the eight frozen W1 sessions after their release time, using crop/resize-only encoded SBS, the explicit simultaneous horizontal-reflection disparity-sign adapter, and atomic per-session publication.",
+  "phase": "ROBOT15H_FOUNDATIONSTEREO_W1_ENCODED_DOMAIN",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_release_candidate_v1=PASSED",
+    "FoundationStereo_cards_and_chips_W1_scope=QUALITY_ADMITTED",
+    "all_eight_W1_source_SHA_bound_before_scheduling",
+    "final_holdout_source_open_only_at_or_after_H9",
+    "new_sessions_start_before_H13_5",
+    "physical_left_sourceIndex1_crop_resize_only",
+    "simultaneous_horizontal_reflection_then_output_unflip",
+    "lens_undistortion_FORBIDDEN",
+    "external_metric_accuracy_UNVERIFIED",
+    "single_GPU_lease",
+    "single_pinned_FoundationStereo_weight"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/CAPABILITY_MATRIX.json",
+    "tasks/receipts/0915_ROBOT15H_USER_AUTHORIZATION_V1.json",
+    "tasks/receipts/VST_ENCODED_VIDEO_NO_LENS_UNDISTORTION_V1.json",
+    "configs/systems/depth/foundationstereo_0915_encoded_domain_canary_v1.json",
+    "_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/RESULT.json"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "W1_INPUT_BINDING.json",
+    "PREFLIGHT_BATCH.json",
+    "COMMAND.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_foundationstereo_waves_v1",
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W1_FOUNDATIONSTEREO_V1",
+    "tasks/receipts/0915_ROBOT15H_FOUNDATIONSTEREO_WAVES_V1_RESULT.json"
+  ]
+}

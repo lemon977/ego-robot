@@ -1,0 +1,71 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 0.75
+  },
+  "claim_limit": "Development counterfactual Robot trajectory authority only. R1-E remains blocked without strict Contact; an exported R1-H attempt is not adopted unless independent gates pass, and never grants training, control, deployment or truth.",
+  "dag_dependencies": [
+    "0915_robot15h_kai22_r0_wave0_v1",
+    "0915_robot15h_contact_dual_evidence_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_W0_KAI22_R1_COUNTERFACTUAL; weights ABSENT",
+  "objective": "Keep strict R1-E blocked when no admitted Contact window exists, while running one bounded R1-H counterfactual against a bit-exact R0/no-contact control and adopting it only under independent, non-self-certifying gates.",
+  "phase": "ROBOT15H_KAI22_R1_W0_EVIDENCE_AND_HYPOTHESIS",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_kai22_r0_wave0_v1=TERMINAL",
+    "0915_robot15h_contact_dual_evidence_v1=TERMINAL",
+    "R1_E_requires_admitted_strict_Contact",
+    "R1_H_consumes_only_formal_hypothesis_ledger",
+    "R1_H_has_bit_exact_R0_no_contact_control",
+    "single_frozen_hand_finger_object_window",
+    "non_target_sessions_hands_joints_and_frames_bit_exact",
+    "wrist_translation_and_orientation_frozen_without_independent_metric_placement",
+    "counterfactual_delta_q_at_most_0_12rad",
+    "transition_at_most_0_2s_and_creates_no_Contact_label",
+    "optimization_metric_not_adoption_evidence",
+    "R1_H_training_eligible_false",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN"
+  ],
+  "read_set": [
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/CONTACT_EVIDENCE_LEDGER.json",
+    "_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/CONTACT_HYPOTHESIS_LEDGER.json",
+    "_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "contracts/kai22_r1_hypothesis_v1.schema.json",
+    "src/chaoyang/ops/run_0915_robot15h_r1_hypothesis_wave0_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "R1_ELIGIBILITY_LEDGER.json",
+    "BATCH_RESULT.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_robot_relative_refinement_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_R1_V1",
+    "tasks/receipts/0915_ROBOT15H_ROBOT_RELATIVE_REFINEMENT_V1_RESULT.json"
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 0.5
+  },
+  "claim_limit": "Inventory, source grouping, split and scheduling authority only.  It does not create HaWoR, Depth, Contact, Robot or cross-recording generalization results and does not authorize 0916 consumption.",
+  "dag_dependencies": [
+    "0915_human_stereo_alignment_bound_audit_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_IO_ONLY; GPU_FORBIDDEN; weights ABSENT",
+  "objective": "Freeze the immutable fifteen-hour clock and corrected DAG, inventory only the 220-session 0915 processed cohort, corroborate independent source recordings, freeze source-group splits and W0/W1 selections, and capture resource state without running a model.",
+  "phase": "ROBOT15H_WINDOW_START_INVENTORY",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "only_0915_single_underscore_processed_root",
+    "0916_highview_FORBIDDEN",
+    "source_and_processed_roots_READ_ONLY",
+    "physical_left_sourceIndex1_crop_resize_only",
+    "lens_undistortion_FORBIDDEN",
+    "play_cards_0915_001_DEVELOPMENT_ONLY",
+    "gpu_FORBIDDEN",
+    "weights_ABSENT"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/receipts/0915_ROBOT15H_USER_AUTHORIZATION_V1.json",
+    "docs/chaoyang_robot_15h_v1/01_EXECUTION_PLAN_15H_ZH.md",
+    "docs/chaoyang_robot_15h_v1/BUNDLE_MANIFEST.json",
+    "tasks/receipts/0915_PROCESSED_ROOT_MOUNT_RELOCATION_V1.json",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915/DATASET_RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_window_start_inventory_v1.py",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "WINDOW_CLOCK_REF.json",
+    "RESOURCE_SNAPSHOT.json",
+    "SOURCE_GROUP_MANIFEST.json",
+    "BATCH_MANIFEST.json",
+    "FROZEN_DAG.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_window_start_inventory_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001",
+    "tasks/receipts/0915_ROBOT15H_WINDOW_START_INVENTORY_V1_RESULT.json"
+  ]
+}

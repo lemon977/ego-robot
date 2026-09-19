@@ -1,0 +1,65 @@
+{
+  "budgets": {
+    "gpu_hours": 1.5,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 2
+  },
+  "claim_limit": "Bounded recovery of the recorded empty-candidate serialization defect only. Development visible task-object masks remain non-ground-truth; no hidden shape, complete extent, Contact, control, training, deployment or generalization authority.",
+  "dag_dependencies": [
+    "0915_robot15h_sam31_task_object_wave0_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "ONE_SERIAL_GPU_LEASE_SAM31_W0_TASK_OBJECT_RECOVERY; one persistent model load",
+  "objective": "Repeat the frozen W0 SAM3.1 task-object run after correcting only the zero-candidate archive shape: an empty text result is serialized as raw UNKNOWN evidence instead of raising reshape(0,-1). All prompts, weights, identity gates and downstream authority remain unchanged.",
+  "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0_EMPTY_CANDIDATE_RECOVERY",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_sam31_task_object_wave0_v1=FAILED_RUNTIME_FINAL",
+    "recorded_blocker=EMPTY_TEXT_CANDIDATE_RESHAPE_AMBIGUITY",
+    "empty_text_candidate_serializes_as_raw_UNKNOWN_not_absent",
+    "same_T0_W0_checkpoint_input_domain_prompts_and_quality_gates",
+    "no_manual_coordinate_or_session_specific_box",
+    "raw_candidate_separate_from_semantic_admission",
+    "central_GPU_single_lease"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_sam31_temporal_identity_quality_v2/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/PREPARED_MANIFEST.json",
+    "src/chaoyang/ops/run_0915_robot15h_sam31_task_object_wave0_v1.py",
+    "src/chaoyang/pipeline/sam31_compat_adapter_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "OBJECT_IDENTITY_BATCH.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_SAM31_TASK_OBJECT_RECOVERY_V1",
+    "tasks/receipts/0915_ROBOT15H_SAM31_TASK_OBJECT_WAVE0_RECOVERY_V1_RESULT.json"
+  ]
+}

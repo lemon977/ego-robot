@@ -1,0 +1,68 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 0.25
+  },
+  "claim_limit": "Development directly visible finite-surface geometry only. Visible centroids are not object-fixed centres; hidden extent, thickness and support objects stay unknown. No strict metric Contact, control, training, deployment or external accuracy authority is granted.",
+  "dag_dependencies": [
+    "0915_robot15h_foundationstereo_wave0_recovery_v1",
+    "0915_robot15h_sam31_task_object_wave0_recovery_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_OBJECT6D_VISIBLE_PATCH_OR_EXPLICIT_BLOCKER; weights ABSENT",
+  "objective": "Join the four frozen W0 Depth and task-object-mask terminals; produce directly observed finite playing-card surface geometry for independently admitted Poker sessions, and record the first upstream blocker for every other session without emitting empty or synthetic geometry.",
+  "phase": "ROBOT15H_OBJECT6D_W0_VISIBLE_PATCH",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_foundationstereo_wave0_recovery_v1=TERMINAL",
+    "0915_robot15h_sam31_task_object_wave0_recovery_v1=TERMINAL",
+    "depth_blocker_has_precedence",
+    "object_mask_must_be_consumer_admitted",
+    "finite_visible_surface_only",
+    "visible_centroid_is_not_object_fixed_center",
+    "normal_and_pi_periodic_axis_signs_temporally_unified",
+    "hidden_extent_and_thickness_remain_UNOBSERVABLE",
+    "all_unknown_or_empty_Object6D_FORBIDDEN",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_object6d_wave0_v1.py",
+    "src/chaoyang/pipeline/object6d_planar_observability_v2.py",
+    "src/chaoyang/pipeline/object6d_planar_observability_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "OBJECT6D_ELIGIBILITY_LEDGER.json",
+    "BATCH_RESULT.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_OBJECT6D_V1",
+    "tasks/receipts/0915_ROBOT15H_GEOMETRY_OBJECT6D_WAVE0_V1_RESULT.json"
+  ]
+}

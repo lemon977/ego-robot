@@ -1,0 +1,51 @@
+{
+  "batch_result": {
+    "bytes": 38495,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "8517f3583c3e429ad655aa7c52e9fcfd858b58d0bbe82e168bb72fca02a4ab3e"
+  },
+  "claim_limit": "Bounded pre-model-import recovery with unchanged hand-only semantic authority. Task-object/forearm/sleeve/cable masks remain blocked without independent anchors; no Object6D mask-consumer, Contact, control, training or deployment authority.",
+  "counts": {
+    "hand_instances_attemptable": 7,
+    "hand_instances_blocked": 1,
+    "hand_instances_proxy_pass": 3,
+    "hand_instances_quality_rejected": 4,
+    "object_semantic_admitted": 0,
+    "sessions_failed_runtime": 0,
+    "sessions_hand_artifacts_exported": 4,
+    "sessions_total": 4
+  },
+  "empty_semantic_mask": "UNKNOWN_NOT_ABSENT",
+  "execution_completed": true,
+  "first_blocker": "TASK_OBJECT_AND_WEAK_ROLES_LACK_INDEPENDENT_VISUAL_ANCHORS",
+  "gpu_command_receipt": {
+    "bytes": 27628,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "1f6ea54664815d3afdb0854bd0c06a428764bf1b05a48bedf1541052412850ad"
+  },
+  "initial_box_semantics": "MULTIPLEX_GEOMETRIC_BOX",
+  "object_mask_consumer_allowed": false,
+  "object_semantic_admitted": 0,
+  "physical_deployment_authorized": false,
+  "quality_status": "PARTIAL_HAND_ONLY_OBJECTS_BLOCKED",
+  "raw_candidate_is_semantic_truth": false,
+  "result": {
+    "bytes": 2205,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "9f7c3f02c537437ad7fbbe5b917b6714b129feb4d4b4c6bdff77c0080bd439da"
+  },
+  "role_blocker_ledger": {
+    "bytes": 626,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001/ROLE_BLOCKER_LEDGER.json",
+    "sha256": "674abbde1fcfa9b7e45fce1603750594d5647fbbbcaf972c942eccd0ab290252"
+  },
+  "schema_version": "0915-robot15h-sam31-temporal-identity-result-v1",
+  "source_mutated": false,
+  "status": "REJECTED_QUALITY",
+  "task_id": "0915_robot15h_sam31_temporal_identity_recovery_v1",
+  "training_eligible": false,
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

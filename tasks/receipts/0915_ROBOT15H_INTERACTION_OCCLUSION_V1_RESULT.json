@@ -1,0 +1,68 @@
+{
+  "authority": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE",
+  "batch_result": {
+    "bytes": 3802,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "0acb3aacb99ae67d3ccb08ae33ec7d74b9476c12f1685840658f9b7b665b01ad"
+  },
+  "claim_limit": "Development Interaction diagnosis only. Finger-associated visible surfaces are not anatomical fingertip truth, object geometry is directly visible finite support only, and no strict Contact, control, training, deployment or external metric accuracy authority is granted.",
+  "completed_at": "2026-09-19T03:14:40+08:00",
+  "constant_48mm_bias_subtracted": false,
+  "contact_fitting_alignment_used": false,
+  "control_ground_truth": false,
+  "coordinate_domain": "PHYSICAL_LEFT_ENCODED_RESIZE_ONLY_OPTICAL_Z",
+  "counts": {
+    "attempted": 1,
+    "blocked_upstream": 3,
+    "failed_runtime": 0,
+    "passed": 1,
+    "quality_rejected": 0,
+    "total": 4,
+    "unrun": 0
+  },
+  "gpu_used": false,
+  "hawor_absolute_z_consumed": false,
+  "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+  "interaction_quality_status": "PASSED_PARTIAL_W0_DEVELOPMENT_INTERACTION_EVIDENCE",
+  "ledger": {
+    "bytes": 4086,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/INTERACTION_EVIDENCE_LEDGER.json",
+    "sha256": "73d49c9c658f5a7e45ade11e4b44db3656f19295f249bd0138e4886d45ca0398"
+  },
+  "metrics": {
+    "bytes": 465,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/METRICS.json",
+    "sha256": "72185601cc697b796828798a6c981df05ca92b99e53b16ac8070199aa6823d0d"
+  },
+  "physical_deployment_authorized": false,
+  "removal_consumed": false,
+  "result": {
+    "bytes": 2936,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "1940c5310f1f70bf59647b93487d5c5d8e2b5f5af297abc9e48a6135043409cd"
+  },
+  "run_signature": {
+    "bytes": 3500,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "c3052e7ed21f560272e4e1e27e3e95134f4d87f9b37b498cfd8b28dfff30eb97"
+  },
+  "schema_version": "0915-robot15h-interaction-wave0-result-v1",
+  "short_gap_inferred_consumed": false,
+  "source_mutated": false,
+  "status": "PASSED",
+  "strict_metric_contact_authorized": false,
+  "task_id": "0915_robot15h_interaction_occlusion_v1",
+  "training_eligible": false,
+  "visual_index": {
+    "bytes": 433,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_INTERACTION_V1/INDEX.json",
+    "sha256": "dd3105d33b0239c1f917cb55afcfc6a8a6bb63670dee2f438ac2bc51a004d1de"
+  },
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "writer_claim": {
+    "bytes": 636,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "11f051e19c8ae054290d7b0908d4efceecd9c3a4f1cdbf0924090e44521a716f"
+  }
+}

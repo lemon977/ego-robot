@@ -1,0 +1,54 @@
+{
+  "batch_result": {
+    "bytes": 3680,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "d6c286b986d8f1a4e1051f06a55e48302bce1a54038f17831eb1f240a05faf42"
+  },
+  "claim_limit": "Bounded runtime recovery for one interrupted W0 session plus SHA references to three predecessor atomic sessions. No metric Contact, control, training, deployment or external encoded-camera accuracy authority.",
+  "counts": {
+    "failed_runtime": 0,
+    "freshly_rerun": 1,
+    "passed": 4,
+    "rejected_quality": 0,
+    "reused_atomic": 3,
+    "total": 4
+  },
+  "external_accuracy": "UNVERIFIED",
+  "first_blocker": null,
+  "gpu_command_receipt": {
+    "bytes": 4406,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "1727312cac1efea69e897a8d47788c0065c770d4c084274c02b421233e42ab2e"
+  },
+  "horizontal_reflection_for_disparity_sign": true,
+  "lens_undistortion_applied": false,
+  "output_domain": "ORIGINAL_PHYSICAL_LEFT_640x480",
+  "physical_deployment_authorized": false,
+  "recovery_scope": {
+    "bytes": 5636,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/RECOVERY_SCOPE.json",
+    "sha256": "f6719fae26fe8dcf955d6ca5f5a0f1cd770f7de23b9c56c05eadd64531a23362"
+  },
+  "recovery_session": "get_potato_chips_0915_042",
+  "result": {
+    "bytes": 2097,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "8a049ba2d00963dc80857fdb81088f361896a4654f09cfa8335479aae49b9440"
+  },
+  "reused_atomic_sessions": [
+    "play_cards_0915_031",
+    "play_cards_0915_119",
+    "get_potato_chips_0915_007"
+  ],
+  "same_model_and_quality_gates": true,
+  "schema_version": "0915-robot15h-foundationstereo-wave0-recovery-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "strict_metric_contact_authorized": false,
+  "task_id": "0915_robot15h_foundationstereo_wave0_recovery_v1",
+  "training_eligible": false,
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

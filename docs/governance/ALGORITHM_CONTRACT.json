@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-18T19:47:26+08:00",
-  "generation_id": "gov-012075-a3a8a7cce875",
-  "governance_revision": 12075,
+  "generated_at": "2026-09-19T09:57:23+08:00",
+  "generation_id": "gov-012359-e915329344cc",
+  "governance_revision": 12359,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -244,6 +244,308 @@
       },
       "status": "PASSED_POINT_IN_TIME_AUDIT"
     },
+    "robot15h_final_evidence_v1": {
+      "claim_limit": "Final evidence integrity sidecars only; no algorithm, control, training, deployment or physical authority.",
+      "code_closure": [
+        {
+          "bytes": 13257,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_0915_robot15h_final_evidence_v1.py",
+          "sha256": "4d12afb08c58adbd2afec76844d4bce442046ef2284a335a6f3a6d3a9e28024c"
+        },
+        {
+          "bytes": 45136,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_release_control_v1.py",
+          "sha256": "f5605c144b23e448838e739c3dd2be169f9018472394147bc3b4d853ddcd4e41"
+        }
+      ],
+      "execution_scope": "H14_RUNTIME_VIDEO_TEST_AND_LOCAL_COMMIT_SIDECARS",
+      "gpu_required": false,
+      "minimum_time": "H14_GPU_DRAIN",
+      "remote_push": false,
+      "weights": "ABSENT"
+    },
+    "robot15h_foundationstereo_w1_v1": {
+      "claim_limit": "W1 development Depth and visual/Object6D candidate input only; no strict metric Contact, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 9323,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_foundationstereo_waves_v1.py",
+          "sha256": "5348dda94b912ce97d1f1c809f17458c925fac0755898d260b9ab03606eb3d64"
+        },
+        {
+          "bytes": 38563,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_foundationstereo_wave0_v1.py",
+          "sha256": "37d8528c343728134d28a10e78da3f9c12ed37a178d82b6f8cbe398b1a121b0e"
+        },
+        {
+          "bytes": 36954,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_foundationstereo_encoded_domain_canary_v1.py",
+          "sha256": "fecac6f54f45a33d10beab842ddd9f4bf20b9f68b80ee5b9b0b65783c9bfefac"
+        },
+        {
+          "bytes": 9699,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
+          "sha256": "c9a127cfd4e235e2c2c4c32f8031b6c6d85205f1bac25af25ac99e84084f5c04"
+        }
+      ],
+      "disparity_sign_adapter": "SIMULTANEOUS_HORIZONTAL_REFLECTION_NO_CAMERA_SWAP_THEN_UNFLIP",
+      "encoded_projection_accuracy": "UNVERIFIED",
+      "execution_scope": "EIGHT_FROZEN_0915_W1_SESSIONS_ENCODED_DOMAIN",
+      "final_holdout_release": "H9_OR_LATER",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_EYES_SOURCEINDEX_1_0_CROP_RESIZE_ONLY",
+      "source_binding": "COPY_FROZEN_W1_ROWS_AND_BIND_SHA_AT_SCHEDULING",
+      "strict_metric_contact_authorized": false,
+      "weights": "ONE_LOGICAL_FOUNDATIONSTEREO_CHECKPOINT"
+    },
+    "robot15h_foundationstereo_wave0_recovery_v1": {
+      "claim_limit": "Bounded one-session runtime recovery only; no metric Contact, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 18085,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_foundationstereo_wave0_recovery_v1.py",
+          "sha256": "0149a1b9fd913af449e7370a6de2fec3b69e4172f319b94473c09d06a918db4f"
+        },
+        {
+          "bytes": 38563,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_foundationstereo_wave0_v1.py",
+          "sha256": "37d8528c343728134d28a10e78da3f9c12ed37a178d82b6f8cbe398b1a121b0e"
+        }
+      ],
+      "encoded_projection_accuracy": "UNVERIFIED",
+      "execution_scope": "ONE_INTERRUPTED_W0_SESSION_PLUS_THREE_SHA_VERIFIED_ATOMIC_PREDECESSORS",
+      "gpu_required": true,
+      "incomplete_predecessor_staging": "PRESERVED_NOT_CONSUMED",
+      "input_domain": "PHYSICAL_EYES_SOURCEINDEX_1_0_CROP_RESIZE_ONLY",
+      "rerun_scope": "GET_POTATO_CHIPS_0915_042_ONLY",
+      "strict_metric_contact_authorized": false,
+      "weights": "ONE_LOGICAL_FOUNDATIONSTEREO_CHECKPOINT"
+    },
+    "robot15h_foundationstereo_wave0_v1": {
+      "claim_limit": "W0 development Depth and visual Object6D candidate input only; no metric Contact, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 38563,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_foundationstereo_wave0_v1.py",
+          "sha256": "37d8528c343728134d28a10e78da3f9c12ed37a178d82b6f8cbe398b1a121b0e"
+        },
+        {
+          "bytes": 36954,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_foundationstereo_encoded_domain_canary_v1.py",
+          "sha256": "fecac6f54f45a33d10beab842ddd9f4bf20b9f68b80ee5b9b0b65783c9bfefac"
+        },
+        {
+          "bytes": 9699,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
+          "sha256": "c9a127cfd4e235e2c2c4c32f8031b6c6d85205f1bac25af25ac99e84084f5c04"
+        },
+        {
+          "bytes": 3046,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/vst_encoded_video_domain.py",
+          "sha256": "fd2c7ddbfebd363437e2c2f2d5f95a430717b65988011b920391e5426b83b634"
+        }
+      ],
+      "disparity_sign_adapter": "SIMULTANEOUS_HORIZONTAL_REFLECTION_NO_CAMERA_SWAP_THEN_UNFLIP",
+      "encoded_projection_accuracy": "UNVERIFIED",
+      "execution_scope": "FOUR_FROZEN_0915_DEVELOPMENT_SESSIONS_ENCODED_DOMAIN",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_EYES_SOURCEINDEX_1_0_CROP_RESIZE_ONLY",
+      "strict_metric_contact_authorized": false,
+      "weights": "ONE_LOGICAL_FOUNDATIONSTEREO_CHECKPOINT"
+    },
+    "robot15h_hawor_wave0_recovery_v1": {
+      "claim_limit": "Recorded import-path recovery only; no Contact, control, deployment, training or generalization authority.",
+      "code_closure": [
+        {
+          "bytes": 788,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_hawor_wave0_recovery_v1.py",
+          "sha256": "2771cafc7262a5307200fdc197b5e23ff08468edbfca233c7df20ff88b5aaf68"
+        },
+        {
+          "bytes": 22012,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_hawor_wave0_v1.py",
+          "sha256": "901e38db7e46a70effbce6b3f36ad02690710a94287ee046c0a7381f621b570d"
+        },
+        {
+          "bytes": 9231,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_resize_only_persistent_worker_v2.py",
+          "sha256": "1288bf26bb335564552fbb2fc73475fbc460fe68154f8486d1d6edfe45445240"
+        }
+      ],
+      "execution_scope": "FOUR_FROZEN_0915_DEVELOPMENT_SESSIONS_IMPORT_RECOVERY",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "recovery_scope": "PINNED_ENV_PROJECT_IMPORT_PATH_ONLY",
+      "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1"
+    },
+    "robot15h_hawor_wave0_v1": {
+      "claim_limit": "Development HaWoR W0 only; no Contact, control, deployment, training or generalization authority.",
+      "code_closure": [
+        {
+          "bytes": 22012,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_hawor_wave0_v1.py",
+          "sha256": "901e38db7e46a70effbce6b3f36ad02690710a94287ee046c0a7381f621b570d"
+        },
+        {
+          "bytes": 9231,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_resize_only_persistent_worker_v2.py",
+          "sha256": "1288bf26bb335564552fbb2fc73475fbc460fe68154f8486d1d6edfe45445240"
+        },
+        {
+          "bytes": 10265,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_play_cards_0910_001_hawor_raw.py",
+          "sha256": "1ca9e682eab7d9d176e6ff7b7c848d2bc647658ce23aef0b3f2288feecc0604b"
+        }
+      ],
+      "execution_scope": "FOUR_FROZEN_0915_DEVELOPMENT_SESSIONS",
+      "forbidden_inputs": [
+        "legacy_prepared_mono",
+        "equiDis62_remap",
+        "PICO26_hand",
+        "trackingData_hand"
+      ],
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1"
+    },
+    "robot15h_kai22_r0_wave0_v1": {
+      "claim_limit": "Development Kai22 R0 only; no Contact, arm IK, control, training, deployment or measured calibration authority.",
+      "code_closure": [
+        {
+          "bytes": 28745,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_kai22_r0_wave0_v1.py",
+          "sha256": "5d389faef24255be58cf45036977059c9df5c52c43c619cc05e43cc767df612c"
+        },
+        {
+          "bytes": 37147,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
+          "sha256": "91faf80669b3fb971db5f77362d50a80539a24483d1c959136520e4ce47c6df8"
+        },
+        {
+          "bytes": 17370,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/robot_visual_relative_v1.py",
+          "sha256": "be0d1512fe3ffa1239d0a53ef958353960ca99d71fc191eebfa16d52b27c70ad"
+        }
+      ],
+      "execution_scope": "FOUR_FROZEN_0915_W0_KAI22_R0",
+      "gpu_required": false,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "robot_layer": "R0_WRIST_LOCAL_Q22",
+      "weights": "ABSENT"
+    },
+    "robot15h_sam31_temporal_identity_recovery_v1": {
+      "claim_limit": "Bounded pre-model-import recovery; unchanged hand-only development authority and no object-mask, Contact, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 64338,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_sam31_temporal_identity_v1.py",
+          "sha256": "f6b6b444bd86acfb301a781f192bccbeaee2dd7177081656e2486294366490c5"
+        },
+        {
+          "bytes": 34274,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+          "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        }
+      ],
+      "execution_scope": "SAME_FOUR_W0_SESSIONS_PRE_MODEL_IMPORT_RECOVERY",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "object_mask_consumer_allowed": false,
+      "prompt_semantics": "MULTIPLEX_GEOMETRIC_BOX_FROM_DIRECT_OBSERVED_HAWOR",
+      "recovery_change": "BIND_REPOSITORY_LOCAL_VENDOR_SAM3_IMPORT_PATH_ONLY",
+      "unanchored_roles": "FAIL_CLOSED_UNKNOWN",
+      "weights": "ONE_LOGICAL_SAM31_MULTIPLEX_CHECKPOINT"
+    },
+    "robot15h_sam31_temporal_identity_v1": {
+      "claim_limit": "W0 hand temporal-identity development evidence only; no object-mask, Contact, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 64338,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_sam31_temporal_identity_v1.py",
+          "sha256": "f6b6b444bd86acfb301a781f192bccbeaee2dd7177081656e2486294366490c5"
+        },
+        {
+          "bytes": 34274,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+          "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        }
+      ],
+      "execution_scope": "FOUR_FROZEN_0915_W0_HAND_TEMPORAL_IDENTITY_ONLY",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "object_mask_consumer_allowed": false,
+      "prompt_semantics": "MULTIPLEX_GEOMETRIC_BOX_FROM_DIRECT_OBSERVED_HAWOR",
+      "raw_semantic_separation": "MANDATORY",
+      "unanchored_roles": "FAIL_CLOSED_UNKNOWN",
+      "weights": "ONE_LOGICAL_SAM31_MULTIPLEX_CHECKPOINT"
+    },
+    "robot15h_scale_cause_audit_v1": {
+      "claim_limit": "Development cause classification only; no metric calibration, Contact, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 18949,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_scale_cause_audit_v1.py",
+          "sha256": "b8ffd170c352b0783a898b532cfad6b91154f285a574394a78d632671bfb0e9b"
+        },
+        {
+          "bytes": 64147,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/robot15h_task_specs_v1.py",
+          "sha256": "5f6c2fb1f08cd551209a58a4798e41da45be0fe0dab2cb37565fbfe95ba83aed"
+        }
+      ],
+      "contact_or_object_fit": "FORBIDDEN",
+      "execution_scope": "SEALED_PLAY_CARDS_0915_001_NON_CONTACT_SURFACE_EVIDENCE",
+      "fit_estimand": "MANO_VISIBLE_SURFACE_OPTICAL_Z_TO_STEREO_VISIBLE_SURFACE_OPTICAL_Z",
+      "gpu_required": false,
+      "scale_bound_change": "FORBIDDEN",
+      "weights": "ABSENT"
+    },
+    "robot15h_w1_release_scope_gate_v1": {
+      "blocked_nodes": [
+        "hawor_w1",
+        "sam31_w1",
+        "robot_w1"
+      ],
+      "claim_limit": "Release-scope and missing-input blockers only; no model execution, export, quality success, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 11847,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_wave_scope_gate_v1.py",
+          "sha256": "62f3ad93671e3b464de2367afb30869d3869087b6d1e5097f0f43af512e0ac3b"
+        },
+        {
+          "bytes": 64147,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/robot15h_task_specs_v1.py",
+          "sha256": "5f6c2fb1f08cd551209a58a4798e41da45be0fe0dab2cb37565fbfe95ba83aed"
+        }
+      ],
+      "execution_scope": "EIGHT_FROZEN_0915_W1_SESSIONS_SCOPE_ACCOUNTING_ONLY",
+      "gpu_required": false,
+      "source_video_open_count": 0,
+      "weights": "BOUND_BY_TASK_PACKET_OR_ABSENT"
+    },
+    "robot15h_window_start_inventory_v1": {
+      "0916_consumption": "FORBIDDEN",
+      "claim_limit": "Inventory/split/scheduling evidence only; no model, Robot, Contact, training or deployment result.",
+      "code_closure": [
+        {
+          "bytes": 24936,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_window_start_inventory_v1.py",
+          "sha256": "44cf227eb4ea227e8baacea3aff9230026e81e96b4b6dc6fe06486e1ca944eb0"
+        },
+        {
+          "bytes": 64147,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/robot15h_task_specs_v1.py",
+          "sha256": "5f6c2fb1f08cd551209a58a4798e41da45be0fe0dab2cb37565fbfe95ba83aed"
+        }
+      ],
+      "execution_scope": "0915_220_SESSION_INVENTORY_AND_W0_W1_FREEZE",
+      "gpu_required": false,
+      "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "input_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915",
+      "source_group_authority": "USER_CONFIRMED_AND_METADATA_CORROBORATED",
+      "weights": "ABSENT"
+    },
     "robot_pose_similarity": {
       "gate_class": "SOFT_DIAGNOSTIC",
       "may_block_robot_geometry": false
@@ -449,9 +751,9 @@
       "algorithm_id": "hawor_bounded_v2",
       "code_closure": [
         {
-          "bytes": 36126,
+          "bytes": 37147,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_hawor_bounded_parameter_successor.py",
-          "sha256": "c05e1413e124403ac7740243c1eb7e7b76488921e83df20cff7c5a3a1bb25b08"
+          "sha256": "91faf80669b3fb971db5f77362d50a80539a24483d1c959136520e4ce47c6df8"
         },
         {
           "bytes": 7326,

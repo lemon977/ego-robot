@@ -1,0 +1,17 @@
+{
+  "schema_version": "0915-robot15h-object6d-wave0-visual-index-v1",
+  "status": "COMPLETE",
+  "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+  "videos": [
+    {
+      "bytes": 4889329,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_OBJECT6D_V1/play_cards_0915_031_OBJECT6D_REVIEW.mp4",
+      "sha256": "b273c71baed1cc6619f5a546661156b3e68fd0faf360237ca99a683802554dba"
+    },
+    {
+      "bytes": 5091088,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_OBJECT6D_V1/play_cards_0915_119_OBJECT6D_REVIEW.mp4",
+      "sha256": "31bf5505ad3881600ce5394aaa6bf8429bd2745863e1502f5dc7254c2fe88945"
+    }
+  ]
+}

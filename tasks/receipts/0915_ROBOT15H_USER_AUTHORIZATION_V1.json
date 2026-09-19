@@ -1,0 +1,20 @@
+{
+  "authorized_at": "2026-09-19T00:09:59+08:00",
+  "authorized_processed_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915",
+  "deadline_at": "2026-09-19T15:09:59+08:00",
+  "git_push_authorized": false,
+  "physical_hardware_control_authorized": false,
+  "play_cards_0915_001_split": "DEVELOPMENT_ONLY",
+  "processed_or_source_mutation_authorized": false,
+  "run_id": "robot15h-0915-20260919T000959+0800",
+  "schema_version": "0915-robot15h-user-authorization-v1",
+  "session_recording_fact": {
+    "source": "USER_CONFIRMED",
+    "statement": "The numbered 0915 sessions were recorded separately.",
+    "verification_policy": "Corroborate with manifests, capture identifiers, VST SHA and QPC time ranges; do not rely on directory numbering alone."
+  },
+  "status": "AUTHORIZED",
+  "training_eligible": false,
+  "window_hours": 15,
+  "0916_policy": "CLEANING_ONLY_FORBIDDEN_FROM_THIS_WINDOW"
+}

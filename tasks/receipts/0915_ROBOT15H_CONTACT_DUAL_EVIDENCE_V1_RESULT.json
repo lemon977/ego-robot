@@ -1,0 +1,68 @@
+{
+  "authority": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE",
+  "batch_result": {
+    "bytes": 8705,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "40c1bebb51f59af8135e8815066c802c0fe5dd45a3c55679d14fe9b75fe23e24"
+  },
+  "claim_limit": "Development Contact diagnosis and explicitly isolated hypothesis authority only. Hypotheses are non-causal, non-metric Contact explanations, never probability, ground truth, force, training data, control or deployment authority.",
+  "completed_at": "2026-09-19T03:16:15+08:00",
+  "contact_evidence_ledger": {
+    "bytes": 8927,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/CONTACT_EVIDENCE_LEDGER.json",
+    "sha256": "b5a5186899bdf66a63c145470dd8bf1dfa7816b887a84fa0ae2b333c385a6ae3"
+  },
+  "contact_hypothesis_ledger": {
+    "bytes": 19256,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/CONTACT_HYPOTHESIS_LEDGER.json",
+    "sha256": "c3e002bdec31c20f5fe196fc6c26aecb88d16d5d92c62d1e55980dbd60c462c4"
+  },
+  "control_ground_truth": false,
+  "counts": {
+    "blocked_upstream_hand_role": 1,
+    "blocked_upstream_object6d": 2,
+    "diagnostic_completed": 1,
+    "failed_runtime": 0,
+    "hypothesis_rows": 7,
+    "r1_e_windows": 0,
+    "strict_contact_windows": 0,
+    "total": 4,
+    "unrun": 0
+  },
+  "gpu_used": false,
+  "metrics": {
+    "bytes": 563,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/METRICS.json",
+    "sha256": "c058b3ecb312626a4b5cfec6b91695b198be11d0551062141ff7c361644f811f"
+  },
+  "physical_deployment_authorized": false,
+  "r1_e_authorized": false,
+  "result": {
+    "bytes": 2898,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "8cfcb6b663e5f5d5808f0f8ba34775f2a44626c3572a5267ba6cee30af4c7c74"
+  },
+  "run_signature": {
+    "bytes": 4124,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "7ce68bc08433162021ee363bd289826eaf989a460edd717aa870995c2eceb1f4"
+  },
+  "schema_version": "0915-robot15h-contact-wave0-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "strict_metric_contact_authorized": false,
+  "task_id": "0915_robot15h_contact_dual_evidence_v1",
+  "training_eligible": false,
+  "visual_index": {
+    "bytes": 1195,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_CONTACT_V1/INDEX.json",
+    "sha256": "73538e5cb7cc397614342df8844b51e131dfb8351c4e21378b9c3536eab52cec"
+  },
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "writer_claim": {
+    "bytes": 632,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "a2ddbb3b50043876552f50289c8d0483695965bb3dd1e9a8df2e52a0a1328aef"
+  }
+}

@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-18T19:47:26+08:00",
-  "generation_id": "gov-012075-a3a8a7cce875",
-  "generator_code_sha": "aa4a5b939dbdd5c0212301f8b12ec0766287017a3f477f39953db9e00d715120",
-  "governance_revision": 12075,
+  "generated_at": "2026-09-19T09:57:23+08:00",
+  "generation_id": "gov-012359-e915329344cc",
+  "generator_code_sha": "cee50518ec5db28239131428c622d9d32952d6b50f81d9a102a9ab4b137b7ab9",
+  "governance_revision": 12359,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -268,9 +268,9 @@
       "created_at": "2026-09-18T10:22:47+08:00",
       "message": "Finite 0915 campaign task reached a recorded terminal.",
       "result": {
-        "bytes": 1286,
+        "bytes": 1315,
         "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
-        "sha256": "5cafcedf259de75fc5f28a96ac8d429046dfe9867d424ee8f6ba4ddd59fa98e0"
+        "sha256": "a323595df26bcea44f6c9bd37db50b3b916c341328d9ffe802b1e7b6fbd968f2"
       },
       "session": null,
       "status": "CANCELLED",
@@ -815,11 +815,649 @@
       "session": null,
       "status": "PASSED",
       "task_id": "0915_human_stereo_alignment_bound_audit_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:22:41+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_window_start_inventory_v1",
+      "task_packet": {
+        "bytes": 2648,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_window_start_inventory_v1/TASK_PACKET.json",
+        "sha256": "6c9682ed69d4fd2f40c7f4f5022a90f01a1953003d74ce5a9adc81a4748967f6"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:23:33+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2656,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ad2599383c3857028124247e0b12d1eb9166df55d7bb3f107bac93874c5e7c85"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_window_start_inventory_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:30:26+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_hawor_wave0_v1",
+      "task_packet": {
+        "bytes": 2754,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_wave0_v1/TASK_PACKET.json",
+        "sha256": "2c6a107131cd8a7a5b4e41bdf9041ae52c296732e5ef9d217494b2162fced6e6"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:32:47+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1140,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "480ffac548475ea174632c14c2703f045287ae22cb3f60da0c72591978252641"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_hawor_wave0_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:34:44+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_hawor_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 2589,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "9de9c72830bc6d206d56426f0a6be08ecd786229109d3eb5eb8ac5a98383694f"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:42:27+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2099,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ca6326f64ad010c5eec9e2bafe5f0806b07c9938b25866f0183a414d7fd18557"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_hawor_wave0_recovery_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:50:56+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_kai22_r0_wave0_v1",
+      "task_packet": {
+        "bytes": 2580,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_kai22_r0_wave0_v1/TASK_PACKET.json",
+        "sha256": "8a00ffea1d734633e37c7ae5052c4a16a03359d8e366fdbc160b4011aee66ee6"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:54:03+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1600,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ec5a203c15c879896f448383ab2562842b809bc560af5c9d28d7b1cb2d978f43"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_kai22_r0_wave0_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T00:59:15+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_scale_cause_audit_v1",
+      "task_packet": {
+        "bytes": 2903,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_scale_cause_audit_v1/TASK_PACKET.json",
+        "sha256": "2d9665e02515f0e177c81bc6f7b4b28ae73ef47a37a56abe496200a0ec4f5502"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:00:08+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2465,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "555b4c707f556ee8d1bf680c295c92ec6de0621085bfa8fc51950052d6f1db2b"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_scale_cause_audit_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:07:53+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_foundationstereo_wave0_v1",
+      "task_packet": {
+        "bytes": 2901,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_wave0_v1/TASK_PACKET.json",
+        "sha256": "a0ae04adf6f6c4736e7a198b727bcc9f1dc40f06715776a7cd12425d11eb3250"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:24:56+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1486,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "573a0dfc9556673f4d4c9d922e8fffbceaf3db7d6f319bbbdd366f3e3aacdd37"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_foundationstereo_wave0_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:28:11+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_foundationstereo_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 2870,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "728c0313c483ad71900611b2a6248a2579ff02ad88cb4ed60a009040b076bd6d"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:35:55+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2097,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8a049ba2d00963dc80857fdb81088f361896a4654f09cfa8335479aae49b9440"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_wave0_recovery_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:36:29+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_sam31_temporal_identity_v1",
+      "task_packet": {
+        "bytes": 3081,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_v1/TASK_PACKET.json",
+        "sha256": "c6362dc2e42b8002f5a4f7fd9dcf7c8ad48d6b04ae3929ff78c108d4f687283f"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:37:35+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1641,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "f1f95164246f99b99f4188a117e2c5a7bb8a6cb9f4f1da81b2649903d2fee35b"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_temporal_identity_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:39:15+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_sam31_temporal_identity_recovery_v1",
+      "task_packet": {
+        "bytes": 2949,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_recovery_v1/TASK_PACKET.json",
+        "sha256": "edae04e6bd9babf8482c30a423f22252a8e0a8b84faea0e4b20f486711b460a6"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T01:48:26+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2205,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9f7c3f02c537437ad7fbbe5b917b6714b129feb4d4b4c6bdff77c0080bd439da"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_recovery_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:04:30+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_sam31_temporal_identity_quality_v2",
+      "task_packet": {
+        "bytes": 3248,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_quality_v2/TASK_PACKET.json",
+        "sha256": "646d5cf93a9f5f43b9c29a1298a58c4005b1bca0b14ce0eb0325e4efb7bcf208"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:13:50+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2482,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_quality_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "6801385f8354c94f23771c182aeca138e7678418cdad557886122ce3680a87d7"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_quality_v2",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:13:57+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_v1",
+      "task_packet": {
+        "bytes": 3044,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_task_object_wave0_v1/TASK_PACKET.json",
+        "sha256": "6579f25c6923942f7d48aa6f00b663f1561b2efafeaf81a3a1e66bce36a27873"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:17:19+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1556,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "2e9fc6ba6cd872d7b58c929480cb52be029c369a0a75f993e3d074561d268857"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:19:47+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 3063,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "d5a779e91edf36943dedebb0660d1dea2c5d849375229f7b61a92c5ce6335cd4"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:24:06+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1511,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "14c0be81f2e2724275e59b5262297397e5db2e1961480604e6296d1095e05256"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:40:45+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+      "task_packet": {
+        "bytes": 3090,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_geometry_object6d_wave0_v1/TASK_PACKET.json",
+        "sha256": "629be1aa46c360b4e0e9ad4b6b462bf60b9e174d6fddbbe4950c25a4a2cf1f5d"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T02:42:32+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2854,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "82df2b77267b732261214833847dc7a829f834cd5dc48d7497acb7b345872e17"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:14:08+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_interaction_occlusion_v1",
+      "task_packet": {
+        "bytes": 3455,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_interaction_occlusion_v1/TASK_PACKET.json",
+        "sha256": "9bf50f0e384107a0836fd4bbca173e3e1e975fb51eab18767e7d0fd1bf925009"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:15:20+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2936,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "1940c5310f1f70bf59647b93487d5c5d8e2b5f5af297abc9e48a6135043409cd"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_interaction_occlusion_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:15:28+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_contact_dual_evidence_v1",
+      "task_packet": {
+        "bytes": 3103,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_contact_dual_evidence_v1/TASK_PACKET.json",
+        "sha256": "c5a8dfa744a82245caebcecdf5c2d9e7df8fa1ad6dd7cdf81ced9d27a61d574f"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:17:03+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2898,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8cfcb6b663e5f5d5808f0f8ba34775f2a44626c3572a5267ba6cee30af4c7c74"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_contact_dual_evidence_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:17:11+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_robot_relative_refinement_v1",
+      "task_packet": {
+        "bytes": 3203,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_relative_refinement_v1/TASK_PACKET.json",
+        "sha256": "45801b2af016fa4c204314ec7b072f4e2716e8ab5d1b96a6542845686a122275"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:18:04+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2704,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "2fc991550e85f4ce8ef85ad09dcafb5184b151195db99fc73a03df15bbdb2640"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_relative_refinement_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:18:12+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_robot_virtual_arm_v1",
+      "task_packet": {
+        "bytes": 2767,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_virtual_arm_v1/TASK_PACKET.json",
+        "sha256": "01fb4e8daf12fd6023a0ec1c9881185af10bd30c6c2a48d447b270247174ed9c"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:23:03+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2016,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "e399c556db68f434774960189f1f8e83f7d02303c22afbe48b4337fcd75f4c8b"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_virtual_arm_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:24:10+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_release_candidate_v1",
+      "task_packet": {
+        "bytes": 3661,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_release_candidate_v1/TASK_PACKET.json",
+        "sha256": "a25765f2838e0f53dfaebaa14326111091cbb73ac903bed87f500aae7ce5f608"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:24:29+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1340,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "3830d7bedfd30b942edd51d730fdb0ce86fc038425b44c16f8961fb1182effc8"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_release_candidate_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:31:21+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_hawor_waves_v1",
+      "task_packet": {
+        "bytes": 2274,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_waves_v1/TASK_PACKET.json",
+        "sha256": "7e7e217e66e00660fb4fb89bfc1e253362b376abc6a02359ccd54ad8053fed5d"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:31:37+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1322,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "33e1d11166360e588ed6415834ab5f7fefa4bd6ed537ea1f1386781311d6c8cd"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_hawor_waves_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:31:43+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_sam31_waves_v1",
+      "task_packet": {
+        "bytes": 2500,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_waves_v1/TASK_PACKET.json",
+        "sha256": "58405e85f1fc34633b0fa91b7cb1784f27ba17ad7410343bbfdc85c2895c6049"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T03:31:59+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1315,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9b4cba37c4a63901aeaf0fb85a50bd22553f6621220963b8730a9b398773a40e"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_waves_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T09:10:00+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_foundationstereo_waves_v1",
+      "task_packet": {
+        "bytes": 3050,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_waves_v1/TASK_PACKET.json",
+        "sha256": "65d0f9e8bfae60157e6153c05b80a089f608e010d7c5777deea24639aa836d2d"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T09:52:46+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 2195,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9ccf1d26bd00db6cdcfb9324156ca5311095bf64ff186d027a02a8631da1f5be"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_waves_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T09:52:47+08:00",
+      "message": "Registered one node from the frozen 0915 Robot fifteen-hour DAG.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot15h_robot_waves_v1",
+      "task_packet": {
+        "bytes": 2560,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_waves_v1/TASK_PACKET.json",
+        "sha256": "3d2b49560ba45a8b97dc99d60574d01a3747c97de045ab352e2025b3c4dddb62"
+      },
+      "window_deadline_at": "2026-09-19T15:09:59+08:00",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T09:52:49+08:00",
+      "message": "Robot15h frozen DAG node reached a recorded terminal.",
+      "result": {
+        "bytes": 1253,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "aada424805d9f83494210e1f844ee9dfbb35e8393d345aae5c27b3b320f09966"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_robot_waves_v1",
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "b02d5cd980281eb4999146b6d710f7af3ebedd26"
+    "commit": "422864532891a04d9ce527ffc7e2ac400fb62a27"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -901,9 +1539,9 @@
       "plan_execution_revision": "0915_FULL_FUNNEL_V1",
       "proc_start_ticks": null,
       "result": {
-        "bytes": 1286,
+        "bytes": 1315,
         "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
-        "sha256": "5cafcedf259de75fc5f28a96ac8d429046dfe9867d424ee8f6ba4ddd59fa98e0"
+        "sha256": "a323595df26bcea44f6c9bd37db50b3b916c341328d9ffe802b1e7b6fbd968f2"
       },
       "session": null,
       "status": "CANCELLED",
@@ -1374,6 +2012,644 @@
         "sha256": "42fc86e481a682afe81cbd8cc092d5a65b05d921fa8f066c6337c00f60847fba"
       },
       "updated_at": "2026-09-18T19:45:45+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_WINDOW_START_INVENTORY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2656,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ad2599383c3857028124247e0b12d1eb9166df55d7bb3f107bac93874c5e7c85"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_window_start_inventory_v1",
+      "task_packet": {
+        "bytes": 2648,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_window_start_inventory_v1/TASK_PACKET.json",
+        "sha256": "6c9682ed69d4fd2f40c7f4f5022a90f01a1953003d74ce5a9adc81a4748967f6"
+      },
+      "updated_at": "2026-09-19T00:23:33+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1140,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "480ffac548475ea174632c14c2703f045287ae22cb3f60da0c72591978252641"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_hawor_wave0_v1",
+      "task_packet": {
+        "bytes": 2754,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_wave0_v1/TASK_PACKET.json",
+        "sha256": "2c6a107131cd8a7a5b4e41bdf9041ae52c296732e5ef9d217494b2162fced6e6"
+      },
+      "updated_at": "2026-09-19T00:32:47+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2099,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ca6326f64ad010c5eec9e2bafe5f0806b07c9938b25866f0183a414d7fd18557"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_hawor_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 2589,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "9de9c72830bc6d206d56426f0a6be08ecd786229109d3eb5eb8ac5a98383694f"
+      },
+      "updated_at": "2026-09-19T00:42:27+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_KAI22_R0_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1600,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ec5a203c15c879896f448383ab2562842b809bc560af5c9d28d7b1cb2d978f43"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_kai22_r0_wave0_v1",
+      "task_packet": {
+        "bytes": 2580,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_kai22_r0_wave0_v1/TASK_PACKET.json",
+        "sha256": "8a00ffea1d734633e37c7ae5052c4a16a03359d8e366fdbc160b4011aee66ee6"
+      },
+      "updated_at": "2026-09-19T00:54:03+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HUMAN_STEREO_SCALE_CAUSE_AUDIT",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2465,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "555b4c707f556ee8d1bf680c295c92ec6de0621085bfa8fc51950052d6f1db2b"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_scale_cause_audit_v1",
+      "task_packet": {
+        "bytes": 2903,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_scale_cause_audit_v1/TASK_PACKET.json",
+        "sha256": "2d9665e02515f0e177c81bc6f7b4b28ae73ef47a37a56abe496200a0ec4f5502"
+      },
+      "updated_at": "2026-09-19T01:00:08+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_WAVE0_ENCODED_DOMAIN",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1486,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "573a0dfc9556673f4d4c9d922e8fffbceaf3db7d6f319bbbdd366f3e3aacdd37"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_foundationstereo_wave0_v1",
+      "task_packet": {
+        "bytes": 2901,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_wave0_v1/TASK_PACKET.json",
+        "sha256": "a0ae04adf6f6c4736e7a198b727bcc9f1dc40f06715776a7cd12425d11eb3250"
+      },
+      "updated_at": "2026-09-19T01:24:56+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_WAVE0_BOUNDED_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2097,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8a049ba2d00963dc80857fdb81088f361896a4654f09cfa8335479aae49b9440"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 2870,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "728c0313c483ad71900611b2a6248a2579ff02ad88cb4ed60a009040b076bd6d"
+      },
+      "updated_at": "2026-09-19T01:35:55+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1641,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "f1f95164246f99b99f4188a117e2c5a7bb8a6cb9f4f1da81b2649903d2fee35b"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_temporal_identity_v1",
+      "task_packet": {
+        "bytes": 3081,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_v1/TASK_PACKET.json",
+        "sha256": "c6362dc2e42b8002f5a4f7fd9dcf7c8ad48d6b04ae3929ff78c108d4f687283f"
+      },
+      "updated_at": "2026-09-19T01:37:35+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0_RUNTIME_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2205,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9f7c3f02c537437ad7fbbe5b917b6714b129feb4d4b4c6bdff77c0080bd439da"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_recovery_v1",
+      "task_packet": {
+        "bytes": 2949,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_recovery_v1/TASK_PACKET.json",
+        "sha256": "edae04e6bd9babf8482c30a423f22252a8e0a8b84faea0e4b20f486711b460a6"
+      },
+      "updated_at": "2026-09-19T01:48:26+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0_QUALITY_V2",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2482,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_quality_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "6801385f8354c94f23771c182aeca138e7678418cdad557886122ce3680a87d7"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_quality_v2",
+      "task_packet": {
+        "bytes": 3248,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_quality_v2/TASK_PACKET.json",
+        "sha256": "646d5cf93a9f5f43b9c29a1298a58c4005b1bca0b14ce0eb0325e4efb7bcf208"
+      },
+      "updated_at": "2026-09-19T02:13:50+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1556,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "2e9fc6ba6cd872d7b58c929480cb52be029c369a0a75f993e3d074561d268857"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_v1",
+      "task_packet": {
+        "bytes": 3044,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_task_object_wave0_v1/TASK_PACKET.json",
+        "sha256": "6579f25c6923942f7d48aa6f00b663f1561b2efafeaf81a3a1e66bce36a27873"
+      },
+      "updated_at": "2026-09-19T02:17:19+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0_EMPTY_CANDIDATE_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1511,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "14c0be81f2e2724275e59b5262297397e5db2e1961480604e6296d1095e05256"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 3063,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "d5a779e91edf36943dedebb0660d1dea2c5d849375229f7b61a92c5ce6335cd4"
+      },
+      "updated_at": "2026-09-19T02:24:06+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_OBJECT6D_W0_VISIBLE_PATCH",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2854,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "82df2b77267b732261214833847dc7a829f834cd5dc48d7497acb7b345872e17"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+      "task_packet": {
+        "bytes": 3090,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_geometry_object6d_wave0_v1/TASK_PACKET.json",
+        "sha256": "629be1aa46c360b4e0e9ad4b6b462bf60b9e174d6fddbbe4950c25a4a2cf1f5d"
+      },
+      "updated_at": "2026-09-19T02:42:32+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_INTERACTION_W0_DIRECT_OBSERVED_VISIBLE_SURFACE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2936,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "1940c5310f1f70bf59647b93487d5c5d8e2b5f5af297abc9e48a6135043409cd"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_interaction_occlusion_v1",
+      "task_packet": {
+        "bytes": 3455,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_interaction_occlusion_v1/TASK_PACKET.json",
+        "sha256": "9bf50f0e384107a0836fd4bbca173e3e1e975fb51eab18767e7d0fd1bf925009"
+      },
+      "updated_at": "2026-09-19T03:15:20+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_CONTACT_W0_DUAL_EVIDENCE_DIAGNOSTIC",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2898,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8cfcb6b663e5f5d5808f0f8ba34775f2a44626c3572a5267ba6cee30af4c7c74"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_contact_dual_evidence_v1",
+      "task_packet": {
+        "bytes": 3103,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_contact_dual_evidence_v1/TASK_PACKET.json",
+        "sha256": "c5a8dfa744a82245caebcecdf5c2d9e7df8fa1ad6dd7cdf81ced9d27a61d574f"
+      },
+      "updated_at": "2026-09-19T03:17:03+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_KAI22_R1_E_AND_R1_H_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2704,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "2fc991550e85f4ce8ef85ad09dcafb5184b151195db99fc73a03df15bbdb2640"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_relative_refinement_v1",
+      "task_packet": {
+        "bytes": 3203,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_relative_refinement_v1/TASK_PACKET.json",
+        "sha256": "45801b2af016fa4c204314ec7b072f4e2716e8ab5d1b96a6542845686a122275"
+      },
+      "updated_at": "2026-09-19T03:18:04+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_ROBOT_VIRTUAL_ARM_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2016,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "e399c556db68f434774960189f1f8e83f7d02303c22afbe48b4337fcd75f4c8b"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_virtual_arm_v1",
+      "task_packet": {
+        "bytes": 2767,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_virtual_arm_v1/TASK_PACKET.json",
+        "sha256": "01fb4e8daf12fd6023a0ec1c9881185af10bd30c6c2a48d447b270247174ed9c"
+      },
+      "updated_at": "2026-09-19T03:23:03+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_ROBOT15H_RELEASE_CANDIDATE_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1340,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "3830d7bedfd30b942edd51d730fdb0ce86fc038425b44c16f8961fb1182effc8"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_release_candidate_v1",
+      "task_packet": {
+        "bytes": 3661,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_release_candidate_v1/TASK_PACKET.json",
+        "sha256": "a25765f2838e0f53dfaebaa14326111091cbb73ac903bed87f500aae7ce5f608"
+      },
+      "updated_at": "2026-09-19T03:24:29+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_W1_RELEASE_SCOPE_GATE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1322,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "33e1d11166360e588ed6415834ab5f7fefa4bd6ed537ea1f1386781311d6c8cd"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_hawor_waves_v1",
+      "task_packet": {
+        "bytes": 2274,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_waves_v1/TASK_PACKET.json",
+        "sha256": "7e7e217e66e00660fb4fb89bfc1e253362b376abc6a02359ccd54ad8053fed5d"
+      },
+      "updated_at": "2026-09-19T03:31:37+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_W1_PROMPT_SOURCE_GATE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1315,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9b4cba37c4a63901aeaf0fb85a50bd22553f6621220963b8730a9b398773a40e"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_waves_v1",
+      "task_packet": {
+        "bytes": 2500,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_waves_v1/TASK_PACKET.json",
+        "sha256": "58405e85f1fc34633b0fa91b7cb1784f27ba17ad7410343bbfdc85c2895c6049"
+      },
+      "updated_at": "2026-09-19T03:31:59+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_W1_ENCODED_DOMAIN",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2195,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9ccf1d26bd00db6cdcfb9324156ca5311095bf64ff186d027a02a8631da1f5be"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_waves_v1",
+      "task_packet": {
+        "bytes": 3050,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_waves_v1/TASK_PACKET.json",
+        "sha256": "65d0f9e8bfae60157e6153c05b80a089f608e010d7c5777deea24639aa836d2d"
+      },
+      "updated_at": "2026-09-19T09:52:46+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_ROBOT_W1_UPSTREAM_GATE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1253,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "aada424805d9f83494210e1f844ee9dfbb35e8393d345aae5c27b3b320f09966"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_robot_waves_v1",
+      "task_packet": {
+        "bytes": 2560,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_waves_v1/TASK_PACKET.json",
+        "sha256": "3d2b49560ba45a8b97dc99d60574d01a3747c97de045ab352e2025b3c4dddb62"
+      },
+      "updated_at": "2026-09-19T09:52:49+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
     }
   ]
 }

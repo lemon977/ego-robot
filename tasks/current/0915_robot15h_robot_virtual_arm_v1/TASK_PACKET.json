@@ -1,0 +1,67 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 2
+  },
+  "claim_limit": "Independent virtual design-frame Robot evidence only. R2 quality admission cannot exceed upstream R0 admission. Measured TCP/mount/camera-base calibration, object/environment collision, control, training and deployment remain absent.",
+  "dag_dependencies": [
+    "0915_robot15h_kai22_r0_wave0_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_VIRTUAL_IK_RENDER_AND_SELF_COLLISION; weights ABSENT",
+  "objective": "Consume only sealed R0 q22, relative wrist transforms, validity and timestamps to produce fixed-base Tianji plus KaiHand virtual IK, pinned-digital self-collision evidence and independent Robot-space review videos.",
+  "phase": "ROBOT15H_ROBOT_VIRTUAL_ARM_WAVE0",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_kai22_r0_wave0_v1=PASSED",
+    "dynamic_session_input_is_R0_only",
+    "q22_bit_exact_pass_through",
+    "relative_wrist_motion_unit_gain_no_scaling",
+    "fixed_virtual_base_not_camera_world_calibration",
+    "virtual_installation_contract_FROZEN_DEVELOPMENT_ONLY",
+    "measured_TCP_mount_and_camera_base_calibration_ABSENT",
+    "invalid_frames_remain_NaN",
+    "collision_scope_ROBOT_SELF_ONLY_BILATERAL_VALID_FRAMES_PARTIAL",
+    "R2_quality_cannot_exceed_R0_quality",
+    "no_hardware_or_network_control",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_virtual_arm_wave0_v1.py",
+    "assets/robot/ROBOT_ASSET_PIN.json",
+    "contracts/robot15h_virtual_installation_r0_motion_v1.schema.json",
+    "manifests/hardware/robot15h_virtual_installation_r0_motion_v1.json"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "BATCH_RESULT.json",
+    "REVIEW_MANIFEST.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_robot_virtual_arm_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_VIRTUAL_R2_V1",
+    "tasks/receipts/0915_ROBOT15H_ROBOT_VIRTUAL_ARM_V1_RESULT.json"
+  ]
+}

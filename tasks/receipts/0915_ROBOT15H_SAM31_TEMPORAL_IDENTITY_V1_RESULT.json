@@ -1,0 +1,38 @@
+{
+  "batch_result": null,
+  "claim_limit": "Four-session development hand temporal-identity evidence only. Raw candidates are not semantic truth; UNKNOWN is not absence; task-object/forearm/sleeve/cable masks remain blocked without role-specific anchors. No Object6D mask-consumer, Contact, control, training or deployment authority.",
+  "counts": null,
+  "empty_semantic_mask": "UNKNOWN_NOT_ABSENT",
+  "execution_completed": false,
+  "first_blocker": "SAM31_W0_RUNTIME_FAILED",
+  "gpu_command_receipt": {
+    "bytes": 3351,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "387f4449b6da6fa721c638407ac8452f7b2f489f607fd6265050825930da8f22"
+  },
+  "initial_box_semantics": "MULTIPLEX_GEOMETRIC_BOX",
+  "object_mask_consumer_allowed": false,
+  "object_semantic_admitted": 0,
+  "physical_deployment_authorized": false,
+  "quality_status": "NOT_PRODUCED",
+  "raw_candidate_is_semantic_truth": false,
+  "result": {
+    "bytes": 1641,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "f1f95164246f99b99f4188a117e2c5a7bb8a6cb9f4f1da81b2649903d2fee35b"
+  },
+  "role_blocker_ledger": {
+    "bytes": 626,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_v1/attempts/attempt_0001/ROLE_BLOCKER_LEDGER.json",
+    "sha256": "674abbde1fcfa9b7e45fce1603750594d5647fbbbcaf972c942eccd0ab290252"
+  },
+  "schema_version": "0915-robot15h-sam31-temporal-identity-result-v1",
+  "source_mutated": false,
+  "status": "FAILED_RUNTIME_FINAL",
+  "task_id": "0915_robot15h_sam31_temporal_identity_v1",
+  "training_eligible": false,
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

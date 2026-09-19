@@ -1,0 +1,27 @@
+{
+  "schema_version": "0915-robot15h-contact-wave0-visual-index-v1",
+  "status": "COMPLETE",
+  "task_id": "0915_robot15h_contact_dual_evidence_v1",
+  "videos": [
+    {
+      "bytes": 4272777,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_CONTACT_V1/play_cards_0915_031_CONTACT_REVIEW.mp4",
+      "sha256": "e2764f6700b1402bb57809ba0138e1d63b72c8ae853f312cc6f3a1ec61dd3cfa"
+    },
+    {
+      "bytes": 4510309,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_CONTACT_V1/play_cards_0915_119_CONTACT_REVIEW.mp4",
+      "sha256": "2c2eb3d640a6d60ba510b6cccdc5a004cf097b6df00929abdb83a052f0b47fe3"
+    },
+    {
+      "bytes": 8011618,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_CONTACT_V1/get_potato_chips_0915_007_CONTACT_REVIEW.mp4",
+      "sha256": "cbd4fc022652c22d79c58f34bf5e9a39b7146ede018160dce4b324e3127966c7"
+    },
+    {
+      "bytes": 7829499,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_CONTACT_V1/get_potato_chips_0915_042_CONTACT_REVIEW.mp4",
+      "sha256": "e77a459e504bce6ccc6223b7a44019f4203e7dfb2d30d1f461349a6ae6c7e500"
+    }
+  ]
+}

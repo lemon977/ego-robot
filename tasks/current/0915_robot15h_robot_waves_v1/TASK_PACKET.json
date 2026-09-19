@@ -1,0 +1,64 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "window_deadline_bound": true
+  },
+  "claim_limit": "W1 Robot upstream blocker accounting only. It emits no trajectory and grants no R0/R1/R2 success, control, training, deployment or generalization authority.",
+  "dag_dependencies": [
+    "0915_robot15h_hawor_waves_v1",
+    "0915_robot15h_sam31_waves_v1",
+    "0915_robot15h_foundationstereo_waves_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_UPSTREAM_GATE; GPU_FORBIDDEN; weights ABSENT",
+  "objective": "Close all eight W1 Robot rows honestly after the model waves. FoundationStereo depth cannot substitute for absent W1 HaWoR/R0, so do not fabricate R0, R1 or R2 trajectories.",
+  "phase": "ROBOT15H_ROBOT_W1_UPSTREAM_GATE",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_hawor_waves_v1=TERMINAL",
+    "0915_robot15h_sam31_waves_v1=TERMINAL",
+    "0915_robot15h_foundationstereo_waves_v1=TERMINAL",
+    "W1_R0_input_REQUIRED",
+    "depth_or_SAM_cannot_substitute_for_HaWoR_R0",
+    "no_hardware_or_network_control",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/CAPABILITY_MATRIX.json",
+    "_run/current/0915_robot15h_hawor_waves_v1/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_wave_scope_gate_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "SCOPE_AUDIT.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_robot_waves_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_robot_waves_v1/attempts/attempt_0001",
+    "tasks/receipts/0915_ROBOT15H_ROBOT_WAVES_V1_RESULT.json"
+  ]
+}

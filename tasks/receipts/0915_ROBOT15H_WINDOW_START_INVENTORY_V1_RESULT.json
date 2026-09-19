@@ -1,0 +1,68 @@
+{
+  "0916_consumed": false,
+  "artifacts": {
+    "batch_manifest": {
+      "bytes": 10504,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+      "sha256": "3d2667fcbba1b2e8c0cdd42b0b965c57f221b6b1040d6cce56f0ae32597701f8"
+    },
+    "frozen_dag": {
+      "bytes": 5258,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/FROZEN_DAG.json",
+      "sha256": "d22f3243c20793c93c15355755a5fa7b4fce8f5aa471a13708cd784635485710"
+    },
+    "metrics": {
+      "bytes": 731,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/METRICS.json",
+      "sha256": "9db429371c454186447918309a50b7f112fb9943ae6fa31e66f73bdcec33c863"
+    },
+    "resource_snapshot": {
+      "bytes": 1269,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/RESOURCE_SNAPSHOT.json",
+      "sha256": "eb9ee3120f1bc4a12ef75e7b9354e124da421529bf06ec6930770d28984a9792"
+    },
+    "source_groups": {
+      "bytes": 492572,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/SOURCE_GROUP_MANIFEST.json",
+      "sha256": "2e3a3a33f08f2524f394031b34dab4368995b5b30876aca838688e13aa992885"
+    }
+  },
+  "claim_limit": "Inventory, source grouping, split and scheduling authority only.  It does not create HaWoR, Depth, Contact, Robot or cross-recording generalization results and does not authorize 0916 consumption.",
+  "gpu_used": false,
+  "model_execution_performed": false,
+  "processed_mutated": false,
+  "result": {
+    "bytes": 2656,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "ad2599383c3857028124247e0b12d1eb9166df55d7bb3f107bac93874c5e7c85"
+  },
+  "schema_version": "0915-robot15h-window-start-inventory-result-v1",
+  "session_count": 220,
+  "source_group_status": "PASS_USER_CONFIRMED_AND_METADATA_CORROBORATED",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_robot15h_window_start_inventory_v1",
+  "timeline_anomaly_count": 33,
+  "w0_session_ids": [
+    "play_cards_0915_031",
+    "play_cards_0915_119",
+    "get_potato_chips_0915_007",
+    "get_potato_chips_0915_042"
+  ],
+  "w1_cumulative_session_ids": [
+    "play_cards_0915_031",
+    "play_cards_0915_119",
+    "get_potato_chips_0915_007",
+    "get_potato_chips_0915_042",
+    "play_cards_0915_044",
+    "play_cards_0915_106",
+    "get_potato_chips_0915_097",
+    "get_potato_chips_0915_029",
+    "play_cards_0915_054",
+    "play_cards_0915_003",
+    "get_potato_chips_0915_068",
+    "get_potato_chips_0915_056"
+  ],
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

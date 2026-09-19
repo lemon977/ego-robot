@@ -1,0 +1,65 @@
+{
+  "budgets": {
+    "gpu_hours": 2.5,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 3
+  },
+  "claim_limit": "Bounded recovery of a recorded Python import defect only; development HaWoR evidence with no Contact, control, deployment, training or generalization authority.",
+  "dag_dependencies": [
+    "0915_robot15h_hawor_wave0_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "ONE_SERIAL_GPU_LEASE_HAWOR_W0_RECOVERY; same pinned logical bundle",
+  "objective": "Recover only the activation-free project import defect recorded by the W0 terminal, without changing T0, the cohort, image domain, model, quality gates, or single-GPU lease policy.",
+  "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY_RECOVERY",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_hawor_wave0_v1=FAILED_RUNTIME_FINAL",
+    "recorded_blocker=PINNED_ENV_PROJECT_IMPORT_PATH",
+    "same_T0_and_frozen_W0",
+    "same_logical_weight_and_quality_gates",
+    "physical_left_sourceIndex1_crop_resize_only",
+    "central_GPU_single_lease"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_hawor_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_hawor_wave0_recovery_v1.py",
+    "src/chaoyang/ops/run_0915_hawor_resize_only_persistent_worker_v2.py",
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "PREPARED_MANIFEST.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "hawor/BATCH_RESULT.json",
+    "REVIEW_MANIFEST.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_hawor_wave0_recovery_v1",
+  "weights": [
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_HAWOR_RECOVERY_V1",
+    "tasks/receipts/0915_ROBOT15H_HAWOR_WAVE0_RECOVERY_V1_RESULT.json"
+  ]
+}

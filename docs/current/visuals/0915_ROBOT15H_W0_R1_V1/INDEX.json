@@ -1,0 +1,28 @@
+{
+  "schema_version": "0915-robot15h-kai22-r1-wave0-visual-index-v1",
+  "status": "COMPLETE",
+  "task_id": "0915_robot15h_robot_relative_refinement_v1",
+  "videos": [
+    {
+      "bytes": 823948,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_R1_V1/play_cards_0915_031_KAI22_R0_VS_R1_H_REJECTED_REVIEW.mp4",
+      "sha256": "e0e2ea87a0a73837db28763f193096ed68e39ac4fbd8ddcbbf925368b61d4312"
+    },
+    {
+      "bytes": 933787,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_R1_V1/play_cards_0915_119_KAI22_R0_VS_R1_H_REJECTED_REVIEW.mp4",
+      "sha256": "5be374df78b6143a3d998bd6bca6742ac14baff4e58b9479ce32a6e9206ce2c0"
+    },
+    {
+      "bytes": 1847172,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_R1_V1/get_potato_chips_0915_007_KAI22_R0_VS_R1_H_REJECTED_REVIEW.mp4",
+      "sha256": "d608d6b682abcb6b20eb1faf2d62fd124eaa16f4be3b518286bb756a9934396f"
+    },
+    {
+      "bytes": 2345364,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_R1_V1/get_potato_chips_0915_042_KAI22_R0_VS_R1_H_REJECTED_REVIEW.mp4",
+      "sha256": "7674bb862dca340cd6925bb1972fc186d50d5e4ea8c90925e7a44f878a43bced"
+    }
+  ],
+  "visual_acceptance": "PENDING"
+}

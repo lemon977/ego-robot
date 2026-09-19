@@ -1,0 +1,55 @@
+{
+  "artifacts": {
+    "depth_geometry_audit": {
+      "bytes": 1088,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/DEPTH_GEOMETRY_AUDIT.json",
+      "sha256": "fb1d3e57627c47b72a0eb32e5019d8af7be560ac8af9255e857bff439eaf435c"
+    },
+    "diagnostic_png": {
+      "bytes": 218305,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_SCALE_CAUSE_AUDIT_V1/SCALE_CAUSE_DIAGNOSTIC.png",
+      "sha256": "5a1ab6479b23919a4d78f6967500c129b148dcb64cdb6c2afb52030a1b3da224"
+    },
+    "fit_stability": {
+      "bytes": 5055,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/FIT_STABILITY.json",
+      "sha256": "343722010a1d2bb9a200ad62d3ae1c696b144bd888557a2de28f4e18c7ce97b9"
+    },
+    "metrics": {
+      "bytes": 381,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/METRICS.json",
+      "sha256": "85e73e1905daf42e3c05bfeac70d9524dada3e0daf1dbeb50210f2dc3a42655f"
+    },
+    "scale_cause_matrix": {
+      "bytes": 1317,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/SCALE_CAUSE_MATRIX.json",
+      "sha256": "86d8010cd731a7ac29a28c9067ccceb39b20344e4e75cdd759ec5766483374b0"
+    },
+    "visual_readme": {
+      "bytes": 765,
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_SCALE_CAUSE_AUDIT_V1/README_ZH.md",
+      "sha256": "3875fb86cd71ce144c3f39ad27ad134d7d95f046c2c96a8943bf98dd241c2617"
+    }
+  },
+  "claim_limit": "Development diagnosis over sealed 001 evidence only. It may reject a proposed global correction but cannot calibrate encoded stereo, authorize metric Contact, change HaWoR/Depth evidence, or grant control, training or deployment authority.",
+  "control_ground_truth": false,
+  "correction_adopted": false,
+  "diagnostic_status": "UNRESOLVED_NON_IDENTIFIABLE_CONFOUNDED_FIT",
+  "gpu_used": false,
+  "metric_translation_authorized": false,
+  "model_rerun_performed": false,
+  "physical_deployment_authorized": false,
+  "result": {
+    "bytes": 2465,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "555b4c707f556ee8d1bf680c295c92ec6de0621085bfa8fc51950052d6f1db2b"
+  },
+  "schema_version": "0915-robot15h-scale-cause-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "strict_contact_authorized": false,
+  "task_id": "0915_robot15h_scale_cause_audit_v1",
+  "training_eligible": false,
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

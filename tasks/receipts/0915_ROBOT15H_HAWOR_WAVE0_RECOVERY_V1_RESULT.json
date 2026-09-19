@@ -1,0 +1,54 @@
+{
+  "batch_terminal": "COMPLETED_ALL_TERMINAL",
+  "claim_limit": "Bounded recovery of a recorded Python import defect only; development HaWoR evidence with no Contact, control, deployment, training or generalization authority.",
+  "control_ground_truth": false,
+  "counts": {
+    "attempted": 4,
+    "failed_runtime": 0,
+    "frames": 1058,
+    "pass_development_hawor": 0,
+    "rejected_quality": 4
+  },
+  "detector_load_count": 1,
+  "gpu_command_receipt": {
+    "bytes": 24564,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "d908e48f25151570f6cecd8d2f500e7684bce9c1142bb5ab06eea2e4d278a552"
+  },
+  "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+  "model_load_count": 1,
+  "physical_deployment_authorized": false,
+  "pico26_hand_consumed": false,
+  "processed_mutated": false,
+  "result": {
+    "bytes": 2099,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "ca6326f64ad010c5eec9e2bafe5f0806b07c9938b25866f0183a414d7fd18557"
+  },
+  "review_manifest": {
+    "bytes": 2277,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/REVIEW_MANIFEST.json",
+    "sha256": "e0b658e75afd830e2c3fa359976d71f6c85369606f0649cee5761d95886b25be"
+  },
+  "schema_version": "0915-robot15h-hawor-wave0-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "task_id": "0915_robot15h_hawor_wave0_recovery_v1",
+  "trackingData_hand_consumed": false,
+  "user_visual_acceptance": "PENDING",
+  "visual_readme": {
+    "bytes": 713,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_HAWOR_RECOVERY_V1/README_ZH.md",
+    "sha256": "3c1170bb8307ab699e1c45d180b2518d544815a61fa549ada1b8cf5e0fbcfaff"
+  },
+  "wall_seconds": 359.5763967037201,
+  "weights": [
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "worker_batch": {
+    "bytes": 18296,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/hawor/BATCH_RESULT.json",
+    "sha256": "34c9042e0b77425bd7ac4c19b36e3cad5eb333fdf2871a3c7654bf894ff6fce1"
+  }
+}

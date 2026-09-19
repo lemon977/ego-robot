@@ -1,0 +1,68 @@
+{
+  "budgets": {
+    "gpu_hours": 2.5,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 3
+  },
+  "claim_limit": "Four-session development HaWoR evidence in the confirmed resize-only domain. No anatomical ground truth, Contact, control, deployment, training or cross-recording generalization authority.",
+  "dag_dependencies": [
+    "0915_robot15h_window_start_inventory_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "ONE_SERIAL_GPU_LEASE_HAWOR_W0; pinned logical HaWoR bundle",
+  "objective": "Run the pinned HaWoR logical bundle once across the four frozen W0 development sessions in the physical-left sourceIndex=1 crop+resize-only domain, preserving missing hands and producing per-session review evidence.",
+  "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_window_start_inventory_v1=PASSED",
+    "W0_four_development_sessions_frozen",
+    "physical_left_sourceIndex1_crop_resize_only",
+    "legacy_prepared_mono_FORBIDDEN",
+    "equiDis62_lens_remap_FORBIDDEN",
+    "PICO26_tracking_hand_FORBIDDEN",
+    "central_GPU_single_lease",
+    "missing_hands_remain_invalid"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/SOURCE_GROUP_MANIFEST.json",
+    "src/chaoyang/ops/run_0915_robot15h_hawor_wave0_v1.py",
+    "src/chaoyang/ops/run_0915_hawor_resize_only_persistent_worker_v2.py",
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json",
+    "tasks/receipts/0915_HAWOR_BOUNDED_V2_CANARY_V1_RESULT.json"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "PREPARED_MANIFEST.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "hawor/BATCH_RESULT.json",
+    "REVIEW_MANIFEST.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_hawor_wave0_v1",
+  "weights": [
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_hawor_wave0_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_HAWOR_V1",
+    "tasks/receipts/0915_ROBOT15H_HAWOR_WAVE0_V1_RESULT.json"
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "budgets": {
+    "gpu_hours": 0,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 0.5
+  },
+  "claim_limit": "Development Contact diagnosis and explicitly isolated hypothesis authority only. Hypotheses are non-causal, non-metric Contact explanations, never probability, ground truth, force, training data, control or deployment authority.",
+  "dag_dependencies": [
+    "0915_robot15h_geometry_object6d_wave0_v1",
+    "0915_robot15h_interaction_occlusion_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "CPU_ONLY_W0_CONTACT_DUAL_EVIDENCE; weights ABSENT",
+  "objective": "Evaluate fixed 5 mm finite-patch Contact without uncertainty expansion or authority escalation, and separately publish bounded visual-overlap plus finger-specific tactile hypotheses with explicit no-contact controls.",
+  "phase": "ROBOT15H_CONTACT_W0_DUAL_EVIDENCE",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_geometry_object6d_wave0_v1=TERMINAL",
+    "0915_robot15h_interaction_occlusion_v1=TERMINAL",
+    "fixed_5mm_finite_visible_patch_gate",
+    "uncertainty_must_not_expand_distance_gate",
+    "external_metric_authority_required_for_R1_E",
+    "finger_specific_processed_tactile_only",
+    "tactile_offline_source_valid_and_abs_offset_at_most_40ms",
+    "hypothesis_separate_from_observed_and_strict_Contact",
+    "hypothesis_includes_no_contact_control",
+    "R1_H_training_eligible_false",
+    "weights_ABSENT",
+    "gpu_FORBIDDEN"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/INTERACTION_EVIDENCE_LEDGER.json",
+    "_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_contact_wave0_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "CONTACT_EVIDENCE_LEDGER.json",
+    "CONTACT_HYPOTHESIS_LEDGER.json",
+    "BATCH_RESULT.json",
+    "METRICS.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_contact_dual_evidence_v1",
+  "weights": "ABSENT",
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_CONTACT_V1",
+    "tasks/receipts/0915_ROBOT15H_CONTACT_DUAL_EVIDENCE_V1_RESULT.json"
+  ]
+}

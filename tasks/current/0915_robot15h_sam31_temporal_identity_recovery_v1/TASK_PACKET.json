@@ -1,0 +1,65 @@
+{
+  "budgets": {
+    "gpu_hours": 1,
+    "runtime_attempts": 1,
+    "wall_clock_hours": 1.5
+  },
+  "claim_limit": "Bounded pre-model-import recovery with unchanged hand-only semantic authority. Task-object/forearm/sleeve/cable masks remain blocked without independent anchors; no Object6D mask-consumer, Contact, control, training or deployment authority.",
+  "dag_dependencies": [
+    "0915_robot15h_sam31_temporal_identity_v1"
+  ],
+  "execution_revision": "0915_ROBOT_15H_V1",
+  "expected_resource": "ONE_SERIAL_GPU_LEASE_SAM31_W0_RUNTIME_RECOVERY; one persistent model load",
+  "objective": "Recover the pre-model-import SAM3.1 W0 attempt after adding the missing fixed vendor import path, with the same W0 cohort, checkpoint, anchors, gates, output semantics and immutable window clock.",
+  "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0_RUNTIME_RECOVERY",
+  "plan_revision": "0915_ROBOT_15H_V1",
+  "prerequisites": [
+    "0915_robot15h_sam31_temporal_identity_v1=FAILED_RUNTIME_FINAL",
+    "predecessor_failed_before_model_import",
+    "fixed_vendor_SAM3_path_only_no_dependency_install",
+    "same_T0_W0_checkpoint_anchors_and_quality_gates",
+    "physical_left_sourceIndex1_crop_resize_only_no_lens_remap",
+    "roles_without_independent_visual_anchor_fail_closed",
+    "central_GPU_single_lease"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+    "_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/PREPARED_MANIFEST.json",
+    "_run/current/0915_robot15h_sam31_temporal_identity_v1/attempts/attempt_0001/RESULT.json",
+    "src/chaoyang/ops/run_0915_robot15h_sam31_temporal_identity_v1.py",
+    "src/chaoyang/pipeline/sam31_compat_adapter_v1.py"
+  ],
+  "required_outputs": [
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "GPU_COMMAND_RECEIPT.json",
+    "ROLE_BLOCKER_LEDGER.json",
+    "BATCH_RESULT.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "PASSED",
+    "REJECTED_QUALITY",
+    "FAILED_RUNTIME_FINAL",
+    "BLOCKED_RESOURCE",
+    "BLOCKED_EXTERNAL",
+    "CANCELLED",
+    "BUDGET_EXHAUSTED"
+  ],
+  "task_id": "0915_robot15h_sam31_temporal_identity_recovery_v1",
+  "weights": [
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "window_clock": "_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "write_set": [
+    "_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001",
+    "docs/current/visuals/0915_ROBOT15H_W0_SAM31_TEMPORAL_IDENTITY_RECOVERY_V1",
+    "tasks/receipts/0915_ROBOT15H_SAM31_TEMPORAL_IDENTITY_RECOVERY_V1_RESULT.json"
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "batch_result": null,
+  "claim_limit": "Four-session encoded-domain development Depth evidence only. Passing sessions may feed observed visual Object6D candidates; encoded metric accuracy, strict Contact, control, training and deployment remain unauthorized.",
+  "counts": {
+    "attempted": 4,
+    "failed_runtime": 1,
+    "incomplete_sessions": 1,
+    "passed_atomic_sessions": 3,
+    "rejected_quality": 0
+  },
+  "external_accuracy": "UNVERIFIED",
+  "first_blocker": "PARENT_HEARTBEAT_CONTRACT_PUBLICATION_RACE_ABORTED_GPU_PROCESS_GROUP_AFTER_846_OF_1058_FRAMES",
+  "gpu_command_receipt": null,
+  "horizontal_reflection_for_disparity_sign": true,
+  "interruption_evidence": {
+    "bytes": 645,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/INTERRUPTION_EVIDENCE.json",
+    "sha256": "b20223ffd0fb09c7d3363c2203e3e5f54e55862836829befadb3f1884be5137a"
+  },
+  "lens_undistortion_applied": false,
+  "output_domain": "ORIGINAL_PHYSICAL_LEFT_640x480",
+  "physical_deployment_authorized": false,
+  "result": {
+    "bytes": 1486,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "573a0dfc9556673f4d4c9d922e8fffbceaf3db7d6f319bbbdd366f3e3aacdd37"
+  },
+  "schema_version": "0915-robot15h-foundationstereo-wave0-result-v1",
+  "source_mutated": false,
+  "status": "FAILED_RUNTIME_FINAL",
+  "strict_metric_contact_authorized": false,
+  "task_id": "0915_robot15h_foundationstereo_wave0_v1",
+  "training_eligible": false,
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

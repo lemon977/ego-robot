@@ -1,0 +1,55 @@
+{
+  "authorized_scope": "DEVELOPMENT_DEPTH_VISUAL_OBJECT6D_INPUT_ONLY",
+  "batch_result": {
+    "bytes": 11304,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "99fd870f22a05a887008af91bd692a2b89d91488749479928b39b63a67e7da7b"
+  },
+  "claim_limit": "W1 encoded-domain development depth for visual/Object6D candidate use only. External metric accuracy, strict Contact, control, training and physical deployment remain unauthorized.",
+  "counts": {
+    "attempted": 8,
+    "failed_runtime": 0,
+    "passed": 8,
+    "rejected_quality": 0,
+    "unrun": 0
+  },
+  "external_accuracy": "UNVERIFIED",
+  "first_blocker": null,
+  "gpu_command_receipt": {
+    "bytes": 18802,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "9314c11cf1ddd72ec58195ea6ce0621af3207e52bca2b68a9a4bd13864ab1db2"
+  },
+  "horizontal_reflection_for_disparity_sign": true,
+  "input_binding": {
+    "bytes": 8281,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/W1_INPUT_BINDING.json",
+    "sha256": "9857db20baf197f073d6e5c17cb2bf81c78777cf19de027b30988e59433c5502"
+  },
+  "lens_undistortion_applied": false,
+  "output_domain": "ORIGINAL_PHYSICAL_LEFT_640x480",
+  "physical_deployment_authorized": false,
+  "release_candidate_matrix": {
+    "bytes": 23911,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/CAPABILITY_MATRIX.json",
+    "sha256": "0ea61195e435a82633b8d4235cba6c108c8c76bca690d8876f48d801bdc23c66"
+  },
+  "result": {
+    "bytes": 2195,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "9ccf1d26bd00db6cdcfb9324156ca5311095bf64ff186d027a02a8631da1f5be"
+  },
+  "schema_version": "0915-robot15h-foundationstereo-w1-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "strict_metric_contact_authorized": false,
+  "task_id": "0915_robot15h_foundationstereo_waves_v1",
+  "training_eligible": false,
+  "w1_frame_count": 2332,
+  "w1_session_count": 8,
+  "wave": "W1",
+  "weights": [
+    "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800"
+}

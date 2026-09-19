@@ -1,0 +1,66 @@
+{
+  "authority": "DEVELOPMENT_VISIBLE_SURFACE_ONLY_NON_CONTROL_NON_DEPLOYABLE",
+  "batch_result": {
+    "bytes": 5481,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/BATCH_RESULT.json",
+    "sha256": "7b5de9ae004b58c5b9f3f89c20c8d673f80494c0a28e85daa5c44d0e5fe488aa"
+  },
+  "claim_limit": "Development directly visible finite-surface geometry only. Visible centroids are not object-fixed centres; hidden extent, thickness and support objects stay unknown. No strict metric Contact, control, training, deployment or external accuracy authority is granted.",
+  "completed_at": "2026-09-19T02:41:54+08:00",
+  "control_ground_truth": false,
+  "coordinate_domain": "PHYSICAL_LEFT_ENCODED_RESIZE_ONLY_OPTICAL_Z",
+  "counts": {
+    "attempted": 2,
+    "blocked_upstream": 2,
+    "failed_runtime": 0,
+    "passed": 2,
+    "quality_rejected": 0,
+    "total": 4,
+    "unrun": 0
+  },
+  "geometry_quality_status": "PASSED_PARTIAL_W0_DEVELOPMENT_VISIBLE_SURFACE",
+  "gpu_used": false,
+  "hidden_geometry_inferred": false,
+  "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+  "ledger": {
+    "bytes": 5586,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/OBJECT6D_ELIGIBILITY_LEDGER.json",
+    "sha256": "abbe92dfd85ed7f0030d2dff4ddd9d6823b65da974240584edcf11172789e151"
+  },
+  "lens_remap_applied": false,
+  "lens_undistortion_applied": false,
+  "metrics": {
+    "bytes": 447,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/METRICS.json",
+    "sha256": "ee4b2b1ae6dab533716b841f69781ebc4e6df142fd8bc41f4633125520d306d3"
+  },
+  "physical_deployment_authorized": false,
+  "result": {
+    "bytes": 2854,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "82df2b77267b732261214833847dc7a829f834cd5dc48d7497acb7b345872e17"
+  },
+  "run_signature": {
+    "bytes": 2867,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+    "sha256": "dd2500c14a622e750d6cfec85687c070fda033d62b2164adca2e0b6584b74714"
+  },
+  "schema_version": "0915-robot15h-object6d-wave0-result-v1",
+  "source_mutated": false,
+  "status": "PASSED",
+  "strict_metric_contact_authorized": false,
+  "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+  "training_eligible": false,
+  "visual_index": {
+    "bytes": 682,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT15H_W0_OBJECT6D_V1/INDEX.json",
+    "sha256": "798a3ff6867ead49a832ac60772db3fe811568e4134f7bab5eda18a5217c5a5f"
+  },
+  "weights": "ABSENT",
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "writer_claim": {
+    "bytes": 637,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/CLAIM.json",
+    "sha256": "7467a776a92605a23e9afc294f492e22d32011f83a6e49f58997fccf15180324"
+  }
+}

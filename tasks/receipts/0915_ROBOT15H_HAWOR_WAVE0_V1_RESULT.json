@@ -1,0 +1,30 @@
+{
+  "claim_limit": "Four-session development HaWoR evidence in the confirmed resize-only domain. No anatomical ground truth, Contact, control, deployment, training or cross-recording generalization authority.",
+  "control_ground_truth": false,
+  "first_blocker": "HAWOR_W0_RUNTIME_FAILURE",
+  "gpu_command_receipt": {
+    "bytes": 1348,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_v1/attempts/attempt_0001/GPU_COMMAND_RECEIPT.json",
+    "sha256": "431a2075a00029dafa1565c76cb2397a24b5fdf24747c0b48ee9fb2ff3e2f13a"
+  },
+  "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+  "physical_deployment_authorized": false,
+  "pico26_hand_consumed": false,
+  "processed_mutated": false,
+  "result": {
+    "bytes": 1140,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_v1/attempts/attempt_0001/RESULT.json",
+    "sha256": "480ffac548475ea174632c14c2703f045287ae22cb3f60da0c72591978252641"
+  },
+  "schema_version": "0915-robot15h-hawor-wave0-result-v1",
+  "source_mutated": false,
+  "status": "FAILED_RUNTIME_FINAL",
+  "task_id": "0915_robot15h_hawor_wave0_v1",
+  "trackingData_hand_consumed": false,
+  "wall_seconds": 30.9480402469635,
+  "weights": [
+    "assets/models/vendor/hawor/0915_HAWOR_INFERENCE_BUNDLE_V1.json"
+  ],
+  "window_run_id": "robot15h-0915-20260919T000959+0800",
+  "worker_batch": null
+}
