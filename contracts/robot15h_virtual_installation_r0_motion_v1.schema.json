@@ -1,0 +1,217 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/robot15h-virtual-installation-r0-motion-v1",
+  "title": "Robot15h virtual installation for R0-relative motion",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "contract_id",
+    "status",
+    "authority",
+    "development_only",
+    "contract_schema",
+    "source_contracts",
+    "calibration",
+    "motion_authorization",
+    "collision_authorization",
+    "npz_schemas",
+    "mandatory_visual_labels",
+    "output_authority",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "robot15h-virtual-installation-r0-motion-v1"
+    },
+    "contract_id": {
+      "const": "ROBOT15H_VIRTUAL_INSTALLATION_R0_MOTION_V1"
+    },
+    "status": {
+      "const": "FROZEN_DEVELOPMENT_VIRTUAL_MOTION_CONTRACT"
+    },
+    "authority": {
+      "const": "DEVELOPMENT_RELATIVE_NON_CONTROL_NON_DEPLOYABLE"
+    },
+    "development_only": {
+      "const": true
+    },
+    "contract_schema": {
+      "$ref": "#/$defs/artifact_ref"
+    },
+    "source_contracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["robot_asset_pin", "mount_numeric_proxy"],
+      "properties": {
+        "robot_asset_pin": {"$ref": "#/$defs/artifact_ref"},
+        "mount_numeric_proxy": {
+          "allOf": [
+            {"$ref": "#/$defs/artifact_ref"},
+            {
+              "type": "object",
+              "required": ["role"],
+              "properties": {
+                "role": {
+                  "const": "NUMERIC_TRANSFORM_PROVENANCE_ONLY_NOT_MOTION_OR_COLLISION_AUTHORITY"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "measured_installation_transform",
+        "robot_tcp",
+        "camera_world_to_base",
+        "physical_accuracy_authority"
+      ],
+      "properties": {
+        "measured_installation_transform": {"const": "ABSENT"},
+        "robot_tcp": {"const": "ABSENT"},
+        "camera_world_to_base": {"const": "ABSENT"},
+        "physical_accuracy_authority": {"const": false}
+      }
+    },
+    "motion_authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "r0_relative_virtual_ik_allowed",
+        "r0_relative_virtual_motion_allowed",
+        "dynamic_fields",
+        "motion_scale",
+        "base_pose",
+        "per_session_mount_fit_allowed",
+        "hardware_motion_allowed"
+      ],
+      "properties": {
+        "r0_relative_virtual_ik_allowed": {"const": true},
+        "r0_relative_virtual_motion_allowed": {"const": true},
+        "dynamic_fields": {
+          "const": [
+            "q22_init",
+            "relative_wrist_T",
+            "valid_side_frame",
+            "timestamps_s",
+            "frame_id"
+          ]
+        },
+        "motion_scale": {"const": 1.0},
+        "base_pose": {"const": "IDENTITY_VIRTUAL_BASE_NOT_CAMERA_WORLD_CALIBRATION"},
+        "per_session_mount_fit_allowed": {"const": false},
+        "hardware_motion_allowed": {"const": false}
+      }
+    },
+    "collision_authorization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "proxy_space_robot_self_diagnostic_allowed",
+        "scope",
+        "coverage",
+        "quality_admission_requires_all_valid_frames_checked",
+        "physical_collision_authority",
+        "object_collision",
+        "environment_collision"
+      ],
+      "properties": {
+        "proxy_space_robot_self_diagnostic_allowed": {"const": true},
+        "scope": {"const": "ROBOT_SELF_ONLY"},
+        "coverage": {"const": "BILATERAL_VALID_FRAMES_ONLY_PARTIAL"},
+        "quality_admission_requires_all_valid_frames_checked": {"const": true},
+        "physical_collision_authority": {"const": false},
+        "object_collision": {"const": "UNVERIFIED"},
+        "environment_collision": {"const": "UNVERIFIED"}
+      }
+    },
+    "npz_schemas": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["r0_input", "r2_output"],
+      "properties": {
+        "r0_input": {"$ref": "#/$defs/npz_schema"},
+        "r2_output": {"$ref": "#/$defs/npz_schema"}
+      }
+    },
+    "mandatory_visual_labels": {
+      "const": [
+        "VIRTUAL INSTALLATION / R0-RELATIVE MOTION",
+        "CALIBRATION ABSENT",
+        "NON-CONTROL / NON-DEPLOYABLE",
+        "PROXY-SPACE SELF DIAGNOSTIC; OBJECT/ENV UNVERIFIED"
+      ]
+    },
+    "output_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "control_ground_truth",
+        "training_eligible",
+        "physical_deployment_authorized",
+        "object_environment_collision_verified"
+      ],
+      "properties": {
+        "control_ground_truth": {"const": false},
+        "training_eligible": {"const": false},
+        "physical_deployment_authorized": {"const": false},
+        "object_environment_collision_verified": {"const": false}
+      }
+    },
+    "claim_limit": {
+      "type": "string",
+      "minLength": 1
+    }
+  },
+  "$defs": {
+    "artifact_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "role": {"type": "string", "minLength": 1}
+      }
+    },
+    "npz_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dtype", "shape"],
+      "properties": {
+        "dtype": {"type": "string", "minLength": 1},
+        "shape": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "oneOf": [
+              {"type": "integer", "minimum": 1},
+              {"const": "T"}
+            ]
+          }
+        }
+      }
+    },
+    "npz_schema": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_id", "required_fields", "additional_fields_policy"],
+      "properties": {
+        "schema_id": {"type": "string", "minLength": 1},
+        "required_fields": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {"$ref": "#/$defs/npz_field"}
+        },
+        "additional_fields_policy": {
+          "enum": ["IGNORED_NOT_CONSUMED", "FORBIDDEN"]
+        }
+      }
+    }
+  }
+}

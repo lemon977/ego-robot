@@ -395,6 +395,7 @@ def metrics(raw: dict[str, np.ndarray], candidate_joints: dict[str, np.ndarray],
         raw_step, raw_acceleration = temporal_values(raw["joints_3d_world"][side], observed)
         candidate_step, candidate_acceleration = temporal_values(candidate_joints["joints_3d_world"][side], observed)
         sides[name] = {
+            "evidence_status": "OBSERVED" if observed.any() else "NO_OBSERVATION",
             "observed_frames_raw": int(observed.sum()),
             "observed_frames_candidate": int(np.isfinite(candidate_joints["joints_3d_camera"][side, :, 0]).all(axis=-1).sum()),
             "reprojection_p95_px": quantile(error, 0.95),
@@ -420,15 +421,35 @@ def metrics(raw: dict[str, np.ndarray], candidate_joints: dict[str, np.ndarray],
 def gate_failures(value: dict[str, Any], thresholds: dict[str, Any]) -> list[str]:
     failures: list[str] = []
     for side, side_metrics in value["sides"].items():
-        if side_metrics["reprojection_p95_px"] > thresholds["per_side_reprojection_p95_px_max"]:
+        if side_metrics["observed_frames_raw"] == 0:
+            failures.append(f"{side}:NO_OBSERVATION")
+            continue
+        if side_metrics["reprojection_p95_px"] is None:
+            failures.append(f"{side}:NO_REPROJECTION_SUPPORT")
+        elif side_metrics["reprojection_p95_px"] > thresholds["per_side_reprojection_p95_px_max"]:
             failures.append(f"{side}:REPROJECTION_P95")
         if side_metrics["observed_frames_candidate"] != side_metrics["observed_frames_raw"]:
             failures.append(f"{side}:COVERAGE_CHANGED")
-        if not side_metrics["candidate_wrist_step_p95_mm"] < side_metrics["raw_wrist_step_p95_mm"]:
+        if (
+            side_metrics["candidate_wrist_step_p95_mm"] is None
+            or side_metrics["raw_wrist_step_p95_mm"] is None
+        ):
+            failures.append(f"{side}:INSUFFICIENT_WRIST_TEMPORAL_SUPPORT")
+        elif not side_metrics["candidate_wrist_step_p95_mm"] < side_metrics["raw_wrist_step_p95_mm"]:
             failures.append(f"{side}:WRIST_STEP_NOT_IMPROVED")
-        if not side_metrics["candidate_all_joint_acceleration_p95_mm"] < side_metrics["raw_all_joint_acceleration_p95_mm"]:
+        if (
+            side_metrics["candidate_all_joint_acceleration_p95_mm"] is None
+            or side_metrics["raw_all_joint_acceleration_p95_mm"] is None
+        ):
+            failures.append(f"{side}:INSUFFICIENT_ACCELERATION_SUPPORT")
+        elif not side_metrics["candidate_all_joint_acceleration_p95_mm"] < side_metrics["raw_all_joint_acceleration_p95_mm"]:
             failures.append(f"{side}:ACCELERATION_NOT_IMPROVED")
-        if side_metrics["candidate_bone_length_cv_max"] > side_metrics["raw_bone_length_cv_max"] + 1e-7:
+        if (
+            side_metrics["candidate_bone_length_cv_max"] is None
+            or side_metrics["raw_bone_length_cv_max"] is None
+        ):
+            failures.append(f"{side}:NO_BONE_LENGTH_SUPPORT")
+        elif side_metrics["candidate_bone_length_cv_max"] > side_metrics["raw_bone_length_cv_max"] + 1e-7:
             failures.append(f"{side}:BONE_CV_REGRESSED")
     if value["identity_switch_count"] > thresholds["identity_switch_count_max"]:
         failures.append("IDENTITY_SWITCH")

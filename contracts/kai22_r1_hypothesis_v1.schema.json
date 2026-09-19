@@ -1,0 +1,108 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/kai22-r1-hypothesis-v1",
+  "title": "Kai22 R1-E terminal and rejected R1-H counterfactual",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "task_id",
+    "session_id",
+    "status",
+    "r1_e",
+    "r1_h",
+    "diagnostics",
+    "robot_self_collision",
+    "training_eligible",
+    "control_ground_truth",
+    "physical_deployment_authorized"
+  ],
+  "properties": {
+    "schema_version": {"const": "kai22-r1-hypothesis-session-v1"},
+    "task_id": {"const": "0915_robot15h_robot_relative_refinement_v1"},
+    "session_id": {"type": "string", "minLength": 1},
+    "status": {"const": "COMPLETED_DUAL_TERMINAL"},
+    "r1_e": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "attempted", "exported", "adopted", "first_blocker"],
+      "properties": {
+        "status": {"const": "BLOCKED_LOCAL_EVIDENCE"},
+        "attempted": {"const": false},
+        "exported": {"const": false},
+        "adopted": {"const": false},
+        "first_blocker": {"const": "NO_STRICT_METRIC_CONTACT_WINDOW"}
+      }
+    },
+    "r1_h": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "status",
+        "attempted",
+        "exported",
+        "adopted",
+        "first_blocker",
+        "optimization_semantics",
+        "pad_or_object_distance_used_as_adoption_evidence",
+        "wrist_translation_orientation"
+      ],
+      "properties": {
+        "status": {
+          "enum": ["REJECTED_COUNTERFACTUAL_NOT_ADOPTED", "BLOCKED_NO_FORMAL_HYPOTHESIS"]
+        },
+        "attempted": {"type": "boolean"},
+        "exported": {"type": "boolean"},
+        "adopted": {"const": false},
+        "first_blocker": {"type": "string", "minLength": 1},
+        "optimization_semantics": {"const": "OPTIMIZATION_ONLY_NOT_ADOPTION_EVIDENCE"},
+        "pad_or_object_distance_used_as_adoption_evidence": {"const": false},
+        "wrist_translation_orientation": {"const": "FROZEN_BIT_EXACT_R0"}
+      }
+    },
+    "diagnostics": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "h0_r0_q22_bit_exact",
+        "h0_r0_wrist_bit_exact",
+        "wrist_h1_frozen_bit_exact",
+        "outside_allowed_q22_scope_bit_exact",
+        "invalid_rows_bit_exact",
+        "max_abs_delta_q_rad",
+        "evaluation_coverage_not_reduced",
+        "timestamp_motion_not_degraded"
+      ],
+      "properties": {
+        "h0_r0_q22_bit_exact": {"const": true},
+        "h0_r0_wrist_bit_exact": {"const": true},
+        "wrist_h1_frozen_bit_exact": {"const": true},
+        "outside_allowed_q22_scope_bit_exact": {"const": true},
+        "invalid_rows_bit_exact": {"const": true},
+        "max_abs_delta_q_rad": {"type": "number", "minimum": 0, "maximum": 0.12},
+        "evaluation_coverage_not_reduced": {"const": true},
+        "timestamp_motion_not_degraded": {"const": true}
+      }
+    },
+    "robot_self_collision": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status", "all_modified_side_frames_checked", "adoption_authority"],
+      "properties": {
+        "status": {
+          "enum": [
+            "PASS_HAND_ONLY_SELF_COLLISION",
+            "FAILED_HAND_ONLY_SELF_COLLISION",
+            "UNVERIFIED_FAIL_CLOSED",
+            "NOT_APPLICABLE_NO_MODIFIED_FRAMES"
+          ]
+        },
+        "all_modified_side_frames_checked": {"type": "boolean"},
+        "adoption_authority": {"const": false}
+      }
+    },
+    "training_eligible": {"const": false},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false}
+  }
+}
