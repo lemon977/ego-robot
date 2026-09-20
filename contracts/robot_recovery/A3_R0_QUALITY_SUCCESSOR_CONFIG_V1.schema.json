@@ -1,0 +1,215 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.invalid/contracts/0915-kai22-r0-quality-successor-config-v1.schema.json",
+  "title": "Kai22 R0 full-frame own-gate successor configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "run_mode",
+    "cohort_role",
+    "source_signature_sha256",
+    "parent_candidate_signature_sha256",
+    "source_package",
+    "code_refs",
+    "robot_asset_refs",
+    "gate_policy",
+    "claim_limit"
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"$ref": "#/$defs/sha256"}
+      }
+    },
+    "threshold": {
+      "oneOf": [
+        {"type": "number", "exclusiveMinimum": 0},
+        {
+          "type": "array",
+          "minItems": 22,
+          "maxItems": 22,
+          "items": {"type": "number", "exclusiveMinimum": 0}
+        },
+        {"type": "null"}
+      ]
+    }
+  },
+  "properties": {
+    "schema_version": {"const": "0915-kai22-r0-quality-successor-config-v1"},
+    "run_mode": {
+      "enum": ["DIAGNOSTIC_ONLY_NO_QUALITY_UPGRADE", "FROZEN_QUALITY_GATE"]
+    },
+    "cohort_role": {"enum": ["W1_DIAG", "W1_ADOPTION"]},
+    "source_signature_sha256": {"$ref": "#/$defs/sha256"},
+    "parent_candidate_signature_sha256": {"$ref": "#/$defs/sha256"},
+    "source_package": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["result", "prepared_manifest", "consumer_admission", "window_validity"],
+      "properties": {
+        "result": {"$ref": "#/$defs/ref"},
+        "prepared_manifest": {"$ref": "#/$defs/ref"},
+        "consumer_admission": {"$ref": "#/$defs/ref"},
+        "window_validity": {"$ref": "#/$defs/ref"}
+      }
+    },
+    "code_refs": {
+      "type": "object",
+      "minProperties": 5,
+      "additionalProperties": {"$ref": "#/$defs/ref"}
+    },
+    "robot_asset_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["asset_pin", "kaihand_left_urdf", "kaihand_right_urdf"],
+      "properties": {
+        "asset_pin": {"$ref": "#/$defs/ref"},
+        "kaihand_left_urdf": {"$ref": "#/$defs/ref"},
+        "kaihand_right_urdf": {"$ref": "#/$defs/ref"}
+      }
+    },
+    "gate_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["limit", "fk", "collision", "motion"],
+      "properties": {
+        "limit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "tolerance_rad", "posthoc_clip_allowed"],
+          "properties": {
+            "source": {"const": "PINNED_KAIHAND_URDF"},
+            "tolerance_rad": {"const": 1e-09},
+            "posthoc_clip_allowed": {"const": false}
+          }
+        },
+        "fk": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["source", "coverage"],
+          "properties": {
+            "source": {"const": "PINNED_REPOSITORY_FORWARD_KINEMATICS"},
+            "coverage": {"const": "EVERY_RETARGETED_SIDE_FRAME"}
+          }
+        },
+        "collision": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["engine", "scope", "coverage", "penetration_tolerance_m"],
+          "properties": {
+            "engine": {"const": "PYBULLET_DIRECT_PINNED_URDF_COLLISION_GEOMETRY"},
+            "scope": {"const": "KAIHAND_INTRA_HAND_NON_PARENT_ONLY"},
+            "coverage": {"const": "EVERY_RETARGETED_SIDE_FRAME"},
+            "penetration_tolerance_m": {"const": 0.0001}
+          }
+        },
+        "motion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "actual_dt_required",
+            "cross_gap_derivatives_allowed",
+            "boundary_context_frames_each_side",
+            "max_abs_velocity_rad_s",
+            "max_abs_acceleration_rad_s2",
+            "minimum_window_frames",
+            "numeric_thresholds_changed",
+            "threshold_authority_ref"
+          ],
+          "properties": {
+            "status": {
+              "enum": ["MISSING_FROZEN_THRESHOLDS", "FROZEN_NUMERIC_THRESHOLDS"]
+            },
+            "actual_dt_required": {"const": true},
+            "cross_gap_derivatives_allowed": {"const": false},
+            "boundary_context_frames_each_side": {"const": 1},
+            "max_abs_velocity_rad_s": {"$ref": "#/$defs/threshold"},
+            "max_abs_acceleration_rad_s2": {"$ref": "#/$defs/threshold"},
+            "minimum_window_frames": {
+              "oneOf": [
+                {"type": "integer", "minimum": 3},
+                {"type": "null"}
+              ]
+            },
+            "numeric_thresholds_changed": {"const": false},
+            "threshold_authority_ref": {
+              "oneOf": [{"$ref": "#/$defs/ref"}, {"type": "null"}]
+            }
+          }
+        }
+      }
+    },
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {"run_mode": {"const": "DIAGNOSTIC_ONLY_NO_QUALITY_UPGRADE"}}
+      },
+      "then": {
+        "properties": {
+          "gate_policy": {
+            "properties": {
+              "motion": {
+                "properties": {
+                  "status": {"const": "MISSING_FROZEN_THRESHOLDS"},
+                  "max_abs_velocity_rad_s": {"type": "null"},
+                  "max_abs_acceleration_rad_s2": {"type": "null"},
+                  "minimum_window_frames": {"type": "null"},
+                  "threshold_authority_ref": {"type": "null"}
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"run_mode": {"const": "FROZEN_QUALITY_GATE"}}},
+      "then": {
+        "properties": {
+          "gate_policy": {
+            "properties": {
+              "motion": {
+                "properties": {
+                  "status": {"const": "FROZEN_NUMERIC_THRESHOLDS"},
+                  "max_abs_velocity_rad_s": {
+                    "oneOf": [
+                      {"type": "number", "exclusiveMinimum": 0},
+                      {
+                        "type": "array", "minItems": 22, "maxItems": 22,
+                        "items": {"type": "number", "exclusiveMinimum": 0}
+                      }
+                    ]
+                  },
+                  "max_abs_acceleration_rad_s2": {
+                    "oneOf": [
+                      {"type": "number", "exclusiveMinimum": 0},
+                      {
+                        "type": "array", "minItems": 22, "maxItems": 22,
+                        "items": {"type": "number", "exclusiveMinimum": 0}
+                      }
+                    ]
+                  },
+                  "minimum_window_frames": {"type": "integer", "minimum": 3},
+                  "threshold_authority_ref": {"$ref": "#/$defs/ref"}
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}
