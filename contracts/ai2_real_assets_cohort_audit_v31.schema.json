@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/ai2-real-assets-cohort-audit-v31",
+  "title": "AI2_REAL_ASSETS_COHORT_AUDIT_V31",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "lane", "parent_task_id", "cohort_manifest", "cohort_manifest_sha256", "counts", "sessions", "all_sessions_terminal", "all_existing_inputs_sha_bound", "current_only", "archive_consumed", "weights", "model_calls", "gpu_calls", "claims"],
+  "properties": {
+    "schema_version": {"const": "AI2_REAL_ASSETS_COHORT_AUDIT_V31"},
+    "status": {"enum": ["PASS_AI2_CURRENT_ASSET_AUDIT", "BLOCKED_AI2_EVIDENCE", "REJECTED_AI2_CURRENT_ASSET_AUDIT"]},
+    "lane": {"const": "ai2"},
+    "parent_task_id": {"const": "three_stream_stable_baseline_v31"},
+    "cohort_manifest": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {"$ref": "#/$defs/identity"}
+    },
+    "cohort_manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["total", "pass", "blocked", "rejected"],
+      "properties": {
+        "total": {"const": 8},
+        "pass": {"type": "integer", "minimum": 0, "maximum": 8},
+        "blocked": {"type": "integer", "minimum": 0, "maximum": 8},
+        "rejected": {"type": "integer", "minimum": 0, "maximum": 8}
+      }
+    },
+    "sessions": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["cohort", "task", "session_id", "status", "blocker_codes", "result"],
+        "properties": {
+          "cohort": {"enum": ["W0", "A1", "A2"]},
+          "task": {"enum": ["poker", "potato_chips"]},
+          "session_id": {"type": "string", "minLength": 1},
+          "status": {"enum": ["PASS_CPU_PREFLIGHT", "BLOCKED_EVIDENCE", "REJECTED_AUDIT_STATUS", "REJECTED_INPUT_PRECONDITION"]},
+          "blocker_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+          "result": {"$ref": "#/$defs/ref"}
+        }
+      }
+    },
+    "all_sessions_terminal": {"const": true},
+    "all_existing_inputs_sha_bound": {"type": "boolean"},
+    "current_only": {"const": true},
+    "archive_consumed": {"const": false},
+    "weights": {"const": "ABSENT"},
+    "model_calls": {"const": 0},
+    "gpu_calls": {"const": 0},
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["PIPELINE_COMPLETE", "NUMERIC_QUALITY_PASS", "VISUAL_REVIEW_STATUS", "TRAINING_COMPLETE", "TRAINING_ELIGIBLE", "CONTROL_GROUND_TRUTH", "PHYSICAL_DEPLOYABLE"],
+      "properties": {
+        "PIPELINE_COMPLETE": {"const": false},
+        "NUMERIC_QUALITY_PASS": {"const": false},
+        "VISUAL_REVIEW_STATUS": {"const": "NOT_REVIEWED"},
+        "TRAINING_COMPLETE": {"const": false},
+        "TRAINING_ELIGIBLE": {"const": false},
+        "CONTROL_GROUND_TRUTH": {"const": false},
+        "PHYSICAL_DEPLOYABLE": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cohort", "task", "session_id"],
+      "properties": {
+        "cohort": {"enum": ["W0", "A1", "A2"]},
+        "task": {"enum": ["poker", "potato_chips"]},
+        "session_id": {"type": "string", "minLength": 1}
+      }
+    },
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
