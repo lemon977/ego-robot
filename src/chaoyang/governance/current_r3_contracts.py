@@ -290,6 +290,7 @@ def build_algorithm_contract(
                 "gpu_required": "CONDITIONAL_SINGLE_CENTRAL_LEASE",
                 "code_closure": [
                     artifact_ref(repo_root / "src/chaoyang/ops/run_three_stream_stable_baseline_v31.py"),
+                    artifact_ref(repo_root / "src/chaoyang/governance/publish_three_stream_v31_implementation.py"),
                     artifact_ref(repo_root / "src/chaoyang/governance/register_three_stream_stable_baseline_v31.py"),
                     artifact_ref(repo_root / "src/chaoyang/governance/build_three_stream_status_v31.py"),
                 ],
