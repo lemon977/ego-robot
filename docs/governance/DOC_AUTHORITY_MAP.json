@@ -69,45 +69,45 @@
     },
     {
       "authorized_scope": "CURRENT_FOUR_STREAM_EXACT78_HANDOFF",
-      "bytes": 984,
+      "bytes": 1898,
       "claim_limit": "Exact78 lane navigation only; training completion and quality remain receipt-bound.",
       "document_id": "four_stream_exact78_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/EXACT78.md",
-      "sha256": "583f4d2b4a0480bdc854cf18fb17635a9d08a763aaa268744eb4348e4a143f58",
+      "sha256": "9cc9daebc32411ca7a7bcebe138f516034c7982bff0cc86526e3aa48aaf9067e",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_FOUR_STREAM_AI1_HANDOFF",
-      "bytes": 911,
+      "bytes": 1408,
       "claim_limit": "AI1 lane navigation only; calibration, fusion and metric claims remain receipt-bound.",
       "document_id": "four_stream_ai1_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI1.md",
-      "sha256": "1ea91f85dd0381e79a6ba474ae567c8302f7d45e888fc06ee414c7c41ddd5f51",
+      "sha256": "23fdd8fd8b856494b7e658b99ce8335276299d47ba646584b68f6fa7acf137fc",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_FOUR_STREAM_AI2_HANDOFF",
-      "bytes": 926,
+      "bytes": 1684,
       "claim_limit": "AI2 lane navigation only; observability, HaWoR and Robot quality remain receipt-bound.",
       "document_id": "four_stream_ai2_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI2.md",
-      "sha256": "2130a292d9b582b186e212e52f7ace6dd4e3182dac0310861bb58668b7b7fda8",
+      "sha256": "9566b5af7730f6c8f5e1ec37860efcab5ee898ba6a29b994f07e6b9abfb85b9a",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_FOUR_STREAM_AI4_HURO_HANDOFF",
-      "bytes": 865,
+      "bytes": 1488,
       "claim_limit": "HuRo-derived hand-only development comparison navigation; not official full HuRo reproduction, control truth or deployment authority.",
       "document_id": "four_stream_ai4_huro_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI4_HURO.md",
-      "sha256": "25cc10f0a3e30c105f6e1aef1c472c80d850f51ac945614b5232ef5baafb4204",
+      "sha256": "a92ddd3c7f25fd38fed1c009f88653032aef4dcd80773c1bfeb946c316a69dd3",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -185,7 +185,7 @@
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "3ced9c01ca1eb5dde1784750a8eafc81d6bbcc2c6c6c613493137972641a0053",
+      "sha256": "15055e82c0dcbe52a6956103a5a03e423594f19b9af96af8ce7c44dd98091798",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -307,9 +307,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-20T20:32:21+08:00",
-  "generation_id": "gov-013249-2ddc77634591",
-  "governance_revision": 13249,
+  "generated_at": "2026-09-20T20:37:32+08:00",
+  "generation_id": "gov-013250-cacc73019e63",
+  "governance_revision": 13250,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

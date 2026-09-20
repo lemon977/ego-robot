@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-20T20:32:21+08:00`
-- governance revision：`13249`
-- generation id：`gov-013249-2ddc77634591`
-- freshness：`FRESH`（age=2s）
+- 状态生成时间：`2026-09-20T20:37:32+08:00`
+- governance revision：`13250`
+- generation id：`gov-013250-cacc73019e63`
+- freshness：`FRESH`（age=6s）
 - generator code SHA：`d960d9e5bf59e192e54d1f598e365da0e0e77195b4f63ebafbcbf33a8f5b8ec8`
-- repository：`2cc25cb14ae217fcee7c8518774b0cb98ca1210f` / `task/0915-full-funnel-0916-clean-v1`
+- repository：`8fed3c9ce8aa254e7d54aec1a4eddf631728bc07` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -49,7 +49,7 @@
 
 | task_id | session | phase | attempt | PID | GPU | heartbeat | 状态 |
 |---|---|---|---:|---:|---:|---|---|
-| `four_stream_pretraining_baseline_v32` | `multi_lane` | `FOUR_STREAM_V32_EXECUTION` | 1 | 320726 | - | `2026-09-20T20:32:20+08:00` | `RUNNING` |
+| `four_stream_pretraining_baseline_v32` | `multi_lane` | `FOUR_STREAM_V32_EXECUTION` | 1 | 320726 | - | `2026-09-20T20:37:32+08:00` | `RUNNING` |
 
 ## E. 当前阻塞
 
