@@ -1,7 +1,12 @@
 from __future__ import annotations
 
-import numpy as np
+import inspect
+import json
 
+import numpy as np
+import pytest
+
+from chaoyang.ops import run_exact78_stereo_preflight_v31 as runner
 from chaoyang.pipeline.exact78_stereo_preflight_v31 import (
     ImageDomainEvidenceV31,
     check_image_domain,
@@ -103,3 +108,25 @@ def test_metric_failure_keeps_disparity_diagnostic_but_blocks_gpu_successor() ->
     assert result["disparity_diagnostic_authorized"] is True
     assert result["local_stereo_metric_dev"] is False
     assert result["gpu_successor_authorized"] is False
+
+
+def test_cpu_runner_is_resize_only_and_has_no_lens_remap() -> None:
+    source = inspect.getsource(runner.decode_correspondences)
+    assert "split_source_index_eyes" in source
+    assert "resize_only" in source
+    assert "robust_correspondences" in source
+    assert "cv2.remap" not in source
+    assert "undistort" not in source
+
+
+def test_cpu_runner_requires_exactly_twelve_unique_frames(tmp_path) -> None:
+    config = {
+        "schema_version": runner.INPUT_SCHEMA,
+        "frame_indices": list(range(11)),
+        "image_domain": {},
+        "metric_conversion": {},
+    }
+    path = tmp_path / "input.json"
+    path.write_text(json.dumps(config), encoding="utf-8")
+    with pytest.raises(RuntimeError, match="exactly 12 unique"):
+        runner.load_config(path)
