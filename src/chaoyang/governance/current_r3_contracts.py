@@ -290,6 +290,7 @@ def build_algorithm_contract(
                 "gpu_required": "CONDITIONAL_SINGLE_CENTRAL_LEASE",
                 "code_closure": [
                     artifact_ref(repo_root / "src/chaoyang/ops/run_three_stream_stable_baseline_v31.py"),
+                    artifact_ref(repo_root / "src/chaoyang/ops/record_three_stream_lane_result_v31.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/build_wiyh_wrist_dual_representation_v1.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/build_exact78_wrist_comparison_v31.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/run_exact78_stereo_preflight_v31.py"),
