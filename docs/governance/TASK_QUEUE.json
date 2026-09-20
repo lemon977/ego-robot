@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-20T13:54:55+08:00",
-  "generation_id": "gov-013225-09cb48723c42",
-  "governance_revision": 13225,
+  "generated_at": "2026-09-20T16:33:59+08:00",
+  "generation_id": "gov-013229-eefe675118ee",
+  "governance_revision": 13229,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -105,6 +105,16 @@
       "status": "REJECTED_QUALITY",
       "task_id": "0915_robot_quality_recovery_15h_v2",
       "updated_at": "2026-09-20T11:11:19+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "THREE_STREAM_STABLE_BASELINE_V31",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "three_stream_stable_baseline_v31",
+      "updated_at": "2026-09-20T16:33:59+08:00"
     },
     {
       "attempt": 0,

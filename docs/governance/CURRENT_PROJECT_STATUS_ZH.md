@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-20T13:54:55+08:00`
-- governance revision：`13225`
-- generation id：`gov-013225-09cb48723c42`
+- 状态生成时间：`2026-09-20T16:33:59+08:00`
+- governance revision：`13229`
+- generation id：`gov-013229-eefe675118ee`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`1f7314ad9da874d6fc58dc6538501f3d481560f4f330d4ad8798ec33b601e4b7`
-- repository：`85fd1571ea87ffe1ece82ce968ea043ae7388ff9` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`cbf627fd42a41712ec21f78877293902dc060fe54be5f9b27dff5886ec0957ca`
+- repository：`8e46ceb773bfa967659da51d8cb4cbe80ad7f03b` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -103,7 +103,6 @@
 - `0915_robot15h_release_candidate_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/RESULT.json / `2026-09-19T03:24:29+08:00`
 - `0915_robot15h_robot_virtual_arm_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001/RESULT.json / `2026-09-19T03:23:03+08:00`
 - `0915_robot15h_robot_relative_refinement_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/RESULT.json / `2026-09-19T03:18:04+08:00`
-- `0915_robot15h_contact_dual_evidence_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/RESULT.json / `2026-09-19T03:17:03+08:00`
 
 ### FAILED_QUALITY_C
 

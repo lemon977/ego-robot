@@ -1,0 +1,197 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "cpu_lane_count_max": 3,
+    "e1_canary_frames": 12,
+    "e1_quality_retries_max": 0,
+    "e1_runtime_attempts_max": 2,
+    "e2_checkpoint_interval_updates": 1000,
+    "e2_epochs_per_model_max": 100,
+    "e2_gpu_seconds_per_model_max": 43200,
+    "e2_models": 4,
+    "e2_optimizer_updates_per_model": 10000,
+    "gpu_concurrent_owners_max": 1
+  },
+  "calibration_or_absent": "PER_LANE_PINNED_EVIDENCE_OR_ABSENT",
+  "child_weights_policy": "EACH_CHILD_BINDS_EXACTLY_ONE_PINNED_WEIGHT_OR_ABSENT",
+  "claim_limit": "Development baselines and diagnostics only. Training completion, numeric quality, visual review, training eligibility, control truth and physical deployment are separate claims.",
+  "code_closure": [
+    {
+      "bytes": 14657,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_three_stream_stable_baseline_v31.py",
+      "sha256": "769f015eadf09d011129bcd0d5d2bc7a4a09b1ad6aea63409bd094c4c5146c19"
+    },
+    {
+      "bytes": 5269,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/build_three_stream_status_v31.py",
+      "sha256": "f22755827c166286497abbabdc8c41ed23092d4eb918abf8548f0fb2a3dc2375"
+    },
+    {
+      "bytes": 10062,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_three_stream_stable_baseline_v31.py",
+      "sha256": "0254b341561978eb7c02b814bbf30b02f70bc21e45416438dcc4f965700098ac"
+    },
+    {
+      "bytes": 4027,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/record_three_stream_lane_result_v31.py",
+      "sha256": "185cc99cd911b7391c04f1094261bb0b471c70fd377ad4ecc6a3fb0d97fcbd6e"
+    },
+    {
+      "bytes": 22528,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_input_v1.py",
+      "sha256": "a5c925a291ccdb62bc30aba381611d0c2842cf488fa8f1024737c1dad9c59c13"
+    },
+    {
+      "bytes": 31486,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_representation_v1.py",
+      "sha256": "4d3bb9f2299a5154e6a0adbb928f08ca957bb8b455f6365cbcb791f061514e2e"
+    },
+    {
+      "bytes": 14743,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_wiyh_ai1_current_lane_v31.py",
+      "sha256": "74db2ffbd758ea0af8556fee17fee3a5559d15d6029d9869bce2235a31fcf4a8"
+    },
+    {
+      "bytes": 22762,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_ai2_real_assets_v31.py",
+      "sha256": "fbb5229ba7f39e1c031161c4bc1bb1218c55dcaef4e22228b8861681dafa8258"
+    },
+    {
+      "bytes": 10448,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_ai2_real_assets_cohort_audit_v31.py",
+      "sha256": "bfe85830f9432ac70eee746bb803b5badb125b2ff9981d8d43182b3360630d91"
+    },
+    {
+      "bytes": 19653,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_exact78_wrist_comparison_v31.py",
+      "sha256": "797e78f4c493b09650683602a5b471c45ddafcba7b09c0028a79944b62aca0fd"
+    },
+    {
+      "bytes": 17568,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_exact78_stereo_preflight_input_v31.py",
+      "sha256": "ccc2e0aaa94fcc9d228f2b582bea66615e6aadd4a3910f71bb8754ec0974ba57"
+    },
+    {
+      "bytes": 9452,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_stereo_preflight_v31.py",
+      "sha256": "0968dd659ebcd36afb4103b5fc8e7b1c31b67a32879407b0d4d0ed798319180d"
+    },
+    {
+      "bytes": 7932,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_development_pair_audit_v31.py",
+      "sha256": "0e2c4a3ab3b036175f42652c1fe46c3dd2a54b4e9757edf5b8b660d81075c100"
+    },
+    {
+      "bytes": 15932,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_three_stream_stable_baseline_v31.py",
+      "sha256": "cbf627fd42a41712ec21f78877293902dc060fe54be5f9b27dff5886ec0957ca"
+    },
+    {
+      "bytes": 13397,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/hand_observability_v1.py",
+      "sha256": "84802045a54c577a28fd65f053df23b39d849f89b32f58928f544eb0516670bd"
+    },
+    {
+      "bytes": 5193,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/temporal_authority_v1.py",
+      "sha256": "96aaded8fc6c49575aada219594845f74d3e9e05a44dd763e690ef01efeeb9df"
+    },
+    {
+      "bytes": 10617,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/hawor_bounded_comparison_v31.py",
+      "sha256": "f60da8cdb11c451eb89eb70665a06feb3d7c5353f6be93adbead3af0c19d4a31"
+    },
+    {
+      "bytes": 5217,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/kai22_r0_tiered_admission_v1.py",
+      "sha256": "a654356e304459c2322ec8fddeba2b48ce03852bc2270ec63d54f95329957cab"
+    },
+    {
+      "bytes": 9539,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/exact78_v31.py",
+      "sha256": "6e8779414f2bc89163e5b8864f1c9fd7608da4ef5f4b2a971c78619d77d8bc15"
+    },
+    {
+      "bytes": 3201,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/audit_exact78_suffix_invariance_v31.py",
+      "sha256": "347382251b3be679dd5f4ce21974bcba64a79a2b72bc07d843b978318c463900"
+    },
+    {
+      "bytes": 24559,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/build_exact78_development_pair_ledgers_v31.py",
+      "sha256": "c4d00fb15395dcacd3de4170a757a97110c179b2a31a4af2774b50e6ecc19510"
+    },
+    {
+      "bytes": 57276,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
+      "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
+    },
+    {
+      "bytes": 9714,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/exact78_stereo_preflight_v31.py",
+      "sha256": "977faf1fec2f8f0a3e343bb6b9053bb29482962a43c88d6890b31b0d04279692"
+    }
+  ],
+  "dag_dependencies": [],
+  "execution_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
+  "executor_epoch": 1,
+  "expected_resource": "THREE_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
+  "external_metric_authority": false,
+  "fencing": {
+    "immutable_final": true,
+    "lane_writer_roots": {
+      "ai1": "_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1",
+      "ai2": "_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai2",
+      "exact78": "_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/exact78"
+    },
+    "pid_startticks_required": true,
+    "unique_primary_writer": true
+  },
+  "objective": "Execute the V3.1 Exact78, AI1 and AI2 stable-baseline lanes with isolated CPU writers, one governed GPU lease and separately reported development authority.",
+  "phase": "THREE_STREAM_STABLE_BASELINE_V31",
+  "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "no_active_current_task",
+    "source_and_processed_datasets_READ_ONLY",
+    "sealed_and_historical_results_READ_ONLY",
+    "three_lane_writer_roots_ISOLATED",
+    "single_GPU_lease_owner",
+    "egosteer_touch_MUST_NOT_BE_STOPPED",
+    "diagnostics_only_gate_direct_consumers"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/current/PLAN.md",
+    "docs/current/EXACT78.md",
+    "docs/current/AI1.md",
+    "docs/current/AI2.md",
+    "tasks/current/INDEX.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/lanes/exact78/STATE.json",
+    "attempts/attempt_0001/lanes/ai1/STATE.json",
+    "attempts/attempt_0001/lanes/ai2/STATE.json",
+    "attempts/attempt_0001/LANE_LEDGER.json",
+    "attempts/attempt_0001/GPU_QUEUE_LEDGER.json",
+    "attempts/attempt_0001/FINAL_AUDIT.json",
+    "attempts/attempt_0001/RESULT.json",
+    "attempts/attempt_0001/RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "each_lane_reaches_its_frozen_success_blocked_rejected_or_budget_paused_state",
+    "E1_quality_failure_has_no_automatic_retry",
+    "E2_budget_expiry_saves_resumable_state",
+    "any_scope_writer_or_GPU_lease_violation_fails_closed",
+    "external_or_physical_authority_remains_false_without_independent_evidence"
+  ],
+  "task_id": "three_stream_stable_baseline_v31",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/three_stream_stable_baseline_v31",
+    "docs/current/STATUS.json",
+    "tasks/receipts/THREE_STREAM_STABLE_BASELINE_V31_RESULT.json",
+    "docs/current/visuals/THREE_STREAM_STABLE_BASELINE_V31"
+  ]
+}

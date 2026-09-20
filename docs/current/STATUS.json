@@ -1,6 +1,6 @@
 {
   "claim_limit": "Generated navigation projection only. Lane receipts and the current task ledger remain authoritative; this file must never be edited by a lane worker.",
-  "generated_at": "2026-09-20T15:42:01+08:00",
+  "generated_at": "2026-09-20T16:33:59+08:00",
   "global_authority": {
     "control_ground_truth": false,
     "external_metric_authority": false,
@@ -9,50 +9,84 @@
   "lanes": {
     "ai1": {
       "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
-      "blocker": null,
-      "current_action": null,
-      "latest_artifacts": [],
-      "next_step": "WAIT_PARENT_REGISTRATION",
+      "blocker": "FAILED_RUNTIME",
+      "current_action": "CPU_PREFLIGHT_RECORDED",
+      "latest_artifacts": [
+        {
+          "bytes": 1162,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1/current_only_run_0001/RESULT.json",
+          "sha256": "ec0af6ad16710b07a34bd88b28e02df4186aed281551a1ac3ba179a734238a0f"
+        }
+      ],
+      "next_step": "REVIEW_FAILURE_NO_AUTOMATIC_RETRY",
       "stable_baseline": null,
-      "state_file": null,
-      "status": "NOT_REGISTERED"
+      "state_file": {
+        "bytes": 1451,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1/STATE.json",
+        "sha256": "8ae627db8c12ea0a22b44d5eb9fb00be64fa36e686b8e03e32f53ea7f9392f4d"
+      },
+      "status": "REJECTED_CPU_PREFLIGHT"
     },
     "ai2": {
       "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
-      "blocker": null,
-      "current_action": null,
-      "latest_artifacts": [],
-      "next_step": "WAIT_PARENT_REGISTRATION",
+      "blocker": "REJECTED_AI2_CURRENT_ASSET_AUDIT",
+      "current_action": "CPU_PREFLIGHT_RECORDED",
+      "latest_artifacts": [
+        {
+          "bytes": 7076,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai2/AI2_REAL_ASSETS_COHORT_AUDIT_V31/RESULT.json",
+          "sha256": "e121d1740e235c1eab20966dffb36c6888ead50c6f7f9599ee0ee87b559a41ac"
+        }
+      ],
+      "next_step": "REVIEW_FAILURE_NO_AUTOMATIC_RETRY",
       "stable_baseline": null,
-      "state_file": null,
-      "status": "NOT_REGISTERED"
+      "state_file": {
+        "bytes": 1498,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai2/STATE.json",
+        "sha256": "5a1cce556fcdea2017c32b7a4438405d10f1a8e9170daa628e438c0ee82b7154"
+      },
+      "status": "REJECTED_CPU_PREFLIGHT"
     },
     "exact78": {
       "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
-      "blocker": null,
-      "current_action": null,
-      "latest_artifacts": [],
-      "next_step": "WAIT_PARENT_REGISTRATION",
+      "blocker": "BLOCKED_INPUTS",
+      "current_action": "CPU_PREFLIGHT_RECORDED",
+      "latest_artifacts": [
+        {
+          "bytes": 2230,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/exact78/exact78_development_pair_audit_v31/RESULT.json",
+          "sha256": "8c8fc5da497551246ecde99724734f213a92220a3d96ef99863d76f69e6e5c4f"
+        }
+      ],
+      "next_step": "RESOLVE_RECORDED_DIRECT_BLOCKER",
       "stable_baseline": null,
-      "state_file": null,
-      "status": "NOT_REGISTERED"
+      "state_file": {
+        "bytes": 1477,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/exact78/STATE.json",
+        "sha256": "4f062c873188de13ab4c8e6cde108525aab9c963938819c65a38179e3ecab645"
+      },
+      "status": "BLOCKED_CPU_PREFLIGHT"
     }
   },
   "parent": {
-    "attempt": null,
-    "registered": false,
+    "attempt": 1,
+    "registered": true,
     "routable": false,
-    "status": "NOT_REGISTERED",
-    "task_packet": null
+    "status": "REJECTED_QUALITY",
+    "task_packet": {
+      "bytes": 8437,
+      "path": "/mnt/workspace/code/chaoyang/tasks/current/three_stream_stable_baseline_v31/TASK_PACKET.json",
+      "sha256": "a20e952c2ef5839bc037033b4570969d3283cfbc441be7e4a2be5c4fcb81eb45"
+    }
   },
   "schema_version": "chaoyang-three-stream-shallow-status-v1",
   "source": {
     "parent_task_id": "three_stream_stable_baseline_v31",
     "run_root": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001",
     "task_state": {
-      "bytes": 117001,
-      "path": "/mnt/workspace/code/chaoyang/docs/governance/LONG_HORIZON_TASK_STATE.json",
-      "sha256": "c6421dfe4b1d0ec3c5316a8d5ddf902bf05e97c18ef90e2e9db4081479c0231f"
+      "bytes": 118440,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/PROJECTED_TERMINAL_TASK_STATE.json",
+      "sha256": "69d7d0b37e3515131c9afc0802a812e2a271f511f2eb311fd3a694a545e77a1f"
     }
   }
 }

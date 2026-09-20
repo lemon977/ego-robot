@@ -1,17 +1,17 @@
 {
-  "claim_limit": "V2.1 parent is terminal; a new CAS registration is required for any successor.",
-  "execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
-  "generated_at": "2026-09-20T11:11:19+08:00",
-  "generation_id": "gov-013224-9b8410f84fd4",
-  "governance_revision": 13224,
-  "packet_revision": "0915_ROBOT_QUALITY_RECOVERY_15H_V2_TERMINAL",
-  "plan_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
+  "claim_limit": "The finite V3.1 parent is terminal. Lane blockers remain separate and no GPU, training, control or deployment successor is authorized.",
+  "execution_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
+  "generated_at": "2026-09-20T16:33:59+08:00",
+  "generation_id": "gov-013229-eefe675118ee",
+  "governance_revision": 13229,
+  "packet_revision": "THREE_STREAM_STABLE_BASELINE_V31_TERMINAL",
+  "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1236,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/finalization_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "0fc4963b02a4418bec587bdea7c9fb32d12a94406201e6b71fa4ee33ba9bd90c"
+    "bytes": 1200,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "645b2017d14f32cc5e887735b54269a27d72d43aae2e2d5932a963f1a961cb24"
   },
   "task_packets": []
 }

@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T13:54:55+08:00",
-  "generation_id": "gov-013225-09cb48723c42",
-  "governance_revision": 13225,
+  "generated_at": "2026-09-20T16:33:59+08:00",
+  "generation_id": "gov-013229-eefe675118ee",
+  "governance_revision": 13229,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -1196,6 +1196,213 @@
       "policy_status": "POLICY_DEFERRED",
       "qa_status": "NOT_EVALUATED"
     },
+    "three_stream_stable_baseline_v31": {
+      "authority_separation": [
+        "PIPELINE_COMPLETE",
+        "NUMERIC_QUALITY_PASS",
+        "VISUAL_REVIEW_STATUS",
+        "TRAINING_COMPLETE",
+        "TRAINING_ELIGIBLE",
+        "CONTROL_GROUND_TRUTH",
+        "PHYSICAL_DEPLOYABLE"
+      ],
+      "claim_limit": "V3.1 coordination and development baselines only; lane diagnostics constrain only their direct consumers.",
+      "code_closure": [
+        {
+          "bytes": 10062,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_three_stream_stable_baseline_v31.py",
+          "sha256": "0254b341561978eb7c02b814bbf30b02f70bc21e45416438dcc4f965700098ac"
+        },
+        {
+          "bytes": 4027,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/record_three_stream_lane_result_v31.py",
+          "sha256": "185cc99cd911b7391c04f1094261bb0b471c70fd377ad4ecc6a3fb0d97fcbd6e"
+        },
+        {
+          "bytes": 22528,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_input_v1.py",
+          "sha256": "a5c925a291ccdb62bc30aba381611d0c2842cf488fa8f1024737c1dad9c59c13"
+        },
+        {
+          "bytes": 31486,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_representation_v1.py",
+          "sha256": "4d3bb9f2299a5154e6a0adbb928f08ca957bb8b455f6365cbcb791f061514e2e"
+        },
+        {
+          "bytes": 14743,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_wiyh_ai1_current_lane_v31.py",
+          "sha256": "74db2ffbd758ea0af8556fee17fee3a5559d15d6029d9869bce2235a31fcf4a8"
+        },
+        {
+          "bytes": 22762,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_ai2_real_assets_v31.py",
+          "sha256": "fbb5229ba7f39e1c031161c4bc1bb1218c55dcaef4e22228b8861681dafa8258"
+        },
+        {
+          "bytes": 10448,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_ai2_real_assets_cohort_audit_v31.py",
+          "sha256": "bfe85830f9432ac70eee746bb803b5badb125b2ff9981d8d43182b3360630d91"
+        },
+        {
+          "bytes": 19653,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_exact78_wrist_comparison_v31.py",
+          "sha256": "797e78f4c493b09650683602a5b471c45ddafcba7b09c0028a79944b62aca0fd"
+        },
+        {
+          "bytes": 17568,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_exact78_stereo_preflight_input_v31.py",
+          "sha256": "ccc2e0aaa94fcc9d228f2b582bea66615e6aadd4a3910f71bb8754ec0974ba57"
+        },
+        {
+          "bytes": 9452,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_stereo_preflight_v31.py",
+          "sha256": "0968dd659ebcd36afb4103b5fc8e7b1c31b67a32879407b0d4d0ed798319180d"
+        },
+        {
+          "bytes": 7932,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_exact78_development_pair_audit_v31.py",
+          "sha256": "0e2c4a3ab3b036175f42652c1fe46c3dd2a54b4e9757edf5b8b660d81075c100"
+        },
+        {
+          "bytes": 4215,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_three_stream_v31_implementation.py",
+          "sha256": "f3a80bf2f790f871935184e1b1d90adb8811f9b876f861471a0c70c786ee4920"
+        },
+        {
+          "bytes": 14657,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_three_stream_stable_baseline_v31.py",
+          "sha256": "769f015eadf09d011129bcd0d5d2bc7a4a09b1ad6aea63409bd094c4c5146c19"
+        },
+        {
+          "bytes": 5269,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/build_three_stream_status_v31.py",
+          "sha256": "f22755827c166286497abbabdc8c41ed23092d4eb918abf8548f0fb2a3dc2375"
+        },
+        {
+          "bytes": 15932,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_three_stream_stable_baseline_v31.py",
+          "sha256": "cbf627fd42a41712ec21f78877293902dc060fe54be5f9b27dff5886ec0957ca"
+        },
+        {
+          "bytes": 20096,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/research/world_in_your_hands/wrist_dual_representation_v1.py",
+          "sha256": "e186d355e7a1caf5159512d7cca6321c999864962e17abd2cec347ecf2aaac8d"
+        },
+        {
+          "bytes": 13397,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/hand_observability_v1.py",
+          "sha256": "84802045a54c577a28fd65f053df23b39d849f89b32f58928f544eb0516670bd"
+        },
+        {
+          "bytes": 5193,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/temporal_authority_v1.py",
+          "sha256": "96aaded8fc6c49575aada219594845f74d3e9e05a44dd763e690ef01efeeb9df"
+        },
+        {
+          "bytes": 10617,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/hawor_bounded_comparison_v31.py",
+          "sha256": "f60da8cdb11c451eb89eb70665a06feb3d7c5353f6be93adbead3af0c19d4a31"
+        },
+        {
+          "bytes": 5217,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/kai22_r0_tiered_admission_v1.py",
+          "sha256": "a654356e304459c2322ec8fddeba2b48ce03852bc2270ec63d54f95329957cab"
+        },
+        {
+          "bytes": 9539,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/exact78_v31.py",
+          "sha256": "6e8779414f2bc89163e5b8864f1c9fd7608da4ef5f4b2a971c78619d77d8bc15"
+        },
+        {
+          "bytes": 3201,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/audit_exact78_suffix_invariance_v31.py",
+          "sha256": "347382251b3be679dd5f4ce21974bcba64a79a2b72bc07d843b978318c463900"
+        },
+        {
+          "bytes": 24559,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/build_exact78_development_pair_ledgers_v31.py",
+          "sha256": "c4d00fb15395dcacd3de4170a757a97110c179b2a31a4af2774b50e6ecc19510"
+        },
+        {
+          "bytes": 57276,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
+          "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
+        },
+        {
+          "bytes": 9714,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/exact78_stereo_preflight_v31.py",
+          "sha256": "977faf1fec2f8f0a3e343bb6b9053bb29482962a43c88d6890b31b0d04279692"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "EXACT78_AI1_AI2_ISOLATED_STABLE_BASELINE_PARENT",
+      "external_metric_authority": false,
+      "gpu_required": "CONDITIONAL_SINGLE_CENTRAL_LEASE",
+      "lane_roots": {
+        "ai1": "_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1",
+        "ai2": "_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai2",
+        "exact78": "_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/exact78"
+      },
+      "physical_deployment_authorized": false,
+      "schema_closure": [
+        {
+          "bytes": 2429,
+          "path": "/mnt/workspace/code/chaoyang/contracts/wrist_dual_producer_config_v1.schema.json",
+          "sha256": "fd3fc28c663d2df7063d5605f4cf6920eb1d8bd2b2e2626531203dcbbef0bde0"
+        },
+        {
+          "bytes": 5202,
+          "path": "/mnt/workspace/code/chaoyang/contracts/wrist_dual_representation_v1.schema.json",
+          "sha256": "a238aba8753630f9cb3ef2195df41b1051f08e16f9bf69a1111113b397425a50"
+        },
+        {
+          "bytes": 6992,
+          "path": "/mnt/workspace/code/chaoyang/contracts/wiyh_wrist_dual_input_provenance_v1.schema.json",
+          "sha256": "b1a7e24c6c4f6dd296edadce1a205034e3744cc99fb22f2e891239946e1f2591"
+        },
+        {
+          "bytes": 4169,
+          "path": "/mnt/workspace/code/chaoyang/contracts/wiyh_ai1_lane_ledger_v31.schema.json",
+          "sha256": "d8efb3adcf660c9e4d1c56f3b229f45fbf4efabb4cc43bfc5b6aaa27a7450cf1"
+        },
+        {
+          "bytes": 2046,
+          "path": "/mnt/workspace/code/chaoyang/contracts/wiyh_ai1_lane_result_v31.schema.json",
+          "sha256": "56d6638be18965bb5bf40cd92cb7977d74bba05af8726442d1bfcdd90c49ca08"
+        },
+        {
+          "bytes": 4632,
+          "path": "/mnt/workspace/code/chaoyang/contracts/hand_observability_v1.schema.json",
+          "sha256": "a7a2bc88805ac9376ab973e5348b5ef4f50eb449e1d02eeac6feaaf2c2ba9331"
+        },
+        {
+          "bytes": 1520,
+          "path": "/mnt/workspace/code/chaoyang/contracts/temporal_authority_audit_v1.schema.json",
+          "sha256": "52812ef6cf34a9ad325ada2fd5da24bd6b341de60efd90e27d0d2181260b2720"
+        },
+        {
+          "bytes": 2608,
+          "path": "/mnt/workspace/code/chaoyang/contracts/hawor_bounded_comparison_v31.schema.json",
+          "sha256": "87008aa30c0f79cdfac9092aaac7af829c8486f2aaecd73d38821753a2e6f92b"
+        },
+        {
+          "bytes": 1595,
+          "path": "/mnt/workspace/code/chaoyang/contracts/kai22_r0_tiered_admission_v1.schema.json",
+          "sha256": "5e0a28293fe7ca1f7314bdd183b85e4e76e4802fd6a22484a67e2524ec5e3788"
+        },
+        {
+          "bytes": 1835,
+          "path": "/mnt/workspace/code/chaoyang/contracts/ai2_real_assets_audit_v31.schema.json",
+          "sha256": "4993b97bae3b459e40ff67a49f118a4ba429293ec5127970698adebf69021386"
+        },
+        {
+          "bytes": 3778,
+          "path": "/mnt/workspace/code/chaoyang/contracts/ai2_real_assets_cohort_audit_v31.schema.json",
+          "sha256": "a8ab3c5ad10e0f26183d3e9a9a73018248af616f470bef72036c4a35aedd3831"
+        }
+      ],
+      "weights": "ABSENT_AT_PARENT_EACH_CHILD_ONE_PINNED_WEIGHT_OR_ABSENT"
+    },
     "visual_aux_checkpoint_index_cli": {
       "code_closure": [
         {
@@ -1215,9 +1422,9 @@
           "sha256": "2b7fd38933613380999026c54dfabe75469f5fefecb19169de1b9e9762515f90"
         },
         {
-          "bytes": 39790,
+          "bytes": 57276,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
-          "sha256": "501b6016c72dbbda6251fb527f55d7c71b93a3f27889d59c1053ff4c31c366ea"
+          "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
         },
         {
           "bytes": 30244,
@@ -2198,9 +2405,9 @@
           "sha256": "d6a8f7ea557631c645b332d8109f264618f522dd987976ed4c9f26c778262a03"
         },
         {
-          "bytes": 39790,
+          "bytes": 57276,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
-          "sha256": "501b6016c72dbbda6251fb527f55d7c71b93a3f27889d59c1053ff4c31c366ea"
+          "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
         },
         {
           "bytes": 9036,
