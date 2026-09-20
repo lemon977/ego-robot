@@ -56,6 +56,40 @@ def percentile(values: np.ndarray, q: float) -> float | None:
     return None if finite.size == 0 else float(np.percentile(finite, q))
 
 
+def load_local_q22_comparison(
+    archive: dict[str, np.ndarray], expected_shape: tuple[int, ...]
+) -> tuple[np.ndarray, np.ndarray, str, str]:
+    """Load a frozen local trajectory without relabelling its admission tier."""
+
+    q_key = next(
+        (key for key in ("q22", "q22_init", "q22_frozen_postclip") if key in archive),
+        None,
+    )
+    if q_key is None:
+        raise RunError("local comparison lacks q22/q22_init/q22_frozen_postclip")
+    q22 = np.asarray(archive[q_key], dtype=np.float64)
+    if q22.shape != expected_shape:
+        raise RunError("local R0 q22 shape mismatch")
+    valid_key = next(
+        (
+            key
+            for key in ("q22_computed", "q22_valid_physical", "valid_side_frame")
+            if key in archive
+        ),
+        None,
+    )
+    if valid_key is None:
+        valid = np.isfinite(q22).all(axis=2)
+        valid_key = "FINITE_Q22_DERIVED"
+    else:
+        valid = np.asarray(archive[valid_key], dtype=bool)
+        if valid.shape != expected_shape[:2]:
+            raise RunError("local R0 validity shape mismatch")
+    if np.any(valid & ~np.isfinite(q22).all(axis=2)):
+        raise RunError("local comparison marks non-finite q22 as valid")
+    return q22, valid, q_key, valid_key
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--session", required=True)
@@ -102,12 +136,11 @@ def main() -> int:
     if args.local_r0_npz is not None:
         with np.load(args.local_r0_npz, allow_pickle=False) as archive:
             local = {key: np.asarray(archive[key]) for key in archive.files}
-        if "q22" not in local or local["q22"].shape != solved["q22"].shape:
-            raise RunError("local R0 q22 shape mismatch")
-        common = solved["valid"].copy()
-        if "q22_computed" in local:
-            common &= np.asarray(local["q22_computed"], dtype=bool)
-        difference_deg = np.degrees(local["q22"] - solved["q22"])
+        local_q22, local_valid, q_key, valid_key = load_local_q22_comparison(
+            local, solved["q22"].shape
+        )
+        common = solved["valid"] & local_valid
+        difference_deg = np.degrees(local_q22 - solved["q22"])
         comparison = {
             "status": "COMMON_FRAME_DIFFERENCE_ONLY_NOT_ACCURACY",
             "common_side_frames": int(np.sum(common)),
@@ -116,6 +149,8 @@ def main() -> int:
             ),
             "q_difference_p95_abs_deg": percentile(np.abs(difference_deg[common]), 95),
             "local_r0": evidence(args.local_r0_npz),
+            "local_q22_field": q_key,
+            "local_valid_field": valid_key,
         }
 
     result = {
@@ -175,4 +210,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     raise SystemExit(main())
-
