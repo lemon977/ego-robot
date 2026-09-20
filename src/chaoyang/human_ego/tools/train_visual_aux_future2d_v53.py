@@ -24,6 +24,7 @@ from pathlib import Path
 import random
 import sys
 import tempfile
+import time
 from typing import Any
 
 import cv2
@@ -51,6 +52,13 @@ from chaoyang.human_ego.training.VisualAuxFuture2DModel import (  # noqa: E402
     VisualAuxFuture2DModel,
     visual_aux_loss,
     visual_aux_metrics,
+)
+from chaoyang.human_ego.exact78_v31 import (  # noqa: E402
+    FrozenDevelopmentTrainingConfig,
+    development_capacity_report,
+    future_2d_error_metrics,
+    simple_future_2d_predictions,
+    training_terminal_status,
 )
 
 
@@ -150,13 +158,21 @@ def publish_checkpoint_files(
 
 
 @lru_cache(maxsize=2)
-def load_label_arrays(path_text: str) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+def load_label_arrays(
+    path_text: str,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray, np.ndarray, np.ndarray]:
     with np.load(path_text, allow_pickle=False) as data:
-        return (
-            np.asarray(data["future_2d_xy_normalized"], dtype=np.float32),
-            np.asarray(data["future_2d_valid"], dtype=bool),
-            np.asarray(data["rgb_training_valid_mask"], dtype=bool),
-        )
+        future = np.asarray(data["future_2d_xy_normalized"], dtype=np.float32)
+        valid = np.asarray(data["future_2d_valid"], dtype=bool)
+        rgb_mask = np.asarray(data["rgb_training_valid_mask"], dtype=bool)
+        # The previous label row's horizon-0 value is the endpoint at the
+        # current frame.  It is available at time t and uses no t+1 suffix.
+        endpoint = np.full((len(future), 2, 2), np.nan, dtype=np.float32)
+        endpoint_valid = np.zeros((len(future), 2), dtype=bool)
+        if len(future) > 1:
+            endpoint[1:] = future[:-1, 0]
+            endpoint_valid[1:] = valid[:-1, 0]
+        return future, valid, rgb_mask, endpoint, endpoint_valid
 
 
 class VisualAuxDataset(Dataset[dict[str, torch.Tensor]]):
@@ -213,7 +229,9 @@ class VisualAuxDataset(Dataset[dict[str, torch.Tensor]]):
         image = cv2.imread(str(row["rgb"]), cv2.IMREAD_COLOR)
         if image is None or image.shape[:2] != (row["height"], row["width"]):
             raise RuntimeError(f"RGB decode/dimension mismatch: {row['rgb']}")
-        xy, valid, rgb_masks = load_label_arrays(str(row["labels"]))
+        xy, valid, rgb_masks, endpoints, endpoint_valid = load_label_arrays(
+            str(row["labels"])
+        )
         frame = row["frame"]
         image[~rgb_masks[frame]] = 0
         image = cv2.resize(image, self.image_size, interpolation=cv2.INTER_AREA)
@@ -223,6 +241,16 @@ class VisualAuxDataset(Dataset[dict[str, torch.Tensor]]):
             "rgb": rgb,
             "xy": torch.from_numpy(np.ascontiguousarray(xy[frame])),
             "valid": torch.from_numpy(np.ascontiguousarray(valid[frame])),
+            "current_xy": torch.from_numpy(np.ascontiguousarray(endpoints[frame])),
+            "current_valid": torch.from_numpy(
+                np.ascontiguousarray(endpoint_valid[frame])
+            ),
+            "previous_xy": torch.from_numpy(
+                np.ascontiguousarray(endpoints[max(0, frame - 1)])
+            ),
+            "previous_valid": torch.from_numpy(
+                np.ascontiguousarray(endpoint_valid[max(0, frame - 1)])
+            ),
             "width": torch.tensor(row["width"], dtype=torch.float32),
             "height": torch.tensor(row["height"], dtype=torch.float32),
         }
@@ -458,6 +486,18 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
                 split_source_groups.add(source_group)
             else:
                 _validate_manifest_training_gate(manifest_path, payload, report)
+                source_group = str(
+                    payload.get("source_group_id")
+                    or payload.get("source_group")
+                    or identity
+                )
+                previous_split = global_source_groups.get(source_group)
+                if previous_split is not None and previous_split != split:
+                    raise RuntimeError(
+                        f"source group crosses splits: {source_group}={previous_split}/{split}"
+                    )
+                global_source_groups[source_group] = split
+                split_source_groups.add(source_group)
             split_reports[str(identity)] = report
         groups[split] = manifests
         reports_by_split[split] = split_reports
@@ -485,16 +525,19 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
                 f"{split} ledger contains zero-window sessions: {zero_window_sessions}"
             )
         windows = sum(window_counts)
-        independent_groups = (
-            len(source_groups_by_split[split]) if rc1_mode else len(manifests)
-        )
+        independent_groups = len(source_groups_by_split[split])
         reports[split] = {
             "sessions": len(manifests),
             "source_groups": independent_groups,
             "windows": windows,
         }
-        if independent_groups < minimum[split][0] or windows < minimum[split][1]:
+        if rc1_mode and (
+            independent_groups < minimum[split][0] or windows < minimum[split][1]
+        ):
             raise RuntimeError(f"{split} eligibility minimum failed: {reports[split]}")
+    development_capacity = development_capacity_report(reports)
+    if not rc1_mode and not development_capacity["training_start_allowed"]:
+        raise RuntimeError("DEVELOPMENT ledger has no legal train/validation windows")
     hardset_path, hardset_selection = _validate_hardset(
         ledger, reports_by_split["validation"]
     )
@@ -505,6 +548,8 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
         "windows": sum(len(items) for items in hardset_selection.values()),
         "selection": hardset_selection,
     }
+    ledger["development_capacity"] = development_capacity
+    ledger["rc1_capacity_gate_enforced"] = rc1_mode
     return ledger, groups
 
 
@@ -543,6 +588,10 @@ def training_run_signature(
     validation_frequency: int,
     patience_validations: int,
     device: str,
+    target_updates: int = 10_000,
+    checkpoint_every_updates: int = 1_000,
+    max_wall_seconds: int = 12 * 60 * 60,
+    resume_checkpoint: Path | None = None,
 ) -> dict[str, Any]:
     payload = {
         "schema_version": "VISUAL_AUX_TRAINING_RUN_SIGNATURE_V1",
@@ -558,6 +607,12 @@ def training_run_signature(
         "validation_frequency": validation_frequency,
         "patience_validations": patience_validations,
         "device": device,
+        "target_updates": target_updates,
+        "checkpoint_every_updates": checkpoint_every_updates,
+        "max_wall_seconds": max_wall_seconds,
+        "resume_checkpoint": (
+            artifact_ref(resume_checkpoint) if resume_checkpoint is not None else "ABSENT"
+        ),
     }
     return {"payload": payload, "sha256": canonical_sha256(payload)}
 
@@ -575,6 +630,10 @@ def validate_training_result(
     validation_frequency: int = 5,
     patience_validations: int = 12,
     device: str = "cuda",
+    target_updates: int = 10_000,
+    checkpoint_every_updates: int = 1_000,
+    max_wall_seconds: int = 12 * 60 * 60,
+    resume_checkpoint: Path | None = None,
 ) -> dict[str, Any]:
     """Verify an existing result before a retry/adopt path may treat it as passed."""
 
@@ -593,6 +652,10 @@ def validate_training_result(
         validation_frequency=validation_frequency,
         patience_validations=patience_validations,
         device=device,
+        target_updates=target_updates,
+        checkpoint_every_updates=checkpoint_every_updates,
+        max_wall_seconds=max_wall_seconds,
+        resume_checkpoint=resume_checkpoint,
     )
     required_schema = (
         "exact78-visual-aux-real-epoch0-v53-v1"
@@ -669,6 +732,7 @@ def evaluate(
 ) -> dict[str, float]:
     model.eval()
     predictions, targets, validities, widths, heights = [], [], [], [], []
+    current_xy, current_valid, previous_xy, previous_valid = [], [], [], []
     losses = []
     with torch.no_grad():
         for batch in loader:
@@ -682,6 +746,10 @@ def evaluate(
             validities.append(batch["valid"])
             widths.append(batch["width"])
             heights.append(batch["height"])
+            current_xy.append(batch["current_xy"])
+            current_valid.append(batch["current_valid"])
+            previous_xy.append(batch["previous_xy"])
+            previous_valid.append(batch["previous_valid"])
     metrics = visual_aux_metrics(
         torch.cat(predictions),
         torch.cat(targets),
@@ -690,6 +758,26 @@ def evaluate(
         torch.cat(heights),
     )
     metrics["loss"] = float(np.mean(losses))
+    targets_np = torch.cat(targets).numpy()
+    valid_np = torch.cat(validities).numpy()
+    current_np = torch.cat(current_xy).numpy()
+    current_valid_np = torch.cat(current_valid).numpy()
+    previous_np = torch.cat(previous_xy).numpy()
+    previous_valid_np = torch.cat(previous_valid).numpy()
+    baselines = simple_future_2d_predictions(current_np, previous_np, horizon=targets_np.shape[-3])
+    width = int(round(float(torch.cat(widths)[0])))
+    height = int(round(float(torch.cat(heights)[0])))
+    metrics["simple_baselines"] = {
+        "HOLD_POSITION": future_2d_error_metrics(
+            baselines["HOLD_POSITION"], targets_np,
+            valid_np & current_valid_np[:, None, :], width=width, height=height,
+        ),
+        "CONSTANT_VELOCITY": future_2d_error_metrics(
+            baselines["CONSTANT_VELOCITY"], targets_np,
+            valid_np & current_valid_np[:, None, :] & previous_valid_np[:, None, :],
+            width=width, height=height,
+        ),
+    }
     return metrics
 
 
@@ -718,12 +806,16 @@ def main() -> int:
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--device", default="cuda")
     parser.add_argument("--epoch0", action="store_true")
-    parser.add_argument("--epochs", type=int, default=180)
+    parser.add_argument("--epochs", type=int, default=100)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--learning-rate", type=float, default=3e-4)
     parser.add_argument("--validation-frequency", type=int, default=5)
     parser.add_argument("--patience-validations", type=int, default=12)
+    parser.add_argument("--target-updates", type=int, default=10_000)
+    parser.add_argument("--checkpoint-every-updates", type=int, default=1_000)
+    parser.add_argument("--max-wall-seconds", type=int, default=12 * 60 * 60)
+    parser.add_argument("--resume-checkpoint", type=Path)
     args = parser.parse_args()
     ledger_path = args.ledger.resolve(strict=True)
     paired_ledger_path = args.paired_ledger.resolve(strict=True)
@@ -732,6 +824,22 @@ def main() -> int:
     if selected_branch not in paired:
         raise RuntimeError("--ledger is not one of the validated paired ledgers")
     ledger, groups = paired[selected_branch]
+    resume_checkpoint = (
+        args.resume_checkpoint.resolve(strict=True)
+        if args.resume_checkpoint is not None
+        else None
+    )
+    frozen_config = FrozenDevelopmentTrainingConfig(
+        seed=int(ledger["seed"]),
+        batch_size=args.batch_size,
+        optimizer="AdamW",
+        learning_rate=args.learning_rate,
+        target_optimizer_updates=args.target_updates,
+        maximum_epochs=args.epochs,
+        checkpoint_every_updates=args.checkpoint_every_updates,
+        per_model_gpu_cap_seconds=args.max_wall_seconds,
+    )
+    frozen_config.validate()
     run_signature = training_run_signature(
         ledger_path=ledger_path,
         paired_ledger_path=paired_ledger_path,
@@ -743,6 +851,10 @@ def main() -> int:
         validation_frequency=args.validation_frequency,
         patience_validations=args.patience_validations,
         device=args.device,
+        target_updates=args.target_updates,
+        checkpoint_every_updates=args.checkpoint_every_updates,
+        max_wall_seconds=args.max_wall_seconds,
+        resume_checkpoint=resume_checkpoint,
     )
     if args.output_root.exists():
         raise RuntimeError(f"fresh output root required: {args.output_root}")
@@ -763,13 +875,6 @@ def main() -> int:
         image_size,
         allowed_starts=ledger["validated_occlusion_hardset"]["selection"],
     )
-    train_loader = make_loader(
-        train_dataset,
-        batch_size=args.batch_size,
-        shuffle=True,
-        workers=args.workers,
-        seed=seed,
-    )
     validation_loader = make_loader(
         validation_dataset,
         batch_size=args.batch_size,
@@ -787,49 +892,177 @@ def main() -> int:
     model = VisualAuxFuture2DModel().to(device)
     optimizer = torch.optim.AdamW(model.parameters(), lr=args.learning_rate, weight_decay=1e-4)
 
-    # Epoch-0 is a true pre-update evaluation.  The previous implementation
-    # performed an unreported optimizer step here, which made paired runs use
-    # an off-by-one and non-contractual update budget.
-    epoch0_metrics = evaluate(model, validation_loader, device)
-    epoch0_hardset_metrics = evaluate(model, hardset_loader, device)
-    epoch0_result = {
-        "schema_version": "exact78-visual-aux-real-epoch0-v53-v1",
-        "status": "PASS_REAL_DATA_EPOCH0",
-        "task": ledger["task"],
-        "branch": ledger["branch"],
-        "dataset_counts": ledger["validated_counts"],
-        "validation_metrics": epoch0_metrics,
-        "occlusion_hardset_metrics": epoch0_hardset_metrics,
-        "control_ground_truth": False,
-        "physical_deployment_authorized": False,
-        "policy_checkpoint": False,
-        "ledger": artifact_ref(ledger_path),
-        "paired_ledger": artifact_ref(paired_ledger_path),
-        "occlusion_hardset": ledger["occlusion_hardset"],
-        "pair_dataset_signature": ledger["pair_dataset_signature"],
-        "run_signature": run_signature,
-    }
-    atomic_json(args.output_root / "EPOCH0_RESULT.json", epoch0_result)
-    if args.epoch0:
-        print(json.dumps(epoch0_result, ensure_ascii=False, indent=2))
-        return 0
-
-    rc1_mode = ledger.get("release_id") == RC1_RELEASE_ID
     updates_per_epoch = int(math.ceil(len(train_dataset) / args.batch_size))
-    target_updates = min(100 * updates_per_epoch, 10000) if rc1_mode else None
+    target_updates = args.target_updates
     global_update = 0
+    start_epoch = 1
+    resume_batch = 0
+    elapsed_before_resume = 0.0
     history: list[dict[str, float]] = []
     best_ade = float("inf")
     best_metrics: dict[str, float] | None = None
     best_hardset_metrics: dict[str, float] | None = None
-    validations_without_improvement = 0
     best_checkpoint = args.output_root / "best.pt"
     last_checkpoint = args.output_root / "last.pt"
     legacy_best_checkpoint = args.output_root / "BEST_VISUAL_AUX_CHECKPOINT.pt"
-    for epoch in range(1, args.epochs + 1):
+    common_checkpoint_paths: list[Path] = []
+
+    if resume_checkpoint is not None:
+        resumed = torch.load(resume_checkpoint, map_location=device, weights_only=False)
+        if (
+            resumed.get("schema_version") != "exact78-visual-aux-checkpoint-v53-v1"
+            or resumed.get("task") != ledger["task"]
+            or resumed.get("branch") != ledger["branch"]
+            or resumed.get("pair_dataset_signature") != ledger["pair_dataset_signature"]
+            or resumed.get("ledger_sha256") != sha256(ledger_path)
+            or resumed.get("paired_ledger_sha256") != sha256(paired_ledger_path)
+        ):
+            raise RuntimeError("resume checkpoint identity/ledger binding mismatch")
+        model.load_state_dict(resumed["model"])
+        optimizer.load_state_dict(resumed["optimizer"])
+        global_update = int(resumed["global_update"])
+        start_epoch = int(resumed["next_epoch"])
+        resume_batch = int(resumed["next_batch_in_epoch"])
+        elapsed_before_resume = float(resumed.get("elapsed_seconds", 0.0))
+        best_ade = float(resumed.get("best_validation_ADE_2D_px", float("inf")))
+        best_metrics = resumed.get("best_validation_metrics")
+        best_hardset_metrics = resumed.get("best_occlusion_hardset_metrics")
+        if "python_random_state" in resumed:
+            random.setstate(resumed["python_random_state"])
+        if "numpy_random_state" in resumed:
+            np.random.set_state(resumed["numpy_random_state"])
+        if "torch_random_state" in resumed:
+            torch.set_rng_state(resumed["torch_random_state"])
+        if torch.cuda.is_available() and resumed.get("torch_cuda_random_state_all") is not None:
+            torch.cuda.set_rng_state_all(resumed["torch_cuda_random_state_all"])
+        atomic_json(
+            args.output_root / "RESUME_INPUT.json",
+            {
+                "schema_version": "EXACT78_VISUAL_AUX_RESUME_INPUT_V31",
+                "checkpoint": artifact_ref(resume_checkpoint),
+                "global_update": global_update,
+                "next_epoch": start_epoch,
+                "next_batch_in_epoch": resume_batch,
+            },
+        )
+    else:
+        # Epoch-0 is a true pre-update evaluation.  Paired branches therefore
+        # start from the same seed/model state before either sees branch RGB.
+        epoch0_metrics = evaluate(model, validation_loader, device)
+        epoch0_hardset_metrics = evaluate(model, hardset_loader, device)
+        epoch0_result = {
+            "schema_version": "exact78-visual-aux-real-epoch0-v53-v1",
+            "status": "PASS_REAL_DATA_EPOCH0",
+            "task": ledger["task"],
+            "branch": ledger["branch"],
+            "dataset_counts": ledger["validated_counts"],
+            "development_capacity": ledger["development_capacity"],
+            "validation_metrics": epoch0_metrics,
+            "occlusion_hardset_metrics": epoch0_hardset_metrics,
+            "control_ground_truth": False,
+            "physical_deployment_authorized": False,
+            "policy_checkpoint": False,
+            "ledger": artifact_ref(ledger_path),
+            "paired_ledger": artifact_ref(paired_ledger_path),
+            "occlusion_hardset": ledger["occlusion_hardset"],
+            "pair_dataset_signature": ledger["pair_dataset_signature"],
+            "frozen_training_config": frozen_config.as_receipt(),
+            "run_signature": run_signature,
+        }
+        atomic_json(args.output_root / "EPOCH0_RESULT.json", epoch0_result)
+        if args.epoch0:
+            print(json.dumps(epoch0_result, ensure_ascii=False, indent=2))
+            return 0
+
+    wall_started = time.monotonic()
+    final_status = "TRAINING_IN_PROGRESS"
+    recent_losses: list[float] = []
+
+    def elapsed_seconds() -> float:
+        return elapsed_before_resume + (time.monotonic() - wall_started)
+
+    def publish_evaluation(
+        *, epoch: int, next_epoch: int, next_batch: int, terminal_status: str
+    ) -> None:
+        nonlocal best_ade, best_metrics, best_hardset_metrics, recent_losses
+        metrics = evaluate(model, validation_loader, device)
+        hardset_metrics = evaluate(model, hardset_loader, device)
+        row = {
+            "epoch": float(epoch),
+            "global_update": float(global_update),
+            "train_loss": float(np.mean(recent_losses)) if recent_losses else float("nan"),
+            "validation_loss": metrics["loss"],
+            "validation_ADE_2D_px": metrics["ADE_2D_px"],
+            "validation_FDE_2D_px": metrics["FDE_2D_px"],
+            "validation_PCK_20px": metrics["PCK_20px"],
+            "left_right_identity_error": metrics["left_right_identity_error"],
+            "temporal_smoothness_px": metrics["temporal_smoothness_px"],
+            "occlusion_hardset_ADE_2D_px": hardset_metrics["ADE_2D_px"],
+            "occlusion_hardset_FDE_2D_px": hardset_metrics["FDE_2D_px"],
+            "terminal_status": terminal_status,
+        }
+        history.append(row)
+        improved = metrics["ADE_2D_px"] < best_ade
+        if improved:
+            best_ade = metrics["ADE_2D_px"]
+            best_metrics = dict(metrics)
+            best_hardset_metrics = dict(hardset_metrics)
+        checkpoint_payload = {
+            "schema_version": "exact78-visual-aux-checkpoint-v53-v1",
+            "task": ledger["task"],
+            "branch": ledger["branch"],
+            "epoch": epoch,
+            "next_epoch": next_epoch,
+            "next_batch_in_epoch": next_batch,
+            "global_update": global_update,
+            "updates_per_epoch": updates_per_epoch,
+            "target_updates": target_updates,
+            "checkpoint_every_updates": args.checkpoint_every_updates,
+            "elapsed_seconds": elapsed_seconds(),
+            "training_status": terminal_status,
+            "model": model.state_dict(),
+            "optimizer": optimizer.state_dict(),
+            "validation_metrics": metrics,
+            "occlusion_hardset_metrics": hardset_metrics,
+            "best_validation_ADE_2D_px": best_ade,
+            "best_validation_metrics": best_metrics,
+            "best_occlusion_hardset_metrics": best_hardset_metrics,
+            "python_random_state": random.getstate(),
+            "numpy_random_state": np.random.get_state(),
+            "torch_random_state": torch.get_rng_state(),
+            "torch_cuda_random_state_all": (
+                torch.cuda.get_rng_state_all() if torch.cuda.is_available() else None
+            ),
+            "control_ground_truth": False,
+            "physical_deployment_authorized": False,
+            "policy_checkpoint": False,
+            "label_source": "VISUAL_RETARGET_PROJECTION",
+            "ledger_sha256": sha256(ledger_path),
+            "paired_ledger_sha256": sha256(paired_ledger_path),
+            "pair_dataset_signature": ledger["pair_dataset_signature"],
+            "frozen_training_config": frozen_config.as_receipt(),
+            "run_signature": run_signature,
+        }
+        publish_checkpoint_files(args.output_root, checkpoint_payload, is_best=improved)
+        if global_update % args.checkpoint_every_updates == 0:
+            common_path = args.output_root / f"checkpoint_update_{global_update:06d}.pt"
+            atomic_torch_save(common_path, checkpoint_payload)
+            common_checkpoint_paths.append(common_path)
+        recent_losses = []
+
+    stop = False
+    for epoch in range(start_epoch, args.epochs + 1):
+        train_loader = make_loader(
+            train_dataset,
+            batch_size=args.batch_size,
+            shuffle=True,
+            workers=args.workers,
+            seed=seed + epoch,
+        )
         model.train()
-        train_losses = []
-        for batch in train_loader:
+        for batch_index, batch in enumerate(train_loader):
+            if epoch == start_epoch and batch_index < resume_batch:
+                continue
             prediction = model(batch["rgb"].to(device, non_blocking=True))
             loss_values = visual_aux_loss(
                 prediction,
@@ -841,66 +1074,47 @@ def main() -> int:
             torch.nn.utils.clip_grad_norm_(model.parameters(), 1.0)
             optimizer.step()
             global_update += 1
-            train_losses.append(float(loss_values["loss"].detach()))
-            if target_updates is not None and global_update >= target_updates:
+            recent_losses.append(float(loss_values["loss"].detach()))
+            next_epoch = epoch
+            next_batch = batch_index + 1
+            if next_batch >= updates_per_epoch:
+                next_epoch, next_batch = epoch + 1, 0
+            final_status = training_terminal_status(
+                global_update=global_update,
+                completed_epochs=epoch if next_batch == 0 else epoch - 1,
+                elapsed_seconds=elapsed_seconds(),
+                config=frozen_config,
+            )
+            checkpoint_due = global_update % args.checkpoint_every_updates == 0
+            terminal = final_status != "TRAINING_IN_PROGRESS"
+            if checkpoint_due or terminal:
+                publish_evaluation(
+                    epoch=epoch,
+                    next_epoch=next_epoch,
+                    next_batch=next_batch,
+                    terminal_status=final_status,
+                )
+                model.train()
+            if terminal:
+                stop = True
                 break
-        reached_target = target_updates is not None and global_update >= target_updates
-        if epoch % args.validation_frequency != 0 and epoch != args.epochs and not reached_target:
-            continue
-        metrics = evaluate(model, validation_loader, device)
-        hardset_metrics = evaluate(model, hardset_loader, device)
-        row = {
-            "epoch": float(epoch),
-            "global_update": float(global_update),
-            "train_loss": float(np.mean(train_losses)),
-            "validation_loss": metrics["loss"],
-            "validation_ADE_2D_px": metrics["ADE_2D_px"],
-            "validation_FDE_2D_px": metrics["FDE_2D_px"],
-            "validation_PCK_20px": metrics["PCK_20px"],
-            "left_right_identity_error": metrics["left_right_identity_error"],
-            "temporal_smoothness_px": metrics["temporal_smoothness_px"],
-            "occlusion_hardset_ADE_2D_px": hardset_metrics["ADE_2D_px"],
-            "occlusion_hardset_FDE_2D_px": hardset_metrics["FDE_2D_px"],
-        }
-        history.append(row)
-        improved = metrics["ADE_2D_px"] < best_ade
-        if improved:
-            best_ade = metrics["ADE_2D_px"]
-            best_metrics = dict(metrics)
-            best_hardset_metrics = dict(hardset_metrics)
-            validations_without_improvement = 0
-        else:
-            validations_without_improvement += 1
-        checkpoint_payload = {
-            "schema_version": "exact78-visual-aux-checkpoint-v53-v1",
-            "task": ledger["task"],
-            "branch": ledger["branch"],
-            "epoch": epoch,
-            "global_update": global_update,
-            "updates_per_epoch": updates_per_epoch,
-            "target_updates": target_updates,
-            "model": model.state_dict(),
-            "optimizer": optimizer.state_dict(),
-            "validation_metrics": metrics,
-            "occlusion_hardset_metrics": hardset_metrics,
-            "control_ground_truth": False,
-            "physical_deployment_authorized": False,
-            "policy_checkpoint": False,
-            "label_source": "VISUAL_RETARGET_PROJECTION",
-            "ledger_sha256": sha256(ledger_path),
-            "paired_ledger_sha256": sha256(paired_ledger_path),
-            "pair_dataset_signature": ledger["pair_dataset_signature"],
-            "run_signature": run_signature,
-        }
-        publish_checkpoint_files(
-            args.output_root,
-            checkpoint_payload,
-            is_best=improved,
-        )
-        if reached_target:
+        resume_batch = 0
+        if stop:
             break
-        if not rc1_mode and validations_without_improvement >= args.patience_validations:
-            break
+        if epoch == args.epochs:
+            final_status = training_terminal_status(
+                global_update=global_update,
+                completed_epochs=epoch,
+                elapsed_seconds=elapsed_seconds(),
+                config=frozen_config,
+            )
+            if not history or int(history[-1]["global_update"]) != global_update:
+                publish_evaluation(
+                    epoch=epoch,
+                    next_epoch=epoch + 1,
+                    next_batch=0,
+                    terminal_status=final_status,
+                )
 
     history_path = args.output_root / "TRAINING_HISTORY.json"
     atomic_json(history_path, {"history": history})
@@ -908,7 +1122,12 @@ def main() -> int:
     plot_curves(history, curve)
     result = {
         "schema_version": "exact78-visual-aux-training-result-v53-v1",
-        "status": "PASSED_VISUAL_AUX_CHECKPOINT",
+        "status": (
+            "PASSED_VISUAL_AUX_CHECKPOINT"
+            if final_status.startswith("TRAINING_COMPLETE_")
+            else "TRAINING_PAUSED_BUDGET"
+        ),
+        "training_terminal": final_status,
         "task": ledger["task"],
         "branch": ledger["branch"],
         "checkpoint": artifact_ref(legacy_best_checkpoint),
@@ -921,20 +1140,27 @@ def main() -> int:
         "best_validation_metrics": best_metrics,
         "best_occlusion_hardset_metrics": best_hardset_metrics,
         "valid_window_coverage": ledger["validated_counts"],
+        "development_capacity": ledger["development_capacity"],
         "occlusion_hardset": ledger["occlusion_hardset"],
         "ledger": artifact_ref(ledger_path),
         "paired_ledger": artifact_ref(paired_ledger_path),
         "pair_dataset_signature": ledger["pair_dataset_signature"],
         "run_signature": run_signature,
         "fixed_update_budget": {
-            "enabled": rc1_mode,
+            "enabled": True,
             "updates_per_epoch": updates_per_epoch,
             "target_updates": target_updates,
             "actual_updates": global_update,
-            "early_stop_enabled": not rc1_mode,
+            "maximum_epochs": args.epochs,
+            "checkpoint_every_updates": args.checkpoint_every_updates,
+            "common_checkpoints": [artifact_ref(path) for path in common_checkpoint_paths],
+            "elapsed_seconds": elapsed_seconds(),
+            "per_model_gpu_cap_seconds": args.max_wall_seconds,
+            "early_stop_enabled": False,
             "scheduler": "ABSENT",
             "amp": "ABSENT",
         },
+        "frozen_training_config": frozen_config.as_receipt(),
         "control_ground_truth": False,
         "physical_deployment_authorized": False,
         "policy_checkpoint": False,
