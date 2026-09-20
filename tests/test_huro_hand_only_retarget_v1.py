@@ -9,7 +9,10 @@ from chaoyang.pipeline.huro_hand_only_retarget_v1 import (
     solve_frame,
     solve_sequence,
 )
-from chaoyang.ops.run_huro_derived_hand_only_v1 import KAI_URDFS
+from chaoyang.ops.run_huro_derived_hand_only_v1 import (
+    KAI_URDFS,
+    load_local_q22_comparison,
+)
 
 
 def _hands():
@@ -56,3 +59,15 @@ def test_solver_never_turns_invalid_frame_into_observed() -> None:
     assert np.isnan(result["q22"]).all()
     assert np.isnan(result["fk21_root_relative"]).all()
 
+
+def test_local_comparison_accepts_explicit_kinematic_only_fields() -> None:
+    q22 = np.zeros((3, 2, 22), dtype=np.float64)
+    valid = np.asarray([[True, False], [False, True], [True, True]])
+    q22[~valid] = np.nan
+    loaded_q, loaded_valid, q_key, valid_key = load_local_q22_comparison(
+        {"q22_frozen_postclip": q22, "q22_valid_physical": valid}, q22.shape
+    )
+    assert q_key == "q22_frozen_postclip"
+    assert valid_key == "q22_valid_physical"
+    assert np.array_equal(loaded_valid, valid)
+    assert np.array_equal(loaded_q[valid], q22[valid])
