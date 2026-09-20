@@ -100,6 +100,15 @@ def test_cohort_runner_publishes_eight_sha_bound_fail_closed_terminals(
     assert all(call["sam_result"] is not None for call in calls[:4])
     assert all(call["bounded_npz"] is None for call in calls[4:])
     assert all(call["sam_result"] is None for call in calls[4:])
+    poker_calls = [
+        call for call, spec in zip(calls, op.SESSION_SPECS, strict=True)
+        if spec["task"] == "poker"
+    ]
+    assert poker_calls
+    assert all("/sessions/playing_cards/" in str(call["hawor_npz"])
+               for call in poker_calls)
+    assert all("/sessions/poker/" not in str(call["hawor_npz"])
+               for call in poker_calls)
 
     output = lane / op.OUTPUT_NAME
     for row in result["sessions"]:
@@ -149,3 +158,14 @@ def test_runner_refuses_to_overwrite_lane_output(tmp_path: Path) -> None:
     (lane / op.OUTPUT_NAME).mkdir()
     with pytest.raises(op.CohortAuditError, match="fresh output root"):
         op.run_cohort(root=tmp_path, audit_builder=lambda **_: {})
+
+
+def test_logical_poker_task_has_explicit_playing_cards_asset_directory(
+    tmp_path: Path,
+) -> None:
+    spec = next(row for row in op.SESSION_SPECS if row["task"] == "poker")
+    paths = op._paths(tmp_path, spec)
+    assert op.ASSET_TASK_DIRECTORIES["poker"] == "playing_cards"
+    assert "/sessions/playing_cards/" in str(paths["hawor_npz"])
+    assert "/sessions/playing_cards/" in str(paths["kai22_npz"])
+    assert spec["task"] == "poker"
