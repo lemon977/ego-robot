@@ -1,17 +1,17 @@
 {
-  "claim_limit": "AI2 path correction is terminal. Evidence blockers remain local; no model, training, control or deployment successor is authorized.",
-  "execution_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31",
-  "generated_at": "2026-09-20T16:51:37+08:00",
-  "generation_id": "gov-013234-41a90bc85949",
-  "governance_revision": 13234,
-  "packet_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31_TERMINAL",
+  "claim_limit": "AI1 artifact refs were rebound exactly. The underlying lane remains blocked on adoption observations; no algorithm or authority was changed.",
+  "execution_revision": "AI1_ARTIFACT_REF_REBIND_V31",
+  "generated_at": "2026-09-20T17:01:54+08:00",
+  "generation_id": "gov-013238-840c01576517",
+  "governance_revision": 13238,
+  "packet_revision": "AI1_ARTIFACT_REF_REBIND_V31_TERMINAL",
   "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1103,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "25646f6f61682163e106e1716f8b2015e220e82dcef51384d12d86d1fd4b8d93"
+    "bytes": 1081,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "9d50ef567d980eaccb683d9c4e13b3c5812b11f71a3c77960343649c43edcbac"
   },
   "task_packets": []
 }

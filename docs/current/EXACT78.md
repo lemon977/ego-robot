@@ -18,3 +18,14 @@
 
 E1 不阻塞 E2。实际 task ID、attempt、结果与 blocker 只从 [STATUS.json](STATUS.json) 读取。
 
+## V3.1 实际终态
+
+- E0：`BLOCKED_INPUTS`。六个非归档候选根共发现 483 个 raw candidate，但没有当前、非归档且
+  已授权的冻结 156 cohort，也没有合法 Raw/Robotized pair manifest；不得把 483 自动缩成 156，
+  也不得从 `archive/` 静默恢复权威。
+- E1：`BLOCKED_EXTERNAL_ASSET`。Chips023 encoded SBS/camera 资产存在，但当前输出域的 K/P、主点、
+  baseline 和视差符号权威未闭合，因此不允许 `LOCAL_STEREO_METRIC_DEV`。
+- E2：未启动。GPU 使用 0、模型调用 0、训练更新 0。
+
+下一步需要显式提供或授权当前冻结 156 清单和合法 pair manifest；Stereo 公制消费还需要当前
+encoded 输出域的 K/P/baseline 证据。两个 blocker 相互独立。

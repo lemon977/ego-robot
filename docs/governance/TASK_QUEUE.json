@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-20T16:51:37+08:00",
-  "generation_id": "gov-013234-41a90bc85949",
-  "governance_revision": 13234,
+  "generated_at": "2026-09-20T17:01:54+08:00",
+  "generation_id": "gov-013238-840c01576517",
+  "governance_revision": 13238,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
@@ -485,6 +485,16 @@
       "status": "PASSED",
       "task_id": "0915_stereo_interaction_cpu_canary_v1",
       "updated_at": "2026-09-18T13:56:44+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI1_ARTIFACT_REF_REBIND_V31",
+      "session": null,
+      "status": "PASSED",
+      "task_id": "ai1_artifact_ref_rebind_v31",
+      "updated_at": "2026-09-20T17:00:58+08:00"
     },
     {
       "attempt": 0,

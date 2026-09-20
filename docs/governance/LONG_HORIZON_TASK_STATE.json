@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-20T16:51:37+08:00",
-  "generation_id": "gov-013234-41a90bc85949",
-  "generator_code_sha": "72f449339681e6517d0d14b1f61e1abe54b1fb35c4598a56d54a92dc4a219f28",
-  "governance_revision": 13234,
+  "generated_at": "2026-09-20T17:01:54+08:00",
+  "generation_id": "gov-013238-840c01576517",
+  "generator_code_sha": "85d846be6e778c81be9eedc7e3bdc5da3529d25dcd0f0136219fbda0cb0d2179",
+  "governance_revision": 13238,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -102,33 +102,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T04:12:13+08:00",
-      "message": "Finite 0915 campaign task reached a recorded terminal.",
-      "result": {
-        "bytes": 740,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json",
-        "sha256": "d79a2290b726ad7c9f5df4795c3c19c4376adecabec676bedb3fffc8b50e65c5"
-      },
-      "session": null,
-      "status": "FAILED_RUNTIME_FINAL",
-      "task_id": "0915_input_prepare_cad_v1"
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T04:14:46+08:00",
-      "message": "Registered one finite 0915 campaign task; execution not started.",
-      "predecessor": "0915_input_prepare_cad_v1",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "0915_input_prepare_cad_v2",
-      "task_packet": {
-        "bytes": 1868,
-        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v2/TASK_PACKET.json",
-        "sha256": "fb9544fe46234c30107daefe79a39e45e1850d13e2ea29747d4037fc11c55555"
-      }
-    },
     {
       "attempt": 0,
       "created_at": "2026-09-18T05:37:48+08:00",
@@ -1493,11 +1466,37 @@
       "session": null,
       "status": "BLOCKED_PREREQ",
       "task_id": "ai2_current_asset_path_fix_v31"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-20T17:00:56+08:00",
+      "message": "Registered immutable AI1 artifact-reference rebind.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "ai1_artifact_ref_rebind_v31",
+      "task_packet": {
+        "bytes": 2889,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai1_artifact_ref_rebind_v31/TASK_PACKET.json",
+        "sha256": "3c53bb0a918a3454dccd11d306532548111d0166aa9ea0f8c5dff238f91adf64"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-20T17:00:58+08:00",
+      "message": "AI1 stale artifact refs were rebound without recomputation.",
+      "result": {
+        "bytes": 2365,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "b473e9d75f35fc88f2d92d85dc1ef4176a853695ba394824b3da90f6928f9f38"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "ai1_artifact_ref_rebind_v31"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "db059a3fb18cc3ec142a4798bf01bf8428587d51"
+    "commit": "b8156c80c18a66f33a1e0b94275f37a0bfc799ad"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2818,6 +2817,29 @@
         "sha256": "e8c96b70c580a259c2836d3884737409059dd23150b0bc2bc348dcdc20445950"
       },
       "updated_at": "2026-09-20T16:51:37+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI1_ARTIFACT_REF_REBIND_V31",
+      "pid": null,
+      "plan_execution_revision": "AI1_ARTIFACT_REF_REBIND_V31",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2365,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "b473e9d75f35fc88f2d92d85dc1ef4176a853695ba394824b3da90f6928f9f38"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "ai1_artifact_ref_rebind_v31",
+      "task_packet": {
+        "bytes": 2889,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai1_artifact_ref_rebind_v31/TASK_PACKET.json",
+        "sha256": "3c53bb0a918a3454dccd11d306532548111d0166aa9ea0f8c5dff238f91adf64"
+      },
+      "updated_at": "2026-09-20T17:00:58+08:00"
     }
   ]
 }

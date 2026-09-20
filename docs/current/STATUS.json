@@ -1,92 +1,154 @@
 {
-  "claim_limit": "Generated navigation projection only. Lane receipts and the current task ledger remain authoritative; this file must never be edited by a lane worker.",
-  "generated_at": "2026-09-20T16:33:59+08:00",
-  "global_authority": {
-    "control_ground_truth": false,
-    "external_metric_authority": false,
-    "physical_deployable": false
+  "claim_limit": "Generated terminal navigation projection. Runtime fixes remove execution defects only; they do not convert blocked evidence, internal residuals, or path binding into algorithmic quality, training eligibility, control truth, external metric authority, or deployment approval.",
+  "final_claims": {
+    "CONTROL_GROUND_TRUTH": false,
+    "EXTERNAL_METRIC_AUTHORITY": false,
+    "NUMERIC_QUALITY_PASS": false,
+    "PHYSICAL_DEPLOYABLE": false,
+    "PIPELINE_COMPLETE": false,
+    "TRAINING_COMPLETE": false,
+    "TRAINING_ELIGIBLE": false,
+    "VISUAL_REVIEW_STATUS": "NOT_REVIEWED"
   },
+  "generated_at": "2026-09-20T17:01:33+08:00",
   "lanes": {
     "ai1": {
-      "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
-      "blocker": "FAILED_RUNTIME",
-      "current_action": "CPU_PREFLIGHT_RECORDED",
-      "latest_artifacts": [
+      "blockers": [
+        "play_cards_0916_102:BLOCKED_MISSING_PINNED_OBSERVATION",
+        "play_cards_0916_103:BLOCKED_MISSING_PINNED_OBSERVATION",
+        "M2:BLOCKED_ORIENTATION_EVIDENCE"
+      ],
+      "evaluated_frames": 466,
+      "gpu_calls": 0,
+      "m1_authority": "DEVELOPMENT_CANDIDATE_NOT_ADOPTED",
+      "model_calls": 0,
+      "next_step": "Pin independent anatomical-wrist observations for frozen adoption sessions 102/103; do not fill missing observations or promote M1 from internal residuals.",
+      "result": {
+        "bytes": 1280,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "6f3e15ff325e188abd0b45812fbd894bd5ba70cc86c40b7ba1f4dfabea76d46a"
+      },
+      "runtime_corrections": [
         {
-          "bytes": 1162,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1/current_only_run_0001/RESULT.json",
-          "sha256": "ec0af6ad16710b07a34bd88b28e02df4186aed281551a1ac3ba179a734238a0f"
+          "kind": "CPFS_ATOMIC_PUBLISH_FIX",
+          "receipt": {
+            "bytes": 1219,
+            "path": "/mnt/workspace/code/chaoyang/tasks/receipts/AI1_CPFS_PUBLISH_FIX_V31_RESULT.json",
+            "sha256": "c26037e99c8c34ddaae2e04df451fed6a98f464214ab24595aec8ebec4972c41"
+          },
+          "result": {
+            "bytes": 1280,
+            "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json",
+            "sha256": "6f3e15ff325e188abd0b45812fbd894bd5ba70cc86c40b7ba1f4dfabea76d46a"
+          },
+          "status": "BLOCKED_PREREQ"
+        },
+        {
+          "kind": "IMMUTABLE_ARTIFACT_REFERENCE_REBIND",
+          "receipt": {
+            "bytes": 1647,
+            "path": "/mnt/workspace/code/chaoyang/tasks/receipts/AI1_ARTIFACT_REF_REBIND_V31_RESULT.json",
+            "sha256": "1c00da055a168bcceac9f5121488a192144e4732c3fd7ee7a88c2e4b7c93649d"
+          },
+          "result": {
+            "bytes": 2365,
+            "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/RESULT.json",
+            "sha256": "b473e9d75f35fc88f2d92d85dc1ef4176a853695ba394824b3da90f6928f9f38"
+          },
+          "status": "PASSED"
         }
       ],
-      "next_step": "REVIEW_FAILURE_NO_AUTOMATIC_RETRY",
-      "stable_baseline": null,
-      "state_file": {
-        "bytes": 1451,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1/STATE.json",
-        "sha256": "8ae627db8c12ea0a22b44d5eb9fb00be64fa36e686b8e03e32f53ea7f9392f4d"
-      },
-      "status": "REJECTED_CPU_PREFLIGHT"
+      "status": "BLOCKED_ADOPTION_OBSERVATIONS",
+      "visible_surface_authority": "REGION_ONLY_NO_3D_SURFACE_POINT",
+      "wrapper_status": "BLOCKED_PREREQ"
     },
     "ai2": {
-      "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
-      "blocker": "REJECTED_AI2_CURRENT_ASSET_AUDIT",
-      "current_action": "CPU_PREFLIGHT_RECORDED",
-      "latest_artifacts": [
+      "all_current_paths_bound": true,
+      "all_sessions_terminal": true,
+      "counts": {
+        "blocked": 8,
+        "pass": 0,
+        "rejected": 0,
+        "total": 8
+      },
+      "gpu_calls": 0,
+      "model_calls": 0,
+      "next_step": "Materialize an independent part-observability/reprojection evidence set, suffix pairs, and an R0 local-quality candidate without using the evaluated HaWoR output as its own observability judge.",
+      "result": {
+        "bytes": 8741,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "9478bb83040a24e1ee1e589a311c1b31534d198b8e1ff3dde44a8471e86aaead"
+      },
+      "runtime_corrections": [
         {
-          "bytes": 7076,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai2/AI2_REAL_ASSETS_COHORT_AUDIT_V31/RESULT.json",
-          "sha256": "e121d1740e235c1eab20966dffb36c6888ead50c6f7f9599ee0ee87b559a41ac"
+          "kind": "POKER_ASSET_DIRECTORY_MAPPING",
+          "receipt": {
+            "bytes": 972,
+            "path": "/mnt/workspace/code/chaoyang/tasks/receipts/AI2_CURRENT_ASSET_PATH_FIX_V31_RESULT.json",
+            "sha256": "18348b70f372da018ff89cd2a86402e2a703f1be290c0e40351c3afed1a0f085"
+          },
+          "status": "BLOCKED_PREREQ"
         }
       ],
-      "next_step": "REVIEW_FAILURE_NO_AUTOMATIC_RETRY",
-      "stable_baseline": null,
-      "state_file": {
-        "bytes": 1498,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai2/STATE.json",
-        "sha256": "5a1cce556fcdea2017c32b7a4438405d10f1a8e9170daa628e438c0ee82b7154"
-      },
-      "status": "REJECTED_CPU_PREFLIGHT"
+      "status": "BLOCKED_AI2_EVIDENCE",
+      "wrapper_status": "BLOCKED_PREREQ"
     },
     "exact78": {
-      "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
-      "blocker": "BLOCKED_INPUTS",
-      "current_action": "CPU_PREFLIGHT_RECORDED",
-      "latest_artifacts": [
-        {
-          "bytes": 2230,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/exact78/exact78_development_pair_audit_v31/RESULT.json",
-          "sha256": "8c8fc5da497551246ecde99724734f213a92220a3d96ef99863d76f69e6e5c4f"
-        }
+      "blockers": [
+        "E0_CURRENT_DEVELOPMENT_PAIRS:CHIPS_NO_CURRENT_LEGAL_RAW_ROBOTIZED_PAIR",
+        "E0_CURRENT_DEVELOPMENT_PAIRS:MISSING_CURRENT_NON_ARCHIVE_156_COHORT_MANIFEST",
+        "E0_CURRENT_DEVELOPMENT_PAIRS:MISSING_CURRENT_PAIR_CANDIDATE_INDEX",
+        "E0_CURRENT_DEVELOPMENT_PAIRS:POKER_NO_CURRENT_LEGAL_RAW_ROBOTIZED_PAIR",
+        "E1_STEREO_PREFLIGHT_INPUT:MISSING_ENCODED_DOMAIN_K_P_BASELINE_AUTHORITY"
       ],
-      "next_step": "RESOLVE_RECORDED_DIRECT_BLOCKER",
-      "stable_baseline": null,
-      "state_file": {
-        "bytes": 1477,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/exact78/STATE.json",
-        "sha256": "4f062c873188de13ab4c8e6cde108525aab9c963938819c65a38179e3ecab645"
+      "e0_execution_allowed": false,
+      "gpu_used": false,
+      "model_inference_performed": false,
+      "next_step": "Provide or explicitly authorize a current non-archive frozen-156 cohort and legal Raw/Robotized pair manifest; provide encoded-domain K/P/baseline authority before metric Stereo consumption.",
+      "result": {
+        "bytes": 2230,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/exact78/exact78_development_pair_audit_v31/RESULT.json",
+        "sha256": "8c8fc5da497551246ecde99724734f213a92220a3d96ef99863d76f69e6e5c4f"
       },
-      "status": "BLOCKED_CPU_PREFLIGHT"
+      "status": "BLOCKED_INPUTS",
+      "training_started": false
     }
   },
   "parent": {
-    "attempt": 1,
-    "registered": true,
-    "routable": false,
+    "pipeline_complete": false,
     "status": "REJECTED_QUALITY",
-    "task_packet": {
-      "bytes": 8437,
-      "path": "/mnt/workspace/code/chaoyang/tasks/current/three_stream_stable_baseline_v31/TASK_PACKET.json",
-      "sha256": "a20e952c2ef5839bc037033b4570969d3283cfbc441be7e4a2be5c4fcb81eb45"
-    }
+    "task_id": "three_stream_stable_baseline_v31",
+    "training_complete": false,
+    "training_eligible": false
   },
-  "schema_version": "chaoyang-three-stream-shallow-status-v1",
+  "resource_use": {
+    "gpu_used": false,
+    "model_inference_performed": false,
+    "source_data_mutated": false
+  },
+  "schema_version": "chaoyang-three-stream-shallow-status-v2",
   "source": {
-    "parent_task_id": "three_stream_stable_baseline_v31",
-    "run_root": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001",
-    "task_state": {
-      "bytes": 118440,
-      "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/PROJECTED_TERMINAL_TASK_STATE.json",
-      "sha256": "69d7d0b37e3515131c9afc0802a812e2a271f511f2eb311fd3a694a545e77a1f"
+    "parent_receipt": {
+      "bytes": 1758,
+      "path": "/mnt/workspace/code/chaoyang/tasks/receipts/THREE_STREAM_STABLE_BASELINE_V31_RESULT.json",
+      "sha256": "d00ae3c02681e59ae38c83dcf5425a0130ebb4532a9112c53bd9d432b46428be"
+    },
+    "runtime_successors": {
+      "ai1": {
+        "bytes": 1219,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/AI1_CPFS_PUBLISH_FIX_V31_RESULT.json",
+        "sha256": "c26037e99c8c34ddaae2e04df451fed6a98f464214ab24595aec8ebec4972c41"
+      },
+      "ai1_artifact_ref_rebind": {
+        "bytes": 1647,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/AI1_ARTIFACT_REF_REBIND_V31_RESULT.json",
+        "sha256": "1c00da055a168bcceac9f5121488a192144e4732c3fd7ee7a88c2e4b7c93649d"
+      },
+      "ai2": {
+        "bytes": 972,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/AI2_CURRENT_ASSET_PATH_FIX_V31_RESULT.json",
+        "sha256": "18348b70f372da018ff89cd2a86402e2a703f1be290c0e40351c3afed1a0f085"
+      }
     }
   }
 }

@@ -140,3 +140,17 @@ PHYSICAL_DEPLOYABLE
 
 默认 `control_ground_truth=false`、`physical_deployable=false`、`external_metric_authority=false`。
 
+## 本轮执行终态
+
+V3.1 已完成代码闭环与首轮 CPU-only 输入审计；机器汇总见 [STATUS.json](STATUS.json)。三线保持
+独立，没有一条线的失败被扩大成另一条线的阻塞，也没有把运行时修复记成算法质量提升。
+
+- Exact78：E0/E1 均按证据门 fail-closed，未启动模型或 GPU；E2 未获训练准入。
+- AI1：CPFS 原子发布兼容问题已修复，466 帧位置观测完成开发级 M0/M1 对照；M1 未采用，M2 和
+  102/103 adoption 仍被独立证据阻塞。旧 attempt 的陈旧 staging 引用已通过独立 successor 重绑定，
+  旧字节未修改。
+- AI2：Poker 逻辑任务到 `playing_cards` 资产目录的映射错误已修复，8/8 当前资产路径闭合；8 个会话
+  均因独立可观测性、重投影、suffix pair 或 R0 局部质量证据不足而阻塞，不再是路径误拒。
+
+这些终态不授予训练、外部公制、控制或真机部署权限。下一轮只能针对 [STATUS.json](STATUS.json) 中
+列明的直接 blocker 注册有限 successor，不能复活本轮父任务或覆盖其收据。

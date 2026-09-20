@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-20T16:51:37+08:00`
-- governance revision：`13234`
-- generation id：`gov-013234-41a90bc85949`
+- 状态生成时间：`2026-09-20T17:01:54+08:00`
+- governance revision：`13238`
+- generation id：`gov-013238-840c01576517`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`72f449339681e6517d0d14b1f61e1abe54b1fb35c4598a56d54a92dc4a219f28`
-- repository：`db059a3fb18cc3ec142a4798bf01bf8428587d51` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`85d846be6e778c81be9eedc7e3bdc5da3529d25dcd0f0136219fbda0cb0d2179`
+- repository：`b8156c80c18a66f33a1e0b94275f37a0bfc799ad` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -99,8 +99,8 @@
 
 ### PASSED
 
+- `ai1_artifact_ref_rebind_v31` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/RESULT.json / `2026-09-20T17:00:58+08:00`
 - `0915_robot15h_foundationstereo_waves_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/RESULT.json / `2026-09-19T09:52:46+08:00`
-- `0915_robot15h_release_candidate_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/RESULT.json / `2026-09-19T03:24:29+08:00`
 
 ### FAILED_QUALITY_C
 

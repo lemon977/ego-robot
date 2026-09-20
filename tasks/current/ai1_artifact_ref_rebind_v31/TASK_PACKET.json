@@ -1,0 +1,68 @@
+{
+  "budgets": {
+    "attempt_max": 1,
+    "cpu_workers_max": 1,
+    "gpu_calls_max": 0,
+    "model_calls_max": 0
+  },
+  "claim_limit": "Reference repair only. No algorithm recomputation, model/GPU execution, numeric quality promotion, training, control or deployment claim.",
+  "code_closure": [
+    {
+      "bytes": 23948,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_input_v1.py",
+      "sha256": "c28b585a417c86f09a10f447b9e35f9131df553e5ef795a790845e6fa713f107"
+    },
+    {
+      "bytes": 13709,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_ai1_artifact_ref_rebind_v31.py",
+      "sha256": "4fcef8a952485b46db8d0c0c139a50f2e27478f704a635fbc65c833fda29ffae"
+    },
+    {
+      "bytes": 10950,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_ai1_artifact_ref_rebind_v31.py",
+      "sha256": "3029f78b608866546154add4bd5b25776c214dc44d64d5e7c20baf89963b0d79"
+    },
+    {
+      "bytes": 9695,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_ai1_artifact_ref_rebind_v31.py",
+      "sha256": "6d0f8127c05c81eabc47e294cd9560291c04b648a176bf70739a986630efa35f"
+    }
+  ],
+  "execution_revision": "AI1_ARTIFACT_REF_REBIND_V31",
+  "objective": "Verify every stale AI1 outer-staging artifact reference against the unique final-tree suffix target, then publish corrected JSON evidence without modifying or recomputing the sealed source attempt.",
+  "phase": "AI1_ARTIFACT_REF_REBIND_V31",
+  "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "no_active_current_task",
+    "sealed_ai1_cpfs_successor_READ_ONLY",
+    "unique_suffix_and_exact_SHA_required"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/current/INDEX.json",
+    "_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json",
+    "_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RUN_RECEIPT.json",
+    "_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/CORRECTED_EVIDENCE/AI1_CURRENT_ONLY_LANE/LANE_LEDGER.json",
+    "attempts/attempt_0001/CORRECTED_EVIDENCE/AI1_CURRENT_ONLY_LANE/RESULT.json",
+    "attempts/attempt_0001/ARTIFACT_REF_REBIND_RECEIPT.json",
+    "attempts/attempt_0001/RESULT.json",
+    "attempts/attempt_0001/RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "every_stale_ref_maps_uniquely_and_byte_SHA_exactly",
+    "any_ambiguous_or_mismatched_ref_fails_closed",
+    "sealed_source_attempt_is_never_modified"
+  ],
+  "task_id": "ai1_artifact_ref_rebind_v31",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/ai1_artifact_ref_rebind_v31",
+    "tasks/current/ai1_artifact_ref_rebind_v31",
+    "tasks/receipts/AI1_ARTIFACT_REF_REBIND_V31_RESULT.json"
+  ]
+}

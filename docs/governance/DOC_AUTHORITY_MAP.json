@@ -47,56 +47,56 @@
     },
     {
       "authorized_scope": "CURRENT_THREE_STREAM_PLAN",
-      "bytes": 7289,
+      "bytes": 8395,
       "claim_limit": "Three-stream objectives, interfaces, isolation and stop rules; execution still requires the current routed task packet.",
       "document_id": "three_stream_plan_v31",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/PLAN.md",
-      "sha256": "09f0296c2a81658f5b6fe262b8d868becc367172efc9a133181c651077af97ba",
+      "sha256": "7925cadb2d6caad79e3392af15ec413b7f3702d3cb2f1fb60e81b6532841bf87",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_THREE_STREAM_SHALLOW_STATUS",
-      "bytes": 4040,
+      "bytes": 6717,
       "claim_limit": "Generated navigation projection only; the task ledger and lane receipts remain authoritative.",
       "document_id": "three_stream_status_v31",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/STATUS.json",
-      "sha256": "ff4e2eb2b7f6db54163f25aa51a6ac9ea806c15a21a6eb8eff7c4bc3da6ad022",
+      "sha256": "f320b4b8c4ecee28b143078520377c160a8f1918698f93de096552ea620f424b",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_THREE_STREAM_EXACT78_HANDOFF",
-      "bytes": 871,
+      "bytes": 1638,
       "claim_limit": "Exact78 lane navigation only; training completion and quality remain receipt-bound.",
       "document_id": "three_stream_exact78_v31",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/EXACT78.md",
-      "sha256": "e59c84f46c7e059d581cbd448a07c743b5d91bee94122a8205eefe45493a73f3",
+      "sha256": "5fa6018616ba24131752d3cca1be5c4f0087e7044f63604b1ad585bafb8c5f72",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_THREE_STREAM_AI1_HANDOFF",
-      "bytes": 780,
+      "bytes": 1745,
       "claim_limit": "AI1 lane navigation only; calibration, fusion and metric claims remain receipt-bound.",
       "document_id": "three_stream_ai1_v31",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI1.md",
-      "sha256": "0e3766c68eb520be1b2f3806dc57ba5acd1b19970ff3f500ed6df17d3ad832f4",
+      "sha256": "dc3cbe50e31e192fbecbb08de466a256f1be5d3b4a51e8937c3574eea9d2bbe0",
       "status": "CURRENT",
       "supersedes": []
     },
     {
       "authorized_scope": "CURRENT_THREE_STREAM_AI2_HANDOFF",
-      "bytes": 832,
+      "bytes": 1621,
       "claim_limit": "AI2 lane navigation only; observability, HaWoR and Robot quality remain receipt-bound.",
       "document_id": "three_stream_ai2_v31",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI2.md",
-      "sha256": "2e3bf22ebebfcff3af897f9be859519bbd90cc82019a321320c9f34b43e15fe2",
+      "sha256": "ba5d0a8f867f1ccbf28bfb6af51de83393bda4b0f5f6938c0baab71bfd7fed57",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -169,12 +169,12 @@
     },
     {
       "authorized_scope": "PROJECT_REALTIME_STATUS",
-      "bytes": 14072,
+      "bytes": 14058,
       "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "ae66555ba1f3db93592b0745b69e533bb9ab19b6d3843bf7f75028dd074513ef",
+      "sha256": "ed7ac3c8562f9b00c452798e7904aed828bdbdc7d14345567714d5bc8feea52f",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -296,9 +296,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-20T16:51:37+08:00",
-  "generation_id": "gov-013234-41a90bc85949",
-  "governance_revision": 13234,
+  "generated_at": "2026-09-20T17:01:54+08:00",
+  "generation_id": "gov-013238-840c01576517",
+  "governance_revision": 13238,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

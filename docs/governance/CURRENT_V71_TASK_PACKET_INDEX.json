@@ -1,12 +1,12 @@
 {
-  "execution_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31",
-  "generated_at": "2026-09-20T16:51:37+08:00",
-  "generation_id": "gov-013234-41a90bc85949",
-  "governance_revision": 13234,
+  "execution_revision": "AI1_ARTIFACT_REF_REBIND_V31",
+  "generated_at": "2026-09-20T17:01:54+08:00",
+  "generation_id": "gov-013238-840c01576517",
+  "governance_revision": 13238,
   "index_bytes": 842,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "45dead757b65075852c2df2c9007eaecd47d0c89ab623d12f1a37c422c0ed161",
-  "packet_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31_TERMINAL",
+  "index_sha256": "51c0797a352b5e2b08dfbdf6dc4edbea3141e4333fb719b6913a0c6e79d85764",
+  "packet_revision": "AI1_ARTIFACT_REF_REBIND_V31_TERMINAL",
   "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }
