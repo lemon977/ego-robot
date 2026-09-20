@@ -12,11 +12,11 @@ import subprocess
 from typing import Any
 
 
-OLD_TASK_PREFIX = "/mnt/workspace/code/chaoyang/tasks/"
-ARCHIVE_TASK_PREFIX = (
-    "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/"
-    "content/history/tasks/"
-)
+REPO_ROOT = Path(__file__).resolve().parents[3]
+OLD_TASK_PREFIX = str(REPO_ROOT / "tasks") + "/"
+ARCHIVE_TASK_PREFIX = str(
+    REPO_ROOT / "archive/baseline-20260917-0aa69e9/content/history/tasks"
+) + "/"
 
 
 def load(path: Path) -> dict[str, Any]:

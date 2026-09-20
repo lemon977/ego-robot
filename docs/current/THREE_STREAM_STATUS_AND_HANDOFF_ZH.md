@@ -10,7 +10,7 @@
 |---|---|---|
 | 旧 exact78（裸手+tracker） | 156 会话历史漏斗已闭合；47/60 Robot30 全片视频可看，24/60 有离线 hard-geometry pass evidence | 0 条 training eligible，0 条控制/部署 authority |
 | 0916 手套数据（AI1） | PICO wrist、MANUS、SAM mask、HaWoR 在 101 真盲测全部跑通；冻结手指几何双侧失败 | 不可作监督标签；只可保留为开发传感器模态 |
-| 0915 裸手数据（AI2） | encoded-domain Depth 可用作内部开发证据；HaWoR/R0/Contact/Robot 严格转换尚未恢复 | 当前 strict Robot 转换仍为 0；不可作控制或训练真值 |
+| 0915 裸手数据（AI2） | V2.1 已终止全部已启动任务；HaWoR/R0/Contact/Robot 严格转换未恢复 | `REJECTED_NO_RECOVERY`；strict Robot 转换为 0，不可作控制或训练真值 |
 
 ## 1. 旧 exact78：原始数据、Robot30 与转化率
 
@@ -152,11 +152,16 @@ video，不能按目录名臆造。矩阵同时给出每条视频的 bytes、SHA
 
 `/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/`
 
-当前长程任务尚在 canonical 主工作树封账；最终数字必须以其 F0/最终提交为准。本页不覆盖其活动工作树。
+V2.1 在全部已启动 package 终态后于 `2026-09-20T10:57:51+08:00` 提前结束监视；
+`14:44:12` 是 15 小时最晚截止点，不是必须等待的最早封账时间。正式分类为
+`REJECTED_NO_RECOVERY`：W0 strict/R0 quality 为 `0/4`，W1-DIAG strict 为 `0/2`，
+W1-ADOPTION strict 为 `0/2`，冻结候选正式 `REJECT`；H9 与 EXTRA FINAL 未打开。
+Mask successor 两次运行失败后按边界停止，Contact 仍为 0 个有限 patch 内候选，
+`LOCAL_STEREO_METRIC_DEV=false`，没有 R1-E、训练、控制或部署 authority。
 
 ### 下一任务优先级
 
-1. 先完成当前恢复任务封账，固定真实失败矩阵；不要扩到 220。
+1. 不扩到 220；先在新的有限任务中解决 Poker 的独立 HaWoR 连续结构覆盖，当前候选已被 adoption 拒绝，不能续调后冒充同一次验证。
 2. HaWoR：定位跨会话 strict 失败是观察窗口、错侧/裁切、绝对 wrist 偏差还是 articulation；消费者局部窗口不能反向改写 session strict。
 3. Contact：先修复 `251 metric → 0 finite patch` 的像素注册/可见 patch/遮挡关系，不要把 5 mm 放宽来制造 Contact。
 4. Object6D：必须绑定真实物体实例；visible candidate 不等于 card identity 或完整 6DoF。

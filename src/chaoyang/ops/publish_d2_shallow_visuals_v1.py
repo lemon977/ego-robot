@@ -33,10 +33,8 @@ EXPECTED = {
 }
 TASK_ID = "0915_robot_quality_recovery_v21_d2_fresh_propainter_offline_v1"
 ATTEMPT_ID = "attempt_0001"
-CONFIG_PATH = Path(
-    "/mnt/workspace/code/chaoyang/contracts/robot_recovery/"
-    "D2_FRESH_PROPAINTER_OFFLINE_V1.json"
-)
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
+CONFIG_PATH = PROJECT_ROOT / "contracts/robot_recovery/D2_FRESH_PROPAINTER_OFFLINE_V1.json"
 
 
 def validate_gpu_receipt(receipt_path: Path, deep_result_path: Path) -> dict[str, Any]:

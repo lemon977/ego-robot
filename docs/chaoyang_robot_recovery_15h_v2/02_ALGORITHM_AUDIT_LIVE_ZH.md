@@ -1,8 +1,11 @@
 # 实时使用算法审计：0915 第二轮质量恢复
 
-版本：v2.1。状态：LIVE_RUNNING（阶段证据，非最终封账）。
+版本：v2.1。状态：TERMINAL_REJECTED_NO_RECOVERY。
 报告运行：`0915-robot-quality-recovery-v21-20260919T234412+0800`；唯一起始时间
-`2026-09-19T23:44:12+08:00`，最终截止时间 `2026-09-20T14:44:12+08:00`。
+`2026-09-19T23:44:12+08:00`，最晚截止时间 `2026-09-20T14:44:12+08:00`。
+全部已启动 package 已先行终态，因此协调器依据任务包的
+`all_started_packages_terminal` 条件于 `2026-09-20T10:57:51+08:00` 正常退出；
+没有空转到最晚截止时间，也没有降低质量门。
 当前治理状态必须由 `CURRENT_STATUS_RECEIPT.json` 及校验器读取；本文只记录
 已落盘的里程碑，不替代实时心跳。
 配套：[任务书](01_EXECUTION_PLAN_15H_ZH.md) · [启动指令](00_START_HERE_ZH.md)。
@@ -29,7 +32,7 @@
 | last_actual_progress_at | null | 处理帧/任务结果 |
 | manifest_sha | null | 冻结12条及最多4替补清单 |
 | last_adopted_algorithm | null | adoption receipt |
-| state | RUNNING_PARTIAL_MATERIAL_PROGRESS | 父任务心跳与子结果 |
+| state | TERMINAL_REJECTED_NO_RECOVERY | 全部已启动 package 终态；候选 adoption REJECT |
 
 V2.1 还必须显示：W0/W1-DIAG/W1-ADOPTION/H9/EXTRA FINAL 各自的访问状态，W1-ADOPTION 首次打开前的 candidate freeze SHA，H9 每项能力是否 `ADOPTED` 或 `NO_ADOPTED_FIX`，以及 EXTRA FINAL 是否 `SEALED`、`OPENED` 或 `NOT_OPENED_EXPANSION_GATE_FAILED`。不得把“文件已存在”推断成已打开数据。
 

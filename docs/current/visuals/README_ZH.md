@@ -14,7 +14,7 @@ exact78 新视频明确区分 2D 像素误差与相机 3D 毫米误差，并把�
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
-## 0915 Robot Recovery V2.1（进行中）
+## 0915 Robot Recovery V2.1（终态：REJECTED_NO_RECOVERY）
 
 - [`0915_ROBOT_RECOVERY_15H_V2/README_ZH.md`](0915_ROBOT_RECOVERY_15H_V2/README_ZH.md)
 - [`0915_ROBOT_RECOVERY_15H_V2/A2_W1_ADOPTION/README_ZH.md`](0915_ROBOT_RECOVERY_15H_V2/A2_W1_ADOPTION/README_ZH.md)
@@ -28,7 +28,7 @@ exact78 新视频明确区分 2D 像素误差与相机 3D 毫米误差，并把�
 W1-ADOPTION 两条也已完成全片可视化：Poker106 170帧、Chips029 234帧。
 两个整会话和左右手 strict 均未通过；Chips029 右手有 233 个 structural
 候选帧，仍等待 R0 自身 FK/限位/碰撞/时序门。这些视频是
-`OFFLINE_ADOPTION_EVIDENCE`，不表示已采用。
+`OFFLINE_ADOPTION_EVIDENCE`。最终 adoption decision 为 `REJECT`，不表示已采用。
 
 B1 SAM3.1 已完成有界实跑：Chips097 右手 393/394 帧通过 direct-observed
 开发代理，左手因无直接观测保持 UNKNOWN；Chips Object 三实例均 UNKNOWN。

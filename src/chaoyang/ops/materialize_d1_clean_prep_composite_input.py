@@ -34,6 +34,7 @@ ADMITTED_SIDE = "ADMITTED_B1_PER_SIDE_HAND_MASK"
 IMAGE_DOMAIN = "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY"
 HEIGHT = 960
 WIDTH = 1280
+PROJECT_ROOT = Path(__file__).resolve().parents[3]
 
 POKER = "play_cards_0915_044"
 CHIPS = "get_potato_chips_0915_097"
@@ -135,8 +136,8 @@ PINS: dict[str, tuple[int, str, str]] = {
 }
 
 REMOTE_PREFIX = (
-    "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/"
-    "attempts/attempt_0001/"
+    str(PROJECT_ROOT / "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001")
+    + "/"
 )
 
 

@@ -53,7 +53,7 @@ def fixture(tmp_path: Path) -> tuple[Path, Path, Path, Path]:
         "A6_THUMB_BOUNDED_IK_REJECTED": {},
         "A7_STOP_NO_AUTHORITY_AUDIT": {},
         "B0": {},
-        "B1": {},
+        "B1": {"task_id": "0915_robot_quality_recovery_v21_sam31_b1"},
         "B1R": {},
         "B2_DEPTH_TO_OBJECT_POKER044": {},
         "B2_CONTACT_AUTHORITY_SEPARATION_AUDIT": {},

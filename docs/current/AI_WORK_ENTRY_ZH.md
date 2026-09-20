@@ -6,6 +6,12 @@
 
 本页是交给后续 AI 的最小执行入口。事实仍以当前状态 receipt、文档权威表、算法合同和任务索引为准；聊天、历史目录及文件名中的 `current/latest/final` 均不授予执行权。
 
+三条数据链的最新统一交接见
+[`THREE_STREAM_STATUS_AND_HANDOFF_ZH.md`](THREE_STREAM_STATUS_AND_HANDOFF_ZH.md)。0915 Robot
+Recovery V2.1 的算法终态为 `REJECTED_NO_RECOVERY`；它保留了可复核视频和失败漏斗，
+没有产生新的 Robot/Contact/训练 authority。`2026-09-20T14:44:12+08:00` 是该轮最晚
+截止时间，不是最早封账限制；本轮因全部已启动 package 已终态而提前诚实封账。
+
 0915 Robot 15 小时正式执行窗口已经终态化；继续或审阅前先读
 [`ROBOT15H_0915_EXECUTION_V1_ZH.md`](ROBOT15H_0915_EXECUTION_V1_ZH.md)。该窗口只处理
 单下划线 processed 0915 根；0916 不在范围内。W0 的数值导出、顶层执行 `PASSED` 与

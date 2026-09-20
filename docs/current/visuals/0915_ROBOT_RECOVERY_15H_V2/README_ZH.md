@@ -4,6 +4,11 @@
 `OFFLINE DEVELOPMENT EVIDENCE / NOT FOR TRAINING / NOT CONTROL GROUND TRUTH`。
 详细状态以同一父任务 `packages/` 内不可变 `RESULT.json` 为准。
 
+父任务终态为 `REJECTED_QUALITY / REJECTED_NO_RECOVERY`。全部已启动 package 已有终态，
+协调器按 `ALL_STARTED_PACKAGES_TERMINAL` 于 `2026-09-20T10:57:51+08:00` 正常提前退出；
+原 `2026-09-20T14:44:12+08:00` 只是 15 小时最晚截止点。W0/W1 strict、R0 quality、
+strict Contact 与 Robot adoption 均为 0；浅层视频是失败诊断证据，不是成功转换样本。
+
 ## A1 · W1-DIAG Raw HaWoR
 
 - [Poker044 全片](play_cards_0915_044_W1_DIAG_HAWOR_RAW_FULL.mp4)：166帧；左右
@@ -20,7 +25,7 @@ MISS 不补帧。这两条证明合法输入能够执行，不是 HaWoR 精度�
 - [Chips029 全片](A2_W1_ADOPTION/get_potato_chips_0915_029_W1_ADOPTION_HAWOR_RAW_FULL.mp4)：
   234帧，右侧有233个 structural候选帧，但未获得R0质量准入。
 
-`adoption_decision=NOT_AUTOMATED`；A1父候选签名与A2运行签名严格分开。
+最终 `adoption_decision=REJECT`；A1父候选签名与A2运行签名严格分开。
 
 ## B1 / B1R · SAM3.1
 

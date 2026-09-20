@@ -1,0 +1,27 @@
+{
+  "created_at": "2026-09-20T11:10:49.894779+08:00",
+  "final_audit": {
+    "bytes": 2378,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/FINAL_AUDIT.json",
+    "sha256": "ccdba79b4c0f78f6cfa82c0fefece62671b6383fad2062db2b58b1991b4148a8"
+  },
+  "result": {
+    "bytes": 1415,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/RESULT.json",
+    "sha256": "91a7cfc9b861ed8fea85d84d72a0b7aa4a42113d6d4ee7e18b1fc02cd9c79928"
+  },
+  "run_receipt": {
+    "bytes": 1053,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/RUN_RECEIPT.json",
+    "sha256": "c1ebbeb609d740bbfc873f3cf63d845a51aa84584788c29481a057911140d50c"
+  },
+  "schema_version": "0915-robot-recovery-v21-run-receipt-v1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "0915_robot_quality_recovery_15h_v2",
+  "verification": {
+    "bytes": 2916,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/verification/PRE_CAS_VERIFICATION.json",
+    "sha256": "4541e3bc4ba6fa0ae99eafa97e340aa9083fe539cc85e0b9d4a2220779a7c8ad"
+  },
+  "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800"
+}

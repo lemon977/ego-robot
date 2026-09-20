@@ -765,7 +765,7 @@ def run(config_path: Path, project: Path, final_root: Path) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--config", type=Path, required=True)
-    parser.add_argument("--project-root", type=Path, default=Path("/mnt/workspace/code/chaoyang"))
+    parser.add_argument("--project-root", type=Path, default=Path(__file__).resolve().parents[3])
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--preflight-only", action="store_true")
     args = parser.parse_args()
