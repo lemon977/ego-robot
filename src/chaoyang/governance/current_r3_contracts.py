@@ -291,6 +291,8 @@ def build_algorithm_contract(
                 "code_closure": [
                     artifact_ref(repo_root / "src/chaoyang/ops/run_three_stream_stable_baseline_v31.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/build_wiyh_wrist_dual_representation_v1.py"),
+                    artifact_ref(repo_root / "src/chaoyang/ops/build_exact78_wrist_comparison_v31.py"),
+                    artifact_ref(repo_root / "src/chaoyang/ops/run_exact78_stereo_preflight_v31.py"),
                     artifact_ref(repo_root / "src/chaoyang/governance/publish_three_stream_v31_implementation.py"),
                     artifact_ref(repo_root / "src/chaoyang/governance/register_three_stream_stable_baseline_v31.py"),
                     artifact_ref(repo_root / "src/chaoyang/governance/build_three_stream_status_v31.py"),
@@ -299,6 +301,10 @@ def build_algorithm_contract(
                     artifact_ref(repo_root / "src/chaoyang/pipeline/temporal_authority_v1.py"),
                     artifact_ref(repo_root / "src/chaoyang/pipeline/hawor_bounded_comparison_v31.py"),
                     artifact_ref(repo_root / "src/chaoyang/pipeline/kai22_r0_tiered_admission_v1.py"),
+                    artifact_ref(repo_root / "src/chaoyang/human_ego/exact78_v31.py"),
+                    artifact_ref(repo_root / "src/chaoyang/human_ego/tools/audit_exact78_suffix_invariance_v31.py"),
+                    artifact_ref(repo_root / "src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py"),
+                    artifact_ref(repo_root / "src/chaoyang/pipeline/exact78_stereo_preflight_v31.py"),
                 ],
                 "schema_closure": [
                     artifact_ref(repo_root / "contracts/wrist_dual_producer_config_v1.schema.json"),
