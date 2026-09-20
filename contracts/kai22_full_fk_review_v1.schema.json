@@ -1,0 +1,94 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/kai22-full-fk-review-v1",
+  "title": "KAI22_FULL_FK_REVIEW_V1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "status",
+    "session_id",
+    "image_domain",
+    "frame_count",
+    "source_video",
+    "full_fk_sidecar",
+    "clip_sidecar",
+    "tier_result",
+    "review_video",
+    "decode",
+    "displayed",
+    "diagnostics",
+    "new_thumb_candidate_created",
+    "historical_a6_rejection_preserved",
+    "numeric_quality_pass",
+    "training_eligible",
+    "control_ground_truth",
+    "physical_deployable",
+    "external_metric_authority",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "KAI22_FULL_FK_REVIEW_V1"},
+    "status": {"const": "PASS_COMPLETE_FRAME_REVIEW"},
+    "session_id": {"type": "string", "minLength": 1},
+    "image_domain": {"const": "PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY_NO_LENS_REMAP"},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "source_video": {"$ref": "#/$defs/exactRef"},
+    "full_fk_sidecar": {"$ref": "#/$defs/exactRef"},
+    "clip_sidecar": {"$ref": "#/$defs/exactRef"},
+    "tier_result": {"$ref": "#/$defs/exactRef"},
+    "review_video": {"$ref": "#/$defs/exactRef"},
+    "decode": {
+      "type": "object",
+      "required": ["status", "width", "height", "frames", "fps"],
+      "properties": {
+        "status": {"const": "PASS_FULL_DECODE"},
+        "width": {"const": 1280},
+        "height": {"const": 480},
+        "frames": {"type": "integer", "minimum": 1},
+        "fps": {"type": "string", "minLength": 1}
+      }
+    },
+    "displayed": {
+      "type": "object",
+      "required": [
+        "raw_physical_left_rgb",
+        "raw_r0_q22",
+        "root_relative_full_fk",
+        "clip_delta",
+        "validity",
+        "highest_tier",
+        "not_development_r0"
+      ],
+      "properties": {
+        "raw_physical_left_rgb": {"const": true},
+        "raw_r0_q22": {"const": true},
+        "root_relative_full_fk": {"const": true},
+        "clip_delta": {"const": true},
+        "validity": {"const": true},
+        "highest_tier": {"const": "KINEMATIC_ONLY"},
+        "not_development_r0": {"const": true}
+      }
+    },
+    "diagnostics": {"type": "object"},
+    "new_thumb_candidate_created": {"const": false},
+    "historical_a6_rejection_preserved": {"const": true},
+    "numeric_quality_pass": {"const": false},
+    "training_eligible": {"const": false},
+    "control_ground_truth": {"const": false},
+    "physical_deployable": {"const": false},
+    "external_metric_authority": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "exactRef": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
