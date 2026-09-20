@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T20:17:53+08:00",
-  "generation_id": "gov-013246-d5798a48257e",
-  "governance_revision": 13246,
+  "generated_at": "2026-09-20T20:30:19+08:00",
+  "generation_id": "gov-013247-91d3d6688a14",
+  "governance_revision": 13247,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -158,6 +158,11 @@
           "sha256": "3ed3ca9adec516e10c7398740cdc92819f993bd4f1d3aa26562b15f5c8aea5c0"
         },
         {
+          "bytes": 21071,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_exact78_hand_only_review_v32.py",
+          "sha256": "0f78aaa404e3d3558e90eac6ed0c9209293636c29b116076f04ae127773a4e86"
+        },
+        {
           "bytes": 28634,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_wiyh_ai1_static_wrist_candidate_v32.py",
           "sha256": "342764972000cb4b52b61148fbf4d996f6f99dc69781ea8cfddd4171b27eff8a"
@@ -188,6 +193,11 @@
           "sha256": "a2b9bdc349b8b7dd5270085f181ad48a9d10a17a159b27993047cf8bdb931e01"
         },
         {
+          "bytes": 16932,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/kai22_full_fk_review_renderer_v1.py",
+          "sha256": "fe06a31dd03a60abc41333cbc829b756a7a54d21175e8ef6a5c101c354917c13"
+        },
+        {
           "bytes": 11136,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_hand_only_retarget_v1.py",
           "sha256": "a13e4376f75586f843b2d876a40d5e1a6746a04de6a92a7596e9333918e9221e"
@@ -198,9 +208,9 @@
           "sha256": "2598c5e3e72c9293beb992073b9a5739a422564b2300029ea70e69f729db1e72"
         },
         {
-          "bytes": 12276,
+          "bytes": 12412,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_four_stream_pretraining_baseline_v32.py",
-          "sha256": "40bc25983ef8487eb63d9ef029a9a777a329f98ab24456fe1783d8ba1816dbc2"
+          "sha256": "bd8a4439746f4434c7cd35df228a002cc500494f2e5204a764a55c15319d53c6"
         },
         {
           "bytes": 4142,
@@ -257,6 +267,11 @@
           "bytes": 1762,
           "path": "/mnt/workspace/code/chaoyang/contracts/kai22_full_fk_sidecar_v1.schema.json",
           "sha256": "9144e62c407668aac345843eb251ee81210449f77b29a0953f3abfc528c627a5"
+        },
+        {
+          "bytes": 3014,
+          "path": "/mnt/workspace/code/chaoyang/contracts/kai22_full_fk_review_v1.schema.json",
+          "sha256": "be77213f2b561420d196a3045c3b44707fcd63f9f41f1ddfdf484626e1e405f6"
         },
         {
           "bytes": 1455,
