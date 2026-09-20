@@ -3,6 +3,7 @@ from __future__ import annotations
 import inspect
 import json
 from pathlib import Path
+import subprocess
 
 import jsonschema
 import numpy as np
@@ -20,6 +21,11 @@ from chaoyang.pipeline.kai22_full_fk_sidecar_v1 import (
     evaluate_kai22_r0_tiers_v32,
     reload_kai22_full_fk_sidecar,
     write_kai22_full_fk_sidecar,
+)
+from chaoyang.pipeline.kai22_full_fk_review_renderer_v1 import (
+    Kai22ReviewError,
+    frame_annotation_rows,
+    render_kai22_full_fk_review,
 )
 from chaoyang.pipeline.kai22_clip_reconstruction_v1 import (
     Kai22ClipReconstructionError,
@@ -418,4 +424,116 @@ def test_clip_reconstruction_rejects_nonmatching_frozen_q() -> None:
             q22_valid_physical=np.ones((1, 2), dtype=bool),
             human_to_physical=np.asarray([1, 0]),
             limits=limits,
+        )
+
+
+class _NoCollisionChecker:
+    def check(self, physical_side: int, q22: np.ndarray) -> CollisionDiagnostic:
+        return CollisionDiagnostic(
+            known=True,
+            non_adjacent_collision_pass=True,
+            illegal_contact_count=0,
+            max_penetration_m=0.0,
+        )
+
+    def close(self) -> None:
+        pass
+
+
+def test_review_annotation_keeps_invalid_clip_unknown_and_caps_tier() -> None:
+    rows = frame_annotation_rows(
+        frame_id=12,
+        timestamp_s=0.4,
+        highest_tier="KINEMATIC_ONLY",
+        valid=np.asarray([True, False]),
+        clip_delta=np.vstack((np.full(22, 0.01), np.full(22, np.nan))),
+    )
+    assert "CURRENT HIGHEST TIER: KINEMATIC_ONLY" in rows
+    assert any("NOT DEVELOPMENT_R0" in row for row in rows)
+    assert "physical left: valid=true | clipped=22/22" in rows[3]
+    assert rows[4] == "physical right: valid=false | clip_delta=UNKNOWN"
+
+
+def test_complete_frame_review_renders_and_fully_decodes(tmp_path: Path) -> None:
+    models = _models(tmp_path)
+    frames = 3
+    q22 = np.zeros((frames, 2, 22), dtype=np.float64)
+    clip_delta = np.zeros_like(q22)
+    clip_delta[1, 0, 0] = 0.02
+    manifest, arrays = build_kai22_full_fk_sidecar(
+        session_id="get_potato_chips_0915_007",
+        frame_ids=np.arange(frames),
+        timestamps_s=np.arange(frames, dtype=np.float64) / 30.0,
+        q22=q22,
+        q22_valid=np.ones((frames, 2), dtype=bool),
+        clip_delta=clip_delta,
+        models=models,
+        collision_checker=_NoCollisionChecker(),
+        source_temporal_authority="OBSERVED_CURRENT",
+        producer_sha256=SHA_A,
+        config_sha256=SHA_B,
+        input_sha256=SHA_C,
+    )
+    full_fk = tmp_path / "FULL_FK.npz"
+    clip = tmp_path / "CLIP.npz"
+    tier = tmp_path / "TIER.json"
+    source = tmp_path / "source.mp4"
+    destination = tmp_path / "review.mp4"
+    np.savez_compressed(full_fk, **arrays)
+    np.savez_compressed(clip, clip_delta=clip_delta)
+    tier.write_text(
+        json.dumps({"highest_admitted_level": "KINEMATIC_ONLY"}),
+        encoding="utf-8",
+    )
+    subprocess.run(
+        [
+            "ffmpeg",
+            "-nostdin",
+            "-v",
+            "error",
+            "-f",
+            "lavfi",
+            "-i",
+            "color=c=navy:s=160x120:r=30",
+            "-frames:v",
+            str(frames),
+            "-pix_fmt",
+            "yuv420p",
+            str(source),
+        ],
+        check=True,
+    )
+    receipt = render_kai22_full_fk_review(
+        session_id="get_potato_chips_0915_007",
+        source_video=source,
+        full_fk_npz=full_fk,
+        clip_npz=clip,
+        tier_result=tier,
+        destination=destination,
+        models=models,
+    )
+    assert manifest["schema_version"] == "KAI22_FULL_FK_SIDECAR_V1"
+    assert receipt["frame_count"] == frames
+    assert receipt["decode"]["status"] == "PASS_FULL_DECODE"
+    assert receipt["decode"]["frames"] == frames
+    assert receipt["displayed"]["highest_tier"] == "KINEMATIC_ONLY"
+    assert receipt["displayed"]["not_development_r0"] is True
+    assert receipt["new_thumb_candidate_created"] is False
+    assert receipt["diagnostics"]["clipped_joint_values"] == 1
+    _validate("kai22_full_fk_review_v1.schema.json", receipt)
+
+    forbidden_tier = tmp_path / "FORBIDDEN_TIER.json"
+    forbidden_tier.write_text(
+        json.dumps({"highest_admitted_level": "DEVELOPMENT_R0"}),
+        encoding="utf-8",
+    )
+    with pytest.raises(Kai22ReviewError, match="exactly KINEMATIC_ONLY"):
+        render_kai22_full_fk_review(
+            session_id="get_potato_chips_0915_007",
+            source_video=source,
+            full_fk_npz=full_fk,
+            clip_npz=clip,
+            tier_result=forbidden_tier,
+            destination=tmp_path / "forbidden.mp4",
+            models=models,
         )
