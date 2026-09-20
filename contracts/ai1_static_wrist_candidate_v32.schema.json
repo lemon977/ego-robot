@@ -1,0 +1,154 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://chaoyang.local/contracts/ai1_static_wrist_candidate_v32.schema.json",
+  "title": "AI1_STATIC_WRIST_CANDIDATE_V32",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "lane",
+    "sessions",
+    "models",
+    "candidate_decision",
+    "opening_gate_102_103",
+    "default_consumption_model",
+    "outputs",
+    "claims",
+    "execution"
+  ],
+  "properties": {
+    "schema_version": {"const": "AI1_STATIC_WRIST_CANDIDATE_V32"},
+    "status": {
+      "enum": [
+        "NO_ADMISSIBLE_STATIC_CANDIDATE",
+        "ADOPTED_POSITION_ONLY_DEVELOPMENT_CANDIDATE"
+      ]
+    },
+    "lane": {"const": "ai1"},
+    "sessions": {
+      "type": "array",
+      "minItems": 5,
+      "items": {
+        "type": "object",
+        "required": ["session_id", "role"],
+        "properties": {
+          "session_id": {"type": "string"},
+          "role": {"type": "string"}
+        },
+        "additionalProperties": true
+      }
+    },
+    "models": {
+      "type": "object",
+      "required": [
+        "M0_LEGACY",
+        "M1_CONTROLLER_LOCAL_TRANSLATION",
+        "M2_STATIC_SE3"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "M0_LEGACY": {"$ref": "#/$defs/model"},
+        "M1_CONTROLLER_LOCAL_TRANSLATION": {"$ref": "#/$defs/model"},
+        "M2_STATIC_SE3": {"$ref": "#/$defs/model"}
+      }
+    },
+    "candidate_decision": {
+      "type": "object",
+      "required": [
+        "selected_model",
+        "selected_for_diagnostics",
+        "adopted",
+        "terminal_status",
+        "opening_gate_102_103",
+        "authority",
+        "scope",
+        "control_ground_truth",
+        "physical_deployable",
+        "external_metric_authority"
+      ],
+      "properties": {
+        "selected_model": {"type": "string"},
+        "selected_for_diagnostics": {"const": true},
+        "adopted": {"type": "boolean"},
+        "terminal_status": {"type": "string"},
+        "opening_gate_102_103": {"enum": ["OPEN", "CLOSED"]},
+        "authority": {"type": "string"},
+        "scope": {"const": "DEVELOPMENT_ONLY"},
+        "control_ground_truth": {"const": false},
+        "physical_deployable": {"const": false},
+        "external_metric_authority": {"const": false}
+      },
+      "additionalProperties": true
+    },
+    "opening_gate_102_103": {"enum": ["OPEN", "CLOSED"]},
+    "default_consumption_model": {"const": "M0_LEGACY"},
+    "outputs": {
+      "type": "object",
+      "required": ["native_complete_replay_npz", "diagnostics", "source_provenance"],
+      "additionalProperties": false,
+      "properties": {
+        "native_complete_replay_npz": {"$ref": "#/$defs/artifact"},
+        "diagnostics": {"$ref": "#/$defs/artifact"},
+        "source_provenance": {"$ref": "#/$defs/artifact"}
+      }
+    },
+    "claims": {
+      "type": "object",
+      "required": [
+        "PIPELINE_COMPLETE",
+        "NUMERIC_QUALITY_PASS",
+        "VISUAL_REVIEW_STATUS",
+        "TRAINING_COMPLETE",
+        "TRAINING_ELIGIBLE",
+        "CONTROL_GROUND_TRUTH",
+        "PHYSICAL_DEPLOYABLE",
+        "external_metric_authority"
+      ],
+      "properties": {
+        "PIPELINE_COMPLETE": {"type": "boolean"},
+        "NUMERIC_QUALITY_PASS": {"type": "boolean"},
+        "VISUAL_REVIEW_STATUS": {"type": "string"},
+        "TRAINING_COMPLETE": {"const": false},
+        "TRAINING_ELIGIBLE": {"const": false},
+        "CONTROL_GROUND_TRUTH": {"const": false},
+        "PHYSICAL_DEPLOYABLE": {"const": false},
+        "external_metric_authority": {"const": false}
+      },
+      "additionalProperties": false
+    },
+    "execution": {
+      "type": "object",
+      "required": ["cpu_only", "gpu_used", "source_mutated", "adoption_sessions_read"],
+      "properties": {
+        "cpu_only": {"const": true},
+        "gpu_used": {"const": false},
+        "source_mutated": {"const": false},
+        "adoption_sessions_read": {"const": false}
+      },
+      "additionalProperties": false
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string"},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      },
+      "additionalProperties": false
+    },
+    "model": {
+      "type": "object",
+      "required": ["available", "selected", "adopted"],
+      "properties": {
+        "available": {"type": "boolean"},
+        "selected": {"type": "boolean"},
+        "adopted": {"type": "boolean"}
+      },
+      "additionalProperties": true
+    }
+  }
+}
