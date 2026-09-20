@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-20T20:46:36+08:00",
-  "generation_id": "gov-013252-3c46f5aac57b",
+  "generated_at": "2026-09-20T21:05:21+08:00",
+  "generation_id": "gov-013253-d108d55e756f",
   "generator_code_sha": "d960d9e5bf59e192e54d1f598e365da0e0e77195b4f63ebafbcbf33a8f5b8ec8",
-  "governance_revision": 13252,
+  "governance_revision": 13253,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": {
     "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
@@ -1510,7 +1510,7 @@
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "674d659eb5dd3cccfdb4348396f3aee70dd2aa25"
+    "commit": "8de946902b29f277c745351b4ede11b84b2dc2c7"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2859,7 +2859,7 @@
       "attempt": 1,
       "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
       "gpu_id": null,
-      "heartbeat_at": "2026-09-20T20:46:36+08:00",
+      "heartbeat_at": "2026-09-20T21:05:21+08:00",
       "phase": "FOUR_STREAM_V32_EXECUTION",
       "pid": 320726,
       "plan_execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
@@ -2872,7 +2872,7 @@
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
         "sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f"
       },
-      "updated_at": "2026-09-20T20:46:36+08:00"
+      "updated_at": "2026-09-20T21:05:21+08:00"
     }
   ]
 }
