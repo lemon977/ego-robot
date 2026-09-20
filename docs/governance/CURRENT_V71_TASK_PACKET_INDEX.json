@@ -1,8 +1,8 @@
 {
   "execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
-  "generated_at": "2026-09-20T11:11:19+08:00",
-  "generation_id": "gov-013224-9b8410f84fd4",
-  "governance_revision": 13224,
+  "generated_at": "2026-09-20T13:54:55+08:00",
+  "generation_id": "gov-013225-09cb48723c42",
+  "governance_revision": 13225,
   "index_bytes": 786,
   "index_path": "tasks/current/INDEX.json",
   "index_sha256": "c0fbe9acbced0e03525d33c898ad567c047ebdbbf403c689e0a82fef1265a790",

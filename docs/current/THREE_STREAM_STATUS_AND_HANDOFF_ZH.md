@@ -12,6 +12,16 @@
 | 0916 手套数据（AI1） | PICO wrist、MANUS、SAM mask、HaWoR 在 101 真盲测全部跑通；冻结手指几何双侧失败 | 不可作监督标签；只可保留为开发传感器模态 |
 | 0915 裸手数据（AI2） | V2.1 已终止全部已启动任务；HaWoR/R0/Contact/Robot 严格转换未恢复 | `REJECTED_NO_RECOVERY`；strict Robot 转换为 0，不可作控制或训练真值 |
 
+## 三条链的隔离规则
+
+- 旧 exact78 是冻结的 156 会话历史分母；其历史结果不得与 0915/0916 的通过数合并统计。
+- AI1 的 0916 真盲研究只存在于隔离分支 `research/wiyh-hand-depth-v1` 及本页明确链接的审阅证据中，未登记为当前 HaWoR、Mask、Depth、Contact 或 Robot 基线。当前注册表中的 `0909/0910 acquisition-aligned` 传感器并行管道是另一批数据，不是 AI1 的 0916 研究。
+- AI2 的 V2.1 只消费 0915 processed 根，合同明确 `0916_consumption=FORBIDDEN`；0916 当前合同只授予清洗与内容准入，不授予下游算法 authority。
+- 当前 Mask 选择仍为用户锁定的 `SAM3.1_ONLY`。AI1 的研究提示、V2.1 失败候选和历史 exact78 参数都不能静默替换它。
+- 三条链共享的是代码仓库和固定模型资产，不共享分母、任务终态或 authority；任何新算法只有经过新的有限 Task Packet 和 CAS 发布后才能成为 current baseline。
+
+0915 source-group 的当前 provenance 为 `USER_CONFIRMED_AND_METADATA_CORROBORATED`：用户授权收据明确记录“编号会话分别录制”，220 会话清单又以 VST SHA、QPC 时间范围和采集时间佐证。V2.1 当时采用的保守执行字段 `METADATA_VERIFIED_NO_USER_ATTESTATION` 保留为历史运行事实，但不再代表当前 provenance；这项纠正不改变 V2.1 的数据划分、运行输出或 `REJECTED_NO_RECOVERY` 结论。
+
 ## 1. 旧 exact78：原始数据、Robot30 与转化率
 
 ### 原始数据

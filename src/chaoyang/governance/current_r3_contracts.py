@@ -261,7 +261,18 @@ def build_algorithm_contract(
                     artifact_ref(repo_root / "src/chaoyang/governance/finalize_0915_robot_recovery_v21.py"),
                 ],
                 "input_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915",
-                "source_group_authority": "METADATA_VERIFIED_NO_USER_ATTESTATION",
+                "source_group_authority": "USER_CONFIRMED_AND_METADATA_CORROBORATED",
+                "source_group_authority_evidence": [
+                    artifact_ref(repo_root / "tasks/receipts/0915_ROBOT15H_USER_AUTHORIZATION_V1.json"),
+                    artifact_ref(repo_root / "tasks/receipts/0915_ROBOT15H_WINDOW_START_INVENTORY_V1_RESULT.json"),
+                ],
+                "historical_v21_execution_claim": "METADATA_VERIFIED_NO_USER_ATTESTATION",
+                "provenance_correction": (
+                    "The V2.1 execution packet conservatively omitted the already-recorded user "
+                    "attestation. Current provenance restores that attestation using immutable "
+                    "authorization and inventory receipts; terminal V2.1 outputs, splits and "
+                    "algorithm conclusions are unchanged."
+                ),
                 "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
                 "0916_consumption": "FORBIDDEN",
                 "contact_authority": {

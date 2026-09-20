@@ -1959,9 +1959,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-20T11:11:19+08:00",
-  "generation_id": "gov-013224-9b8410f84fd4",
-  "governance_revision": 13224,
+  "generated_at": "2026-09-20T13:54:55+08:00",
+  "generation_id": "gov-013225-09cb48723c42",
+  "governance_revision": 13225,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",
