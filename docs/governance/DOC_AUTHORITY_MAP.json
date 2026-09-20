@@ -180,12 +180,12 @@
     },
     {
       "authorized_scope": "PROJECT_REALTIME_STATUS",
-      "bytes": 14531,
+      "bytes": 14772,
       "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "1369c1f3ff6bbc39689aacbb42afca887f32e333773ae6a06dc312451c934b73",
+      "sha256": "e7cab41b907b7f63c3b56138b0d215415a80d307425c8ef889b2b352d836d38c",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -307,9 +307,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-20T19:09:45+08:00",
-  "generation_id": "gov-013242-fb20e5a43ea7",
-  "governance_revision": 13242,
+  "generated_at": "2026-09-20T20:08:26+08:00",
+  "generation_id": "gov-013244-4b34b09fc4e7",
+  "governance_revision": 13244,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

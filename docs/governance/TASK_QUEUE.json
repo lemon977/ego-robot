@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-20T19:09:45+08:00",
-  "generation_id": "gov-013242-fb20e5a43ea7",
-  "governance_revision": 13242,
+  "generated_at": "2026-09-20T20:08:26+08:00",
+  "generation_id": "gov-013244-4b34b09fc4e7",
+  "governance_revision": 13244,
   "next_task": {
     "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
     "prerequisites": [
@@ -15,7 +15,7 @@
       "noncommercial_research_evaluation",
       "diagnostics_only_gate_direct_consumers"
     ],
-    "session": null,
+    "session": "multi_lane",
     "stop_condition": "Finite per-lane terminal or resumable budget state without cross-lane coupling.",
     "task_id": "four_stream_pretraining_baseline_v32"
   },
@@ -24,12 +24,12 @@
     {
       "attempt": 1,
       "gpu_id": null,
-      "heartbeat_at": null,
-      "phase": "FOUR_STREAM_PRETRAINING_BASELINE_V32",
-      "session": null,
-      "status": "PENDING",
+      "heartbeat_at": "2026-09-20T20:08:26+08:00",
+      "phase": "FOUR_STREAM_V32_EXECUTION",
+      "session": "multi_lane",
+      "status": "RUNNING",
       "task_id": "four_stream_pretraining_baseline_v32",
-      "updated_at": "2026-09-20T19:04:09+08:00"
+      "updated_at": "2026-09-20T20:08:26+08:00"
     },
     {
       "attempt": 1,

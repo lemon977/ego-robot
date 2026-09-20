@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-20T19:09:45+08:00",
-  "generation_id": "gov-013242-fb20e5a43ea7",
-  "generator_code_sha": "c7bb77d282adf0def1ed6eb23dbf93a95ddb7e111de73019eb956c08ec590d02",
-  "governance_revision": 13242,
+  "generated_at": "2026-09-20T20:08:26+08:00",
+  "generation_id": "gov-013244-4b34b09fc4e7",
+  "generator_code_sha": "d960d9e5bf59e192e54d1f598e365da0e0e77195b4f63ebafbcbf33a8f5b8ec8",
+  "governance_revision": 13244,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": {
     "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
@@ -90,7 +90,7 @@
       "noncommercial_research_evaluation",
       "diagnostics_only_gate_direct_consumers"
     ],
-    "session": null,
+    "session": "multi_lane",
     "stop_condition": "Finite per-lane terminal or resumable budget state without cross-lane coupling.",
     "task_id": "four_stream_pretraining_baseline_v32"
   },
@@ -1510,7 +1510,7 @@
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "0cd5bcaf2c10c5193ddf03d1d342531fd33460e8"
+    "commit": "ac45d880d6b1b7f2915ffaf80c9c940516714845"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2859,20 +2859,20 @@
       "attempt": 1,
       "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
       "gpu_id": null,
-      "heartbeat_at": null,
-      "phase": "FOUR_STREAM_PRETRAINING_BASELINE_V32",
-      "pid": null,
+      "heartbeat_at": "2026-09-20T20:08:26+08:00",
+      "phase": "FOUR_STREAM_V32_EXECUTION",
+      "pid": 320726,
       "plan_execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
-      "proc_start_ticks": null,
-      "session": null,
-      "status": "PENDING",
+      "proc_start_ticks": 217179089,
+      "session": "multi_lane",
+      "status": "RUNNING",
       "task_id": "four_stream_pretraining_baseline_v32",
       "task_packet": {
         "bytes": 6486,
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
         "sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f"
       },
-      "updated_at": "2026-09-20T19:04:09+08:00"
+      "updated_at": "2026-09-20T20:08:26+08:00"
     }
   ]
 }
