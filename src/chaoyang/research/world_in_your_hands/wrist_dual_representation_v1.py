@@ -68,9 +68,7 @@ def compose_camera_wrist(
 ) -> np.ndarray:
     """Compose transforms using the repository-wide ``T_A_B`` convention."""
 
-    controller = _as_transform_series(
-        T_camera_controller, name="T_camera_controller"
-    )
+    controller = _as_transform_series(T_camera_controller, name="T_camera_controller")
     wrist = np.asarray(T_controller_wrist, dtype=np.float64)
     if wrist.shape == (4, 4):
         _as_transform(wrist, name="T_controller_wrist")
@@ -94,9 +92,7 @@ def invert_transform(value: Any) -> np.ndarray:
     rotation = matrices[..., :3, :3]
     translation = matrices[..., :3, 3]
     result[..., :3, :3] = np.swapaxes(rotation, -1, -2)
-    result[..., :3, 3] = -np.einsum(
-        "...ij,...j->...i", result[..., :3, :3], translation
-    )
+    result[..., :3, 3] = -np.einsum("...ij,...j->...i", result[..., :3, :3], translation)
     result[..., 3, :] = (0.0, 0.0, 0.0, 1.0)
     return result
 
@@ -108,9 +104,7 @@ def lever_arm_residuals(
 ) -> dict[str, np.ndarray]:
     """Return the same positional residual in camera and controller frames."""
 
-    controller = _as_transform_series(
-        T_camera_controller, name="T_camera_controller"
-    )
+    controller = _as_transform_series(T_camera_controller, name="T_camera_controller")
     predicted = compose_camera_wrist(controller, T_controller_wrist)[..., :3, 3]
     observed = np.asarray(observed_anatomical_center_camera, dtype=np.float64)
     if observed.shape != predicted.shape:
@@ -119,9 +113,7 @@ def lever_arm_residuals(
         )
     residual_camera = observed - predicted
     rotation = controller[..., :3, :3]
-    residual_controller = np.einsum(
-        "...ji,...j->...i", rotation, residual_camera
-    )
+    residual_controller = np.einsum("...ji,...j->...i", rotation, residual_camera)
     return {
         "predicted_center_camera": predicted,
         "residual_camera": residual_camera,
@@ -161,9 +153,7 @@ def fit_m1_translation(
 ) -> tuple[np.ndarray, dict[str, Any]]:
     """Fit one controller-local translation while preserving nominal rotation."""
 
-    controller = _as_transform_series(
-        T_camera_controller, name="T_camera_controller"
-    )
+    controller = _as_transform_series(T_camera_controller, name="T_camera_controller")
     if controller.ndim != 3:
         raise WristDualRepresentationError("M1 expects T_camera_controller [N,4,4]")
     nominal = _as_transform(nominal_T_controller_wrist, name="nominal_T_controller_wrist")
@@ -212,9 +202,7 @@ def fit_m2_se3(
 ) -> tuple[np.ndarray, dict[str, Any]]:
     """Fit one static controller-to-wrist SE(3) when orientation is identifiable."""
 
-    controller = _as_transform_series(
-        T_camera_controller, name="T_camera_controller"
-    )
+    controller = _as_transform_series(T_camera_controller, name="T_camera_controller")
     observed = np.asarray(observed_T_camera_wrist, dtype=np.float64)
     if controller.ndim != 3 or observed.shape != controller.shape:
         raise WristDualRepresentationError("M2 transform inputs must both be [N,4,4]")
@@ -247,9 +235,7 @@ def fit_m2_se3(
     candidate = np.eye(4, dtype=np.float64)
     candidate[:3, 3] = np.median(local[:, :3, 3], axis=0)
     candidate[:3, :3] = _mean_rotation(local[:, :3, :3])
-    translation_residual = np.linalg.norm(
-        local[:, :3, 3] - candidate[:3, 3], axis=1
-    )
+    translation_residual = np.linalg.norm(local[:, :3, 3] - candidate[:3, 3], axis=1)
     rotation_residual = np.asarray(
         [_rotation_distance_deg(candidate[:3, :3], value) for value in local[:, :3, :3]]
     )
@@ -257,9 +243,7 @@ def fit_m2_se3(
         "model": "M2_STATIC_SE3",
         "fit_frames": count,
         "controller_rotation_span_deg": span,
-        "translation_residual_mm_p95": float(
-            np.percentile(translation_residual, 95) * 1000.0
-        ),
+        "translation_residual_mm_p95": float(np.percentile(translation_residual, 95) * 1000.0),
         "rotation_residual_deg_p95": float(np.percentile(rotation_residual, 95)),
     }
 
@@ -269,12 +253,11 @@ def evaluate_static_calibration(
     T_controller_wrist: Any,
     observed_T_camera_wrist: Any,
     valid: Any | None = None,
+    orientation_valid: Any | None = None,
 ) -> dict[str, Any]:
-    """Evaluate position and, when supplied, frame-orientation residuals."""
+    """Evaluate position and separately admitted frame-orientation residuals."""
 
-    controller = _as_transform_series(
-        T_camera_controller, name="T_camera_controller"
-    )
+    controller = _as_transform_series(T_camera_controller, name="T_camera_controller")
     observed = np.asarray(observed_T_camera_wrist, dtype=np.float64)
     predicted = compose_camera_wrist(controller, T_controller_wrist)
     if predicted.shape != observed.shape or predicted.ndim != 3:
@@ -289,6 +272,7 @@ def evaluate_static_calibration(
     if not admitted.any():
         return {
             "valid_frames": 0,
+            "orientation_valid_frames": 0,
             "translation_residual_mm_p50": None,
             "translation_residual_mm_p95": None,
             "rotation_residual_deg_p50": None,
@@ -296,25 +280,36 @@ def evaluate_static_calibration(
         }
     for index, matrix in zip(np.flatnonzero(admitted), observed[admitted], strict=True):
         _as_transform(matrix, name=f"observed_T_camera_wrist[{index}]")
-    translation = np.linalg.norm(
-        observed[admitted, :3, 3] - predicted[admitted, :3, 3], axis=1
-    ) * 1000.0
+    translation = (
+        np.linalg.norm(observed[admitted, :3, 3] - predicted[admitted, :3, 3], axis=1) * 1000.0
+    )
+    orientation_admitted = admitted.copy()
+    if orientation_valid is not None:
+        values = np.asarray(orientation_valid, dtype=bool)
+        if values.shape != admitted.shape:
+            raise WristDualRepresentationError("evaluation orientation mask must be [N]")
+        orientation_admitted &= values
     rotation = np.asarray(
         [
             _rotation_distance_deg(first, second)
             for first, second in zip(
-                predicted[admitted, :3, :3],
-                observed[admitted, :3, :3],
+                predicted[orientation_admitted, :3, :3],
+                observed[orientation_admitted, :3, :3],
                 strict=True,
             )
         ]
     )
     return {
         "valid_frames": int(admitted.sum()),
+        "orientation_valid_frames": int(orientation_admitted.sum()),
         "translation_residual_mm_p50": float(np.percentile(translation, 50)),
         "translation_residual_mm_p95": float(np.percentile(translation, 95)),
-        "rotation_residual_deg_p50": float(np.percentile(rotation, 50)),
-        "rotation_residual_deg_p95": float(np.percentile(rotation, 95)),
+        "rotation_residual_deg_p50": (
+            float(np.percentile(rotation, 50)) if len(rotation) else None
+        ),
+        "rotation_residual_deg_p95": (
+            float(np.percentile(rotation, 95)) if len(rotation) else None
+        ),
     }
 
 
@@ -364,11 +359,7 @@ def admit_visible_wrist_surface(
         blocker = blocker or "SURFACE_PATCH_SHAPE_INVALID"
     elif not len(patch) or not np.isfinite(patch).all():
         blocker = blocker or "SURFACE_PATCH_INVALID"
-    point = (
-        np.median(patch, axis=0)
-        if blocker is None
-        else np.full(3, np.nan, dtype=np.float64)
-    )
+    point = np.median(patch, axis=0) if blocker is None else np.full(3, np.nan, dtype=np.float64)
     return SurfaceAdmission(
         point_camera=point,
         source_pixel_uv=pixel,
@@ -389,9 +380,7 @@ def bounded_nonaccumulating_fusion(
 ) -> dict[str, np.ndarray]:
     """Fuse centres against each frame's static prior without temporal accumulation."""
 
-    prior = _as_transform_series(
-        static_T_camera_wrist, name="static_T_camera_wrist"
-    )
+    prior = _as_transform_series(static_T_camera_wrist, name="static_T_camera_wrist")
     measured = np.asarray(measured_anatomical_center_camera, dtype=np.float64)
     if measured.shape != prior.shape[:-2] + (3,):
         raise WristDualRepresentationError("measurement centre shape does not match prior")
@@ -416,9 +405,7 @@ def bounded_nonaccumulating_fusion(
     flat_valid = valid.reshape(-1)
     flat_correction = correction.reshape((-1, 3))
     flat_fused[flat_valid] = flat_prior[flat_valid]
-    flat_fused[flat_valid, :3, 3] = (
-        flat_prior[flat_valid, :3, 3] + flat_correction[flat_valid]
-    )
+    flat_fused[flat_valid, :3, 3] = flat_prior[flat_valid, :3, 3] + flat_correction[flat_valid]
     applied = np.zeros_like(correction)
     applied[valid] = correction[valid]
     return {
@@ -463,9 +450,7 @@ def audit_suffix_invariance(
         if first.shape != second.shape:
             passed = False
             maximum = None
-        elif np.issubdtype(first.dtype, np.floating) or np.issubdtype(
-            second.dtype, np.floating
-        ):
+        elif np.issubdtype(first.dtype, np.floating) or np.issubdtype(second.dtype, np.floating):
             difference = np.abs(first.astype(np.float64) - second.astype(np.float64))
             passed = bool(np.allclose(first, second, atol=atol, rtol=rtol, equal_nan=True))
             finite = difference[np.isfinite(difference)]
@@ -476,9 +461,7 @@ def audit_suffix_invariance(
         all_passed &= passed
         rows[name] = {
             "passed": passed,
-            "temporal_authority": (
-                "CAUSAL_CURRENT" if passed else "OFFLINE_NONCAUSAL"
-            ),
+            "temporal_authority": ("CAUSAL_CURRENT" if passed else "OFFLINE_NONCAUSAL"),
             "maximum_absolute_difference": maximum,
         }
     return {

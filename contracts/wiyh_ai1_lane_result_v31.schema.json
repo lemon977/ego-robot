@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/wiyh_ai1_lane_result_v31.schema.json",
+  "title": "Chaoyang WIYH AI1 lane result V3.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "lane",
+    "ledger",
+    "latest_artifacts",
+    "blocker",
+    "claims"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-wiyh-ai1-lane-result-v31"},
+    "status": {
+      "enum": [
+        "PASS_CURRENT_ONLY_AI1_LANE",
+        "BLOCKED_ADOPTION_OBSERVATIONS",
+        "BLOCKED_STATIC_CALIBRATION",
+        "BLOCKED_CURRENT_SOURCE_VALIDATION",
+        "FAILED_RUNTIME"
+      ]
+    },
+    "lane": {"const": "ai1"},
+    "ledger": {"$ref": "#/$defs/artifact"},
+    "latest_artifacts": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/artifact"},
+      "uniqueItems": true
+    },
+    "blocker": {
+      "oneOf": [{"type": "string", "minLength": 1}, {"type": "null"}]
+    },
+    "claims": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "PIPELINE_COMPLETE",
+        "NUMERIC_QUALITY_PASS",
+        "VISUAL_REVIEW_STATUS",
+        "TRAINING_COMPLETE",
+        "TRAINING_ELIGIBLE",
+        "CONTROL_GROUND_TRUTH",
+        "PHYSICAL_DEPLOYABLE"
+      ],
+      "properties": {
+        "PIPELINE_COMPLETE": {"const": false},
+        "NUMERIC_QUALITY_PASS": {"const": false},
+        "VISUAL_REVIEW_STATUS": {"const": "NOT_REVIEWED"},
+        "TRAINING_COMPLETE": {"const": false},
+        "TRAINING_ELIGIBLE": {"const": false},
+        "CONTROL_GROUND_TRUTH": {"const": false},
+        "PHYSICAL_DEPLOYABLE": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

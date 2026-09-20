@@ -10,6 +10,7 @@ import pytest
 
 from chaoyang.ops import build_wiyh_wrist_dual_input_v1 as builder
 from chaoyang.ops import build_wiyh_wrist_dual_representation_v1 as producer
+from chaoyang.ops import run_wiyh_ai1_current_lane_v31 as lane_runner
 
 
 def _write_json(path: Path, value: object) -> None:
@@ -28,7 +29,9 @@ def _sha256(path: Path) -> str:
 
 
 def _fixture(tmp_path: Path, *, frames: int = 2) -> tuple[Path, Path]:
-    processed = tmp_path / "processed" / "chips_cards_handle_highview_0916" / "cleaned" / "playing_cards"
+    processed = (
+        tmp_path / "processed" / "chips_cards_handle_highview_0916" / "cleaned" / "playing_cards"
+    )
     experiments = tmp_path / "_run" / "current" / "experiments"
     nominal = {
         "left": _transform(x=0.08, y=0.04, z=-0.13),
@@ -69,11 +72,7 @@ def _fixture(tmp_path: Path, *, frames: int = 2) -> tuple[Path, Path]:
                     },
                 }
             _write_json(
-                session_root
-                / "preprocess"
-                / "all_data"
-                / f"{frame:05d}"
-                / "training_data.json",
+                session_root / "preprocess" / "all_data" / f"{frame:05d}" / "training_data.json",
                 {
                     "metadata": {"idx": frame, "video_time_s": frame / 30.0},
                     "entities": {"hands": hands},
@@ -153,9 +152,10 @@ def test_builds_fixed_real_fields_and_fail_closed_surface(tmp_path: Path) -> Non
     ]
     assert provenance["outputs"]["frame_count"] == 6
     schema = json.loads(
-        (Path(__file__).resolve().parents[2] / "contracts/wiyh_wrist_dual_input_provenance_v1.schema.json").read_text(
-            encoding="utf-8"
-        )
+        (
+            Path(__file__).resolve().parents[2]
+            / "contracts/wiyh_wrist_dual_input_provenance_v1.schema.json"
+        ).read_text(encoding="utf-8")
     )
     jsonschema.validate(provenance, schema)
     with np.load(output / "WRIST_DUAL_INPUT.npz", allow_pickle=False) as bundle:
@@ -244,13 +244,7 @@ def test_preflight_reads_fixed_sources_without_writing(tmp_path: Path) -> None:
 def test_missing_pinned_observation_fails_without_output(tmp_path: Path) -> None:
     processed, experiments = _fixture(tmp_path)
     spec = builder.SESSION_SPECS["play_cards_0916_101"]
-    missing = (
-        experiments
-        / spec["experiment"]
-        / "attempts"
-        / "attempt_0001"
-        / spec["hawor"]
-    )
+    missing = experiments / spec["experiment"] / "attempts" / "attempt_0001" / spec["hawor"]
     missing.unlink()
     output = tmp_path / "attempt_0001"
     with pytest.raises(FileNotFoundError):
@@ -281,11 +275,7 @@ def test_terminal_status_drift_is_fail_closed(tmp_path: Path) -> None:
     processed, experiments = _fixture(tmp_path)
     spec = builder.SESSION_SPECS["play_cards_0916_097"]
     terminal = (
-        experiments
-        / spec["experiment"]
-        / "attempts"
-        / "attempt_0001"
-        / "TERMINAL_RESULT.json"
+        experiments / spec["experiment"] / "attempts" / "attempt_0001" / "TERMINAL_RESULT.json"
     )
     _write_json(terminal, {"status": "PASS"})
     with pytest.raises(builder.WiyhWristDualInputError, match="terminal status drift"):
@@ -294,3 +284,78 @@ def test_terminal_status_drift_is_fail_closed(tmp_path: Path) -> None:
             experiment_root=experiments,
             output_root=tmp_path / "attempt_0001",
         )
+
+
+def test_ai1_lane_preserves_partial_results_and_independent_adoption_blockers(
+    tmp_path: Path,
+) -> None:
+    processed, experiments = _fixture(tmp_path, frames=3)
+    output = tmp_path / "lane" / "attempt_0001"
+    result = lane_runner.run(
+        processed_root=processed,
+        experiment_root=experiments,
+        output_root=output,
+    )
+    assert result["status"] == "BLOCKED_ADOPTION_OBSERVATIONS"
+    assert result["status"].startswith("BLOCKED")
+    ledger = json.loads((output / "LANE_LEDGER.json").read_text(encoding="utf-8"))
+    assert ledger["stages"] == {
+        "input": "PASS_FIXED_CURRENT_INPUT",
+        "m0": "PASS_M0_PRESERVED",
+        "producer": "PASS_DEVELOPMENT_POSITION_ONLY",
+    }
+    assert ledger["models"]["M0_LEGACY"]["status"] == "AVAILABLE_LEGACY_PRIOR"
+    assert (
+        ledger["models"]["M1_CONTROLLER_LOCAL_TRANSLATION"]["status"]
+        == "AVAILABLE_DEVELOPMENT_CANDIDATE"
+    )
+    assert ledger["models"]["M1_CONTROLLER_LOCAL_TRANSLATION"]["adopted"] is False
+    assert ledger["models"]["M2_STATIC_SE3"]["status"] == "BLOCKED_ORIENTATION_EVIDENCE"
+    for session_id in lane_runner.ADOPTION_IDS:
+        assert ledger["sessions"][session_id]["status"] == "BLOCKED_MISSING_PINNED_OBSERVATION"
+    regression = ledger["sessions"][lane_runner.REGRESSION_ID]
+    assert regression["status"] == "POSITION_ONLY_EVALUATED"
+    m1_left = regression["models"]["M1_CONTROLLER_LOCAL_TRANSLATION"]["sides"]["left"]
+    assert m1_left["metrics"]["valid_frames"] == 3
+    assert m1_left["metrics"]["orientation_valid_frames"] == 0
+    assert m1_left["metrics"]["rotation_residual_deg_p95"] is None
+    assert (output / "input_bundle" / "WRIST_DUAL_INPUT.npz").is_file()
+    assert (output / "M0_BASELINE.npz").is_file()
+    assert (output / "dual_representation" / "WRIST_DUAL_REPRESENTATION_V1.npz").is_file()
+    assert (output / "RESULT.json").is_file()
+    result_schema = json.loads(
+        (
+            Path(__file__).resolve().parents[2] / "contracts/wiyh_ai1_lane_result_v31.schema.json"
+        ).read_text(encoding="utf-8")
+    )
+    jsonschema.validate(result, result_schema)
+    with pytest.raises(lane_runner.WiyhAi1LaneError, match="fresh output"):
+        lane_runner.run(
+            processed_root=processed,
+            experiment_root=experiments,
+            output_root=output,
+        )
+
+
+def test_ai1_lane_source_failure_keeps_terminal_ledger_without_fill(tmp_path: Path) -> None:
+    processed, experiments = _fixture(tmp_path, frames=3)
+    spec = builder.SESSION_SPECS["play_cards_0916_101"]
+    (experiments / spec["experiment"] / "attempts" / "attempt_0001" / spec["hawor"]).unlink()
+    output = tmp_path / "lane" / "attempt_0001"
+    result = lane_runner.run(
+        processed_root=processed,
+        experiment_root=experiments,
+        output_root=output,
+    )
+    assert result["status"] == "BLOCKED_CURRENT_SOURCE_VALIDATION"
+    ledger = json.loads((output / "LANE_LEDGER.json").read_text(encoding="utf-8"))
+    assert ledger["stages"]["input"] == "BLOCKED_CURRENT_SOURCE_VALIDATION"
+    assert ledger["outputs"]["input_provenance"] is None
+    assert ledger["outputs"]["m0_baseline"] is None
+    assert ledger["models"]["M0_LEGACY"]["status"] == "NOT_AVAILABLE"
+    assert (
+        ledger["sessions"]["play_cards_0916_102"]["status"] == "BLOCKED_MISSING_PINNED_OBSERVATION"
+    )
+    assert (
+        ledger["sessions"]["play_cards_0916_103"]["status"] == "BLOCKED_MISSING_PINNED_OBSERVATION"
+    )
