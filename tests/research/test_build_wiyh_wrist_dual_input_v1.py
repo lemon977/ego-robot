@@ -12,6 +12,7 @@ import pytest
 
 from chaoyang.ops import build_wiyh_wrist_dual_input_v1 as builder
 from chaoyang.ops import build_wiyh_wrist_dual_representation_v1 as producer
+from chaoyang.ops import run_wiyh_ai1_static_wrist_candidate_v32 as lane_runner_v32
 from chaoyang.ops import run_wiyh_ai1_current_lane_v31 as lane_runner
 
 
@@ -65,18 +66,45 @@ def _fixture(tmp_path: Path, *, frames: int = 2) -> tuple[Path, Path]:
                     y=0.1 * side_index,
                     z=0.4 + 0.01 * session_index,
                 )
+                manus_local = np.zeros((25, 3), dtype=np.float64)
+                manus_local[:, 0] = np.arange(25, dtype=np.float64) * 0.001
+                manus_camera = (
+                    np.einsum("ij,kj->ki", controller[:3, :3], manus_local)
+                    + (controller @ nominal[side])[:3, 3]
+                )
                 hands[side] = {
                     "pose_source": "egodex_v1_hdf5_wrist_pose",
                     "T_wrist_to_camera": (controller @ nominal[side]).tolist(),
                     "controller6d": {
                         "pose_source": "egodex_v1_hdf5_controller_pose",
                         "T_controller_to_camera": controller.tolist(),
+                        "T_controller_to_world": controller.tolist(),
+                        "units": "metres",
+                    },
+                    "manus25": {
+                        "joint_names": list(lane_runner_v32.MANUS25_NAMES),
+                        "keypoints_3d_wrist_local": manus_local.tolist(),
+                        "keypoints_3d_camera": manus_camera.tolist(),
+                        "joint_valid": [True] * 25,
                     },
                 }
             _write_json(
                 session_root / "preprocess" / "all_data" / f"{frame:05d}" / "training_data.json",
                 {
-                    "metadata": {"idx": frame, "video_time_s": frame / 30.0},
+                    "metadata": {
+                        "idx": frame,
+                        "video_time_s": frame / 30.0,
+                        "tracking_sync_error_ms": 0.5,
+                        "k": [
+                            [500.0, 0.0, 320.0],
+                            [0.0, 500.0, 240.0],
+                            [0.0, 0.0, 1.0],
+                        ],
+                        "image_domain_mode": "PHYSICAL_LEFT_RESIZE_ONLY",
+                        "camera_eye": "left",
+                        "camera_physical_calibration_eye": "left",
+                        "camera_source_index": 1,
+                    },
                     "entities": {"hands": hands},
                 },
             )
@@ -412,3 +440,53 @@ def test_ai1_lane_source_failure_keeps_terminal_ledger_without_fill(tmp_path: Pa
     assert (
         ledger["sessions"]["play_cards_0916_103"]["status"] == "BLOCKED_MISSING_PINNED_OBSERVATION"
     )
+
+
+def test_ai1_v32_exports_native_replay_and_keeps_m1_unadopted(tmp_path: Path) -> None:
+    processed, experiments = _fixture(tmp_path, frames=4)
+    source_record = (
+        processed
+        / "play_cards_0916_097"
+        / "preprocess"
+        / "all_data"
+        / "00000"
+        / "training_data.json"
+    )
+    source_sha = _sha256(source_record)
+    output = tmp_path / "v32" / "attempt_0001"
+    result = lane_runner_v32.run(
+        processed_root=processed,
+        experiment_root=experiments,
+        output_root=output,
+    )
+
+    assert result["schema_version"] == "AI1_STATIC_WRIST_CANDIDATE_V32"
+    assert result["status"] == "NO_ADMISSIBLE_STATIC_CANDIDATE"
+    assert result["default_consumption_model"] == "M0_LEGACY"
+    assert result["models"]["M1_CONTROLLER_LOCAL_TRANSLATION"]["selected"] is True
+    assert result["models"]["M1_CONTROLLER_LOCAL_TRANSLATION"]["adopted"] is False
+    assert result["opening_gate_102_103"] == "CLOSED"
+    assert result["execution"]["adoption_sessions_read"] is False
+    assert _sha256(source_record) == source_sha
+    assert all(".staging." not in value["path"] for value in result["outputs"].values())
+    on_disk = json.loads((output / "RESULT.json").read_text(encoding="utf-8"))
+    assert on_disk["status"] == "NO_ADMISSIBLE_STATIC_CANDIDATE"
+    diagnostics = json.loads((output / "DIAGNOSTICS.json").read_text(encoding="utf-8"))
+    assert [row["stage"] for row in diagnostics["diagnostics"]] == list(
+        lane_runner_v32.DIAGNOSTIC_ORDER
+    )
+    lag = diagnostics["diagnostics"][3]["sides"]["left"]
+    assert lag["winner_selected"] is False
+    assert [row["lag_frames"] for row in lag["M1"]] == [-2, -1, 0, 1, 2]
+    depth = diagnostics["diagnostics"][5]["sides"]["left"]["absolute_depth"]["M1"]
+    assert depth["status"] == "REJECTED_INCOMPATIBLE_WRIST_SEMANTICS"
+    with np.load(output / "AI1_STATIC_WRIST_CANDIDATE_V32.npz", allow_pickle=False) as replay:
+        assert replay["manus25_xyz_wrist_local_m"].shape == (12, 2, 25, 3)
+        assert replay["manus25_xyz_camera_m"].shape == (12, 2, 25, 3)
+        assert replay["pico_controller_T_world"].shape == (12, 2, 4, 4)
+        assert replay["T_controller_wrist_M0"].shape == (2, 4, 4)
+        assert replay["T_controller_wrist_M1"].shape == (2, 4, 4)
+        assert replay["M0_T_camera_wrist_left"].shape == (12, 4, 4)
+        assert replay["M1_T_camera_wrist_right"].shape == (12, 4, 4)
+        assert replay["selected_model"].item() == "M1_CONTROLLER_LOCAL_TRANSLATION"
+        assert replay["adopted"].item() is False
