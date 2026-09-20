@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/ai2-real-assets-audit-v31",
+  "title": "AI2_REAL_ASSETS_AUDIT_V31",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "cohort", "session_id", "inputs", "shape_audit", "part_presence", "provider_dependency", "temporal_authority", "bounded_comparison", "kai22_tier", "blocker_codes", "model_calls", "gpu_calls", "quality_authority_promoted", "training_eligible", "control_ground_truth", "physical_deployment_authorized"],
+  "properties": {
+    "schema_version": {"const": "AI2_REAL_ASSETS_AUDIT_V31"},
+    "status": {"const": "COMPLETED_FAIL_CLOSED_AUDIT"},
+    "cohort": {"enum": ["W0", "A1", "A2"]},
+    "session_id": {"type": "string", "minLength": 1},
+    "inputs": {"type": "object", "additionalProperties": {"$ref": "#/$defs/ref"}},
+    "shape_audit": {"type": "object"},
+    "part_presence": {"type": "object"},
+    "provider_dependency": {"type": "object"},
+    "temporal_authority": {"type": "object"},
+    "bounded_comparison": {"type": "object"},
+    "kai22_tier": {"type": "object"},
+    "blocker_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "model_calls": {"const": 0},
+    "gpu_calls": {"const": 0},
+    "quality_authority_promoted": {"const": false},
+    "training_eligible": {"const": false},
+    "control_ground_truth": {"const": false},
+    "physical_deployment_authorized": {"const": false}
+  },
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
