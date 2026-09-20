@@ -63,7 +63,7 @@
       "document_id": "four_stream_status_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/STATUS.json",
-      "sha256": "10e8874e307aa7b057a3180a85a6775555937977b9c671d5b5cb39ebda46a34e",
+      "sha256": "3031861baef24780eef73f524e0bdfb2070bd9a7b35a11f9adac1438b3a3ea08",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -180,12 +180,12 @@
     },
     {
       "authorized_scope": "PROJECT_REALTIME_STATUS",
-      "bytes": 14772,
+      "bytes": 14773,
       "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "9fbcb5aead2b8f9d5aa03803f1996955acb38ae02bb50078bdf8d804694854b8",
+      "sha256": "a8ba923880c14a1dd8e30b3e57cb0f37441b386d55d4302d30c0e8dc678eddff",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -307,9 +307,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-20T21:05:21+08:00",
-  "generation_id": "gov-013253-d108d55e756f",
-  "governance_revision": 13253,
+  "generated_at": "2026-09-20T21:05:39+08:00",
+  "generation_id": "gov-013254-6674f2a57ff4",
+  "governance_revision": 13254,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }
