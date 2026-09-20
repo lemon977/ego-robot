@@ -3,7 +3,7 @@
     {
       "attempt": 1,
       "gpu_id": null,
-      "heartbeat_at": "2026-09-20T21:05:21+08:00",
+      "heartbeat_at": "2026-09-20T21:08:42+08:00",
       "phase": "FOUR_STREAM_V32_EXECUTION",
       "pid": 320726,
       "proc_start_ticks": 217179089,
@@ -23,13 +23,13 @@
   "claim_limit": "Derived bounded context only; validate CURRENT_STATUS_RECEIPT.json before use.",
   "cohort": "exact78-chips78-poker78-frozen",
   "freshness": {
-    "age_seconds": 19,
+    "age_seconds": 0,
     "reason": "active_task_heartbeat",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-20T21:05:39+08:00",
-  "generation_id": "gov-013254-6674f2a57ff4",
-  "governance_revision": 13254,
+  "generated_at": "2026-09-20T21:08:42+08:00",
+  "generation_id": "gov-013255-958ae4ab6ece",
+  "governance_revision": 13255,
   "next_task": {
     "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
     "prerequisites": [
