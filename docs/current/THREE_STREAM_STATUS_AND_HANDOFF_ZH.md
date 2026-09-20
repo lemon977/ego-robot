@@ -105,6 +105,8 @@ video，不能按目录名臆造。矩阵同时给出每条视频的 bytes、SHA
 - 101 在查看 RGB 前冻结并执行 V53 SAM3.1 → V54 scale/PICO visibility → V55 HaWoR + frozen V45 geometry。
 - 101 的 mask/visibility/HaWoR 运行全部完成，左/右合格观测 114/77；完整视频 122/122 帧。
 - 几何质量仍失败：左侧 landmark P50 `150.38 px` 且形状门失败；右侧 joint-in-mask P50 `0.4167`、joint→mask P95 `107.19 px`。
+- 右侧 PICO-derived wrist→mask P95 为 `2.98 px`，说明动态腕锚点本身可落在手区；这不能替代整套手指骨架验收。
+- 本轮没有发布 3D/Depth 精度数值：冻结 2D 独立门已经失败，`depth_unlocked=false`。因此当前只能定性为“PICO wrist 有开发价值、MANUS 跨会话手指几何不合格”，不能声称组合后的 3D 更准。
 
 - [完整 122 帧视频](visuals/WIYH_SESSION101_BLIND_V55/PICO_WRIST_MANUS_SESSION101_BLIND_FULL_REVIEW.mp4)
 - [完整研究结论](../research/current/world_in_your_hands/SESSION101_BLIND_VALIDATION_V53_V55_ZH.md)
