@@ -25,6 +25,10 @@ SESSION_SCHEMA_VERSION = "AI2_REAL_ASSET_SESSION_TERMINAL_V31"
 PARENT_TASK_ID = "three_stream_stable_baseline_v31"
 LANE = "ai2"
 OUTPUT_NAME = "AI2_REAL_ASSETS_COHORT_AUDIT_V31"
+ASSET_TASK_DIRECTORIES = {
+    "poker": "playing_cards",
+    "potato_chips": "potato_chips",
+}
 SESSION_SPECS = (
     {"cohort": "W0", "task": "poker", "session_id": "play_cards_0915_031"},
     {"cohort": "W0", "task": "poker", "session_id": "play_cards_0915_119"},
@@ -74,10 +78,28 @@ def _assert_lane_identity(root: Path) -> Path:
 
 def _paths(root: Path, spec: dict[str, str]) -> dict[str, Path | None]:
     cohort = spec["cohort"]
-    task = spec["task"]
+    logical_task = spec["task"]
+    try:
+        asset_directory = ASSET_TASK_DIRECTORIES[logical_task]
+    except KeyError as error:
+        raise CohortAuditError(
+            f"no frozen asset-directory mapping for logical task: {logical_task}"
+        ) from error
     session = spec["session_id"]
-    hawor_base = root / COHORT_ROOTS[cohort]["hawor"] / "hawor/sessions" / task / session
-    kai_base = root / COHORT_ROOTS[cohort]["kai22"] / "sessions" / task / session
+    hawor_base = (
+        root
+        / COHORT_ROOTS[cohort]["hawor"]
+        / "hawor/sessions"
+        / asset_directory
+        / session
+    )
+    kai_base = (
+        root
+        / COHORT_ROOTS[cohort]["kai22"]
+        / "sessions"
+        / asset_directory
+        / session
+    )
     result: dict[str, Path | None] = {
         "hawor_npz": hawor_base / "HAWOR_RAW_MANO21.npz",
         "hawor_result": hawor_base / "RESULT.json",
@@ -94,7 +116,13 @@ def _paths(root: Path, spec: dict[str, str]) -> dict[str, Path | None]:
     }
     if cohort == "W0":
         bounded = root / COHORT_ROOTS[cohort]["kai22"] / "bounded_v2" / session
-        sam = root / COHORT_ROOTS[cohort]["sam"] / "sessions" / task / session
+        sam = (
+            root
+            / COHORT_ROOTS[cohort]["sam"]
+            / "sessions"
+            / asset_directory
+            / session
+        )
         result.update(
             {
                 "bounded_npz": bounded / "HAWOR_BOUNDED_PARAMETER_SUCCESSOR.npz",
