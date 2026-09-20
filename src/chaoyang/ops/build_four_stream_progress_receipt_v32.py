@@ -115,7 +115,7 @@ def build_receipt(*, checkpoint_hour: int, observed_at: str, attempt_root: Path)
             "t_plus_4_exact_raw_only_fallback": "NOT_DUE" if checkpoint_hour < 4 else "EVALUATE",
             "ai1": "KEEP_M0_AND_102_103_CLOSED_WITHOUT_ADMISSIBLE_STATIC_CANDIDATE",
             "ai2": "KEEP_KINEMATIC_ONLY_UNTIL_ZERO_CLIP_AND_OBSERVABILITY_GATES_PASS",
-            "ai4": "RENDER_REMAINING_THREE_FROZEN_NUMERIC_COMPARISONS",
+            "ai4": "FOUR_FROZEN_NUMERIC_COMPARISONS_RENDERED",
         },
     }
 
