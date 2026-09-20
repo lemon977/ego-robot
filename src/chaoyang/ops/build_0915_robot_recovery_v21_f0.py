@@ -2,11 +2,12 @@
 """Build the fail-closed F0 closure for the finite 0915 recovery campaign.
 
 This publisher is deliberately separate from the long-running coordinator.  It
-may only run after the recorded wall-clock deadline and after the coordinator
-has emitted ``COORDINATOR_EXIT.json``.  It never turns diagnostic completion
-into algorithm success: the frozen W0/W1, Contact, Mask and Robot evidence is
-summarised exactly as recorded and the parent closes ``REJECTED_QUALITY`` when
-no recovery was adopted.
+may run after either the recorded wall-clock deadline or a fail-closed early
+stop proving that every started package is terminal, and only after the
+coordinator has emitted ``COORDINATOR_EXIT.json``.  It never turns diagnostic
+completion into algorithm success: the frozen W0/W1, Contact, Mask and Robot
+evidence is summarised exactly as recorded and the parent closes
+``REJECTED_QUALITY`` when no recovery was adopted.
 """
 
 from __future__ import annotations
@@ -44,10 +45,35 @@ REQUIRED_VERIFICATION_CHECKS = {
     "markdown_links",
     "source_read_only",
     "package_terminal",
-    "deadline",
+    "stop_condition",
 }
 DEFERRED_POST_CAS_CHECKS = {"governance", "reference_closure"}
 DEFERRED_POST_CAS_STATUS = "DEFERRED_POST_CAS_EXPECTED_ACTIVE_CONFLICT"
+REQUIRED_PACKAGE_RESULTS = {
+    "P0": "packages/P0/RESULT.json",
+    "A0": "packages/A0/RESULT.json",
+    "A1": "packages/A1/RESULT.json",
+    "A2": "packages/A2/RESULT.json",
+    "A3_DIAG": "packages/A3_R0/A1/RESULT.json",
+    "A3_ADOPTION": "packages/A3_R0/A2/RESULT.json",
+    "A4": "packages/A4_MOTION_GATE_AUTHORITY_AUDIT/RESULT.json",
+    "A5": "packages/A5_KAI22_SATURATION_AUDIT/RESULT.json",
+    "A6": "packages/A6_THUMB_BOUNDED_IK_REJECTED/RESULT.json",
+    "A7": "packages/A7_STOP_NO_AUTHORITY_AUDIT/RESULT.json",
+    "B0": "packages/B0/RESULT.json",
+    "B1": "packages/B1/RESULT.json",
+    "B1R": "packages/B1R/RESULT.json",
+    "B2": "packages/B2_DEPTH_TO_OBJECT_POKER044/RESULT.json",
+    "B2_AUTHORITY": "packages/B2_CONTACT_AUTHORITY_SEPARATION_AUDIT/RESULT.json",
+    "B3": "packages/B3_FINAL_TERMINAL_AUDIT/RESULT.json",
+    "C0": "packages/C0/RESULT.json",
+    "C0_V2": "packages/C0_v2/RESULT.json",
+    "C1": "packages/C1/RESULT.json",
+    "C1_SELF_CHECK": "packages/C1_SELF_CHECK/RESULT.json",
+    "D1": "packages/D1_CLEAN_PREP/PREPARED_V1/RESULT.json",
+    "D2": "packages/D2_FRESH_FILL_OFFLINE_V1/RESULT.json",
+    "D2_AUDIT": "packages/D2_HARDENED_INDEPENDENT_AUDIT/RESULT.json",
+}
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -120,21 +146,7 @@ def require_inputs(root: Path) -> dict[str, dict[str, Any]]:
         value = load_json(path)
         require_identity(value, path)
         evidence[name] = value
-    package_paths = {
-        "P0": root / "packages/P0/RESULT.json",
-        "A0": root / "packages/A0/RESULT.json",
-        "A1": root / "packages/A1/RESULT.json",
-        "A2": root / "packages/A2/RESULT.json",
-        "A7": root / "packages/A7_STOP_NO_AUTHORITY_AUDIT/RESULT.json",
-        "B0": root / "packages/B0/RESULT.json",
-        "B1": root / "packages/B1/RESULT.json",
-        "B1R": root / "packages/B1R/RESULT.json",
-        "B2": root / "packages/B2_DEPTH_TO_OBJECT_POKER044/RESULT.json",
-        "B3": root / "packages/B3_FINAL_TERMINAL_AUDIT/RESULT.json",
-        "C0": root / "packages/C0/RESULT.json",
-        "C1": root / "packages/C1/RESULT.json",
-        "D2": root / "packages/D2_FRESH_FILL_OFFLINE_V1/RESULT.json",
-    }
+    package_paths = {name: root / relative for name, relative in REQUIRED_PACKAGE_RESULTS.items()}
     for name, path in package_paths.items():
         if not path.is_file():
             raise RuntimeError(f"required package terminal missing: {name}: {path}")
@@ -142,6 +154,43 @@ def require_inputs(root: Path) -> dict[str, dict[str, Any]]:
         require_identity(value, path)
         evidence[f"PACKAGE_{name}"] = value
     return evidence
+
+
+def validate_stop_condition(
+    root: Path,
+    coordinator_exit: Path,
+    exit_value: dict[str, Any],
+    deadline: datetime,
+    now: datetime,
+    evidence: dict[str, dict[str, Any]],
+) -> tuple[str, dict[str, Any] | None]:
+    if exit_value.get("status") != "MONITOR_EXITED_NOT_CAMPAIGN_FINALIZATION":
+        raise RuntimeError("coordinator did not emit its terminal monitor exit")
+    if now >= deadline:
+        if exit_value.get("deadline_reached") is not True:
+            raise RuntimeError("coordinator did not prove a deadline terminal")
+        return "DEADLINE_REACHED", None
+
+    stop_path = root / "STOP_REQUESTED.json"
+    if not stop_path.is_file():
+        raise RuntimeError("F0 cannot be published before the deadline without a terminal stop request")
+    stop = load_json(stop_path)
+    require_identity(stop, stop_path)
+    if stop.get("reason") != "ALL_STARTED_PACKAGES_TERMINAL":
+        raise RuntimeError("early stop reason is not ALL_STARTED_PACKAGES_TERMINAL")
+    requested_at = parse_time(str(stop.get("requested_at")))
+    exited_at = parse_time(str(exit_value.get("at")))
+    if requested_at > exited_at or exited_at > now:
+        raise RuntimeError("early stop timestamps are inconsistent")
+    if exit_value.get("deadline_reached") is not False:
+        raise RuntimeError("early stop coordinator exit has an invalid deadline marker")
+    # ``require_inputs`` resolves every package that this campaign actually
+    # started.  Requiring all PACKAGE_* entries here makes the stop receipt a
+    # terminal proof rather than an unaudited operator shortcut.
+    expected = {f"PACKAGE_{name}" for name in REQUIRED_PACKAGE_RESULTS}
+    if not expected.issubset(evidence):
+        raise RuntimeError("early stop package terminal proof is incomplete")
+    return "ALL_STARTED_PACKAGES_TERMINAL", ref(stop_path)
 
 
 def main() -> int:
@@ -164,13 +213,10 @@ def main() -> int:
     require_identity(exit_value, coordinator_exit)
     deadline = parse_time(str(state["deadline_at"]))
     now = parse_time(args.now) if args.now else datetime.now(deadline.tzinfo)
-    if now < deadline:
-        raise RuntimeError("F0 cannot be published before the immutable deadline")
-    if (
-        exit_value.get("status") != "MONITOR_EXITED_NOT_CAMPAIGN_FINALIZATION"
-        or exit_value.get("deadline_reached") is not True
-    ):
-        raise RuntimeError("coordinator did not prove a deadline terminal")
+    evidence = require_inputs(root)
+    stop_condition, stop_request_ref = validate_stop_condition(
+        root, coordinator_exit, exit_value, deadline, now, evidence
+    )
 
     verification = load_json(verification_report)
     if verification.get("status") != "PASS":
@@ -192,7 +238,6 @@ def main() -> int:
     for artifact in verification.get("evidence", []):
         validate_ref(artifact)
 
-    evidence = require_inputs(root)
     a0 = evidence["W0_FAILURE_MATRIX_V2.json"]
     a1 = evidence["PACKAGE_A1"]
     a2 = evidence["PACKAGE_A2"]
@@ -298,6 +343,8 @@ def main() -> int:
         "required_authority_boundaries_preserved": True,
         "post_cas_governance_audit_required": True,
         "source_mutation_claim": "NO_MUTATION_OBSERVED_WITHIN_RECORDED_ACCESS_LEDGER",
+        "stop_condition": stop_condition,
+        "stop_request": stop_request_ref,
         "publisher_code": ref(Path(__file__)),
         "verification": ref(verification_report),
         "coordinator_exit": ref(coordinator_exit),
