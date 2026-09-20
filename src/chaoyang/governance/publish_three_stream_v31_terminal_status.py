@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
+import re
 
 from chaoyang.governance.common import (
     AUTHORITY_PATH,
@@ -23,7 +24,7 @@ from chaoyang.governance.common import (
 
 CURRENT_INDEX = REPO_ROOT / "tasks/current/INDEX.json"
 STATUS_PATH = REPO_ROOT / "docs/current/STATUS.json"
-OUTPUT_ROOT = REPO_ROOT / "_run/current/three_stream_v31_terminal_status/publication_0001"
+OUTPUT_BASE = REPO_ROOT / "_run/current/three_stream_v31_terminal_status"
 LIVE = {"PENDING", "READY", "CLAIMED", "RUNNING", "WAIT_GPU_RESOURCE"}
 
 
@@ -40,9 +41,13 @@ def _write_once(path: Path, value: dict[str, object]) -> None:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--expected-revision", required=True, type=int)
+    parser.add_argument("--publication-id", default="publication_0001")
     args = parser.parse_args()
-    if OUTPUT_ROOT.exists() or OUTPUT_ROOT.is_symlink():
-        raise RuntimeError(f"fresh terminal-status publication required: {OUTPUT_ROOT}")
+    if re.fullmatch(r"publication_[0-9]{4}", args.publication_id) is None:
+        raise RuntimeError("publication-id must match publication_NNNN")
+    output_root = OUTPUT_BASE / args.publication_id
+    if output_root.exists() or output_root.is_symlink():
+        raise RuntimeError(f"fresh terminal-status publication required: {output_root}")
 
     receipt = load_json(RECEIPT_PATH)
     if int(receipt.get("governance_revision", -1)) != args.expected_revision:
@@ -70,7 +75,7 @@ def main() -> int:
         raise RuntimeError("V3.1 terminal status conflicts with recorded CPU-only execution")
 
     created = now_iso()
-    OUTPUT_ROOT.mkdir(parents=True)
+    output_root.mkdir(parents=True)
     published = publish_bundle(
         load_json(AUTHORITY_PATH),
         state,
@@ -93,7 +98,7 @@ def main() -> int:
             "training, metric, control, or deployment authority is granted."
         ),
     }
-    result_path = OUTPUT_ROOT / "RESULT.json"
+    result_path = output_root / "RESULT.json"
     _write_once(result_path, result)
     print(json.dumps({**result, "result": artifact_ref(result_path)}, ensure_ascii=False))
     return 0
