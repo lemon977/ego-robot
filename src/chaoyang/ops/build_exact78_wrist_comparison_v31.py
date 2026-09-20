@@ -17,13 +17,12 @@ import tempfile
 from typing import Any
 
 import cv2
+import jsonschema
 import numpy as np
 
-from chaoyang.pipeline.wrist_dual_representation_v1 import (
-    build_dual_wrist_representation,
-    transform_points,
-    validate_rigid_transforms,
-)
+
+PROJECT = Path(__file__).resolve().parents[3]
+WRIST_RESULT_SCHEMA = PROJECT / "contracts/wrist_dual_representation_v1.schema.json"
 
 
 COLORS = {
@@ -66,39 +65,44 @@ def atomic_json(path: Path, payload: dict[str, Any]) -> None:
             os.unlink(temporary)
 
 
-def atomic_npz(path: Path, arrays: dict[str, np.ndarray]) -> None:
-    descriptor, temporary = tempfile.mkstemp(prefix=f".{path.name}.", dir=path.parent)
-    try:
-        with os.fdopen(descriptor, "wb") as stream:
-            np.savez_compressed(stream, **arrays)
-            stream.flush()
-            os.fsync(stream.fileno())
-        os.replace(temporary, path)
-    finally:
-        if os.path.exists(temporary):
-            os.unlink(temporary)
-
-
-def load_npz(path: Path) -> dict[str, np.ndarray]:
+def load_dual_wrist_npz(path: Path) -> dict[str, np.ndarray]:
     required = {
-        "frame_ids",
-        "timestamps_s",
+        "frame_id",
+        "timestamp_s",
         "T_camera_controller_raw",
-        "T_controller_wrist",
-        "controller_valid",
-        "hawor_T_camera_wrist",
-        "hawor_valid",
-        "visible_surface_xyz_camera",
-        "visible_surface_uv",
-        "visible_surface_valid",
-        "visible_region_valid",
-        "intrinsics",
+        "selected_T_controller_wrist",
+        "static_T_camera_wrist",
+        "observed_T_camera_wrist",
+        "observed_valid",
+        "visible_wrist_surface_point_camera",
+        "visible_wrist_surface_source_pixel_uv",
+        "visible_wrist_surface_valid",
+        "visible_wrist_region_registration_only",
+        "fused_T_camera_wrist",
+        "fusion_valid",
+        "correction_clipped",
     }
     with np.load(path, allow_pickle=False) as archive:
         missing = sorted(required - set(archive.files))
         if missing:
             raise RuntimeError(f"V3.1 wrist adapter input missing fields: {missing}")
         return {name: np.asarray(archive[name]) for name in archive.files}
+
+
+def validate_dual_wrist_result(result_path: Path, npz_path: Path) -> dict[str, Any]:
+    result = json.loads(result_path.read_text(encoding="utf-8"))
+    schema = json.loads(WRIST_RESULT_SCHEMA.read_text(encoding="utf-8"))
+    jsonschema.Draft202012Validator(schema).validate(result)
+    reference = result["outputs"]["npz"]
+    if (
+        Path(reference["path"]).resolve(strict=True) != npz_path
+        or int(reference["bytes"]) != npz_path.stat().st_size
+        or str(reference["sha256"]) != sha256(npz_path)
+    ):
+        raise RuntimeError("dual-wrist RESULT does not bind the consumed NPZ")
+    if any(result["authority"].values()):
+        raise RuntimeError("dual-wrist authority exceeds development-only boundary")
+    return result
 
 
 def _distribution(values: np.ndarray, *, millimetres: bool = True) -> dict[str, Any]:
@@ -118,13 +122,13 @@ def _distribution(values: np.ndarray, *, millimetres: bool = True) -> dict[str, 
 
 
 def comparison_metrics(product: dict[str, Any]) -> dict[str, Any]:
-    tracker = np.asarray(product["anatomical_wrist_center_camera"], np.float64)
-    hawor = np.asarray(product["hawor_T_camera_wrist"], np.float64)[..., :3, 3]
+    tracker = np.asarray(product["static_T_camera_wrist"], np.float64)[..., :3, 3]
+    hawor = np.asarray(product["observed_T_camera_wrist"], np.float64)[..., :3, 3]
     fused = np.asarray(product["fused_T_camera_wrist"], np.float64)[..., :3, 3]
-    surface = np.asarray(product["visible_wrist_surface_xyz_camera"], np.float64)
+    surface = np.asarray(product["visible_wrist_surface_point_camera"], np.float64)
     controller_valid = np.isfinite(tracker).all(-1)
-    hawor_valid = np.asarray(product["hawor_valid"], bool)
-    fused_valid = np.asarray(product["fused_valid"], bool)
+    hawor_valid = np.asarray(product["observed_valid"], bool)
+    fused_valid = np.asarray(product["fusion_valid"], bool)
     surface_valid = np.asarray(product["visible_wrist_surface_valid"], bool)
     rows: dict[str, Any] = {}
     for side, name in enumerate(("left", "right")):
@@ -147,10 +151,15 @@ def comparison_metrics(product: dict[str, Any]) -> dict[str, Any]:
             ),
             "surface_observed_frames": int(surface_valid[:, side].sum()),
             "surface_region_only_frames": int(
-                (np.asarray(product["visible_wrist_region_valid"], bool)[:, side] & ~surface_valid[:, side]).sum()
+                (
+                    np.asarray(
+                        product["visible_wrist_region_registration_only"], bool
+                    )[:, side]
+                    & ~surface_valid[:, side]
+                ).sum()
             ),
             "fusion_bound_touched_frames": int(
-                np.asarray(product["fused_correction_bound_touched"], bool)[:, side].sum()
+                np.asarray(product["correction_clipped"], bool)[:, side].sum()
             ),
         }
     return {
@@ -169,6 +178,29 @@ def project(point: np.ndarray, intrinsic: np.ndarray) -> tuple[int, int] | None:
         return None
     homogeneous = intrinsic @ point
     return int(round(homogeneous[0] / homogeneous[2])), int(round(homogeneous[1] / homogeneous[2]))
+
+
+def transform_camera_points_to_world(
+    T_world_camera: np.ndarray, points_camera: np.ndarray
+) -> np.ndarray:
+    transforms = np.asarray(T_world_camera, np.float64)
+    points = np.asarray(points_camera, np.float64)
+    if transforms.shape != (len(points), 4, 4) or points.shape[1:] != (2, 3):
+        raise RuntimeError("T_world_camera/point shapes must be [T,4,4] and [T,2,3]")
+    if (
+        not np.isfinite(transforms).all()
+        or not np.allclose(transforms[:, 3], (0.0, 0.0, 0.0, 1.0), atol=1e-8)
+    ):
+        raise RuntimeError("T_world_camera is not a finite homogeneous transform")
+    rotation = transforms[:, :3, :3]
+    if not np.allclose(
+        np.swapaxes(rotation, -1, -2) @ rotation,
+        np.eye(3),
+        atol=1e-5,
+        rtol=0.0,
+    ):
+        raise RuntimeError("T_world_camera rotation is not orthonormal")
+    return np.einsum("tij,tsj->tsi", rotation, points) + transforms[:, None, :3, 3]
 
 
 def _plot_orthographic(
@@ -227,11 +259,11 @@ def render_review(
     T_world_camera: np.ndarray | None,
     fps: float,
 ) -> None:
-    tracker = np.asarray(product["anatomical_wrist_center_camera"], np.float64)
-    hawor = np.asarray(product["hawor_T_camera_wrist"], np.float64)[..., :3, 3]
-    surface = np.asarray(product["visible_wrist_surface_xyz_camera"], np.float64)
+    tracker = np.asarray(product["static_T_camera_wrist"], np.float64)[..., :3, 3]
+    hawor = np.asarray(product["observed_T_camera_wrist"], np.float64)[..., :3, 3]
+    surface = np.asarray(product["visible_wrist_surface_point_camera"], np.float64)
     fused = np.asarray(product["fused_T_camera_wrist"], np.float64)[..., :3, 3]
-    surface_uv = np.asarray(product["visible_wrist_surface_uv"], np.float64)
+    surface_uv = np.asarray(product["visible_wrist_surface_source_pixel_uv"], np.float64)
     count = len(tracker)
     if intrinsics.shape == (3, 3):
         intrinsics = np.broadcast_to(intrinsics[None], (count, 3, 3))
@@ -240,14 +272,14 @@ def render_review(
     world = None
     headset_world = None
     if T_world_camera is not None:
-        transforms = validate_rigid_transforms(T_world_camera, label="T_world_camera")
+        transforms = np.asarray(T_world_camera, np.float64)
         if transforms.shape != (count, 4, 4):
             raise RuntimeError("T_world_camera must be [T,4,4]")
         world = {
-            "tracker": transform_points(np.broadcast_to(transforms[:, None], (count, 2, 4, 4)), tracker),
-            "hawor": transform_points(np.broadcast_to(transforms[:, None], (count, 2, 4, 4)), hawor),
-            "surface": transform_points(np.broadcast_to(transforms[:, None], (count, 2, 4, 4)), surface),
-            "fused": transform_points(np.broadcast_to(transforms[:, None], (count, 2, 4, 4)), fused),
+            "tracker": transform_camera_points_to_world(transforms, tracker),
+            "hawor": transform_camera_points_to_world(transforms, hawor),
+            "surface": transform_camera_points_to_world(transforms, surface),
+            "fused": transform_camera_points_to_world(transforms, fused),
         }
         headset_world = transforms[:, :3, 3]
 
@@ -333,42 +365,46 @@ def render_review(
 
 def main() -> int:
     parser = argparse.ArgumentParser()
-    parser.add_argument("--input-npz", type=Path, required=True)
-    parser.add_argument("--source-authority-json", type=Path, required=True)
+    parser.add_argument("--dual-wrist-result", type=Path, required=True)
+    parser.add_argument("--dual-wrist-npz", type=Path, required=True)
+    parser.add_argument(
+        "--camera-adapter-npz",
+        type=Path,
+        required=True,
+        help="frame_id, timestamp_s, intrinsics and optional T_world_camera",
+    )
     parser.add_argument("--raw-video", type=Path, required=True)
     parser.add_argument("--output-root", type=Path, required=True)
     parser.add_argument("--fps", type=float, required=True)
     args = parser.parse_args()
-    source = args.input_npz.resolve(strict=True)
-    authority_path = args.source_authority_json.resolve(strict=True)
+    dual_result_path = args.dual_wrist_result.resolve(strict=True)
+    dual_npz_path = args.dual_wrist_npz.resolve(strict=True)
+    camera_path = args.camera_adapter_npz.resolve(strict=True)
     raw_video = args.raw_video.resolve(strict=True)
     output = args.output_root.resolve()
     if output.exists() or output.is_symlink():
         raise RuntimeError(f"fresh/no-clobber output required: {output}")
     output.mkdir(parents=True)
-    arrays = load_npz(source)
-    authority = json.loads(authority_path.read_text(encoding="utf-8"))
-    if not isinstance(authority, dict):
-        raise RuntimeError("source authority must be a JSON object")
-    product = build_dual_wrist_representation(
-        frame_ids=arrays["frame_ids"],
-        timestamps_s=arrays["timestamps_s"],
-        T_camera_controller_raw=arrays["T_camera_controller_raw"],
-        T_controller_wrist=arrays["T_controller_wrist"],
-        controller_valid=arrays["controller_valid"],
-        hawor_T_camera_wrist=arrays["hawor_T_camera_wrist"],
-        hawor_valid=arrays["hawor_valid"],
-        visible_surface_xyz_camera=arrays["visible_surface_xyz_camera"],
-        visible_surface_uv=arrays["visible_surface_uv"],
-        visible_surface_valid=arrays["visible_surface_valid"],
-        visible_region_valid=arrays["visible_region_valid"],
-        source_temporal_authority=authority,
-    )
-    metadata = dict(product.pop("metadata"))
-    product_path = output / "WRIST_DUAL_REPRESENTATION_V1.npz"
-    atomic_npz(product_path, {key: np.asarray(value) for key, value in product.items()})
+    dual_result = validate_dual_wrist_result(dual_result_path, dual_npz_path)
+    product = load_dual_wrist_npz(dual_npz_path)
+    with np.load(camera_path, allow_pickle=False) as archive:
+        camera = {name: np.asarray(archive[name]) for name in archive.files}
+    required_camera = {"frame_id", "timestamp_s", "intrinsics"}
+    missing = sorted(required_camera - set(camera))
+    if missing:
+        raise RuntimeError(f"camera adapter missing fields: {missing}")
+    if not np.array_equal(camera["frame_id"], product["frame_id"]):
+        raise RuntimeError("camera adapter frame IDs differ from dual-wrist product")
+    if not np.allclose(
+        camera["timestamp_s"], product["timestamp_s"], atol=1e-9, rtol=0.0
+    ):
+        raise RuntimeError("camera adapter timestamps differ from dual-wrist product")
     metrics = comparison_metrics(product)
-    metrics["metadata"] = metadata
+    metrics["dual_wrist_authority"] = dual_result["authority"]
+    metrics["temporal_authority"] = dual_result["temporal_authority"]
+    metrics["pico_world_coordinate_chain"] = (
+        "AVAILABLE" if "T_world_camera" in camera else "BLOCKED_COORDINATE_CHAIN"
+    )
     metrics_path = output / "METRICS.json"
     atomic_json(metrics_path, metrics)
     video = output / "CHIPS023_WRIST_2D_3D_DEPTH_REVIEW.mp4"
@@ -376,23 +412,29 @@ def main() -> int:
         raw_video=raw_video,
         video_output=video,
         product=product,
-        intrinsics=arrays["intrinsics"],
-        T_world_camera=arrays.get("T_world_camera"),
+        intrinsics=camera["intrinsics"],
+        T_world_camera=camera.get("T_world_camera"),
         fps=args.fps,
     )
     result = {
         "schema_version": "EXACT78_WRIST_COMPARISON_RESULT_V31",
-        "status": "PASS_DEVELOPMENT_MULTI_SOURCE_COMPARISON",
+        "status": (
+            "PASS_DEVELOPMENT_MULTI_SOURCE_COMPARISON"
+            if "T_world_camera" in camera
+            else "PARTIAL_BLOCKED_PICO_WORLD_CHAIN"
+        ),
         "inputs": {
-            "adapter_npz": artifact(source),
-            "source_authority": artifact(authority_path),
+            "dual_wrist_result": artifact(dual_result_path),
+            "dual_wrist_npz": artifact(dual_npz_path),
+            "camera_adapter_npz": artifact(camera_path),
             "raw_video": artifact(raw_video),
         },
         "outputs": {
-            "dual_wrist": artifact(product_path),
             "metrics": artifact(metrics_path),
             "review_video": artifact(video),
         },
+        "dual_wrist_schema_authority": "contracts/wrist_dual_representation_v1.schema.json",
+        "dual_wrist_producer_authority": "build_wiyh_wrist_dual_representation_v1",
         "control_ground_truth": False,
         "physical_deployment_authorized": False,
         "external_metric_authority": False,
