@@ -21,7 +21,12 @@ from chaoyang.pipeline.kai22_full_fk_sidecar_v1 import (
     reload_kai22_full_fk_sidecar,
     write_kai22_full_fk_sidecar,
 )
+from chaoyang.pipeline.kai22_clip_reconstruction_v1 import (
+    Kai22ClipReconstructionError,
+    reconstruct_kai22_clip_delta,
+)
 from chaoyang.pipeline.robot_renderer_cycles import parse_urdf
+from chaoyang.pipeline.robot_visual_relative_v1 import HandLimits
 from chaoyang.pipeline.temporal_authority_v1 import audit_suffix_invariance
 
 
@@ -350,3 +355,67 @@ def test_h50_requires_51_frame_consumer_window_and_temporal_authority() -> None:
     result = evaluate_kai22_r0_tiers_v32(**arguments)
     assert result["highest_admitted_level"] == "H50_READY"
     assert result["training_eligible"] is True
+
+
+def test_clip_reconstruction_recovers_signed_delta_and_postclip_q() -> None:
+    frames = 2
+    joints = np.zeros((2, frames, 21, 3), dtype=np.float64)
+    for side in range(2):
+        for frame in range(frames):
+            joints[side, frame, :, 0] = np.arange(21) * 0.01
+            joints[side, frame, :, 1] = np.arange(21) ** 2 * 0.001
+            joints[side, frame, :, 2] = side * 0.01 + frame * 0.001
+    observed = np.ones((frames, 2), dtype=bool)
+    valid = np.ones((frames, 2), dtype=bool)
+    mapping = np.asarray([1, 0], dtype=np.int64)
+    limits = tuple(
+        HandLimits(
+            lower=np.full(22, -0.05, dtype=np.float64),
+            upper=np.full(22, 0.05, dtype=np.float64),
+            neutral=np.zeros(22, dtype=np.float64),
+        )
+        for _ in range(2)
+    )
+    # First materialise the deterministic historical post-clip value.
+    provisional = np.full((frames, 2, 22), np.nan, dtype=np.float64)
+    from chaoyang.pipeline.kai22_clip_reconstruction_v1 import _desired_q22
+
+    for anatomical, physical in enumerate(mapping.tolist()):
+        for frame in range(frames):
+            desired = _desired_q22(joints[anatomical, frame], limits[physical])
+            provisional[frame, physical] = np.clip(
+                desired, limits[physical].lower, limits[physical].upper
+            )
+    summary, arrays = reconstruct_kai22_clip_delta(
+        joints_3d_camera=joints,
+        source_observed_anatomical=observed,
+        q22_postclip=provisional,
+        q22_valid_physical=valid,
+        human_to_physical=mapping,
+        limits=limits,
+    )
+    assert summary["postclip_matches_frozen_q22_byte_exact"] is True
+    assert summary["clip_delta_semantics"] == "POSTCLIP_Q22_MINUS_PRECLIP_DESIRED_Q22"
+    assert summary["clipped_side_frames"] > 0
+    assert np.array_equal(arrays["q22_reconstructed_postclip"], provisional)
+    assert np.allclose(
+        arrays["q22_preclip_desired"] + arrays["clip_delta"], provisional
+    )
+
+
+def test_clip_reconstruction_rejects_nonmatching_frozen_q() -> None:
+    joints = np.zeros((2, 1, 21, 3), dtype=np.float64)
+    joints[:, 0, :, 0] = np.arange(21) * 0.01
+    joints[:, 0, :, 1] = np.arange(21) ** 2 * 0.001
+    limits = tuple(
+        HandLimits(-np.ones(22), np.ones(22), np.zeros(22)) for _ in range(2)
+    )
+    with pytest.raises(Kai22ClipReconstructionError, match="differs from frozen"):
+        reconstruct_kai22_clip_delta(
+            joints_3d_camera=joints,
+            source_observed_anatomical=np.ones((1, 2), dtype=bool),
+            q22_postclip=np.zeros((1, 2, 22), dtype=np.float64),
+            q22_valid_physical=np.ones((1, 2), dtype=bool),
+            human_to_physical=np.asarray([1, 0]),
+            limits=limits,
+        )

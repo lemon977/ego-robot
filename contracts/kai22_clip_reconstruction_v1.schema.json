@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/kai22-clip-reconstruction-v1",
+  "title": "KAI22_CLIP_RECONSTRUCTION_V1",
+  "type": "object",
+  "additionalProperties": true,
+  "required": [
+    "schema_version",
+    "status",
+    "clip_delta_semantics",
+    "mapping_semantics",
+    "postclip_matches_frozen_q22_byte_exact",
+    "validity_matches_direct_finite_source_observations",
+    "side_mapping",
+    "sides",
+    "valid_side_frames",
+    "clipped_side_frames",
+    "clipped_joint_values",
+    "zero_clip_delta_all_valid_frames",
+    "control_ground_truth",
+    "physical_deployable",
+    "external_metric_authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "KAI22_CLIP_RECONSTRUCTION_V1"},
+    "status": {"const": "PASS_BYTE_EXACT_POSTCLIP_RECONSTRUCTION"},
+    "clip_delta_semantics": {"const": "POSTCLIP_Q22_MINUS_PRECLIP_DESIRED_Q22"},
+    "postclip_matches_frozen_q22_byte_exact": {"const": true},
+    "validity_matches_direct_finite_source_observations": {"const": true},
+    "side_mapping": {"type": "object"},
+    "sides": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "object"}},
+    "valid_side_frames": {"type": "integer", "minimum": 1},
+    "clipped_side_frames": {"type": "integer", "minimum": 0},
+    "clipped_joint_values": {"type": "integer", "minimum": 0},
+    "zero_clip_delta_all_valid_frames": {"type": "boolean"},
+    "control_ground_truth": {"const": false},
+    "physical_deployable": {"const": false},
+    "external_metric_authority": {"const": false}
+  }
+}
