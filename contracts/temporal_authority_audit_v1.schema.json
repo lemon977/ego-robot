@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/temporal-authority-audit-v1",
+  "title": "TEMPORAL_AUTHORITY_AUDIT_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "atol", "rtol", "fields", "required_fields", "required_field_failures", "future_label_use_authorized", "future_to_current_input_flow_authorized"],
+  "properties": {
+    "schema_version": {"const": "TEMPORAL_AUTHORITY_AUDIT_V1"},
+    "status": {"enum": ["PASSED_CAUSAL_CURRENT", "REJECTED_NONCAUSAL_CURRENT_INPUT"]},
+    "atol": {"type": "number", "minimum": 0},
+    "rtol": {"type": "number", "minimum": 0},
+    "fields": {"type": "object", "additionalProperties": {"$ref": "#/$defs/field"}},
+    "required_fields": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "required_field_failures": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "future_label_use_authorized": {"const": true},
+    "future_to_current_input_flow_authorized": {"const": false}
+  },
+  "$defs": {
+    "field": {
+      "type": "object",
+      "required": ["suffix_invariant", "authority", "online_current_admitted"],
+      "properties": {
+        "suffix_invariant": {"type": "boolean"},
+        "authority": {"enum": ["CAUSAL_CURRENT", "OFFLINE_NONCAUSAL", "INFERRED", "UNKNOWN_TEMPORAL_AUTHORITY"]},
+        "online_current_admitted": {"type": "boolean"},
+        "declared_authority": {"type": ["string", "null"]}
+      }
+    }
+  }
+}
