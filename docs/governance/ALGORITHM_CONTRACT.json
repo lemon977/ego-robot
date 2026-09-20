@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T17:01:54+08:00",
-  "generation_id": "gov-013238-840c01576517",
-  "governance_revision": 13238,
+  "generated_at": "2026-09-20T19:09:45+08:00",
+  "generation_id": "gov-013242-fb20e5a43ea7",
+  "governance_revision": 13242,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -124,6 +124,143 @@
         "evidence_class": "DEVELOPMENT_ONLY",
         "may_register_authority": false
       }
+    },
+    "four_stream_pretraining_baseline_v32": {
+      "authority_separation": [
+        "PIPELINE_COMPLETE",
+        "NUMERIC_QUALITY_PASS",
+        "VISUAL_REVIEW_STATUS",
+        "TRAINING_COMPLETE",
+        "TRAINING_ELIGIBLE",
+        "CONTROL_GROUND_TRUTH",
+        "PHYSICAL_DEPLOYABLE"
+      ],
+      "claim_limit": "V3.2 development baselines only; diagnostics constrain only direct consumers and lanes cannot promote one another.",
+      "code_closure": [
+        {
+          "bytes": 9991,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_pretraining_baseline_v32.py",
+          "sha256": "c7bb77d282adf0def1ed6eb23dbf93a95ddb7e111de73019eb956c08ec590d02"
+        },
+        {
+          "bytes": 3073,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/record_four_stream_lane_result_v32.py",
+          "sha256": "da1062a02a0e36466788a2ae51a1cc1b4ba2303f22db25e4b112e0ca97a5cdca"
+        },
+        {
+          "bytes": 7064,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_huro_derived_hand_only_v1.py",
+          "sha256": "0c38b859cf980c25a3473ecd6d54c37b991def7b52e10502394de93493be68d2"
+        },
+        {
+          "bytes": 28634,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_wiyh_ai1_static_wrist_candidate_v32.py",
+          "sha256": "342764972000cb4b52b61148fbf4d996f6f99dc69781ea8cfddd4171b27eff8a"
+        },
+        {
+          "bytes": 11443,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/exact78_v32.py",
+          "sha256": "35d02ceca77306cc92486fc754d2871865fade9d15882570e5c7749866c1bbcd"
+        },
+        {
+          "bytes": 19018,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/build_exact78_pair_ledgers_v32.py",
+          "sha256": "f9f1d0c08cac20907883066d0d8f2d472b73a73e7a8d7182ba042333cba31172"
+        },
+        {
+          "bytes": 62331,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
+          "sha256": "c31d0af16f16d711cd745a171105a94b91f08a6d8306973eedc7d899841fbb25"
+        },
+        {
+          "bytes": 18202,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/ai2_independent_observability_v32.py",
+          "sha256": "e7d2ad0f1219e2170cc01c4453e213c0268988652e5ac4047b551244b359635f"
+        },
+        {
+          "bytes": 30122,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/kai22_full_fk_sidecar_v1.py",
+          "sha256": "a2b9bdc349b8b7dd5270085f181ad48a9d10a17a159b27993047cf8bdb931e01"
+        },
+        {
+          "bytes": 11136,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_hand_only_retarget_v1.py",
+          "sha256": "a13e4376f75586f843b2d876a40d5e1a6746a04de6a92a7596e9333918e9221e"
+        },
+        {
+          "bytes": 11772,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/research/world_in_your_hands/ai1_static_wrist_candidate_v32.py",
+          "sha256": "2598c5e3e72c9293beb992073b9a5739a422564b2300029ea70e69f729db1e72"
+        },
+        {
+          "bytes": 12197,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_four_stream_pretraining_baseline_v32.py",
+          "sha256": "f1469884385219c169f5bff6363beff3eec2b2e3beef6244cfb3bbd50f868927"
+        },
+        {
+          "bytes": 4142,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/build_four_stream_status_v32.py",
+          "sha256": "abd97f5c074d22f3f7381c74a0c8633f2db4e566c8d9ff13be2d93d3c37fd259"
+        },
+        {
+          "bytes": 3601,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_four_stream_v32_implementation.py",
+          "sha256": "48b8b2f2e336c9df5c1b2c78bde3287d639a66d94d8c00c8f354b383ad7d2ab3"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "EXACT78_AI1_AI2_AI4_HURO_ISOLATED_PARENT",
+      "external_metric_authority": false,
+      "first_cycle_gpu_seconds_cap": 72900,
+      "gpu_required": "CONDITIONAL_SINGLE_CENTRAL_LEASE",
+      "huro_scope": "HURO_DERIVED_HAND_ONLY_RETARGET_NOT_OFFICIAL_FULL_REPRODUCTION",
+      "huro_upstream_commit": "033197778fcc30edc3631dddf3343a967683da09",
+      "lane_roots": {
+        "ai1": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1",
+        "ai2": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2",
+        "ai4_huro": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro",
+        "exact78": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78"
+      },
+      "physical_deployment_authorized": false,
+      "schema_closure": [
+        {
+          "bytes": 4670,
+          "path": "/mnt/workspace/code/chaoyang/contracts/ai1_static_wrist_candidate_v32.schema.json",
+          "sha256": "799fd6890778e094f0150fae8e43066a55624bd0cbfa267d801188bba1587b0f"
+        },
+        {
+          "bytes": 1505,
+          "path": "/mnt/workspace/code/chaoyang/contracts/exact78_cohort_split_v32.schema.json",
+          "sha256": "3e2240456d981f1fdaa11bdea536cab2f533ea0884c5c71610864f73c963a8fc"
+        },
+        {
+          "bytes": 4116,
+          "path": "/mnt/workspace/code/chaoyang/contracts/exact78_pair_ledger_v32.schema.json",
+          "sha256": "caf122da0def69af2e16fb351d24113467d9d5639a7c83f6cf03944d713d763d"
+        },
+        {
+          "bytes": 998,
+          "path": "/mnt/workspace/code/chaoyang/contracts/exact78_raw_only_dev_v1.schema.json",
+          "sha256": "4691a05ffd099954238e017899f776138c2628d7999aa499c63db3a489e5d0e2"
+        },
+        {
+          "bytes": 3909,
+          "path": "/mnt/workspace/code/chaoyang/contracts/ai2_independent_observability_v32.schema.json",
+          "sha256": "9d790b5f0c45aeeea32e64dc8efe8bd7d7c61a458d0bbe545c1bbf19d22900d7"
+        },
+        {
+          "bytes": 1762,
+          "path": "/mnt/workspace/code/chaoyang/contracts/kai22_full_fk_sidecar_v1.schema.json",
+          "sha256": "9144e62c407668aac345843eb251ee81210449f77b29a0953f3abfc528c627a5"
+        },
+        {
+          "bytes": 1455,
+          "path": "/mnt/workspace/code/chaoyang/contracts/kai22_r0_tiered_admission_v32.schema.json",
+          "sha256": "7752b677c610a83e67a8652762a319cd46bee800c6dce1075340751170cbf70b"
+        }
+      ],
+      "weights": "ABSENT_AT_PARENT_EACH_CHILD_ONE_PINNED_WEIGHT_OR_ABSENT",
+      "wujihand_status": "BLOCKED_ROBOT_ASSET"
     },
     "handle_data_cleaning_v3": {
       "claim_limit": "Raw tactile integrity/activity and declared modality completeness only; not calibrated force, contact truth, or physical accuracy.",
@@ -1389,9 +1526,9 @@
           "sha256": "c4d00fb15395dcacd3de4170a757a97110c179b2a31a4af2774b50e6ecc19510"
         },
         {
-          "bytes": 57276,
+          "bytes": 62331,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
-          "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
+          "sha256": "c31d0af16f16d711cd745a171105a94b91f08a6d8306973eedc7d899841fbb25"
         },
         {
           "bytes": 9714,
@@ -1487,9 +1624,9 @@
           "sha256": "2b7fd38933613380999026c54dfabe75469f5fefecb19169de1b9e9762515f90"
         },
         {
-          "bytes": 57276,
+          "bytes": 62331,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
-          "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
+          "sha256": "c31d0af16f16d711cd745a171105a94b91f08a6d8306973eedc7d899841fbb25"
         },
         {
           "bytes": 30244,
@@ -2470,9 +2607,9 @@
           "sha256": "d6a8f7ea557631c645b332d8109f264618f522dd987976ed4c9f26c778262a03"
         },
         {
-          "bytes": 57276,
+          "bytes": 62331,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
-          "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
+          "sha256": "c31d0af16f16d711cd745a171105a94b91f08a6d8306973eedc7d899841fbb25"
         },
         {
           "bytes": 9036,

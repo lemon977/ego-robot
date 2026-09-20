@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-20T17:01:54+08:00`
-- governance revision：`13238`
-- generation id：`gov-013238-840c01576517`
+- 状态生成时间：`2026-09-20T19:09:45+08:00`
+- governance revision：`13242`
+- generation id：`gov-013242-fb20e5a43ea7`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`85d846be6e778c81be9eedc7e3bdc5da3529d25dcd0f0136219fbda0cb0d2179`
-- repository：`b8156c80c18a66f33a1e0b94275f37a0bfc799ad` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`c7bb77d282adf0def1ed6eb23dbf93a95ddb7e111de73019eb956c08ec590d02`
+- repository：`0cd5bcaf2c10c5193ddf03d1d342531fd33460e8` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -117,7 +117,11 @@
 
 ## H. 下一任务
 
-状态机当前未选择下一任务。
+- next_task_id：`four_stream_pretraining_baseline_v32`
+- next_session：`-`
+- prerequisites：`governance_PASS_FRESH, no_active_current_task, source_processed_archive_sealed_READ_ONLY, four_lane_writer_roots_ISOLATED, single_publisher, single_GPU_lease_owner, noncommercial_research_evaluation, diagnostics_only_gate_direct_consumers`
+- expected_resource：`FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE`
+- stop_condition：`Finite per-lane terminal or resumable budget state without cross-lane coupling.`
 
 ## 固定读取协议
 

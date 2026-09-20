@@ -1739,9 +1739,9 @@
           "sha256": "d6a8f7ea557631c645b332d8109f264618f522dd987976ed4c9f26c778262a03"
         },
         {
-          "bytes": 57276,
+          "bytes": 62331,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
-          "sha256": "4c5217e5c3580a170a2442296fb00700e29db0322bc5dad503e325a4a10522de"
+          "sha256": "c31d0af16f16d711cd745a171105a94b91f08a6d8306973eedc7d899841fbb25"
         },
         {
           "bytes": 9036,
@@ -1959,9 +1959,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-20T17:01:54+08:00",
-  "generation_id": "gov-013238-840c01576517",
-  "governance_revision": 13238,
+  "generated_at": "2026-09-20T19:09:45+08:00",
+  "generation_id": "gov-013242-fb20e5a43ea7",
+  "governance_revision": 13242,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",

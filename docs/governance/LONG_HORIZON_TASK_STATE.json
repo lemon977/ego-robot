@@ -73,12 +73,27 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-20T17:01:54+08:00",
-  "generation_id": "gov-013238-840c01576517",
-  "generator_code_sha": "85d846be6e778c81be9eedc7e3bdc5da3529d25dcd0f0136219fbda0cb0d2179",
-  "governance_revision": 13238,
+  "generated_at": "2026-09-20T19:09:45+08:00",
+  "generation_id": "gov-013242-fb20e5a43ea7",
+  "generator_code_sha": "c7bb77d282adf0def1ed6eb23dbf93a95ddb7e111de73019eb956c08ec590d02",
+  "governance_revision": 13242,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
-  "next_task": null,
+  "next_task": {
+    "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
+    "prerequisites": [
+      "governance_PASS_FRESH",
+      "no_active_current_task",
+      "source_processed_archive_sealed_READ_ONLY",
+      "four_lane_writer_roots_ISOLATED",
+      "single_publisher",
+      "single_GPU_lease_owner",
+      "noncommercial_research_evaluation",
+      "diagnostics_only_gate_direct_consumers"
+    ],
+    "session": null,
+    "stop_condition": "Finite per-lane terminal or resumable budget state without cross-lane coupling.",
+    "task_id": "four_stream_pretraining_baseline_v32"
+  },
   "rc1_budget": {
     "checkpoint_gpu_hours_limit": 48,
     "checkpoint_gpu_hours_used": 0,
@@ -102,33 +117,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T05:37:48+08:00",
-      "message": "Finite 0915 campaign task reached a recorded terminal.",
-      "result": {
-        "bytes": 1482,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json",
-        "sha256": "23e175652438a5c3b9c59e4bd79ad726f8de1d5ebc217e2e9d809f0fe090a60d"
-      },
-      "session": null,
-      "status": "PASSED",
-      "task_id": "0915_input_prepare_cad_v2"
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T05:37:55+08:00",
-      "message": "Registered one finite 0915 campaign task; execution not started.",
-      "predecessor": "0915_input_prepare_cad_v2",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "0915_hawor_full_v1",
-      "task_packet": {
-        "bytes": 1577,
-        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_full_v1/TASK_PACKET.json",
-        "sha256": "b7005278c4bffb7cb56fddb7fa62c02ca54ee1c0ceb60f8661c32d7cb9a0afcf"
-      }
-    },
     {
       "attempt": 0,
       "created_at": "2026-09-18T10:22:47+08:00",
@@ -1492,11 +1480,37 @@
       "session": null,
       "status": "PASSED",
       "task_id": "ai1_artifact_ref_rebind_v31"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-20T19:04:05+08:00",
+      "message": "Registered the V3.2 four-stream parent; no algorithm result yet.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_pretraining_baseline_v32",
+      "task_packet": {
+        "bytes": 6486,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
+        "sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-20T19:04:09+08:00",
+      "message": "Initialized four isolated lanes and the single-owner GPU queue; algorithms not yet run.",
+      "run_signature": {
+        "bytes": 1602,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/RUN_SIGNATURE.json",
+        "sha256": "077b05a5db9355f361b8a650be7edc6d561b8957b7091374998bb83519b1df31"
+      },
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_pretraining_baseline_v32"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "b8156c80c18a66f33a1e0b94275f37a0bfc799ad"
+    "commit": "0cd5bcaf2c10c5193ddf03d1d342531fd33460e8"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2840,6 +2854,25 @@
         "sha256": "3c53bb0a918a3454dccd11d306532548111d0166aa9ea0f8c5dff238f91adf64"
       },
       "updated_at": "2026-09-20T17:00:58+08:00"
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "FOUR_STREAM_PRETRAINING_BASELINE_V32",
+      "pid": null,
+      "plan_execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
+      "proc_start_ticks": null,
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_pretraining_baseline_v32",
+      "task_packet": {
+        "bytes": 6486,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
+        "sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f"
+      },
+      "updated_at": "2026-09-20T19:04:09+08:00"
     }
   ]
 }

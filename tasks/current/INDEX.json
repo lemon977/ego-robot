@@ -1,17 +1,26 @@
 {
-  "claim_limit": "AI1 artifact refs were rebound exactly. The underlying lane remains blocked on adoption observations; no algorithm or authority was changed.",
-  "execution_revision": "AI1_ARTIFACT_REF_REBIND_V31",
-  "generated_at": "2026-09-20T17:01:54+08:00",
-  "generation_id": "gov-013238-840c01576517",
-  "governance_revision": 13238,
-  "packet_revision": "AI1_ARTIFACT_REF_REBIND_V31_TERMINAL",
-  "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
+  "claim_limit": "Exactly one parent is routable; four internal writers are isolated and GPU work is serialized.",
+  "execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
+  "generated_at": "2026-09-20T19:04:05+08:00",
+  "generation_id": "gov-013240-b83293171178",
+  "governance_revision": 13240,
+  "packet_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V32_PARENT_ROUTABLE",
+  "plan_revision": "FOUR_STREAM_STABLE_BASELINE_V3_2",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
-  "status": "PASS_NO_ACTIVE_TASKS",
+  "status": "PASS",
   "supersedes_index": {
-    "bytes": 1081,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "9d50ef567d980eaccb683d9c4e13b3c5812b11f71a3c77960343649c43edcbac"
+    "bytes": 842,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/registration_0001/PREDECESSOR_TASK_PACKET_INDEX.json",
+    "sha256": "ab836c49ebe389a18fb15d23d9bf9e891268a133e405af55280d64d3dca1faa1"
   },
-  "task_packets": []
+  "task_packets": [
+    {
+      "execution_allowed": true,
+      "execution_class": "CURRENT_LEDGER_ROUTABLE",
+      "packet_path": "tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
+      "packet_sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f",
+      "task_id": "four_stream_pretraining_baseline_v32",
+      "weights": "ABSENT"
+    }
+  ]
 }

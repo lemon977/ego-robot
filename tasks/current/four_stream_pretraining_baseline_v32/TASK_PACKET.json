@@ -1,0 +1,153 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "cpu_threads_soft_cap": 8,
+    "first_cycle_exact78_gpu_seconds_max": 43200,
+    "first_cycle_gpu_seconds_max": 72900,
+    "first_cycle_huro_gpu_seconds_max": 14400,
+    "first_cycle_observation_gpu_seconds_max": 14400,
+    "first_cycle_stereo_gpu_seconds_max": 900,
+    "gpu_concurrent_owners_max": 1,
+    "per_model_lifetime_gpu_seconds_max": 43200,
+    "progress_receipts_hours": [
+      2,
+      4,
+      8,
+      24
+    ]
+  },
+  "calibration_or_absent": "PER_LANE_PINNED_EVIDENCE_OR_ABSENT",
+  "child_weights_policy": "EACH_CHILD_BINDS_EXACTLY_ONE_PINNED_WEIGHT_OR_ABSENT",
+  "claim_limit": "Development baselines only. Pipeline, numeric quality, visual review, training, training eligibility, control truth and deployment remain separate claims.",
+  "code_closure": [
+    {
+      "bytes": 12197,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_four_stream_pretraining_baseline_v32.py",
+      "sha256": "f1469884385219c169f5bff6363beff3eec2b2e3beef6244cfb3bbd50f868927"
+    },
+    {
+      "bytes": 4142,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/build_four_stream_status_v32.py",
+      "sha256": "abd97f5c074d22f3f7381c74a0c8633f2db4e566c8d9ff13be2d93d3c37fd259"
+    },
+    {
+      "bytes": 9991,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_pretraining_baseline_v32.py",
+      "sha256": "c7bb77d282adf0def1ed6eb23dbf93a95ddb7e111de73019eb956c08ec590d02"
+    },
+    {
+      "bytes": 3073,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/record_four_stream_lane_result_v32.py",
+      "sha256": "da1062a02a0e36466788a2ae51a1cc1b4ba2303f22db25e4b112e0ca97a5cdca"
+    },
+    {
+      "bytes": 7064,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_huro_derived_hand_only_v1.py",
+      "sha256": "0c38b859cf980c25a3473ecd6d54c37b991def7b52e10502394de93493be68d2"
+    },
+    {
+      "bytes": 28634,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_wiyh_ai1_static_wrist_candidate_v32.py",
+      "sha256": "342764972000cb4b52b61148fbf4d996f6f99dc69781ea8cfddd4171b27eff8a"
+    },
+    {
+      "bytes": 11136,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_hand_only_retarget_v1.py",
+      "sha256": "a13e4376f75586f843b2d876a40d5e1a6746a04de6a92a7596e9333918e9221e"
+    },
+    {
+      "bytes": 11772,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/research/world_in_your_hands/ai1_static_wrist_candidate_v32.py",
+      "sha256": "2598c5e3e72c9293beb992073b9a5739a422564b2300029ea70e69f729db1e72"
+    },
+    {
+      "bytes": 11443,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/exact78_v32.py",
+      "sha256": "35d02ceca77306cc92486fc754d2871865fade9d15882570e5c7749866c1bbcd"
+    },
+    {
+      "bytes": 19018,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/build_exact78_pair_ledgers_v32.py",
+      "sha256": "f9f1d0c08cac20907883066d0d8f2d472b73a73e7a8d7182ba042333cba31172"
+    },
+    {
+      "bytes": 62331,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
+      "sha256": "c31d0af16f16d711cd745a171105a94b91f08a6d8306973eedc7d899841fbb25"
+    },
+    {
+      "bytes": 18202,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/ai2_independent_observability_v32.py",
+      "sha256": "e7d2ad0f1219e2170cc01c4453e213c0268988652e5ac4047b551244b359635f"
+    },
+    {
+      "bytes": 30122,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/kai22_full_fk_sidecar_v1.py",
+      "sha256": "a2b9bdc349b8b7dd5270085f181ad48a9d10a17a159b27993047cf8bdb931e01"
+    }
+  ],
+  "dag_dependencies": [],
+  "execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
+  "executor_epoch": 1,
+  "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
+  "external_metric_authority": false,
+  "fencing": {
+    "immutable_final": true,
+    "lane_writer_roots": {
+      "ai1": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1",
+      "ai2": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2",
+      "ai4_huro": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro",
+      "exact78": "_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78"
+    },
+    "pid_startticks_required": true,
+    "unique_primary_writer": true
+  },
+  "objective": "Produce the V3.2 Exact78, AI1, AI2 and HuRo-derived first milestones with isolated writers, one publisher, one GPU owner and separately bounded development claims.",
+  "phase": "FOUR_STREAM_PRETRAINING_BASELINE_V32",
+  "plan_revision": "FOUR_STREAM_STABLE_BASELINE_V3_2",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "no_active_current_task",
+    "source_processed_archive_sealed_READ_ONLY",
+    "four_lane_writer_roots_ISOLATED",
+    "single_publisher",
+    "single_GPU_lease_owner",
+    "noncommercial_research_evaluation",
+    "diagnostics_only_gate_direct_consumers"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "docs/current/PLAN.md",
+    "docs/current/EXACT78.md",
+    "docs/current/AI1.md",
+    "docs/current/AI2.md",
+    "docs/current/AI4_HURO.md",
+    "tasks/current/INDEX.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/lanes/exact78/STATE.json",
+    "attempts/attempt_0001/lanes/ai1/STATE.json",
+    "attempts/attempt_0001/lanes/ai2/STATE.json",
+    "attempts/attempt_0001/lanes/ai4_huro/STATE.json",
+    "attempts/attempt_0001/LANE_LEDGER.json",
+    "attempts/attempt_0001/GPU_QUEUE_LEDGER.json",
+    "attempts/attempt_0001/RUN_SIGNATURE.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "each_lane_reaches_frozen_milestone_terminal_or_resumable_budget_state",
+    "quality_failure_has_no_same_signature_automatic_retry",
+    "budget_expiry_saves_resumable_state_before_successor_budget",
+    "writer_or_GPU_lease_violation_fails_closed",
+    "external_physical_control_authority_remains_false"
+  ],
+  "task_id": "four_stream_pretraining_baseline_v32",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/four_stream_pretraining_baseline_v32",
+    "docs/current/STATUS.json",
+    "tasks/receipts/FOUR_STREAM_PRETRAINING_BASELINE_V32_RESULT.json",
+    "docs/current/visuals/FOUR_STREAM_PRETRAINING_BASELINE_V32"
+  ]
+}

@@ -1,11 +1,36 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-20T17:01:54+08:00",
-  "generation_id": "gov-013238-840c01576517",
-  "governance_revision": 13238,
-  "next_task": null,
+  "generated_at": "2026-09-20T19:09:45+08:00",
+  "generation_id": "gov-013242-fb20e5a43ea7",
+  "governance_revision": 13242,
+  "next_task": {
+    "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
+    "prerequisites": [
+      "governance_PASS_FRESH",
+      "no_active_current_task",
+      "source_processed_archive_sealed_READ_ONLY",
+      "four_lane_writer_roots_ISOLATED",
+      "single_publisher",
+      "single_GPU_lease_owner",
+      "noncommercial_research_evaluation",
+      "diagnostics_only_gate_direct_consumers"
+    ],
+    "session": null,
+    "stop_condition": "Finite per-lane terminal or resumable budget state without cross-lane coupling.",
+    "task_id": "four_stream_pretraining_baseline_v32"
+  },
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "FOUR_STREAM_PRETRAINING_BASELINE_V32",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_pretraining_baseline_v32",
+      "updated_at": "2026-09-20T19:04:09+08:00"
+    },
     {
       "attempt": 1,
       "gpu_id": null,
