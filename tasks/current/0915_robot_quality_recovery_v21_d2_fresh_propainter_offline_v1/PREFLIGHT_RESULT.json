@@ -1,0 +1,39 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d2-read-only-preflight-v1",
+  "status": "PASSED_PREPARED_NOT_EXECUTED",
+  "d1_per_frame_refs_sha_verified": 3360,
+  "sessions": {
+    "play_cards_0915_044": {
+      "frames": 166,
+      "m_write_pixels": 0,
+      "m_flow_pixels": 0,
+      "protected_pixels": 2999647
+    },
+    "get_potato_chips_0915_097": {
+      "frames": 394,
+      "m_write_pixels": 14909727,
+      "m_flow_pixels": 21667934,
+      "protected_pixels": 0
+    }
+  },
+  "vendor": {
+    "nested_git": false,
+    "source_tree_files": 53,
+    "source_tree_sha256": "812fb2035b01948522b3fe690a17130aa29c94e7fdd72827dbe027b573d71ffa",
+    "inference_sha256": "5aee61d93a40e4c54d531866ab80c66e8ad7d9285373a801c2e22372bf87147f",
+    "weight_sha256": {
+      "raft-things.pth": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1",
+      "recurrent_flow_completion.pth": "22939a1a7900da878dbe1ccd011d646b1bfb30b8290039d8ff0e0c2fefbfd283",
+      "ProPainter.pth": "12c070c4b48f374c91d8a2a17851140b85c159621080989f9e191bbc18bd6591"
+    }
+  },
+  "tools": {
+    "ffmpeg": true,
+    "python": "3.11.11"
+  },
+  "gpu_used": false,
+  "model_execution_performed": false,
+  "remote_write_performed": false,
+  "elapsed_s": 3.403,
+  "claim_limit": "Read-only remote preflight only; no generated pixels or Clean authority."
+}

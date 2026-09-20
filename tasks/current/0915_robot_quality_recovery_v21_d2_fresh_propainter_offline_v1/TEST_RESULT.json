@@ -1,0 +1,28 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d2-fresh-propainter-offline-test-result-v1",
+  "status": "PASSED",
+  "tests_run": 16,
+  "tests_failed": 0,
+  "syntax_compile": "PASSED",
+  "deployment_config_resolution": "PASSED_ADJACENT_THEN_REPO_ROOT_CONTRACT_FALLBACK",
+  "coverage": [
+    "M_write-only compositing",
+    "UNKNOWN retained after synthetic visual fill",
+    "visible instance byte-exact preservation",
+    "M_write subset M_flow rejection",
+    "object/write overlap rejection",
+    "D1 UNKNOWN mismatch rejection",
+    "frozen no-sweep/no-fallback/offline policy",
+    "staging artifact refs project to final paths",
+    "successful deep publication has one complete final and no staging residue",
+    "injected deep failure leaves no partial final and removes staging",
+    "staging path leakage in JSON is rejected and cleaned",
+    "shallow publication copies real files, emits final refs and commits atomically",
+    "M_flow input plus internal dilation-4 semantics are frozen while publish domain remains M_write",
+    "vendor four-digit sequence is exact and byte-exactly normalized to exact six-digit sequence",
+    "shallow publication rejects non-PASSED or mismatched GPU task/attempt/command/deep-root receipts",
+    "weight provenance accepts only exact vendor symlink lexical path plus exact resolved asset target and bytes/SHA"
+  ],
+  "gpu_used": false,
+  "model_execution_performed": false
+}

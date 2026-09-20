@@ -1,0 +1,75 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b3-mask-successor-preparation-result-v1",
+  "task_id": "b3_mask_successor_audit",
+  "status": "PREPARED_NOT_EXECUTED",
+  "selected_delivery": "A_SINGLE_FROZEN_CPU_GPU_CANARY_PACKAGE",
+  "candidate_id": "B3_SAM31_TEXT_ONLY_HAND_WORN_EQUIPMENT_GEOMETRY_V1",
+  "claim_limit": "Development geometry-only SAM3.1 candidate audit. No Mask accuracy, Hand identity, physical tracker identity, left/right identity, absence, Object, Clean, Contact, training, control or deployment authority.",
+  "model_executed": false,
+  "gpu_consumed": false,
+  "remote_written": false,
+  "training_eligible": false,
+  "consumer_allowed": false,
+  "mask_accuracy_claimed": false,
+  "physical_tracker_identity_claimed": false,
+  "parent_b1_immutable": true,
+  "parent_b1r_immutable": true,
+  "hawor_consumed": false,
+  "mano_consumed": false,
+  "pico_consumed": false,
+  "previous_hand_masks_consumed": false,
+  "left_right_identity": "UNKNOWN",
+  "cross_chunk_identity": "NOT_STITCHED",
+  "object_or_clean_changed": false,
+  "atomic_publication_contract": {
+    "deep_output": "SAME_FILESYSTEM_STAGING_THEN_OS_REPLACE",
+    "failure_cleanup": "REMOVE_STAGING_NO_FINAL_VISIBLE",
+    "artifact_refs": "PROJECT_STAGING_PATHS_TO_FINAL_BEFORE_WRITE",
+    "shallow_output": "INDEPENDENT_RENDERER_FULL_DECODE_THEN_OS_REPLACE"
+  },
+  "preflight": {
+    "available": true,
+    "loads_model": false,
+    "uses_gpu": false,
+    "validates": "CONFIG_ALL_PINS_AND_FULL_RGB_DECODE"
+  },
+  "gpu_lease_budget": {
+    "wrapper_sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3",
+    "priority": "CANARY",
+    "gpu_id": 0,
+    "min_free_mib": 49152,
+    "wait_seconds": 1800,
+    "wall_seconds": 3600,
+    "maximum_commands": 1
+  },
+  "runtime_terminal_contract": {
+    "per_session_allowed": [
+      "COMPLETED_SEPARATION_GEOMETRY_PASS",
+      "COMPLETED_SEPARATION_REJECTED",
+      "COMPLETED_SEPARATION_UNKNOWN"
+    ],
+    "model_completion_is_mask_pass": false,
+    "mask_quality_status": "NOT_EVALUATED_NO_GROUND_TRUTH"
+  },
+  "sessions": [
+    {"session_id": "play_cards_0915_044", "frame_count": 166, "window_count": 3},
+    {"session_id": "get_potato_chips_0915_097", "frame_count": 394, "window_count": 7}
+  ],
+  "first_unresolved_authority": "NO_INDEPENDENT_PHYSICAL_HAND_OR_WORN_TRACKER_IDENTITY_AUTHORITY",
+  "execution_preconditions": [
+    "Register exact runner/config/renderer/GPU-wrapper SHA in governance.",
+    "Acquire the existing shared V7.1 GPU lease without stopping unrelated processes.",
+    "Use a fresh output root and keep B1/B1R immutable.",
+    "Treat every output as review-only geometry evidence."
+  ],
+  "artifacts": {
+    "config": {"path": "B3_MASK_SUCCESSOR_CANARY_V1.json", "sha256": "2542013d7162822e23e8f6b0dcd4e724bc1e8de1f19e6dcd74fdb0cc9dfe555b"},
+    "runner": {"path": "run_b3_sam31_independent_hand_equipment_canary_v1.py", "sha256": "8431c8a31ad3365ab59c49092d8e1557d499a67c0f7804d3e38f2793a8d5f6ce"},
+    "shallow_renderer": {"path": "publish_b3_shallow_reviews_v1.py", "sha256": "c7ba7eedb48b5c715c0dd3f5d732e5ede8b90186a2d85741caba2fd9d00c05a7"},
+    "tests": {"path": "test_b3_sam31_independent_hand_equipment_canary_v1.py", "sha256": "5056d57537575cc5e0618a330f1412c0a89afbc2e62ee1761285755625daaf8c"},
+    "test_result": {"path": "TEST_RESULT.json", "sha256": "2dfa60d3a3ca2cfd1280342fc2b4b0696d2102985b0abc92a1d52b4f2f8eeb2f"},
+    "audit": {"path": "AUDIT_EVIDENCE.json", "sha256": "7d35a375a0bceb6ece076e84800148dca10c6161353f76008e0a4b0503477b5d"},
+    "decision": {"path": "DECISION.md", "sha256": "89d2589f45a6352505bc0ea6bc0682996b7421c751720da4433ddb9d3b54301f"},
+    "readme": {"path": "README_ZH.md", "sha256": "6d8c2624814825e0e39d79c7308c766d474692fa9514c9881534f45ce4015c21"}
+  }
+}

@@ -1,0 +1,313 @@
+{
+  "document_kind": "LOCAL_REGISTRATION_INPUT_TEMPLATE_NOT_EXECUTABLE",
+  "version": "2.1",
+  "prepared_on": "2026-09-19",
+  "project_kind": "robotics_not_trading",
+  "suggested_parent_task_id": "0915_robot_quality_recovery_15h_v2",
+  "registration_note": "本地收到00_START_HERE的启动授权后，读取当前receipt并转换为现有合法任务包；本JSON不能直接被当成运行中账本。",
+  "dispatch_allowed": false,
+  "reported_snapshot": {
+    "source": "USER_MESSAGE_NOT_REMOTELY_REVERIFIED",
+    "governance_revision": 12362,
+    "governance_id": "gov-012362-8d04bae5bef9",
+    "branch": "task/0915-full-funnel-0916-clean-v1",
+    "actual_head": null,
+    "active_task_state": "PASS_NO_ACTIVE_TASKS",
+    "terminal_nodes": 47,
+    "depth_sessions": 12,
+    "depth_frames": 3390,
+    "w0_hawor_strict_passed": 0,
+    "w0_sessions": 4,
+    "w1_hawor_attempted": 0,
+    "w1_sessions": 8
+  },
+  "scope": {
+    "repo": "/mnt/workspace/code/chaoyang",
+    "processed_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915",
+    "dataset": "0915_only",
+    "excluded": [
+      "0916_downstream",
+      "exact78_reprocessing",
+      "Removal_V1_V2",
+      "Clean_inpaint",
+      "policy_training",
+      "RL",
+      "real_hardware_control"
+    ],
+    "primary_sessions_count": 12,
+    "primary_session_ids": [
+      "play_cards_0915_031",
+      "play_cards_0915_119",
+      "get_potato_chips_0915_007",
+      "get_potato_chips_0915_042",
+      "play_cards_0915_044",
+      "get_potato_chips_0915_097",
+      "play_cards_0915_106",
+      "get_potato_chips_0915_029",
+      "play_cards_0915_054",
+      "play_cards_0915_003",
+      "get_potato_chips_0915_068",
+      "get_potato_chips_0915_056"
+    ],
+    "primary_ids_to_resolve_from": "上一轮冻结W0/W1 manifest，并以V2.1 access ledger复核输入SHA",
+    "extra_validation_max": 4,
+    "extra_condition": "原12条全终态、H9候选冻结、W0至少2条同口径严格恢复、W1至少2条R0质量准入、无未闭合运行或实现错误、P90预算允许H13.5前全部启动",
+    "extra_final_salt": "chaoyang_robot_recovery_15h_v2_extra_final_v1",
+    "extra_final_expected": [
+      "play_cards_0915_030",
+      "play_cards_0915_085",
+      "get_potato_chips_0915_017",
+      "get_potato_chips_0915_095"
+    ],
+    "extra_final_sealed": true,
+    "extra_final_open_after": "H11_EXPANSION_GATE",
+    "extra_final_replacement_allowed": false,
+    "whole_inventory_automatic_batch_allowed": false,
+    "source_group_independence": "METADATA_VERIFIED_NO_USER_ATTESTATION",
+    "source_group_authority_basis": [
+      "UNIQUE_VST_SHA256",
+      "UNIQUE_VST_QPC_SHA256",
+      "NON_OVERLAPPING_VST_QPC_INTERVAL",
+      "UNIQUE_CAMERA_CAPTURE_TIMESTAMP",
+      "NO_CROSS_SEGMENT_MERGE_EVIDENCE"
+    ]
+  },
+  "access_tiers": {
+    "W0": ["play_cards_0915_031", "play_cards_0915_119", "get_potato_chips_0915_007", "get_potato_chips_0915_042"],
+    "W1_DIAG": ["play_cards_0915_044", "get_potato_chips_0915_097"],
+    "W1_ADOPTION": ["play_cards_0915_106", "get_potato_chips_0915_029"],
+    "H9_FINAL_HOLDOUT": ["play_cards_0915_054", "play_cards_0915_003", "get_potato_chips_0915_068", "get_potato_chips_0915_056"],
+    "EXTRA_FINAL": ["play_cards_0915_030", "play_cards_0915_085", "get_potato_chips_0915_017", "get_potato_chips_0915_095"]
+  },
+  "window": {
+    "duration_hours": 15,
+    "started_at": null,
+    "deadline_at": null,
+    "clock_rule": "本地收到启动指令并开始执行时记录T0一次；使用monotonic剩余预算，不因重试重置",
+    "algorithm_freeze_at_elapsed_hours": 9,
+    "stop_new_sessions_at_elapsed_hours": 13.5,
+    "final_close_at_elapsed_hours": 15,
+    "heartbeat_seconds": 60,
+    "runtime_snapshot_minutes": 10,
+    "governed_markdown_refresh": "MILESTONES_ONLY"
+  },
+  "resources": {
+    "cpu_lanes_max": 3,
+    "publisher_count": 1,
+    "gpu_concurrent_owners_max": 1,
+    "preserve_foreign_processes": true,
+    "new_model_or_environment_installation": false
+  },
+  "access_policy": {
+    "w1_adoption_requires_candidate_freeze": true,
+    "w1_adoption_allowed_outcomes": ["ADOPT", "REJECT", "SAME_SIGNATURE_RUNTIME_RETRY"],
+    "post_adoption_algorithm_change_allowed": false,
+    "hawor_r0_shared_candidate_requires_both_adoption_sessions": true,
+    "sam_object_task_specific_adoption_allowed": true,
+    "holdout_only_for_adopted_capability": true,
+    "extra_final_requires_h11_gate": true
+  },
+  "contact_metric_contract": {
+    "strict_distance_m": 0.005,
+    "local_stereo_metric_dev": "ALL_SAME_FRAME_SAME_ENCODED_DEPTH_PHYSICAL_LEFT_AND_IDENTITY_PATCH_LR_REGISTRATION_UNCERTAINTY_GATES",
+    "external_metric_authority": false,
+    "control_ground_truth": false,
+    "physical_deployment_authorized": false,
+    "contact_window_may_fit_alignment": false,
+    "tactile_may_create_geometric_contact_point": false
+  },
+  "work_packages": [
+    {
+      "id": "P0",
+      "owner": "publisher",
+      "purpose": "immutable R2 contract recovery or scoped tombstone",
+      "initial_budget_minutes": 45,
+      "prerequisites": [
+        "valid_current_registration"
+      ],
+      "failure_scope": "affected_R2_lineage_not_unrelated_legal_inputs"
+    },
+    {
+      "id": "A0",
+      "owner": "lane_a",
+      "purpose": "W0 per-frame failure and consumer-dependency audit",
+      "elapsed_hours": [
+        0,
+        1.5
+      ],
+      "prerequisites": [
+        "legal_W0_cache_and_gate_code"
+      ],
+      "outputs": [
+        "W0_FAILURE_MATRIX.json",
+        "CONSUMER_GATE_AUDIT.json"
+      ]
+    },
+    {
+      "id": "B0",
+      "owner": "lane_b",
+      "purpose": "audit SAM/Object dependencies independently of HaWoR session strict",
+      "elapsed_hours": [0, 1.5],
+      "prerequisites": ["legal_RGB_and_pinned_SAM_contract"],
+      "outputs": ["SAM_OBJECT_DEPENDENCY_AUDIT.json"]
+    },
+    {
+      "id": "C0",
+      "owner": "lane_c",
+      "purpose": "build the Contact observability funnel before any alignment or R1 decision",
+      "elapsed_hours": [0, 1.5],
+      "prerequisites": ["legal_cached_observations_and_original_contract"],
+      "outputs": ["CONTACT_OBSERVABILITY_AUDIT.json"]
+    },
+    {
+      "id": "A1",
+      "owner": "lane_a",
+      "purpose": "bounded HaWoR corrective and W1 diagnostic inference",
+      "elapsed_hours": [
+        1.5,
+        4.5
+      ],
+      "prerequisites": [
+        "A0_specific_failure_hypothesis",
+        "legal_RGB_weights_runtime"
+      ],
+      "not_prerequisites": [
+        "all_W0_sessions_strict_passed"
+      ],
+      "w1_diag_count": 2,
+      "w1_adoption_count": 2,
+      "h9_holdout_count": 4,
+      "consumption_rule": "outputs_diagnostic_until_per_consumer_quality_admission"
+    },
+    {
+      "id": "B1",
+      "owner": "lane_b",
+      "purpose": "independent SAM object prompts, temporal recovery, and reuse of admitted Depth for per-object geometry",
+      "elapsed_hours": [
+        0.75,
+        7
+      ],
+      "prerequisites": [
+        "legal_RGB",
+        "pinned_SAM3p1",
+        "own_prompt_and_instance_QA"
+      ],
+      "not_prerequisites": [
+        "HaWoR_full_session_strict_3D_pass",
+        "all_hands_passed",
+        "Clean_passed"
+      ],
+      "default_depth_action": "REUSE_12_FROZEN_CACHES"
+    },
+    {
+      "id": "C1",
+      "owner": "lane_c",
+      "purpose": "scale explanation, contact-observability satisfiability, bounded occlusion and event/hypothesis verification",
+      "elapsed_hours": [
+        0.75,
+        8.5
+      ],
+      "prerequisites": [
+        "legal_cached_observations_and_original_contract"
+      ],
+      "strict_contact_distance_m": 0.005,
+      "historical_scale_bounds": [
+        0.8,
+        1.2
+      ],
+      "bounds_role": "DO_NOT_RELAX_TO_PASS_OLD_HOLDOUT",
+      "hypotheses_per_window_max": 3,
+      "must_include_no_contact": true,
+      "noncausal_separate": true,
+      "training_eligible": false
+    },
+    {
+      "id": "A2",
+      "owner": "lane_a_and_publisher",
+      "purpose": "R0 recovery, conditional R1/R2, actual batch and resume",
+      "elapsed_hours": [
+        4.5,
+        13.5
+      ],
+      "per_capability_prerequisites": {
+        "R0": [
+          "same_hand_pose_window_admitted",
+          "robot_mapping_and_motion_quality"
+        ],
+        "R1_E": [
+          "legal_local_metric_alignment",
+          "strict_contact_window_admitted"
+        ],
+        "R1_H": [
+          "C2_new_independent_validation_passed",
+          "own_robot_geometry_quality"
+        ],
+        "R2": [
+          "R0_wrist_and_q_window_admitted",
+          "immutable_virtual_mount_and_arm_assets",
+          "FK_IK_collision_quality"
+        ]
+      },
+      "R2_does_not_require_R1": true,
+      "R2_total_solver_budget_minutes": 90,
+      "R2_full_session_max": 2
+    },
+    {
+      "id": "F0",
+      "owner": "publisher",
+      "purpose": "regression, video decode, evidence binding, local commit and drain",
+      "elapsed_hours": [
+        13.5,
+        15
+      ],
+      "must_finalize_all_started_packages": true,
+      "git_push_allowed": false
+    }
+  ],
+  "quality_targets_not_guarantees": {
+    "w0_original_strict_recovered_target": 2,
+    "w1_independent_strict_r0_target": 2,
+    "do_not_count_local_windows_as_whole_session_pass": true,
+    "user_visual_acceptance": "PENDING",
+    "physical_deployable": 0
+  },
+  "authority": {
+    "all_outputs": [
+      "DEVELOPMENT_RELATIVE",
+      "NON_CONTROL",
+      "NON_DEPLOYABLE"
+    ],
+    "training_eligible_default": false,
+    "R1_H_training_eligible": false,
+    "contact_hypothesis_is_ground_truth": false,
+    "observed_may_be_overwritten": false,
+    "new_technical_contracts_must_be_immutable": true
+  },
+  "required_machine_contracts": [
+    "SOURCE_GROUP_PROVENANCE_CORRECTION_V2",
+    "COHORT_ACCESS_LEDGER_V1",
+    "W0_FAILURE_MATRIX_V2",
+    "CONSUMER_ADMISSION_V1",
+    "WINDOW_VALIDITY_V1",
+    "CONTACT_OBSERVABILITY_AUDIT_V1",
+    "LOCAL_STEREO_METRIC_DEV_V1",
+    "CANDIDATE_FREEZE_V1",
+    "ADOPTION_DECISION_V1",
+    "TECHNICAL_CONTRACT_SNAPSHOT_INDEX_V1",
+    "LINEAGE_TOMBSTONE_V1",
+    "ALGORITHM_AUDIT_LIVE_V2"
+  ],
+  "runtime_actuals": {
+    "registered_parent_id": null,
+    "local_head": null,
+    "manifest_sha": null,
+    "technical_snapshot_shas": [],
+    "experiments_run": null,
+    "r0_strict_admitted": null,
+    "r0_window_admitted": null,
+    "r1_e_adopted": null,
+    "r1_h_adopted": null,
+    "r2_adopted": null,
+    "final_audit_path": null
+  }
+}

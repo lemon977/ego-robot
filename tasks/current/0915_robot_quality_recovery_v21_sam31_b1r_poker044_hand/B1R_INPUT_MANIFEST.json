@@ -1,0 +1,73 @@
+{
+  "schema_version": "0915-robot-recovery-v21-sam31-b1r-input-v1",
+  "parent_b1": {
+    "result": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/RESULT.json",
+      "bytes": 1609,
+      "sha256": "62e08adceff6d21cecf1dea2a171b2e8f381250f06e75fb21fdd3d509481410d"
+    },
+    "batch_result": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/BATCH_RESULT.json",
+      "bytes": 10663,
+      "sha256": "07780f172a0139651aba382dae5363482f4473ee3e17b984a5af98276f38768b"
+    },
+    "candidate_freeze": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/CANDIDATE_FREEZE_V1.json",
+      "bytes": 15904,
+      "sha256": "00df6bdcc74ecad22c696072a9fb1c7c0cba5a81540974e821d47ddb084cc80b"
+    },
+    "hand_failure": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/hand/failures/play_cards_0915_044.json",
+      "bytes": 202,
+      "sha256": "27e3e93c97f8725dee00f92de0714eeabaf2e0c3a334f6060b6cae0890e93752"
+    },
+    "runner": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_quality_recovery_v21_sam31_b1.py",
+      "bytes": 53677,
+      "sha256": "488c0aca6ed531b9ab1b90a945b39e27ad71654970244676d0eb26a234f54a62"
+    }
+  },
+  "a1_authority": {
+    "consumer_admission": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/CONSUMER_ADMISSION_V1.json",
+      "bytes": 3147,
+      "sha256": "9f75a32b22db1dc9b60b8b7d934caeefa5eeb46f062cb0f87689768274af5d03"
+    },
+    "prepared_rgb": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/prepared/play_cards_0915_044/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+      "bytes": 3297594,
+      "sha256": "85aac7f6e6a65ecaed18ad0b9d1fa8fa99437e87bdca544afc4ba1c0325e51fa",
+      "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "remap_applied": false
+    },
+    "raw_direct_prompt": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/hawor/sessions/playing_cards/play_cards_0915_044/HAWOR_RAW_MANO21.npz",
+      "bytes": 127248,
+      "sha256": "e541b869d2b7e4d6d52fcc4d1878a35479b666a6698215a44a8a552aac5a1988",
+      "provider": "A1_SAME_DOMAIN_RAW_DIRECT_OBSERVED_2D",
+      "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "side_admission": {
+        "left": "ADMITTED_DIRECT_OBSERVED",
+        "right": "ADMITTED_DIRECT_OBSERVED"
+      },
+      "direct_observed_frames": {
+        "left": 16,
+        "right": 74
+      },
+      "whole_session_quality": "FAILED_QUALITY_C",
+      "consumer_scope": "DIAGNOSTIC_PROMPT_ONLY_NO_WORLD_WRIST"
+    }
+  },
+  "session": {
+    "session_id": "play_cards_0915_044",
+    "task": "playing_cards",
+    "frame_count": 166,
+    "source_group": "0915:cards_120_0915:044:2fae5fbe35ad430fae7a45320ee03529"
+  },
+  "forbidden_inputs": {
+    "parent_failed_runtime_staging": true,
+    "parent_hand_semantic": true,
+    "parent_object_semantic": true,
+    "parent_prompt_view": true
+  }
+}

@@ -1,17 +1,27 @@
 {
-  "claim_limit": "This Robot15h node is terminal.  No successor is executable until a new CAS registration publishes exactly one frozen DAG node.",
-  "execution_revision": "0915_ROBOT_15H_V1",
-  "generated_at": "2026-09-19T14:21:29+08:00",
-  "generation_id": "gov-012362-8d04bae5bef9",
-  "governance_revision": 12362,
-  "packet_revision": "0915_ROBOT15H_WINDOW_RELEASE_AUDIT_V1_TERMINAL",
-  "plan_revision": "0915_ROBOT_15H_V1",
+  "claim_limit": "Exactly one V2.1 parent is routable; internal packages use isolated roots and one serial publisher.",
+  "execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
+  "generated_at": "2026-09-19T23:59:30+08:00",
+  "generation_id": "gov-012363-6a35cee4103c",
+  "governance_revision": 12363,
+  "packet_revision": "0915_ROBOT_RECOVERY_15H_V21_PARENT_ROUTABLE",
+  "plan_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
-  "status": "PASS_NO_ACTIVE_TASKS",
+  "status": "PASS",
   "supersedes_index": {
-    "bytes": 1219,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/finalization_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "7617ccdb2bc745b9c35af49ac473bf6ca1ee64468433defa5b5eb092367e09b4"
+    "bytes": 819,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/registration_0001/PREDECESSOR_TASK_PACKET_INDEX.json",
+    "sha256": "bf7d9f1cda0ec0740b9221eb85879c721726499da0ed0608d2cc18d8eab16fde"
   },
-  "task_packets": []
+  "task_packets": [
+    {
+      "execution_allowed": true,
+      "execution_class": "CURRENT_LEDGER_ROUTABLE",
+      "packet_path": "tasks/current/0915_robot_quality_recovery_15h_v2/TASK_PACKET.json",
+      "packet_sha256": "56152522d619356c5405661d8ba3ec30c71b7c4f6ff72214a1586d10e9ad0ea7",
+      "task_id": "0915_robot_quality_recovery_15h_v2",
+      "weights": "ABSENT",
+      "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800"
+    }
+  ]
 }

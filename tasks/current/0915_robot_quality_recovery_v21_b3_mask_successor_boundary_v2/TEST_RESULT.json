@@ -1,0 +1,39 @@
+{
+  "created_at": "2026-09-20T02:48:33+08:00",
+  "status": "PASSED",
+  "python": "python3",
+  "checks": [
+    {
+      "name": "successor_config_contract",
+      "result": "PASSED",
+      "detail": "validate_frozen_config accepted B3_MASK_SUCCESSOR_CANARY_V2.json"
+    },
+    {
+      "name": "boundary_successor_fixture",
+      "result": "PASSED",
+      "tests": 5,
+      "detail": "64-frame zero/nonzero chunks stop before poison boundary; premature and out-of-order streams fail closed; process_prompt_window integration passes"
+    },
+    {
+      "name": "original_b3_regression_suite",
+      "result": "PASSED",
+      "tests": 13,
+      "detail": "Unmodified B3 v1 preparation suite passed; no semantic policy, prompt, geometry, staging, or publication behavior is changed by the proposed patch"
+    },
+    {
+      "name": "python_compile",
+      "result": "PASSED",
+      "files": [
+        "run_b3_sam31_independent_hand_equipment_canary_v2.py",
+        "test_b3_boundary_successor_v2.py"
+      ]
+    },
+    {
+      "name": "patch_dry_run",
+      "result": "PASSED",
+      "detail": "Patch applies to a byte-copy of v1 named v2; v1 need not be modified"
+    }
+  ],
+  "gpu_model_executed": false,
+  "remote_modified": false
+}

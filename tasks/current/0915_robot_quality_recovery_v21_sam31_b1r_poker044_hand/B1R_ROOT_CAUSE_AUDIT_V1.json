@@ -1,0 +1,91 @@
+{
+  "schema_version": "0915-robot-recovery-v21-sam31-b1r-root-cause-audit-v1",
+  "created_at": "2026-09-20T01:20:22+08:00",
+  "mode": "REMOTE_READ_ONLY_NO_GPU",
+  "remote_write_performed": false,
+  "gpu_execution_performed": false,
+  "status": "ROOT_CAUSE_LOCATED_SAFE_BOUNDED_SUCCESSOR_PREPARED",
+  "parent_terminal": {
+    "status": "FAILED_RUNTIME_FINAL",
+    "runtime_failures": 1,
+    "only_runtime_failure": "play_cards_0915_044 Hand KeyError: 164",
+    "result_sha256": "62e08adceff6d21cecf1dea2a171b2e8f381250f06e75fb21fdd3d509481410d",
+    "batch_result_sha256": "07780f172a0139651aba382dae5363482f4473ee3e17b984a5af98276f38768b",
+    "hand_failure_sha256": "27e3e93c97f8725dee00f92de0714eeabaf2e0c3a334f6060b6cae0890e93752"
+  },
+  "stage_localization": {
+    "certainty": "HIGH_DETERMINISTIC_STAGE_LOCALIZATION_WITHOUT_PRESERVED_TRACEBACK",
+    "failed_side": "right_hand",
+    "failed_seed": "fallback",
+    "fallback_anchor_frame": 165,
+    "failed_direction": "backward",
+    "first_reverse_frame": 164,
+    "exception": "KeyError: 164",
+    "stage": "model.propagate_in_video during _collect_bidirectional, before the first backward frame was yielded",
+    "reason": "The pinned multiplex tracker did not expose the frame-indexed state/metadata entry for reverse frame 164 after a frame-165 geometric-box seed.",
+    "not_prompt_failure": true,
+    "not_threshold_failure": true,
+    "not_weight_failure": true
+  },
+  "artifact_proof": [
+    {
+      "fact": "All 166 input frames were extracted before the exception.",
+      "observed_count": 166
+    },
+    {
+      "fact": "Left primary/fallback fully completed and its quality ledger was published in failed staging.",
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/hand/sessions/playing_cards/play_cards_0915_044.FAILED_RUNTIME_STAGING/quality/left_hand_QUALITY_LEDGER.json",
+      "bytes": 163527,
+      "sha256": "8df2a9cf230027c1f8dfc86d5ee48b16c8208da48c86fd2efd0f6d551e98244e",
+      "left_primary_anchor": 69,
+      "left_fallback_anchor": 150
+    },
+    {
+      "fact": "Right primary run_seed returned and its initial candidates were saved; therefore the failure is after right primary.",
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/hand/sessions/playing_cards/play_cards_0915_044.FAILED_RUNTIME_STAGING/raw_candidate/right_hand_primary_seed_candidates.npz",
+      "bytes": 2942,
+      "sha256": "58090b98b9b74f1526069afbaa16ba589601a2c27d6de82b6bc0d13d8a66263e",
+      "right_primary_anchor": 89
+    },
+    {
+      "fact": "No right fallback archive exists, so right fallback run_seed did not return to process_side.",
+      "right_fallback_file_count": 0
+    },
+    {
+      "fact": "The frozen legacy selector deterministically chooses right fallback frame 165 from 63 right-side anchor candidates; its reverse processing order begins at frame 164.",
+      "right_anchor_candidate_count": 63,
+      "right_fallback_anchor": 165,
+      "reverse_first_frame": 164
+    }
+  ],
+  "source_proof": {
+    "legacy_hand_runner_sha256": "f6b6b444bd86acfb301a781f192bccbeaee2dd7177081656e2486294366490c5",
+    "sam31_tracker_source_sha256": "65e1cea27ee243dad228fb05967a8be92c90ef304665ada76930b899aa034d24",
+    "legacy_call_chain": [
+      "process_session",
+      "process_side(right)",
+      "run_seed(fallback frame 165)",
+      "_collect_bidirectional",
+      "model.propagate_in_video(reverse=True)",
+      "tracker reverse frame 164 state lookup"
+    ]
+  },
+  "safe_recovery_boundary": {
+    "allowed": true,
+    "only_match": "type(error) is KeyError; args == (164,); anchor == 165; reverse is true; zero frames yielded; frame_count == 166",
+    "conversion": "UNKNOWN_DIRECTION_INCOMPLETE",
+    "unreturned_masks": "ZERO_AND_UNKNOWN_NOT_ABSENT",
+    "affected_side_terminal": "REJECTED_TRACKER_DIRECTION_INCOMPLETE",
+    "all_other_exceptions": "RERAISE_TO_FAILED_RUNTIME_FINAL",
+    "maximum_conversion_count": 1
+  },
+  "input_boundary": {
+    "prepared_rgb_source": "A1 original SHA-bound RGB",
+    "prompt_source": "A1 original SHA-bound HAWOR_RAW_MANO21.npz",
+    "parent_failed_staging_consumed": false,
+    "parent_hand_semantic_consumed": false,
+    "parent_object_semantic_consumed": false,
+    "parent_prompt_view_consumed": false
+  },
+  "claim_limit": "Root-cause and bounded runtime-recovery design only; no Mask accuracy, Hand quality pass, training eligibility, control truth or deployment authority."
+}

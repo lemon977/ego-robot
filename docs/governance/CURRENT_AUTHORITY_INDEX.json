@@ -357,13 +357,13 @@
     "Visual Robot authority and physical deployment authority are separate.",
     "V5.2: one executor epoch, one canonical run signature and immutable finals are mandatory."
   ],
-  "generated_at": "2026-09-19T14:21:29+08:00",
-  "generation_id": "gov-012362-8d04bae5bef9",
-  "generator_code_sha": "5fdf570ee15388a4e57c8f6db91b14336681277058ba5e5286db895b37890aa4",
-  "governance_revision": 12362,
+  "generated_at": "2026-09-20T10:57:50+08:00",
+  "generation_id": "gov-013223-d7a3c63e51e5",
+  "generator_code_sha": "d960d9e5bf59e192e54d1f598e365da0e0e77195b4f63ebafbcbf33a8f5b8ec8",
+  "governance_revision": 13223,
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "c7c9cea7caa54f749f60763388c51d47b55b59cb"
+    "commit": "a4f371ab099777ba3f171ec3c111acfc258e4ac0"
   },
   "schema_version": "chaoyang-current-authority-index-v1",
   "stages": [

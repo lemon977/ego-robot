@@ -1,0 +1,25 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d1-deployed-closure-v1",
+  "status": "DEPLOYED_AND_EXECUTED_CLEAN_REMAINS_BLOCKED",
+  "algorithm_id": "robot_quality_recovery_v21_d1_clean_prep_cpu_v1",
+  "code_and_contract_refs": [
+    {"path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/materialize_d1_clean_prep_composite_input.py", "bytes": 34464, "sha256": "ce352c25f27b1f6ec7563b099952d738fb980704127ae15731f1ca012abcc92e"},
+    {"path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_d1_clean_prep_cpu_orchestrator.py", "bytes": 46516, "sha256": "b6a7520fc377998f8926430ddfa21a8257981961953a8525bb56b1feb4bacfdc"},
+    {"path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/validate_d1_clean_prep_prepared_output.py", "bytes": 10640, "sha256": "30824461561816110b879ed4b5ca813cfcb55685280d2845a9a533f15241cbd9"},
+    {"path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/test_d1_clean_prep_cpu_orchestrator.py", "bytes": 19113, "sha256": "efc55e481277abecc3dac6e9269c14b45a790bb7b69ffbf8d036b8177dffe2f9"},
+    {"path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_d1_clean_prep_offline_review_v1.py", "bytes": 25262, "sha256": "d111d9b44e9d3f53d0b00912e3a65edb4cdd508f25d6035c389b03983fdd4723"},
+    {"path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/D1_CLEAN_PREP_INPUT_MANIFEST_TEMPLATE.json", "bytes": 416, "sha256": "a665a3ae66108c0778664371c4729d34baecc5c3d2b97a0d5822dadf4126ad8d"},
+    {"path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/B1_D1_CLEAN_PREP_HANDOFF_TEMPLATE.json", "bytes": 397, "sha256": "12852b6fa3491929d1f85eb2b2d2407042346049ae2c48a1b9334a648a0e77b4"}
+  ],
+  "terminal_index": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/D1_TERMINAL_INDEX.json",
+    "bytes": 3074,
+    "sha256": "1f4fbbe75ca50d8c22cd5aba5cc7ad31fa5e08141748108911c71ac44d06fbcb"
+  },
+  "visual_wrapper_refs": {
+    "v1_defect_receipt": {"path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP/V1_RECEIPT_STAGING_PATH_DEFECT.json", "bytes": 1070, "sha256": "d96fabc447305a5d9a04f5c70a57cca047751cb0a6b22e6a405910cef1c3e4ff"},
+    "v2_index": {"path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP_V2/INDEX.json", "bytes": 1533, "sha256": "5bd34b17bf096de1ee972edb65ae6232b38f0e3a067e0d324b032de2a4aa4222"},
+    "v2_receipt": {"path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP_V2/D1_CLEAN_PREP_VISUAL_REVIEW_RECEIPT.json", "bytes": 4542, "sha256": "cba5afd7f25121e944c3efcb840eeba89acc51cf2fd5ce734bf3449b39007c1a"}
+  },
+  "note": "The sibling PREPARATION_SOURCE_SHA256SUMS.txt describes the original local preparation bundle, not the deployed repository layout. This closure is the machine-readable deployed entry point."
+}

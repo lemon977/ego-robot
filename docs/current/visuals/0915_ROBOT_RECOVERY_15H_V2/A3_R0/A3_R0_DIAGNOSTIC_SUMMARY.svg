@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="780" viewBox="0 0 1400 780">
+  <rect width="1400" height="780" fill="#10141d"/>
+  <text x="70" y="75" fill="#f4f7fb" font-family="sans-serif" font-size="34" font-weight="700">A3 Kai22 R0 全帧自身门诊断</text>
+  <text x="70" y="116" fill="#ffca5c" font-family="sans-serif" font-size="21">DIAGNOSTIC ONLY · R0 quality admitted = 0 · NOT FOR TRAINING / CONTROL</text>
+  <rect x="70" y="165" width="600" height="235" rx="18" fill="#192334" stroke="#477bb8" stroke-width="2"/>
+  <text x="105" y="215" fill="#cfe5ff" font-family="sans-serif" font-size="27" font-weight="700">A1 · W1-DIAG</text>
+  <text x="105" y="262" fill="#ffffff" font-family="sans-serif" font-size="23">560 timeline frames</text>
+  <text x="105" y="302" fill="#ffffff" font-family="sans-serif" font-size="23">341 structural side-frames</text>
+  <text x="105" y="342" fill="#8ce6ae" font-family="sans-serif" font-size="23">341 / 341 limit + FK + hand collision</text>
+  <text x="105" y="382" fill="#ff7b7b" font-family="sans-serif" font-size="23">0 quality-admitted frames</text>
+  <rect x="730" y="165" width="600" height="235" rx="18" fill="#192334" stroke="#6b8f4e" stroke-width="2"/>
+  <text x="765" y="215" fill="#d9ffc4" font-family="sans-serif" font-size="27" font-weight="700">A2 · W1-ADOPTION</text>
+  <text x="765" y="262" fill="#ffffff" font-family="sans-serif" font-size="23">404 timeline frames</text>
+  <text x="765" y="302" fill="#ffffff" font-family="sans-serif" font-size="23">233 structural side-frames</text>
+  <text x="765" y="342" fill="#8ce6ae" font-family="sans-serif" font-size="23">233 / 233 limit + FK + hand collision</text>
+  <text x="765" y="382" fill="#ff7b7b" font-family="sans-serif" font-size="23">0 quality-admitted frames</text>
+  <rect x="70" y="455" width="1260" height="245" rx="18" fill="#171c27" stroke="#ffca5c" stroke-width="2"/>
+  <text x="105" y="510" fill="#ffca5c" font-family="sans-serif" font-size="27" font-weight="700">当前首个阻塞</text>
+  <text x="105" y="555" fill="#ffffff" font-family="sans-serif" font-size="22">缺少冻结且有 authority 的正 q22 velocity、acceleration 与 minimum-window 阈值</text>
+  <text x="105" y="596" fill="#ffffff" font-family="sans-serif" font-size="22">Chips097 限位饱和 280/340；Chips029 限位饱和 112/233</text>
+  <text x="105" y="637" fill="#b8c2d4" font-family="sans-serif" font-size="20">cross-hand / arm / object / environment collision 仍 UNVERIFIED</text>
+  <text x="105" y="675" fill="#b8c2d4" font-family="sans-serif" font-size="20">静态数字门通过 ≠ Robot 质量通过 ≠ 控制真值</text>
+  <text x="70" y="748" fill="#748197" font-family="monospace" font-size="17">0915 Robot Quality Recovery V2.1 · 2026-09-20</text>
+</svg>

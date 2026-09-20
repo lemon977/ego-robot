@@ -1,0 +1,104 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b3-mask-successor-audit-v1",
+  "scope": [
+    "play_cards_0915_044",
+    "get_potato_chips_0915_097"
+  ],
+  "remote_project": "/mnt/workspace/code/chaoyang",
+  "audited_parent_terminals": {
+    "b1": {
+      "path": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/RESULT.json",
+      "sha256": "62e08adceff6d21cecf1dea2a171b2e8f381250f06e75fb21fdd3d509481410d",
+      "status": "FAILED_RUNTIME_FINAL",
+      "immutable": true
+    },
+    "b1r": {
+      "path": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1R/RESULT.json",
+      "sha256": "7be40d384d7826dfcb0e57c9b4561f5f71c8e947902f52a6a42bd8c77c999d9a",
+      "status": "COMPLETED_WITH_QUALITY_REJECTION",
+      "immutable": true
+    }
+  },
+  "observed_missing_capability": {
+    "play_cards_0915_044": {
+      "left_hand": "REJECTED_DIRECT_OBSERVED_ADMISSION",
+      "right_hand": "REJECTED_TRACKER_DIRECTION_INCOMPLETE",
+      "consumer_allowed": false
+    },
+    "get_potato_chips_0915_097": {
+      "left_hand": "BLOCKED_NO_DIRECT_HAWOR_ANCHOR",
+      "right_hand": "PASS_HAND_DIRECT_OBSERVED_PROXY_393_OF_394",
+      "consumer_allowed_note": "Only the right-side development proxy was admitted by B1; this is not Mask accuracy."
+    }
+  },
+  "existing_route_audit": [
+    {
+      "route": "B1/B1R temporal Hand",
+      "code": {
+        "path": "src/chaoyang/ops/run_0915_robot15h_sam31_temporal_identity_v1.py",
+        "sha256": "f6b6b444bd86acfb301a781f192bccbeaee2dd7177081656e2486294366490c5"
+      },
+      "independent_of_hawor": false,
+      "reason": "Hand seed selection, side assignment and direct-observed admission consume HaWoR 2D joints/observed state."
+    },
+    {
+      "route": "persistent full-session role masks",
+      "code": {
+        "path": "src/chaoyang/ops/run_0915_sam31_persistent_masks_v2.py",
+        "sha256": "31ba927bd4803386472e0588bc4c47bc1b9a21978b936dd2610eaf82e10868be"
+      },
+      "independent_of_hawor": false,
+      "reason": "Prompt plan, side assignment, points, boxes and fallback gates are built from HaWoR joints/observed."
+    },
+    {
+      "route": "sensor glove/controller canary",
+      "code": {
+        "path": "src/chaoyang/ops/run_sensor_glove_controller_final_canary_v1.py",
+        "sha256": "8a213d381958bc54a9c0230e403a49b3b4f0b30d9dc45cf70ca2cd891210e7f2"
+      },
+      "independent_of_hawor": true,
+      "eligible_for_b3": false,
+      "reason": "It assigns gloves with MANUS wrist anchors and controllers with projected controller 6D in another dataset/domain; these inputs are forbidden here."
+    },
+    {
+      "route": "native semantic-full",
+      "code": {
+        "path": "src/chaoyang/ops/run_sam31_semantic_full_route_diagnostic.py",
+        "sha256": "86883098ba9aec580f9d33e05b19d7935ff5b704c4de5c9c888c38c3f1c2a989"
+      },
+      "reusable_primitive": true,
+      "existing_hand_authority": false,
+      "reason": "Pinned text/box and native full propagation are real code paths, but existing evidence is a manually boxed Poker015 task object, not independent Hand or tracker identity."
+    },
+    {
+      "route": "strict role canary v5",
+      "receipt": {
+        "path": "tasks/receipts/0915_SAM31_STRICT_ROLE_CANARY_V4_RESULT.json",
+        "sha256": "890dfc39975024aa38c3b8cef2ec61cf8d3235bbd6f04088b0888fb3d4ec11fd"
+      },
+      "status": "PASSED_AWAITING_USER_VISUAL_REVIEW",
+      "eligible_for_b3": false,
+      "reason": "One-session frozen boxes plus HaWoR quality evidence; tracker role was explicitly not created."
+    }
+  ],
+  "determination": {
+    "existing_consumer_authority_for_independent_hand": false,
+    "existing_consumer_authority_for_physical_worn_tracker_identity": false,
+    "existing_pinned_sam31_text_only_and_native_propagation_primitive": true,
+    "bounded_geometry_only_canary_is_executable": true,
+    "selected_delivery": "A_SINGLE_FROZEN_CPU_GPU_CANARY_PACKAGE",
+    "why_not_blocked": "The requested next experiment only needs unassigned geometry candidates and explicitly permits left/right UNKNOWN. The pinned text-only SAM3.1 route can test that question without HaWoR. It cannot produce consumer authority, so the package permanently fixes consumer_allowed=false and rejects Hand/equipment overlap."
+  },
+  "execution_closure": {
+    "gpu_lease_wrapper": {
+      "path": "src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+      "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+    },
+    "wait_seconds": 1800,
+    "wall_seconds": 3600,
+    "min_free_mib": 49152,
+    "preflight_loads_model": false,
+    "deep_publication": "SAME_FILESYSTEM_STAGING_THEN_OS_REPLACE",
+    "shallow_publication": "INDEPENDENT_RENDERER_FULL_DECODE_THEN_OS_REPLACE"
+  }
+}

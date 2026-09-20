@@ -1,0 +1,42 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d2-shallow-visual-index-v1",
+  "status": "COMMITTED_OFFLINE_VISUALS",
+  "deep_result": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D2_FRESH_FILL_OFFLINE_V1/RESULT.json",
+    "bytes": 2719,
+    "sha256": "3443cc290c5b4f576c2f4c50457df62239f2548c27e49f474700b003c7f3aa91"
+  },
+  "gpu_lease_receipt": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D2_FRESH_FILL_GPU_RECEIPT.json",
+    "bytes": 3801,
+    "sha256": "b32f64a54a1accffc3f318937c1320cda9eab082462b02567a2d076d9fefe1fa"
+  },
+  "videos": [
+    {
+      "session_id": "play_cards_0915_044",
+      "frame_count": 166,
+      "fps": 30,
+      "video": {
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D2_FRESH_FILL/play_cards_0915_044_D2_FRESH_PROPAINTER_OFFLINE_FULL_REVIEW.mp4",
+        "bytes": 3241705,
+        "sha256": "64bb28173cd407a36ee5a3013139e8454d99bfc40f49a88f1900ae0ce394d32e"
+      },
+      "label": "OFFLINE_VISUAL / NOT_FOR_TRAINING / UNKNOWN retained"
+    },
+    {
+      "session_id": "get_potato_chips_0915_097",
+      "frame_count": 394,
+      "fps": 30,
+      "video": {
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D2_FRESH_FILL/get_potato_chips_0915_097_D2_FRESH_PROPAINTER_OFFLINE_FULL_REVIEW.mp4",
+        "bytes": 6715001,
+        "sha256": "41f1144e4ee6770bc16fd4da2001b5c6ff21719998c0fa8dcbce1bca93ef3bfb"
+      },
+      "label": "OFFLINE_VISUAL / NOT_FOR_TRAINING / UNKNOWN retained"
+    }
+  ],
+  "training_eligible": false,
+  "clean_terminal": false,
+  "control_ground_truth": false,
+  "claim_limit": "Shallow copies of D2 offline review videos only; not Clean truth or training evidence."
+}

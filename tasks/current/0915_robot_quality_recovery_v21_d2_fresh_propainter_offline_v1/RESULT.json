@@ -1,0 +1,73 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d2-fresh-fill-successor-audit-result-v1",
+  "status": "PREPARED_SINGLE_OFFLINE_FRESH_FILL_CHALLENGER_NOT_EXECUTED",
+  "decision": "A",
+  "algorithm_id": "robot_quality_recovery_v21_d2_fresh_propainter_offline_v1",
+  "executable_after_registration_and_gpu_lease": true,
+  "fixed_sessions": [
+    "play_cards_0915_044",
+    "get_potato_chips_0915_097"
+  ],
+  "session_actions": {
+    "play_cards_0915_044": "RAW_PASS_THROUGH_REQUIRE_ZERO_M_WRITE_NO_MODEL",
+    "get_potato_chips_0915_097": "PROPAINTER_M_FLOW_CONTEXT_COMPOSITE_M_WRITE_ONLY"
+  },
+  "authority": {
+    "existing_registered_route": "same_pixel_temporal_donor_then_propainter_v1",
+    "existing_authority_limit": "structural offline synthetic Clean baseline only; generated pixels are not physical background truth",
+    "successor_authority": "UNREGISTERED_PREPARED_CHALLENGER",
+    "execution_semantics": "OFFLINE_BIDIRECTIONAL_VISUAL_ONLY",
+    "training_eligible": false,
+    "clean_terminal": false,
+    "contact_authority": false,
+    "control_ground_truth": false
+  },
+  "preflight": {
+    "status": "PASSED_PREPARED_NOT_EXECUTED",
+    "d1_frames": 560,
+    "d1_per_frame_refs_sha_verified": 3360,
+    "poker_m_write_pixels": 0,
+    "chips_m_write_pixels": 14909727,
+    "chips_m_flow_pixels": 21667934,
+    "model_weights_present_and_sha_exact": true,
+    "vendor_source_tree_sha_exact": true
+  },
+  "tests": {
+    "syntax": "PASSED",
+    "cpu_contract_tests": "16_OF_16_PASSED",
+    "deployment_config_resolution": "ADJACENT_LOCAL_THEN_REPO_ROOT_CONTRACT_FALLBACK",
+    "weight_symlink_provenance": "LEXICAL_VENDOR_PATH_PLUS_RESOLVED_ASSET_PATH_PLUS_BYTES_SHA",
+    "atomic_deep_publication": "PASSED_FAILURE_INJECTION",
+    "atomic_shallow_publication": "PASSED_FIXTURE"
+  },
+  "publication": {
+    "deep": "same-filesystem sibling staging; cleanup on any exception; one os.replace to final",
+    "embedded_refs": "all staging artifacts are hashed in staging but referenced by final paths",
+    "shallow": "two real MP4 copies plus INDEX.json/README_ZH.md; sibling staging and one os.replace",
+    "symlinks": false,
+    "shallow_requires_gpu_receipt": "V7.1 status PASSED plus exact task/attempt/command/deep output root; receipt SHA bound into index"
+  },
+  "model_mask_semantics": {
+    "input_mask_domain": "M_flow",
+    "effective_internal_model_mask": "DILATE(RESIZED_M_flow,4)_INSIDE_PROPAINTER",
+    "publish_write_domain": "M_write"
+  },
+  "generated_frame_sequence": {
+    "vendor": "exact 0000.png..0393.png",
+    "consumer": "exact 000000.png..000393.png",
+    "normalization": "byte-exact copy; count-only validation rejected"
+  },
+  "known_prior_failures_or_limits": [
+    "Historical Grade-B ProPainter terminals establish structural closure, not hidden-surface accuracy.",
+    "Clean-20 causal donor/support-surface and Poker atlas prerequisites remain blocked.",
+    "Removal Envelope V1/V2 quality experiments remain rejected and are not reused.",
+    "Current vendor copy has no nested .git; the legacy runner's nested git commit check would read the parent repository HEAD. D2 replaces only that provenance check with exact source-tree/entry/weight SHA gates.",
+    "D1 admits no Poker hand write domain and only Chips right-hand write pixels; missing sides and object identities remain UNKNOWN."
+  ],
+  "remote_write_performed": false,
+  "gpu_used": false,
+  "model_execution_performed": false,
+  "parameter_sweep_performed": false,
+  "model_swap_performed": false,
+  "claim_limit": "Prepared one bounded fresh offline visual challenger only. No Clean pixels were generated, and no causal training, physical truth, Contact, control or deployment authority was granted."
+}

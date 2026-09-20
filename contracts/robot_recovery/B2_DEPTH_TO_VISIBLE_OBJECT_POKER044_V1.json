@@ -1,0 +1,108 @@
+{
+  "candidate_id": "B2_DEPTH_TO_VISIBLE_OBJECT_GEOMETRY_SUCCESSOR_V1",
+  "consumer_allowed": false,
+  "contact_authority": false,
+  "depth": {
+    "adapter_contract": {
+      "bytes": 1017,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_044/ADAPTER_CONTRACT.json",
+      "sha256": "8f2ecc2308464974e0a2a4e73cdbda6454d0e5d4db468eeeba110f8411342c16"
+    },
+    "depth_contract": {
+      "bytes": 1366,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_044/DEPTH_CONTRACT.json",
+      "sha256": "a293af9acac835e1d357bed28c7aa505002606bf87f55d4489df9b37e9b459a2"
+    },
+    "depth_summary": {
+      "bytes": 128121,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_044/DEPTH_SUMMARY.json",
+      "sha256": "7f77d2f253e0be12de3901a27baa665413b8170eb990f0394565fd4193c51ea0"
+    },
+    "result": {
+      "bytes": 869,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_044/RESULT.json",
+      "sha256": "2b5b9f61800de64fdcc510206e7fab600f6bccfb23beadc8600069c0e2be0b04"
+    },
+    "rgb_alignment_qa": {
+      "bytes": 574,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_044/RGB_ALIGNMENT_QA.json",
+      "sha256": "f68d4e4941f8caf1f10d784f6a81cc16403dab9886074adaf770cbacb73c47e5"
+    }
+  },
+  "depth_execution": "REUSE_PINNED_CACHE_NO_RERUN",
+  "external_metric_accuracy_claimed": false,
+  "face_identity": "UNKNOWN_UNBOUND",
+  "foundationstereo_rerun_allowed": false,
+  "frame_count": 166,
+  "gpu_allowed": false,
+  "hidden_geometry_inferred": false,
+  "mask_scope": "VISIBLE_CANDIDATE_PROXY_NOT_PHYSICAL_IDENTITY",
+  "output_root": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B2_DEPTH_TO_OBJECT_POKER044",
+  "physical_card_identity": "UNKNOWN_UNBOUND",
+  "physical_deployment_authorized": false,
+  "regressions": {
+    "play_cards_0915_031": {
+      "object6d": {
+        "bytes": 5185852,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_031/OBJECT6D_VISIBLE_PATCH.json",
+        "sha256": "5e645d29fab84fd93bd43f5977f01e0b40df25bd78488f0bac868b9c0de19616"
+      },
+      "result": {
+        "bytes": 2280,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_031/RESULT.json",
+        "sha256": "aff8fa2f616ea8834a693ffe5bb86102f601d6a01a2941ba3cd6e5996d3eb987"
+      },
+      "support": {
+        "bytes": 45875,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_031/VISIBLE_PATCH_SUPPORT.npz",
+        "sha256": "36b10f51556e3be479dd78a2de5d9fa3ce3df1df1e45b337baf97d9f511bfc54"
+      }
+    },
+    "play_cards_0915_119": {
+      "object6d": {
+        "bytes": 7107008,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_119/OBJECT6D_VISIBLE_PATCH.json",
+        "sha256": "3e132894e386df8852e467cd3561dd4db799aa54cd1dc8c37bb8ae0bdaa385b8"
+      },
+      "result": {
+        "bytes": 2280,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_119/RESULT.json",
+        "sha256": "ccda55cec83649fbaa9e183f2d696c2a20f11d67d79f416e6cdca4c53b8f1352"
+      },
+      "support": {
+        "bytes": 59507,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_119/VISIBLE_PATCH_SUPPORT.npz",
+        "sha256": "3b4ff3193b9d004a0efe2a9759a10f9aa930a0d88c6fe9dc515a70ef1acad58d"
+      }
+    }
+  },
+  "review_only": true,
+  "schema_version": "0915-robot-recovery-v21-b2-poker044-review-canary-v1",
+  "session_id": "play_cards_0915_044",
+  "task": "playing_cards",
+  "training_eligible": false,
+  "control_ground_truth": false,
+  "visible_mask_candidate": {
+    "identity_admission": {
+      "bytes": 642,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/object_admission/playing_cards/play_cards_0915_044/B1_OBJECT_ADMISSION.json",
+      "sha256": "38db542417975d868aecab3dc45e3c62782cbe2d1d5e9acd19b4663f66cd026e"
+    },
+    "input_video": {
+      "bytes": 3297594,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/prepared/play_cards_0915_044/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+      "sha256": "85aac7f6e6a65ecaed18ad0b9d1fa8fa99437e87bdca544afc4ba1c0325e51fa"
+    },
+    "instance_manifest": {
+      "bytes": 10441,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/object/sessions/playing_cards/play_cards_0915_044/OBJECT_INSTANCE_MANIFEST.json",
+      "sha256": "c67adf1e45f05cf8af7a30f8bd8d4e79bbe9e73d0db95664b412293494239f22"
+    },
+    "result": {
+      "bytes": 6926,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/object/sessions/playing_cards/play_cards_0915_044/RESULT.json",
+      "sha256": "e2ca3f1f8cb3b3daa6e8f161564e4ea30013bdc30fd00c1b1a0ad04775d3e5c1"
+    }
+  },
+  "visual_root": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/B2_DEPTH_TO_OBJECT_POKER044"
+}

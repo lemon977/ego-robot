@@ -1,0 +1,68 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d1-clean-prep-local-result-v1",
+  "created_at": "2026-09-20T01:49:35+08:00",
+  "status": "COMPLETED_INPUT_CLOSURE_PREFLIGHT_PASSED_CLEAN_NOT_MATERIALIZED",
+  "task_package": "D1_CLEAN_PREP",
+  "formal_plan_b2_untouched": true,
+  "fixed_sessions": ["play_cards_0915_044", "get_potato_chips_0915_097"],
+  "implementation": {
+    "postprocessor": {
+      "path": "/home/lemon/音乐/robot_recovery_v21_docs/b2_clean_impl/materialize_d1_clean_prep_composite_input.py",
+      "bytes": 34464,
+      "sha256": "ce352c25f27b1f6ec7563b099952d738fb980704127ae15731f1ca012abcc92e"
+    },
+    "cpu_orchestrator": {
+      "path": "/home/lemon/音乐/robot_recovery_v21_docs/b2_clean_impl/run_d1_clean_prep_cpu_orchestrator.py",
+      "bytes": 46516,
+      "sha256": "b6a7520fc377998f8926430ddfa21a8257981961953a8525bb56b1feb4bacfdc"
+    },
+    "independent_validator": {
+      "path": "/home/lemon/音乐/robot_recovery_v21_docs/b2_clean_impl/validate_d1_clean_prep_prepared_output.py",
+      "bytes": 10640,
+      "sha256": "30824461561816110b879ed4b5ca813cfcb55685280d2845a9a533f15241cbd9"
+    },
+    "tests": {
+      "path": "/home/lemon/音乐/robot_recovery_v21_docs/b2_clean_impl/test_d1_clean_prep_cpu_orchestrator.py",
+      "bytes": 19113,
+      "sha256": "efc55e481277abecc3dac6e9269c14b45a790bb7b69ffbf8d036b8177dffe2f9"
+    }
+  },
+  "real_composite": {
+    "b1r_result_sha256": "7be40d384d7826dfcb0e57c9b4561f5f71c8e947902f52a6a42bd8c77c999d9a",
+    "original_b1_result_sha256": "62e08adceff6d21cecf1dea2a171b2e8f381250f06e75fb21fdd3d509481410d",
+    "original_b1_result_mutated": false,
+    "aggregate_gate_relaxed": false,
+    "capability_gate_relaxed": false,
+    "composite_sha256": "9df5f1fbf5c760fe3b70ab10a73d0ff403cd064990e770116691bc95e7b0c1e1",
+    "handoff_sha256": "70d8c082abfa2e2ba3692b27c981d9dbe601ce2953f88ca963187836c6d1f77a",
+    "input_manifest_sha256": "9c92cd26828fbab39984e032c715a622c1174f30c3b4b0ccae0f507d4e9bf738",
+    "normalization_receipt_sha256": "89c9a8290fa10ba6562add185ad283bb1799a5982422aea6fae2e46a1a3fd270",
+    "preflight_receipt_sha256": "8e078b9d4b1cef567eb92909f8a3af258316af4f41de96e5353a1f5bc60dd058"
+  },
+  "admission": {
+    "poker_hand": "BOTH_SIDES_UNKNOWN_NO_MASK_CONSUMED",
+    "chips_hand": "LEFT_UNKNOWN_RIGHT_393_OF_394_PROXY_FRAME_58_UNKNOWN",
+    "poker_object": "THREE_VISIBLE_RAW_PROTECTION_CANDIDATES_IDENTITY_UNKNOWN",
+    "chips_object": "THREE_SEPARATE_UNKNOWN_EMPTY_SLOTS_NO_UNION"
+  },
+  "cpu_contract": {
+    "mask_order": "M_remove subset M_write subset M_flow",
+    "fail_closed_values": "M_write=M_remove; M_flow=dilate16(M_write); UNKNOWN=M_write",
+    "candidate_pixel_change_count": 0,
+    "M_write_outside_raw_pixel_byte_exact_required": true
+  },
+  "verification": {
+    "syntax": "PASSED",
+    "cpu_fixtures": "10_OF_10_PASSED",
+    "real_input_preflight": "PASSED_CPU_INPUT_CONTRACT_PREFLIGHT"
+  },
+  "remote_read_performed": true,
+  "remote_write_performed": false,
+  "remote_data_write_performed": false,
+  "local_deliverable_write_performed": true,
+  "gpu_used": false,
+  "model_execution_performed": false,
+  "clean_terminal": false,
+  "training_eligible": false,
+  "claim_limit": "D1_CLEAN_PREP normalized input closure and CPU preflight only; no fresh inpainting, Clean quality, training, contact, control, or deployment authority."
+}

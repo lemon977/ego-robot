@@ -1,0 +1,16 @@
+{
+  "consumer_allowed": false,
+  "result": {
+    "bytes": 3775,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B2_DEPTH_TO_OBJECT_POKER044/RESULT.json",
+    "sha256": "4aa636124e01af1074947961da131f843e9e57a48ad399b667410c817c4a3790"
+  },
+  "review_only": true,
+  "schema_version": "0915-robot-recovery-v21-b2-poker044-review-canary-v1",
+  "status": "COMPLETED_REVIEW_ONLY_IDENTITY_UNKNOWN",
+  "video": {
+    "bytes": 4883744,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/B2_DEPTH_TO_OBJECT_POKER044/play_cards_0915_044_OBJECT6D_REVIEW_ONLY.mp4",
+    "sha256": "12b8dbb3a6e24ba614ef5066dbdd9f077775fe1e6287f9fb0067254044459703"
+  }
+}

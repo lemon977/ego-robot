@@ -1,0 +1,105 @@
+{
+  "claim_limit": "CPU offline visualization of PREPARED_V1 only; no Clean quality, inpainting, identity, contact, training, control, or deployment authority.",
+  "clean_materialized": false,
+  "control_ground_truth": false,
+  "created_at": "2026-09-20T02:13:41+08:00",
+  "fixed_sessions": [
+    "play_cards_0915_044",
+    "get_potato_chips_0915_097"
+  ],
+  "fps": 30.0,
+  "hard_gates": {
+    "Chips_right_Hand_only_left_UNKNOWN_three_slots": "PASS",
+    "M_remove_subset_M_write_subset_M_flow": "PASS",
+    "Poker_no_Hand_and_identity_UNKNOWN": "PASS",
+    "Task_Object_protection_disjoint_from_M_write": "PASS",
+    "UNKNOWN_equals_M_write": "PASS",
+    "all_candidate_decoded_rgb_equals_raw": "PASS",
+    "all_referenced_artifact_sha_exact": "PASS",
+    "full_MP4_decode_and_frame_count": "PASS"
+  },
+  "producer_result": {
+    "bytes": 4367,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/RESULT.json",
+    "sha256": "c8a241ea37b0b4803055dd0448f3e1e0d75c351b81f608994c66643e2b991cb3"
+  },
+  "schema_version": "0915-robot-recovery-v21-d1-clean-prep-visual-review-v1",
+  "sessions": [
+    {
+      "candidate_decoded_byte_equal_raw_all_frames": true,
+      "clean_materialized": false,
+      "decoded_fps": 30.0,
+      "decoded_frames": 166,
+      "decoded_size": [
+        1440,
+        506
+      ],
+      "frame_count": 166,
+      "frame_manifest": {
+        "bytes": 548061,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/sessions/play_cards_0915_044/FRAME_MANIFEST.json",
+        "sha256": "cde13308c0d218f491f88755e2c83258f1b6382f56c12787dd462879f0e94271"
+      },
+      "offline_review_only": true,
+      "session_id": "play_cards_0915_044",
+      "session_result": {
+        "bytes": 2863,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/sessions/play_cards_0915_044/RESULT.json",
+        "sha256": "f207a18e42746569e931472d0cd0ced1ac5899537bfdf44043debf9683289d20"
+      },
+      "task": "playing_cards",
+      "totals_recomputed": {
+        "m_flow_pixels": 0,
+        "m_remove_pixels": 0,
+        "m_write_pixels": 0,
+        "protected_pixels": 2999647,
+        "unknown_pixels": 0
+      },
+      "video": {
+        "bytes": 5243707,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/.D1_CLEAN_PREP.staging-94054-82bac2f116124a08ae08cecd0a1b1086/play_cards_0915_044_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4",
+        "sha256": "e6d10408b6f4b89cd448a78c4b25ae076e122830ad78cddc9ad16fc621671bd0"
+      },
+      "video_name": "play_cards_0915_044_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4"
+    },
+    {
+      "candidate_decoded_byte_equal_raw_all_frames": true,
+      "clean_materialized": false,
+      "decoded_fps": 30.0,
+      "decoded_frames": 394,
+      "decoded_size": [
+        1440,
+        506
+      ],
+      "frame_count": 394,
+      "frame_manifest": {
+        "bytes": 1304156,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/sessions/get_potato_chips_0915_097/FRAME_MANIFEST.json",
+        "sha256": "6fe105b3cdaa8eed7e5e0976adc254019baf5e8f614b0706155fbb89f732a319"
+      },
+      "offline_review_only": true,
+      "session_id": "get_potato_chips_0915_097",
+      "session_result": {
+        "bytes": 3192,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/sessions/get_potato_chips_0915_097/RESULT.json",
+        "sha256": "8e98ea5490e3b859994e31728bba8a0e1683e24228dd44ed222db98c85b4ef4b"
+      },
+      "task": "potato_chips",
+      "totals_recomputed": {
+        "m_flow_pixels": 21667934,
+        "m_remove_pixels": 14909727,
+        "m_write_pixels": 14909727,
+        "protected_pixels": 0,
+        "unknown_pixels": 14909727
+      },
+      "video": {
+        "bytes": 9649394,
+        "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/.D1_CLEAN_PREP.staging-94054-82bac2f116124a08ae08cecd0a1b1086/get_potato_chips_0915_097_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4",
+        "sha256": "f6701cec51a96b3bea611ae2aa5870d1a0cb6d8e0714c343e3a91a333b86dddb"
+      },
+      "video_name": "get_potato_chips_0915_097_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4"
+    }
+  ],
+  "status": "PASSED_FULL_DECODE_OFFLINE_REVIEW",
+  "training_eligible": false
+}

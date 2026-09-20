@@ -12,12 +12,12 @@
   "cohort": "exact78-chips78-poker78-frozen",
   "freshness": {
     "age_seconds": 0,
-    "reason": "no_active_tasks",
+    "reason": "active_task_heartbeat",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-19T14:21:29+08:00",
-  "generation_id": "gov-012362-8d04bae5bef9",
-  "governance_revision": 12362,
+  "generated_at": "2026-09-20T10:57:50+08:00",
+  "generation_id": "gov-013223-d7a3c63e51e5",
+  "governance_revision": 13223,
   "next_task_id": null,
   "pair_status": {
     "chips": "BLOCKED_DATA_VOLUME",

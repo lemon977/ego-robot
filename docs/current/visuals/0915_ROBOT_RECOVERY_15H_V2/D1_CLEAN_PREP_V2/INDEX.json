@@ -1,0 +1,30 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d1-clean-prep-visual-routing-v2",
+  "status": "CURRENT_WRAPPER_V2_V1_RECEIPT_SUPERSEDED",
+  "current_wrapper": "D1_CLEAN_PREP_V2",
+  "clean_materialized": false,
+  "training_eligible": false,
+  "v1_defect_receipt": {
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP/V1_RECEIPT_STAGING_PATH_DEFECT.json",
+    "bytes": 1070,
+    "sha256": "d96fabc447305a5d9a04f5c70a57cca047751cb0a6b22e6a405910cef1c3e4ff"
+  },
+  "v2_receipt": {
+    "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP_V2/D1_CLEAN_PREP_VISUAL_REVIEW_RECEIPT.json",
+    "bytes": 4542,
+    "sha256": "cba5afd7f25121e944c3efcb840eeba89acc51cf2fd5ce734bf3449b39007c1a"
+  },
+  "v2_videos": [
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP_V2/play_cards_0915_044_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4",
+      "bytes": 5243707,
+      "sha256": "e6d10408b6f4b89cd448a78c4b25ae076e122830ad78cddc9ad16fc621671bd0"
+    },
+    {
+      "path": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP_V2/get_potato_chips_0915_097_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4",
+      "bytes": 9649394,
+      "sha256": "f6701cec51a96b3bea611ae2aa5870d1a0cb6d8e0714c343e3a91a333b86dddb"
+    }
+  ],
+  "claim_limit": "Machine routing and V1 wrapper supersession only; no Clean quality, inpainting, Contact, training, control, or deployment authority."
+}

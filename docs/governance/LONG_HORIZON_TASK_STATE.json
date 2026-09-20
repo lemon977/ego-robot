@@ -73,12 +73,28 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-19T14:21:29+08:00",
-  "generation_id": "gov-012362-8d04bae5bef9",
-  "generator_code_sha": "5fdf570ee15388a4e57c8f6db91b14336681277058ba5e5286db895b37890aa4",
-  "governance_revision": 12362,
+  "generated_at": "2026-09-20T10:57:50+08:00",
+  "generation_id": "gov-013223-d7a3c63e51e5",
+  "generator_code_sha": "d960d9e5bf59e192e54d1f598e365da0e0e77195b4f63ebafbcbf33a8f5b8ec8",
+  "governance_revision": 13223,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
-  "next_task": null,
+  "next_task": {
+    "expected_resource": "CPU_LANES_PLUS_SINGLE_GOVERNED_GPU_LEASE",
+    "prerequisites": [
+      "governance_PASS_FRESH",
+      "no_active_current_task",
+      "0915_processed_root_READ_ONLY",
+      "0916_downstream_FORBIDDEN",
+      "egosteer_touch_MUST_NOT_BE_STOPPED",
+      "single_parent_with_internal_isolated_writers",
+      "single_GPU_lease_owner",
+      "source_group_claim_METADATA_VERIFIED_NO_USER_ATTESTATION",
+      "Clean_Removal_training_RL_real_control_FORBIDDEN"
+    ],
+    "session": null,
+    "stop_condition": "Finite V2.1 terminal by the frozen 15-hour deadline without weakening quality gates.",
+    "task_id": "0915_robot_quality_recovery_15h_v2"
+  },
   "rc1_budget": {
     "checkpoint_gpu_hours_limit": 48,
     "checkpoint_gpu_hours_used": 0,
@@ -102,14 +118,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 0,
-      "created_at": "2026-09-17T18:49:34+08:00",
-      "message": "Registered bounded baseline verification; no authority promotion.",
-      "session": "get_potato_chips_0902_103+get_potato_chips_0915_001",
-      "status": "PENDING",
-      "task_id": "baseline_e2e_pair_v1"
-    },
     {
       "attempt": 1,
       "created_at": "2026-09-17T18:50:45+08:00",
@@ -1475,11 +1483,25 @@
       "status": "REJECTED_QUALITY",
       "task_id": "0915_robot15h_window_release_audit_v1",
       "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-19T23:59:30+08:00",
+      "message": "Registered the single V2.1 parent; no algorithm result yet.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "0915_robot_quality_recovery_15h_v2",
+      "task_packet": {
+        "bytes": 8261,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot_quality_recovery_15h_v2/TASK_PACKET.json",
+        "sha256": "56152522d619356c5405661d8ba3ec30c71b7c4f6ff72214a1586d10e9ad0ea7"
+      },
+      "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "c7c9cea7caa54f749f60763388c51d47b55b59cb"
+    "commit": "a4f371ab099777ba3f171ec3c111acfc258e4ac0"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2701,6 +2723,30 @@
         "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
       },
       "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": "2026-09-20T10:57:50+08:00",
+      "phase": "ROBOT_QUALITY_RECOVERY_0915_15H_V21",
+      "pid": 70398,
+      "plan_execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
+      "proc_start_ticks": 209927893,
+      "session": null,
+      "status": "RUNNING",
+      "task_id": "0915_robot_quality_recovery_15h_v2",
+      "task_packet": {
+        "bytes": 8261,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot_quality_recovery_15h_v2/TASK_PACKET.json",
+        "sha256": "56152522d619356c5405661d8ba3ec30c71b7c4f6ff72214a1586d10e9ad0ea7"
+      },
+      "updated_at": "2026-09-20T10:57:50+08:00",
+      "window_clock": {
+        "bytes": 696,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/WINDOW_CLOCK.json",
+        "sha256": "03eaaeed828bc46f49d19c6d0bce78deca43c7fb57d7491471d80a9320dcea99"
+      },
+      "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800"
     }
   ]
 }

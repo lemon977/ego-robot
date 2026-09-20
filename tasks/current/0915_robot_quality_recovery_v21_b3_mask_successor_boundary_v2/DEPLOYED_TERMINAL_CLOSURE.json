@@ -1,0 +1,23 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b3-final-terminal-closure-v1",
+  "status": "FAILED_RUNTIME_FINAL_TERMINAL",
+  "decision": "STOP_NO_THIRD_ATTEMPT",
+  "v1_gpu_receipt": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B3_MASK_SUCCESSOR_GPU_COMMAND_RECEIPT.json",
+    "sha256": "20f5e0da0483d95991d1fb4ba8637157540837ade75e2a57bf2e7553014227dc"
+  },
+  "v2_gpu_receipt": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B3_MASK_SUCCESSOR_GPU_COMMAND_RECEIPT_V2.json",
+    "sha256": "027d110d785ef5a2816589ea37acbebb1711947b1002514ffe9dbed871e52985"
+  },
+  "final_audit": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B3_FINAL_TERMINAL_AUDIT/RESULT.json",
+    "bytes": 2457,
+    "sha256": "7cd9d87b6b0cbb247ec45f491d7a5b69c868beb88ba24cb5d722d6bcbcaa675d"
+  },
+  "final_output_exists": false,
+  "shallow_output_exists": false,
+  "consumer_allowed": false,
+  "mask_accuracy_claimed": false,
+  "claim_limit": "Two immutable same-signature runtime failures; no third attempt and no Mask, identity, Clean, Contact, training, control or deployment authority."
+}

@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1160" height="608" viewBox="0 0 1160 608">
+<rect width="100%" height="100%" fill="#fbfbfd"/>
+<style>text{font-family:DejaVu Sans,Arial,sans-serif;fill:#172033}.title{font-size:24px;font-weight:700}.sub{font-size:13px;fill:#4b5563}.label{font-size:14px}.num{font-size:13px;font-weight:700}.axis{stroke:#cbd5e1;stroke-width:1}</style>
+<text x="28" y="38" class="title">A5 Kai22 URDF-bound saturation audit</text>
+<text x="28" y="64" class="sub">denominator = eligible q22 side-frames; orange = any joint exactly at a URDF bound; saturation is not a limit violation</text>
+<line x1="430" y1="91" x2="1030" y2="91" class="axis"/>
+<text x="426" y="84" class="sub">0%</text><text x="716" y="84" class="sub">50%</text><text x="1010" y="84" class="sub">100%</text>
+<text x="28" y="130" class="label">A3_A1  play_cards_0915_044</text>
+<rect x="430" y="112" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="112" width="0.00" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="130" class="num">0/1 (0.0%)</text>
+<text x="28" y="186" class="label">A3_A1  get_potato_chips_0915_097</text>
+<rect x="430" y="168" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="168" width="494.12" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="186" class="num">280/340 (82.4%)</text>
+<text x="28" y="242" class="label">A3_A2  play_cards_0915_106</text>
+<rect x="430" y="224" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="224" width="0.00" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="242" class="num">0/0 (N/A)</text>
+<text x="28" y="298" class="label">A3_A2  get_potato_chips_0915_029</text>
+<rect x="430" y="280" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="280" width="288.41" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="298" class="num">112/233 (48.1%)</text>
+<text x="28" y="354" class="label">W0  play_cards_0915_031</text>
+<rect x="430" y="336" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="336" width="551.02" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="354" class="num">90/98 (91.8%)</text>
+<text x="28" y="410" class="label">W0  play_cards_0915_119</text>
+<rect x="430" y="392" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="392" width="505.97" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="410" class="num">113/134 (84.3%)</text>
+<text x="28" y="466" class="label">W0  get_potato_chips_0915_007</text>
+<rect x="430" y="448" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="448" width="590.48" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="466" class="num">372/378 (98.4%)</text>
+<text x="28" y="522" class="label">W0  get_potato_chips_0915_042</text>
+<rect x="430" y="504" width="600" height="24" rx="4" fill="#e5e7eb"/>
+<rect x="430" y="504" width="372.68" height="24" rx="4" fill="#f59e0b"/>
+<text x="1045" y="522" class="num">441/710 (62.1%)</text>
+<text x="28" y="584" class="sub">Root pattern: A3 Chips saturation is thumb_joint4 only; Poker A3 coverage is 1/332 and 0/340 side-frames.</text>
+</svg>

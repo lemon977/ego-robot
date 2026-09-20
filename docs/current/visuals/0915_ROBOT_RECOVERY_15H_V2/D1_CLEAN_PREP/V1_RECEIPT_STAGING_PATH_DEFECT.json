@@ -1,0 +1,13 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d1-clean-prep-visual-wrapper-defect-v1",
+  "status": "SUPERSEDED_WRAPPER_RECEIPT_PATH_DEFECT",
+  "affected_output": "/mnt/workspace/code/chaoyang/docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/D1_CLEAN_PREP",
+  "affected_receipt": "D1_CLEAN_PREP_VISUAL_REVIEW_RECEIPT.json",
+  "defect": "The two video references recorded the pre-commit staging directory even though the MP4 bytes were committed under the final output directory.",
+  "pixel_or_video_content_affected": false,
+  "quality_or_authority_affected": false,
+  "old_renderer_sha256": "d252118ca4c5e9a88549a686bd01fe1101489b92cb9e9de03984dc4f9226ba3b",
+  "fixed_renderer_sha256": "d111d9b44e9d3f53d0b00912e3a65edb4cdd508f25d6035c389b03983fdd4723",
+  "resolution": "Keep V1 immutable as defective evidence and render a fresh D1_CLEAN_PREP_V2 output whose receipt projects staged bytes to final committed paths.",
+  "claim_limit": "Wrapper provenance defect only; neither V1 nor V2 materializes Clean or grants training, Contact, control or deployment authority."
+}

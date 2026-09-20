@@ -1,0 +1,126 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d2-fresh-propainter-offline-config-v1",
+  "algorithm_id": "robot_quality_recovery_v21_d2_fresh_propainter_offline_v1",
+  "execution_semantics": "OFFLINE_BIDIRECTIONAL_VISUAL_ONLY",
+  "fixed_sessions": [
+    "play_cards_0915_044",
+    "get_potato_chips_0915_097"
+  ],
+  "session_actions": {
+    "play_cards_0915_044": "RAW_PASS_THROUGH_REQUIRE_ZERO_M_WRITE_NO_MODEL",
+    "get_potato_chips_0915_097": "PROPAINTER_M_FLOW_CONTEXT_COMPOSITE_M_WRITE_ONLY"
+  },
+  "d1": {
+    "terminal_index": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/D1_TERMINAL_INDEX.json",
+      "bytes": 3074,
+      "sha256": "1f4fbbe75ca50d8c22cd5aba5cc7ad31fa5e08141748108911c71ac44d06fbcb"
+    },
+    "prepared_result": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/RESULT.json",
+      "bytes": 4367,
+      "sha256": "c8a241ea37b0b4803055dd0448f3e1e0d75c351b81f608994c66643e2b991cb3"
+    },
+    "frame_manifests": {
+      "play_cards_0915_044": {
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/sessions/play_cards_0915_044/FRAME_MANIFEST.json",
+        "bytes": 548061,
+        "sha256": "cde13308c0d218f491f88755e2c83258f1b6382f56c12787dd462879f0e94271"
+      },
+      "get_potato_chips_0915_097": {
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/D1_CLEAN_PREP/PREPARED_V1/sessions/get_potato_chips_0915_097/FRAME_MANIFEST.json",
+        "bytes": 1304156,
+        "sha256": "6fe105b3cdaa8eed7e5e0976adc254019baf5e8f614b0706155fbb89f732a319"
+      }
+    }
+  },
+  "vendor": {
+    "name": "ProPainter",
+    "root": "/mnt/workspace/code/chaoyang/vendor/ProPainter",
+    "historical_upstream_commit": "e870e79321c31b733e2031af5aa2fb1fe3ac7eec",
+    "current_vendor_nested_git_metadata": false,
+    "current_source_tree_manifest_file_count": 53,
+    "current_source_tree_manifest_sha256": "812fb2035b01948522b3fe690a17130aa29c94e7fdd72827dbe027b573d71ffa",
+    "inference_entry": {
+      "path": "/mnt/workspace/code/chaoyang/vendor/ProPainter/inference_propainter.py",
+      "bytes": 20698,
+      "sha256": "5aee61d93a40e4c54d531866ab80c66e8ad7d9285373a801c2e22372bf87147f"
+    },
+    "weights": {
+      "raft-things.pth": {
+        "lexical_path": "/mnt/workspace/code/chaoyang/vendor/ProPainter/weights/raft-things.pth",
+        "resolved_path": "/mnt/workspace/code/chaoyang/assets/models/vendor/propainter/raft-things.pth",
+        "bytes": 21108000,
+        "sha256": "fcfa4125d6418f4de95d84aec20a3c5f4e205101715a79f193243c186ac9a7e1"
+      },
+      "recurrent_flow_completion.pth": {
+        "lexical_path": "/mnt/workspace/code/chaoyang/vendor/ProPainter/weights/recurrent_flow_completion.pth",
+        "resolved_path": "/mnt/workspace/code/chaoyang/assets/models/vendor/propainter/recurrent_flow_completion.pth",
+        "bytes": 20348681,
+        "sha256": "22939a1a7900da878dbe1ccd011d646b1bfb30b8290039d8ff0e0c2fefbfd283"
+      },
+      "ProPainter.pth": {
+        "lexical_path": "/mnt/workspace/code/chaoyang/vendor/ProPainter/weights/ProPainter.pth",
+        "resolved_path": "/mnt/workspace/code/chaoyang/assets/models/vendor/propainter/ProPainter.pth",
+        "bytes": 157780510,
+        "sha256": "12c070c4b48f374c91d8a2a17851140b85c159621080989f9e191bbc18bd6591"
+      }
+    }
+  },
+  "inference_parameters": {
+    "process_width": 960,
+    "process_height": 720,
+    "mask_dilation": 4,
+    "ref_stride": 10,
+    "neighbor_length": 10,
+    "subvideo_length": 80,
+    "raft_iter": 20,
+    "fp16": true,
+    "fps": 30
+  },
+  "write_contract": {
+    "relations": "M_remove subset M_write subset M_flow",
+    "input_mask_domain": "M_flow",
+    "effective_internal_model_mask": "DILATE(RESIZED_M_flow,4)_INSIDE_PROPAINTER",
+    "effective_internal_model_mask_note": "ProPainter applies mask_dilation=4 after the supplied M_flow mask is resized to 960x720. This internal receptive/fill mask can extend beyond D1 M_flow, but it is never an authorized publication write domain.",
+    "publish_write_domain": "M_write",
+    "outside_M_write": "DECODED_RAW_BYTE_EXACT",
+    "visible_task_object": "DECODED_RAW_BYTE_EXACT",
+    "unknown_after_visual_fill": "M_write",
+    "chips_instances": "THREE_SEPARATE_UNKNOWN_SLOTS_NO_UNION",
+    "poker_identity": "UNKNOWN_PROTECTION_ONLY_NO_HIDDEN_APPEARANCE"
+  },
+  "source_semantics": {
+    "0": "RAW_CURRENT_UNCHANGED",
+    "2": "VISIBLE_OBJECT_RAW_PROTECTED",
+    "3": "SYNTHETIC_PROPAINTER_VISUAL_NOT_SCENE_TRUTH",
+    "10": "VISIBLE_INSTANCE_SLOT_0_RAW_PROTECTED",
+    "11": "VISIBLE_INSTANCE_SLOT_1_RAW_PROTECTED",
+    "12": "VISIBLE_INSTANCE_SLOT_2_RAW_PROTECTED",
+    "250": "UNKNOWN_INVALID_FOR_TRAINING"
+  },
+  "publication_contract": {
+    "deep": "SAME_FILESYSTEM_SIBLING_STAGING_THEN_SINGLE_OS_REPLACE",
+    "failure": "REMOVE_STAGING_AND_LEAVE_FINAL_ABSENT",
+    "embedded_refs": "PROJECT_STAGING_ARTIFACTS_TO_FINAL_PATH_BEFORE_COMMIT",
+    "shallow": "COPY_REAL_MP4_FILES_TO_SIBLING_STAGING_THEN_SINGLE_OS_REPLACE",
+    "symlinks_allowed": false
+  },
+  "generated_frame_contract": {
+    "vendor_exact_sequence": "0000.png..0393.png",
+    "normalized_exact_sequence": "000000.png..000393.png",
+    "normalization": "BYTE_EXACT_COPY_AFTER_EXACT_VENDOR_SEQUENCE_VALIDATION",
+    "consumer_sequence": "NORMALIZED_SIX_DIGIT_ONLY",
+    "count_only_validation_forbidden": true
+  },
+  "training_eligible": false,
+  "clean_terminal": false,
+  "control_ground_truth": false,
+  "model_fallback_allowed": false,
+  "parameter_sweep_allowed": false,
+  "old_clean_allowed": false,
+  "future_donor_allowed": false,
+  "hidden_ground_truth_allowed": false,
+  "object6d_contact_robot_allowed": false,
+  "claim_limit": "One frozen ProPainter offline visual challenger. Generated M_write pixels remain UNKNOWN and are not Clean truth, causal training input, Contact, control or deployment authority."
+}

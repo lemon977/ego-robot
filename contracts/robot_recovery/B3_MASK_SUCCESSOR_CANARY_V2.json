@@ -1,0 +1,143 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b3-independent-hand-equipment-canary-v1",
+  "candidate_id": "B3_SAM31_TEXT_ONLY_HAND_WORN_EQUIPMENT_GEOMETRY_BOUNDARY_V2",
+  "status": "FROZEN_NOT_EXECUTED",
+  "claim_limit": "Development geometry-only SAM3.1 candidate audit. No Mask accuracy, Hand identity, physical tracker identity, left/right identity, absence, Object, Clean, Contact, training, control or deployment authority.",
+  "immutable_parent_evidence": {
+    "b1_result": {
+      "path": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1/RESULT.json",
+      "sha256": "62e08adceff6d21cecf1dea2a171b2e8f381250f06e75fb21fdd3d509481410d"
+    },
+    "b1r_result": {
+      "path": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1R/RESULT.json",
+      "sha256": "7be40d384d7826dfcb0e57c9b4561f5f71c8e947902f52a6a42bd8c77c999d9a"
+    }
+  },
+  "runtime": {
+    "runner": {
+      "path": "src/chaoyang/ops/run_b3_sam31_independent_hand_equipment_canary_v2.py",
+      "sha256": "05213533f7d58ca86120fbbf127e26b5fb55eb2498e4e79257ee707f796b86ce"
+    },
+    "shallow_renderer": {
+      "path": "src/chaoyang/ops/publish_b3_shallow_reviews_v1.py",
+      "sha256": "c7ba7eedb48b5c715c0dd3f5d732e5ede8b90186a2d85741caba2fd9d00c05a7"
+    },
+    "adapter": {
+      "path": "src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+      "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+    },
+    "checkpoint": {
+      "path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+      "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6"
+    },
+    "tracker_source": {
+      "path": "vendor/SAM3/sam3/model/sam3_multiplex_tracking.py",
+      "sha256": "65e1cea27ee243dad228fb05967a8be92c90ef304665ada76930b899aa034d24"
+    },
+    "gpu_lease_wrapper": {
+      "path": "src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+      "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+    },
+    "official_code_commit": "660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7"
+  },
+  "execution_contract": {
+    "preflight_output": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B3_MASK_SUCCESSOR_PREFLIGHT_V2",
+    "model_output": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B3_MASK_SUCCESSOR_CANARY_V2",
+    "gpu_receipt": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B3_MASK_SUCCESSOR_GPU_COMMAND_RECEIPT_V2.json",
+    "shallow_visual_output": "docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2/B3_MASK_SUCCESSOR_V2",
+    "gpu_lease": {
+      "gpu_id": 0,
+      "priority": "CANARY",
+      "min_free_mib": 49152,
+      "wait_seconds": 1800,
+      "wall_seconds": 3600,
+      "concurrent_gpu_jobs": 1
+    }
+  },
+  "forbidden_semantic_inputs": [
+    "HaWoR joints_2d",
+    "HaWoR observed",
+    "MANO mesh or joints",
+    "PICO hand/controller projection",
+    "B1 Hand masks",
+    "B1R Hand masks",
+    "Object masks",
+    "Clean images"
+  ],
+  "prompts": {
+    "hand": {
+      "text": "hand",
+      "minimum_area_pixels": 128,
+      "maximum_area_fraction": 0.3,
+      "maximum_components": 10,
+      "maximum_candidates": 4,
+      "semantic_output": "HAND_CANDIDATE_UNASSIGNED"
+    },
+    "worn_equipment": {
+      "text": "wrist-worn device",
+      "minimum_area_pixels": 32,
+      "maximum_area_fraction": 0.08,
+      "maximum_components": 10,
+      "maximum_candidates": 4,
+      "semantic_output": "WORN_EQUIPMENT_CANDIDATE_UNASSIGNED"
+    }
+  },
+  "fixed_runtime_policy": {
+    "output_prob_thresh": 0.5,
+    "chunk_frames": 64,
+    "fresh_state_per_role_per_chunk": true,
+    "native_full_is_last_batch": true,
+    "left_right_identity": "UNKNOWN",
+    "cross_chunk_identity": "NOT_STITCHED",
+    "hand_equipment_overlap_hard_max_pixels": 0,
+    "overlap_resolution": "REJECT_DO_NOT_SUBTRACT_OR_UNION",
+    "empty_output_semantics": "UNKNOWN_NOT_ABSENT",
+    "consumer_allowed": false
+  },
+  "sessions": [
+    {
+      "session_id": "play_cards_0915_044",
+      "task": "playing_cards",
+      "frame_count": 166,
+      "prepared_rgb": {
+        "path": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/prepared/play_cards_0915_044/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+        "bytes": 3297594,
+        "sha256": "85aac7f6e6a65ecaed18ad0b9d1fa8fa99437e87bdca544afc4ba1c0325e51fa"
+      },
+      "windows": [
+        {"start": 0, "end_exclusive": 64},
+        {"start": 64, "end_exclusive": 128},
+        {"start": 128, "end_exclusive": 166}
+      ]
+    },
+    {
+      "session_id": "get_potato_chips_0915_097",
+      "task": "potato_chips",
+      "frame_count": 394,
+      "prepared_rgb": {
+        "path": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/prepared/get_potato_chips_0915_097/PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY.mp4",
+        "bytes": 7011557,
+        "sha256": "a72dba65c7c6ff66711d4357e2336d2247e99fffae9caa981a1deab02fd520e0"
+      },
+      "windows": [
+        {"start": 0, "end_exclusive": 64},
+        {"start": 64, "end_exclusive": 128},
+        {"start": 128, "end_exclusive": 192},
+        {"start": 192, "end_exclusive": 256},
+        {"start": 256, "end_exclusive": 320},
+        {"start": 320, "end_exclusive": 384},
+        {"start": 384, "end_exclusive": 394}
+      ]
+    }
+  ],
+  "hard_rejection_gates": [
+    "Any pinned SHA or full-decode mismatch is fatal.",
+    "Any HaWoR, MANO, PICO, prior Hand mask, Object mask or Clean input consumption is forbidden.",
+    "Hand and worn-equipment run in separate fresh SAM states and may never be unioned.",
+    "Any Hand/equipment pixel overlap rejects separation for that frame; no threshold tuning or subtraction is allowed.",
+    "No left/right assignment and no identity stitching across chunks is allowed.",
+    "No candidate is consumer-eligible even when all geometry gates pass.",
+    "Empty or missing output means UNKNOWN, never ABSENT.",
+    "B1 and B1R remain immutable and are never overwritten or adopted by this canary."
+  ]
+}

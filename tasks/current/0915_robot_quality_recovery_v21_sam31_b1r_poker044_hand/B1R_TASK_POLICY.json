@@ -1,0 +1,84 @@
+{
+  "schema_version": "0915-robot-recovery-v21-sam31-b1r-task-policy-v1",
+  "policy_id": "B1R_POKER044_HAND_TRACKER_FRAME_STATE_RECOVERY_V1",
+  "authority": "DEVELOPMENT_DIAGNOSTIC_ONLY",
+  "fixed_session": {
+    "session_id": "play_cards_0915_044",
+    "task": "playing_cards",
+    "frame_count": 166,
+    "source_group": "0915:cards_120_0915:044:2fae5fbe35ad430fae7a45320ee03529",
+    "capability": "HAND_ONLY"
+  },
+  "recovery_contract": {
+    "parent_terminal": "FAILED_RUNTIME_FINAL",
+    "parent_failure": "KeyError: 164",
+    "located_stage": "RIGHT_HAND_FALLBACK_REVERSE_PROPAGATION_FIRST_FRAME",
+    "fallback_anchor_frame": 165,
+    "reverse_first_frame": 164,
+    "allowed_exception_class": "KeyError",
+    "allowed_exception_args": [164],
+    "allowed_direction": "backward",
+    "allowed_yielded_frames_before_exception": 0,
+    "conversion_status": "UNKNOWN_DIRECTION_INCOMPLETE",
+    "affected_side_terminal": "REJECTED_TRACKER_DIRECTION_INCOMPLETE",
+    "uncovered_frame_semantics": "UNKNOWN_NOT_ABSENT",
+    "all_other_exceptions": "FAILED_RUNTIME_FINAL",
+    "maximum_matching_conversions": 1
+  },
+  "immutability": {
+    "reuse_parent_failed_semantic_as_input": false,
+    "input_rgb": "A1_ORIGINAL_SHA_BOUND_PREPARED_RGB",
+    "input_prompt": "A1_ORIGINAL_SHA_BOUND_RAW_DIRECT_OBSERVED_2D",
+    "prompt_changed": false,
+    "thresholds_changed": false,
+    "weights_changed": false,
+    "legacy_hand_algorithm_changed": false,
+    "only_change": "BOUNDED_TRACKER_FRAME_STATE_KEYERROR_TO_UNKNOWN_DIRECTION_INCOMPLETE"
+  },
+  "runtime_refs": {
+    "sam31_checkpoint": {
+      "path": "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt",
+      "sha256": "0567debeec80ba4ac6369540c6c248025283cb3ff2b92827509e57e2b3541cb6"
+    },
+    "sam31_adapter": {
+      "path": "src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+      "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+    },
+    "legacy_hand_runner": {
+      "path": "src/chaoyang/ops/run_0915_robot15h_sam31_temporal_identity_v1.py",
+      "sha256": "f6b6b444bd86acfb301a781f192bccbeaee2dd7177081656e2486294366490c5"
+    },
+    "sam31_tracker_source": {
+      "path": "vendor/SAM3/sam3/model/sam3_multiplex_tracking.py",
+      "sha256": "65e1cea27ee243dad228fb05967a8be92c90ef304665ada76930b899aa034d24"
+    },
+    "gpu_lease_wrapper": {
+      "path": "src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+      "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+    }
+  },
+  "gpu_lease": {
+    "gpu_id": 0,
+    "minimum_free_mib": 49152,
+    "wait_seconds": 1800,
+    "wall_seconds": 1800,
+    "single_lease": true,
+    "persistent_model_load_count": 1,
+    "gpu_execution_session_count": 1,
+    "fresh_state_per_role_prompt": true
+  },
+  "terminal_statuses": [
+    "COMPLETED_WITH_QUALITY_REJECTION",
+    "BLOCKED_INPUT",
+    "BLOCKED_RESOURCE",
+    "FAILED_RUNTIME_FINAL"
+  ],
+  "forbidden_claims": [
+    "PASSED_DIAGNOSTIC_WHEN_TRACKER_DIRECTION_INCOMPLETE",
+    "MASK_ACCURACY",
+    "PHYSICAL_IDENTITY_GROUND_TRUTH",
+    "TRAINING_ELIGIBILITY",
+    "CONTROL_GROUND_TRUTH",
+    "PHYSICAL_DEPLOYMENT_AUTHORITY"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b3-boundary-failure-audit-v1",
+  "created_at": "2026-09-20T02:48:33+08:00",
+  "status": "PASSED_DIAGNOSIS_SUCCESSOR_PREPARED_NOT_EXECUTED",
+  "decision": "GO_ONE_BOUNDARY_ONLY_SUCCESSOR_ATTEMPT",
+  "remote_modified": false,
+  "gpu_model_executed_by_audit": false,
+  "authority_promoted": false,
+  "claim_limit": "Exact B3 partial-window runtime diagnosis and one iterator-boundary-only successor preparation. No Mask accuracy, identity, Object, Clean, Contact, training, control or deployment authority.",
+  "failed_attempt": {
+    "status": "FAILED_RUNTIME_FINAL",
+    "immutable": true,
+    "receipt_path": "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B3_MASK_SUCCESSOR_GPU_COMMAND_RECEIPT.json",
+    "receipt_sha256": "20f5e0da0483d95991d1fb4ba8637157540837ade75e2a57bf2e7553014227dc",
+    "returncode": 1,
+    "exception": "IndexError: list index out of range",
+    "failure_function": "sam3_multiplex_detector._batch_find_inputs",
+    "observed_progress": "64/65 intended tracker iterations completed before boundary failure"
+  },
+  "root_cause": {
+    "classification": "PINNED_VENDOR_PARTIAL_WINDOW_INCLUSIVE_EXCLUSIVE_MISMATCH",
+    "tracker_semantics": "forward end=start+max; range(start,end+1), hence max+1 processing indices",
+    "detector_semantics": "valid_frame_end=start+max but used as exclusive range/chunk end",
+    "frozen_window": {
+      "start": 0,
+      "end_exclusive": 64,
+      "max_frame_num_to_track": 64,
+      "desired_frames": 64,
+      "scheduled_processing_indices": 65,
+      "poison_index": 64,
+      "empty_chunk": "[64,64)"
+    },
+    "changing_max_to_63_is_valid_fix": false,
+    "why_full_sequence_succeeds": "tracker clamps inclusive end to num_frames-1 while detector receives exclusive end num_frames"
+  },
+  "remote_cleanup_audit": {
+    "final_output_absent": true,
+    "matching_staging_absent": true,
+    "lease_status": "RELEASED",
+    "lease_release_reason": "WORKER_RC_1",
+    "lease_fencing_token": "64c0cba770a547bd815a95eac4eff843",
+    "wrapper_pid": 97219,
+    "worker_pid": 97222,
+    "b3_processes_alive": false,
+    "unrelated_gpu_process_touched": false,
+    "observed_lease_sha256": "49930e68315652bc407cb82320577beb5d638a9812d883a74ae4e0e72a038194"
+  },
+  "minimal_successor": {
+    "candidate_id": "B3_SAM31_TEXT_ONLY_HAND_WORN_EQUIPMENT_GEOMETRY_BOUNDARY_V2",
+    "semantic_changes": [],
+    "only_change": "Consume exactly [start,end_exclusive) sequential outputs and close generator before requesting inconsistent boundary index",
+    "model_unchanged": true,
+    "checkpoint_unchanged": true,
+    "prompts_unchanged": true,
+    "thresholds_unchanged": true,
+    "windows_unchanged": true,
+    "consumer_allowed": false,
+    "gpu_attempt_budget": 1,
+    "new_output_required": true,
+    "original_v1_must_remain_unchanged": true
+  },
+  "tests": {
+    "new_boundary_tests_passed": 5,
+    "new_boundary_tests_total": 5,
+    "existing_b3_tests_passed": 13,
+    "existing_b3_tests_total": 13,
+    "config_validation": "PASSED",
+    "python_compile": "PASSED",
+    "patch_dry_run": "PASSED"
+  },
+  "evidence": {
+    "v1_runner_sha256": "8431c8a31ad3365ab59c49092d8e1557d499a67c0f7804d3e38f2793a8d5f6ce",
+    "tracker_sha256": "65e1cea27ee243dad228fb05967a8be92c90ef304665ada76930b899aa034d24",
+    "detector_sha256": "af0feb4f9a3d405103cdc70a90fcba2a9a1234d6fcfe50c563bbfae2c15922f8",
+    "successful_native_224_result_sha256": "7db3bd40b1aa682a4e37b6a0af373a69fefda8e30a083e9448ebec4ff1df65f5",
+    "successful_native_runner_sha256": "86883098ba9aec580f9d33e05b19d7935ff5b704c4de5c9c888c38c3f1c2a989"
+  },
+  "artifacts": {
+    "decision": {
+      "path": "DECISION.md",
+      "sha256": "e94b5a84eb00e0839f88c3b262098fd1a6c4e9289d1ddf03db4d92b0934636e4"
+    },
+    "successor_runner": {
+      "path": "run_b3_sam31_independent_hand_equipment_canary_v2.py",
+      "sha256": "05213533f7d58ca86120fbbf127e26b5fb55eb2498e4e79257ee707f796b86ce"
+    },
+    "successor_config": {
+      "path": "B3_MASK_SUCCESSOR_CANARY_V2.json",
+      "sha256": "68f48b0d380483da17fcb8d467a9ff1ca3ff7fec31651628f18efb02293e5602"
+    },
+    "patch": {
+      "path": "0001_take_exact_half_open_sam_window.patch",
+      "sha256": "f81221cc2a6fe30159b6b8fb4b9214c476fc39a07c91806a873701327464087f"
+    },
+    "fixture": {
+      "path": "test_b3_boundary_successor_v2.py",
+      "sha256": "d337eadc28b72094e27d7a09edeb6a4bcbcb784526c8c1940e11ab4478c91db4"
+    },
+    "test_result": {
+      "path": "TEST_RESULT.json",
+      "sha256": "c0849ec101df11674d3f9651e8385e9c76f9f213292f6b968fea38dd1412753f"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "batch_result": {
+    "bytes": 3362,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1R/BATCH_RESULT.json",
+    "sha256": "c964b93fff8e434faa12290481369a00ed5d4a5a9b119610ffc311ce284943d2"
+  },
+  "candidate_freeze": {
+    "bytes": 7736,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1R/CANDIDATE_FREEZE_V1.json",
+    "sha256": "7298cd6db16dcc98bac7b6df5ca6c5e6cf6fbd8bf0b1f998157f9752ab0052fa"
+  },
+  "claim_limit": "Poker044 Hand-only runtime recovery; incomplete tracker direction is UNKNOWN and quality-rejected. No Mask accuracy, training, control or deployment authority.",
+  "first_blocker": "REJECTED_TRACKER_DIRECTION_INCOMPLETE",
+  "gpu_command_receipt": {
+    "bytes": 27112,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1R/GPU_COMMAND_RECEIPT.json",
+    "sha256": "e58331bf9a2eef25898da0ce0e8f757e58d6857ab942ea63b1279103fc3ed003"
+  },
+  "mask_accuracy_claimed": false,
+  "parent_failed_semantic_consumed": false,
+  "physical_deployment_authorized": false,
+  "result": {
+    "bytes": 1689,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1R/RESULT.json",
+    "sha256": "7be40d384d7826dfcb0e57c9b4561f5f71c8e947902f52a6a42bd8c77c999d9a"
+  },
+  "run_signature": {
+    "bytes": 1126,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B1R/RUN_SIGNATURE.json",
+    "sha256": "f1554507d5b3d6baef4bac99f092485c4abf9403e0d610007df21b5096416f49"
+  },
+  "schema_version": "0915-robot-recovery-v21-sam31-b1r-result-v1",
+  "status": "COMPLETED_WITH_QUALITY_REJECTION",
+  "task_id": "0915_robot_quality_recovery_v21_sam31_b1r_poker044_hand",
+  "training_eligible": false
+}

@@ -1,0 +1,7 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d1-clean-prep-template-pointer-v1",
+  "status": "SUPERSEDED_BY_REAL_NORMALIZED_INPUT_MANIFEST",
+  "consumable": false,
+  "real_input_manifest_path": "/home/lemon/音乐/robot_recovery_v21_docs/b2_clean_impl/real_input_v1/normalized/D1_CLEAN_PREP_INPUT_MANIFEST.json",
+  "real_input_manifest_sha256": "9c92cd26828fbab39984e032c715a622c1174f30c3b4b0ccae0f507d4e9bf738"
+}

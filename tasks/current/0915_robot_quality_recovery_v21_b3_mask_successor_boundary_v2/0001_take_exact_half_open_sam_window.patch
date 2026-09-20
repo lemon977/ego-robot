@@ -1,0 +1,79 @@
+--- a/src/chaoyang/ops/run_b3_sam31_independent_hand_equipment_canary_v2.py
++++ b/src/chaoyang/ops/run_b3_sam31_independent_hand_equipment_canary_v2.py
+@@ -25,7 +25,7 @@
+ import shutil
+ import subprocess
+ import sys
+-from typing import Any, Iterable, Mapping
++from typing import Any, Iterable, Iterator, Mapping
+ import uuid
+ 
+ import cv2
+@@ -434,6 +434,49 @@
+             "full_decode": True, "decode": stream}
+ 
+ 
++def take_exact_frozen_window(
++    propagation: Iterator[tuple[Any, Any]],
++    *,
++    start: int,
++    end_exclusive: int,
++) -> Iterator[tuple[Any, Any]]:
++    """Consume exactly the half-open frozen window, never its poison boundary.
++
++    The pinned SAM3 multiplex tracker interprets ``max_frame_num_to_track`` as
++    an inclusive forward span in ``_get_processing_order`` but as an exclusive
++    upper bound in its batched detector.  For a 64-frame partial window the
++    normal iterator therefore has 65 processing indices and the 65th creates
++    an empty detector batch.  The caller still passes the frozen span to the
++    model, but this adapter requests only the 64 promised outputs and closes
++    the generator without asking for the inconsistent boundary index.
++
++    Frame order and cardinality remain fail-closed.  This function does not
++    alter prompts, model weights, thresholds, windows, masks, or identities.
++    """
++    if end_exclusive <= start:
++        raise ValueError("frozen window must be non-empty")
++    try:
++        for expected_frame in range(start, end_exclusive):
++            try:
++                item = next(propagation)
++            except StopIteration as exc:
++                raise RuntimeError(
++                    "SAM propagation ended before the frozen window was complete: "
++                    f"expected frame {expected_frame}"
++                ) from exc
++            frame_index, outputs = item
++            if int(frame_index) != expected_frame:
++                raise RuntimeError(
++                    "SAM propagation violated frozen sequential frame order: "
++                    f"expected {expected_frame}, got {int(frame_index)}"
++                )
++            yield frame_index, outputs
++    finally:
++        close = getattr(propagation, "close", None)
++        if callable(close):
++            close()
++
++
+ def process_prompt_window(
+     model: Any,
+     frame_root: Path,
+@@ -467,13 +510,16 @@
+         for raw_id in selected:
+             stream[str(raw_id)][0] = by_id[raw_id]
+         rows: dict[int, dict[str, Any]] = {}
+-        for frame_index, outputs in model.propagate_in_video(
++        propagation = model.propagate_in_video(
+             inference_state=state,
+             start_frame_idx=start,
+             max_frame_num_to_track=end_exclusive - start,
+             reverse=False,
+             output_prob_thresh=0.5,
+             is_last_batch=True,
++        )
++        for frame_index, outputs in take_exact_frozen_window(
++            propagation, start=start, end_exclusive=end_exclusive
+         ):
+             frame = int(frame_index)
+             if not start <= frame < end_exclusive:

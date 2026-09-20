@@ -1,0 +1,193 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "algorithm_freeze_elapsed_seconds": 32400,
+    "gpu_concurrent_owners_max": 1,
+    "p0_seconds": 2700,
+    "r2_solver_seconds": 5400,
+    "runtime_attempts_per_candidate": 1,
+    "stop_new_sessions_elapsed_seconds": 48600,
+    "wall_clock_seconds": 54000
+  },
+  "calibration_or_absent": "ABSENT",
+  "child_weights_policy": "EACH_CHILD_RUN_SIGNATURE_MUST_BIND_EXACTLY_ONE_PINNED_WEIGHT_OR_ABSENT",
+  "claim_limit": "Development-relative offline Robot recovery only. No training, control, external metric, physical deployment or Contact ground-truth authority.",
+  "code_closure": [
+    {
+      "bytes": 18069,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_quality_recovery_15h_v2.py",
+      "sha256": "d190cbf12e6f30512799998393525d24eb9ae36124c2bfd849973443de6adc6f"
+    },
+    {
+      "bytes": 16769,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_0915_robot_recovery_v21.py",
+      "sha256": "84fbe6729c9e9f09df7e31b26e106bc27347ff12f2c41c590d9f29a179e06d7f"
+    },
+    {
+      "bytes": 6597,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_0915_robot_recovery_v21.py",
+      "sha256": "14b24f08fababccd2ae32f473b6d95af6e709a22cb6d8447243dced628f016fa"
+    }
+  ],
+  "conditional_output_contract": {
+    "p0_lineage_resolution": {
+      "both_allowed": false,
+      "one_of": [
+        "R2_CONTRACT_SNAPSHOT_V1.json",
+        "LINEAGE_TOMBSTONE_V1.json"
+      ]
+    }
+  },
+  "dag_dependencies": [
+    "0915_robot15h_window_release_audit_v1"
+  ],
+  "dependency_refs": {
+    "0915_robot15h_window_release_audit_v1": {
+      "bytes": 2092,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/attempts/attempt_0001/RESULT.json",
+      "sha256": "3465d5e4eea1830146814e2635daf08e9c9d2e4cddaaad85a08199cf796f8e0f"
+    }
+  },
+  "execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
+  "executor_epoch": 1,
+  "expected_resource": "CPU_LANES_PLUS_SINGLE_GOVERNED_GPU_LEASE",
+  "external_metric_authority": false,
+  "fencing": {
+    "immutable_final": true,
+    "pid_startticks_required": true,
+    "unique_primary_writer": true
+  },
+  "input_manifest": {
+    "batch_manifest": {
+      "bytes": 10504,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+      "sha256": "3d2667fcbba1b2e8c0cdd42b0b965c57f221b6b1040d6cce56f0ae32597701f8"
+    },
+    "document_bundle": [
+      {
+        "bytes": 6009,
+        "path": "/mnt/workspace/code/chaoyang/docs/chaoyang_robot_recovery_15h_v2/00_START_HERE_ZH.md",
+        "sha256": "a85f1d8841d8f36b81638a15291aeb66260fcde67bd363207328d563f7e013f8"
+      },
+      {
+        "bytes": 40472,
+        "path": "/mnt/workspace/code/chaoyang/docs/chaoyang_robot_recovery_15h_v2/01_EXECUTION_PLAN_15H_ZH.md",
+        "sha256": "07e1db2f8ee95cf92954cdcc9af083381aef2241aa338b3a1cbd2f3e27c0ea53"
+      },
+      {
+        "bytes": 13739,
+        "path": "/mnt/workspace/code/chaoyang/docs/chaoyang_robot_recovery_15h_v2/02_ALGORITHM_AUDIT_LIVE_ZH.md",
+        "sha256": "a418033ebacd41bfa36cb8f518d7328b5c5b16ce205baba6ecee6ef9b1cec4b7"
+      },
+      {
+        "bytes": 10444,
+        "path": "/mnt/workspace/code/chaoyang/docs/chaoyang_robot_recovery_15h_v2/03_TASK_MANIFEST.template.json",
+        "sha256": "f444fb881fcb6be17f638745a1085e9a555e898102ba1cd9e276e7ef14566e50"
+      },
+      {
+        "bytes": 7417,
+        "path": "/mnt/workspace/code/chaoyang/docs/chaoyang_robot_recovery_15h_v2/04_ACCEPTANCE_TESTS_ZH.md",
+        "sha256": "6a101dfe2a1118a8a1e041427b4557a3dcfce1695c7693247e08bec8c59b47e7"
+      },
+      {
+        "bytes": 4266,
+        "path": "/mnt/workspace/code/chaoyang/docs/chaoyang_robot_recovery_15h_v2/05_TECHNICAL_SOURCES_ZH.md",
+        "sha256": "6401ca0ee6a63f7bc2371f209eddd056db81d55a46b83187f04ebc82744db7ef"
+      },
+      {
+        "bytes": 558,
+        "path": "/mnt/workspace/code/chaoyang/docs/chaoyang_robot_recovery_15h_v2/SHA256SUMS.txt",
+        "sha256": "731b17bc790b91a23a87c2ee32a778ce919991fe01303c9f4058ff5426d7b6a0"
+      }
+    ],
+    "predecessor_final_audit": {
+      "bytes": 1677,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/attempts/attempt_0001/FINAL_AUDIT.json",
+      "sha256": "d6e933d96782172dbe03a056f889fbe602f737f56ac53a52c390b28e69fff150"
+    },
+    "predecessor_terminal_result": {
+      "bytes": 2092,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/attempts/attempt_0001/RESULT.json",
+      "sha256": "3465d5e4eea1830146814e2635daf08e9c9d2e4cddaaad85a08199cf796f8e0f"
+    },
+    "source_group_manifest": {
+      "bytes": 492572,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/SOURCE_GROUP_MANIFEST.json",
+      "sha256": "2e3a3a33f08f2524f394031b34dab4368995b5b30876aca838688e13aa992885"
+    },
+    "window_clock": {
+      "bytes": 696,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/WINDOW_CLOCK.json",
+      "sha256": "03eaaeed828bc46f49d19c6d0bce78deca43c7fb57d7491471d80a9320dcea99"
+    }
+  },
+  "objective": "Execute the fifteen-hour V2.1 recovery protocol over the frozen 0915 cohort, separating W0 development, W1-DIAG, W1-ADOPTION, H9 holdout and sealed EXTRA FINAL.",
+  "phase": "ROBOT_QUALITY_RECOVERY_0915_15H_V21",
+  "plan_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "no_active_current_task",
+    "0915_processed_root_READ_ONLY",
+    "0916_downstream_FORBIDDEN",
+    "egosteer_touch_MUST_NOT_BE_STOPPED",
+    "single_parent_with_internal_isolated_writers",
+    "single_GPU_lease_owner",
+    "source_group_claim_METADATA_VERIFIED_NO_USER_ATTESTATION",
+    "Clean_Removal_training_RL_real_control_FORBIDDEN"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/chaoyang_robot_recovery_15h_v2/01_EXECUTION_PLAN_15H_ZH.md",
+    "docs/chaoyang_robot_recovery_15h_v2/02_ALGORITHM_AUDIT_LIVE_ZH.md",
+    "docs/chaoyang_robot_recovery_15h_v2/03_TASK_MANIFEST.template.json",
+    "docs/chaoyang_robot_recovery_15h_v2/04_ACCEPTANCE_TESTS_ZH.md",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/BATCH_MANIFEST.json",
+    "_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/SOURCE_GROUP_MANIFEST.json",
+    "_run/current/0915_robot_quality_recovery_15h_v2/WINDOW_CLOCK.json"
+  ],
+  "required_outputs": [
+    "SOURCE_GROUP_PROVENANCE_CORRECTION_V2.json",
+    "COHORT_ACCESS_LEDGER_V1.json",
+    "W0_FAILURE_MATRIX_V2.json",
+    "CONSUMER_ADMISSION_V1.json",
+    "WINDOW_VALIDITY_V1.json",
+    "CONTACT_OBSERVABILITY_AUDIT_V1.json",
+    "LOCAL_STEREO_METRIC_DEV_V1.json",
+    "CANDIDATE_FREEZE_V1.json",
+    "ADOPTION_DECISION_V1.json",
+    "TECHNICAL_CONTRACT_SNAPSHOT_INDEX_V1.json",
+    "ALGORITHM_AUDIT_LIVE_V2.json",
+    "FINAL_AUDIT.json",
+    "CLAIM.json",
+    "RUN_SIGNATURE.json",
+    "RESULT.json",
+    "RUN_RECEIPT.json",
+    "WORK_PACKAGE_LEDGER_T0.json",
+    "P0_RESOLUTION_V1.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "deadline_2026_09_20T14_44_12_plus08",
+    "all_started_packages_terminal",
+    "H13p5_no_new_sessions",
+    "candidate_quality_C_no_automatic_retry",
+    "external_or_scope_violation_fail_closed"
+  ],
+  "task_id": "0915_robot_quality_recovery_15h_v2",
+  "weights": "ABSENT",
+  "window_clock": {
+    "bytes": 696,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/WINDOW_CLOCK.json",
+    "sha256": "03eaaeed828bc46f49d19c6d0bce78deca43c7fb57d7491471d80a9320dcea99"
+  },
+  "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800",
+  "write_set": [
+    "_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001",
+    "tasks/receipts/0915_ROBOT_QUALITY_RECOVERY_15H_V21_RESULT.json",
+    "docs/current/visuals/0915_ROBOT_RECOVERY_15H_V2",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/README_ZH.md",
+    "docs/current/ROBOT15H_0915_EXECUTION_V1_ZH.md",
+    "docs/current/visuals/README_ZH.md"
+  ]
+}

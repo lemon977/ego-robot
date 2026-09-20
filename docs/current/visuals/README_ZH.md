@@ -1,8 +1,34 @@
 # 当前可直接复核的可视化
 
-更新时间：2026-09-19（Asia/Shanghai）
+更新时间：2026-09-20（Asia/Shanghai）
 
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
+
+## 0915 Robot Recovery V2.1（进行中）
+
+- [`0915_ROBOT_RECOVERY_15H_V2/README_ZH.md`](0915_ROBOT_RECOVERY_15H_V2/README_ZH.md)
+- [`0915_ROBOT_RECOVERY_15H_V2/A2_W1_ADOPTION/README_ZH.md`](0915_ROBOT_RECOVERY_15H_V2/A2_W1_ADOPTION/README_ZH.md)
+- [`0915_ROBOT_RECOVERY_15H_V2/B1_SAM31/`](0915_ROBOT_RECOVERY_15H_V2/B1_SAM31/)
+- [`0915_ROBOT_RECOVERY_15H_V2/C1_SELF_CHECK/README_ZH.md`](0915_ROBOT_RECOVERY_15H_V2/C1_SELF_CHECK/README_ZH.md)
+
+当前首批 W1-DIAG 已完整覆盖 Poker044 的 166 帧和 Chips097 的 394 帧。
+两个整会话仍为 HaWoR strict 质量拒绝；Chips097 只有右手逐侧 strict 通过。
+视频用于查看 raw 观测与 MISS，不是 R0 质量通过、因果训练输入或控制真值。
+
+W1-ADOPTION 两条也已完成全片可视化：Poker106 170帧、Chips029 234帧。
+两个整会话和左右手 strict 均未通过；Chips029 右手有 233 个 structural
+候选帧，仍等待 R0 自身 FK/限位/碰撞/时序门。这些视频是
+`OFFLINE_ADOPTION_EVIDENCE`，不表示已采用。
+
+B1 SAM3.1 已完成有界实跑：Chips097 右手 393/394 帧通过 direct-observed
+开发代理，左手因无直接观测保持 UNKNOWN；Chips Object 三实例均 UNKNOWN。
+Poker044 Object 输出三个 visible candidate，但无独立物理牌/牌面身份证据，
+全部 UNKNOWN；Hand 为 `KeyError:164` 运行失败。B1 总终态是
+`FAILED_RUNTIME_FINAL`，不是 Mask quality pass。
+
+C1 CPU 自检图展示内部 packed-depth/finite-patch 回环一致，但 92–98 七帧
+无独立可见手指表面，最小有限 patch 距离仍为 24.304 mm，物理 registration
+仍 `UNBOUND`。因此 Contact 保持 UNKNOWN，R1-E 保持 CLOSED。
 
 ## 0915 Robot15h W1 FoundationStereo
 
@@ -380,7 +406,32 @@ v75 的 9 条精确复用会话已完成独立数字硬几何审计：9/9 通过
 
 写域缩小和当前可见物体保护方向已得到全片像素证据，但正式训练仍被阻塞：旧 donor 是双向的、没有 support-surface 语义拒绝，也没有无损帧/source-map 闭包；Poker verified atlas 尚不存在。因而这轮没有申请 GPU、没有运行新 ProPainter，终态是 `BLOCKED_PREREQ` 而不是质量 C。视频中的有损 MP4 编码漂移不能被解释成物体被算法删除，正式 byte-exact 门必须在无损帧上计算。
 
-## 10. 历史 Poker Object Mask 有界对比（非当前路线）
+## 10. 0915 Robot 恢复 V2.1 当前浅层入口
+
+目录：`0915_ROBOT_RECOVERY_15H_V2/`
+
+- `A1_W1_DIAG/`：Poker044、Chips097 的 full-timeline Raw HaWoR 诊断视频。
+- `A2_W1_ADOPTION/`：Poker106、Chips029 的 full-timeline Raw HaWoR adoption
+  复核视频；`adoption_decision=NOT_AUTOMATED`。
+- `B1_SAM31/`：本轮 Hand/Object SAM3.1 复核。Chips097 只有右手
+  direct-observed proxy 有输出；Poker044 Hand 为 runtime failure，不能称 Mask 通过。
+- `B1R_POKER044_HAND/hand/`：对 Poker044 唯一 tracker `KeyError(164)` 的有界
+  fail-closed successor。视频166帧完整，但左右手均质量拒绝且不可消费；它不是 Mask 改进。
+- `C1_SELF_CHECK/`：Contact 内部一致性摘要；registration 未绑定，Contact 仍 UNKNOWN。
+- `A3_R0/`：Kai22 R0 逐帧限位/FK/手内碰撞与运动统计摘要。A1 的341帧、A2 的
+  233帧均完成静态检查，但正式速度/加速度/最短窗口门缺失，质量准入仍为0。
+- `A6_THUMB_BOUNDED_IK/`：唯一拇指有界 IK 候选的严格拒绝摘要。指尖方向虽改善，
+  但两条 Chips 的 thumb4 饱和与连续到界段都恶化，且饱和迁移到其他拇指关节。
+- `B2_DEPTH_TO_OBJECT_POKER044/`：Poker044 166帧 review-only 可见 Object6D。
+  物理牌/牌面身份始终 UNKNOWN，`consumer_allowed=false`，不是 Object6D 真值。
+- `D1_CLEAN_PREP_V2/`：Poker044/Chips097 的零写入 Clean preparation 全片视频。
+  candidate 仍逐像素等于 Raw，画面只展示 `M_remove/M_write/M_flow/UNKNOWN`；
+  还没有执行 fresh inpainting，不能称 Clean 成片。
+
+这些视频和图都是 `OFFLINE DEVELOPMENT EVIDENCE`。它们不授予 Mask accuracy、
+外部公制深度、Contact、Robot 控制、训练或物理部署 authority。
+
+## 11. 历史 Poker Object Mask 有界对比（非当前路线）
 
 - `Poker015_SAM31_vs_SAM21_全片开发复核.mp4`（428 帧，1280×480，30 FPS）
 

@@ -1,0 +1,36 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b3-mask-successor-test-result-v1",
+  "status": "PASSED",
+  "tests_run": 13,
+  "tests_passed": 13,
+  "model_executed": false,
+  "gpu_consumed": false,
+  "command": "python3 -m unittest -v robot_recovery_v21_docs/b3_mask_successor_audit/test_b3_sam31_independent_hand_equipment_canary_v1.py",
+  "coverage": [
+    "frozen full-session window coverage",
+    "RGB-only semantic input contract",
+    "deterministic geometry candidate cap",
+    "zero-overlap Hand/equipment rejection",
+    "disjoint geometry-only pass",
+    "consumer policy fail-closed",
+    "extra HaWoR-like session input rejection",
+    "missing role remains separation UNKNOWN",
+    "session rejection/unknown precedence",
+    "same-parent staging and final-path projection",
+    "failure cleanup leaves no final output",
+    "preflight never enters model execution",
+    "independent shallow renderer fresh atomic publication"
+  ],
+  "code": {
+    "path": "run_b3_sam31_independent_hand_equipment_canary_v1.py",
+    "sha256": "8431c8a31ad3365ab59c49092d8e1557d499a67c0f7804d3e38f2793a8d5f6ce"
+  },
+  "test_code": {
+    "path": "test_b3_sam31_independent_hand_equipment_canary_v1.py",
+    "sha256": "5056d57537575cc5e0618a330f1412c0a89afbc2e62ee1761285755625daaf8c"
+  },
+  "shallow_renderer": {
+    "path": "publish_b3_shallow_reviews_v1.py",
+    "sha256": "c7ba7eedb48b5c715c0dd3f5d732e5ede8b90186a2d85741caba2fd9d00c05a7"
+  }
+}

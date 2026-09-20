@@ -1,0 +1,107 @@
+{
+  "schema_version": "0915-kai22-r0-quality-successor-config-v1",
+  "run_mode": "DIAGNOSTIC_ONLY_NO_QUALITY_UPGRADE",
+  "cohort_role": "W1_DIAG",
+  "source_signature_sha256": "9ccf7ff5eef43158848f73206a772ae756c0387cd84de9ecc72a2ee678db781b",
+  "parent_candidate_signature_sha256": "9ccf7ff5eef43158848f73206a772ae756c0387cd84de9ecc72a2ee678db781b",
+  "source_package": {
+    "result": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/RESULT.json",
+      "bytes": 2522,
+      "sha256": "a93b31f865ae00d7bcc8503b5dcd5da38b34377ddcf8da742021d83b8a18d0e1"
+    },
+    "prepared_manifest": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/PREPARED_MANIFEST.json",
+      "bytes": 9242,
+      "sha256": "a525a5e49631777eccdcaf4222de7105a954c4e388225fea7218c782afdbf260"
+    },
+    "consumer_admission": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/CONSUMER_ADMISSION_V1.json",
+      "bytes": 3147,
+      "sha256": "9f75a32b22db1dc9b60b8b7d934caeefa5eeb46f062cb0f87689768274af5d03"
+    },
+    "window_validity": {
+      "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/A1/WINDOW_VALIDITY_V1.json",
+      "bytes": 2715,
+      "sha256": "6e67fbb6a7cb546d23bd5f9070f3e956400916a5a00ee6318ee62fdc7a04a2e3"
+    }
+  },
+  "code_refs": {
+    "old_r0_audit_target": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_kai22_r0_wave0_v1.py",
+      "bytes": 28745,
+      "sha256": "5d389faef24255be58cf45036977059c9df5c52c43c619cc05e43cc767df612c"
+    },
+    "retarget": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/robot_visual_relative_v1.py",
+      "bytes": 17370,
+      "sha256": "be0d1512fe3ffa1239d0a53ef958353960ca99d71fc191eebfa16d52b27c70ad"
+    },
+    "forward_kinematics": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/robot_renderer_cycles.py",
+      "bytes": 29353,
+      "sha256": "ff83deb3417b8183560e59d7f73504d5ed5161f9d3202292850009792bde2c8a"
+    },
+    "pinned_asset_loader": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/robot_renderer_eevee_fullchain.py",
+      "bytes": 102614,
+      "sha256": "9f4354812a990fce6a34b8da649c7fa81dcbcee4ca88d64dd16a6d7df395740f"
+    },
+    "collision_precedent": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_robot_geometry_self_collision_v71.py",
+      "bytes": 13213,
+      "sha256": "9547215d1e1f41fc192f08cf08aedd49be7d5d886c06b4d78a93eb987ccbf148"
+    },
+    "timestamp_motion_precedent": {
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/interaction_contact_robot_dev_v1.py",
+      "bytes": 30153,
+      "sha256": "531a8433544f5ae0ca25413d037b7ce87a569753f103235f60bfa5011f68f6c4"
+    }
+  },
+  "robot_asset_refs": {
+    "asset_pin": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/ROBOT_ASSET_PIN.json",
+      "bytes": 37840,
+      "sha256": "4bc508a45fd460610a73bc9fb6bf194d97a5cfdef5e863bd1069683921cd1330"
+    },
+    "kaihand_left_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-L-260624(1620)/urdf/KaiBot-Dexhand shell-URDF-L-260624(1620).urdf",
+      "bytes": 29480,
+      "sha256": "dad94b420f5fb675781260562f087e839e746f99e811b54171cd23a33ca8ab74"
+    },
+    "kaihand_right_urdf": {
+      "path": "/mnt/workspace/code/chaoyang/assets/robot/kaihand/packages/KaiBot-Dexhand shell-URDF-R-260424(1430)/urdf/KaiBot-Dexhand shell-URDF-R-260424(1430).urdf",
+      "bytes": 29568,
+      "sha256": "9444414bb1810d98fc1800654d1e751eb6d3c264a3e630da30f1048f98b98586"
+    }
+  },
+  "gate_policy": {
+    "limit": {
+      "source": "PINNED_KAIHAND_URDF",
+      "tolerance_rad": 1e-09,
+      "posthoc_clip_allowed": false
+    },
+    "fk": {
+      "source": "PINNED_REPOSITORY_FORWARD_KINEMATICS",
+      "coverage": "EVERY_RETARGETED_SIDE_FRAME"
+    },
+    "collision": {
+      "engine": "PYBULLET_DIRECT_PINNED_URDF_COLLISION_GEOMETRY",
+      "scope": "KAIHAND_INTRA_HAND_NON_PARENT_ONLY",
+      "coverage": "EVERY_RETARGETED_SIDE_FRAME",
+      "penetration_tolerance_m": 0.0001
+    },
+    "motion": {
+      "status": "MISSING_FROZEN_THRESHOLDS",
+      "actual_dt_required": true,
+      "cross_gap_derivatives_allowed": false,
+      "boundary_context_frames_each_side": 1,
+      "max_abs_velocity_rad_s": null,
+      "max_abs_acceleration_rad_s2": null,
+      "minimum_window_frames": null,
+      "numeric_thresholds_changed": false,
+      "threshold_authority_ref": null
+    }
+  },
+  "claim_limit": "A1 W1-DIAG CPU own-gate diagnostic only; no R0 quality upgrade, adoption, control, training, external metric, or physical deployment authority."
+}

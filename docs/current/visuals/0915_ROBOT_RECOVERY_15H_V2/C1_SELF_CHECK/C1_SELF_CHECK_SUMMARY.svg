@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1180" height="520" viewBox="0 0 1180 520" role="img" aria-labelledby="title desc">
+  <title id="title">C1 CPU-only internal self-check summary</title>
+  <desc id="desc">Immutable inputs and internal geometry pass, but Contact remains unknown because the overlap window has no independently observed finger surface and registration is unbound.</desc>
+  <style>
+    .bg{fill:#0f172a}.title{fill:#f8fafc;font:700 28px sans-serif}.sub{fill:#cbd5e1;font:15px sans-serif}
+    .box{fill:#1e293b;stroke:#64748b;stroke-width:2;rx:12}.pass{fill:#064e3b;stroke:#34d399}.stop{fill:#4c1d1d;stroke:#fb7185}
+    .h{fill:#f8fafc;font:700 17px sans-serif}.t{fill:#e2e8f0;font:14px sans-serif}.n{fill:#f8fafc;font:700 23px sans-serif}
+    .arrow{stroke:#94a3b8;stroke-width:3;fill:none;marker-end:url(#a)}.warn{fill:#fecdd3;font:700 15px sans-serif}
+  </style>
+  <defs><marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#94a3b8"/></marker></defs>
+  <rect class="bg" width="1180" height="520"/>
+  <text class="title" x="36" y="48">C1 CPU-only internal self-check</text>
+  <text class="sub" x="36" y="76">Poker119 · remote HEAD a4f371a · read-only frozen-cache replay · fixed Contact gate 5 mm</text>
+
+  <rect class="box pass" x="36" y="112" width="250" height="122"/>
+  <text class="h" x="56" y="142">Immutable inputs</text>
+  <text class="n" x="56" y="178">27 + 168 files</text>
+  <text class="t" x="56" y="205">679,520,778 bytes SHA-verified</text>
+
+  <path class="arrow" d="M286 173 H326"/>
+  <rect class="box pass" x="326" y="112" width="250" height="122"/>
+  <text class="h" x="346" y="142">Packed finite support</text>
+  <text class="n" x="346" y="178">455 + 49 zero</text>
+  <text class="t" x="346" y="205">504 rows; 23,202 boundaries</text>
+
+  <path class="arrow" d="M576 173 H616"/>
+  <rect class="box pass" x="616" y="112" width="250" height="122"/>
+  <text class="h" x="636" y="142">Metric replay</text>
+  <text class="n" x="636" y="178">251 / 251 pass</text>
+  <text class="t" x="636" y="205">inside patch: 0 · within 5 mm: 0</text>
+
+  <path class="arrow" d="M866 173 H906"/>
+  <rect class="box pass" x="906" y="112" width="238" height="122"/>
+  <text class="h" x="926" y="142">Roundtrip maxima</text>
+  <text class="n" x="926" y="178">6.36e-14 px</text>
+  <text class="t" x="926" y="205">boundary depth error: 0 m</text>
+
+  <rect class="box" x="104" y="292" width="280" height="140"/>
+  <text class="h" x="124" y="322">92–98 frozen target</text>
+  <text class="t" x="124" y="352">packed card overlap</text><text class="n" x="314" y="354">7 / 7</text>
+  <text class="t" x="124" y="384">aligned finger tactile</text><text class="n" x="314" y="386">7 / 7</text>
+  <text class="t" x="124" y="416">independent finger surface</text><text class="n" x="314" y="418">0 / 7</text>
+
+  <path class="arrow" d="M384 362 H454"/>
+  <rect class="box stop" x="454" y="292" width="280" height="140"/>
+  <text class="h" x="474" y="322">Expected fail-closed terminal</text>
+  <text class="n" x="474" y="360">Contact UNKNOWN</text>
+  <text class="t" x="474" y="390">registration: UNBOUND</text>
+  <text class="t" x="474" y="416">authority: NONE · R1-E CLOSED</text>
+
+  <path class="arrow" d="M734 362 H804"/>
+  <rect class="box" x="804" y="292" width="280" height="140"/>
+  <text class="h" x="824" y="322">No-go evidence</text>
+  <text class="t" x="824" y="352">minimum finite-patch distance</text>
+  <text class="n" x="824" y="386">24.304 mm &gt; 5 mm</text>
+  <text class="warn" x="824" y="416">No external metric/registration claim</text>
+
+  <text class="sub" x="36" y="485">Internal roundtrip consistency is not physical RGB-depth registration accuracy and cannot manufacture an occluded finger surface.</text>
+</svg>

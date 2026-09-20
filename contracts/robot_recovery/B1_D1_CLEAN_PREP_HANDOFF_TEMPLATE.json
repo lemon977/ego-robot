@@ -1,0 +1,7 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d1-clean-prep-template-pointer-v1",
+  "status": "SUPERSEDED_BY_REAL_B1_B1R_COMPOSITE_HANDOFF",
+  "consumable": false,
+  "real_handoff_path": "/home/lemon/音乐/robot_recovery_v21_docs/b2_clean_impl/real_input_v1/normalized/B1_D1_CLEAN_PREP_HANDOFF.json",
+  "real_handoff_sha256": "70d8c082abfa2e2ba3692b27c981d9dbe601ce2953f88ca963187836c6d1f77a"
+}

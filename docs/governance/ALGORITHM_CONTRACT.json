@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-19T14:21:29+08:00",
-  "generation_id": "gov-012362-8d04bae5bef9",
-  "governance_revision": 12362,
+  "generated_at": "2026-09-20T10:57:50+08:00",
+  "generation_id": "gov-013223-d7a3c63e51e5",
+  "governance_revision": 13223,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -11,6 +11,48 @@
   },
   "schema_version": "chaoyang-algorithm-contract-v1",
   "special_status_contracts": {
+    "b2_depth_to_visible_object_poker044_v1": {
+      "authority_promoted": false,
+      "candidate_id": "B2_DEPTH_TO_VISIBLE_OBJECT_GEOMETRY_SUCCESSOR_V1",
+      "claim_limit": "CPU-only Poker044 direct-visible finite-surface review canary from pinned cached Depth and visible-mask candidate data; physical-card/face identity remains UNKNOWN and no Contact, hidden geometry, external metric, Clean, Robot, training, control or deployment authority is granted.",
+      "code_closure": [
+        {
+          "bytes": 33427,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_b2_depth_to_visible_object_poker044_v1.py",
+          "sha256": "2e4c38296e30f765fb9132efd31458c0b97df98ef47d4f19f5f5ca7dfdfd0c2a"
+        },
+        {
+          "bytes": 6085,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/B2_DEPTH_TO_VISIBLE_OBJECT_POKER044_V1.json",
+          "sha256": "c7cc9cd2d1a0c1b056c58230a81d0d3d93a5f62e626d2818ff46e190cb1a7aef"
+        },
+        {
+          "bytes": 48454,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_object6d_wave0_v1.py",
+          "sha256": "af0029b97b47dbdc1f7a1f19e6604b2f6ab1598d246a8581f060002c2942f86b"
+        },
+        {
+          "bytes": 6875,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object6d_planar_observability_v2.py",
+          "sha256": "22f41d87a1ea8f51bb88ad6108e9e017fe9b5fc1889f98bc6d420be4b10387dc"
+        },
+        {
+          "bytes": 16999,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object6d_planar_observability_v1.py",
+          "sha256": "091f64826097926465daeadea8c62cb6ebfb2d157f74ed5c4d0ffd813b02e444"
+        }
+      ],
+      "consumer_allowed": false,
+      "depth_execution": "REUSE_PINNED_CACHE_NO_RERUN",
+      "execution_scope": "POKER044_PINNED_DEPTH_AND_VISIBLE_MASK_CANDIDATE_CPU_REVIEW_ONLY",
+      "face_identity": "UNKNOWN_UNBOUND",
+      "gpu_required": false,
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "physical_card_identity": "UNKNOWN_UNBOUND",
+      "review_only": true,
+      "session_id": "play_cards_0915_044",
+      "weights": "ABSENT"
+    },
     "cleanup_cli": {
       "any_cwd_cli_required": true,
       "code_closure": [
@@ -179,6 +221,44 @@
       "gpu_required": true,
       "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
       "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1"
+    },
+    "kai22_r0_quality_successor_v1": {
+      "authority_promoted": false,
+      "claim_limit": "CPU full-frame q22 limit/FK/intra-hand collision and motion diagnostics only; structural/static-gate success is not R0 quality admission, and no control, training, external metric or deployment authority is granted.",
+      "code_closure": [
+        {
+          "bytes": 48534,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_kai22_r0_quality_successor_v1.py",
+          "sha256": "1e501c55141e446b3c52c2305e40c09b5eba5dcebd491827d7be079de8fc07e2"
+        },
+        {
+          "bytes": 4900,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/A3_R0_QUALITY_SUCCESSOR_A1_DIAGNOSTIC_V1.json",
+          "sha256": "072ae2ab43c641667672d232b6d33efb9099aca2001bb0cac92d46044294400a"
+        },
+        {
+          "bytes": 4980,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/A3_R0_QUALITY_SUCCESSOR_A2_DIAGNOSTIC_V1.json",
+          "sha256": "4cb01fd22b5010661ea8071ef2127c8facfe84135e8508949b4eb24b7d644bfc"
+        },
+        {
+          "bytes": 7245,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/A3_R0_QUALITY_SUCCESSOR_CONFIG_V1.schema.json",
+          "sha256": "124ee3009e688df99e056e61d47aa9d5dbe057a92874389d45f658c2b3fd2534"
+        }
+      ],
+      "collision_scope": "PINNED_KAIHAND_INTRA_HAND_NON_PARENT_ONLY",
+      "evaluation_scope": "A1_POKER044_CHIPS097_AND_A2_POKER106_CHIPS029_STRUCTURAL_SIDE_FRAMES",
+      "execution_scope": "FIXED_A1_W1_DIAG_AND_A2_W1_ADOPTION_CPU_OWN_GATE_DIAGNOSTIC",
+      "gpu_required": false,
+      "known_saturation_root_cause": "A3_CHIPS_THUMB_JOINT4_UPPER_BOUND_FROM_HALF_UNSIGNED_MANO_DISTAL_BEND",
+      "motion_gate_status": "BLOCKED_MISSING_FROZEN_POSITIVE_VELOCITY_ACCELERATION_AND_MINIMUM_WINDOW_THRESHOLDS",
+      "numeric_thresholds_changed": false,
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "posthoc_gate_clip_allowed": false,
+      "retarget_internal_mapping_clip": "PRESENT_IN_robot_visual_relative_v1_BEFORE_Q22_RETURN",
+      "run_mode": "DIAGNOSTIC_ONLY_NO_QUALITY_UPGRADE",
+      "weights": "ABSENT"
     },
     "mask_baseline": {
       "challenger_is_current_authority": false,
@@ -549,6 +629,490 @@
     "robot_pose_similarity": {
       "gate_class": "SOFT_DIAGNOSTIC",
       "may_block_robot_geometry": false
+    },
+    "robot_quality_recovery_0915_15h_v21": {
+      "0916_consumption": "FORBIDDEN",
+      "authority_promoted": false,
+      "claim_limit": "V2.1 development-relative recovery and offline visualization only; no training, external metric, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 18069,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_quality_recovery_15h_v2.py",
+          "sha256": "d190cbf12e6f30512799998393525d24eb9ae36124c2bfd849973443de6adc6f"
+        },
+        {
+          "bytes": 16769,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_0915_robot_recovery_v21.py",
+          "sha256": "84fbe6729c9e9f09df7e31b26e106bc27347ff12f2c41c590d9f29a179e06d7f"
+        },
+        {
+          "bytes": 6597,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_0915_robot_recovery_v21.py",
+          "sha256": "14b24f08fababccd2ae32f473b6d95af6e709a22cb6d8447243dced628f016fa"
+        }
+      ],
+      "contact_authority": {
+        "control_ground_truth": false,
+        "external_metric_authority": false,
+        "local_stereo_metric_dev": "CONDITIONAL_SAME_FRAME_SAME_ENCODED_DEPTH_ONLY",
+        "physical_deployment_authorized": false
+      },
+      "execution_scope": "FROZEN_0915_V21_SIXTEEN_SESSION_ACCESS_LEDGER_AND_NINE_INTERNAL_PACKAGES",
+      "gpu_required": false,
+      "image_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "input_root": "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915",
+      "source_group_authority": "METADATA_VERIFIED_NO_USER_ATTESTATION",
+      "weights": "ABSENT"
+    },
+    "robot_quality_recovery_v21_b3_sam31_independent_hand_equipment_boundary_v2": {
+      "authority_promoted": false,
+      "claim_limit": "One runtime-boundary-only successor to the immutable B3 v1 failure; no Mask accuracy, physical tracker identity, left/right identity, Object, Clean, Contact, training, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 33526,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_b3_sam31_independent_hand_equipment_canary_v2.py",
+          "sha256": "05213533f7d58ca86120fbbf127e26b5fb55eb2498e4e79257ee707f796b86ce"
+        },
+        {
+          "bytes": 5452,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/test_b3_boundary_successor_v2.py",
+          "sha256": "d337eadc28b72094e27d7a09edeb6a4bcbcb784526c8c1940e11ab4478c91db4"
+        },
+        {
+          "bytes": 6762,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/publish_b3_shallow_reviews_v1.py",
+          "sha256": "c7ba7eedb48b5c715c0dd3f5d732e5ede8b90186a2d85741caba2fd9d00c05a7"
+        },
+        {
+          "bytes": 6121,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/B3_MASK_SUCCESSOR_CANARY_V2.json",
+          "sha256": "68f48b0d380483da17fcb8d467a9ff1ca3ff7fec31651628f18efb02293e5602"
+        },
+        {
+          "bytes": 34274,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+          "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        },
+        {
+          "bytes": 155012,
+          "path": "/mnt/workspace/code/chaoyang/vendor/SAM3/sam3/model/sam3_multiplex_tracking.py",
+          "sha256": "65e1cea27ee243dad228fb05967a8be92c90ef304665ada76930b899aa034d24"
+        },
+        {
+          "bytes": 41666,
+          "path": "/mnt/workspace/code/chaoyang/vendor/SAM3/sam3/model/sam3_multiplex_detector.py",
+          "sha256": "af0feb4f9a3d405103cdc70a90fcba2a9a1234d6fcfe50c563bbfae2c15922f8"
+        },
+        {
+          "bytes": 9036,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+          "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+        }
+      ],
+      "consumer_allowed": false,
+      "cross_chunk_identity": "NOT_STITCHED",
+      "execution_scope": "ONE_BOUNDARY_ONLY_SUCCESSOR_FOR_B3_V1_FAILED_RUNTIME_FINAL",
+      "fixed_sessions": [
+        "play_cards_0915_044",
+        "get_potato_chips_0915_097"
+      ],
+      "gpu_required": true,
+      "immutable_failed_parent": "B3_MASK_SUCCESSOR_GPU_COMMAND_RECEIPT_FAILED_RUNTIME_FINAL",
+      "left_right_identity": "UNKNOWN",
+      "only_change": "CONSUME_EXACT_HALF_OPEN_WINDOW_AND_CLOSE_GENERATOR_BEFORE_POISON_BOUNDARY",
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "prompts_thresholds_windows_weights_changed": false,
+      "weights": "ONE_PINNED_SAM31_MULTIPLEX_CHECKPOINT"
+    },
+    "robot_quality_recovery_v21_b3_sam31_independent_hand_equipment_canary_v1": {
+      "authority_promoted": false,
+      "claim_limit": "Development geometry-only SAM3.1 Hand/worn-equipment canary; no Mask accuracy, physical tracker identity, left/right identity, Object, Clean, Contact, training, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 31551,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_b3_sam31_independent_hand_equipment_canary_v1.py",
+          "sha256": "8431c8a31ad3365ab59c49092d8e1557d499a67c0f7804d3e38f2793a8d5f6ce"
+        },
+        {
+          "bytes": 6762,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/publish_b3_shallow_reviews_v1.py",
+          "sha256": "c7ba7eedb48b5c715c0dd3f5d732e5ede8b90186a2d85741caba2fd9d00c05a7"
+        },
+        {
+          "bytes": 8749,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/test_b3_sam31_independent_hand_equipment_canary_v1.py",
+          "sha256": "5056d57537575cc5e0618a330f1412c0a89afbc2e62ee1761285755625daaf8c"
+        },
+        {
+          "bytes": 6106,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/B3_MASK_SUCCESSOR_CANARY_V1.json",
+          "sha256": "2542013d7162822e23e8f6b0dcd4e724bc1e8de1f19e6dcd74fdb0cc9dfe555b"
+        },
+        {
+          "bytes": 34274,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+          "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        },
+        {
+          "bytes": 155012,
+          "path": "/mnt/workspace/code/chaoyang/vendor/SAM3/sam3/model/sam3_multiplex_tracking.py",
+          "sha256": "65e1cea27ee243dad228fb05967a8be92c90ef304665ada76930b899aa034d24"
+        },
+        {
+          "bytes": 9036,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+          "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+        }
+      ],
+      "consumer_allowed": false,
+      "cross_chunk_identity": "NOT_STITCHED",
+      "empty_output_semantics": "UNKNOWN_NOT_ABSENT",
+      "execution_scope": "POKER044_AND_CHIPS097_TEXT_ONLY_HAND_AND_WRIST_WORN_EQUIPMENT_GEOMETRY_CANARY",
+      "fixed_sessions": [
+        "play_cards_0915_044",
+        "get_potato_chips_0915_097"
+      ],
+      "gpu_required": true,
+      "left_right_identity": "UNKNOWN",
+      "overlap_policy": "ZERO_PIXEL_HARD_REJECT_NO_SUBTRACT_NO_UNION",
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "semantic_inputs": "PHYSICAL_LEFT_SOURCEINDEX1_RESIZE_ONLY_RGB_AND_FIXED_TEXT_PROMPTS_ONLY",
+      "weights": "ONE_PINNED_SAM31_MULTIPLEX_CHECKPOINT"
+    },
+    "robot_quality_recovery_v21_d1_clean_prep_cpu_v1": {
+      "authority_promoted": false,
+      "candidate_materialized": false,
+      "claim_limit": "CPU-only Clean input normalization and zero-write preparation; Poker identity and unavailable Hand/Object evidence remain UNKNOWN, and no inpainting quality, Clean terminal, training, Contact, control or deployment authority is granted.",
+      "code_closure": [
+        {
+          "bytes": 34464,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/materialize_d1_clean_prep_composite_input.py",
+          "sha256": "ce352c25f27b1f6ec7563b099952d738fb980704127ae15731f1ca012abcc92e"
+        },
+        {
+          "bytes": 46516,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_d1_clean_prep_cpu_orchestrator.py",
+          "sha256": "b6a7520fc377998f8926430ddfa21a8257981961953a8525bb56b1feb4bacfdc"
+        },
+        {
+          "bytes": 10640,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/validate_d1_clean_prep_prepared_output.py",
+          "sha256": "30824461561816110b879ed4b5ca813cfcb55685280d2845a9a533f15241cbd9"
+        },
+        {
+          "bytes": 19113,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/test_d1_clean_prep_cpu_orchestrator.py",
+          "sha256": "efc55e481277abecc3dac6e9269c14b45a790bb7b69ffbf8d036b8177dffe2f9"
+        },
+        {
+          "bytes": 25262,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_d1_clean_prep_offline_review_v1.py",
+          "sha256": "d111d9b44e9d3f53d0b00912e3a65edb4cdd508f25d6035c389b03983fdd4723"
+        },
+        {
+          "bytes": 416,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/D1_CLEAN_PREP_INPUT_MANIFEST_TEMPLATE.json",
+          "sha256": "a665a3ae66108c0778664371c4729d34baecc5c3d2b97a0d5822dadf4126ad8d"
+        },
+        {
+          "bytes": 397,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/B1_D1_CLEAN_PREP_HANDOFF_TEMPLATE.json",
+          "sha256": "12852b6fa3491929d1f85eb2b2d2407042346049ae2c48a1b9334a648a0e77b4"
+        }
+      ],
+      "domain_contract": "M_REMOVE_SUBSET_M_WRITE_SUBSET_M_FLOW_AND_UNKNOWN_EQUALS_M_WRITE_UNTIL_FRESH_MATERIALIZATION",
+      "execution_scope": "POKER044_AND_CHIPS097_FAIL_CLOSED_CLEAN_INPUT_NORMALIZATION_AND_ZERO_WRITE_PREPARATION",
+      "fixed_sessions": [
+        "play_cards_0915_044",
+        "get_potato_chips_0915_097"
+      ],
+      "gpu_required": false,
+      "input_authority": "B1R_POKER_HAND_CAPABILITY_PLUS_PINNED_ORIGINAL_B1_SUBORDINATE_ARTIFACTS",
+      "old_clean_or_future_donor_allowed": false,
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "weights": "ABSENT"
+    },
+    "robot_quality_recovery_v21_d2_fresh_propainter_offline_v1": {
+      "authority_promoted": false,
+      "chips_object_slots": "THREE_SEPARATE_UNKNOWN_SLOTS_NO_UNION",
+      "claim_limit": "One frozen fresh ProPainter offline visual challenger; synthetic pixels remain UNKNOWN and no Clean truth, causal training, Contact, control or deployment authority is granted.",
+      "clean_terminal": false,
+      "code_closure": [
+        {
+          "bytes": 32511,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_d2_fresh_propainter_offline_v1.py",
+          "sha256": "65595561ab915587438864f134b13ac1c205f61e34f67f0f69bbe792c3966449"
+        },
+        {
+          "bytes": 6544,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/publish_d2_shallow_visuals_v1.py",
+          "sha256": "d2e463e9036b3c572f2acbce494050d54e606d90428744f7e102b8d2d733a23e"
+        },
+        {
+          "bytes": 14573,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/test_d2_fresh_propainter_offline_v1.py",
+          "sha256": "777163f7a87b6838bfa839c7274de4eca62258730a55e4ccbca54b2078e829b8"
+        },
+        {
+          "bytes": 6143,
+          "path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/D2_FRESH_PROPAINTER_OFFLINE_V1.json",
+          "sha256": "89d32d1ae37aa9675520f441096b66125f7e19a7e1ece635faeb00ed0e483fd8"
+        },
+        {
+          "bytes": 20698,
+          "path": "/mnt/workspace/code/chaoyang/vendor/ProPainter/inference_propainter.py",
+          "sha256": "5aee61d93a40e4c54d531866ab80c66e8ad7d9285373a801c2e22372bf87147f"
+        },
+        {
+          "bytes": 9036,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+          "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+        }
+      ],
+      "effective_internal_model_mask": "DILATE_RESIZED_M_FLOW_BY_4_INSIDE_PROPAINTER",
+      "execution_scope": "POKER044_ZERO_WRITE_PASS_THROUGH_AND_CHIPS097_FRESH_OFFLINE_PROPAINTER_VISUAL_CHALLENGER",
+      "execution_semantics": "OFFLINE_BIDIRECTIONAL_VISUAL_ONLY",
+      "fixed_sessions": [
+        "play_cards_0915_044",
+        "get_potato_chips_0915_097"
+      ],
+      "gpu_required": true,
+      "input_mask_domain": "M_FLOW",
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "poker_action": "RAW_PASS_THROUGH_ZERO_WRITE_NO_MODEL",
+      "publish_write_domain": "M_WRITE_ONLY",
+      "training_eligible": false,
+      "unknown_after_fill": "EXACTLY_M_WRITE",
+      "weights": "THREE_PINNED_EXISTING_PROPAINTER_WEIGHTS_NO_MODEL_SWAP"
+    },
+    "robot_quality_recovery_v21_sam31_b1": {
+      "authority_promoted": false,
+      "claim_limit": "Development diagnostic SAM Hand/Object evidence only; no Mask accuracy, physical identity, hidden-surface, Contact, training, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 53677,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_quality_recovery_v21_sam31_b1.py",
+          "sha256": "488c0aca6ed531b9ab1b90a945b39e27ad71654970244676d0eb26a234f54a62"
+        },
+        {
+          "bytes": 34274,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sam31_compat_adapter_v1.py",
+          "sha256": "cb9e1057ebd4f6151fd46b4ca1f441d86002d9263eba428888d9e41341158cc2"
+        },
+        {
+          "bytes": 64338,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_sam31_temporal_identity_v1.py",
+          "sha256": "f6b6b444bd86acfb301a781f192bccbeaee2dd7177081656e2486294366490c5"
+        },
+        {
+          "bytes": 46559,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_sam31_task_object_wave0_v1.py",
+          "sha256": "72b6c2d2d934d5ff5fa9e02986bc3a5476794daf2ab6f23be358564144a61005"
+        },
+        {
+          "bytes": 9036,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+          "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+        }
+      ],
+      "cohort_role": "W0_CACHE_REGRESSION_PLUS_W1_DIAG",
+      "execution_scope": "FOUR_W0_CACHE_REGRESSIONS_AND_FIXED_W1_DIAG_POKER044_CHIPS097",
+      "gpu_required": true,
+      "hand_prompt_policy": "A1_SAME_DOMAIN_RAW_DIRECT_OBSERVED_2D_PER_SIDE",
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "numeric_thresholds_changed": false,
+      "object_dependency": "INDEPENDENT_OF_HAND_AND_HAWOR_TERMINAL",
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "weights": "ONE_LOGICAL_SAM31_MULTIPLEX_CHECKPOINT"
+    },
+    "robot_quality_recovery_v21_sam31_b1r_poker044_hand": {
+      "affected_side_terminal": "REJECTED_TRACKER_DIRECTION_INCOMPLETE",
+      "authority_promoted": false,
+      "bounded_exception_conversion": "EXACT_KEYERROR_164_AT_ANCHOR165_REVERSE_ZERO_YIELD_TO_UNKNOWN_DIRECTION_INCOMPLETE",
+      "claim_limit": "Poker044 Hand-only bounded runtime recovery; the original B1 terminal remains immutable and every unreturned frame is UNKNOWN, with no Mask accuracy, training, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 37872,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_quality_recovery_v21_sam31_b1r_poker044_hand.py",
+          "sha256": "9dad8b4588724d8c6b887683134eade913b7a5f93ebcc8a4d24a57c7cccb77a4"
+        },
+        {
+          "bytes": 3149,
+          "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot_quality_recovery_v21_sam31_b1r_poker044_hand/B1R_TASK_POLICY.json",
+          "sha256": "0394849f82e44fe7db02a53479b23dc876132aea9d9420c8d3ac59dfc0876f65"
+        },
+        {
+          "bytes": 3373,
+          "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot_quality_recovery_v21_sam31_b1r_poker044_hand/B1R_INPUT_MANIFEST.json",
+          "sha256": "d4a7478412a8ad932da463432b61460fb57ce77da3d4dc62885c8ae6abdfd712"
+        },
+        {
+          "bytes": 4553,
+          "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot_quality_recovery_v21_sam31_b1r_poker044_hand/B1R_ROOT_CAUSE_AUDIT_V1.json",
+          "sha256": "29e6b1a2b831059603c99b5c792909d287c50a373fdaffd461e14028372f3e5e"
+        }
+      ],
+      "execution_scope": "POKER044_HAND_ONLY_EXACT_TRACKER_KEYERROR164_FAIL_CLOSED_RECOVERY",
+      "gpu_required": true,
+      "parent_b1_terminal": "FAILED_RUNTIME_FINAL_IMMUTABLE",
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "prompt_threshold_weight_change": false,
+      "weights": "ONE_LOGICAL_SAM31_MULTIPLEX_CHECKPOINT"
+    },
+    "robot_recovery_c1_cpu_internal_selfcheck_v1": {
+      "authoritative_input": "C0_v2_AND_C1",
+      "authority_promoted": false,
+      "claim_limit": "CPU-only immutable-cache internal consistency replay; no external metric/registration accuracy, Contact truth, R1-E, training, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 47083,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_recovery_c1_cpu_internal_selfcheck_v1.py",
+          "sha256": "943484101ad159cc5f11e6f47adbd8df62c1834ea4db03b5572f56044696bdcf"
+        }
+      ],
+      "distance_threshold_m": 0.005,
+      "execution_scope": "FROZEN_C0_V2_C1_POKER119_INTERNAL_GEOMETRY_REPLAY",
+      "gpu_required": false,
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "thresholds_changed": false,
+      "weights": "ABSENT"
+    },
+    "robot_recovery_hawor_w1_adoption_v1": {
+      "algorithm_behavior_policy": "A1_EXECUTION_BODY_EQUIVALENT_AFTER_ENUMERATED_ROLE_AND_ACCESS_SUBSTITUTION",
+      "authority_promoted": false,
+      "claim_limit": "Fixed W1-ADOPTION HaWoR evidence only; no automatic adoption, R0 quality, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 29649,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_recovery_hawor_w1_adoption_v1.py",
+          "sha256": "449adc2350dfa929185a3243a30e59b9b16c68ca6cc3e607c20103ec3e9f6695"
+        },
+        {
+          "bytes": 10386,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_w1_adoption_persistent_worker_v1.py",
+          "sha256": "01046edd20842e914625d4f75b2dcc98eca28afb9f4f3f657644632a48ba18f3"
+        },
+        {
+          "bytes": 20898,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_recovery_hawor_w1_diag_v1.py",
+          "sha256": "534416707138c42d65d844f321b579a3b351462d749a48c43573182bc0784dc0"
+        },
+        {
+          "bytes": 9306,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_w1_diag_persistent_worker_v1.py",
+          "sha256": "1288883c661d0fafb100f31345c7697724a8589328611e9fdfcadff7af9c2fe4"
+        },
+        {
+          "bytes": 9231,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_resize_only_persistent_worker_v2.py",
+          "sha256": "1288bf26bb335564552fbb2fc73475fbc460fe68154f8486d1d6edfe45445240"
+        },
+        {
+          "bytes": 18679,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_persistent_worker_v1.py",
+          "sha256": "aa9cedc28b99c20c7cd122b5880ba205b535624fb5bec371e279328103fa50a3"
+        },
+        {
+          "bytes": 22012,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_hawor_wave0_v1.py",
+          "sha256": "901e38db7e46a70effbce6b3f36ad02690710a94287ee046c0a7381f621b570d"
+        },
+        {
+          "bytes": 9036,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+          "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+        }
+      ],
+      "cohort_role": "W1_ADOPTION",
+      "execution_scope": "FIXED_0915_W1_ADOPTION_POKER106_AND_CHIPS029_INSIDE_V21_PARENT",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "numeric_thresholds_changed": false,
+      "parent_candidate_signature_sha256": "9ccf7ff5eef43158848f73206a772ae756c0387cd84de9ecc72a2ee678db781b",
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1"
+    },
+    "robot_recovery_hawor_w1_diag_v1": {
+      "authority_promoted": false,
+      "candidate_policy": "FREEZE_BEFORE_W1_ADOPTION_AND_NO_RESULT_BASED_THRESHOLD_CHANGE",
+      "claim_limit": "Fixed W1-DIAG HaWoR evidence and per-side structural eligibility only; no R0 quality, adoption, control, training or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 20898,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot_recovery_hawor_w1_diag_v1.py",
+          "sha256": "534416707138c42d65d844f321b579a3b351462d749a48c43573182bc0784dc0"
+        },
+        {
+          "bytes": 9306,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_w1_diag_persistent_worker_v1.py",
+          "sha256": "1288883c661d0fafb100f31345c7697724a8589328611e9fdfcadff7af9c2fe4"
+        },
+        {
+          "bytes": 9231,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_resize_only_persistent_worker_v2.py",
+          "sha256": "1288bf26bb335564552fbb2fc73475fbc460fe68154f8486d1d6edfe45445240"
+        },
+        {
+          "bytes": 18679,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_hawor_persistent_worker_v1.py",
+          "sha256": "aa9cedc28b99c20c7cd122b5880ba205b535624fb5bec371e279328103fa50a3"
+        },
+        {
+          "bytes": 22012,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_0915_robot15h_hawor_wave0_v1.py",
+          "sha256": "901e38db7e46a70effbce6b3f36ad02690710a94287ee046c0a7381f621b570d"
+        },
+        {
+          "bytes": 10265,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_play_cards_0910_001_hawor_raw.py",
+          "sha256": "1ca9e682eab7d9d176e6ff7b7c848d2bc647658ce23aef0b3f2288feecc0604b"
+        },
+        {
+          "bytes": 9036,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_gpu_command_with_v71_lease.py",
+          "sha256": "de1bc50327f012bf662c24dc4650902ee2802aea5848225a258ad9f6156aa7e3"
+        }
+      ],
+      "cohort_role": "W1_DIAG",
+      "execution_scope": "FIXED_0915_W1_DIAG_POKER044_AND_CHIPS097_INSIDE_V21_PARENT",
+      "gpu_required": true,
+      "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_CROP_RESIZE_ONLY",
+      "numeric_thresholds_changed": false,
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1"
+    },
+    "robot_recovery_w1_adoption_review_v1": {
+      "adoption_adapter_or_run_signature_sha256": "e3ca5185a1a333f2e49600ca8649f9312c85e15ebb5133f903a945b2bd92b784",
+      "authority_promoted": false,
+      "claim_limit": "Full-timeline W1-ADOPTION raw HaWoR overlay only; no accuracy, adoption, R0 quality, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 7126,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_0915_robot_recovery_w1_adoption_review_v1.py",
+          "sha256": "7ffedc9ca33e9cd718ba895deee460730e8d6f876f1ffd34f4696a7f972db1dc"
+        }
+      ],
+      "execution_scope": "A2_W1_ADOPTION_TWO_SESSION_FULL_TIMELINE_REVIEW",
+      "gpu_required": false,
+      "parent_candidate_signature_sha256": "9ccf7ff5eef43158848f73206a772ae756c0387cd84de9ecc72a2ee678db781b",
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "weights": "ABSENT"
+    },
+    "robot_recovery_w1_diag_review_v1": {
+      "authority_promoted": false,
+      "candidate_signature_sha256": "9ccf7ff5eef43158848f73206a772ae756c0387cd84de9ecc72a2ee678db781b",
+      "claim_limit": "Full-timeline W1-DIAG raw HaWoR overlay only; no accuracy, R0 quality, control or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 6762,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_0915_robot_recovery_w1_diag_review_v1.py",
+          "sha256": "69db553aeb07e55721291fb83fcdd4ba4a9f6fbb23ec917b0fab434f8d8cad47"
+        }
+      ],
+      "execution_scope": "A1_W1_DIAG_TWO_SESSION_FULL_TIMELINE_REVIEW",
+      "gpu_required": false,
+      "parent_task_id": "0915_robot_quality_recovery_15h_v2",
+      "weights": "ABSENT"
     },
     "robot_v75_output_contracts": {
       "authority_promoted": false,

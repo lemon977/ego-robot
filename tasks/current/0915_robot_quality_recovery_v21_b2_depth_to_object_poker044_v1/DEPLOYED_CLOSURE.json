@@ -1,0 +1,22 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b2-poker044-deployed-closure-v1",
+  "status": "DEPLOYED_EXECUTED_AND_INDEPENDENTLY_AUDITED_REVIEW_ONLY",
+  "algorithm_id": "b2_depth_to_visible_object_poker044_v1",
+  "code_and_contract_refs": [
+    {"path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_b2_depth_to_visible_object_poker044_v1.py", "bytes": 33427, "sha256": "2e4c38296e30f765fb9132efd31458c0b97df98ef47d4f19f5f5ca7dfdfd0c2a"},
+    {"path": "/mnt/workspace/code/chaoyang/contracts/robot_recovery/B2_DEPTH_TO_VISIBLE_OBJECT_POKER044_V1.json", "bytes": 6085, "sha256": "c7cc9cd2d1a0c1b056c58230a81d0d3d93a5f62e626d2818ff46e190cb1a7aef"}
+  ],
+  "execution_result": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B2_DEPTH_TO_OBJECT_POKER044/RESULT.json",
+    "bytes": 3775,
+    "sha256": "4aa636124e01af1074947961da131f843e9e57a48ad399b667410c817c4a3790"
+  },
+  "independent_audit": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/packages/B2_DEPTH_TO_OBJECT_POKER044/INDEPENDENT_AUDIT/RESULT.json",
+    "bytes": 4523,
+    "sha256": "74c5bbf948ec10300ecb12a10ddbd138ee3523d6cee85ea044a39ea30b534c85"
+  },
+  "review_only": true,
+  "consumer_allowed": false,
+  "note": "The sibling PREPARATION_SOURCE_SHA256SUMS describes the original local preparation bundle, not the deployed repository layout."
+}

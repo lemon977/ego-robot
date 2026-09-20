@@ -1,0 +1,13 @@
+{
+  "schema_version": "0915-robot-recovery-v21-d1-clean-prep-visual-review-test-v1",
+  "status": "PASSED",
+  "tests_run": 3,
+  "tests": [
+    "complete two-session render plus full MP4 decode",
+    "changed candidate pixel fails closed",
+    "existing output root is never overwritten"
+  ],
+  "execution_mode": "LOCAL_CPU_SYNTHETIC_FIXTURE",
+  "remote_writes_performed": false,
+  "claim_limit": "Synthetic CPU contract tests only; actual remote PREPARED_V1 rendering remains an explicit execution step."
+}

@@ -1,0 +1,64 @@
+{
+  "schema_version": "0915-robot-recovery-v21-b2-poker044-successor-preparation-result-v1",
+  "created_at": "2026-09-20T01:58:00+08:00",
+  "status": "PREPARED_NOT_REGISTERED_NOT_EXECUTED",
+  "candidate_id": "B2_DEPTH_TO_VISIBLE_OBJECT_GEOMETRY_SUCCESSOR_V1",
+  "operation": "run_b2_depth_to_visible_object_poker044_v1",
+  "session_id": "play_cards_0915_044",
+  "task": "playing_cards",
+  "remote_mutated": false,
+  "gpu_used": false,
+  "foundationstereo_rerun_performed": false,
+  "object6d_execution_performed": false,
+  "review_only": true,
+  "consumer_allowed": false,
+  "physical_card_identity": "UNKNOWN_UNBOUND",
+  "face_identity": "UNKNOWN_UNBOUND",
+  "hidden_geometry_inferred": false,
+  "external_metric_accuracy_claimed": false,
+  "contact_authority": false,
+  "control_ground_truth": false,
+  "training_eligible": false,
+  "physical_deployment_authorized": false,
+  "prepared_files": [
+    {
+      "path": "run_b2_depth_to_visible_object_poker044_v1.py",
+      "sha256": "2e4c38296e30f765fb9132efd31458c0b97df98ef47d4f19f5f5ca7dfdfd0c2a"
+    },
+    {
+      "path": "contracts/B2_DEPTH_TO_VISIBLE_OBJECT_POKER044_V1.json",
+      "sha256": "c7cc9cd2d1a0c1b056c58230a81d0d3d93a5f62e626d2818ff46e190cb1a7aef"
+    },
+    {
+      "path": "tests/test_b2_poker044_policy.py",
+      "sha256": "e67ef90daadcc2d8e9b8d37ffd435d55e9dbf82a12546c433a2efb6f155786f2"
+    },
+    {
+      "path": "README_ZH.md",
+      "sha256": "e34e7269d5c30be908d32678f063e39e9069603a54f88b1979f5be4b236d6066"
+    },
+    {
+      "path": "REMOTE_REGISTRATION_AND_EXECUTION.md",
+      "sha256": "af64f148ee4adbb5b38133529176e0bd8451a2828d132589872c6ae1eec91c67"
+    }
+  ],
+  "verification": {
+    "local_unittest_total": 5,
+    "local_unittest_passed": 5,
+    "python_compile_passed": true,
+    "remote_memory_only_preflight": "PASSED_MEMORY_ONLY_PREFLIGHT",
+    "remote_depth_frames_verified": 166,
+    "remote_visible_candidate_tracks_verified": 3,
+    "immutable_regressions_verified": [
+      "play_cards_0915_031",
+      "play_cards_0915_119"
+    ],
+    "remote_files_written": 0
+  },
+  "audit_source": {
+    "path": "/home/lemon/音乐/robot_recovery_v21_docs/b2_depth_object_audit/RESULT.json",
+    "sha256": "d990b456816ce31a14e0917012cfeb8f75dd88cbd9e2742ba88fcbcec30d6e61"
+  },
+  "first_runtime_action": "REGISTER_BOTH_CURRENT_R3_CONTRACT_SOURCES_THEN_VALIDATE_GOVERNANCE",
+  "claim_limit": "Prepared but not registered/executed. The bounded CPU canary can emit review-only direct-visible Poker044 surface diagnostics from exact pinned caches, while physical-card and face identity remain UNKNOWN and all downstream consumption is forbidden."
+}
