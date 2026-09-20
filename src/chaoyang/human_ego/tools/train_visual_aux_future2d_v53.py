@@ -25,7 +25,7 @@ import random
 import sys
 import tempfile
 import time
-from typing import Any
+from typing import Any, Mapping
 
 import cv2
 import jsonschema
@@ -60,9 +60,11 @@ from chaoyang.human_ego.exact78_v31 import (  # noqa: E402
     simple_future_2d_predictions,
     training_terminal_status,
 )
+from chaoyang.human_ego import exact78_v32 as exact78_v32_contract  # noqa: E402
 
 
 LEDGER_SCHEMA = PROJECT / "contracts/visual_aux_dataset_ledger_v53.schema.json"
+LEDGER_SCHEMA_V32 = PROJECT / "contracts/exact78_pair_ledger_v32.schema.json"
 MODEL_SOURCE = PROJECT / "src/chaoyang/human_ego/training/VisualAuxFuture2DModel.py"
 BUNDLE_BUILDER_SOURCE = PROJECT / "src/chaoyang/human_ego/tools/build_visual_aux_session_bundle_v54.py"
 MIN_FORMAL_VALID_PIXEL_FRACTION = 0.70
@@ -278,6 +280,16 @@ def pair_dataset_signature(ledger: dict[str, Any]) -> str:
         )
     if "cohort_authority" in ledger:
         payload["cohort_authority"] = ledger.get("cohort_authority")
+    # V3.2 binds all producer/source facts that must remain identical across
+    # the Raw and Robotized twins.  Branch is intentionally excluded.
+    for key in (
+        "producer_identity",
+        "source_bindings",
+        "pair_production_readiness",
+        "development_final",
+    ):
+        if key in ledger:
+            payload[key] = ledger.get(key)
     return canonical_sha256(payload)
 
 
@@ -290,6 +302,95 @@ V31_REQUIRED_SUFFIX_FIELDS = {
     "confidence",
 }
 V31_EXPECTED_SPLITS = {"train": 60, "validation": 8, "test": 5, "heldout": 5}
+
+
+def _validate_v32_cohort_authority(
+    ledger: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    """Load the versioned 59/77/20 manifest instead of V3.1 counts."""
+
+    if ledger.get("contract") != exact78_v32_contract.PAIR_CONTRACT:
+        return {}
+    cohort = ledger.get("cohort_authority")
+    if not isinstance(cohort, dict):
+        raise RuntimeError("V3.2 ledger requires frozen cohort authority")
+    cohort_path = exact_ref(cohort)
+    if "archive" in cohort_path.parts:
+        raise RuntimeError("V3.2 cohort authority must be current non-archive")
+    try:
+        return exact78_v32_contract.validate_cohort_split(load_json(cohort_path))
+    except exact78_v32_contract.ContractError as error:
+        raise RuntimeError(str(error)) from error
+
+
+def _validate_v32_source_bindings(
+    ledger: dict[str, Any],
+    manifests: dict[str, Path],
+    cohort: Mapping[str, Mapping[str, Any]],
+) -> None:
+    if ledger.get("contract") != exact78_v32_contract.PAIR_CONTRACT:
+        return
+    rows = ledger.get("source_bindings")
+    if not isinstance(rows, list) or len(rows) != len(manifests):
+        raise RuntimeError("V3.2 source bindings must match consumed manifests")
+    seen: set[str] = set()
+    for row in rows:
+        if not isinstance(row, dict):
+            raise RuntimeError("invalid V3.2 source binding")
+        session = str(row.get("session_id", ""))
+        manifest = manifests.get(session)
+        cohort_row = cohort.get(session)
+        lineage = row.get("source_lineage_receipt")
+        if (
+            manifest is None
+            or cohort_row is None
+            or session in seen
+            or row.get("status") != "RESOLVED_EXACT_FROZEN_IDENTITY"
+            or row.get("split") != cohort_row.get("split")
+            or row.get("source_group_id") != cohort_row.get("source_group_id")
+            or row.get("input_sha256") != sha256(manifest)
+            or row.get("source_frame") != "BUNDLE_FRAME_IDS"
+            or row.get("timestamp") != "BUNDLE_TIMESTAMPS"
+            or not isinstance(lineage, dict)
+        ):
+            raise RuntimeError(f"V3.2 source binding mismatch: {session}")
+        lineage_path = exact_ref(lineage)
+        if "archive" in lineage_path.parts:
+            raise RuntimeError("V3.2 current source lineage must be non-archive")
+        if str(lineage_path) != row.get("current_source_lineage"):
+            raise RuntimeError("V3.2 source lineage path mismatch")
+        seen.add(session)
+
+
+def _validate_v32_suffix_receipts(
+    ledger: dict[str, Any], manifests: dict[str, Path]
+) -> None:
+    if ledger.get("contract") != exact78_v32_contract.PAIR_CONTRACT:
+        return
+    items = ledger.get("suffix_invariance_receipts")
+    if not isinstance(items, list) or len(items) != len(manifests):
+        raise RuntimeError("V3.2 suffix receipt set must match consumed manifests")
+    seen: set[str] = set()
+    for item in items:
+        if not isinstance(item, dict):
+            raise RuntimeError("invalid V3.2 suffix receipt binding")
+        session = str(item.get("session_id", ""))
+        manifest = manifests.get(session)
+        if manifest is None or session in seen:
+            raise RuntimeError("V3.2 suffix receipt session set mismatch")
+        if item.get("bundle_manifest_sha256") != sha256(manifest):
+            raise RuntimeError("V3.2 suffix receipt manifest SHA mismatch")
+        audit_item = item.get("audit")
+        if not isinstance(audit_item, dict):
+            raise RuntimeError("V3.2 suffix audit artifact reference missing")
+        audit_path = exact_ref(audit_item)
+        if "archive" in audit_path.parts:
+            raise RuntimeError("V3.2 suffix audit must be current non-archive")
+        try:
+            exact78_v32_contract.validate_suffix_receipt(load_json(audit_path))
+        except exact78_v32_contract.ContractError as error:
+            raise RuntimeError(str(error)) from error
+        seen.add(session)
 
 
 def _validate_v31_cohort_authority(
@@ -552,7 +653,12 @@ def _validate_hardset(
 
 def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
     ledger = load_json(path)
-    schema = load_json(LEDGER_SCHEMA)
+    schema_path = (
+        LEDGER_SCHEMA_V32
+        if ledger.get("schema_version") == exact78_v32_contract.PAIR_LEDGER_SCHEMA
+        else LEDGER_SCHEMA
+    )
+    schema = load_json(schema_path)
     jsonschema.Draft202012Validator(schema).validate(ledger)
     if ledger.get("input_mode") != "CAUSAL_TRAINING_INPUT":
         raise RuntimeError("formal Visual Aux ledger must be causal")
@@ -566,6 +672,7 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
     source_groups_by_split: dict[str, set[str]] = {}
     manifests_by_session: dict[str, Path] = {}
     v31_cohort = _validate_v31_cohort_authority(ledger)
+    v32_cohort = _validate_v32_cohort_authority(ledger)
     rc1_mode = ledger.get("release_id") == RC1_RELEASE_ID
     rc1_reports_by_manifest: dict[Path, dict[str, Any]] = {}
     if rc1_mode:
@@ -622,15 +729,16 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
                 split_source_groups.add(source_group)
             else:
                 _validate_manifest_training_gate(manifest_path, payload, report)
-                if v31_cohort:
-                    cohort_row = v31_cohort.get(str(identity))
+                frozen_cohort = v32_cohort or v31_cohort
+                if frozen_cohort:
+                    cohort_row = frozen_cohort.get(str(identity))
                     if (
                         cohort_row is None
                         or cohort_row.get("task") != ledger.get("task")
                         or cohort_row.get("split") != split
                     ):
                         raise RuntimeError(
-                            f"V3.1 bundle is outside its cohort task/split: {identity}"
+                            f"bundle is outside its frozen cohort task/split: {identity}"
                         )
                     source_group = str(cohort_row["source_group_id"])
                 else:
@@ -657,6 +765,8 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
         if set(rc1_reports_by_manifest) != consumed_manifests:
             raise RuntimeError("RC1 eligibility set differs from ledger manifests")
     _validate_v31_suffix_receipts(ledger, manifests_by_session)
+    _validate_v32_suffix_receipts(ledger, manifests_by_session)
+    _validate_v32_source_bindings(ledger, manifests_by_session, v32_cohort)
     minimum = {"train": (16, 256), "validation": (3, 48)}
     reports = {}
     for split, manifests in groups.items():
@@ -719,6 +829,11 @@ def validate_paired_ledgers(
         "train",
         "validation",
         "occlusion_hardset",
+        "cohort_authority",
+        "source_bindings",
+        "suffix_invariance_receipts",
+        "pair_production_readiness",
+        "development_final",
     ):
         if raw.get(key) != robotized.get(key):
             raise RuntimeError(f"Raw/Robotized paired-ledger mismatch: {key}")
