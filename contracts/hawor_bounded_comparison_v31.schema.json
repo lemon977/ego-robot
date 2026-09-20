@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/hawor-bounded-comparison-v31",
+  "title": "HAWOR_BOUNDED_COMPARISON_V31",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "frozen_evaluation_frame_ids", "frozen_evaluation_count", "candidate_evaluation_count", "same_frozen_metric_set", "dropped_frame_ids", "invented_observed_frame_ids", "removed_observed_frame_ids", "raw", "candidate", "correction_p95_mm", "correction_max_mm", "estimated_phase_lag_frames", "thresholds", "reason_codes", "observed_authority_promoted"],
+  "properties": {
+    "schema_version": {"const": "HAWOR_BOUNDED_COMPARISON_V31"},
+    "status": {"enum": ["ADOPT", "REJECT"]},
+    "frozen_evaluation_frame_ids": {"type": "array", "items": {"type": "integer"}, "uniqueItems": true},
+    "frozen_evaluation_count": {"type": "integer", "minimum": 0},
+    "candidate_evaluation_count": {"type": "integer", "minimum": 0},
+    "same_frozen_metric_set": {"type": "boolean"},
+    "dropped_frame_ids": {"type": "array", "items": {"type": "integer"}, "uniqueItems": true},
+    "invented_observed_frame_ids": {"type": "array", "items": {"type": "integer"}, "uniqueItems": true},
+    "removed_observed_frame_ids": {"type": "array", "items": {"type": "integer"}, "uniqueItems": true},
+    "raw": {"$ref": "#/$defs/metrics"},
+    "candidate": {"$ref": "#/$defs/metrics"},
+    "correction_p95_mm": {"type": ["number", "null"], "minimum": 0},
+    "correction_max_mm": {"type": ["number", "null"], "minimum": 0},
+    "estimated_phase_lag_frames": {"type": ["integer", "null"]},
+    "thresholds": {"type": "object"},
+    "reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "observed_authority_promoted": {"const": false}
+  },
+  "$defs": {
+    "metrics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wrist_step_p95_mm", "all_joint_speed_p95_m_per_s", "all_joint_acceleration_p95_m_per_s2", "all_joint_jerk_p95_m_per_s3", "bone_length_cv_max", "reprojection_p95_px"],
+      "properties": {
+        "wrist_step_p95_mm": {"type": ["number", "null"], "minimum": 0},
+        "all_joint_speed_p95_m_per_s": {"type": ["number", "null"], "minimum": 0},
+        "all_joint_acceleration_p95_m_per_s2": {"type": ["number", "null"], "minimum": 0},
+        "all_joint_jerk_p95_m_per_s3": {"type": ["number", "null"], "minimum": 0},
+        "bone_length_cv_max": {"type": ["number", "null"], "minimum": 0},
+        "reprojection_p95_px": {"type": ["number", "null"], "minimum": 0}
+      }
+    }
+  }
+}

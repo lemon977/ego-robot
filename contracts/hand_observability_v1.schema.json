@@ -1,0 +1,100 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/hand-observability-v1",
+  "title": "HAND_OBSERVABILITY_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "provider_audit",
+    "dependency_demotions",
+    "per_side_part",
+    "aggregate",
+    "records",
+    "quality_claim_promoted",
+    "claim_limit"
+  ],
+  "properties": {
+    "schema_version": {"const": "HAND_OBSERVABILITY_V1"},
+    "status": {"const": "PASSED_ACCOUNTING"},
+    "provider_audit": {"type": "object", "additionalProperties": {"$ref": "#/$defs/provider"}},
+    "dependency_demotions": {"type": "array", "items": {"type": "object"}},
+    "per_side_part": {
+      "type": "object",
+      "required": ["left", "right"],
+      "additionalProperties": false,
+      "properties": {
+        "left": {"$ref": "#/$defs/parts"},
+        "right": {"$ref": "#/$defs/parts"}
+      }
+    },
+    "aggregate": {"$ref": "#/$defs/counts"},
+    "records": {"type": "array", "items": {"$ref": "#/$defs/record"}},
+    "quality_claim_promoted": {"const": false},
+    "claim_limit": {"type": "string", "minLength": 1}
+  },
+  "$defs": {
+    "provider": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family", "dependencies", "declared_independent_from_hawor", "admissible_as_hawor_observability_evidence", "reason_codes"],
+      "properties": {
+        "family": {"type": "string", "minLength": 1},
+        "dependencies": {"type": "array", "items": {"type": "string"}},
+        "declared_independent_from_hawor": {"type": "boolean"},
+        "admissible_as_hawor_observability_evidence": {"type": "boolean"},
+        "reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    },
+    "parts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["wrist", "palm", "thumb", "index", "middle", "ring", "little"],
+      "properties": {
+        "wrist": {"$ref": "#/$defs/counts"},
+        "palm": {"$ref": "#/$defs/counts"},
+        "thumb": {"$ref": "#/$defs/counts"},
+        "index": {"$ref": "#/$defs/counts"},
+        "middle": {"$ref": "#/$defs/counts"},
+        "ring": {"$ref": "#/$defs/counts"},
+        "little": {"$ref": "#/$defs/counts"}
+      }
+    },
+    "counts": {
+      "type": "object",
+      "required": ["timeline_total", "observable_total", "observable_pass", "observable_estimation_failure", "visible_but_no_hawor_output", "observable_quality_failure", "unknown", "out_of_frame", "occluded", "observable_pass_rate", "timeline_pass_rate"],
+      "properties": {
+        "timeline_total": {"type": "integer", "minimum": 0},
+        "observable_total": {"type": "integer", "minimum": 0},
+        "observable_pass": {"type": "integer", "minimum": 0},
+        "observable_estimation_failure": {"type": "integer", "minimum": 0},
+        "visible_but_no_hawor_output": {"type": "integer", "minimum": 0},
+        "observable_quality_failure": {"type": "integer", "minimum": 0},
+        "unknown": {"type": "integer", "minimum": 0},
+        "out_of_frame": {"type": "integer", "minimum": 0},
+        "occluded": {"type": "integer", "minimum": 0},
+        "observable_pass_rate": {"type": ["number", "null"], "minimum": 0, "maximum": 1},
+        "timeline_pass_rate": {"type": "number", "minimum": 0, "maximum": 1},
+        "unknown_fraction": {"type": "number", "minimum": 0, "maximum": 1},
+        "out_of_frame_fraction": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "record": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frame_id", "side", "part", "raw_state", "effective_state", "evidence_provider_ids", "hawor_output_present", "pose_quality_pass", "outcome"],
+      "properties": {
+        "frame_id": {"type": "integer", "minimum": 0},
+        "side": {"enum": ["left", "right"]},
+        "part": {"enum": ["wrist", "palm", "thumb", "index", "middle", "ring", "little"]},
+        "raw_state": {"enum": ["FULLY_VISIBLE", "PARTIALLY_VISIBLE_EVALUABLE", "OCCLUDED", "OUT_OF_FRAME", "UNKNOWN"]},
+        "effective_state": {"enum": ["FULLY_VISIBLE", "PARTIALLY_VISIBLE_EVALUABLE", "OCCLUDED", "OUT_OF_FRAME", "UNKNOWN"]},
+        "evidence_provider_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "hawor_output_present": {"type": "boolean"},
+        "pose_quality_pass": {"type": "boolean"},
+        "outcome": {"enum": ["NOT_IN_POSE_QUALITY_DENOMINATOR", "FAIL_VISIBLE_NO_HAWOR_OUTPUT", "FAIL_OBSERVABLE_POSE_QUALITY", "PASS_OBSERVABLE_POSE_QUALITY"]}
+      }
+    }
+  }
+}

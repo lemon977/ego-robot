@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/kai22-r0-tiered-admission-v1",
+  "title": "KAI22_R0_TIERED_ADMISSION_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "status", "highest_admitted_level", "levels", "contact_required", "object6d_required", "control_ground_truth", "training_eligible", "physical_deployment_authorized", "calibration_authority"],
+  "properties": {
+    "schema_version": {"const": "KAI22_R0_TIERED_ADMISSION_V1"},
+    "status": {"const": "PASSED_TIERED_ACCOUNTING"},
+    "highest_admitted_level": {"enum": ["NONE", "KINEMATIC_ONLY", "DEVELOPMENT_R0", "H50_READY"]},
+    "levels": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["KINEMATIC_ONLY", "DEVELOPMENT_R0", "H50_READY"],
+      "properties": {
+        "KINEMATIC_ONLY": {"$ref": "#/$defs/level"},
+        "DEVELOPMENT_R0": {"$ref": "#/$defs/level"},
+        "H50_READY": {"$ref": "#/$defs/level"}
+      }
+    },
+    "contact_required": {"const": false},
+    "object6d_required": {"const": false},
+    "control_ground_truth": {"const": false},
+    "training_eligible": {"type": "boolean"},
+    "physical_deployment_authorized": {"const": false},
+    "calibration_authority": {"const": "DEVELOPMENT_ONLY"}
+  },
+  "$defs": {
+    "level": {
+      "type": "object",
+      "required": ["status", "reason_codes"],
+      "properties": {
+        "status": {"enum": ["PASS", "BLOCKED"]},
+        "reason_codes": {"type": "array", "items": {"type": "string"}, "uniqueItems": true}
+      }
+    }
+  }
+}
