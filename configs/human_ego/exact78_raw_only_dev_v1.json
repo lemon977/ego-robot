@@ -1,0 +1,15 @@
+{
+  "schema_version": "EXACT78_RAW_ONLY_DEV_V1",
+  "status": "DEVELOPMENT_ONLY",
+  "branch": "HUMAN_RAW_RGB",
+  "cohort_split_schema": "EXACT78_COHORT_SPLIT_V32",
+  "trigger": "ROBOTIZED_REPRODUCIBLE_PIXEL_OR_CAUSAL_BLOCKER_AT_APPROX_4H",
+  "purpose": "RAW_TRAINING_ENGINEERING_AND_NAIVE_BASELINE_ONLY",
+  "formal_ab_allowed": false,
+  "four_model_completion": false,
+  "robotized_comparator": "ABSENT",
+  "future_robotized_comparison_policy": "FORBIDDEN_IF_MANIFEST_OR_INITIALIZATION_DIFFERS",
+  "control_ground_truth": false,
+  "physical_deployable": false,
+  "external_metric_authority": false
+}

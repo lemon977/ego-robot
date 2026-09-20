@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/exact78_cohort_split_v32.schema.json",
+  "title": "EXACT78_COHORT_SPLIT_V32",
+  "type": "object",
+  "required": [
+    "schema_version", "status", "historical_identity_authority",
+    "replacement_policy", "development_final_policy", "current_rebinding",
+    "counts", "source_groups"
+  ],
+  "properties": {
+    "schema_version": {"const": "EXACT78_COHORT_SPLIT_V32"},
+    "status": {"const": "FROZEN_156_IDENTITIES"},
+    "replacement_policy": {"const": "FORBIDDEN_KEEP_UNRESOLVED"},
+    "development_final_policy": {"const": "EXPOSED_NOT_FIRST_BLIND_TEST"},
+    "historical_identity_authority": {"type": "object"},
+    "current_rebinding": {"type": "object"},
+    "counts": {"type": "object"},
+    "source_groups": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": {
+        "type": "object",
+        "required": ["source_group_id", "capture_date", "split", "members"],
+        "properties": {
+          "source_group_id": {"type": "string", "minLength": 1},
+          "capture_date": {"enum": ["0901", "0902", "0903"]},
+          "split": {"enum": ["train", "validation", "development_final"]},
+          "members": {
+            "type": "array",
+            "minItems": 1,
+            "items": {"type": "string", "minLength": 1},
+            "uniqueItems": true
+          }
+        },
+        "additionalProperties": false
+      }
+    }
+  },
+  "additionalProperties": false
+}

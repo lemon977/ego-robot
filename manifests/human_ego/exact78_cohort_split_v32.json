@@ -1,0 +1,61 @@
+{
+  "schema_version": "EXACT78_COHORT_SPLIT_V32",
+  "status": "FROZEN_156_IDENTITIES",
+  "historical_identity_authority": {
+    "schema_version": "exact78-two-task-baseline-batch-manifest-v1",
+    "bytes": 104108,
+    "sha256": "b6dcfec1fb41b9ffb0b9b19cc62d029f5cedf57f41552a611272cc9e5c6e43a8",
+    "review_status": "IDENTITIES_AND_CLIP_LINEAGE_REVIEWED",
+    "archive_is_execution_input": false
+  },
+  "replacement_policy": "FORBIDDEN_KEEP_UNRESOLVED",
+  "development_final_policy": "EXPOSED_NOT_FIRST_BLIND_TEST",
+  "current_rebinding": {
+    "status": "UNRESOLVED_UNTIL_BUILDER_VALIDATION",
+    "missing_member_policy": "PRESERVE_IDENTITY_AND_REPORT_UNRESOLVED",
+    "candidate_substitution_allowed": false
+  },
+  "counts": {
+    "members": 156,
+    "tasks": {"chips": 78, "poker": 78},
+    "splits": {"train": 59, "validation": 77, "development_final": 20},
+    "source_groups_by_split": {"train": 2, "validation": 1, "development_final": 1}
+  },
+  "source_groups": [
+    {
+      "source_group_id": "merged-00-20260901-213104:get_potato_chips_0901",
+      "capture_date": "0901",
+      "split": "train",
+      "members": [
+        "get_potato_chips_0901_001", "get_potato_chips_0901_002", "get_potato_chips_0901_003", "get_potato_chips_0901_004", "get_potato_chips_0901_005", "get_potato_chips_0901_006", "get_potato_chips_0901_007", "get_potato_chips_0901_008", "get_potato_chips_0901_009", "get_potato_chips_0901_010", "get_potato_chips_0901_011", "get_potato_chips_0901_012", "get_potato_chips_0901_013", "get_potato_chips_0901_014", "get_potato_chips_0901_015", "get_potato_chips_0901_016",
+        "play_cards_0901_017", "play_cards_0901_018", "play_cards_0901_019", "play_cards_0901_020", "play_cards_0901_021", "play_cards_0901_022", "play_cards_0901_023", "play_cards_0901_024", "play_cards_0901_025", "play_cards_0901_026", "play_cards_0901_027", "play_cards_0901_028", "play_cards_0901_029", "play_cards_0901_030", "play_cards_0901_031", "play_cards_0901_032", "play_cards_0901_033", "play_cards_0901_034", "play_cards_0901_035", "play_cards_0901_036", "play_cards_0901_037", "play_cards_0901_038", "play_cards_0901_039", "play_cards_0901_040", "play_cards_0901_041", "play_cards_0901_042", "play_cards_0901_043"
+      ]
+    },
+    {
+      "source_group_id": "merged-00-20260901-230857:play_cards_0901",
+      "capture_date": "0901",
+      "split": "train",
+      "members": [
+        "play_cards_0901_001", "play_cards_0901_002", "play_cards_0901_003", "play_cards_0901_004", "play_cards_0901_005", "play_cards_0901_006", "play_cards_0901_007", "play_cards_0901_008", "play_cards_0901_009", "play_cards_0901_010", "play_cards_0901_011", "play_cards_0901_012", "play_cards_0901_013", "play_cards_0901_014", "play_cards_0901_015", "play_cards_0901_016"
+      ]
+    },
+    {
+      "source_group_id": "merged-00-20260902-173042:0903",
+      "capture_date": "0902",
+      "split": "validation",
+      "members": [
+        "get_potato_chips_0902_002", "get_potato_chips_0902_003", "get_potato_chips_0902_004", "get_potato_chips_0902_006", "get_potato_chips_0902_009", "get_potato_chips_0902_011", "get_potato_chips_0902_013", "get_potato_chips_0902_014", "get_potato_chips_0902_015", "get_potato_chips_0902_017", "get_potato_chips_0902_018", "get_potato_chips_0902_019", "get_potato_chips_0902_021", "get_potato_chips_0902_023", "get_potato_chips_0902_025", "get_potato_chips_0902_028", "get_potato_chips_0902_029", "get_potato_chips_0902_034", "get_potato_chips_0902_039", "get_potato_chips_0902_040", "get_potato_chips_0902_041", "get_potato_chips_0902_047", "get_potato_chips_0902_049", "get_potato_chips_0902_050", "get_potato_chips_0902_052", "get_potato_chips_0902_059", "get_potato_chips_0902_060", "get_potato_chips_0902_066", "get_potato_chips_0902_067", "get_potato_chips_0902_073", "get_potato_chips_0902_077", "get_potato_chips_0902_080", "get_potato_chips_0902_083", "get_potato_chips_0902_085", "get_potato_chips_0902_087", "get_potato_chips_0902_090", "get_potato_chips_0902_091", "get_potato_chips_0902_093", "get_potato_chips_0902_095", "get_potato_chips_0902_096", "get_potato_chips_0902_098", "get_potato_chips_0902_100", "get_potato_chips_0902_101", "get_potato_chips_0902_103", "get_potato_chips_0902_104", "get_potato_chips_0902_107", "get_potato_chips_0902_108", "get_potato_chips_0902_112", "get_potato_chips_0902_114", "get_potato_chips_0902_119", "get_potato_chips_0902_121", "get_potato_chips_0902_122",
+        "play_cards_0902_001", "play_cards_0902_002", "play_cards_0902_004", "play_cards_0902_005", "play_cards_0902_007", "play_cards_0902_011", "play_cards_0902_012", "play_cards_0902_015", "play_cards_0902_017", "play_cards_0902_018", "play_cards_0902_020", "play_cards_0902_022", "play_cards_0902_024", "play_cards_0902_025", "play_cards_0902_026", "play_cards_0902_031", "play_cards_0902_032", "play_cards_0902_034", "play_cards_0902_036", "play_cards_0902_039", "play_cards_0902_042", "play_cards_0902_045", "play_cards_0902_047", "play_cards_0902_049", "play_cards_0902_053"
+      ]
+    },
+    {
+      "source_group_id": "merged-00-20260903-170744:0903",
+      "capture_date": "0903",
+      "split": "development_final",
+      "members": [
+        "get_potato_chips_0903_007", "get_potato_chips_0903_013", "get_potato_chips_0903_050", "get_potato_chips_0903_052", "get_potato_chips_0903_085", "get_potato_chips_0903_103", "get_potato_chips_0903_113", "get_potato_chips_0903_140", "get_potato_chips_0903_150", "get_potato_chips_0903_182",
+        "play_cards_0903_184", "play_cards_0903_189", "play_cards_0903_195", "play_cards_0903_202", "play_cards_0903_203", "play_cards_0903_223", "play_cards_0903_224", "play_cards_0903_227", "play_cards_0903_243", "play_cards_0903_245"
+      ]
+    }
+  ]
+}

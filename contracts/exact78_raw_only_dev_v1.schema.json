@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/exact78_raw_only_dev_v1.schema.json",
+  "title": "EXACT78_RAW_ONLY_DEV_V1",
+  "type": "object",
+  "required": [
+    "schema_version", "status", "branch", "cohort_split_schema",
+    "trigger", "formal_ab_allowed", "four_model_completion",
+    "robotized_comparator", "control_ground_truth", "physical_deployable"
+  ],
+  "properties": {
+    "schema_version": {"const": "EXACT78_RAW_ONLY_DEV_V1"},
+    "status": {"const": "DEVELOPMENT_ONLY"},
+    "branch": {"const": "HUMAN_RAW_RGB"},
+    "cohort_split_schema": {"const": "EXACT78_COHORT_SPLIT_V32"},
+    "trigger": {"const": "ROBOTIZED_REPRODUCIBLE_PIXEL_OR_CAUSAL_BLOCKER_AT_APPROX_4H"},
+    "formal_ab_allowed": {"const": false},
+    "four_model_completion": {"const": false},
+    "robotized_comparator": {"const": "ABSENT"},
+    "control_ground_truth": {"const": false},
+    "physical_deployable": {"const": false}
+  },
+  "additionalProperties": true
+}
