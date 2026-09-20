@@ -31,6 +31,10 @@
 
 `/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260908_two_task_e2e_baseline_v1/EXACT78_BATCH_MANIFEST.json`
 
+2026-09-20 当前只读复核：156/156 个 manifest `raw_path` 目录存在，156/156 均能找到
+`CameraRecord_*.mp4`，会话 ID 无重复，目录末级名称与 session ID 全部一致；六个根的实际
+计数仍为 Chips `16+52+10=78`、Poker `43+25+10=78`。
+
 ### 两个各 30 的 Robot 数据在哪里
 
 完整 60 行索引及每条视频历史绝对路径：
