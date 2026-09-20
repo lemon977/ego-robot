@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/wrist_dual_producer_config_v1.schema.json",
+  "title": "Chaoyang wrist dual representation producer config V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "fit_recording_ids",
+    "forbidden_fit_recording_ids",
+    "selected_model",
+    "fusion_heuristic_weight",
+    "development_numeric_correction_bound_mm",
+    "fps",
+    "review_image_domain",
+    "temporal_authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-wrist-dual-producer-config-v1"},
+    "fit_recording_ids": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "forbidden_fit_recording_ids": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "selected_model": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["left", "right"],
+      "properties": {
+        "left": {"$ref": "#/$defs/model"},
+        "right": {"$ref": "#/$defs/model"}
+      }
+    },
+    "minimum_m2_orientation_samples": {"type": "integer", "minimum": 3},
+    "minimum_m2_controller_rotation_span_deg": {"type": "number", "minimum": 0},
+    "fusion_heuristic_weight": {"type": "number", "minimum": 0, "maximum": 1},
+    "development_numeric_correction_bound_mm": {
+      "type": "number",
+      "exclusiveMinimum": 0,
+      "maximum": 30
+    },
+    "fps": {"type": "number", "exclusiveMinimum": 0},
+    "review_image_domain": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "width", "height", "projection"],
+      "properties": {
+        "name": {"type": "string", "minLength": 1},
+        "width": {"type": "integer", "minimum": 1},
+        "height": {"type": "integer", "minimum": 1},
+        "projection": {"const": "PRECOMPUTED_SOURCE_UV"}
+      }
+    },
+    "temporal_authority": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/temporal_authority"}
+    }
+  },
+  "$defs": {
+    "model": {
+      "enum": ["M0_LEGACY", "M1_CONTROLLER_LOCAL_TRANSLATION", "M2_STATIC_SE3"]
+    },
+    "temporal_authority": {
+      "enum": [
+        "CAUSAL_CURRENT",
+        "OFFLINE_NONCAUSAL",
+        "INFERRED",
+        "UNKNOWN_TEMPORAL_AUTHORITY"
+      ]
+    }
+  }
+}
