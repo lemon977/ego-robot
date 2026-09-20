@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/kai22-full-fk-sidecar-v1",
+  "title": "KAI22_FULL_FK_SIDECAR_V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "session_id",
+    "frame_count",
+    "q22_units",
+    "fk_frame",
+    "side_axis",
+    "joint_names",
+    "link_names",
+    "urdf_refs",
+    "diagnostics",
+    "provenance",
+    "control_ground_truth",
+    "physical_deployable",
+    "external_metric_authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "KAI22_FULL_FK_SIDECAR_V1"},
+    "status": {"const": "COMPLETED_FULL_FRAME_DIAGNOSTICS"},
+    "session_id": {"type": "string", "minLength": 1},
+    "frame_count": {"type": "integer", "minimum": 1},
+    "q22_units": {"const": "radians"},
+    "fk_frame": {"const": "KAIHAND_ROOT_RELATIVE"},
+    "side_axis": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"type": "object"}},
+    "joint_names": {"type": "object", "required": ["left", "right"]},
+    "link_names": {"type": "object", "required": ["left", "right"]},
+    "urdf_refs": {"type": "object"},
+    "diagnostics": {"type": "object"},
+    "provenance": {"type": "object"},
+    "arrays_artifact": {"$ref": "#/$defs/ref"},
+    "control_ground_truth": {"const": false},
+    "physical_deployable": {"const": false},
+    "external_metric_authority": {"const": false}
+  },
+  "$defs": {
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 0},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

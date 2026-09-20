@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/ai2-independent-observability-v32",
+  "title": "AI2_INDEPENDENT_OBSERVABILITY_V32",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "session_id",
+    "image_domain",
+    "review_policy",
+    "review_frames",
+    "continuous_windows",
+    "frame_ledger",
+    "state_counts",
+    "evidence_sources",
+    "evaluated_candidates",
+    "provenance",
+    "control_ground_truth",
+    "physical_deployable",
+    "external_metric_authority"
+  ],
+  "properties": {
+    "schema_version": {"const": "AI2_INDEPENDENT_OBSERVABILITY_V32"},
+    "status": {"const": "FROZEN_BEFORE_EVALUATED_TRAJECTORY_READ"},
+    "session_id": {"enum": ["play_cards_0915_031", "get_potato_chips_0915_007"]},
+    "image_domain": {
+      "type": "object",
+      "required": ["camera", "physical_eye", "source_index", "pixel_transform", "lens_remap_applied"],
+      "properties": {
+        "physical_eye": {"const": "left"},
+        "source_index": {"const": 1},
+        "pixel_transform": {"const": "RESIZE_ONLY"},
+        "lens_remap_applied": {"const": false}
+      }
+    },
+    "review_policy": {
+      "type": "object",
+      "required": ["equal_time_bin_count", "selected_review_frame_count", "maximum_continuous_windows", "maximum_frames_per_window", "window_order"],
+      "properties": {
+        "equal_time_bin_count": {"const": 16},
+        "selected_review_frame_count": {"const": 16},
+        "maximum_continuous_windows": {"const": 2},
+        "maximum_frames_per_window": {"const": 30},
+        "window_order": {"const": "CHRONOLOGICAL_FIRST"}
+      }
+    },
+    "review_frames": {"type": "array", "minItems": 16, "maxItems": 16, "items": {"type": "object"}},
+    "continuous_windows": {"type": "array", "maxItems": 2, "items": {"type": "object", "properties": {"frame_count": {"type": "integer", "minimum": 1, "maximum": 30}}}},
+    "frame_ledger": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/frame"}},
+    "state_counts": {
+      "type": "object",
+      "required": ["REGION_EVALUABLE", "NOT_REGION_EVALUABLE", "UNKNOWN"],
+      "properties": {
+        "REGION_EVALUABLE": {"type": "integer", "minimum": 0},
+        "NOT_REGION_EVALUABLE": {"type": "integer", "minimum": 0},
+        "UNKNOWN": {"type": "integer", "minimum": 0}
+      }
+    },
+    "evidence_sources": {"type": "array", "minItems": 1, "items": {"type": "object"}},
+    "evaluated_candidates": {
+      "type": "object",
+      "required": ["raw", "bounded", "candidate_content_read_during_selection", "new_smoothed_candidate_created"],
+      "properties": {
+        "candidate_content_read_during_selection": {"const": false},
+        "new_smoothed_candidate_created": {"const": false},
+        "raw": {"type": "object", "properties": {"disposition": {"const": "FROZEN_EXISTING_SHA"}}},
+        "bounded": {"type": "object", "properties": {"disposition": {"const": "HOLD_NUMERIC_GATES"}}}
+      }
+    },
+    "provenance": {"type": "object"},
+    "control_ground_truth": {"const": false},
+    "physical_deployable": {"const": false},
+    "external_metric_authority": {"const": false}
+  },
+  "$defs": {
+    "frame": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["source_frame", "timestamp_s", "region_state", "evidence_source_ids", "selected_for_equal_time_review", "selected_for_continuous_window"],
+      "properties": {
+        "source_frame": {"type": "integer", "minimum": 0},
+        "timestamp_s": {"type": "number"},
+        "region_state": {"enum": ["REGION_EVALUABLE", "NOT_REGION_EVALUABLE", "UNKNOWN"]},
+        "evidence_source_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+        "selected_for_equal_time_review": {"type": "boolean"},
+        "selected_for_continuous_window": {"type": "boolean"}
+      }
+    }
+  }
+}
