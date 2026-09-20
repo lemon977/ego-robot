@@ -3,7 +3,7 @@
     {
       "attempt": 1,
       "gpu_id": null,
-      "heartbeat_at": "2026-09-20T21:09:34+08:00",
+      "heartbeat_at": "2026-09-20T21:15:58+08:00",
       "phase": "FOUR_STREAM_V32_EXECUTION",
       "pid": 320726,
       "proc_start_ticks": 217179089,
@@ -27,9 +27,9 @@
     "reason": "active_task_heartbeat",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-20T21:09:34+08:00",
-  "generation_id": "gov-013256-ff167ba3dd3d",
-  "governance_revision": 13256,
+  "generated_at": "2026-09-20T21:15:58+08:00",
+  "generation_id": "gov-013257-cc958186e38f",
+  "governance_revision": 13257,
   "next_task": {
     "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
     "prerequisites": [
