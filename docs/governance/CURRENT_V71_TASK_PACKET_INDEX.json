@@ -1,8 +1,8 @@
 {
   "execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
-  "generated_at": "2026-09-20T21:15:58+08:00",
-  "generation_id": "gov-013257-cc958186e38f",
-  "governance_revision": 13257,
+  "generated_at": "2026-09-20T23:21:13+08:00",
+  "generation_id": "gov-013260-fbc60483a07f",
+  "governance_revision": 13260,
   "index_bytes": 1180,
   "index_path": "tasks/current/INDEX.json",
   "index_sha256": "5238c62090b1723e747df51e8e1cb5f20660c185f79e91278b45a8f9bcdaada8",

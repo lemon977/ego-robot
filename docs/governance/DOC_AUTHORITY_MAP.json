@@ -58,12 +58,12 @@
     },
     {
       "authorized_scope": "CURRENT_FOUR_STREAM_SHALLOW_STATUS",
-      "bytes": 5750,
+      "bytes": 6182,
       "claim_limit": "Generated navigation projection only; the task ledger and lane receipts remain authoritative.",
       "document_id": "four_stream_status_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/STATUS.json",
-      "sha256": "3031861baef24780eef73f524e0bdfb2070bd9a7b35a11f9adac1438b3a3ea08",
+      "sha256": "8cbb7570815b63b6cc74392aea079c919a2947412449d1b4191455a9efad95c0",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -102,12 +102,12 @@
     },
     {
       "authorized_scope": "CURRENT_FOUR_STREAM_AI4_HURO_HANDOFF",
-      "bytes": 2571,
+      "bytes": 3914,
       "claim_limit": "HuRo-derived hand-only development comparison navigation; not official full HuRo reproduction, control truth or deployment authority.",
       "document_id": "four_stream_ai4_huro_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/AI4_HURO.md",
-      "sha256": "3ec7811f410e348c125008a64c7d180f7d26f6a08d930e4254cec791c7ee965d",
+      "sha256": "c6ac99258c19738dc90b153f1e78c0e7df7d1c3685aae065ae6470b6e4f355ea",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -180,12 +180,12 @@
     },
     {
       "authorized_scope": "PROJECT_REALTIME_STATUS",
-      "bytes": 14772,
+      "bytes": 14791,
       "claim_limit": "Generated projection; receipt-bound ledgers remain factual sources.",
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "45b14107e0b6f660763900a149710e18332214f1e53701b929504055fd4a065f",
+      "sha256": "58eb895372c5dc8d3c80eb230d8b976e2d25a0fb435e82f69a9eae7a052f34f2",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -307,9 +307,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-20T21:15:58+08:00",
-  "generation_id": "gov-013257-cc958186e38f",
-  "governance_revision": 13257,
+  "generated_at": "2026-09-20T23:21:13+08:00",
+  "generation_id": "gov-013260-fbc60483a07f",
+  "governance_revision": 13260,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }

@@ -11,13 +11,13 @@
   "claim_limit": "RC1 bounded context only; validate the current receipt before use and never fill missing facts from chat history.",
   "cohort": "exact78-chips78-poker78-frozen",
   "freshness": {
-    "age_seconds": 0,
-    "reason": "active_task_heartbeat",
-    "status": "FRESH"
+    "age_seconds": 7516,
+    "status": "SUSPECTED_DEAD_WORKER",
+    "tasks": []
   },
-  "generated_at": "2026-09-20T21:15:58+08:00",
-  "generation_id": "gov-013257-cc958186e38f",
-  "governance_revision": 13257,
+  "generated_at": "2026-09-20T23:21:13+08:00",
+  "generation_id": "gov-013260-fbc60483a07f",
+  "governance_revision": 13260,
   "next_task_id": null,
   "pair_status": {
     "chips": "BLOCKED_DATA_VOLUME",

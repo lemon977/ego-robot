@@ -17,7 +17,7 @@ NOT_OFFICIAL_FULL_HURO_REPRODUCTION
 HuRo 原生视觉 Stages 1–7、本机不具备条件的 Stage 9 RT 渲染与 Stage 10 均不在当前执行闭环。
 当前无 Wuji20 URDF/mesh/joint order/limits，因此 Wuji 固定 `BLOCKED_ROBOT_ASSET`，不能把 Kai q 改名。
 
-## 当前执行状态（2026-09-20）
+## 冻结 V1 历史里程碑（2026-09-20；当前接续见下节）
 
 - 四个冻结会话 097、044、007、031 均已生成 HuRo-derived hand-only q22/FK 与共同输入数值对照。
 - 007：378 个共同有效帧，q RMS 差异 37.1204°；031：98 个共同有效帧，q RMS 差异 41.7909°。
@@ -30,7 +30,7 @@ HuRo 原生视觉 Stages 1–7、本机不具备条件的 Stage 9 RT 渲染与 S
 - Stage 9 保持 `BLOCKED_HARDWARE_LICENSE`，Wuji 保持 `BLOCKED_ROBOT_ASSET`；均不影响已完成的
   Kai22 development hand-only 比较。
 
-Canonical 状态和四片结果入口：
+当前支线状态与四片冻结 V1 结果入口（V1 不覆盖）：
 
 ```text
 _run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/STATE.json
@@ -42,3 +42,18 @@ _run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai
 
 统一回放由 `src/chaoyang/ops/render_huro_hand_only_common_review_v1.py` 从保存的 q/FK 生成；视频不含
 仅供显示的姿态偏移。
+
+<!-- HURO_HAND_FRAME_FOLLOWUP_V2_BEGIN -->
+## 支线 4 独立接续
+
+四个冻结会话的 V2 坐标适配、三方法同目标 CPU 评估和对照视频已完成。
+仅 hand-only development 流水线完成；外部精度、视觉采用、训练资格、控制与部署均未放行。
+详细数值、覆盖率、限位、碰撞、真实 dt 导数及局限见下方报告；不能用 q 差异代替精度。
+
+- 接管与边界：[TAKEOVER.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/TAKEOVER.json)
+- 固定任务：[TASK_PACKET.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/TASK_PACKET.json)
+- 数值与结论：[REPORT_ZH.md](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/REPORT_ZH.md)
+- 机器结果：[RESULT.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/RESULT.json)
+- 复现配置：[RUN_CONFIG.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/RUN_CONFIG.json)
+
+<!-- HURO_HAND_FRAME_FOLLOWUP_V2_END -->

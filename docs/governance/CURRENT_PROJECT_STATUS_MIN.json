@@ -23,13 +23,13 @@
   "claim_limit": "Derived bounded context only; validate CURRENT_STATUS_RECEIPT.json before use.",
   "cohort": "exact78-chips78-poker78-frozen",
   "freshness": {
-    "age_seconds": 0,
-    "reason": "active_task_heartbeat",
-    "status": "FRESH"
+    "age_seconds": 7516,
+    "status": "SUSPECTED_DEAD_WORKER",
+    "tasks": []
   },
-  "generated_at": "2026-09-20T21:15:58+08:00",
-  "generation_id": "gov-013257-cc958186e38f",
-  "governance_revision": 13257,
+  "generated_at": "2026-09-20T23:21:13+08:00",
+  "generation_id": "gov-013260-fbc60483a07f",
+  "governance_revision": 13260,
   "next_task": {
     "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
     "prerequisites": [

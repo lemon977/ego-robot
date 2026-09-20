@@ -1,6 +1,6 @@
 {
   "claim_limit": "Generated navigation only. Task ledger and immutable lane results remain authoritative; one lane cannot promote or block another lane's authority.",
-  "generated_at": "2026-09-20T21:05:39+08:00",
+  "generated_at": "2026-09-20T23:19:55+08:00",
   "global_authority": {
     "control_ground_truth": false,
     "external_metric_authority": false,
@@ -62,29 +62,34 @@
       "status": "MILESTONE_COMPLETE"
     },
     "ai4_huro": {
-      "blocker": null,
+      "blocker": "EXTERNAL_NUMERIC_AND_VISUAL_ADOPTION_NOT_ESTABLISHED",
       "claims": {
         "CONTROL_GROUND_TRUTH": false,
         "NUMERIC_QUALITY_PASS": false,
         "PHYSICAL_DEPLOYABLE": false,
-        "PIPELINE_COMPLETE": false,
+        "PIPELINE_COMPLETE": true,
         "TRAINING_COMPLETE": false,
         "TRAINING_ELIGIBLE": false,
         "VISUAL_REVIEW_STATUS": "NOT_REVIEWED"
       },
-      "current_action": "MACHINE_RESULT_RECORDED",
+      "current_action": "HAND_FRAME_V2_DIAGNOSTICS_PUBLISHED",
       "latest_artifacts": [
         {
-          "bytes": 3539,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/poker031_hand_only_v1/RESULT.json",
-          "sha256": "3f1a226302ec52d7ae7502aae92d8b9ce976cc9cf63d4fa601eaee5178ea060b"
+          "bytes": 15690,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/RESULT.json",
+          "sha256": "530d63c943e61d89af327afad52cef05709d88d33c513702e4dce0b117f21292"
+        },
+        {
+          "bytes": 6443,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/REPORT_ZH.md",
+          "sha256": "66414c74b83ef7fccbaa6f2bb56441b326635cd3207bcac714ea19ef7af63b8b"
         }
       ],
-      "next_step": "RUN_NEXT_FROZEN_STAGE",
+      "next_step": "REVIEW_V2_COLLISION_AND_NUMERIC_REPORT_BEFORE_ANY_TRAINING_ADOPTION",
       "state_file": {
-        "bytes": 1639,
+        "bytes": 2333,
         "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/STATE.json",
-        "sha256": "540e0737343f4dbb376b749674bdf02e4fd0cca64bfcaaa7a7a16f2ae4ceb195"
+        "sha256": "61589c7de919643822fd8872de548d37ee8f4003c0f9e50b6259d9d7291487e1"
       },
       "status": "MILESTONE_COMPLETE"
     },
@@ -133,8 +138,8 @@
     "run_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
     "task_state": {
       "bytes": 122277,
-      "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/status_snapshots/TASK_STATE_BEFORE_REV_013254.json",
-      "sha256": "b0294233b1e63e01e2d6d74b97d8b9c529883537987c7e6f47eaf510f4f3e308"
+      "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/TASK_STATE_BEFORE_FINISH.json",
+      "sha256": "4e191cd73243e61285a9967d7908355d7be794bb5aa4b0a2c73a8fb56396d32e"
     }
   }
 }
