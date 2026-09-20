@@ -9,6 +9,16 @@
     "user_authorized_as_truth_for_this_engineering_comparison": true,
     "laboratory_metrology_authority": false
   },
+  "comparison_definition": {
+    "image_domain": "The saved PICO keypoints_2d wrist joint and HaWoR joints_2d MANO wrist are compared directly in the same selected-camera image domain.",
+    "camera_3d_domain": "PICO T_wrist_to_camera translation and HaWoR joints_3d_camera MANO wrist are compared directly in the same selected-camera optical XYZ frame, in metres before conversion to millimetres.",
+    "pixel_error": "Euclidean norm of HaWoR_uv minus PICO_uv. It measures projected image displacement and does not by itself measure depth.",
+    "camera_3d_error": "Euclidean norm of HaWoR_XYZ minus PICO_XYZ. It includes lateral X/Y and optical-depth Z disagreement.",
+    "signed_mean_dz": "Mean of HaWoR optical-Z minus PICO optical-Z. Negative means HaWoR is systematically shallower/closer to the camera than the user-authorized PICO reference.",
+    "posthoc_alignment_fit": false,
+    "stereo_consumed_for_error": false,
+    "remaining_limit": "This direct comparison does not independently validate PICO anatomical wrist definition, tracker-to-camera calibration, or laboratory metrology accuracy."
+  },
   "hawor_source": {
     "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/hawor_temporal_candidates_v1/batch_023_v1/chips/get_potato_chips_0902_023/HAWOR_TEMPORAL_SO3_JERK_SUCCESSOR.npz",
     "sha256": "02e7f045f4b0c93ab143e95a06c498fc942daa227948004604254c93b14b3fb1"

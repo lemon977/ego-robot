@@ -84,6 +84,10 @@ video，不能按目录名臆造。矩阵同时给出每条视频的 bytes、SHA
 | 3D mean / P95 | 90.3 / 101.8 mm | 105.4 / 140.2 mm |
 | signed mean ΔXYZ | +52.1, +46.2, -54.1 mm | +58.8, +10.5, -83.1 mm |
 
+定义：2D 是同一 selected-camera 图像域内 HaWoR wrist 与 PICO wrist 的像素欧氏距离；
+3D 是同一 camera-optical XYZ 中 `HaWoR − PICO` 的欧氏距离；signed `ΔZ` 只是光轴
+深度分量。该数值没有用 Stereo 补深度，也没有做事后刚体/平移贴合。
+
 - [完整 420 帧参考视频](visuals/EXACT78_WRIST_PICO_REFERENCE_V1/CHIPS023_PICO_ASSUMED_REFERENCE_FULL_REVIEW.mp4)
 - [数值收据](visuals/EXACT78_WRIST_PICO_REFERENCE_V1/METRICS.json)
 
