@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T20:40:02+08:00",
-  "generation_id": "gov-013251-6195c77e6684",
-  "governance_revision": 13251,
+  "generated_at": "2026-09-20T20:46:36+08:00",
+  "generation_id": "gov-013252-3c46f5aac57b",
+  "governance_revision": 13252,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -158,6 +158,11 @@
           "sha256": "def5dc9f83508412dfacb38433f6cd6052262bffa99ea86349f8d1f5d9bf4dab"
         },
         {
+          "bytes": 9616,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_huro_hand_only_common_review_v1.py",
+          "sha256": "1def5a8e6137c91ee01382b803ec04f0eb6d2eca3ed2b8de8d4c39ffdfa6c80f"
+        },
+        {
           "bytes": 27791,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_exact78_same_session_hand_initializer_v32.py",
           "sha256": "3ed3ca9adec516e10c7398740cdc92819f993bd4f1d3aa26562b15f5c8aea5c0"
@@ -213,9 +218,9 @@
           "sha256": "2598c5e3e72c9293beb992073b9a5739a422564b2300029ea70e69f729db1e72"
         },
         {
-          "bytes": 12482,
+          "bytes": 12552,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_four_stream_pretraining_baseline_v32.py",
-          "sha256": "176d8a4e65bf1ed1283f1c907752af2db6bb2be0c88fa6428f3d14d58b7bab30"
+          "sha256": "1fc55d9001c018a756217e575161743b0839e365f93430b2108c81cd887ad3ed"
         },
         {
           "bytes": 4142,
