@@ -137,6 +137,13 @@ def require_identity(value: dict[str, Any], path: Path) -> None:
         raise RuntimeError(f"wrong run identity in {path}: {run_id}")
 
 
+def require_package_run_identity(value: dict[str, Any], path: Path) -> None:
+    """Bind child terminals to the campaign without erasing child task IDs."""
+    run_id = value.get("window_run_id")
+    if run_id not in (None, RUN_ID):
+        raise RuntimeError(f"wrong package run identity in {path}: {run_id}")
+
+
 def require_inputs(root: Path) -> dict[str, dict[str, Any]]:
     evidence: dict[str, dict[str, Any]] = {}
     for name in REQUIRED_PARENT_INPUTS:
@@ -151,7 +158,7 @@ def require_inputs(root: Path) -> dict[str, dict[str, Any]]:
         if not path.is_file():
             raise RuntimeError(f"required package terminal missing: {name}: {path}")
         value = load_json(path)
-        require_identity(value, path)
+        require_package_run_identity(value, path)
         evidence[f"PACKAGE_{name}"] = value
     return evidence
 
