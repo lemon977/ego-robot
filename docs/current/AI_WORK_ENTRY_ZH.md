@@ -6,10 +6,12 @@
 
 本页是交给后续 AI 的最小执行入口。事实仍以当前状态 receipt、文档权威表、算法合同和任务索引为准；聊天、历史目录及文件名中的 `current/latest/final` 均不授予执行权。
 
-当前三线稳定基线执行以 [`PLAN.md`](PLAN.md) 为唯一计划真值，以机器生成的
-[`STATUS.json`](STATUS.json) 为浅层状态导航；三条支线分别读取
-[`EXACT78.md`](EXACT78.md)、[`AI1.md`](AI1.md) 和 [`AI2.md`](AI2.md)。三线只共享只读
-资产与统一 GPU 租约，不得互写工作树、状态或活动产物。新增诊断只约束其直接消费者，
+当前四线稳定基线 V3.2 以 [`PLAN.md`](PLAN.md) 为唯一计划真值，以机器生成的
+[`STATUS.json`](STATUS.json) 为浅层状态导航；四条支线分别读取
+[`EXACT78.md`](EXACT78.md)、[`AI1.md`](AI1.md)、[`AI2.md`](AI2.md) 和
+[`AI4_HURO.md`](AI4_HURO.md)。四线只共享只读资产与统一 GPU 租约，不得互写工作树、
+状态或活动产物。HuRo 当前仅是 pinned upstream 的共同输入 hand-only 对照，不是官方视觉全链复现。
+新增诊断只约束其直接消费者，
 评价口径修复、数值质量、训练完成、人工验收和真机资格必须分别报告。
 
 三条数据链的最新统一交接见

@@ -5,9 +5,9 @@
 
 本页是面向人和 AI 的唯一浅层导航，不直接授予算法或实验结论 authority。
 
-- 三线稳定基线 V3.1 唯一计划：[PLAN.md](PLAN.md)
-- 三线机器生成状态（禁止手工改成功状态）：[STATUS.json](STATUS.json)
-- 三条独立支线入口：[Exact78](EXACT78.md) / [AI1](AI1.md) / [AI2](AI2.md)
+- 四线稳定基线 V3.2 唯一计划：[PLAN.md](PLAN.md)
+- 四线机器生成状态（禁止手工改成功状态）：[STATUS.json](STATUS.json)
+- 四条独立支线入口：[Exact78](EXACT78.md) / [AI1](AI1.md) / [AI2](AI2.md) / [AI4/HuRo](AI4_HURO.md)
 - 后续 AI 执行与优化边界：[AI_WORK_ENTRY_ZH.md](AI_WORK_ENTRY_ZH.md)
 - exact78、0916 手套与 0915 裸手三条数据链统一交接：[THREE_STREAM_STATUS_AND_HANDOFF_ZH.md](THREE_STREAM_STATUS_AND_HANDOFF_ZH.md)
 - 0915 Robot Recovery V2.1 终态与浅层视频：[visuals/0915_ROBOT_RECOVERY_15H_V2/README_ZH.md](visuals/0915_ROBOT_RECOVERY_15H_V2/README_ZH.md)
