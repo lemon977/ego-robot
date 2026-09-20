@@ -1,0 +1,182 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/wrist_dual_representation_v1.schema.json",
+  "title": "Chaoyang wrist dual representation V1 result",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "transform_convention",
+    "representations",
+    "calibration",
+    "fusion",
+    "temporal_authority",
+    "inputs",
+    "outputs",
+    "authority"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "chaoyang-wrist-dual-representation-v1"
+    },
+    "status": {
+      "enum": [
+        "DEVELOPMENT_RESULT_GENERATED",
+        "BLOCKED_STATIC_CALIBRATION",
+        "BLOCKED_SURFACE_EVIDENCE",
+        "BLOCKED_TEMPORAL_AUTHORITY",
+        "FAILED_RUNTIME"
+      ]
+    },
+    "transform_convention": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["notation", "composition", "saved_transform_shape"],
+      "properties": {
+        "notation": {"const": "T_A_B_MAPS_B_TO_A"},
+        "composition": {
+          "const": "T_camera_wrist=T_camera_controller@T_controller_wrist"
+        },
+        "saved_transform_shape": {"const": "[T,2,4,4]"}
+      }
+    },
+    "representations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["anatomical_wrist_center", "visible_wrist_surface"],
+      "properties": {
+        "anatomical_wrist_center": {
+          "const": "MODEL_DEFINED_KINEMATIC_WRIST_NOT_EXTERNAL_ANATOMICAL_TRUTH"
+        },
+        "visible_wrist_surface": {
+          "const": "VIEW_DEPENDENT_OBSERVATION_NEVER_JOINT_SUBSTITUTE"
+        }
+      }
+    },
+    "calibration": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["models", "selected_model", "fit_roles", "holdout_consumed"],
+      "properties": {
+        "models": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {"const": "M0_LEGACY"},
+            {"const": "M1_CONTROLLER_LOCAL_TRANSLATION"},
+            {"const": "M2_STATIC_SE3"}
+          ]
+        },
+        "selected_model": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["left", "right"],
+          "properties": {
+            "left": {"$ref": "#/$defs/calibration_model"},
+            "right": {"$ref": "#/$defs/calibration_model"}
+          }
+        },
+        "fit_roles": {
+          "type": "array",
+          "items": {"type": "string"},
+          "uniqueItems": true
+        },
+        "holdout_consumed": {"const": false}
+      }
+    },
+    "fusion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "nonaccumulating",
+        "static_prior_preserved",
+        "development_numeric_correction_bound_mm",
+        "uncertainty_status"
+      ],
+      "properties": {
+        "nonaccumulating": {"const": true},
+        "static_prior_preserved": {"const": true},
+        "development_numeric_correction_bound_mm": {
+          "type": "number",
+          "exclusiveMinimum": 0,
+          "maximum": 30
+        },
+        "uncertainty_status": {"const": "UNKNOWN"}
+      }
+    },
+    "temporal_authority": {
+      "type": "object",
+      "additionalProperties": {
+        "enum": [
+          "CAUSAL_CURRENT",
+          "OFFLINE_NONCAUSAL",
+          "INFERRED",
+          "UNKNOWN_TEMPORAL_AUTHORITY"
+        ]
+      }
+    },
+    "inputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bundle", "config", "raw_video"],
+      "properties": {
+        "bundle": {"$ref": "#/$defs/artifact"},
+        "config": {"$ref": "#/$defs/artifact"},
+        "raw_video": {
+          "oneOf": [
+            {"$ref": "#/$defs/artifact"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["npz", "metrics", "video"],
+      "properties": {
+        "npz": {"$ref": "#/$defs/artifact"},
+        "metrics": {"$ref": "#/$defs/artifact"},
+        "video": {
+          "oneOf": [
+            {"$ref": "#/$defs/artifact"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "control_ground_truth",
+        "external_wrist_truth",
+        "external_metric_authority",
+        "physical_deployment_authorized"
+      ],
+      "properties": {
+        "control_ground_truth": {"const": false},
+        "external_wrist_truth": {"const": false},
+        "external_metric_authority": {"const": false},
+        "physical_deployment_authorized": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "calibration_model": {
+      "enum": ["M0_LEGACY", "M1_CONTROLLER_LOCAL_TRANSLATION", "M2_STATIC_SE3", "NONE"]
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}
