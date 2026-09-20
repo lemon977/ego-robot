@@ -11,3 +11,13 @@ Tianji、KaiHand、法兰及其 URDF/package/CAD/mesh 的再分发权尚未确�
 SAM3 源码来自 <https://github.com/facebookresearch/sam3.git>，上游身份锁定到提交 `660a5e9e1b8b4c02c0ad97229b88a09a6e4ff5b7`（完整上游 tree `6bc2384dbbfb370fe28096d23955df9b7b0bcdd9`）。`vendor/SAM3/` 仅保留 226 个文件的运行时闭包，不再宣称是完整上游树；闭包 tree、字节数和文件数登记在 `manifests/vendor.json`，示例、测试等非运行内容已归档。许可证原文见 `vendor/SAM3/LICENSE`。共享 SAM3.1 权重以官方模型 revision 与经核验的镜像 transport revision 双重固定；镜像仅作为字节传输来源，不改变官方代码、模型身份或许可证约束。
 
 FoundationStereo 原来源为 <https://github.com/NVlabs/FoundationStereo>，本地代码位于 `vendor/FoundationStereo/`，许可证原文见 `vendor/FoundationStereo/LICENSE`（研究/非商业使用限制）。当前本地 vendor 目录没有独立 `.git` 元数据或可信的 upstream commit 标记，因此文档**不得凭记忆声称某个 FoundationStereo commit**。当前 successor 可执行身份改用逐文件闭包：PICO适配脚本 SHA `dc6a68d200542932aa014d3cd656ba52d84a4430cddbf8658edb990f372d33c6`、FoundationStereo runtime tree SHA `cdd17c958140e132263b2dfc39e2381fd45efcb13d8f0e3a1b82e702c90a9302`（198 文件、2,305,320 bytes）、ViT-Large `23-51-11` checkpoint SHA `60e79bde9c6a00acea551625ff814fe06e5a6806e2c0c9829baee248de87c5f1`、配置 SHA `a9d9dd2137c30edc2236194f62df14d222dad5fd3287a33c7540b543bb93853f`。旧 environment authority/lock 中的 PICO/tree SHA 仅保留为历史环境证据，不是当前 GPU canary admission；当前 bounded admission 由 `tasks/receipts/FOUNDATIONSTEREO_RUNTIME_CLOSURE_V1.json` 约束。若未来替换 vendor，必须先新增可信 upstream revision 记录和 tree manifest，不能沿用本段 SHA。
+
+HuRo 原来源为 <https://github.com/3587jjh/HuRo.git>，锁定提交
+`033197778fcc30edc3631dddf3343a967683da09`。上游源码位于 `vendor/HuRo/`，不保留嵌套
+`.git`，逐文件闭包登记在 `manifests/vendor.json`。HuRo 主仓许可证见
+`vendor/HuRo/LICENSE`；其完整 pipeline 同时包含 AGPL、CC BY-NC-ND、research-only 与
+non-commercial 组件，具体见 `vendor/HuRo/THIRD_PARTY_NOTICES.md`。本项目仅获授权作
+非商业研究评估；不得由 HuRo 主仓许可证推导完整依赖的商业使用资格。当前
+`HURO_DERIVED_HAND_ONLY_RETARGET` 只借鉴 Stage 8 的局部关键点方向、rest prior 与时序平滑
+目标，并使用本项目已有 KaiHand 资产；适配代码保存在 `src/chaoyang/`，不修改上游源码，
+也不声称复现 HuRo 的整机、相机、Stage 9 overlay 或 Stage 10 导出。

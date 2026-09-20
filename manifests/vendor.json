@@ -112,6 +112,26 @@
       "runtime_path": "vendor/Cutie",
       "upstream_revision": null,
       "upstream_url": "https://github.com/hkchengrex/Cutie"
+    },
+    {
+      "id": "huro",
+      "identity": "UPSTREAM_COMMIT_NONCOMMERCIAL_RESEARCH_EVALUATION",
+      "license_paths": [
+        "vendor/HuRo/LICENSE",
+        "vendor/HuRo/THIRD_PARTY_NOTICES.md"
+      ],
+      "local_patch_policy": "upstream source bytes unchanged; Chaoyang hand-only adapter lives outside vendor; nested .git absent",
+      "model_root": null,
+      "runtime_closure": {
+        "algorithm": "sha256-file-list-v1",
+        "regular_bytes": 9211622,
+        "regular_files": 70,
+        "sha256_file_list": "73d0b1f96e5e89d1c1f647273ba2734738b65c1a98d031148b5974e303e630e8",
+        "symlinks": 0
+      },
+      "runtime_path": "vendor/HuRo",
+      "upstream_revision": "033197778fcc30edc3631dddf3343a967683da09",
+      "upstream_url": "https://github.com/3587jjh/HuRo.git"
     }
   ],
   "policy": "Only runtime import closure, licenses, upstream identity and local patch records may remain under vendor/. Model payloads live in assets/models/.",
