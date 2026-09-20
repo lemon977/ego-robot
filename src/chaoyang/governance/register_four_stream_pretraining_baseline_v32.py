@@ -54,6 +54,7 @@ def build_packet() -> dict[str, Any]:
         "src/chaoyang/ops/record_four_stream_lane_result_v32.py",
         "src/chaoyang/ops/run_huro_derived_hand_only_v1.py",
         "src/chaoyang/ops/build_exact78_same_session_hand_initializer_v32.py",
+        "src/chaoyang/ops/render_exact78_hand_only_review_v32.py",
         "src/chaoyang/ops/run_wiyh_ai1_static_wrist_candidate_v32.py",
         "src/chaoyang/pipeline/huro_hand_only_retarget_v1.py",
         "src/chaoyang/research/world_in_your_hands/ai1_static_wrist_candidate_v32.py",
@@ -62,6 +63,7 @@ def build_packet() -> dict[str, Any]:
         "src/chaoyang/human_ego/tools/train_visual_aux_future2d_v53.py",
         "src/chaoyang/pipeline/ai2_independent_observability_v32.py",
         "src/chaoyang/pipeline/kai22_full_fk_sidecar_v1.py",
+        "src/chaoyang/pipeline/kai22_full_fk_review_renderer_v1.py",
     )
     return {
         "schema_version": "chaoyang-r22-task-packet-v1",
