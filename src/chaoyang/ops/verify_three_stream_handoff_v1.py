@@ -108,6 +108,7 @@ def write_new(path: Path, value: dict[str, Any]) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--exact78-manifest", required=True, type=Path)
     parser.add_argument("--robot30-matrix", required=True, type=Path)
     parser.add_argument("--cohort-ledger", required=True, type=Path)
     parser.add_argument("--exact78-wrist-video", required=True, type=Path)
@@ -118,6 +119,54 @@ def main() -> int:
     args = parser.parse_args()
 
     errors: list[str] = []
+    exact78 = load(args.exact78_manifest.resolve(strict=True))
+    exact78_rows = exact78.get("sessions", [])
+    exact78_counts: dict[str, int] = {}
+    exact78_source_rows = []
+    seen_sessions: set[str] = set()
+    if not isinstance(exact78_rows, list) or len(exact78_rows) != 156:
+        errors.append("exact78 manifest is not the frozen 156-row cohort")
+        exact78_rows = []
+    for row in exact78_rows:
+        task = str(row.get("task"))
+        date = str(row.get("date"))
+        key = f"{task}:{date}"
+        exact78_counts[key] = exact78_counts.get(key, 0) + 1
+        session_id = str(row.get("session_id"))
+        raw_path = Path(str(row.get("raw_path", "")))
+        row_errors = []
+        if session_id in seen_sessions:
+            row_errors.append("DUPLICATE_SESSION_ID")
+        seen_sessions.add(session_id)
+        if not raw_path.is_dir():
+            row_errors.append("RAW_DIRECTORY_MISSING")
+        if raw_path.name != session_id:
+            row_errors.append("RAW_BASENAME_ID_MISMATCH")
+        if raw_path.is_dir() and not any(raw_path.glob("CameraRecord_*.mp4")):
+            row_errors.append("CAMERA_VIDEO_MISSING")
+        if row_errors:
+            errors.append(f"exact78 source invalid: {session_id}: {row_errors}")
+        exact78_source_rows.append({
+            "task": task,
+            "date": date,
+            "session_id": session_id,
+            "raw_path": str(raw_path),
+            "status": "PASS" if not row_errors else "FAIL",
+            "errors": row_errors,
+        })
+    expected_exact78_counts = {
+        "chips:0901": 16,
+        "chips:0902": 52,
+        "chips:0903": 10,
+        "poker:0901": 43,
+        "poker:0902": 25,
+        "poker:0903": 10,
+    }
+    if exact78_counts != expected_exact78_counts:
+        errors.append(
+            f"exact78 root counts changed: expected={expected_exact78_counts} actual={exact78_counts}"
+        )
+
     matrix = load(args.robot30_matrix.resolve(strict=True))
     matrix_rows = matrix.get("rows", [])
     if not isinstance(matrix_rows, list) or len(matrix_rows) != 60:
@@ -222,6 +271,12 @@ def main() -> int:
         "status": "PASS" if not errors else "FAIL",
         "errors": errors,
         "summary_document": artifact(summary),
+        "exact78_sources": {
+            "manifest": artifact(args.exact78_manifest),
+            "total": len(exact78_source_rows),
+            "counts": exact78_counts,
+            "rows": exact78_source_rows,
+        },
         "exact78_robot30": {
             "source_matrix": artifact(args.robot30_matrix),
             "total_rows": len(matrix_rows),
