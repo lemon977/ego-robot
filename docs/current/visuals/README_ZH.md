@@ -2,6 +2,16 @@
 
 更新时间：2026-09-20（Asia/Shanghai）
 
+## 三条数据链最新补充
+
+- [三条数据链现状与后续 AI 交接](../THREE_STREAM_STATUS_AND_HANDOFF_ZH.md)
+- [exact78 Chips023：PICO 用户指定参考，420 帧](EXACT78_WRIST_PICO_REFERENCE_V1/README_ZH.md)
+- [WIYH 101 真盲测：PICO wrist + MANUS，122 帧](WIYH_SESSION101_BLIND_V55/README_ZH.md)
+
+exact78 新视频明确区分 2D 像素误差与相机 3D 毫米误差，并把旧 Stereo 栏标为
+`HISTORICAL / WITHDRAWN`。WIYH 101 的 mask、可见性和 HaWoR 运行通过，但冻结 MANUS
+几何双侧质量失败；两者都不能作为训练或控制真值。
+
 本目录是浅层导航入口。视频、图片和数值文件大多是指向不可变证据的符号链接；删除链接不会删除原始证据。除非另有说明，以下产物均为开发复核证据，不是外部真值、Robot 控制真值或实体部署 authority。
 
 ## 0915 Robot Recovery V2.1（进行中）

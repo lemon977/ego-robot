@@ -1,0 +1,68 @@
+{
+  "schema_version": "exact78-chips023-pico-assumed-reference-v1",
+  "status": "PASS_USER_ASSUMED_REFERENCE_COMPARISON",
+  "session_id": "get_potato_chips_0902_023",
+  "frame_count": 420,
+  "fps": 30.0,
+  "reference": {
+    "source": "PICO_OPENXR_WRIST",
+    "user_authorized_as_truth_for_this_engineering_comparison": true,
+    "laboratory_metrology_authority": false
+  },
+  "hawor_source": {
+    "path": "/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_exact78_v52/lane_c_contact_robot/hawor_temporal_candidates_v1/batch_023_v1/chips/get_potato_chips_0902_023/HAWOR_TEMPORAL_SO3_JERK_SUCCESSOR.npz",
+    "sha256": "02e7f045f4b0c93ab143e95a06c498fc942daa227948004604254c93b14b3fb1"
+  },
+  "haWoR_minus_pico": {
+    "left": {
+      "valid_frames": 420,
+      "pixel_error": {
+        "mean_px": 237.67148541968837,
+        "p50_px": 233.6107022626229,
+        "p95_px": 282.07534472993365,
+        "max_px": 309.84573168270276,
+        "signed_mean_dx_px": 12.8517773,
+        "signed_mean_dy_px": 235.77191957
+      },
+      "camera_3d_error": {
+        "mean_mm": 90.31876508086667,
+        "p50_mm": 90.63187561492174,
+        "p95_mm": 101.81315761072476,
+        "max_mm": 108.99900912480219,
+        "signed_mean_dx_mm": 52.05529758,
+        "signed_mean_dy_mm": 46.19591032,
+        "signed_mean_dz_mm": -54.13423529
+      }
+    },
+    "right": {
+      "valid_frames": 420,
+      "pixel_error": {
+        "mean_px": 175.80859737957306,
+        "p50_px": 150.24942773938704,
+        "p95_px": 334.6108289448971,
+        "max_px": 361.88149910847284,
+        "signed_mean_dx_px": 153.35152514,
+        "signed_mean_dy_px": 77.87866275
+      },
+      "camera_3d_error": {
+        "mean_mm": 105.41217832018819,
+        "p50_mm": 104.51063210388776,
+        "p95_mm": 140.2488331369587,
+        "max_mm": 159.56462323330658,
+        "signed_mean_dx_mm": 58.83825946,
+        "signed_mean_dy_mm": 10.51903217,
+        "signed_mean_dz_mm": -83.06123368
+      }
+    }
+  },
+  "stereo_note": "The Stereo panel is historical and withdrawn because the old exact78 FoundationStereo chain repeated lens undistortion. It is retained only for visual lineage and is not consumed as valid depth accuracy.",
+  "conclusion": "Against the user-authorized PICO engineering reference, this exact78 HaWoR wrist is not accurate enough for metric Robot or Contact labels. Temporal smoothness does not remove the large 2D displacement or systematic 3D/depth bias.",
+  "video": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/worktrees/wiyh-hand-depth-v1/_run/current/experiments/exact78_wrist_pico_assumed_reference_v1/attempts/attempt_0001/CHIPS023_PICO_ASSUMED_REFERENCE_FULL_REVIEW.mp4",
+    "bytes": 3490302,
+    "sha256": "f156f4d37e45cd3c50d3f56c115c3dd90e39ecea1e24f755fa613aa1677e8e20",
+    "width": 1920,
+    "height": 1200,
+    "decoded_frames": 420
+  }
+}

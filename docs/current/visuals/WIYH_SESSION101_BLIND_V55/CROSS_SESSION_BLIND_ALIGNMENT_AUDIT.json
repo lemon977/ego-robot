@@ -1,0 +1,126 @@
+{
+  "authority_promoted": false,
+  "blind_evaluation": true,
+  "claim_limit": "Cross-session blind 2D alignment evidence only. A passing result remains pending user review of the complete video and cannot promote metric depth or geometry authority.",
+  "cross_session_evidence_source": "V54_QUALIFIED_V53_RGB_ONLY_MASKS_PLUS_FROZEN_V29_HAWOR",
+  "depth_unlocked": false,
+  "frozen_v29_landmarks": {
+    "bytes": 186347,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/worktrees/wiyh-hand-depth-v1/_run/current/experiments/world_in_your_hands_hawor_combined_observability_blind_v55/attempts/attempt_0001/hawor/HAWOR_CROSS_SESSION_BLIND_LANDMARKS.npz",
+    "sha256": "65a3cebe41e0bef2f974cd7ff393bf8146d31038f00a926eedbd3d382b70b1a3"
+  },
+  "frozen_v45_fit": {
+    "bytes": 1022652,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/worktrees/wiyh-hand-depth-v1/_run/current/experiments/world_in_your_hands_exposed_refit_v45/attempts/attempt_0001/MANUS_ORIGIN_REFIT_V45.json",
+    "sha256": "5db48d6505a988b5de4370c4abf4248bc1f429db26cc263bbc2470adfca2b7e0"
+  },
+  "parameters_fit_on_holdout": false,
+  "per_frame_parameters": false,
+  "pico_wrist_anchor_changed": false,
+  "scale_fit_performed": false,
+  "schema_version": "wiyh-v55-session101-cross-session-blind-manus-origin-evaluation-v1",
+  "sides": {
+    "left": {
+      "alignment_gate": {
+        "claim_limit": "PASS_MEANS_2D_VISIBLE_RGB_MASK_OVERLAP_ON_HOLDOUT_NOT_METRIC_3D_TRUTH",
+        "facts": {
+          "bone_in_mask_fraction_p50": 0.8732605150675354,
+          "holdout_frames_per_side": {
+            "left": 114
+          },
+          "joint_distance_to_mask_px_p95": 97.38094020843505,
+          "joint_in_mask_fraction_p50": 0.8333333333333334,
+          "wrist_distance_to_mask_px_p95": 17.47216310501095
+        },
+        "failed_gates": [],
+        "fit_records_ignored_for_acceptance": 0,
+        "gates": {
+          "bone_in_mask_fraction_p50": true,
+          "joint_distance_to_mask_px_p95": true,
+          "joint_in_mask_fraction_p50": true,
+          "minimum_holdout_frames_per_side": true,
+          "wrist_distance_to_mask_px_p95": true
+        },
+        "holdout_records_evaluated": 114,
+        "schema_version": "wiyh-independent-rgb-alignment-gate-v1",
+        "status": "PASS_INDEPENDENT_RGB_ALIGNMENT_HOLDOUT"
+      },
+      "blind_landmark_evidence": {
+        "error_px_p50": 150.38219071150456,
+        "error_px_p95": 272.6428982608667,
+        "frames": 114,
+        "visible_joint_samples": 1496
+      },
+      "gates": {
+        "independent_mask_gate": true,
+        "maximum_diagnostic_landmark_error_px_p50": false,
+        "maximum_diagnostic_landmark_error_px_p95": true,
+        "maximum_joint_centroid_to_mask_centroid_px_p95": false,
+        "maximum_joint_extent_log_error_p95": false,
+        "maximum_origin_offset_norm_m": true,
+        "minimum_diagnostic_visible_joints": true,
+        "minimum_joint_in_frame_fraction_p50": true,
+        "pico_wrist_anchor_unchanged": true
+      },
+      "shape": {
+        "joint_centroid_to_mask_centroid_px_p95": 181.48609704241042,
+        "joint_extent_log_error_p95": 1.6172902766765387,
+        "joint_in_frame_fraction_p50": 1.0
+      },
+      "status": "FAIL_CROSS_SESSION_BLIND_SIDE"
+    },
+    "right": {
+      "alignment_gate": {
+        "claim_limit": "PASS_MEANS_2D_VISIBLE_RGB_MASK_OVERLAP_ON_HOLDOUT_NOT_METRIC_3D_TRUTH",
+        "facts": {
+          "bone_in_mask_fraction_p50": 0.4082856364131916,
+          "holdout_frames_per_side": {
+            "right": 77
+          },
+          "joint_distance_to_mask_px_p95": 107.19068855285644,
+          "joint_in_mask_fraction_p50": 0.4166666666666667,
+          "wrist_distance_to_mask_px_p95": 2.9838519096374534
+        },
+        "failed_gates": [
+          "joint_distance_to_mask_px_p95",
+          "joint_in_mask_fraction_p50"
+        ],
+        "fit_records_ignored_for_acceptance": 0,
+        "gates": {
+          "bone_in_mask_fraction_p50": true,
+          "joint_distance_to_mask_px_p95": false,
+          "joint_in_mask_fraction_p50": false,
+          "minimum_holdout_frames_per_side": true,
+          "wrist_distance_to_mask_px_p95": true
+        },
+        "holdout_records_evaluated": 77,
+        "schema_version": "wiyh-independent-rgb-alignment-gate-v1",
+        "status": "FAIL_INDEPENDENT_RGB_ALIGNMENT_HOLDOUT"
+      },
+      "blind_landmark_evidence": {
+        "error_px_p50": 117.57190843629772,
+        "error_px_p95": 232.9878514763723,
+        "frames": 76,
+        "visible_joint_samples": 647
+      },
+      "gates": {
+        "independent_mask_gate": false,
+        "maximum_diagnostic_landmark_error_px_p50": true,
+        "maximum_diagnostic_landmark_error_px_p95": true,
+        "maximum_joint_centroid_to_mask_centroid_px_p95": true,
+        "maximum_joint_extent_log_error_p95": true,
+        "maximum_origin_offset_norm_m": true,
+        "minimum_diagnostic_visible_joints": true,
+        "minimum_joint_in_frame_fraction_p50": true,
+        "pico_wrist_anchor_unchanged": true
+      },
+      "shape": {
+        "joint_centroid_to_mask_centroid_px_p95": 121.04863722405003,
+        "joint_extent_log_error_p95": 0.8576071497033582,
+        "joint_in_frame_fraction_p50": 1.0
+      },
+      "status": "FAIL_CROSS_SESSION_BLIND_SIDE"
+    }
+  },
+  "status": "FAIL_CROSS_SESSION_BLIND_MANUS_ORIGIN_ALIGNMENT"
+}
