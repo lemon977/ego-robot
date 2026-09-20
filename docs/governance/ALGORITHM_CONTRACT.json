@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T16:33:59+08:00",
-  "generation_id": "gov-013229-eefe675118ee",
-  "governance_revision": 13229,
+  "generated_at": "2026-09-20T16:51:37+08:00",
+  "generation_id": "gov-013234-41a90bc85949",
+  "governance_revision": 13234,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -1219,9 +1219,9 @@
           "sha256": "185cc99cd911b7391c04f1094261bb0b471c70fd377ad4ecc6a3fb0d97fcbd6e"
         },
         {
-          "bytes": 22528,
+          "bytes": 23948,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_input_v1.py",
-          "sha256": "a5c925a291ccdb62bc30aba381611d0c2842cf488fa8f1024737c1dad9c59c13"
+          "sha256": "c28b585a417c86f09a10f447b9e35f9131df553e5ef795a790845e6fa713f107"
         },
         {
           "bytes": 31486,
@@ -1234,14 +1234,29 @@
           "sha256": "74db2ffbd758ea0af8556fee17fee3a5559d15d6029d9869bce2235a31fcf4a8"
         },
         {
+          "bytes": 6341,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_ai1_cpfs_publish_fix_v31.py",
+          "sha256": "0b8a8aa13494fb4ee5eee69f3ea96eb983afc8cf749c039594e063708c366749"
+        },
+        {
           "bytes": 22762,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_ai2_real_assets_v31.py",
           "sha256": "fbb5229ba7f39e1c031161c4bc1bb1218c55dcaef4e22228b8861681dafa8258"
         },
         {
-          "bytes": 10448,
+          "bytes": 10989,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_ai2_real_assets_cohort_audit_v31.py",
-          "sha256": "bfe85830f9432ac70eee746bb803b5badb125b2ff9981d8d43182b3360630d91"
+          "sha256": "75ce6fda75ef467178ad6d97009c05b1598c260706bb0aa02347ae15672b784d"
+        },
+        {
+          "bytes": 3856,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/preflight_ai2_current_asset_paths_v31.py",
+          "sha256": "988d4977e1caf09cedd5b4c83525d27d540950275c9db15ded126cb7ef08dffc"
+        },
+        {
+          "bytes": 7615,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_ai2_current_asset_path_fix_v31.py",
+          "sha256": "759e936d3116cd0036caf3366deea208a5a772d8c8b84778220e8b500d5fc7ba"
         },
         {
           "bytes": 19653,
@@ -1269,6 +1284,11 @@
           "sha256": "f3a80bf2f790f871935184e1b1d90adb8811f9b876f861471a0c70c786ee4920"
         },
         {
+          "bytes": 3395,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_three_stream_v31_runtime_fixes.py",
+          "sha256": "c20d7445c80c40dfae5b4ae1fd256fc75dfb43dd8cdcb10d02c9a570e08b30fc"
+        },
+        {
           "bytes": 14657,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_three_stream_stable_baseline_v31.py",
           "sha256": "769f015eadf09d011129bcd0d5d2bc7a4a09b1ad6aea63409bd094c4c5146c19"
@@ -1282,6 +1302,26 @@
           "bytes": 15932,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_three_stream_stable_baseline_v31.py",
           "sha256": "cbf627fd42a41712ec21f78877293902dc060fe54be5f9b27dff5886ec0957ca"
+        },
+        {
+          "bytes": 10913,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_ai1_cpfs_publish_fix_v31.py",
+          "sha256": "23190bd9561f2f91afb1f9803cf6eb829b13f845a70bcad5851e472b25c74689"
+        },
+        {
+          "bytes": 9042,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_ai1_cpfs_publish_fix_v31.py",
+          "sha256": "6088405d23b39d1232d2a80ab05c2e455b9f146a902989699750642b09659034"
+        },
+        {
+          "bytes": 10220,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_ai2_current_asset_path_fix_v31.py",
+          "sha256": "4419f772aabda4ad440fa7b5f0eaf5cebfc382194c7a00b85e32336495e177ff"
+        },
+        {
+          "bytes": 8123,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_ai2_current_asset_path_fix_v31.py",
+          "sha256": "72f449339681e6517d0d14b1f61e1abe54b1fb35c4598a56d54a92dc4a219f28"
         },
         {
           "bytes": 20096,

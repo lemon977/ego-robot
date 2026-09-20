@@ -1,0 +1,27 @@
+{
+  "control_ground_truth": false,
+  "counts": {
+    "blocked": 8,
+    "pass": 0,
+    "rejected": 0,
+    "total": 8
+  },
+  "created_at": "2026-09-20T16:51:37+08:00",
+  "physical_deployable": false,
+  "pipeline_complete": false,
+  "predecessor": {
+    "bytes": 7076,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai2/AI2_REAL_ASSETS_COHORT_AUDIT_V31/RESULT.json",
+    "sha256": "e121d1740e235c1eab20966dffb36c6888ead50c6f7f9599ee0ee87b559a41ac"
+  },
+  "result": {
+    "bytes": 8741,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/RESULT.json",
+    "sha256": "9478bb83040a24e1ee1e589a311c1b31534d198b8e1ff3dde44a8471e86aaead"
+  },
+  "schema_version": "ai2-current-asset-path-fix-v31-terminal-receipt-v1",
+  "status": "BLOCKED_PREREQ",
+  "task_id": "ai2_current_asset_path_fix_v31",
+  "training_complete": false,
+  "training_eligible": false
+}

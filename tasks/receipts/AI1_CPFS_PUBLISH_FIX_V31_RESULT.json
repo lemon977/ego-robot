@@ -1,0 +1,28 @@
+{
+  "control_ground_truth": false,
+  "created_at": "2026-09-20T16:51:19+08:00",
+  "lane_result": {
+    "bytes": 2033,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/AI1_CURRENT_ONLY_LANE/RESULT.json",
+    "sha256": "6c12e4dca38598e497a01a2308564bc7f52818f10d069d7e7c3b353b7dcf9007"
+  },
+  "machine_status": "BLOCKED_ADOPTION_OBSERVATIONS",
+  "physical_deployable": false,
+  "pipeline_complete": false,
+  "predecessor_failed_result": {
+    "bytes": 1162,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1/current_only_run_0001/RESULT.json",
+    "sha256": "ec0af6ad16710b07a34bd88b28e02df4186aed281551a1ac3ba179a734238a0f"
+  },
+  "predecessor_preserved": true,
+  "result": {
+    "bytes": 1280,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json",
+    "sha256": "6f3e15ff325e188abd0b45812fbd894bd5ba70cc86c40b7ba1f4dfabea76d46a"
+  },
+  "schema_version": "ai1-cpfs-publish-fix-v31-terminal-receipt-v1",
+  "status": "BLOCKED_PREREQ",
+  "task_id": "ai1_cpfs_publish_fix_v31",
+  "training_complete": false,
+  "training_eligible": false
+}

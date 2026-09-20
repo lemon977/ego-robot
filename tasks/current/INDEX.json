@@ -1,17 +1,17 @@
 {
-  "claim_limit": "The finite V3.1 parent is terminal. Lane blockers remain separate and no GPU, training, control or deployment successor is authorized.",
-  "execution_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
-  "generated_at": "2026-09-20T16:33:59+08:00",
-  "generation_id": "gov-013229-eefe675118ee",
-  "governance_revision": 13229,
-  "packet_revision": "THREE_STREAM_STABLE_BASELINE_V31_TERMINAL",
+  "claim_limit": "AI2 path correction is terminal. Evidence blockers remain local; no model, training, control or deployment successor is authorized.",
+  "execution_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31",
+  "generated_at": "2026-09-20T16:51:37+08:00",
+  "generation_id": "gov-013234-41a90bc85949",
+  "governance_revision": 13234,
+  "packet_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31_TERMINAL",
   "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1200,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
-    "sha256": "645b2017d14f32cc5e887735b54269a27d72d43aae2e2d5932a963f1a961cb24"
+    "bytes": 1103,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "25646f6f61682163e106e1716f8b2015e220e82dcef51384d12d86d1fd4b8d93"
   },
   "task_packets": []
 }

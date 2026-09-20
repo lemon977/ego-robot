@@ -1,0 +1,106 @@
+{
+  "budgets": {
+    "attempt_max": 1,
+    "cpu_workers_max": 1,
+    "gpu_calls_max": 0,
+    "model_calls_max": 0
+  },
+  "claim_limit": "CPU-only CPFS publication retry over the frozen current AI1 sources. No model, GPU, external metric, training, control or deployment claim.",
+  "code_closure": [
+    {
+      "bytes": 4169,
+      "path": "/mnt/workspace/code/chaoyang/contracts/wiyh_ai1_lane_ledger_v31.schema.json",
+      "sha256": "d8efb3adcf660c9e4d1c56f3b229f45fbf4efabb4cc43bfc5b6aaa27a7450cf1"
+    },
+    {
+      "bytes": 2046,
+      "path": "/mnt/workspace/code/chaoyang/contracts/wiyh_ai1_lane_result_v31.schema.json",
+      "sha256": "56d6638be18965bb5bf40cd92cb7977d74bba05af8726442d1bfcdd90c49ca08"
+    },
+    {
+      "bytes": 6992,
+      "path": "/mnt/workspace/code/chaoyang/contracts/wiyh_wrist_dual_input_provenance_v1.schema.json",
+      "sha256": "b1a7e24c6c4f6dd296edadce1a205034e3744cc99fb22f2e891239946e1f2591"
+    },
+    {
+      "bytes": 2429,
+      "path": "/mnt/workspace/code/chaoyang/contracts/wrist_dual_producer_config_v1.schema.json",
+      "sha256": "fd3fc28c663d2df7063d5605f4cf6920eb1d8bd2b2e2626531203dcbbef0bde0"
+    },
+    {
+      "bytes": 5202,
+      "path": "/mnt/workspace/code/chaoyang/contracts/wrist_dual_representation_v1.schema.json",
+      "sha256": "a238aba8753630f9cb3ef2195df41b1051f08e16f9bf69a1111113b397425a50"
+    },
+    {
+      "bytes": 23948,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_input_v1.py",
+      "sha256": "c28b585a417c86f09a10f447b9e35f9131df553e5ef795a790845e6fa713f107"
+    },
+    {
+      "bytes": 31486,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_wiyh_wrist_dual_representation_v1.py",
+      "sha256": "4d3bb9f2299a5154e6a0adbb928f08ca957bb8b455f6365cbcb791f061514e2e"
+    },
+    {
+      "bytes": 14743,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_wiyh_ai1_current_lane_v31.py",
+      "sha256": "74db2ffbd758ea0af8556fee17fee3a5559d15d6029d9869bce2235a31fcf4a8"
+    },
+    {
+      "bytes": 20096,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/research/world_in_your_hands/wrist_dual_representation_v1.py",
+      "sha256": "e186d355e7a1caf5159512d7cca6321c999864962e17abd2cec347ecf2aaac8d"
+    },
+    {
+      "bytes": 6341,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_ai1_cpfs_publish_fix_v31.py",
+      "sha256": "0b8a8aa13494fb4ee5eee69f3ea96eb983afc8cf749c039594e063708c366749"
+    },
+    {
+      "bytes": 10913,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_ai1_cpfs_publish_fix_v31.py",
+      "sha256": "23190bd9561f2f91afb1f9803cf6eb829b13f845a70bcad5851e472b25c74689"
+    },
+    {
+      "bytes": 9042,
+      "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/finalize_ai1_cpfs_publish_fix_v31.py",
+      "sha256": "6088405d23b39d1232d2a80ab05c2e455b9f146a902989699750642b09659034"
+    }
+  ],
+  "execution_revision": "AI1_CPFS_PUBLISH_FIX_V31",
+  "objective": "Retry only the AI1 current-only CPU lane after adding the portable CPFS writer fence, preserving the prior FAILED_RUNTIME bytes and all honest adoption-observation blockers.",
+  "phase": "AI1_CPFS_PUBLISH_FIX_V31",
+  "plan_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "no_active_current_task",
+    "sealed_failed_predecessor_READ_ONLY",
+    "current_fixed_sources_READ_ONLY"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "tasks/current/INDEX.json",
+    "_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/lanes/ai1/current_only_run_0001/RESULT.json",
+    "_run/current/worktrees/wiyh-hand-depth-v1/_run/current/experiments",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0916/cleaned/playing_cards"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/AI1_CURRENT_ONLY_LANE/RESULT.json",
+    "attempts/attempt_0001/RESULT.json",
+    "attempts/attempt_0001/RUN_RECEIPT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "current_only_lane_reaches_one_terminal",
+    "missing_adoption_observations_remain_BLOCKED_PREREQ",
+    "old_failed_attempt_is_never_modified"
+  ],
+  "task_id": "ai1_cpfs_publish_fix_v31",
+  "weights": "ABSENT",
+  "write_set": [
+    "_run/current/ai1_cpfs_publish_fix_v31",
+    "tasks/current/ai1_cpfs_publish_fix_v31",
+    "tasks/receipts/AI1_CPFS_PUBLISH_FIX_V31_RESULT.json"
+  ]
+}

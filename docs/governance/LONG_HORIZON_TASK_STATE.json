@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-20T16:33:59+08:00",
-  "generation_id": "gov-013229-eefe675118ee",
-  "generator_code_sha": "cbf627fd42a41712ec21f78877293902dc060fe54be5f9b27dff5886ec0957ca",
-  "governance_revision": 13229,
+  "generated_at": "2026-09-20T16:51:37+08:00",
+  "generation_id": "gov-013234-41a90bc85949",
+  "generator_code_sha": "72f449339681e6517d0d14b1f61e1abe54b1fb35c4598a56d54a92dc4a219f28",
+  "governance_revision": 13234,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": null,
   "rc1_budget": {
@@ -102,60 +102,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 1,
-      "created_at": "2026-09-17T20:08:33+08:00",
-      "diagnostic_status": "COMPLETED_FAIL_CLOSED_OBJECT_MASK_QUALITY_C",
-      "message": "Physical-left mono rerun completed fail-closed; chips instance Mask propagation failed and dependent stages stayed absent.",
-      "result": {
-        "bytes": 4488,
-        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_LEFTMONO_E2E_V1_COMPLETION.json",
-        "sha256": "7fd520ce65d15accc4f4f705a7f1dbd67a793c5aaf78d7ac993d5477570fda03"
-      },
-      "session": "get_potato_chips_0915_001",
-      "status": "FAILED_QUALITY_C",
-      "task_id": "0915_leftmono_e2e_v1"
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T00:18:28+08:00",
-      "message": "Registered processed-only 0915 audit and weightless 0916 cleaning task; execution not started.",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "0915_0916_input_audit_clean_v1",
-      "task_packet": {
-        "bytes": 1990,
-        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_0916_input_audit_clean_v1/TASK_PACKET.json",
-        "sha256": "c0fe44e0e7f4c75f50b4a4af655c7d292f0dbf125e2cefb50ecdf3edc1773cf3"
-      }
-    },
-    {
-      "attempt": 1,
-      "created_at": "2026-09-18T04:09:09+08:00",
-      "message": "0915 processed self-containment and 0916 cleaning reached a bounded terminal.",
-      "result": {
-        "bytes": 1043,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_0916_input_audit_clean_v1/attempts/attempt_0001/RESULT.json",
-        "sha256": "bc1cc48a5648ce5596160826007766b84846328d430e41e79c0f556286caa398"
-      },
-      "session": null,
-      "status": "FAILED_RUNTIME_FINAL",
-      "task_id": "0915_0916_input_audit_clean_v1"
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T04:10:19+08:00",
-      "message": "Registered one finite 0915 campaign task; execution not started.",
-      "predecessor": "0915_0916_input_audit_clean_v1",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "0915_input_prepare_cad_v1",
-      "task_packet": {
-        "bytes": 1641,
-        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v1/TASK_PACKET.json",
-        "sha256": "3c5fbb0e1791ac60bbc98ed20e3a0bfcbd78b8339d9c07af5191d7a525e27e64"
-      }
-    },
     {
       "attempt": 0,
       "created_at": "2026-09-18T04:12:13+08:00",
@@ -1495,11 +1441,63 @@
       "session": null,
       "status": "REJECTED_QUALITY",
       "task_id": "three_stream_stable_baseline_v31"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-20T16:50:23+08:00",
+      "message": "Registered narrow AI1 CPFS publication retry.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "ai1_cpfs_publish_fix_v31",
+      "task_packet": {
+        "bytes": 4470,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai1_cpfs_publish_fix_v31/TASK_PACKET.json",
+        "sha256": "3569f09290d8c05e17b2649b62b4c7255771315d2bd2983ca3660b7cd78f7a82"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-20T16:51:19+08:00",
+      "message": "AI1 CPFS publication retry reached a bounded terminal.",
+      "result": {
+        "bytes": 1280,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "6f3e15ff325e188abd0b45812fbd894bd5ba70cc86c40b7ba1f4dfabea76d46a"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai1_cpfs_publish_fix_v31"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-20T16:51:24+08:00",
+      "message": "Registered narrow AI2 current-asset path correction.",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "ai2_current_asset_path_fix_v31",
+      "task_packet": {
+        "bytes": 2995,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai2_current_asset_path_fix_v31/TASK_PACKET.json",
+        "sha256": "e8c96b70c580a259c2836d3884737409059dd23150b0bc2bc348dcdc20445950"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-20T16:51:37+08:00",
+      "message": "AI2 current-asset path correction reached a bounded terminal.",
+      "result": {
+        "bytes": 8741,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "9478bb83040a24e1ee1e589a311c1b31534d198b8e1ff3dde44a8471e86aaead"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai2_current_asset_path_fix_v31"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "8e46ceb773bfa967659da51d8cb4cbe80ad7f03b"
+    "commit": "db059a3fb18cc3ec142a4798bf01bf8428587d51"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2774,6 +2772,52 @@
         "sha256": "a20e952c2ef5839bc037033b4570969d3283cfbc441be7e4a2be5c4fcb81eb45"
       },
       "updated_at": "2026-09-20T16:33:59+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI1_CPFS_PUBLISH_FIX_V31",
+      "pid": null,
+      "plan_execution_revision": "AI1_CPFS_PUBLISH_FIX_V31",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1280,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "6f3e15ff325e188abd0b45812fbd894bd5ba70cc86c40b7ba1f4dfabea76d46a"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai1_cpfs_publish_fix_v31",
+      "task_packet": {
+        "bytes": 4470,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai1_cpfs_publish_fix_v31/TASK_PACKET.json",
+        "sha256": "3569f09290d8c05e17b2649b62b4c7255771315d2bd2983ca3660b7cd78f7a82"
+      },
+      "updated_at": "2026-09-20T16:51:19+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI2_CURRENT_ASSET_PATH_FIX_V31",
+      "pid": null,
+      "plan_execution_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 8741,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "9478bb83040a24e1ee1e589a311c1b31534d198b8e1ff3dde44a8471e86aaead"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai2_current_asset_path_fix_v31",
+      "task_packet": {
+        "bytes": 2995,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai2_current_asset_path_fix_v31/TASK_PACKET.json",
+        "sha256": "e8c96b70c580a259c2836d3884737409059dd23150b0bc2bc348dcdc20445950"
+      },
+      "updated_at": "2026-09-20T16:51:37+08:00"
     }
   ]
 }

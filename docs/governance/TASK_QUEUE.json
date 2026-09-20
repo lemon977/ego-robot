@@ -1,11 +1,31 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-20T16:33:59+08:00",
-  "generation_id": "gov-013229-eefe675118ee",
-  "governance_revision": 13229,
+  "generated_at": "2026-09-20T16:51:37+08:00",
+  "generation_id": "gov-013234-41a90bc85949",
+  "governance_revision": 13234,
   "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI1_CPFS_PUBLISH_FIX_V31",
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai1_cpfs_publish_fix_v31",
+      "updated_at": "2026-09-20T16:51:19+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI2_CURRENT_ASSET_PATH_FIX_V31",
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai2_current_asset_path_fix_v31",
+      "updated_at": "2026-09-20T16:51:37+08:00"
+    },
     {
       "attempt": 0,
       "gpu_id": null,
