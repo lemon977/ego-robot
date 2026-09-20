@@ -42,10 +42,12 @@ REQUIRED_VERIFICATION_CHECKS = {
     "pytest_full",
     "video_decode",
     "markdown_links",
-    "governance",
-    "reference_closure",
     "source_read_only",
+    "package_terminal",
+    "deadline",
 }
+DEFERRED_POST_CAS_CHECKS = {"governance", "reference_closure"}
+DEFERRED_POST_CAS_STATUS = "DEFERRED_POST_CAS_EXPECTED_ACTIVE_CONFLICT"
 
 
 def load_json(path: Path) -> dict[str, Any]:
@@ -178,9 +180,14 @@ def main() -> int:
         raise RuntimeError("verification report has no check map")
     missing_checks = sorted(REQUIRED_VERIFICATION_CHECKS - checks.keys())
     failed_checks = sorted(name for name in REQUIRED_VERIFICATION_CHECKS if checks.get(name) != "PASS")
-    if missing_checks or failed_checks:
+    invalid_deferred = sorted(
+        name for name in DEFERRED_POST_CAS_CHECKS
+        if checks.get(name) != DEFERRED_POST_CAS_STATUS
+    )
+    if missing_checks or failed_checks or invalid_deferred:
         raise RuntimeError(
-            f"verification report is incomplete: missing={missing_checks}, failed={failed_checks}"
+            "verification report is incomplete: "
+            f"missing={missing_checks}, failed={failed_checks}, invalid_deferred={invalid_deferred}"
         )
     for artifact in verification.get("evidence", []):
         validate_ref(artifact)
@@ -282,13 +289,14 @@ def main() -> int:
         "task_id": TASK_ID,
         "window_run_id": RUN_ID,
         "created_at": created_at,
-        "status": "PASS",
+        "status": "PASS_PRE_CAS",
         "campaign_classification": "REJECTED_NO_RECOVERY",
         "all_started_packages_terminal": True,
         "candidate_adoption": "REJECT",
         "h9_opened": False,
         "extra_final_opened": False,
         "required_authority_boundaries_preserved": True,
+        "post_cas_governance_audit_required": True,
         "source_mutation_claim": "NO_MUTATION_OBSERVED_WITHIN_RECORDED_ACCESS_LEDGER",
         "publisher_code": ref(Path(__file__)),
         "verification": ref(verification_report),
