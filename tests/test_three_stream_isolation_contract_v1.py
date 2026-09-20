@@ -50,7 +50,17 @@ def test_0915_source_group_current_provenance_preserves_historical_claim() -> No
     assert len(recovery["source_group_authority_evidence"]) == 2
 
 
-def test_no_current_task_can_execute_any_stream() -> None:
+def test_current_execution_is_one_four_stream_parent() -> None:
     index = _load("tasks/current/INDEX.json")
-    assert index["status"] == "PASS_NO_ACTIVE_TASKS"
-    assert index["task_packets"] == []
+    assert index["status"] == "PASS"
+    assert len(index["task_packets"]) == 1
+    parent = index["task_packets"][0]
+    assert parent["task_id"] == "four_stream_pretraining_baseline_v32"
+    assert parent["execution_allowed"] is True
+    assert parent["weights"] == "ABSENT"
+
+    contract = _load("docs/governance/ALGORITHM_CONTRACT.json")
+    four_stream = contract["special_status_contracts"]["four_stream_pretraining_baseline_v32"]
+    assert len(set(four_stream["lane_roots"].values())) == 4
+    assert four_stream["control_ground_truth"] is False
+    assert four_stream["physical_deployment_authorized"] is False
