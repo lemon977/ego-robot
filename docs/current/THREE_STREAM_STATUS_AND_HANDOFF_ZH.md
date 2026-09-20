@@ -42,9 +42,16 @@
 
 `/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/`
 
-已逐条核验：47 个 `verified_video` 按此重定向后 47/47 都存在；其余 13 行本来就没有
-verified full video，不能按目录名臆造。矩阵同时给出每条视频的 bytes、SHA、帧数和完整
-解码状态。
+已逐条核验：47 个 `verified_video` 按此重定向后 47/47 都存在，并于 2026-09-20
+重新完成当前文件的全片解码，结果仍为 47/47 PASS；其余 13 行本来就没有 verified full
+video，不能按目录名臆造。矩阵同时给出每条视频的 bytes、SHA、帧数和完整解码状态。
+
+可直接打开的两类代表视频：
+
+- Chips：`/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_exact78_robot_expansion_v74/batch_001/render/chips/get_potato_chips_0902_103/fullsession_review/get_potato_chips_0902_103_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4`
+- Poker：`/mnt/workspace/code/chaoyang/archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260916_chaoyang_r22_4h/lanes/robot_v77_batch_001_r22/attempts/attempt_0002/work/render/poker/play_cards_0903_227/fullsession_review/play_cards_0903_227_ROBOT_WORLD_FIRST_GAIN1_FULLSESSION.mp4`
+
+其余逐条路径必须从上述 60 行矩阵读取并只替换固定前缀；不要用 `find` 结果替代冻结选择顺序。
 
 终态与 hard-geometry 证据：
 
