@@ -22,6 +22,10 @@ HuRo 原生视觉 Stages 1–7、本机不具备条件的 Stage 9 RT 渲染与 S
 - 四个冻结会话 097、044、007、031 均已生成 HuRo-derived hand-only q22/FK 与共同输入数值对照。
 - 007：378 个共同有效帧，q RMS 差异 37.1204°；031：98 个共同有效帧，q RMS 差异 41.7909°。
   这些是两种 retarget 的差异，不是外部精度或优劣真值。
-- 第一片 097 已有统一 renderer 的完整对照视频；其余三片当前已有数值结果，审阅视频仍待生成。
+- 四片均已有同帧 root-relative 对照视频并通过完整解码。新增三片视频 SHA-256：
+  044 `c8274584c7ae841b7f87fc984aa46a69b9bfbeb184670615d5c6029960cdeac1`、
+  007 `ab7fd378ef307aa5d820a5f8fa3927b9fac76fd8d765a3ebdcbe032fa5bef6cd`、
+  031 `b03ab43b16581f42d408fe6f9056fc601c64ff8bf3dca8297a127a1ce1291d8c`。
+  视频显示的是差异而非精度；无共同有效侧时明确显示 `NONE; no fill`。
 - Stage 9 保持 `BLOCKED_HARDWARE_LICENSE`，Wuji 保持 `BLOCKED_ROBOT_ASSET`；均不影响已完成的
   Kai22 development hand-only 比较。
