@@ -13,6 +13,7 @@ from chaoyang.research.world_in_your_hands.wrist_dual_representation_v1 import (
     audit_suffix_invariance,
     bounded_nonaccumulating_fusion,
     compose_camera_wrist,
+    evaluate_static_calibration,
     fit_m1_translation,
     fit_m2_se3,
     invert_transform,
@@ -93,6 +94,24 @@ def test_m2_requires_orientation_evidence_and_recovers_static_se3() -> None:
         )
 
 
+def test_calibration_rotation_metrics_require_separate_orientation_admission() -> None:
+    controller = _controller_series(10)
+    actual = _pose((0.03, -0.02, 0.06), angle=0.18)
+    observed = compose_camera_wrist(controller, actual)
+    metrics = evaluate_static_calibration(
+        controller,
+        actual,
+        observed,
+        np.ones(10, dtype=bool),
+        np.zeros(10, dtype=bool),
+    )
+    assert metrics["valid_frames"] == 10
+    assert metrics["orientation_valid_frames"] == 0
+    assert metrics["translation_residual_mm_p95"] == pytest.approx(0.0)
+    assert metrics["rotation_residual_deg_p50"] is None
+    assert metrics["rotation_residual_deg_p95"] is None
+
+
 def test_surface_observation_fails_closed_to_region_only() -> None:
     admitted = admit_visible_wrist_surface(
         source_pixel_uv=(25.0, 30.0),
@@ -129,7 +148,11 @@ def test_bounded_fusion_is_nonaccumulating_and_uncertainty_is_unknown() -> None:
     prior[:, 2, 3] = 0.5
     measured = np.asarray(((0.10, 0.0, 0.5), (0.10, 0.0, 0.5), (0.10, 0.0, 0.5)))
     result = bounded_nonaccumulating_fusion(
-        prior, measured, np.asarray((True, True, True)), heuristic_weight=1.0, correction_bound_mm=30.0
+        prior,
+        measured,
+        np.asarray((True, True, True)),
+        heuristic_weight=1.0,
+        correction_bound_mm=30.0,
     )
     np.testing.assert_allclose(result["fused_T_camera_wrist"][:, 0, 3], 0.03)
     assert result["correction_clipped"].all()
@@ -220,14 +243,17 @@ def test_producer_writes_schema_valid_numeric_and_video_outputs(tmp_path: Path) 
                     "T_camera_controller_raw": "CAUSAL_CURRENT",
                     "observed_T_camera_wrist": "OFFLINE_NONCAUSAL",
                     "visible_wrist_surface_observation": "OFFLINE_NONCAUSAL",
-                    "fused_T_camera_wrist": "OFFLINE_NONCAUSAL"
+                    "fused_T_camera_wrist": "OFFLINE_NONCAUSAL",
                 },
             }
         ),
         encoding="utf-8",
     )
     config_schema = json.loads(
-        (Path(__file__).resolve().parents[2] / "contracts/wrist_dual_producer_config_v1.schema.json").read_text(encoding="utf-8")
+        (
+            Path(__file__).resolve().parents[2]
+            / "contracts/wrist_dual_producer_config_v1.schema.json"
+        ).read_text(encoding="utf-8")
     )
     jsonschema.validate(json.loads(config.read_text(encoding="utf-8")), config_schema)
     preflight_result = preflight(input_npz=source, config_path=config)
@@ -242,7 +268,10 @@ def test_producer_writes_schema_valid_numeric_and_video_outputs(tmp_path: Path) 
     output = tmp_path / "output"
     result = produce(input_npz=source, config_path=config, output_root=output, raw_video=raw)
     schema = json.loads(
-        (Path(__file__).resolve().parents[2] / "contracts/wrist_dual_representation_v1.schema.json").read_text(encoding="utf-8")
+        (
+            Path(__file__).resolve().parents[2]
+            / "contracts/wrist_dual_representation_v1.schema.json"
+        ).read_text(encoding="utf-8")
     )
     jsonschema.validate(result, schema)
     assert result["calibration"]["holdout_consumed"] is False

@@ -200,12 +200,7 @@ def _read_session(
     if frame_count == 0:
         raise WiyhWristDualInputError(f"no processed frames for {session_id}")
 
-    attempt = (
-        experiment_root
-        / spec["experiment"]
-        / "attempts"
-        / "attempt_0001"
-    )
+    attempt = experiment_root / spec["experiment"] / "attempts" / "attempt_0001"
     hawor_path = attempt / spec["hawor"]
     terminal_path = attempt / "TERMINAL_RESULT.json"
     _, terminal_ref = _terminal(terminal_path, EXPECTED_HAWOR_TERMINAL)
@@ -275,6 +270,7 @@ def _read_session(
         for side_index in range(2):
             if not observed_valid[frame, side_index]:
                 continue
+            observed_transform[frame, side_index] = np.eye(4, dtype=np.float64)
             observed_transform[frame, side_index, :3, :3] = root_rotation[frame, side_index]
             observed_transform[frame, side_index, :3, 3] = wrist_xyz[frame, side_index]
     wrist_uv[~observed_valid] = np.nan

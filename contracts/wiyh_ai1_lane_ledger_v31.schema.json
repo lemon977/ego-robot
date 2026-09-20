@@ -1,0 +1,140 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/wiyh_ai1_lane_ledger_v31.schema.json",
+  "title": "Chaoyang WIYH AI1 current-only lane ledger V3.1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "lane",
+    "stages",
+    "models",
+    "sessions",
+    "outputs",
+    "blockers",
+    "authority",
+    "execution"
+  ],
+  "properties": {
+    "schema_version": {"const": "chaoyang-wiyh-ai1-lane-ledger-v31"},
+    "status": {"$ref": "#/$defs/status"},
+    "lane": {"const": "ai1"},
+    "stages": {
+      "type": "object",
+      "additionalProperties": {"type": "string", "minLength": 1}
+    },
+    "models": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["M0_LEGACY", "M1_CONTROLLER_LOCAL_TRANSLATION", "M2_STATIC_SE3"],
+      "properties": {
+        "M0_LEGACY": {"$ref": "#/$defs/model"},
+        "M1_CONTROLLER_LOCAL_TRANSLATION": {"$ref": "#/$defs/model"},
+        "M2_STATIC_SE3": {"$ref": "#/$defs/model"}
+      }
+    },
+    "sessions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "play_cards_0916_097",
+        "play_cards_0916_098",
+        "play_cards_0916_101",
+        "play_cards_0916_102",
+        "play_cards_0916_103"
+      ],
+      "properties": {
+        "play_cards_0916_097": {"$ref": "#/$defs/session"},
+        "play_cards_0916_098": {"$ref": "#/$defs/session"},
+        "play_cards_0916_101": {"$ref": "#/$defs/session"},
+        "play_cards_0916_102": {"$ref": "#/$defs/session"},
+        "play_cards_0916_103": {"$ref": "#/$defs/session"}
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["input_provenance", "m0_baseline", "producer_result"],
+      "properties": {
+        "input_provenance": {"$ref": "#/$defs/nullable_artifact"},
+        "m0_baseline": {"$ref": "#/$defs/nullable_artifact"},
+        "producer_result": {"$ref": "#/$defs/nullable_artifact"}
+      }
+    },
+    "blockers": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1},
+      "uniqueItems": true
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "external_wrist_truth",
+        "external_metric_authority",
+        "control_ground_truth",
+        "physical_deployable"
+      ],
+      "properties": {
+        "external_wrist_truth": {"const": false},
+        "external_metric_authority": {"const": false},
+        "control_ground_truth": {"const": false},
+        "physical_deployable": {"const": false}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpu_only", "gpu_used", "source_mutated", "old_artifact_mutated"],
+      "properties": {
+        "cpu_only": {"const": true},
+        "gpu_used": {"const": false},
+        "source_mutated": {"const": false},
+        "old_artifact_mutated": {"const": false}
+      }
+    }
+  },
+  "$defs": {
+    "status": {
+      "enum": [
+        "PASS_CURRENT_ONLY_AI1_LANE",
+        "BLOCKED_ADOPTION_OBSERVATIONS",
+        "BLOCKED_STATIC_CALIBRATION",
+        "BLOCKED_CURRENT_SOURCE_VALIDATION",
+        "FAILED_RUNTIME"
+      ]
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "nullable_artifact": {
+      "oneOf": [
+        {"$ref": "#/$defs/artifact"},
+        {"type": "null"}
+      ]
+    },
+    "model": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["status"],
+      "properties": {"status": {"type": "string", "minLength": 1}}
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["role", "status"],
+      "properties": {
+        "role": {"type": "string", "minLength": 1},
+        "status": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

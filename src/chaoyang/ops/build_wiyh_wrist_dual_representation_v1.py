@@ -232,6 +232,7 @@ def _fit_models(
                     nominal[side_index],
                     observed[:, side_index],
                     observed_valid[:, side_index],
+                    orientation_valid[:, side_index],
                 ),
             }
         }
@@ -247,7 +248,11 @@ def _fit_models(
                 "status": "AVAILABLE",
                 "fit": evidence,
                 "evaluation_all": evaluate_static_calibration(
-                    controller[:, side_index], m1, observed[:, side_index], observed_valid[:, side_index]
+                    controller[:, side_index],
+                    m1,
+                    observed[:, side_index],
+                    observed_valid[:, side_index],
+                    orientation_valid[:, side_index],
                 ),
             }
         except WristDualRepresentationError as error:
@@ -271,7 +276,11 @@ def _fit_models(
                 "status": "AVAILABLE",
                 "fit": evidence,
                 "evaluation_all": evaluate_static_calibration(
-                    controller[:, side_index], m2, observed[:, side_index], observed_valid[:, side_index]
+                    controller[:, side_index],
+                    m2,
+                    observed[:, side_index],
+                    observed_valid[:, side_index],
+                    orientation_valid[:, side_index],
                 ),
             }
         except WristDualRepresentationError as error:
@@ -283,7 +292,9 @@ def _fit_models(
         if selected not in MODELS:
             raise WristDualProducerError(f"unsupported selected model for {side}: {selected}")
         if selected not in models:
-            raise WristDualProducerError(f"selected calibration model is unavailable for {side}: {selected}")
+            raise WristDualProducerError(
+                f"selected calibration model is unavailable for {side}: {selected}"
+            )
         loo: dict[str, Any] = {}
         for held_out in fit_recordings_present:
             train = fit_frame & (recording != held_out) & observed_valid[:, side_index]
@@ -302,6 +313,7 @@ def _fit_models(
                     nominal[side_index],
                     observed[:, side_index],
                     evaluate,
+                    orientation_valid[:, side_index],
                 ),
             }
             try:
@@ -318,6 +330,7 @@ def _fit_models(
                         fold_m1,
                         observed[:, side_index],
                         evaluate,
+                        orientation_valid[:, side_index],
                     ),
                 }
             except WristDualRepresentationError as error:
@@ -345,6 +358,7 @@ def _fit_models(
                         fold_m2,
                         observed[:, side_index],
                         evaluate,
+                        orientation_valid[:, side_index],
                     ),
                 }
             except WristDualRepresentationError as error:
@@ -379,7 +393,16 @@ def _draw_point(image: np.ndarray, uv: np.ndarray, color: tuple[int, int, int], 
     if not (0 <= x < image.shape[1] and 0 <= y < image.shape[0]):
         return
     cv2.circle(image, (int(x), int(y)), 9, color, 3, cv2.LINE_AA)
-    cv2.putText(image, label, (int(x) + 10, int(y) - 8), cv2.FONT_HERSHEY_SIMPLEX, 0.45, color, 1, cv2.LINE_AA)
+    cv2.putText(
+        image,
+        label,
+        (int(x) + 10, int(y) - 8),
+        cv2.FONT_HERSHEY_SIMPLEX,
+        0.45,
+        color,
+        1,
+        cv2.LINE_AA,
+    )
 
 
 def _render_video(
@@ -403,9 +426,7 @@ def _render_video(
         )
     frame_count = len(arrays["frame_id"])
     temporary = output.with_name(f".{output.stem}.partial.mp4")
-    writer = cv2.VideoWriter(
-        str(temporary), cv2.VideoWriter_fourcc(*"mp4v"), fps, (1920, 1080)
-    )
+    writer = cv2.VideoWriter(str(temporary), cv2.VideoWriter_fourcc(*"mp4v"), fps, (1920, 1080))
     if not writer.isOpened():
         capture.release()
         raise WristDualProducerError("cannot open dual-wrist review writer")
@@ -437,11 +458,38 @@ def _render_video(
             canvas = np.full((1080, 1920, 3), 24, dtype=np.uint8)
             canvas[90:1050, :1280] = rgb
             cv2.rectangle(canvas, (1280, 90), (1919, 1049), (45, 45, 45), -1)
-            cv2.putText(canvas, "WRIST DUAL REPRESENTATION V1", (30, 45), cv2.FONT_HERSHEY_SIMPLEX, 1.0, (245, 245, 245), 2, cv2.LINE_AA)
-            cv2.putText(canvas, f"frame {frame:05d}/{frame_count - 1:05d}", (1500, 45), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (230, 230, 230), 2, cv2.LINE_AA)
+            cv2.putText(
+                canvas,
+                "WRIST DUAL REPRESENTATION V1",
+                (30, 45),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                1.0,
+                (245, 245, 245),
+                2,
+                cv2.LINE_AA,
+            )
+            cv2.putText(
+                canvas,
+                f"frame {frame:05d}/{frame_count - 1:05d}",
+                (1500, 45),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.7,
+                (230, 230, 230),
+                2,
+                cv2.LINE_AA,
+            )
             y = 135
             for side in range(2):
-                cv2.putText(canvas, SIDES[side].upper(), (1320, y), cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 255, 255), 2, cv2.LINE_AA)
+                cv2.putText(
+                    canvas,
+                    SIDES[side].upper(),
+                    (1320, y),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.8,
+                    (255, 255, 255),
+                    2,
+                    cv2.LINE_AA,
+                )
                 y += 38
                 for field, label in (
                     ("static_T_camera_wrist", "STATIC_SELECTED"),
@@ -449,14 +497,49 @@ def _render_video(
                     ("fused_T_camera_wrist", "FUSED"),
                 ):
                     point = arrays[field][frame, side, :3, 3] * 1000.0
-                    value = "INVALID" if not np.isfinite(point).all() else f"{point[0]:+.1f} {point[1]:+.1f} {point[2]:+.1f} mm"
-                    cv2.putText(canvas, f"{label}: {value}", (1320, y), cv2.FONT_HERSHEY_SIMPLEX, 0.48, COLORS[label], 1, cv2.LINE_AA)
+                    value = (
+                        "INVALID"
+                        if not np.isfinite(point).all()
+                        else f"{point[0]:+.1f} {point[1]:+.1f} {point[2]:+.1f} mm"
+                    )
+                    cv2.putText(
+                        canvas,
+                        f"{label}: {value}",
+                        (1320, y),
+                        cv2.FONT_HERSHEY_SIMPLEX,
+                        0.48,
+                        COLORS[label],
+                        1,
+                        cv2.LINE_AA,
+                    )
                     y += 28
                 surface = arrays["visible_wrist_surface_point_camera"][frame, side] * 1000.0
-                surface_text = "REGION_ONLY/UNKNOWN" if not np.isfinite(surface).all() else f"{surface[0]:+.1f} {surface[1]:+.1f} {surface[2]:+.1f} mm"
-                cv2.putText(canvas, f"VISIBLE_SURFACE: {surface_text}", (1320, y), cv2.FONT_HERSHEY_SIMPLEX, 0.48, COLORS["VISIBLE_SURFACE"], 1, cv2.LINE_AA)
+                surface_text = (
+                    "REGION_ONLY/UNKNOWN"
+                    if not np.isfinite(surface).all()
+                    else f"{surface[0]:+.1f} {surface[1]:+.1f} {surface[2]:+.1f} mm"
+                )
+                cv2.putText(
+                    canvas,
+                    f"VISIBLE_SURFACE: {surface_text}",
+                    (1320, y),
+                    cv2.FONT_HERSHEY_SIMPLEX,
+                    0.48,
+                    COLORS["VISIBLE_SURFACE"],
+                    1,
+                    cv2.LINE_AA,
+                )
                 y += 55
-            cv2.putText(canvas, "development / non-control / non-deployable", (1320, 1005), cv2.FONT_HERSHEY_SIMPLEX, 0.52, (80, 180, 255), 1, cv2.LINE_AA)
+            cv2.putText(
+                canvas,
+                "development / non-control / non-deployable",
+                (1320, 1005),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.52,
+                (80, 180, 255),
+                1,
+                cv2.LINE_AA,
+            )
             writer.write(canvas)
     finally:
         writer.release()
@@ -496,21 +579,27 @@ def produce(
         frame_count = len(frame_id)
         timestamp = _require(bundle, "timestamp_s", (frame_count,)).astype(np.float64)
         recording = _require(bundle, "recording_id", (frame_count,))
-        controller = _require(bundle, "T_camera_controller_raw", (frame_count, 2, 4, 4)).astype(np.float64)
+        controller = _require(bundle, "T_camera_controller_raw", (frame_count, 2, 4, 4)).astype(
+            np.float64
+        )
         nominal = _require(bundle, "T_controller_wrist_M0", (2, 4, 4)).astype(np.float64)
-        observed = _require(bundle, "observed_T_camera_wrist", (frame_count, 2, 4, 4)).astype(np.float64)
+        observed = _require(bundle, "observed_T_camera_wrist", (frame_count, 2, 4, 4)).astype(
+            np.float64
+        )
         observed_valid = _require(bundle, "observed_valid", (frame_count, 2)).astype(bool)
         orientation_valid = _require(bundle, "orientation_valid", (frame_count, 2)).astype(bool)
-        bundle.update({
-            "frame_id": frame_id,
-            "timestamp_s": timestamp,
-            "recording_id": recording,
-            "T_camera_controller_raw": controller,
-            "T_controller_wrist_M0": nominal,
-            "observed_T_camera_wrist": observed,
-            "observed_valid": observed_valid,
-            "orientation_valid": orientation_valid,
-        })
+        bundle.update(
+            {
+                "frame_id": frame_id,
+                "timestamp_s": timestamp,
+                "recording_id": recording,
+                "T_camera_controller_raw": controller,
+                "T_controller_wrist_M0": nominal,
+                "observed_T_camera_wrist": observed,
+                "observed_valid": observed_valid,
+                "orientation_valid": orientation_valid,
+            }
+        )
         models, calibration_audit = _fit_models(bundle, config)
         selected_model = {side: str(config["selected_model"][side]) for side in SIDES}
         selected = np.stack([models[side][selected_model[side]] for side in SIDES])
@@ -534,14 +623,15 @@ def produce(
             "recording_id": recording,
             "T_camera_controller_raw": controller,
             "T_controller_wrist_M0": nominal,
-            "T_controller_wrist_M1": np.stack([
-                models[side].get("M1_CONTROLLER_LOCAL_TRANSLATION", np.full((4, 4), np.nan))
-                for side in SIDES
-            ]),
-            "T_controller_wrist_M2": np.stack([
-                models[side].get("M2_STATIC_SE3", np.full((4, 4), np.nan))
-                for side in SIDES
-            ]),
+            "T_controller_wrist_M1": np.stack(
+                [
+                    models[side].get("M1_CONTROLLER_LOCAL_TRANSLATION", np.full((4, 4), np.nan))
+                    for side in SIDES
+                ]
+            ),
+            "T_controller_wrist_M2": np.stack(
+                [models[side].get("M2_STATIC_SE3", np.full((4, 4), np.nan)) for side in SIDES]
+            ),
             "selected_T_controller_wrist": selected,
             "static_T_camera_wrist": static,
             "observed_T_camera_wrist": observed,
@@ -555,7 +645,9 @@ def produce(
             "fused_wrist_uv",
         ):
             if optional in bundle:
-                arrays[optional] = _require(bundle, optional, (frame_count, 2, 2)).astype(np.float64)
+                arrays[optional] = _require(bundle, optional, (frame_count, 2, 2)).astype(
+                    np.float64
+                )
         metrics: dict[str, Any] = {
             "schema_version": "chaoyang-wrist-dual-metrics-v1",
             "calibration": calibration_audit,
@@ -563,8 +655,15 @@ def produce(
             "surface": {
                 side: {
                     "valid": int(surface["visible_wrist_surface_valid"][:, index].sum()),
-                    "region_only": int(surface["visible_wrist_region_registration_only"][:, index].sum()),
-                    "unknown": int((~surface["visible_wrist_surface_valid"][:, index] & ~surface["visible_wrist_region_registration_only"][:, index]).sum()),
+                    "region_only": int(
+                        surface["visible_wrist_region_registration_only"][:, index].sum()
+                    ),
+                    "unknown": int(
+                        (
+                            ~surface["visible_wrist_surface_valid"][:, index]
+                            & ~surface["visible_wrist_region_registration_only"][:, index]
+                        ).sum()
+                    ),
                 }
                 for index, side in enumerate(SIDES)
             },
@@ -572,7 +671,10 @@ def produce(
                 side: {
                     "static": _stats(static[:, index, :3, 3], np.ones(frame_count, dtype=bool)),
                     "observed": _stats(observed[:, index, :3, 3], observed_valid[:, index]),
-                    "fused": _stats(fusion["fused_T_camera_wrist"][:, index, :3, 3], fusion["fusion_valid"][:, index]),
+                    "fused": _stats(
+                        fusion["fused_T_camera_wrist"][:, index, :3, 3],
+                        fusion["fusion_valid"][:, index],
+                    ),
                     "correction_touch_bound": int(fusion["correction_clipped"][:, index].sum()),
                 }
                 for index, side in enumerate(SIDES)
@@ -616,14 +718,18 @@ def produce(
             "fusion": {
                 "nonaccumulating": True,
                 "static_prior_preserved": True,
-                "development_numeric_correction_bound_mm": float(config.get("development_numeric_correction_bound_mm", 30.0)),
+                "development_numeric_correction_bound_mm": float(
+                    config.get("development_numeric_correction_bound_mm", 30.0)
+                ),
                 "uncertainty_status": "UNKNOWN",
             },
             "temporal_authority": temporal,
             "inputs": {
                 "bundle": _artifact(source_path),
                 "config": _artifact(config_file),
-                "raw_video": _artifact(raw_video.resolve(strict=True)) if raw_video is not None else None,
+                "raw_video": _artifact(raw_video.resolve(strict=True))
+                if raw_video is not None
+                else None,
             },
             "outputs": {
                 "npz": _artifact(npz_path),
