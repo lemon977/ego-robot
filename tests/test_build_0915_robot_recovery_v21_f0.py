@@ -82,7 +82,10 @@ def fixture(tmp_path: Path) -> tuple[Path, Path, Path, Path]:
     verification = tmp_path / "VERIFICATION.json"
     dump(verification, {
         "status": "PASS",
-        "checks": {name: "PASS" for name in f0.REQUIRED_VERIFICATION_CHECKS},
+        "checks": {
+            **{name: "PASS" for name in f0.REQUIRED_VERIFICATION_CHECKS},
+            **{name: f0.DEFERRED_POST_CAS_STATUS for name in f0.DEFERRED_POST_CAS_CHECKS},
+        },
         "evidence": [],
     })
     receipt = tmp_path / "TERMINAL_RECEIPT.json"
@@ -106,7 +109,9 @@ def test_builds_rejected_no_recovery_closure(tmp_path: Path, monkeypatch: pytest
     root, exit_path, verification, receipt = fixture(tmp_path)
     assert run(monkeypatch, root, exit_path, verification, receipt) == 0
     assert json.loads((root / "ADOPTION_DECISION_V1.json").read_text())["decision"] == "REJECT"
-    assert json.loads((root / "FINAL_AUDIT.json").read_text())["status"] == "PASS"
+    final_audit = json.loads((root / "FINAL_AUDIT.json").read_text())
+    assert final_audit["status"] == "PASS_PRE_CAS"
+    assert final_audit["post_cas_governance_audit_required"] is True
     result = json.loads((root / "RESULT.json").read_text())
     assert result["status"] == "REJECTED_QUALITY"
     assert result["campaign_classification"] == "REJECTED_NO_RECOVERY"
