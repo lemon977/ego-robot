@@ -1,6 +1,6 @@
 {
   "claim_limit": "Generated navigation only. Task ledger and immutable lane results remain authoritative; one lane cannot promote or block another lane's authority.",
-  "generated_at": "2026-09-20T19:09:45+08:00",
+  "generated_at": "2026-09-20T20:31:47+08:00",
   "global_authority": {
     "control_ground_truth": false,
     "external_metric_authority": false,
@@ -35,7 +35,7 @@
       "status": "BLOCKED_OR_PAUSED"
     },
     "ai2": {
-      "blocker": "BLOCKED_INDEPENDENT_OBSERVABILITY",
+      "blocker": null,
       "claims": {
         "CONTROL_GROUND_TRUTH": false,
         "NUMERIC_QUALITY_PASS": false,
@@ -48,18 +48,18 @@
       "current_action": "MACHINE_RESULT_RECORDED",
       "latest_artifacts": [
         {
-          "bytes": 2433,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/RESULT.json",
-          "sha256": "9e4463910b7255a7166a18ba628c21a0cc003c8f22d6512ef8594735e9fe9648"
+          "bytes": 2829,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/RESULT.json",
+          "sha256": "11aaaba34cef7c0c676bb1fd6dad331cf0a4ffd9d44a8fba062f866172e7ab1b"
         }
       ],
-      "next_step": "RESOLVE_DIRECT_BLOCKER_OR_RESUME",
+      "next_step": "RUN_NEXT_FROZEN_STAGE",
       "state_file": {
-        "bytes": 1631,
+        "bytes": 1620,
         "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/STATE.json",
-        "sha256": "8a8a255e1747672beccb319d7f027519e9d2e68108a92af967363487bd4fb716"
+        "sha256": "93695d9230e9aec625f8be6b8021b8efdb0732fa04d3d46eb37a25c692ed4042"
       },
-      "status": "BLOCKED_OR_PAUSED"
+      "status": "MILESTONE_COMPLETE"
     },
     "ai4_huro": {
       "blocker": null,
@@ -75,21 +75,21 @@
       "current_action": "MACHINE_RESULT_RECORDED",
       "latest_artifacts": [
         {
-          "bytes": 3472,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/chips097_hand_only_v1/RESULT.json",
-          "sha256": "061160299a4b25aacf618453ad1557cdcbf977f562618318712d037437dc0807"
+          "bytes": 3539,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/poker031_hand_only_v1/RESULT.json",
+          "sha256": "3f1a226302ec52d7ae7502aae92d8b9ce976cc9cf63d4fa601eaee5178ea060b"
         }
       ],
       "next_step": "RUN_NEXT_FROZEN_STAGE",
       "state_file": {
         "bytes": 1639,
         "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/STATE.json",
-        "sha256": "cce71c9714c313aeaa9bf9b168d12d5d7e4380109a9bcbb421f70361ef7734f8"
+        "sha256": "540e0737343f4dbb376b749674bdf02e4fd0cca64bfcaaa7a7a16f2ae4ceb195"
       },
       "status": "MILESTONE_COMPLETE"
     },
     "exact78": {
-      "blocker": "BLOCKED_INPUTS",
+      "blocker": null,
       "claims": {
         "CONTROL_GROUND_TRUTH": false,
         "NUMERIC_QUALITY_PASS": false,
@@ -102,25 +102,25 @@
       "current_action": "MACHINE_RESULT_RECORDED",
       "latest_artifacts": [
         {
-          "bytes": 1890,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/cohort_and_pair_audit_v32/RESULT.json",
-          "sha256": "5a141355d25a0e289c1b4fb3307b2a185f62c94401f9d9671f270eaeccf773f5"
+          "bytes": 4563,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/same_session_hand_closure_v32/play_cards_0901_042/review_v1/RESULT.json",
+          "sha256": "acbaaa35f86d889e7efcbbbe41638117195e47cc519019408b67858562a7d17f"
         }
       ],
-      "next_step": "RESOLVE_DIRECT_BLOCKER_OR_RESUME",
+      "next_step": "RUN_NEXT_FROZEN_STAGE",
       "state_file": {
-        "bytes": 1636,
+        "bytes": 1683,
         "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/STATE.json",
-        "sha256": "7e8bf009be8cdfaced3065934dc4b268c91b9d15be6a681e176b4a85e7045980"
+        "sha256": "bce89ef47da1f027a5d3727a5a6ba6d2d6e372628e9bd929a52af50a983cb2af"
       },
-      "status": "BLOCKED_OR_PAUSED"
+      "status": "MILESTONE_COMPLETE"
     }
   },
   "parent": {
     "attempt": 1,
     "registered": true,
     "routable": true,
-    "status": "PENDING",
+    "status": "RUNNING",
     "task_packet": {
       "bytes": 6486,
       "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
@@ -132,9 +132,9 @@
     "parent_task_id": "four_stream_pretraining_baseline_v32",
     "run_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
     "task_state": {
-      "bytes": 122242,
-      "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/status_snapshots/TASK_STATE_BEFORE_REV_013242.json",
-      "sha256": "68d2e7d25bb96b1d0dc6ad856b0843d2db23ed6e034b8a02e1f34fd23f8d11d4"
+      "bytes": 122277,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/status_snapshots/TASK_STATE_BEFORE_REV_013248.json",
+      "sha256": "6d991228164b4721bf87859399d57d3308e6dcc7babc787867f8690831458c61"
     }
   }
 }

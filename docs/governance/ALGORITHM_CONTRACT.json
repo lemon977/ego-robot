@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T20:30:19+08:00",
-  "generation_id": "gov-013247-91d3d6688a14",
-  "governance_revision": 13247,
+  "generated_at": "2026-09-20T20:32:21+08:00",
+  "generation_id": "gov-013249-2ddc77634591",
+  "governance_revision": 13249,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
