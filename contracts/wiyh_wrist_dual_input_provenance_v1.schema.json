@@ -1,0 +1,227 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "chaoyang://contracts/wiyh_wrist_dual_input_provenance_v1.schema.json",
+  "title": "Chaoyang WIYH wrist dual input provenance V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "status",
+    "allowed_sessions",
+    "source_policy",
+    "sessions",
+    "m0_legacy_prior",
+    "field_policy",
+    "temporal_authority",
+    "outputs",
+    "authority",
+    "execution"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "chaoyang-wiyh-wrist-dual-input-provenance-v1"
+    },
+    "status": {"const": "INPUT_BUNDLE_GENERATED"},
+    "allowed_sessions": {
+      "const": [
+        "play_cards_0916_097",
+        "play_cards_0916_098",
+        "play_cards_0916_101"
+      ]
+    },
+    "source_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "current_non_archive_only",
+        "fixed_source_mapping",
+        "excluded_missing_observation_sessions"
+      ],
+      "properties": {
+        "current_non_archive_only": {"const": true},
+        "fixed_source_mapping": {"const": true},
+        "excluded_missing_observation_sessions": {
+          "const": ["play_cards_0916_102", "play_cards_0916_103"]
+        }
+      }
+    },
+    "sessions": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {"$ref": "#/$defs/session"}
+    },
+    "m0_legacy_prior": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "model",
+        "refit_source",
+        "terminal_source",
+        "terminal_status",
+        "authority_promoted",
+        "processed_relation_audit"
+      ],
+      "properties": {
+        "model": {"const": "M0_LEGACY"},
+        "refit_source": {"$ref": "#/$defs/artifact"},
+        "terminal_source": {"$ref": "#/$defs/artifact"},
+        "terminal_status": {
+          "const": "PASS_SESSION_097_EXPOSED_REFIT_PENDING_NEW_BLIND"
+        },
+        "authority_promoted": {"const": false},
+        "processed_relation_audit": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "maximum_translation_error_mm",
+            "maximum_rotation_error_deg",
+            "independent_truth"
+          ],
+          "properties": {
+            "maximum_translation_error_mm": {"type": "number", "minimum": 0},
+            "maximum_rotation_error_deg": {"type": "number", "minimum": 0},
+            "independent_truth": {"const": false}
+          }
+        }
+      }
+    },
+    "field_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "observed_anatomical_wrist",
+        "orientation_valid_default",
+        "visible_surface",
+        "missing_observation_fill"
+      ],
+      "properties": {
+        "observed_anatomical_wrist": {
+          "const": "HAWOR_MODEL_DEFINED_WRIST_NOT_EXTERNAL_TRUTH"
+        },
+        "orientation_valid_default": {"const": false},
+        "visible_surface": {"const": "FAIL_CLOSED_NAN_AND_FALSE"},
+        "missing_observation_fill": {"const": "FORBIDDEN"}
+      }
+    },
+    "temporal_authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["controller", "hawor_observation", "visible_surface"],
+      "properties": {
+        "controller": {"const": "UNKNOWN_TEMPORAL_AUTHORITY"},
+        "hawor_observation": {"const": "OFFLINE_NONCAUSAL"},
+        "visible_surface": {"const": "UNKNOWN_TEMPORAL_AUTHORITY"}
+      }
+    },
+    "outputs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["npz", "frame_count"],
+      "properties": {
+        "npz": {"$ref": "#/$defs/artifact"},
+        "frame_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "external_wrist_truth",
+        "external_metric_authority",
+        "surface_point_authority",
+        "physical_deployment_authorized"
+      ],
+      "properties": {
+        "external_wrist_truth": {"const": false},
+        "external_metric_authority": {"const": false},
+        "surface_point_authority": {"const": false},
+        "physical_deployment_authorized": {"const": false}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["cpu_only", "gpu_used", "source_mutated", "no_clobber"],
+      "properties": {
+        "cpu_only": {"const": true},
+        "gpu_used": {"const": false},
+        "source_mutated": {"const": false},
+        "no_clobber": {"const": true}
+      }
+    }
+  },
+  "$defs": {
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "bytes", "sha256"],
+      "properties": {
+        "path": {"type": "string", "minLength": 1},
+        "bytes": {"type": "integer", "minimum": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "file_set": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root", "file_count", "aggregate_sha256"],
+      "properties": {
+        "root": {"type": "string", "minLength": 1},
+        "file_count": {"type": "integer", "minimum": 1},
+        "aggregate_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "side_counts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["left", "right"],
+      "properties": {
+        "left": {"type": "integer", "minimum": 0},
+        "right": {"type": "integer", "minimum": 0}
+      }
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "session_id",
+        "role",
+        "frame_count",
+        "output_slice",
+        "processed_root",
+        "training_data",
+        "hawor_npz",
+        "terminal_result",
+        "terminal_status",
+        "observed_valid_count"
+      ],
+      "properties": {
+        "session_id": {
+          "enum": [
+            "play_cards_0916_097",
+            "play_cards_0916_098",
+            "play_cards_0916_101"
+          ]
+        },
+        "role": {"enum": ["DEVELOPMENT", "REGRESSION_FORBIDDEN_FIT"]},
+        "frame_count": {"type": "integer", "minimum": 1},
+        "output_slice": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["start", "stop"],
+          "properties": {
+            "start": {"type": "integer", "minimum": 0},
+            "stop": {"type": "integer", "minimum": 1}
+          }
+        },
+        "processed_root": {"type": "string", "minLength": 1},
+        "training_data": {"$ref": "#/$defs/file_set"},
+        "hawor_npz": {"$ref": "#/$defs/artifact"},
+        "terminal_result": {"$ref": "#/$defs/artifact"},
+        "terminal_status": {"const": "FAIL_CROSS_SESSION_BLIND_MANUS_ORIGIN_ALIGNMENT"},
+        "observed_valid_count": {"$ref": "#/$defs/side_counts"}
+      }
+    }
+  }
+}
