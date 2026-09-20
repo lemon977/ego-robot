@@ -12,3 +12,12 @@ HaWoR 2D/相对手形/absolute-depth 分解。不同 wrist 语义不得直接组
 
 无合格静态候选时，正确终态为 `NO_ADMISSIBLE_STATIC_CANDIDATE`，但原生整手、M0/M1 数值和失败
 证据仍须交付。任何通过最多是 position-only development adapter，不是实测安装标定或外部毫米精度。
+
+## 当前执行状态（2026-09-20）
+
+- 097/098/101 共 466 帧的 MANUS25、PICO/controller、M0/M1 数值与完整回放已生成。
+- M1 复现出约 397.9 mm（左）和 480.8 mm（右）的 controller-local translation correction；
+  这只是模型拟合结果，不是实测安装量。
+- 冻结证据未支持采用 M1，M0 继续为默认消费，终态为
+  `NO_ADMISSIBLE_STATIC_CANDIDATE`。
+- 102/103 仍未打开；没有为通过而拟合 M2、逐帧 wrist 或 Contact 对齐。

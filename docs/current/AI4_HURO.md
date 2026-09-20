@@ -16,3 +16,12 @@ NOT_OFFICIAL_FULL_HURO_REPRODUCTION
 
 HuRo 原生视觉 Stages 1–7、本机不具备条件的 Stage 9 RT 渲染与 Stage 10 均不在当前执行闭环。
 当前无 Wuji20 URDF/mesh/joint order/limits，因此 Wuji 固定 `BLOCKED_ROBOT_ASSET`，不能把 Kai q 改名。
+
+## 当前执行状态（2026-09-20）
+
+- 四个冻结会话 097、044、007、031 均已生成 HuRo-derived hand-only q22/FK 与共同输入数值对照。
+- 007：378 个共同有效帧，q RMS 差异 37.1204°；031：98 个共同有效帧，q RMS 差异 41.7909°。
+  这些是两种 retarget 的差异，不是外部精度或优劣真值。
+- 第一片 097 已有统一 renderer 的完整对照视频；其余三片当前已有数值结果，审阅视频仍待生成。
+- Stage 9 保持 `BLOCKED_HARDWARE_LICENSE`，Wuji 保持 `BLOCKED_ROBOT_ASSET`；均不影响已完成的
+  Kai22 development hand-only 比较。
