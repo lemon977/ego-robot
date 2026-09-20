@@ -218,14 +218,58 @@ def initialize(expected_revision: int) -> dict[str, Any]:
     }
 
 
+def refresh_status(expected_revision: int) -> dict[str, Any]:
+    state = _validate_route()
+    receipt = load_json(RECEIPT_PATH)
+    if int(receipt.get("governance_revision", -1)) != expected_revision:
+        raise RuntimeError("CAS revision mismatch before V3.1 status refresh")
+    if not ATTEMPT_ROOT.is_dir():
+        raise RuntimeError("V3.1 attempt has not been initialized")
+    for lane in LANES:
+        state_path = ATTEMPT_ROOT / "lanes" / lane / "STATE.json"
+        if not state_path.is_file() or load_json(state_path).get("lane") != lane:
+            raise RuntimeError(f"missing or mismatched lane state: {lane}")
+    created = now_iso()
+    snapshots = ATTEMPT_ROOT / "status_snapshots"
+    snapshots.mkdir(parents=True, exist_ok=True)
+    projected = snapshots / f"TASK_STATE_BEFORE_REV_{expected_revision + 1:06d}.json"
+    _write_once(projected, state)
+    atomic_json(
+        SHALLOW_STATUS,
+        build_status(
+            task_state=state,
+            parent_task_id=TASK_ID,
+            run_root=ATTEMPT_ROOT,
+            generated_at=created,
+            source_task_state_path=projected,
+        ),
+    )
+    published = publish_bundle(
+        load_json(AUTHORITY_PATH),
+        state,
+        event_type="THREE_STREAM_STABLE_BASELINE_V31_STATUS_REFRESHED",
+        expected_revision=expected_revision,
+        generator_path=Path(__file__),
+    )
+    return {
+        "status": "PASSED",
+        "task_id": TASK_ID,
+        "governance_revision": published["governance_revision"],
+        "shallow_status": artifact_ref(SHALLOW_STATUS),
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--mode", choices=("initialize",), required=True)
+    parser.add_argument("--mode", choices=("initialize", "refresh-status"), required=True)
     parser.add_argument("--expected-revision", required=True, type=int)
     args = parser.parse_args()
-    if args.mode != "initialize":
-        raise RuntimeError(f"unsupported mode: {args.mode}")
-    print(json.dumps(initialize(args.expected_revision), ensure_ascii=False))
+    result = (
+        initialize(args.expected_revision)
+        if args.mode == "initialize"
+        else refresh_status(args.expected_revision)
+    )
+    print(json.dumps(result, ensure_ascii=False))
     return 0
 
 
