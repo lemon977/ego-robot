@@ -292,6 +292,7 @@ def build_algorithm_contract(
                     artifact_ref(repo_root / "src/chaoyang/ops/run_four_stream_pretraining_baseline_v32.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/record_four_stream_lane_result_v32.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/build_four_stream_progress_receipt_v32.py"),
+                    artifact_ref(repo_root / "src/chaoyang/ops/build_exact78_raw_only_readiness_v1.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/run_huro_derived_hand_only_v1.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/render_huro_hand_only_common_review_v1.py"),
                     artifact_ref(repo_root / "src/chaoyang/ops/build_exact78_same_session_hand_initializer_v32.py"),
