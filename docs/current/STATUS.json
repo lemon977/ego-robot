@@ -1,0 +1,58 @@
+{
+  "claim_limit": "Generated navigation projection only. Lane receipts and the current task ledger remain authoritative; this file must never be edited by a lane worker.",
+  "generated_at": "2026-09-20T15:42:01+08:00",
+  "global_authority": {
+    "control_ground_truth": false,
+    "external_metric_authority": false,
+    "physical_deployable": false
+  },
+  "lanes": {
+    "ai1": {
+      "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
+      "blocker": null,
+      "current_action": null,
+      "latest_artifacts": [],
+      "next_step": "WAIT_PARENT_REGISTRATION",
+      "stable_baseline": null,
+      "state_file": null,
+      "status": "NOT_REGISTERED"
+    },
+    "ai2": {
+      "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
+      "blocker": null,
+      "current_action": null,
+      "latest_artifacts": [],
+      "next_step": "WAIT_PARENT_REGISTRATION",
+      "stable_baseline": null,
+      "state_file": null,
+      "status": "NOT_REGISTERED"
+    },
+    "exact78": {
+      "authority": "DEVELOPMENT_ONLY_NON_CONTROL_NON_DEPLOYABLE",
+      "blocker": null,
+      "current_action": null,
+      "latest_artifacts": [],
+      "next_step": "WAIT_PARENT_REGISTRATION",
+      "stable_baseline": null,
+      "state_file": null,
+      "status": "NOT_REGISTERED"
+    }
+  },
+  "parent": {
+    "attempt": null,
+    "registered": false,
+    "routable": false,
+    "status": "NOT_REGISTERED",
+    "task_packet": null
+  },
+  "schema_version": "chaoyang-three-stream-shallow-status-v1",
+  "source": {
+    "parent_task_id": "three_stream_stable_baseline_v31",
+    "run_root": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001",
+    "task_state": {
+      "bytes": 117001,
+      "path": "/mnt/workspace/code/chaoyang/docs/governance/LONG_HORIZON_TASK_STATE.json",
+      "sha256": "c6421dfe4b1d0ec3c5316a8d5ddf902bf05e97c18ef90e2e9db4081479c0231f"
+    }
+  }
+}
