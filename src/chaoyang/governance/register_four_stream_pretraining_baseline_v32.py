@@ -53,6 +53,7 @@ def build_packet() -> dict[str, Any]:
         "src/chaoyang/ops/run_four_stream_pretraining_baseline_v32.py",
         "src/chaoyang/ops/record_four_stream_lane_result_v32.py",
         "src/chaoyang/ops/run_huro_derived_hand_only_v1.py",
+        "src/chaoyang/ops/build_exact78_same_session_hand_initializer_v32.py",
         "src/chaoyang/ops/run_wiyh_ai1_static_wrist_candidate_v32.py",
         "src/chaoyang/pipeline/huro_hand_only_retarget_v1.py",
         "src/chaoyang/research/world_in_your_hands/ai1_static_wrist_candidate_v32.py",
