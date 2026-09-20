@@ -12,6 +12,7 @@ from __future__ import annotations
 import argparse
 import ctypes
 import errno
+import fcntl
 import hashlib
 import json
 import math
@@ -333,13 +334,13 @@ def _write_json(path: Path, value: dict[str, Any]) -> None:
         os.fsync(stream.fileno())
 
 
-def _publish_directory_no_clobber(staging: Path, output: Path) -> None:
-    """Atomically publish a complete directory without replacing a peer."""
+def _rename_noreplace_error(staging: Path, output: Path) -> int | None:
+    """Try Linux ``RENAME_NOREPLACE`` and return its errno, if any."""
 
     libc = ctypes.CDLL(None, use_errno=True)
     renameat2 = getattr(libc, "renameat2", None)
     if renameat2 is None:
-        raise WiyhWristDualInputError("atomic RENAME_NOREPLACE is unavailable on this platform")
+        return errno.ENOSYS
     renameat2.argtypes = (
         ctypes.c_int,
         ctypes.c_char_p,
@@ -356,10 +357,46 @@ def _publish_directory_no_clobber(staging: Path, output: Path) -> None:
         1,  # RENAME_NOREPLACE
     )
     if result == 0:
-        return
-    error = ctypes.get_errno()
+        return None
+    return ctypes.get_errno()
+
+
+def _locked_rename_no_clobber(staging: Path, output: Path) -> None:
+    """Publish under the fixed same-directory cooperative writer fence."""
+
+    if staging.parent.resolve(strict=True) != output.parent.resolve(strict=True):
+        raise WiyhWristDualInputError(
+            "locked publish requires staging and output to share a parent"
+        )
+    lock_path = output.parent / f".{output.name}.publish.lock"
+    descriptor = os.open(lock_path, os.O_CREAT | os.O_RDWR | os.O_CLOEXEC, 0o600)
+    try:
+        fcntl.flock(descriptor, fcntl.LOCK_EX)
+        if output.exists() or output.is_symlink():
+            raise WiyhWristDualInputError(f"refusing to clobber output root: {output}")
+        os.rename(staging, output)
+    finally:
+        fcntl.flock(descriptor, fcntl.LOCK_UN)
+        os.close(descriptor)
+
+
+def _publish_directory_no_clobber(staging: Path, output: Path) -> str:
+    """Atomically publish a directory without replacing a cooperating peer.
+
+    Some CPFS/FUSE mounts return ``EINVAL`` for ``renameat2`` even though a
+    same-filesystem ``rename`` is supported.  Only the explicit unsupported
+    errnos enter the fixed-lock fallback; collision and unexpected failures
+    remain fail-closed.
+    """
+
+    error = _rename_noreplace_error(staging, output)
+    if error is None:
+        return "RENAME_NOREPLACE"
     if error in (errno.EEXIST, errno.ENOTEMPTY):
         raise WiyhWristDualInputError(f"refusing to clobber output root: {output}")
+    if error in (errno.ENOSYS, errno.EINVAL, errno.EOPNOTSUPP):
+        _locked_rename_no_clobber(staging, output)
+        return "FLOCK_RENAME"
     raise OSError(error, os.strerror(error), str(output))
 
 
@@ -503,9 +540,9 @@ def build(*, processed_root: Path, experiment_root: Path, output_root: Path) -> 
         )
         jsonschema.validate(provenance, schema)
         _write_json(staging / "PROVENANCE.json", provenance)
-        # The staging directory and target share a parent/filesystem. Linux
-        # RENAME_NOREPLACE publishes both complete files as one namespace update
-        # and rejects even an empty target created by a racing writer.
+        # The staging directory and target share a parent/filesystem. Prefer
+        # RENAME_NOREPLACE; unsupported CPFS/FUSE implementations use the fixed
+        # same-directory cooperative writer fence in the fallback.
         _publish_directory_no_clobber(staging, output)
         return provenance
     finally:
