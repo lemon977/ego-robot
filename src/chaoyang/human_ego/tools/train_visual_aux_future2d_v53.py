@@ -269,7 +269,140 @@ def pair_dataset_signature(ledger: dict[str, Any]) -> str:
         "validation": ledger.get("validation"),
         "occlusion_hardset": ledger.get("occlusion_hardset"),
     }
+    # V3.1 DEVELOPMENT ledgers bind the producer-level prefix audit into the
+    # paired dataset identity.  Keep legacy signatures stable when this field
+    # is absent; old ledgers do not gain causal authority retroactively.
+    if "suffix_invariance_receipts" in ledger:
+        payload["suffix_invariance_receipts"] = ledger.get(
+            "suffix_invariance_receipts"
+        )
+    if "cohort_authority" in ledger:
+        payload["cohort_authority"] = ledger.get("cohort_authority")
     return canonical_sha256(payload)
+
+
+V31_DEVELOPMENT_CONTRACT = "EXACT78_V31_DEVELOPMENT_CAUSAL_PAIR"
+V31_REQUIRED_SUFFIX_FIELDS = {
+    "human_raw_rgb",
+    "robotized_rgb",
+    "crop",
+    "state",
+    "confidence",
+}
+V31_EXPECTED_SPLITS = {"train": 60, "validation": 8, "test": 5, "heldout": 5}
+
+
+def _validate_v31_cohort_authority(
+    ledger: dict[str, Any],
+) -> dict[str, dict[str, Any]]:
+    """Recheck the SHA-bound 156-row cohort at the training boundary."""
+
+    if ledger.get("contract") != V31_DEVELOPMENT_CONTRACT:
+        return {}
+    cohort = ledger.get("cohort_authority")
+    if not isinstance(cohort, dict):
+        raise RuntimeError("V3.1 DEVELOPMENT ledger requires cohort authority")
+    cohort_path = exact_ref(cohort)
+    if "archive" in cohort_path.parts:
+        raise RuntimeError("V3.1 DEVELOPMENT cohort authority must be current non-archive")
+    payload = load_json(cohort_path)
+    rows = payload.get("sessions")
+    if (
+        payload.get("schema_version") != "EXACT78_CURRENT_COHORT_V31"
+        or not isinstance(rows, list)
+        or len(rows) != 156
+    ):
+        raise RuntimeError("V3.1 current cohort identity/count mismatch")
+    indexed: dict[str, dict[str, Any]] = {}
+    split_counts = {
+        task: {split: 0 for split in V31_EXPECTED_SPLITS}
+        for task in ("chips", "poker")
+    }
+    source_group_split: dict[str, str] = {}
+    for row in rows:
+        if not isinstance(row, dict):
+            raise RuntimeError("V3.1 current cohort row must be an object")
+        session = str(row.get("session_id", ""))
+        task = str(row.get("task", ""))
+        split = str(row.get("split", ""))
+        source_group = str(row.get("source_group_id", ""))
+        raw_path = Path(str(row.get("raw_path", "")))
+        if (
+            not session
+            or session in indexed
+            or task not in split_counts
+            or split not in V31_EXPECTED_SPLITS
+            or not source_group
+            or source_group == "UNKNOWN_SOURCE_GROUP"
+            or not raw_path.is_absolute()
+            or not raw_path.is_dir()
+            or raw_path.is_symlink()
+            or raw_path.name != session
+            or "archive" in raw_path.resolve(strict=False).parts
+        ):
+            raise RuntimeError(f"invalid V3.1 current cohort row: {session}")
+        previous = source_group_split.get(source_group)
+        if previous is not None and previous != split:
+            raise RuntimeError(
+                f"V3.1 source group crosses splits: {source_group}={previous}/{split}"
+            )
+        source_group_split[source_group] = split
+        split_counts[task][split] += 1
+        indexed[session] = row
+    for task, counts in split_counts.items():
+        if counts != V31_EXPECTED_SPLITS:
+            raise RuntimeError(f"V3.1 current cohort split counts invalid: {task}={counts}")
+    return indexed
+
+
+def _validate_v31_suffix_receipts(
+    ledger: dict[str, Any],
+    manifests: dict[str, Path],
+) -> None:
+    """Require one byte-bound prefix audit for every V3.1 bundle."""
+
+    if ledger.get("contract") != V31_DEVELOPMENT_CONTRACT:
+        return
+    items = ledger.get("suffix_invariance_receipts")
+    if not isinstance(items, list) or len(items) != len(manifests):
+        raise RuntimeError("V3.1 suffix receipt set must match consumed manifests")
+    seen: set[str] = set()
+    for item in items:
+        if not isinstance(item, dict):
+            raise RuntimeError("invalid V3.1 suffix receipt binding")
+        session = str(item.get("session_id", ""))
+        manifest_path = manifests.get(session)
+        if manifest_path is None or session in seen:
+            raise RuntimeError("V3.1 suffix receipt session set mismatch")
+        if "archive" in manifest_path.resolve().parts:
+            raise RuntimeError("V3.1 DEVELOPMENT bundle must be current non-archive")
+        seen.add(session)
+        if item.get("bundle_manifest_sha256") != sha256(manifest_path):
+            raise RuntimeError("V3.1 suffix receipt manifest SHA mismatch")
+        audit_item = item.get("audit")
+        if not isinstance(audit_item, dict):
+            raise RuntimeError("V3.1 suffix audit artifact reference missing")
+        audit_path = exact_ref(audit_item)
+        if "archive" in audit_path.parts:
+            raise RuntimeError("V3.1 suffix audit must be current non-archive")
+        audit = load_json(audit_path)
+        if (
+            audit.get("schema_version") != "EXACT78_SUFFIX_INVARIANCE_V31"
+            or audit.get("status") != "PASS"
+            or audit.get("causal_current_inputs_authorized") is not True
+        ):
+            raise RuntimeError("V3.1 suffix-invariance audit did not pass")
+        fields = audit.get("fields")
+        if not isinstance(fields, dict) or not V31_REQUIRED_SUFFIX_FIELDS.issubset(fields):
+            raise RuntimeError("V3.1 suffix audit required fields missing")
+        for name in V31_REQUIRED_SUFFIX_FIELDS:
+            row = fields[name]
+            if (
+                not isinstance(row, dict)
+                or row.get("suffix_invariant") is not True
+                or row.get("effective_temporal_authority") != "CAUSAL_CURRENT"
+            ):
+                raise RuntimeError(f"V3.1 current input is not causal: {name}")
 
 
 def expected_bundle_producer_signature(payload: dict[str, Any]) -> dict[str, Any]:
@@ -431,6 +564,8 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
     global_sessions: dict[str, str] = {}
     global_source_groups: dict[str, str] = {}
     source_groups_by_split: dict[str, set[str]] = {}
+    manifests_by_session: dict[str, Path] = {}
+    v31_cohort = _validate_v31_cohort_authority(ledger)
     rc1_mode = ledger.get("release_id") == RC1_RELEASE_ID
     rc1_reports_by_manifest: dict[Path, dict[str, Any]] = {}
     if rc1_mode:
@@ -469,6 +604,7 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
                 )
             seen.add(identity)
             global_sessions[identity] = split
+            manifests_by_session[str(identity)] = manifest_path
             report = validate_bundle(manifest_path.parent)
             if rc1_mode:
                 rc1_report = rc1_reports_by_manifest.get(manifest_path.resolve())
@@ -486,11 +622,23 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
                 split_source_groups.add(source_group)
             else:
                 _validate_manifest_training_gate(manifest_path, payload, report)
-                source_group = str(
-                    payload.get("source_group_id")
-                    or payload.get("source_group")
-                    or identity
-                )
+                if v31_cohort:
+                    cohort_row = v31_cohort.get(str(identity))
+                    if (
+                        cohort_row is None
+                        or cohort_row.get("task") != ledger.get("task")
+                        or cohort_row.get("split") != split
+                    ):
+                        raise RuntimeError(
+                            f"V3.1 bundle is outside its cohort task/split: {identity}"
+                        )
+                    source_group = str(cohort_row["source_group_id"])
+                else:
+                    source_group = str(
+                        payload.get("source_group_id")
+                        or payload.get("source_group")
+                        or identity
+                    )
                 previous_split = global_source_groups.get(source_group)
                 if previous_split is not None and previous_split != split:
                     raise RuntimeError(
@@ -508,6 +656,7 @@ def validate_ledger(path: Path) -> tuple[dict[str, Any], dict[str, list[Path]]]:
         }
         if set(rc1_reports_by_manifest) != consumed_manifests:
             raise RuntimeError("RC1 eligibility set differs from ledger manifests")
+    _validate_v31_suffix_receipts(ledger, manifests_by_session)
     minimum = {"train": (16, 256), "validation": (3, 48)}
     reports = {}
     for split, manifests in groups.items():
