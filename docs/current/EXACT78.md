@@ -23,5 +23,18 @@ Stereo canary 独立终态化，不阻塞 pair 或训练。
 - 该结果明确是 `OFFLINE_NONCAUSAL / HAND_ONLY / ARM_BLOCKED`，
   `robotized_training_input=false`、`training_eligible=false`。未观测到 robot base、camera→base 与
   tool→hand mount，因此不得用单位阵或跨会话模板补造完整 Robotized 输入。
-- 下一冻结动作：到 T+4 检查点仍无法闭合 Robotized 时，按计划启动 `EXACT78_RAW_ONLY_DEV_V1`，
-  只证明 Raw 训练闭环，不宣称四模型 A/B 完成。
+- 下一冻结动作：T+4 先运行 fail-closed 的 `EXACT78_RAW_ONLY_READINESS_V1`。只有绝对 Robot
+  hand-root H50 target 语义和独立 Raw-only ledger/trainer 入口同时存在时才允许启动；不得用 HaWoR
+  human wrist、root-relative q22/FK、单位 world/base 或假设 mount 替代。条件不成立时发布 blocker，
+  不制造 Raw-only 训练成功。
+
+Canonical 证据入口：
+
+```text
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/STATE.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/cohort_and_pair_audit_v32/RESULT.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/same_session_hand_closure_v32/play_cards_0901_042/review_v1/RESULT.json
+```
+
+T+4 判定器是 `src/chaoyang/ops/build_exact78_raw_only_readiness_v1.py`；它只发布可恢复的准入/阻塞
+收据，不改变 H50 target 定义。

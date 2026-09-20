@@ -23,3 +23,14 @@ text-only SAM3.1 只是 hand-region proxy，不能证明逐指可见、左右身
   `26f241a56b8b01d2b29e313e4a38b85af1a81edee939c0f632aae5b33d4ec121`。
 - 当前最高层级严格保持 `KINEMATIC_ONLY`，不是 `DEVELOPMENT_R0`。历史 A6 thumb 候选的拒绝仍有效，
   本轮没有再创建第二套 thumb/smoothing 候选。
+
+Canonical 状态与两片回放结果：
+
+```text
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/STATE.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/RESULT.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/play_cards_0915_031/KAI22_RAW_FULL_FK_REVIEW_V1.mp4
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/get_potato_chips_0915_007/KAI22_RAW_FULL_FK_REVIEW_V1.mp4
+```
+
+回放只消费已保存 q/FK；恢复时不得按视频观感修改 q 或 clip 统计。

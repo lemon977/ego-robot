@@ -21,3 +21,13 @@ HaWoR 2D/相对手形/absolute-depth 分解。不同 wrist 语义不得直接组
 - 冻结证据未支持采用 M1，M0 继续为默认消费，终态为
   `NO_ADMISSIBLE_STATIC_CANDIDATE`。
 - 102/103 仍未打开；没有为通过而拟合 M2、逐帧 wrist 或 Contact 对齐。
+
+Canonical 结果与完整回放：
+
+```text
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/STATE.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/static_wrist_candidate_v32/RESULT.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/static_wrist_candidate_v32/AI1_097_098_101_M0_M1_FULL_REVIEW.mp4
+```
+
+数值、输入和 producer SHA 以 `RESULT.json` 为恢复入口；不能从视频反推或覆盖矩阵。

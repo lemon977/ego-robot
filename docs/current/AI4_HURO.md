@@ -29,3 +29,16 @@ HuRo 原生视觉 Stages 1–7、本机不具备条件的 Stage 9 RT 渲染与 S
   视频显示的是差异而非精度；无共同有效侧时明确显示 `NONE; no fill`。
 - Stage 9 保持 `BLOCKED_HARDWARE_LICENSE`，Wuji 保持 `BLOCKED_ROBOT_ASSET`；均不影响已完成的
   Kai22 development hand-only 比较。
+
+Canonical 状态和四片结果入口：
+
+```text
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/STATE.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/chips097_hand_only_v1/RESULT.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/poker044_hand_only_v1/RESULT.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/chips007_hand_only_v1/RESULT.json
+_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/poker031_hand_only_v1/RESULT.json
+```
+
+统一回放由 `src/chaoyang/ops/render_huro_hand_only_common_review_v1.py` 从保存的 q/FK 生成；视频不含
+仅供显示的姿态偏移。
