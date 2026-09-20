@@ -1,8 +1,10 @@
 from __future__ import annotations
 
+import errno
 import hashlib
 import json
 from pathlib import Path
+import tempfile
 
 import jsonschema
 import numpy as np
@@ -187,6 +189,57 @@ def test_refuses_to_clobber_complete_attempt(tmp_path: Path) -> None:
     with pytest.raises(builder.WiyhWristDualInputError, match="clobber"):
         builder.build(processed_root=processed, experiment_root=experiments, output_root=output)
     assert _sha256(output / "WRIST_DUAL_INPUT.npz") == npz_sha
+
+
+def test_publish_einval_uses_fixed_flock_and_refuses_clobber(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(builder, "_rename_noreplace_error", lambda _staging, _output: errno.EINVAL)
+    staging = tmp_path / "first.staging"
+    output = tmp_path / "published"
+    staging.mkdir()
+    (staging / "payload").write_text("first", encoding="utf-8")
+    assert builder._publish_directory_no_clobber(staging, output) == "FLOCK_RENAME"
+    assert (output / "payload").read_text(encoding="utf-8") == "first"
+    assert (tmp_path / ".published.publish.lock").is_file()
+
+    peer = tmp_path / "peer.staging"
+    peer.mkdir()
+    (peer / "payload").write_text("peer", encoding="utf-8")
+    with pytest.raises(builder.WiyhWristDualInputError, match="clobber"):
+        builder._publish_directory_no_clobber(peer, output)
+    assert (output / "payload").read_text(encoding="utf-8") == "first"
+    assert (peer / "payload").read_text(encoding="utf-8") == "peer"
+
+
+def test_publish_unexpected_errno_stays_failed(
+    tmp_path: Path, monkeypatch: pytest.MonkeyPatch
+) -> None:
+    monkeypatch.setattr(builder, "_rename_noreplace_error", lambda _staging, _output: errno.EPERM)
+    staging = tmp_path / "staging"
+    staging.mkdir()
+    with pytest.raises(OSError) as caught:
+        builder._publish_directory_no_clobber(staging, tmp_path / "published")
+    assert caught.value.errno == errno.EPERM
+    assert staging.is_dir()
+
+
+def test_repository_cpfs_publish_regression_uses_portable_path() -> None:
+    repo_current = Path(__file__).resolve().parents[2] / "_run" / "current"
+    repo_current.mkdir(parents=True, exist_ok=True)
+    with tempfile.TemporaryDirectory(prefix="ai1_cpfs_publish_test_", dir=repo_current) as root:
+        base = Path(root)
+        staging = base / "staging"
+        output = base / "published"
+        staging.mkdir()
+        (staging / "payload").write_text("cpfs", encoding="utf-8")
+        mode = builder._publish_directory_no_clobber(staging, output)
+        assert mode in {"RENAME_NOREPLACE", "FLOCK_RENAME"}
+        assert not staging.exists()
+        assert (output / "payload").read_text(encoding="utf-8") == "cpfs"
+        mounts = Path("/proc/mounts").read_text(encoding="utf-8")
+        if "aliyun-alinas-efc" in mounts and str(repo_current).startswith("/mnt/workspace/"):
+            assert mode == "FLOCK_RENAME"
 
 
 def test_output_is_directly_accepted_by_dual_representation_preflight(tmp_path: Path) -> None:
