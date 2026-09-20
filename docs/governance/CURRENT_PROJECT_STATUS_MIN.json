@@ -1,17 +1,5 @@
 {
-  "active_tasks": [
-    {
-      "attempt": 0,
-      "gpu_id": null,
-      "heartbeat_at": "2026-09-20T10:57:50+08:00",
-      "phase": "ROBOT_QUALITY_RECOVERY_0915_15H_V21",
-      "pid": 70398,
-      "proc_start_ticks": 209927893,
-      "session": null,
-      "status": "RUNNING",
-      "task_id": "0915_robot_quality_recovery_15h_v2"
-    }
-  ],
+  "active_tasks": [],
   "authority_sources": {
     "algorithm_contract": "/mnt/workspace/code/chaoyang/docs/governance/ALGORITHM_CONTRACT.json",
     "authority": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_AUTHORITY_INDEX.json",
@@ -24,29 +12,13 @@
   "cohort": "exact78-chips78-poker78-frozen",
   "freshness": {
     "age_seconds": 0,
-    "reason": "active_task_heartbeat",
+    "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-20T10:57:50+08:00",
-  "generation_id": "gov-013223-d7a3c63e51e5",
-  "governance_revision": 13223,
-  "next_task": {
-    "expected_resource": "CPU_LANES_PLUS_SINGLE_GOVERNED_GPU_LEASE",
-    "prerequisites": [
-      "governance_PASS_FRESH",
-      "no_active_current_task",
-      "0915_processed_root_READ_ONLY",
-      "0916_downstream_FORBIDDEN",
-      "egosteer_touch_MUST_NOT_BE_STOPPED",
-      "single_parent_with_internal_isolated_writers",
-      "single_GPU_lease_owner",
-      "source_group_claim_METADATA_VERIFIED_NO_USER_ATTESTATION",
-      "Clean_Removal_training_RL_real_control_FORBIDDEN"
-    ],
-    "session": null,
-    "stop_condition": "Finite V2.1 terminal by the frozen 15-hour deadline without weakening quality gates.",
-    "task_id": "0915_robot_quality_recovery_15h_v2"
-  },
+  "generated_at": "2026-09-20T11:11:19+08:00",
+  "generation_id": "gov-013224-9b8410f84fd4",
+  "governance_revision": 13224,
+  "next_task": null,
   "schema_version": "chaoyang-current-project-status-min-v1",
   "stage_claim_limits": {
     "clean_passed": "STRUCTURAL_PROVENANCE_DECODE_ONLY_NOT_CONTACT_OR_SEMANTIC_CORRECTNESS",

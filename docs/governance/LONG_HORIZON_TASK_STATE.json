@@ -73,28 +73,12 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-20T10:57:50+08:00",
-  "generation_id": "gov-013223-d7a3c63e51e5",
-  "generator_code_sha": "d960d9e5bf59e192e54d1f598e365da0e0e77195b4f63ebafbcbf33a8f5b8ec8",
-  "governance_revision": 13223,
+  "generated_at": "2026-09-20T11:11:19+08:00",
+  "generation_id": "gov-013224-9b8410f84fd4",
+  "generator_code_sha": "14b24f08fababccd2ae32f473b6d95af6e709a22cb6d8447243dced628f016fa",
+  "governance_revision": 13224,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
-  "next_task": {
-    "expected_resource": "CPU_LANES_PLUS_SINGLE_GOVERNED_GPU_LEASE",
-    "prerequisites": [
-      "governance_PASS_FRESH",
-      "no_active_current_task",
-      "0915_processed_root_READ_ONLY",
-      "0916_downstream_FORBIDDEN",
-      "egosteer_touch_MUST_NOT_BE_STOPPED",
-      "single_parent_with_internal_isolated_writers",
-      "single_GPU_lease_owner",
-      "source_group_claim_METADATA_VERIFIED_NO_USER_ATTESTATION",
-      "Clean_Removal_training_RL_real_control_FORBIDDEN"
-    ],
-    "session": null,
-    "stop_condition": "Finite V2.1 terminal by the frozen 15-hour deadline without weakening quality gates.",
-    "task_id": "0915_robot_quality_recovery_15h_v2"
-  },
+  "next_task": null,
   "rc1_budget": {
     "checkpoint_gpu_hours_limit": 48,
     "checkpoint_gpu_hours_used": 0,
@@ -118,14 +102,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 1,
-      "created_at": "2026-09-17T18:50:45+08:00",
-      "message": "Input identity frozen; bounded pair diagnostic running.",
-      "session": "get_potato_chips_0902_103+get_potato_chips_0915_001",
-      "status": "RUNNING",
-      "task_id": "baseline_e2e_pair_v1"
-    },
     {
       "attempt": 1,
       "created_at": "2026-09-17T19:00:19+08:00",
@@ -1497,11 +1473,24 @@
         "sha256": "56152522d619356c5405661d8ba3ec30c71b7c4f6ff72214a1586d10e9ad0ea7"
       },
       "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-20T11:11:19+08:00",
+      "message": "Finite V2.1 campaign parent reached a recorded terminal.",
+      "result": {
+        "bytes": 1415,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "91a7cfc9b861ed8fea85d84d72a0b7aa4a42113d6d4ee7e18b1fc02cd9c79928"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot_quality_recovery_15h_v2"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "a4f371ab099777ba3f171ec3c111acfc258e4ac0"
+    "commit": "1e3e493c375587b01e5c3f9a1574abfae9b48a68"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2727,20 +2716,25 @@
     {
       "attempt": 0,
       "gpu_id": null,
-      "heartbeat_at": "2026-09-20T10:57:50+08:00",
+      "heartbeat_at": null,
       "phase": "ROBOT_QUALITY_RECOVERY_0915_15H_V21",
-      "pid": 70398,
+      "pid": null,
       "plan_execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
-      "proc_start_ticks": 209927893,
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1415,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "91a7cfc9b861ed8fea85d84d72a0b7aa4a42113d6d4ee7e18b1fc02cd9c79928"
+      },
       "session": null,
-      "status": "RUNNING",
+      "status": "REJECTED_QUALITY",
       "task_id": "0915_robot_quality_recovery_15h_v2",
       "task_packet": {
         "bytes": 8261,
         "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot_quality_recovery_15h_v2/TASK_PACKET.json",
         "sha256": "56152522d619356c5405661d8ba3ec30c71b7c4f6ff72214a1586d10e9ad0ea7"
       },
-      "updated_at": "2026-09-20T10:57:50+08:00",
+      "updated_at": "2026-09-20T11:11:19+08:00",
       "window_clock": {
         "bytes": 696,
         "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/WINDOW_CLOCK.json",

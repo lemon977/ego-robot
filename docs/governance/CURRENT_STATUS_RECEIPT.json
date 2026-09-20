@@ -3,27 +3,27 @@
     "algorithm_contract": {
       "bytes": 111752,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/ALGORITHM_CONTRACT.json",
-      "sha256": "3c97d542f2ae0c46541e383341e2995bdf69542427c64e00dc702d99099f214e"
+      "sha256": "ddb973e4e1c0b2933d8a476800a07e610dd269e021ba2ba5e4c8f90930660036"
     },
     "authority_index": {
       "bytes": 56741,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_AUTHORITY_INDEX.json",
-      "sha256": "e70033a3ecba81e9ecc39ee24e85b84d4121694e7b39b997407c84d785beb758"
+      "sha256": "2e3e139e43a10058b412a91dd233edb480e8b5b2c1842a9179773448153355b3"
     },
     "baseline_registry_v2": {
       "bytes": 112427,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_BASELINE_REGISTRY_V2.json",
-      "sha256": "445f58fa568e3b06fc29131dbeae2b7fcdcd92d4fda832fb4ccbccae03c1c5a8"
+      "sha256": "3c75a2eca8cec783b2ca9435f6a9b1a75e9574c8e2a087d95d83ae7268c1b01c"
     },
     "doc_authority_map": {
       "bytes": 11573,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/DOC_AUTHORITY_MAP.json",
-      "sha256": "a9c82f3b1cbcf1cf7564848d2b90690fb27c80de7a79edf10432f4004d1a0ead"
+      "sha256": "954837c30a751c96383a50f8a3ae5ca3f99e317c274d4088a9aa87c4af5c205a"
     },
     "file_layout": {
       "bytes": 2058,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_FILE_LAYOUT.json",
-      "sha256": "95b262d22e4c120367c3b5d22acf73f2a9bbd19b74d42bd170a190ddc2ecd963"
+      "sha256": "2b4ea4d646e6208ae98b94ce98c2f02abf4376588b2354ab677cb07c5298b738"
     },
     "plan_migration_receipt": {
       "bytes": 1632,
@@ -36,14 +36,14 @@
       "sha256": "b7ed08b0125b732657e72ce6467b31425b9e685634a2894002da227bb0e9f906"
     },
     "project_status": {
-      "bytes": 15090,
+      "bytes": 14316,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "e23adccacea0f8e66b145e788be12432394bb085ba1ba2c640ff7c42ba3ebc79"
+      "sha256": "a543fb57275f5abc373f014429ce29c4ba4254a326de97fae56be41077c4d0b2"
     },
     "project_status_min": {
-      "bytes": 2666,
+      "bytes": 1664,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_MIN.json",
-      "sha256": "81db16cbf54d3a06993de0f7f83b3252adb4ae735386d01ef8c0f30ec34b0ce7"
+      "sha256": "d43480e8359373c200ec1efd4a45afc59429efe35e7c8f54336f50c2cd52fdef"
     },
     "rc1_plan": {
       "bytes": 5744,
@@ -56,9 +56,9 @@
       "sha256": "90818a65229f44d5b50627aa59ba5a70c44c657963f3a22c921827858bf2adbf"
     },
     "rc1_status_min": {
-      "bytes": 1748,
+      "bytes": 1742,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_RC1_STATUS_MIN.json",
-      "sha256": "99e8a4572ed983fe3b557d4a67d6155cb57e5cb35cd140231ef770037dcec7cb"
+      "sha256": "1f4016bda83c31c5f73dd782d2656959e647154a93bee26dca22703393ed4022"
     },
     "rc1_task_dag": {
       "bytes": 1063,
@@ -68,7 +68,7 @@
     "regression_manifest": {
       "bytes": 25741,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_REGRESSION_MANIFEST.json",
-      "sha256": "192455d9b89fb09aa50a383730b4bb9b6e8ad8677e86afe01bfacd67e65e6df5"
+      "sha256": "0ae28a6359776ba280e3437477aac2e2c2851d57ce89b4494d66e3ef8b82b40f"
     },
     "stage_baselines": {
       "bytes": 12829,
@@ -76,24 +76,24 @@
       "sha256": "b85283bd9722b2e43916450f4cba56c991b84f82e236273c1dbe7e46d9c2801d"
     },
     "task_packet_index_current": {
-      "bytes": 1236,
+      "bytes": 786,
       "path": "/mnt/workspace/code/chaoyang/tasks/current/INDEX.json",
-      "sha256": "0fc4963b02a4418bec587bdea7c9fb32d12a94406201e6b71fa4ee33ba9bd90c"
+      "sha256": "c0fbe9acbced0e03525d33c898ad567c047ebdbbf403c689e0a82fef1265a790"
     },
     "task_packet_index_v71": {
-      "bytes": 515,
+      "bytes": 514,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_V71_TASK_PACKET_INDEX.json",
-      "sha256": "1d3b944f68ba779465fc50067848ec77553cdb2dc690fd160c2403fae941cde2"
+      "sha256": "d3f9a8a21aedce77d4709dfa4c4ed9f7eba4cced8bafc9e25a96f2f55277619a"
     },
     "task_queue": {
-      "bytes": 15545,
+      "bytes": 14858,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/TASK_QUEUE.json",
-      "sha256": "1e11e8e181747ba66687541beab87fe059e00f9a8fe2dffb8d047edb4c8f47a5"
+      "sha256": "b20dd4e0ea0fa473d49d9e2a8ba85592b28013a1b601f19b97b5fc7b0a1369e1"
     },
     "task_state": {
-      "bytes": 117189,
+      "bytes": 117001,
       "path": "/mnt/workspace/code/chaoyang/docs/governance/LONG_HORIZON_TASK_STATE.json",
-      "sha256": "758fa61f57c4521d5b4b69031bf7905ec937b7275538d29137db04ff319a374d"
+      "sha256": "737c61244c6edf0b8d0113042ee3593895e94c60f0e2ca8e0242c7a6b142e906"
     },
     "visual_aux_rc1_contract": {
       "bytes": 2384,
@@ -102,12 +102,12 @@
     }
   },
   "freshness": {
-    "age_seconds": 1,
-    "reason": "active_task_heartbeat",
+    "age_seconds": 0,
+    "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-20T10:57:50+08:00",
-  "generation_id": "gov-013223-d7a3c63e51e5",
-  "governance_revision": 13223,
+  "generated_at": "2026-09-20T11:11:19+08:00",
+  "generation_id": "gov-013224-9b8410f84fd4",
+  "governance_revision": 13224,
   "schema_version": "chaoyang-current-status-receipt-v1"
 }

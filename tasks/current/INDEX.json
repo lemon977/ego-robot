@@ -1,27 +1,17 @@
 {
-  "claim_limit": "Exactly one V2.1 parent is routable; internal packages use isolated roots and one serial publisher.",
+  "claim_limit": "V2.1 parent is terminal; a new CAS registration is required for any successor.",
   "execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
-  "generated_at": "2026-09-19T23:59:30+08:00",
-  "generation_id": "gov-012363-6a35cee4103c",
-  "governance_revision": 12363,
-  "packet_revision": "0915_ROBOT_RECOVERY_15H_V21_PARENT_ROUTABLE",
+  "generated_at": "2026-09-20T11:11:19+08:00",
+  "generation_id": "gov-013224-9b8410f84fd4",
+  "governance_revision": 13224,
+  "packet_revision": "0915_ROBOT_QUALITY_RECOVERY_15H_V2_TERMINAL",
   "plan_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
-  "status": "PASS",
+  "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 819,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/registration_0001/PREDECESSOR_TASK_PACKET_INDEX.json",
-    "sha256": "bf7d9f1cda0ec0740b9221eb85879c721726499da0ed0608d2cc18d8eab16fde"
+    "bytes": 1236,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/finalization_0001/PREDECESSOR_ACTIVE_INDEX.json",
+    "sha256": "0fc4963b02a4418bec587bdea7c9fb32d12a94406201e6b71fa4ee33ba9bd90c"
   },
-  "task_packets": [
-    {
-      "execution_allowed": true,
-      "execution_class": "CURRENT_LEDGER_ROUTABLE",
-      "packet_path": "tasks/current/0915_robot_quality_recovery_15h_v2/TASK_PACKET.json",
-      "packet_sha256": "56152522d619356c5405661d8ba3ec30c71b7c4f6ff72214a1586d10e9ad0ea7",
-      "task_id": "0915_robot_quality_recovery_15h_v2",
-      "weights": "ABSENT",
-      "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800"
-    }
-  ]
+  "task_packets": []
 }

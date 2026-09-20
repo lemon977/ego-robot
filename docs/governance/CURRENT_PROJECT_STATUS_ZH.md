@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-20T10:57:50+08:00`
-- governance revision：`13223`
-- generation id：`gov-013223-d7a3c63e51e5`
+- 状态生成时间：`2026-09-20T11:11:19+08:00`
+- governance revision：`13224`
+- generation id：`gov-013224-9b8410f84fd4`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`d960d9e5bf59e192e54d1f598e365da0e0e77195b4f63ebafbcbf33a8f5b8ec8`
-- repository：`a4f371ab099777ba3f171ec3c111acfc258e4ac0` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`14b24f08fababccd2ae32f473b6d95af6e709a22cb6d8447243dced628f016fa`
+- repository：`1e3e493c375587b01e5c3f9a1574abfae9b48a68` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -47,9 +47,7 @@
 
 ## D. 当前运行任务
 
-| task_id | session | phase | attempt | PID | GPU | heartbeat | 状态 |
-|---|---|---|---:|---:|---:|---|---|
-| `0915_robot_quality_recovery_15h_v2` | `-` | `ROBOT_QUALITY_RECOVERY_0915_15H_V21` | 0 | 70398 | - | `2026-09-20T10:57:50+08:00` | `RUNNING` |
+当前无活跃任务。
 
 ## E. 当前阻塞
 
@@ -121,11 +119,7 @@
 
 ## H. 下一任务
 
-- next_task_id：`0915_robot_quality_recovery_15h_v2`
-- next_session：`-`
-- prerequisites：`governance_PASS_FRESH, no_active_current_task, 0915_processed_root_READ_ONLY, 0916_downstream_FORBIDDEN, egosteer_touch_MUST_NOT_BE_STOPPED, single_parent_with_internal_isolated_writers, single_GPU_lease_owner, source_group_claim_METADATA_VERIFIED_NO_USER_ATTESTATION, Clean_Removal_training_RL_real_control_FORBIDDEN`
-- expected_resource：`CPU_LANES_PLUS_SINGLE_GOVERNED_GPU_LEASE`
-- stop_condition：`Finite V2.1 terminal by the frozen 15-hour deadline without weakening quality gates.`
+状态机当前未选择下一任务。
 
 ## 固定读取协议
 

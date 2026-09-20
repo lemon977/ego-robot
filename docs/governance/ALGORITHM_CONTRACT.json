@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T10:57:50+08:00",
-  "generation_id": "gov-013223-d7a3c63e51e5",
-  "governance_revision": 13223,
+  "generated_at": "2026-09-20T11:11:19+08:00",
+  "generation_id": "gov-013224-9b8410f84fd4",
+  "governance_revision": 13224,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -669,9 +669,9 @@
       "claim_limit": "One runtime-boundary-only successor to the immutable B3 v1 failure; no Mask accuracy, physical tracker identity, left/right identity, Object, Clean, Contact, training, control or deployment authority.",
       "code_closure": [
         {
-          "bytes": 33526,
+          "bytes": 33525,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_b3_sam31_independent_hand_equipment_canary_v2.py",
-          "sha256": "05213533f7d58ca86120fbbf127e26b5fb55eb2498e4e79257ee707f796b86ce"
+          "sha256": "52af4423df5fbcc159711b74c52c8f2a770b88e723b08865aa010f8d79829662"
         },
         {
           "bytes": 5452,
@@ -729,9 +729,9 @@
       "claim_limit": "Development geometry-only SAM3.1 Hand/worn-equipment canary; no Mask accuracy, physical tracker identity, left/right identity, Object, Clean, Contact, training, control or deployment authority.",
       "code_closure": [
         {
-          "bytes": 31551,
+          "bytes": 31550,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_b3_sam31_independent_hand_equipment_canary_v1.py",
-          "sha256": "8431c8a31ad3365ab59c49092d8e1557d499a67c0f7804d3e38f2793a8d5f6ce"
+          "sha256": "7ec1ef9d53317602e3f50b40e383366fbeda9cbacd78f0c7bd228c4c122bf44f"
         },
         {
           "bytes": 6762,
@@ -785,9 +785,9 @@
       "claim_limit": "CPU-only Clean input normalization and zero-write preparation; Poker identity and unavailable Hand/Object evidence remain UNKNOWN, and no inpainting quality, Clean terminal, training, Contact, control or deployment authority is granted.",
       "code_closure": [
         {
-          "bytes": 34464,
+          "bytes": 34508,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/materialize_d1_clean_prep_composite_input.py",
-          "sha256": "ce352c25f27b1f6ec7563b099952d738fb980704127ae15731f1ca012abcc92e"
+          "sha256": "754474c5d1781f1b3d609b748285a6cee424c7dc83c28c9fc6a6c6d88f896f37"
         },
         {
           "bytes": 46516,
@@ -844,9 +844,9 @@
           "sha256": "65595561ab915587438864f134b13ac1c205f61e34f67f0f69bbe792c3966449"
         },
         {
-          "bytes": 6544,
+          "bytes": 6562,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/publish_d2_shallow_visuals_v1.py",
-          "sha256": "d2e463e9036b3c572f2acbce494050d54e606d90428744f7e102b8d2d733a23e"
+          "sha256": "6106ce6bc04ed2cfea14f91130fd0a9b25dbd4b78b1248da07fd4ebac898ed9a"
         },
         {
           "bytes": 14573,

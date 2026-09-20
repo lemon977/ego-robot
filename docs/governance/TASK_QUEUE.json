@@ -1,37 +1,11 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-20T10:57:50+08:00",
-  "generation_id": "gov-013223-d7a3c63e51e5",
-  "governance_revision": 13223,
-  "next_task": {
-    "expected_resource": "CPU_LANES_PLUS_SINGLE_GOVERNED_GPU_LEASE",
-    "prerequisites": [
-      "governance_PASS_FRESH",
-      "no_active_current_task",
-      "0915_processed_root_READ_ONLY",
-      "0916_downstream_FORBIDDEN",
-      "egosteer_touch_MUST_NOT_BE_STOPPED",
-      "single_parent_with_internal_isolated_writers",
-      "single_GPU_lease_owner",
-      "source_group_claim_METADATA_VERIFIED_NO_USER_ATTESTATION",
-      "Clean_Removal_training_RL_real_control_FORBIDDEN"
-    ],
-    "session": null,
-    "stop_condition": "Finite V2.1 terminal by the frozen 15-hour deadline without weakening quality gates.",
-    "task_id": "0915_robot_quality_recovery_15h_v2"
-  },
+  "generated_at": "2026-09-20T11:11:19+08:00",
+  "generation_id": "gov-013224-9b8410f84fd4",
+  "governance_revision": 13224,
+  "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
-    {
-      "attempt": 0,
-      "gpu_id": null,
-      "heartbeat_at": "2026-09-20T10:57:50+08:00",
-      "phase": "ROBOT_QUALITY_RECOVERY_0915_15H_V21",
-      "session": null,
-      "status": "RUNNING",
-      "task_id": "0915_robot_quality_recovery_15h_v2",
-      "updated_at": "2026-09-20T10:57:50+08:00"
-    },
     {
       "attempt": 0,
       "gpu_id": null,
@@ -121,6 +95,16 @@
       "status": "REJECTED_QUALITY",
       "task_id": "0915_robot15h_window_release_audit_v1",
       "updated_at": "2026-09-19T14:21:29+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT_QUALITY_RECOVERY_0915_15H_V21",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot_quality_recovery_15h_v2",
+      "updated_at": "2026-09-20T11:11:19+08:00"
     },
     {
       "attempt": 0,
