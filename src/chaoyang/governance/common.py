@@ -661,6 +661,9 @@ def publish_bundle(
         task_queue = render_task_queue(task_state)
         atomic_json(AUTHORITY_PATH, authority)
         atomic_json(TASK_STATE_PATH, task_state)
+        from chaoyang.governance.build_algorithm_baseline_v2_status import publish_navigation_if_v2
+        publish_navigation_if_v2(REPO_ROOT, task_state, authority["generated_at"])
+        # V2 shallow navigation is a bounded snapshot, not a quality promotion.
         atomic_write(STATUS_PATH, markdown)
         atomic_json(MIN_STATUS_PATH, min_status)
         if RC1_PLAN_PATH.is_file() and RC1_RELEASE_SPEC_PATH.is_file() and RC1_CONTRACT_PATH.is_file():

@@ -105,6 +105,7 @@ def build_algorithm_contract(
     baseline_registry: Mapping[str, Any], authority: Mapping[str, Any]
 ) -> dict[str, Any]:
     repo_root = Path(__file__).resolve().parents[3]
+    from chaoyang.governance.algorithm_baseline_v2_contract import build_v2_contract
     depth10_receipt = repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_10/attempts/attempt_0003_real_play_cards_0910_001/RUN_RECEIPT.json"
     depth20_receipt = repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_pipeline_contracts_r3/artifacts/depth_20/attempts/attempt_0003_real_input_preflight/RUN_RECEIPT.json"
     gap_audit_root = repo_root / "archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260915_v71_r3_execution_status_audit/attempts/attempt_0004"
@@ -140,6 +141,7 @@ def build_algorithm_contract(
         "quality_gate_classes": QUALITY_GATE_CLASSES,
         "stages": stages,
         "special_status_contracts": {
+            **build_v2_contract(repo_root),
             "handle_data_cleaning_v3": {
                 "terminal_status": "COMMITTED",
                 "execution_status": "COMPLETE_NO_ACTIVE_TASK",
@@ -988,7 +990,8 @@ def build_doc_authority_map(
         _doc("four_stream_exact78_v32", "CURRENT", repo_root / "docs/current/EXACT78.md", scope="CURRENT_FOUR_STREAM_EXACT78_HANDOFF", claim_limit="Exact78 lane navigation only; training completion and quality remain receipt-bound."),
         _doc("four_stream_ai1_v32", "CURRENT", repo_root / "docs/current/AI1.md", scope="CURRENT_FOUR_STREAM_AI1_HANDOFF", claim_limit="AI1 lane navigation only; calibration, fusion and metric claims remain receipt-bound."),
         _doc("four_stream_ai2_v32", "CURRENT", repo_root / "docs/current/AI2.md", scope="CURRENT_FOUR_STREAM_AI2_HANDOFF", claim_limit="AI2 lane navigation only; observability, HaWoR and Robot quality remain receipt-bound."),
-        _doc("four_stream_ai4_huro_v32", "CURRENT", repo_root / "docs/current/AI4_HURO.md", scope="CURRENT_FOUR_STREAM_AI4_HURO_HANDOFF", claim_limit="HuRo-derived hand-only development comparison navigation; not official full HuRo reproduction, control truth or deployment authority."),
+        _doc("four_stream_ai4_huro_v32", "CURRENT", repo_root / "docs/current/AI4_HURO.md", scope="CURRENT_FOUR_STREAM_AI4_HURO_HANDOFF", claim_limit="Versioned HuRo development navigation; distinguish historical derived hand-only from receipt-proven official-core adaptation. Neither implies official full-pipeline reproduction, physical accuracy, training or control authority."),
+        _doc("four_stream_algorithm_baseline_v2_release", "CURRENT", repo_root / "docs/current/BASELINE_RELEASE.json", scope="CURRENT_FOUR_STREAM_CAPABILITY_RELEASE", claim_limit="Capability-specific reproducibility, engineering adoption, candidate rejection and visual-review status; never promotes all lanes to quality PASS."),
         _doc("data_cleaning_0911_0915", "CURRENT", repo_root / "docs/current/DATA_CLEANING_0911_0915_ZH.md", scope="CURRENT_DATA_CLEANING_BASELINE", claim_limit="Three-dataset cleaning terminal state and reuse boundary only; tactile activity is not contact or force truth.", evidence=[repo_root / "tasks/receipts/HANDLE_DATA_CLEANING_V3_COMPLETION.json"]),
         _doc("handle_data_cleaning_v3_guide", "CURRENT", repo_root / "docs/guides/data/HANDLE_DATA_CLEANING_V3.md", scope="CURRENT_DATA_CLEANING_ALGORITHM_GUIDE", claim_limit="V3 cleaning design, modality contract and output schema; terminal counts remain bound to the completion receipt."),
         _doc("clean_baseline_v1_reference", "CURRENT", repo_root / "docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md", scope="CURRENT_CLEAN_BASELINE_ARCHITECTURE", claim_limit="Repository layout, archive and restore contract; current facts remain receipt-bound."),
