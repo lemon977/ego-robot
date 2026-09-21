@@ -1,12 +1,12 @@
 {
-  "execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
-  "generated_at": "2026-09-20T23:21:13+08:00",
-  "generation_id": "gov-013260-fbc60483a07f",
-  "governance_revision": 13260,
-  "index_bytes": 1180,
+  "execution_revision": "ALGORITHM_BASELINE_V2",
+  "generated_at": "2026-09-21T12:36:28+08:00",
+  "generation_id": "gov-013317-6ff24dc3bc01",
+  "governance_revision": 13317,
+  "index_bytes": 1383,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "5238c62090b1723e747df51e8e1cb5f20660c185f79e91278b45a8f9bcdaada8",
-  "packet_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V32_PARENT_ROUTABLE",
-  "plan_revision": "FOUR_STREAM_STABLE_BASELINE_V3_2",
+  "index_sha256": "e14be1835bbca45948ca324ac41a55b6c62fef06033f3d791c72a4d7711df2b4",
+  "packet_revision": "ALGORITHM_BASELINE_V2_PARENT_ROUTABLE",
+  "plan_revision": "ALGORITHM_BASELINE_V2",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }

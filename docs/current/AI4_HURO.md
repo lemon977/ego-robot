@@ -1,59 +1,16 @@
-# AI4 / HuRo V3.2 执行入口
+# 支线4：官方HuRo核心适配
 
-总计划：[PLAN.md](PLAN.md)；机器状态：[STATUS.json](STATUS.json)。
+官方核心已实际接入并完成007/031共527帧，不再停在依赖预检。两条完整对照视频来自真实58DOF求解，不是历史derived hand-only方法改名。不是完整Stage8复现。
 
-固定上游：HuRo commit `033197778fcc30edc3631dddf3343a967683da09`。本轮仅执行：
+- [核心交接与精确环境](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/HANDOFF_HURO_ZH.md)
+- [核心不可变结果](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/HURO_CORE_HANDOFF_RESULT.json)
+- [共同渲染与公平评价](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/common_review_v2_run1/RESULT.json)
+- [九片时序/幅度审计](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/temporal_audit_v2/README_ZH.md)
 
-```text
-HURO_DERIVED_HAND_ONLY_RETARGET
-DEVELOPMENT_ONLY
-NOT_OFFICIAL_FULL_HURO_REPRODUCTION
-```
+工程接入可复现：项目内独立env、固定官方源码与依赖、CPU真实求解，官方与独立FK最大差低于8e-7，固定placement目标误差为0。未下载模型、未修改活跃环境、未使用GPU。
 
-共同输入是 physical-left resize-only 域对应的冻结 MANO21/wrist/timestamp/valid。先运行
-`get_potato_chips_0915_097` 的 Kai22 fixed-wrist/root-relative hand-only 对照，再按 044、007、031
-顺序扩展。两方法必须使用同一 target、有效帧、KaiHand URDF/mesh/限位、FK 评估器和 renderer。
+算法候选 **REJECTED_QUALITY**：476个有效侧帧全部超过既有限位容差，最大约0.046rad；包装器不暴露收敛状态。007部分手指误差下降但腕部误差增大；031仍有米级目标偏差。不能以loss下降或只看手指指标宣称真实贴合。
 
-HuRo 原生视觉 Stages 1–7、本机不具备条件的 Stage 9 RT 渲染与 Stage 10 均不在当前执行闭环。
-当前无 Wuji20 URDF/mesh/joint order/limits，因此 Wuji 固定 `BLOCKED_ROBOT_ASSET`，不能把 Kai q 改名。
+诊断渲染直接消费原q，明确显示RAW LIMIT VIOLATIONS；数学FK只为显示失败输出创建无限位检查的局部不可变视图，原生产FK和资产限位不变，绝不clip或删除越界帧。官方索引时间正则、32帧分段及未知姿态先验均在交接披露。
 
-## 冻结 V1 历史里程碑（2026-09-20；当前接续见下节）
-
-- 四个冻结会话 097、044、007、031 均已生成 HuRo-derived hand-only q22/FK 与共同输入数值对照。
-- 007：378 个共同有效帧，q RMS 差异 37.1204°；031：98 个共同有效帧，q RMS 差异 41.7909°。
-  这些是两种 retarget 的差异，不是外部精度或优劣真值。
-- 四片均已有同帧 root-relative 对照视频并通过完整解码。新增三片视频 SHA-256：
-  044 `c8274584c7ae841b7f87fc984aa46a69b9bfbeb184670615d5c6029960cdeac1`、
-  007 `ab7fd378ef307aa5d820a5f8fa3927b9fac76fd8d765a3ebdcbe032fa5bef6cd`、
-  031 `b03ab43b16581f42d408fe6f9056fc601c64ff8bf3dca8297a127a1ce1291d8c`。
-  视频显示的是差异而非精度；无共同有效侧时明确显示 `NONE; no fill`。
-- Stage 9 保持 `BLOCKED_HARDWARE_LICENSE`，Wuji 保持 `BLOCKED_ROBOT_ASSET`；均不影响已完成的
-  Kai22 development hand-only 比较。
-
-当前支线状态与四片冻结 V1 结果入口（V1 不覆盖）：
-
-```text
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/STATE.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/chips097_hand_only_v1/RESULT.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/poker044_hand_only_v1/RESULT.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/chips007_hand_only_v1/RESULT.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/poker031_hand_only_v1/RESULT.json
-```
-
-统一回放由 `src/chaoyang/ops/render_huro_hand_only_common_review_v1.py` 从保存的 q/FK 生成；视频不含
-仅供显示的姿态偏移。
-
-<!-- HURO_HAND_FRAME_FOLLOWUP_V2_BEGIN -->
-## 支线 4 独立接续
-
-四个冻结会话的 V2 坐标适配、三方法同目标 CPU 评估和对照视频已完成。
-仅 hand-only development 流水线完成；外部精度、视觉采用、训练资格、控制与部署均未放行。
-详细数值、覆盖率、限位、碰撞、真实 dt 导数及局限见下方报告；不能用 q 差异代替精度。
-
-- 接管与边界：[TAKEOVER.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/TAKEOVER.json)
-- 固定任务：[TASK_PACKET.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/TASK_PACKET.json)
-- 数值与结论：[REPORT_ZH.md](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/REPORT_ZH.md)
-- 机器结果：[RESULT.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/RESULT.json)
-- 复现配置：[RUN_CONFIG.json](../../_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/RUN_CONFIG.json)
-
-<!-- HURO_HAND_FRAME_FOLLOWUP_V2_END -->
+入口：`run_huro_fixed_placement_core_v2`、`run_huro_sessions_core_v2`、`run_huro_common_review_v2`，均通过已登记`chaoyang run`调用；求解使用自身env，渲染使用维护解释器。新候选需要新签名与登记，先解决硬限位、姿态约束和真实dt问题，不扩大为placement搜索或训练。

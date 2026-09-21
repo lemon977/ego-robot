@@ -1,33 +1,14 @@
-# AI1 V3.2 执行入口
+# 支线2：PICO Controller＋MANUS
 
-总计划：[PLAN.md](PLAN.md)；机器状态：[STATUS.json](STATUS.json)。
+097/098/101共466帧全部执行；3条完整Robot和3条额外腕手诊断均完整解码。102/103未读，101不是盲测。
 
-097/098 是 development，101 是已暴露 regression，102/103 只允许在候选冻结后首次打开。先交付
-MANUS25、PICO/controller、M0 和完整整手回放，再诊断约 398/481 mm 的 M1 修正；旧 `selected=M1`
-不代表 adopted。
+- [唯一有效输入：来源更正链](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/provenance_correction_v2_run1/RESULT.json)
+- [方法、复现与结论](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/HANDOFF_ZH.md)
+- [编码图像域诊断](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/CAMERA_DOMAIN_AUDIT_ZH.md)
+- [publisher实际集成记录](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/PRODUCER_PATCH_INTEGRATION.json)
 
-诊断顺序固定为图像域、`T_A_B`/单位、MANUS root/轴、timestamp/有限 lag、controller-local residual、
-HaWoR 2D/相对手形/absolute-depth 分解。不同 wrist 语义不得直接组成误差；不得穷举坐标和时移后挑
-视觉最贴者。M2 只在独立旋转证据充分时打开。
+变换链内部闭合；手柄到解剖腕仍是未实测安装prior。MANUS及Controller在采集导出端已重采样，不能把可计算值或最近源时刻称直接观测。追加更正只降低observed权限，所有几何/时间/求解输入逐字节不变。新producer也已回归并集成，旧RESULT不覆写；历史交接中“补丁未集成”是其封存时状态，以publisher集成收据为准。
 
-无合格静态候选时，正确终态为 `NO_ADMISSIBLE_STATIC_CANDIDATE`，但原生整手、M0/M1 数值和失败
-证据仍须交付。任何通过最多是 position-only development adapter，不是实测安装标定或外部毫米精度。
+虚拟腕臂门857/932个有效侧帧通过、75失败未删。真实图像贴合未达成；保存外参近竖直双目基线与编码画面主要水平视差不一致。下一步核实设备到编码域的明确映射，不作无约束外参/时移搜索，不用HaWoR拟合腕或补手。
 
-## 当前执行状态（2026-09-20）
-
-- 097/098/101 共 466 帧的 MANUS25、PICO/controller、M0/M1 数值与完整回放已生成。
-- M1 复现出约 397.9 mm（左）和 480.8 mm（右）的 controller-local translation correction；
-  这只是模型拟合结果，不是实测安装量。
-- 冻结证据未支持采用 M1，M0 继续为默认消费，终态为
-  `NO_ADMISSIBLE_STATIC_CANDIDATE`。
-- 102/103 仍未打开；没有为通过而拟合 M2、逐帧 wrist 或 Contact 对齐。
-
-Canonical 结果与完整回放：
-
-```text
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/STATE.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/static_wrist_candidate_v32/RESULT.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/static_wrist_candidate_v32/AI1_097_098_101_M0_M1_FULL_REVIEW.mp4
-```
-
-数值、输入和 producer SHA 以 `RESULT.json` 为恢复入口；不能从视频反推或覆盖矩阵。
+复现入口：`chaoyang run run_pico_manus_motion_v2`、`run_pico_manus_provenance_correction_v2`、`run_full_robot_review_v2`。新Robot消费必须使用更正后motion。训练/控制/真实标定授权均为false；人工审阅待完成。

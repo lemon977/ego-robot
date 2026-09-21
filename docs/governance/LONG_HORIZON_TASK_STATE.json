@@ -73,27 +73,12 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-20T23:21:13+08:00",
-  "generation_id": "gov-013260-fbc60483a07f",
-  "generator_code_sha": "2aae99a7aac4e5253c0e7575e7bbbcbfbc8634cde30d0766a35a485ed6b13660",
-  "governance_revision": 13260,
+  "generated_at": "2026-09-21T12:36:28+08:00",
+  "generation_id": "gov-013317-6ff24dc3bc01",
+  "generator_code_sha": "48777376e55a4c6b2fc27f700dda999245bc80f57da88eed5a77725c55e4b4d0",
+  "governance_revision": 13317,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
-  "next_task": {
-    "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
-    "prerequisites": [
-      "governance_PASS_FRESH",
-      "no_active_current_task",
-      "source_processed_archive_sealed_READ_ONLY",
-      "four_lane_writer_roots_ISOLATED",
-      "single_publisher",
-      "single_GPU_lease_owner",
-      "noncommercial_research_evaluation",
-      "diagnostics_only_gate_direct_consumers"
-    ],
-    "session": "multi_lane",
-    "stop_condition": "Finite per-lane terminal or resumable budget state without cross-lane coupling.",
-    "task_id": "four_stream_pretraining_baseline_v32"
-  },
+  "next_task": null,
   "rc1_budget": {
     "checkpoint_gpu_hours_limit": 48,
     "checkpoint_gpu_hours_used": 0,
@@ -117,100 +102,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T10:22:47+08:00",
-      "message": "Finite 0915 campaign task reached a recorded terminal.",
-      "result": {
-        "bytes": 1315,
-        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
-        "sha256": "a323595df26bcea44f6c9bd37db50b3b916c341328d9ffe802b1e7b6fbd968f2"
-      },
-      "session": null,
-      "status": "CANCELLED",
-      "task_id": "0915_hawor_full_v1"
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T10:32:53+08:00",
-      "message": "Registered one finite 0915 campaign task; execution not started.",
-      "predecessor": "0915_hawor_full_v1",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "0915_vst_image_domain_ab_v1",
-      "task_packet": {
-        "bytes": 2088,
-        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_vst_image_domain_ab_v1/TASK_PACKET.json",
-        "sha256": "3e4d8badce77c83633e4a8e0e1814bfbb8abbd580a371e04c1ca336ab7137402"
-      }
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T10:37:47+08:00",
-      "message": "Finite 0915 campaign task reached a recorded terminal.",
-      "result": {
-        "bytes": 2435,
-        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json",
-        "sha256": "fb0778e91cc148e91b5e2d5488e4b88605ecfb818c93afa3c9b0ae32d2879248"
-      },
-      "session": null,
-      "status": "BLOCKED_EXTERNAL",
-      "task_id": "0915_vst_image_domain_ab_v1"
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T10:55:21+08:00",
-      "message": "Registered one finite 0915 campaign task; execution not started.",
-      "predecessor": "0915_vst_image_domain_ab_v1",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "0915_hawor_resize_only_canary_v1",
-      "task_packet": {
-        "bytes": 2217,
-        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_resize_only_canary_v1/TASK_PACKET.json",
-        "sha256": "7fdd91ddacf13bc0023f9c1011339ff10df8f3ccdb5d9e01643388a104f2344a"
-      }
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T10:58:55+08:00",
-      "message": "Finite 0915 campaign task reached a recorded terminal.",
-      "result": {
-        "bytes": 2865,
-        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
-        "sha256": "724201a507dd424982470d8177bbf5f10057fa5dd937b8cc1a42f854d5e94d45"
-      },
-      "session": null,
-      "status": "PASSED",
-      "task_id": "0915_hawor_resize_only_canary_v1"
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T12:10:56+08:00",
-      "message": "Registered one finite 0915 campaign task; execution not started.",
-      "predecessor": "0915_hawor_resize_only_canary_v1",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "0915_sam31_strict_role_canary_v1",
-      "task_packet": {
-        "bytes": 2385,
-        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v1/TASK_PACKET.json",
-        "sha256": "b6fc47cb52a779ecd69c8bac20bf0a7926bf0ec35b8373188fbcc6bb019bdfcd"
-      }
-    },
-    {
-      "attempt": 0,
-      "created_at": "2026-09-18T12:13:37+08:00",
-      "message": "Finite 0915 campaign task reached a recorded terminal.",
-      "result": {
-        "bytes": 364,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v1/attempts/attempt_0001/RESULT.json",
-        "sha256": "8813b3329b018274b0083b7e1ee8b45c05dec59ef72e344cb7377accbb06fee5"
-      },
-      "session": null,
-      "status": "CANCELLED",
-      "task_id": "0915_sam31_strict_role_canary_v1"
-    },
     {
       "attempt": 0,
       "created_at": "2026-09-18T12:14:18+08:00",
@@ -1506,11 +1397,71 @@
       "session": null,
       "status": "PENDING",
       "task_id": "four_stream_pretraining_baseline_v32"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-21T11:41:59+08:00",
+      "message": "Administrative closure: registered PID absent. Historical child results preserved; no algorithm conclusions changed.",
+      "session": "multi_lane",
+      "status": "CANCELLED",
+      "task_id": "four_stream_pretraining_baseline_v32"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-21T11:41:59+08:00",
+      "message": "User-approved V2 registered with actual publisher PID/startticks; no algorithms executed yet.",
+      "session": "multi_lane",
+      "status": "RUNNING",
+      "task_id": "four_stream_algorithm_baseline_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-21T11:44:29+08:00",
+      "message": "Publisher and four isolated worktrees registered. Code implementation and synthetic tests underway; no data algorithm currently executing. Owner fencing remains in PUBLISHER.json.",
+      "session": "multi_lane",
+      "status": "PENDING",
+      "task_id": "four_stream_algorithm_baseline_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-21T11:50:21+08:00",
+      "message": "Register tested isolated Exact78 guard and HuRo CPU dependency preflight; no quality adoption",
+      "session": "multi_lane",
+      "status": "PENDING",
+      "task_id": "four_stream_algorithm_baseline_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-21T11:50:39+08:00",
+      "message": "Register PICO MANUS world and sourceIndex1 eye adapter; all new algorithm claims remain unadopted",
+      "session": "multi_lane",
+      "status": "PENDING",
+      "task_id": "four_stream_algorithm_baseline_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-21T11:59:47+08:00",
+      "message": "Register tested flange/tool mount correction, explicit self collision tests, and pinned official HuRo CPU core smoke; no quality promotion",
+      "session": "multi_lane",
+      "status": "RUNNING",
+      "task_id": "four_stream_algorithm_baseline_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-21T12:36:28+08:00",
+      "message": "All four finite lanes executed, nine full videos decoded, 131 CPU tests passed, Windows 25 files SHA verified. Quality rejections and pending human review preserved; no training/control authority.",
+      "result": {
+        "bytes": 817,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "7113025921bdff73bd6aabff6c046525241b743eae6ee96ad514c05928331ded"
+      },
+      "status": "PASSED",
+      "task_id": "four_stream_algorithm_baseline_v2"
     }
   ],
   "repository": {
     "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "78c1325838bbf880eaf3b1d50eea315fd9274b1e"
+    "commit": "bf5e4e743dea90b72beb1d7d88ffb305ae60208c"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -2859,20 +2810,57 @@
       "attempt": 1,
       "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
       "gpu_id": null,
-      "heartbeat_at": "2026-09-20T21:15:58+08:00",
+      "heartbeat_at": null,
       "phase": "FOUR_STREAM_V32_EXECUTION",
-      "pid": 320726,
+      "pid": null,
       "plan_execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
-      "proc_start_ticks": 217179089,
+      "proc_start_ticks": null,
       "session": "multi_lane",
-      "status": "RUNNING",
+      "status": "CANCELLED",
       "task_id": "four_stream_pretraining_baseline_v32",
       "task_packet": {
         "bytes": 6486,
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
         "sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f"
       },
-      "updated_at": "2026-09-20T21:15:58+08:00"
+      "updated_at": "2026-09-21T11:41:59+08:00"
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "numeric_quality_pass": false,
+      "phase": "FINITE_DELIVERY_COMPLETE_NOT_NUMERIC_QUALITY_PASS",
+      "pid": null,
+      "plan_execution_revision": "ALGORITHM_BASELINE_V2",
+      "proc_start_ticks": null,
+      "release": {
+        "bytes": 13906,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/BASELINE_RELEASE.json",
+        "sha256": "a128740eb9b425fd7fa45dfde6137921d9f21dddae3dc7e89842694762793396"
+      },
+      "result": {
+        "bytes": 817,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "7113025921bdff73bd6aabff6c046525241b743eae6ee96ad514c05928331ded"
+      },
+      "session": "multi_lane",
+      "status": "PASSED",
+      "status_scope": "FINITE_ENGINEERING_EXECUTION_AND_DELIVERY_ONLY",
+      "task_id": "four_stream_algorithm_baseline_v2",
+      "task_packet": {
+        "bytes": 2854,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_algorithm_baseline_v2/TASK_PACKET.json",
+        "sha256": "2be6bd02f3519d0366e079abef2d865976ebb0341ea2c0f8247a36a4930560be"
+      },
+      "training_eligible": false,
+      "updated_at": "2026-09-21T12:36:28+08:00",
+      "windows_transfer": {
+        "bytes": 6828,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/WINDOWS_TRANSFER_VERIFICATION.json",
+        "sha256": "b6154d266840d7525aeaf0f82ef662eccda03e5f53cddc387d75032098faa21b"
+      }
     }
   ]
 }

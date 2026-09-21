@@ -1,44 +1,14 @@
 # Chaoyang 当前入口
 
-状态：CURRENT
-适用基线：clean-baseline-v1
+本轮四支线算法与工程基线 V2；不训练 checkpoint。执行完成、工程修复、算法质量、人工审阅分别登记。
 
-本页是面向人和 AI 的唯一浅层导航，不直接授予算法或实验结论 authority。
+- [按能力发布清单](BASELINE_RELEASE.json)
+- [本轮总交接与观看顺序](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/README_ZH.md)
+- [下一位AI的精确任务](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/NEXT_TASKS_ZH.md)
+- [AI启动](AI_WORK_ENTRY_ZH.md) / [有限执行计划](PLAN.md) / [机器状态](STATUS.json)
+- [Exact78](EXACT78.md) / [PICO＋MANUS](AI1.md) / [HaWoR＋Kai22](AI2.md) / [官方HuRo核心](AI4_HURO.md)
+- [清洗基线](DATA_CLEANING_0911_0915_ZH.md) / [0916数据交接](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)
 
-- 四线稳定基线 V3.2 唯一计划：[PLAN.md](PLAN.md)
-- 四线机器生成状态（禁止手工改成功状态）：[STATUS.json](STATUS.json)
-- 四条独立支线入口：[Exact78](EXACT78.md) / [AI1](AI1.md) / [AI2](AI2.md) / [AI4/HuRo](AI4_HURO.md)
-- 后续 AI 执行与优化边界：[AI_WORK_ENTRY_ZH.md](AI_WORK_ENTRY_ZH.md)
-- exact78、0916 手套与 0915 裸手三条数据链统一交接：[THREE_STREAM_STATUS_AND_HANDOFF_ZH.md](THREE_STREAM_STATUS_AND_HANDOFF_ZH.md)
-- 0915 Robot Recovery V2.1 终态与浅层视频：[visuals/0915_ROBOT_RECOVERY_15H_V2/README_ZH.md](visuals/0915_ROBOT_RECOVERY_15H_V2/README_ZH.md)
-- 三批数据清洗验收基线：[DATA_CLEANING_0911_0915_ZH.md](DATA_CLEANING_0911_0915_ZH.md)
-- 当前 0915 裸手全链与 0916 独立清洗任务：[FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)
-- 0915 VST 图像域停止线：[VST_IMAGE_DOMAIN_HOLD_0915_ZH.md](VST_IMAGE_DOMAIN_HOLD_0915_ZH.md)
-- 0915 VST 单会话 A/B：[visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md](visuals/0915_VST_IMAGE_DOMAIN_AB_V1/README_ZH.md)
-- 0915 resize-only HaWoR 单会话：[visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md](visuals/0915_HAWOR_RESIZE_ONLY_CANARY_V1/README_ZH.md)
-- 0915 SAM3.1 严格角色单会话：[visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md](visuals/0915_SAM31_STRICT_ROLE_CANARY_V1/README_ZH.md)
-- 0915 SAM3.1 弱角色单会话：[visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md](visuals/0915_SAM31_WEAK_ROLE_CANARY_V1/README_ZH.md)
-- 0915 Removal Envelope V1 设计与验收边界：[REMOVAL_ENVELOPE_V1_ZH.md](REMOVAL_ENVELOPE_V1_ZH.md)
-- 0915 Removal Envelope V2 保守修补合同：[REMOVAL_ENVELOPE_V2_ZH.md](REMOVAL_ENVELOPE_V2_ZH.md)
-- 0915 Removal Envelope V2 真实视频质量拒绝：[visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1/README_ZH.md](visuals/0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1/README_ZH.md)
-- 0915 与旧 exact78 批量基线的比较口径：[0915_OLD_BATCH_BASELINE_COMPARISON_ZH.md](0915_OLD_BATCH_BASELINE_COMPARISON_ZH.md)
-- 0915 Removal Envelope V1 单会话复核：[visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md](visuals/0915_REMOVAL_ENVELOPE_CANARY_V1/README_ZH.md)
-- 0915 Stereo 与 Interaction v0a CPU 证据：[visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md](visuals/0915_STEREO_INTERACTION_CPU_CANARY_V1/README_ZH.md)
-- 0915 FoundationStereo 重复去畸变失败证据：[visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md](visuals/0915_FOUNDATIONSTEREO_CANARY_V1/README_ZH.md)
-- 0915 encoded-domain Stereo 150 帧通过证据：[visuals/0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1/README_ZH.md](visuals/0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1/README_ZH.md)
-- 0915 FoundationStereo encoded-domain Depth 通过证据：[visuals/0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/README_ZH.md](visuals/0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1/README_ZH.md)
-- 0915 三牌 Planar Object6D 可观测性：[visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md](visuals/0915_PLANAR_OBJECT6D_OBSERVABILITY_CANARY_V2/README_ZH.md)
-- 0915 Interaction、Contact 与 Kai22 分级结果：[INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md](INTERACTION_CONTACT_ROBOT_DEV_V1_ZH.md)
-- 0915 Robot 15 小时正式执行状态：[ROBOT15H_0915_EXECUTION_V1_ZH.md](ROBOT15H_0915_EXECUTION_V1_ZH.md)
-- 0915 Human/Stereo 表面关联与尺度边界审计：[visuals/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/README_ZH.md](visuals/0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1/README_ZH.md)
-- 0915 与旧 exact78 批量基线的比较口径：[0915_OLD_BATCH_BASELINE_COMPARISON_ZH.md](0915_OLD_BATCH_BASELINE_COMPARISON_ZH.md)
-- 当前事实：[CURRENT_STATUS_RECEIPT.json](../governance/CURRENT_STATUS_RECEIPT.json)
-- 项目最小状态：[CURRENT_PROJECT_STATUS_MIN.json](../governance/CURRENT_PROJECT_STATUS_MIN.json)
-- RC1 最小状态：[CURRENT_RC1_STATUS_MIN.json](../governance/CURRENT_RC1_STATUS_MIN.json)
-- 当前文档权威：[DOC_AUTHORITY_MAP.json](../governance/DOC_AUTHORITY_MAP.json)
-- 当前算法合同：[ALGORITHM_CONTRACT.json](../governance/ALGORITHM_CONTRACT.json)
-- 当前任务索引：[INDEX.json](../../tasks/current/INDEX.json)
-- 当前视觉复核说明：[visuals/README_ZH.md](visuals/README_ZH.md)
-- 迁移与恢复：[CLEAN_BASELINE_V1_ZH.md](../reference/architecture/CLEAN_BASELINE_V1_ZH.md)
+本轮9条主视频完整交付；所有人工视觉确认仍为待审阅。工程参考可重现不等于真实精度、训练或控制基线。`PASS/FRESH` 的作用域以[当前收据](../governance/CURRENT_STATUS_RECEIPT.json)为准。
 
-历史任务只能通过 tasks/receipts/HISTORICAL_TASK_CATALOG.json 和仓库内 archive/ 查询，不能直接重启。归档不参与 Git、构建、测试或当前文档导航。
+只保留这一总入口和四份简短支线说明；详细实验经过留在attempt。旧入口原件和来源映射保存在本轮 `predecessor_current_docs`，不改写历史收据。

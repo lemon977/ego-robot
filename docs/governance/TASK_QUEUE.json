@@ -1,36 +1,11 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-20T23:21:13+08:00",
-  "generation_id": "gov-013260-fbc60483a07f",
-  "governance_revision": 13260,
-  "next_task": {
-    "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
-    "prerequisites": [
-      "governance_PASS_FRESH",
-      "no_active_current_task",
-      "source_processed_archive_sealed_READ_ONLY",
-      "four_lane_writer_roots_ISOLATED",
-      "single_publisher",
-      "single_GPU_lease_owner",
-      "noncommercial_research_evaluation",
-      "diagnostics_only_gate_direct_consumers"
-    ],
-    "session": "multi_lane",
-    "stop_condition": "Finite per-lane terminal or resumable budget state without cross-lane coupling.",
-    "task_id": "four_stream_pretraining_baseline_v32"
-  },
+  "generated_at": "2026-09-21T12:36:28+08:00",
+  "generation_id": "gov-013317-6ff24dc3bc01",
+  "governance_revision": 13317,
+  "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
-    {
-      "attempt": 1,
-      "gpu_id": null,
-      "heartbeat_at": "2026-09-20T21:15:58+08:00",
-      "phase": "FOUR_STREAM_V32_EXECUTION",
-      "session": "multi_lane",
-      "status": "RUNNING",
-      "task_id": "four_stream_pretraining_baseline_v32",
-      "updated_at": "2026-09-20T21:15:58+08:00"
-    },
     {
       "attempt": 1,
       "gpu_id": null,
@@ -522,6 +497,16 @@
       "updated_at": "2026-09-20T17:00:58+08:00"
     },
     {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "FINITE_DELIVERY_COMPLETE_NOT_NUMERIC_QUALITY_PASS",
+      "session": "multi_lane",
+      "status": "PASSED",
+      "task_id": "four_stream_algorithm_baseline_v2",
+      "updated_at": "2026-09-21T12:36:28+08:00"
+    },
+    {
       "attempt": 0,
       "gpu_id": null,
       "heartbeat_at": null,
@@ -550,6 +535,16 @@
       "status": "CANCELLED",
       "task_id": "0915_sam31_strict_role_canary_v3",
       "updated_at": "2026-09-18T12:29:58+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "FOUR_STREAM_V32_EXECUTION",
+      "session": "multi_lane",
+      "status": "CANCELLED",
+      "task_id": "four_stream_pretraining_baseline_v32",
+      "updated_at": "2026-09-21T11:41:59+08:00"
     }
   ]
 }

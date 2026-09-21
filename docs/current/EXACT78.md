@@ -1,40 +1,13 @@
-# Exact78 V3.2 执行入口
+# 支线1：Exact78
 
-总计划：[PLAN.md](PLAN.md)；机器状态：[STATUS.json](STATUS.json)。
+当前有效范围：chips0902_103 284帧、cards0902_042 171帧，全部执行及完整解码。工程保护修复可采用，Clean语义与完整Robot质量没有通过。
 
-固定 cohort 为 156 个历史成员，不补位：train=0901 两个 source group（59），validation=0902（77），
-development final=0903（20）。0903 已暴露，只是冻结后的 development final，不是首次盲测。
+- [Clean保护、来源和像素验证](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/HANDOFF_ZH.md)
+- [完整Robot及独立复核](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/HANDOFF_FULL_ROBOT_ZH.md)
+- [共同基线与有效元数据更正](BASELINE_RELEASE.json)
 
-当前顺序：身份与 lineage 重绑定 → 真实 Raw/Robotized 像素和 H50 标签 → 两次隔离生产的
-suffix-invariance → loader/loss/backward/参数变化/save/reload → 四模型共同 update 训练。Robotized 四小时
-仍被可复现错误阻塞时，可单独建立 `RAW_ONLY_DEV`，但不得冒充成对 A/B 完成。
+保守guard的M_write外和受保护像素保持不变；333帧Raw回退会带回手/Tracker，历史donor未重新取得身份授权，不宣称完整去手成功。旧撤权Depth/Object6D未被消费。
 
-四模型是 Chips/Poker × Raw/Robotized 的 H50 future-2D Visual Aux，不是 Robot policy。第一资源周期
-四模型合计 12 GPU 小时；任何临时 A/B 只比较共同 checkpoint，并同时报告 stay-put 与 constant-velocity。
-Stereo canary 独立终态化，不阻塞 pair 或训练。
+完整Robot固定底座、安装、尺度和视角；实际目标与FK都导出。物理侧0腕423次失败，碰撞检查也有实测检出，不能仅凭全片视频升级为质量通过。历史hand-only保留原用途，不改称“从未有效”。
 
-## 当前执行状态（2026-09-20）
-
-- 固定 156 成员 cohort 已恢复并冻结，当前正式 Raw/Robotized pair 仍未闭合。
-- `play_cards_0901_042` 已完成当前会话的 Raw、HaWoR、SAM3.1 human mask、hand-only q22 与完整 FK：
-  196 帧、383 个有效 side-frame、9 个 `UNKNOWN`，不做 forward-fill。
-- 审阅视频已完整解码 196/196 帧，SHA-256 为
-  `48e82c3846dc05159234ad97183b13dea421afebeb86611abd3f9b98ee3781ba`。
-- 该结果明确是 `OFFLINE_NONCAUSAL / HAND_ONLY / ARM_BLOCKED`，
-  `robotized_training_input=false`、`training_eligible=false`。未观测到 robot base、camera→base 与
-  tool→hand mount，因此不得用单位阵或跨会话模板补造完整 Robotized 输入。
-- 下一冻结动作：T+4 先运行 fail-closed 的 `EXACT78_RAW_ONLY_READINESS_V1`。只有绝对 Robot
-  hand-root H50 target 语义和独立 Raw-only ledger/trainer 入口同时存在时才允许启动；不得用 HaWoR
-  human wrist、root-relative q22/FK、单位 world/base 或假设 mount 替代。条件不成立时发布 blocker，
-  不制造 Raw-only 训练成功。
-
-Canonical 证据入口：
-
-```text
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/STATE.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/cohort_and_pair_audit_v32/RESULT.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/same_session_hand_closure_v32/play_cards_0901_042/review_v1/RESULT.json
-```
-
-T+4 判定器是 `src/chaoyang/ops/build_exact78_raw_only_readiness_v1.py`；它只发布可恢复的准入/阻塞
-收据，不改变 H50 target 定义。
+复现入口：`chaoyang run run_clean_object_guard_v2` 与 `chaoyang run run_full_robot_review_v2`，精确spec/解释器/代码版本见交接及发布清单。下一步见[有限后续任务](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/NEXT_TASKS_ZH.md)；不做Attachment身份自证、不借其他会话几何、不删除困难帧。

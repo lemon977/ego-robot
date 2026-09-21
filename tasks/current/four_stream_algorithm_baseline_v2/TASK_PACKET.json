@@ -1,0 +1,89 @@
+{
+  "base_commit": "bf5e4e743dea90b72beb1d7d88ffb305ae60208c",
+  "budgets": {
+    "attempts_per_signature_max": 2,
+    "candidate_signatures_per_lane_max": 1,
+    "cpu_threads_max": 8,
+    "gpu_concurrent_owners_max": 1,
+    "huro_environment_seconds_max": 3600,
+    "wall_seconds_max": 28800,
+    "worker_cpu_threads_max": 2
+  },
+  "claim_limit": "Reproducibility, engineering fixes, numerical adoption and visual review are independent. No training/control/deployment authority.",
+  "deadline": "2026-09-21T19:41:59+08:00",
+  "execution_scope": {
+    "bytes": 3467,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/EXECUTION_SCOPE.md",
+    "sha256": "0b872e10bd17ac7bfa9b5487cacfdabf68cab577ead8e64c09081b748dd8b799"
+  },
+  "objective": "Finite four-lane algorithm/engineering baseline optimization; no checkpoint training.",
+  "phase": "FOUR_STREAM_ALGORITHM_BASELINE_V2",
+  "plan_revision": "ALGORITHM_BASELINE_V2",
+  "prerequisites": [
+    "unique_fenced_publisher",
+    "registered_operations_only",
+    "source_processed_archive_sealed_read_only",
+    "single_gpu_lease"
+  ],
+  "publisher": {
+    "executor_epoch": 1,
+    "fencing_token": "feb7c1870b03dcf93651050fdbe4eff4ac5062986faa1fece93e6212bef55435",
+    "pid": 545232,
+    "proc_start_ticks": 222756203
+  },
+  "read_set": [
+    "_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/EXECUTION_SCOPE.md",
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "assets/robot/ROBOT_ASSET_PIN.json"
+  ],
+  "required_outputs": [
+    "BASELINE_RELEASE.json",
+    "README_ZH.md",
+    "four_lane_results",
+    "review",
+    "TEST_RESULTS.json",
+    "DELIVERY.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "sessions": {
+    "ai1": [
+      "play_cards_0916_097",
+      "play_cards_0916_098",
+      "play_cards_0916_101"
+    ],
+    "ai2": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031"
+    ],
+    "ai4_huro": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031"
+    ],
+    "exact78": [
+      "get_potato_chips_0902_103",
+      "play_cards_0902_042"
+    ]
+  },
+  "source_data_write_authorized": false,
+  "stop_conditions": [
+    "deadline",
+    "identity_or_fencing_conflict",
+    "input_contract_failure",
+    "quality_failure_no_parameter_retry",
+    "resource_unavailable_at_cutoff"
+  ],
+  "t0": "2026-09-21T11:41:59+08:00",
+  "task_id": "four_stream_algorithm_baseline_v2",
+  "write_set": [
+    "_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001",
+    "tasks/current/four_stream_algorithm_baseline_v2",
+    "src/chaoyang/ops",
+    "src/chaoyang/pipeline",
+    "src/chaoyang/governance",
+    "tests/unit",
+    "docs/current",
+    "docs/governance",
+    "_run/current/worktrees/algorithm-baseline-v2-*"
+  ]
+}

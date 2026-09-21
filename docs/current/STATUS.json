@@ -1,145 +1,97 @@
 {
-  "claim_limit": "Generated navigation only. Task ledger and immutable lane results remain authoritative; one lane cannot promote or block another lane's authority.",
-  "generated_at": "2026-09-20T23:19:55+08:00",
-  "global_authority": {
-    "control_ground_truth": false,
-    "external_metric_authority": false,
-    "physical_deployable": false
-  },
+  "claim_limit": "Point-in-time navigation. Only immutable RESULT and baseline release decide adoption; no unknown becomes PASS.",
+  "control_ground_truth": false,
+  "freshness_scope": "Parent receipt FRESH is process heartbeat only, not document freshness or algorithm quality",
+  "generated_at": "2026-09-21T12:36:28+08:00",
   "lanes": {
     "ai1": {
-      "blocker": "NO_ADMISSIBLE_STATIC_CANDIDATE",
-      "claims": {
-        "CONTROL_GROUND_TRUTH": false,
-        "NUMERIC_QUALITY_PASS": false,
-        "PHYSICAL_DEPLOYABLE": false,
-        "PIPELINE_COMPLETE": false,
-        "TRAINING_COMPLETE": false,
-        "TRAINING_ELIGIBLE": false,
-        "VISUAL_REVIEW_STATUS": "NOT_REVIEWED"
+      "algorithm_quality_pass": false,
+      "control_ground_truth": false,
+      "current_action": null,
+      "heartbeat_at": "2026-09-21T04:19:40.164969+00:00",
+      "owner_live": false,
+      "owner_pid": null,
+      "pipeline_complete": true,
+      "source_snapshot": {
+        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/STATE.json",
+        "observed_bytes": 2414,
+        "observed_sha256": "206cf31b79b32abe9eed4518b9e6055ac57105d1c0576209a106005e433ad712",
+        "read_status": "SNAPSHOT"
       },
-      "current_action": "MACHINE_RESULT_RECORDED",
-      "latest_artifacts": [
-        {
-          "bytes": 4756,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/static_wrist_candidate_v32/RESULT.json",
-          "sha256": "fad4d801d891202dfe5af712fcb0e72618eeea9e29272a1b325a9edf56084d8a"
-        }
-      ],
-      "next_step": "RESOLVE_DIRECT_BLOCKER_OR_RESUME",
-      "state_file": {
-        "bytes": 1652,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai1/STATE.json",
-        "sha256": "1ba7fc524d520190728b19b5268a4b70108700de85aae0e4721e78062e4b19b9"
-      },
-      "status": "BLOCKED_OR_PAUSED"
+      "source_snapshot_is_not_frozen_result": true,
+      "status": "COMPLETE",
+      "training_eligible": false
     },
     "ai2": {
-      "blocker": null,
-      "claims": {
-        "CONTROL_GROUND_TRUTH": false,
-        "NUMERIC_QUALITY_PASS": false,
-        "PHYSICAL_DEPLOYABLE": false,
-        "PIPELINE_COMPLETE": false,
-        "TRAINING_COMPLETE": false,
-        "TRAINING_ELIGIBLE": false,
-        "VISUAL_REVIEW_STATUS": "NOT_REVIEWED"
+      "algorithm_quality_pass": false,
+      "control_ground_truth": false,
+      "current_action": null,
+      "heartbeat_at": null,
+      "job_live": false,
+      "job_pid": 559646,
+      "job_snapshot": {
+        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/ROBOT_RUN_STATE.json",
+        "observed_bytes": 1071,
+        "observed_sha256": "20cc401d7a51e13c402e076e48593ad0e223d8b05463a7d9ec8dc1e6f2bf23af",
+        "read_status": "SNAPSHOT"
       },
-      "current_action": "MACHINE_RESULT_RECORDED",
-      "latest_artifacts": [
-        {
-          "bytes": 2829,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/RESULT.json",
-          "sha256": "11aaaba34cef7c0c676bb1fd6dad331cf0a4ffd9d44a8fba062f866172e7ab1b"
-        }
-      ],
-      "next_step": "RUN_NEXT_FROZEN_STAGE",
-      "state_file": {
-        "bytes": 1620,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/STATE.json",
-        "sha256": "93695d9230e9aec625f8be6b8021b8efdb0732fa04d3d46eb37a25c692ed4042"
+      "job_status": "EVALUATED_DELIVERY_COMPLETE",
+      "owner_live": false,
+      "owner_pid": null,
+      "pipeline_complete": true,
+      "source_snapshot": {
+        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/STATE.json",
+        "observed_bytes": 1255,
+        "observed_sha256": "506ea9332b7dda70c1bc92ae4bb6e8cc22cc5d9535ec75c80f9237a25dd1708f",
+        "read_status": "SNAPSHOT"
       },
-      "status": "MILESTONE_COMPLETE"
+      "source_snapshot_is_not_frozen_result": true,
+      "status": "COMPLETE",
+      "training_eligible": false
     },
     "ai4_huro": {
-      "blocker": "EXTERNAL_NUMERIC_AND_VISUAL_ADOPTION_NOT_ESTABLISHED",
-      "claims": {
-        "CONTROL_GROUND_TRUTH": false,
-        "NUMERIC_QUALITY_PASS": false,
-        "PHYSICAL_DEPLOYABLE": false,
-        "PIPELINE_COMPLETE": true,
-        "TRAINING_COMPLETE": false,
-        "TRAINING_ELIGIBLE": false,
-        "VISUAL_REVIEW_STATUS": "NOT_REVIEWED"
+      "algorithm_quality_pass": false,
+      "control_ground_truth": false,
+      "current_action": "OFFICIAL_CORE_COMPLETE_HANDOFF_READY_COMMON_REVIEW_BY_PUBLISHER",
+      "heartbeat_at": "2026-09-21T04:26:51.432601+00:00",
+      "owner_live": false,
+      "owner_pid": null,
+      "pipeline_complete": true,
+      "source_snapshot": {
+        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/STATE.json",
+        "observed_bytes": 1410,
+        "observed_sha256": "9dede073b88b743350ee5059e76475c5e858d6ae3055f7d2a7b032d89dfc279d",
+        "read_status": "SNAPSHOT"
       },
-      "current_action": "HAND_FRAME_V2_DIAGNOSTICS_PUBLISHED",
-      "latest_artifacts": [
-        {
-          "bytes": 15690,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/RESULT.json",
-          "sha256": "530d63c943e61d89af327afad52cef05709d88d33c513702e4dce0b117f21292"
-        },
-        {
-          "bytes": 6443,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/REPORT_ZH.md",
-          "sha256": "66414c74b83ef7fccbaa6f2bb56441b326635cd3207bcac714ea19ef7af63b8b"
-        }
-      ],
-      "next_step": "REVIEW_V2_COLLISION_AND_NUMERIC_REPORT_BEFORE_ANY_TRAINING_ADOPTION",
-      "state_file": {
-        "bytes": 2333,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/STATE.json",
-        "sha256": "61589c7de919643822fd8872de548d37ee8f4003c0f9e50b6259d9d7291487e1"
-      },
-      "status": "MILESTONE_COMPLETE"
+      "source_snapshot_is_not_frozen_result": true,
+      "status": "COMPLETE",
+      "training_eligible": false
     },
     "exact78": {
-      "blocker": null,
-      "claims": {
-        "CONTROL_GROUND_TRUTH": false,
-        "NUMERIC_QUALITY_PASS": false,
-        "PHYSICAL_DEPLOYABLE": false,
-        "PIPELINE_COMPLETE": false,
-        "TRAINING_COMPLETE": false,
-        "TRAINING_ELIGIBLE": false,
-        "VISUAL_REVIEW_STATUS": "NOT_REVIEWED"
+      "algorithm_quality_pass": false,
+      "control_ground_truth": false,
+      "current_action": null,
+      "heartbeat_at": "2026-09-21T04:30:58.050068+00:00",
+      "owner_live": false,
+      "owner_pid": null,
+      "pipeline_complete": true,
+      "source_snapshot": {
+        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/STATE.json",
+        "observed_bytes": 4721,
+        "observed_sha256": "82065f44e9b08b3bcd2842c847eb6546e36205c52b812b5a45e70e0c50d54b0a",
+        "read_status": "SNAPSHOT"
       },
-      "current_action": "MACHINE_RESULT_RECORDED",
-      "latest_artifacts": [
-        {
-          "bytes": 4563,
-          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/same_session_hand_closure_v32/play_cards_0901_042/review_v1/RESULT.json",
-          "sha256": "acbaaa35f86d889e7efcbbbe41638117195e47cc519019408b67858562a7d17f"
-        }
-      ],
-      "next_step": "RUN_NEXT_FROZEN_STAGE",
-      "state_file": {
-        "bytes": 1683,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/exact78/STATE.json",
-        "sha256": "bce89ef47da1f027a5d3727a5a6ba6d2d6e372628e9bd929a52af50a983cb2af"
-      },
-      "status": "MILESTONE_COMPLETE"
+      "source_snapshot_is_not_frozen_result": true,
+      "status": "COMPLETE",
+      "training_eligible": false
     }
   },
   "parent": {
-    "attempt": 1,
-    "registered": true,
-    "routable": true,
-    "status": "RUNNING",
-    "task_packet": {
-      "bytes": 6486,
-      "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
-      "sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f"
-    }
+    "routable": false,
+    "status": "PASSED"
   },
-  "schema_version": "chaoyang-four-stream-shallow-status-v1",
-  "source": {
-    "parent_task_id": "four_stream_pretraining_baseline_v32",
-    "run_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
-    "task_state": {
-      "bytes": 122277,
-      "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai4_huro/hand_frame_followup_v2/TASK_STATE_BEFORE_FINISH.json",
-      "sha256": "4e191cd73243e61285a9967d7908355d7be794bb5aa4b0a2c73a8fb56396d32e"
-    }
-  }
+  "parent_task_id": "four_stream_algorithm_baseline_v2",
+  "run_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001",
+  "schema_version": "FOUR_STREAM_ALGORITHM_BASELINE_V2_STATUS",
+  "training_eligible": false
 }

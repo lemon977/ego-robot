@@ -1,36 +1,14 @@
-# AI2 V3.2 执行入口
+# 支线3：HaWoR → Kai22 → 完整Robot
 
-总计划：[PLAN.md](PLAN.md)；机器状态：[STATUS.json](STATUS.json)。
+007 378帧、031 149帧全部执行、解码并独立验证；冻结R0的q、时间和有效性原样保留。与HuRo使用[同一冻结输入](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/SHARED_AI2_AI4_INPUT_FREEZE.json)。
 
-首批固定 `play_cards_0915_031` 与 `get_potato_chips_0915_007`。物理左目 `sourceIndex=1`、encoded
-resize-only；不读 0916/PICO/controller 作为手输入。
+- [完整结果](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/full_robot_v2_run1/RESULT.json)
+- [独立数值验证与有限碰撞归因](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/AI2_INDEPENDENT_VERIFICATION.md)
+- [九片真实dt、幅度与跟随评价](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/temporal_audit_v2/README_ZH.md)
+- [按能力采用状态](BASELINE_RELEASE.json)
 
-在读取被评 HaWoR 前冻结 16 个等时间分桶审阅帧和最多两段、每段最多 30 帧的独立 RGB 可评估窗口。
-text-only SAM3.1 只是 hand-region proxy，不能证明逐指可见、左右身份或 anatomical wrist。raw 与现有
-`HOLD_NUMERIC_GATES` bounded 候选只在同一独立集合比较，不再先开第二套平滑路线。
+采用工程修复：`T_tool_hand = inverse(T_flange_tool) @ T_flange_hand`；旧消费者混淆法兰与tool，包含约145mm固定位移。新实现保存目标、实际FK、失败帧、原始q和独立掩码，固定虚拟安装和尺度。
 
-所有有效帧生成 `KAI22_FULL_FK_SIDECAR_V1`。`KINEMATIC_ONLY`、`DEVELOPMENT_R0` 与
-`H50_READY` 分层发布；bounded 拒绝不阻塞 raw 的独立运动学结果，Contact/Object 也不是 R0 总开关。
-证据不足时停在正确层级，不为获得 R0 标签临时创造阈值。
+不采用为算法质量：007只有一侧378帧有效，腕臂门377帧通过；031两物理侧94/4帧有效，仅1/1帧通过，最大腕残差约4.78m。上游缺手和米级腕运动未被裁剪、复制或删除。历史R0已经postclip，限位内不能回推原始求解合法。neutral资产已有碰撞，不能声称全自碰撞通过。
 
-## 当前执行状态（2026-09-20）
-
-- 两个首批会话均已生成独立 RGB 可观测性证据、raw/bounded 对照、全帧 q22/FK 与回放。
-- `play_cards_0915_031`：149 帧，98 个有效 side-frame；90 帧存在真实 clip，最大 0.197328 rad。
-- `get_potato_chips_0915_007`：378 帧，378 个有效 side-frame；372 帧存在真实 clip，最大 0.106450 rad。
-- 两段视频均完整解码，SHA-256 分别为
-  `8bb146bcf9b681e3cf48769f43024420ffc7e0558643063819240ad4dfbcbf4b` 与
-  `26f241a56b8b01d2b29e313e4a38b85af1a81edee939c0f632aae5b33d4ec121`。
-- 当前最高层级严格保持 `KINEMATIC_ONLY`，不是 `DEVELOPMENT_R0`。历史 A6 thumb 候选的拒绝仍有效，
-  本轮没有再创建第二套 thumb/smoothing 候选。
-
-Canonical 状态与两片回放结果：
-
-```text
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/STATE.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/RESULT.json
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/play_cards_0915_031/KAI22_RAW_FULL_FK_REVIEW_V1.mp4
-_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001/lanes/ai2/kai22_full_fk_review_v1/get_potato_chips_0915_007/KAI22_RAW_FULL_FK_REVIEW_V1.mp4
-```
-
-回放只消费已保存 q/FK；恢复时不得按视频观感修改 q 或 clip 统计。
+复现：`chaoyang run run_full_robot_review_v2 --spec <本lane/ROBOT_INPUT_SPEC.json> --output <新登记目录>`。下一任务先定位RAW/侧别/腕坐标首次异常，新输入须与HuRo同步重新冻结，不在末端平滑掩盖。

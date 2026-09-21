@@ -1,0 +1,274 @@
+{
+  "schema_version": "FOUR_STREAM_CAPABILITY_BASELINE_RELEASE_V2",
+  "created_at": "2026-09-21T12:32:58.614184+08:00",
+  "task_id": "four_stream_algorithm_baseline_v2",
+  "execution": "COMPLETE",
+  "all_four_lanes_executed": true,
+  "primary_video_count": 9,
+  "base_commit": "bf5e4e743dea90b72beb1d7d88ffb305ae60208c",
+  "no_checkpoint_training": true,
+  "source_data_modified": false,
+  "gpu_used": false,
+  "scope": "Fixed nine sessions/views only; not full-dataset or full-project quality certification",
+  "capabilities": [
+    {
+      "lane": "exact78",
+      "execution": "COMPLETE",
+      "reproducible_engineering_reference": true,
+      "algorithm_quality": "NOT_ADOPTED_AS_PHYSICAL_OR_SEMANTIC_QUALITY_BASELINE",
+      "training_eligible": false,
+      "control_ground_truth": false,
+      "visual_review": "PENDING_HUMAN_REVIEW",
+      "main_videos": [
+        {
+          "lane": "exact78",
+          "session_id": "get_potato_chips_0902_103",
+          "decoded_frames": 284,
+          "review_relative_path": "01_Exact78/get_potato_chips_0902_103.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/full_robot_v2_run1/get_potato_chips_0902_103/FULL_ROBOT_REVIEW_V2.mp4",
+            "bytes": 1024202,
+            "sha256": "f4f41a208c38c1cd78a0f3df3d71b480e0a140d187134b342d46d1da69b4da9d"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/full_robot_v2_run1/get_potato_chips_0902_103/RESULT.json",
+            "bytes": 85606,
+            "sha256": "604eb6329bd9e3cadafc660e1e2d1ee45610eed313ea3f38a8a2c1d0d0150f1a"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        },
+        {
+          "lane": "exact78",
+          "session_id": "play_cards_0902_042",
+          "decoded_frames": 171,
+          "review_relative_path": "01_Exact78/play_cards_0902_042.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/full_robot_v2_run1/play_cards_0902_042/FULL_ROBOT_REVIEW_V2.mp4",
+            "bytes": 543352,
+            "sha256": "1aa3a51893f616109cab066178f40c1488e0d10a25b4ae8c3e3c918bb442ab1d"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/full_robot_v2_run1/play_cards_0902_042/RESULT.json",
+            "bytes": 52490,
+            "sha256": "f12525bef6b8f1bd4752af9c9c5939e9404ae1cc69365e78be530098b91a534f"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        }
+      ]
+    },
+    {
+      "lane": "ai1",
+      "execution": "COMPLETE",
+      "reproducible_engineering_reference": true,
+      "algorithm_quality": "NOT_ADOPTED_AS_PHYSICAL_OR_SEMANTIC_QUALITY_BASELINE",
+      "training_eligible": false,
+      "control_ground_truth": false,
+      "visual_review": "PENDING_HUMAN_REVIEW",
+      "main_videos": [
+        {
+          "lane": "ai1",
+          "session_id": "play_cards_0916_097",
+          "decoded_frames": 165,
+          "review_relative_path": "02_PICO_MANUS/play_cards_0916_097.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/full_robot_v2_run1/play_cards_0916_097/FULL_ROBOT_REVIEW_V2.mp4",
+            "bytes": 726134,
+            "sha256": "85d54625f127d30d5c5c39b3c4fc8487ac48a5a102b873cc7bde2b4479562ab0"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/full_robot_v2_run1/play_cards_0916_097/RESULT.json",
+            "bytes": 4434,
+            "sha256": "91e46e67e948df0cfd80626e2d794aa807cce0711b9573ee686f0c4bd02cd2e8"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        },
+        {
+          "lane": "ai1",
+          "session_id": "play_cards_0916_098",
+          "decoded_frames": 179,
+          "review_relative_path": "02_PICO_MANUS/play_cards_0916_098.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/full_robot_v2_run1/play_cards_0916_098/FULL_ROBOT_REVIEW_V2.mp4",
+            "bytes": 821138,
+            "sha256": "d85593bc3fa9d0e77868d91fb87f45e32884fd9ac8ac075050ef1a748e2a2730"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/full_robot_v2_run1/play_cards_0916_098/RESULT.json",
+            "bytes": 4434,
+            "sha256": "ab2c9aae498a187bd0d43aece87ce83f5d3631fe5723232fbabd761918421040"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        },
+        {
+          "lane": "ai1",
+          "session_id": "play_cards_0916_101",
+          "decoded_frames": 122,
+          "review_relative_path": "02_PICO_MANUS/play_cards_0916_101.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/full_robot_v2_run1/play_cards_0916_101/FULL_ROBOT_REVIEW_V2.mp4",
+            "bytes": 622590,
+            "sha256": "dc60a30bdd6f45ad13975c5352f3a771e5926dfb71264a43ea0b29d8268ae29b"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/full_robot_v2_run1/play_cards_0916_101/RESULT.json",
+            "bytes": 4434,
+            "sha256": "334835482f0b2809deb2f0a91752261f9792aeda214deecfb0a71a8b8ed0596c"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        }
+      ]
+    },
+    {
+      "lane": "ai2",
+      "execution": "COMPLETE",
+      "reproducible_engineering_reference": true,
+      "algorithm_quality": "REJECTED_QUALITY",
+      "training_eligible": false,
+      "control_ground_truth": false,
+      "visual_review": "PENDING_HUMAN_REVIEW",
+      "main_videos": [
+        {
+          "lane": "ai2",
+          "session_id": "get_potato_chips_0915_007",
+          "decoded_frames": 378,
+          "review_relative_path": "03_HaWoR_Kai22/get_potato_chips_0915_007.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/full_robot_v2_run1/get_potato_chips_0915_007/FULL_ROBOT_REVIEW_V2.mp4",
+            "bytes": 1888631,
+            "sha256": "c71b01823c44b16621a6602ca689b913568ad885312125cff3f329fb9d8de4da"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/full_robot_v2_run1/get_potato_chips_0915_007/RESULT.json",
+            "bytes": 5418,
+            "sha256": "54d497a83226f2c2fb97faaf606bd881ba36631b6758fd195a0a94d0a192775d"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        },
+        {
+          "lane": "ai2",
+          "session_id": "play_cards_0915_031",
+          "decoded_frames": 149,
+          "review_relative_path": "03_HaWoR_Kai22/play_cards_0915_031.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/full_robot_v2_run1/play_cards_0915_031/FULL_ROBOT_REVIEW_V2.mp4",
+            "bytes": 789929,
+            "sha256": "2b929141bb471059b6fe4c0129591c979e7a65d59f9fa19d5a0d959ac67ab205"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/full_robot_v2_run1/play_cards_0915_031/RESULT.json",
+            "bytes": 5350,
+            "sha256": "7a66d5fb67fd1d72f4efc169cccd993d729f4949aa50c84c006996b047bec734"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        }
+      ]
+    },
+    {
+      "lane": "ai4_huro",
+      "execution": "COMPLETE",
+      "reproducible_engineering_reference": true,
+      "algorithm_quality": "REJECTED_QUALITY",
+      "training_eligible": false,
+      "control_ground_truth": false,
+      "visual_review": "PENDING_HUMAN_REVIEW",
+      "main_videos": [
+        {
+          "lane": "ai4_huro",
+          "session_id": "get_potato_chips_0915_007",
+          "decoded_frames": 378,
+          "review_relative_path": "04_HuRo/get_potato_chips_0915_007.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/common_review_v2_run1/get_potato_chips_0915_007/HURO_FULL_ROBOT_COMPARISON_V2.mp4",
+            "bytes": 877496,
+            "sha256": "66ee0e7e81db34c3cb5ed7a104ce73f7dd8bd523fd54ed2098056feee8029d33"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/common_review_v2_run1/get_potato_chips_0915_007/RESULT.json",
+            "bytes": 3460,
+            "sha256": "dbb28fabe9a3dad6f5a64271efe064effb6be242de5172d34afef3dfab2da9e4"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        },
+        {
+          "lane": "ai4_huro",
+          "session_id": "play_cards_0915_031",
+          "decoded_frames": 149,
+          "review_relative_path": "04_HuRo/play_cards_0915_031.mp4",
+          "artifact": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/common_review_v2_run1/play_cards_0915_031/HURO_FULL_ROBOT_COMPARISON_V2.mp4",
+            "bytes": 395375,
+            "sha256": "41e0fad8febc72b814adde43299a3b42cf47b07d253298d82be6c1801afcb4b8"
+          },
+          "result": {
+            "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/common_review_v2_run1/play_cards_0915_031/RESULT.json",
+            "bytes": 3390,
+            "sha256": "215786203267dc6c67ba09984ac700c57923ae8378519ac182fe9ed2549e234e"
+          },
+          "visual_review": "PENDING_HUMAN_REVIEW"
+        }
+      ]
+    }
+  ],
+  "code": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/SOURCE_CODE_MANIFEST.json",
+    "bytes": 6509,
+    "sha256": "6b665300a22d1bcf34742e6ac976efd4c197e878ee4394b8d7bdb7e974a8bd94"
+  },
+  "tests": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/TEST_RESULTS.json",
+    "bytes": 2665,
+    "sha256": "98f9a945e5425fdf14ebe5f448eac39f0b912c7210fbae6bc23dc06302fd4782"
+  },
+  "effective_pico_inputs": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/provenance_correction_v2_run1/RESULT.json",
+    "bytes": 1505,
+    "sha256": "75554d0f81c51300ff4fdc33e4cafdf547c051b57cecffd682699d7d619bced9"
+  },
+  "metadata_corrections": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT_METADATA_CORRECTIONS.json",
+    "bytes": 4530,
+    "sha256": "6a5923794d38e2ee21d7c747b42f79cf18c93aa75fa4a56159fbe202c66aa32f"
+  },
+  "shared_ai2_ai4_freeze": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/SHARED_AI2_AI4_INPUT_FREEZE.json",
+    "bytes": 3092,
+    "sha256": "aeda06c198515cd2af5d62568b0e5012657615892bcd4ad9b29dd24d75bbdd8d"
+  },
+  "huro_core_handoff": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/HURO_CORE_HANDOFF_RESULT.json",
+    "bytes": 2110,
+    "sha256": "b10e7797c365bb5a36d864b61e1b4b455a7991af76d6545fc25b384647eb924c"
+  },
+  "huro_comparison": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/common_review_v2_run1/RESULT.json",
+    "bytes": 7419,
+    "sha256": "f58e85255117ff4ad05c37fae896f84acbb65cf0b475f3bb26411ac73b868fa3"
+  },
+  "engineering_adopted": [
+    "Conservative Clean protected-write boundary, not semantic quality approval",
+    "Explicit PICO/MANUS transform and resampling provenance semantics",
+    "T_tool_hand = inverse(T_flange_tool) @ T_flange_hand",
+    "Explicit self-collision positive/negative tested; collisions remain reported",
+    "Pinned official HuRo core and combined-robot FK, not official Stage8 reproduction",
+    "Raw invalid q diagnostic rendering without clipping or authority promotion",
+    "Current task snapshot navigation and transitive code reference registration"
+  ],
+  "next_tasks": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/NEXT_TASKS_ZH.md",
+    "bytes": 5185,
+    "sha256": "e7ef0d29c12c34b8ea7f8058e1be4dada1af05d4477ffe9d7fa09bf8d7f02811"
+  },
+  "readme": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/README_ZH.md",
+    "bytes": 3585,
+    "sha256": "159a27a041a723c0e435c45fe959bf4f22a8999a5d702fc864edbaad5daaa9f2"
+  },
+  "document_history": {
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/DOCUMENT_NAVIGATION_MIGRATION.json",
+    "bytes": 1912,
+    "sha256": "7194a68ba157bb1b7e240a5d519ea0d1dd81dd40b55f8ff4ba533d47f581b88d"
+  },
+  "old_document_id_semantics": "Legacy _v32 authority-map identifiers are stable compatibility IDs, not the current plan version",
+  "deployment_authorized": false,
+  "human_review_confirmed": false
+}

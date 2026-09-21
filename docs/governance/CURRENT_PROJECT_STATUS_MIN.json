@@ -1,17 +1,5 @@
 {
-  "active_tasks": [
-    {
-      "attempt": 1,
-      "gpu_id": null,
-      "heartbeat_at": "2026-09-20T21:15:58+08:00",
-      "phase": "FOUR_STREAM_V32_EXECUTION",
-      "pid": 320726,
-      "proc_start_ticks": 217179089,
-      "session": "multi_lane",
-      "status": "RUNNING",
-      "task_id": "four_stream_pretraining_baseline_v32"
-    }
-  ],
+  "active_tasks": [],
   "authority_sources": {
     "algorithm_contract": "/mnt/workspace/code/chaoyang/docs/governance/ALGORITHM_CONTRACT.json",
     "authority": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_AUTHORITY_INDEX.json",
@@ -23,29 +11,14 @@
   "claim_limit": "Derived bounded context only; validate CURRENT_STATUS_RECEIPT.json before use.",
   "cohort": "exact78-chips78-poker78-frozen",
   "freshness": {
-    "age_seconds": 7516,
-    "status": "SUSPECTED_DEAD_WORKER",
-    "tasks": []
+    "age_seconds": 0,
+    "reason": "no_active_tasks",
+    "status": "FRESH"
   },
-  "generated_at": "2026-09-20T23:21:13+08:00",
-  "generation_id": "gov-013260-fbc60483a07f",
-  "governance_revision": 13260,
-  "next_task": {
-    "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
-    "prerequisites": [
-      "governance_PASS_FRESH",
-      "no_active_current_task",
-      "source_processed_archive_sealed_READ_ONLY",
-      "four_lane_writer_roots_ISOLATED",
-      "single_publisher",
-      "single_GPU_lease_owner",
-      "noncommercial_research_evaluation",
-      "diagnostics_only_gate_direct_consumers"
-    ],
-    "session": "multi_lane",
-    "stop_condition": "Finite per-lane terminal or resumable budget state without cross-lane coupling.",
-    "task_id": "four_stream_pretraining_baseline_v32"
-  },
+  "generated_at": "2026-09-21T12:36:28+08:00",
+  "generation_id": "gov-013317-6ff24dc3bc01",
+  "governance_revision": 13317,
+  "next_task": null,
   "schema_version": "chaoyang-current-project-status-min-v1",
   "stage_claim_limits": {
     "clean_passed": "STRUCTURAL_PROVENANCE_DECODE_ONLY_NOT_CONTACT_OR_SEMANTIC_CORRECTNESS",

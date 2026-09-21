@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-20T23:21:13+08:00`
-- governance revision：`13260`
-- generation id：`gov-013260-fbc60483a07f`
-- freshness：`SUSPECTED_DEAD_WORKER`（age=7516s）
-- generator code SHA：`2aae99a7aac4e5253c0e7575e7bbbcbfbc8634cde30d0766a35a485ed6b13660`
-- repository：`78c1325838bbf880eaf3b1d50eea315fd9274b1e` / `task/0915-full-funnel-0916-clean-v1`
+- 状态生成时间：`2026-09-21T12:36:28+08:00`
+- governance revision：`13317`
+- generation id：`gov-013317-6ff24dc3bc01`
+- freshness：`FRESH`（age=0s）
+- generator code SHA：`48777376e55a4c6b2fc27f700dda999245bc80f57da88eed5a77725c55e4b4d0`
+- repository：`bf5e4e743dea90b72beb1d7d88ffb305ae60208c` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -47,9 +47,7 @@
 
 ## D. 当前运行任务
 
-| task_id | session | phase | attempt | PID | GPU | heartbeat | 状态 |
-|---|---|---|---:|---:|---:|---|---|
-| `four_stream_pretraining_baseline_v32` | `multi_lane` | `FOUR_STREAM_V32_EXECUTION` | 1 | 320726 | - | `2026-09-20T21:15:58+08:00` | `RUNNING` |
+当前无活跃任务。
 
 ## E. 当前阻塞
 
@@ -101,8 +99,8 @@
 
 ### PASSED
 
+- `four_stream_algorithm_baseline_v2` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT.json / `2026-09-21T12:36:28+08:00`
 - `ai1_artifact_ref_rebind_v31` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/RESULT.json / `2026-09-20T17:00:58+08:00`
-- `0915_robot15h_foundationstereo_waves_v1` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/RESULT.json / `2026-09-19T09:52:46+08:00`
 
 ### FAILED_QUALITY_C
 
@@ -119,11 +117,7 @@
 
 ## H. 下一任务
 
-- next_task_id：`four_stream_pretraining_baseline_v32`
-- next_session：`multi_lane`
-- prerequisites：`governance_PASS_FRESH, no_active_current_task, source_processed_archive_sealed_READ_ONLY, four_lane_writer_roots_ISOLATED, single_publisher, single_GPU_lease_owner, noncommercial_research_evaluation, diagnostics_only_gate_direct_consumers`
-- expected_resource：`FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE`
-- stop_condition：`Finite per-lane terminal or resumable budget state without cross-lane coupling.`
+状态机当前未选择下一任务。
 
 ## 固定读取协议
 

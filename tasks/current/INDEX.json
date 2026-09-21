@@ -1,25 +1,30 @@
 {
-  "claim_limit": "Exactly one parent is routable; four internal writers are isolated and GPU work is serialized.",
-  "execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
-  "generated_at": "2026-09-20T19:04:05+08:00",
-  "generation_id": "gov-013240-b83293171178",
-  "governance_revision": 13240,
-  "packet_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V32_PARENT_ROUTABLE",
-  "plan_revision": "FOUR_STREAM_STABLE_BASELINE_V3_2",
+  "claim_limit": "One parent publisher; isolated lane writers. No training or deployment authority.",
+  "execution_revision": "ALGORITHM_BASELINE_V2",
+  "generated_at": "2026-09-21T12:36:28+08:00",
+  "generation_id": "gov-013317-6ff24dc3bc01",
+  "governance_revision": 13317,
+  "packet_revision": "ALGORITHM_BASELINE_V2_PARENT_ROUTABLE",
+  "plan_revision": "ALGORITHM_BASELINE_V2",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
   "status": "PASS",
   "supersedes_index": {
-    "bytes": 842,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/registration_0001/PREDECESSOR_TASK_PACKET_INDEX.json",
-    "sha256": "ab836c49ebe389a18fb15d23d9bf9e891268a133e405af55280d64d3dca1faa1"
+    "bytes": 1180,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/PREDECESSOR_INDEX.json",
+    "sha256": "5238c62090b1723e747df51e8e1cb5f20660c185f79e91278b45a8f9bcdaada8"
   },
   "task_packets": [
     {
-      "execution_allowed": true,
-      "execution_class": "CURRENT_LEDGER_ROUTABLE",
-      "packet_path": "tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
-      "packet_sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f",
-      "task_id": "four_stream_pretraining_baseline_v32",
+      "execution_allowed": false,
+      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
+      "packet_path": "tasks/current/four_stream_algorithm_baseline_v2/TASK_PACKET.json",
+      "packet_sha256": "2be6bd02f3519d0366e079abef2d865976ebb0341ea2c0f8247a36a4930560be",
+      "task_id": "four_stream_algorithm_baseline_v2",
+      "terminal_result": {
+        "bytes": 817,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "7113025921bdff73bd6aabff6c046525241b743eae6ee96ad514c05928331ded"
+      },
       "weights": "ABSENT"
     }
   ]

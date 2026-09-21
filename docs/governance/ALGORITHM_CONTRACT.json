@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-20T23:21:13+08:00",
-  "generation_id": "gov-013260-fbc60483a07f",
-  "governance_revision": 13260,
+  "generated_at": "2026-09-21T12:36:28+08:00",
+  "generation_id": "gov-013317-6ff24dc3bc01",
+  "governance_revision": 13317,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -124,6 +124,168 @@
         "evidence_class": "DEVELOPMENT_ONLY",
         "may_register_authority": false
       }
+    },
+    "four_stream_algorithm_baseline_v2": {
+      "authority_separation": [
+        "REPRODUCIBLE_REFERENCE",
+        "ENGINEERING_FIX_ADOPTED",
+        "ALGORITHM_IMPROVEMENT_ADOPTED",
+        "VISUAL_REVIEW_STATUS"
+      ],
+      "claim_limit": "Operation registration is not evidence of successful execution, improvement, or full project quality.",
+      "code_closure": [
+        {
+          "bytes": 3125,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/algorithm_baseline_v2_contract.py",
+          "sha256": "724b95f8e9b8746bf05c3b73d09f9bc767492bf1c50e9918ea2861c2abe843aa"
+        },
+        {
+          "bytes": 3907,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/clean_object_guard_v2.py",
+          "sha256": "23068899cb384f65e2ff5f303033d3c40a22d9f4f94b0b0512b00a9eb4c8c1a4"
+        },
+        {
+          "bytes": 14794,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_clean_object_guard_v2.py",
+          "sha256": "1bafc3322e10074574ddcb09e86f77bbb1e67b6d5653bf9f31fa08c905ea8dff"
+        },
+        {
+          "bytes": 2518,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_clean_object_guard_v2.py",
+          "sha256": "c6d52a6e92a0a8260a5b00425f2e874d6d5d808711a194354cd853e006093b9f"
+        },
+        {
+          "bytes": 11118,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/pico_manus_motion_v2.py",
+          "sha256": "b61b5572606b2c720674cfb0d852571add58995ebec6d0e8456308fd5a16d7f0"
+        },
+        {
+          "bytes": 16145,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_pico_manus_motion_v2.py",
+          "sha256": "3a9b176fa1ffc8c3924da789a83df0e3300797565f92e352c07a8c9054346582"
+        },
+        {
+          "bytes": 9237,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_pico_manus_motion_v2.py",
+          "sha256": "351fc8ec9525b658372eb24579b41ea6d8c3b0bc5dd8ed63aab74abeab54efe7"
+        },
+        {
+          "bytes": 11169,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_pico_manus_provenance_correction_v2.py",
+          "sha256": "dd885fa3c78c2cb34fabcd670b26869f05febc66685ff18334e7210ddb751b5b"
+        },
+        {
+          "bytes": 4102,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_pico_manus_provenance_correction_v2.py",
+          "sha256": "d79ad0d6f599d902741781dfb906a718f52b65ef0fa654afc23e18762bba5eb6"
+        },
+        {
+          "bytes": 11174,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_producer_provenance_isolated_v2.py",
+          "sha256": "9bccfbe989af085048f623b82c236dca06dcdc1d5076ae8628912ec2349deb68"
+        },
+        {
+          "bytes": 10858,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_core_adapter_v2.py",
+          "sha256": "02bc112317bd567804fbb8a1842f4eb12c7269c62b40771483361deaa190a760"
+        },
+        {
+          "bytes": 1420,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_huro_core_adapter_v2.py",
+          "sha256": "06b55961bb5957738ab385a83d1a7adfca89b57ee530c353829b453c2ad011dd"
+        },
+        {
+          "bytes": 6167,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_huro_core_adapter_v2.py",
+          "sha256": "b055361fee35c6ea431bdce2e3d88465e6322fe92abeab304c8e2a94d6b88a92"
+        },
+        {
+          "bytes": 20348,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/full_robot_review_v2.py",
+          "sha256": "88f4dc6e3bd7d540d7cbfe554e4bdda067e54d3d0127cdb507d73962e0dae82a"
+        },
+        {
+          "bytes": 10668,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_full_robot_review_v2.py",
+          "sha256": "ac26a5bd9ccfcf12a022d54ec2b77c3909a21342ef5a4517c97e5f1fd56938a0"
+        },
+        {
+          "bytes": 5198,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_full_robot_review_v2.py",
+          "sha256": "5aeff4e7f3e346cfc0bb2d184c930f7632627063c0d7c8a87019dd0c7527d20d"
+        },
+        {
+          "bytes": 8672,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_full_robot_collision_v2.py",
+          "sha256": "bc29d44139722e25cbaf678b1bd5b21ebd480f457dbe5607f6963aec5dbaae1c"
+        },
+        {
+          "bytes": 11596,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_huro_fixed_placement_core_v2.py",
+          "sha256": "21e93f504a2cb3d02a3036f96ee6e18262e3dc570453c79436b2b66110f2d81d"
+        },
+        {
+          "bytes": 11330,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_huro_sessions_core_v2.py",
+          "sha256": "1ddc142fc4a16a2ce5ae2c877f8230dd528962ff7c41e905e82693b15127720f"
+        },
+        {
+          "bytes": 5543,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_frozen_targets_v2.py",
+          "sha256": "693755068c93601f56604125e846c987ed5eed80472698466b5f3f40440096d1"
+        },
+        {
+          "bytes": 3113,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_huro_frozen_targets_v2.py",
+          "sha256": "664d43167badc748bb4fa162eba0e2b485c9453131882949fb9bc36f48d069ff"
+        },
+        {
+          "bytes": 10604,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_huro_common_review_v2.py",
+          "sha256": "4454b91ccdb5224224e86c708f00b27a557849380bf1220d383ec69f812599f7"
+        },
+        {
+          "bytes": 3268,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_huro_common_review_v2.py",
+          "sha256": "c4bbc39168deab6df6ce0052da263aecdd64269fb02096ee2d845dc7ca416bca"
+        },
+        {
+          "bytes": 14118,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_motion_temporal_audit_v2.py",
+          "sha256": "83db4182522653e1e4345d902db3b56eef9d55a4a6e9d7ca4a41ce07c779cc28"
+        },
+        {
+          "bytes": 3536,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_motion_temporal_audit_v2.py",
+          "sha256": "01923e6822e6adf6a4f4317bb808e9b5cb637fd3709c48cd1ba046b160ef600e"
+        },
+        {
+          "bytes": 4245,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/build_algorithm_baseline_v2_status.py",
+          "sha256": "65cb980747ec8ff07f04c545751b816f6e0bbc21e9f8c14c4b51510bf41a329b"
+        },
+        {
+          "bytes": 2064,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_algorithm_baseline_v2_status.py",
+          "sha256": "13caab474d6cd8d4e6cf61112486015cf325e91f652a2e6567edd25f03b0eda9"
+        }
+      ],
+      "control_ground_truth": false,
+      "dependency_fetch_policy": "USER_AUTHORIZED_HURO_ISOLATED_ENVIRONMENT_ONLY",
+      "execution_scope": "FOUR_LANE_OFFLINE_ALGORITHM_ENGINEERING_BASELINE",
+      "gpu_required": "CONDITIONAL_SINGLE_GOVERNED_LEASE",
+      "implementation_files_not_yet_published": [],
+      "input_policy": "EXACT_SESSION_SHA_TIME_EYE_SIDE_VALIDITY_REQUIRED",
+      "physical_deployment_authorized": false,
+      "registered_operation_policy": "EXPLICIT_PRESENT_CODE_CLOSURE_ONLY_NO_GLOB_OR_EXTERNAL_IMPORTS",
+      "task_packet": {
+        "bytes": 2854,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_algorithm_baseline_v2/TASK_PACKET.json",
+        "sha256": "2be6bd02f3519d0366e079abef2d865976ebb0341ea2c0f8247a36a4930560be"
+      },
+      "training_eligible": false,
+      "virtual_installation_policy": "EXPLICIT_NONMEASURED_NO_PHYSICAL_ACCURACY",
+      "weights": "NO_NEW_MODEL_DOWNLOADS"
     },
     "four_stream_pretraining_baseline_v32": {
       "authority_separation": [
