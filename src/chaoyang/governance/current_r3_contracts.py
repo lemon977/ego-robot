@@ -163,6 +163,7 @@ def build_algorithm_contract(
                         "src/chaoyang/ops/run_four_stream_completion_huro.py",
                         "src/chaoyang/pipeline/huro_constrained_core_v1.py",
                         "src/chaoyang/pipeline/huro_projected_joints_v1.py",
+                        "src/chaoyang/pipeline/huro_wrist_local_shape_v1.py",
                     ) if (repo_root / name).is_file()
                 ],
                 "training_steps_authorized": 0,
