@@ -74,7 +74,7 @@ def main():
         if parent["status"] not in ACTIVE:
             raise RuntimeError("PARENT_NOT_ACTIVE")
         parent.update(status="PENDING", heartbeat_at=None, updated_at=created,
-                      phase_detail="IMPLEMENTING_ISOLATED_PATCHES_NO_ALGORITHM_RUNNING")
+                      phase_detail="ACTIVE_ROOT_CAUSE_REPAIR_SEE_LANE_STATE_AND_CHECKPOINT")
         if args.checkpoint is not None:
             checkpoint = args.checkpoint.resolve(strict=True)
             if not checkpoint.is_relative_to(ATTEMPT.resolve()) or load_json(checkpoint).get("task_id") != TASK:
