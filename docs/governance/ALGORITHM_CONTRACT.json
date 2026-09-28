@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T12:56:57+08:00",
-  "generation_id": "gov-014199-5809aaecece9",
-  "governance_revision": 14199,
+  "generated_at": "2026-09-28T13:19:46+08:00",
+  "generation_id": "gov-014200-198bebcb0685",
+  "governance_revision": 14200,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -336,6 +336,11 @@
           "sha256": "fd02050fcfa70b2b6f4eabd56931ceaacf2ccfadc10ce142b9551c6a16b5a5c7"
         },
         {
+          "bytes": 6394,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/motion_invalid_propagation_v1.py",
+          "sha256": "cde26a68b87e380e93a6ac03cf33af20131cc01e3a931d420ff33dc900b1c376"
+        },
+        {
           "bytes": 7567,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/assembly_visibility_canary_v1.py",
           "sha256": "42d7aefda1cc848200da654dd18335a289524afbae28027f0b70804332d81b7d"
@@ -359,6 +364,11 @@
           "bytes": 5072,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_projected_joints_v1.py",
           "sha256": "54b2b54352dc87cfa96804f6a15e35ef00284c830fb149d395de8e0cad23389c"
+        },
+        {
+          "bytes": 6451,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_wrist_local_shape_v1.py",
+          "sha256": "02a145de3a826654243ba9289b451cad9b95bd4e5cf585a4f4abb557ea2bc3cf"
         }
       ],
       "implementation_revision": "FOUR_STREAM_COMPLETION_20260928_PHASE_AB",
