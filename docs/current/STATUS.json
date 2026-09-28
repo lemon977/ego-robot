@@ -17,8 +17,8 @@
   },
   "counts_scope": "PREDECESSOR_ONLY_NOT_NEW_EXECUTION",
   "external_metric_authority": false,
-  "generated_at": "2026-09-28T12:18:24+08:00",
-  "governance_revision": 14192,
+  "generated_at": "2026-09-28T12:23:46+08:00",
+  "governance_revision": 14193,
   "lanes": [
     {
       "status": "PENDING",
@@ -53,9 +53,9 @@
     "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
   },
   "progress_checkpoint": {
-    "bytes": 3611,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0001.json",
-    "sha256": "9d8b4feeea3da1f760e8e84970c0f3f806ea278cf85e0b188b533230293662de"
+    "bytes": 5418,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0002.json",
+    "sha256": "f7cb1a11cfedd659baf0497053b53797d6aac979a15d7368bcc31221f2bb4acf"
   },
   "review": "NOT_REVIEWED",
   "schema_version": "FOUR_STREAM_COMPLETION_STATUS_V1",
