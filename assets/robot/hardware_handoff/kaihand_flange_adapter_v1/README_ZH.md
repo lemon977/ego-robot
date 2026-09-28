@@ -1,10 +1,16 @@
 # KaiHand—Tianji 法兰连接件硬件交接包 V1
 
-状态：`REFERENCE_GEOMETRY_ONLY_NOT_READY_TO_PRINT`
+状态：`RECEIVED_STEP_DECODED_NOT_READY_FOR_PHYSICAL_DEPLOYMENT`
 
 ## 结论
 
-项目中已有 Tianji 末端和 KaiHand 手根的 URDF/STL 参考几何，但没有经过核实的 KaiHand—Tianji 连接件 CAD，也没有两侧安装面的孔位图、实测装配变换或 TCP 标定。因此本目录可以交给硬件同事作为建模起点，不能直接拿现有圆环代理去打印并装机。
+项目已收到 `received_design/KAI_HAND固定件.STEP`，不再是“没有连接件 CAD”。V3 审计已用 CadQuery 2.5.2 实际解码：3 个实体，解码包围盒约 `73.29 × 73.29 × 84.70 mm`，并生成了绑定 SHA-256 的审阅网格。
+
+但“有 CAD几何”不等于“安装关系已标定”。目前仍缺实测装配变换、TCP、左右件适用性、紧固件与制造验收。因此该 STEP 可用于 V3 中的真实连接件几何渲染，固定虚拟安装姿态必须标记为开发级估计；不能据此授权打印、承载或实机部署。
+
+V3 解码证据位于 `_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/shared/cad/decode_v1/RESULT.json`，虚拟装配合同位于同一 attempt 的 `shared/robot/KAIHAND_ADAPTER_V3_MOUNT_CONTRACT.json`。
+
+`reference_geometry/` 内是项目中配合该 STEP 使用的机器人参考模型：
 
 `reference_geometry/` 内是当前项目实际使用的参考模型：
 
@@ -42,4 +48,3 @@
 ## 建模建议
 
 不要从 STL 三角面反推孔位作为唯一依据。应以厂家原生 CAD/工程图和卡尺/CMM 实测共同冻结接口；本包 STL 只用于包络与初步干涉检查。连接件完成后先做 CAD 装配和低成本孔位样件，再做承力打印。
-

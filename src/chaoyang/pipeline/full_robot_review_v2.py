@@ -133,13 +133,32 @@ def motion_derivatives(values, valid, times, edge):
     return dict(velocity=v, acceleration=a, jerk=j, edge_valid=eligible)
 
 
-def solve_full_chain(arrays, assets, flange_mounts, *, progress=None, max_nfev=80):
+def seed_usable_solution(q, lower, upper, *, solver_success, solver_status,
+                         position_mm, rotation_deg, independent_fk):
+    """Eligibility for the *next* frame, never the current frame quality gate."""
+    q, lower, upper = (np.asarray(value, dtype=float) for value in (q, lower, upper))
+    fk = np.asarray(independent_fk, dtype=float)
+    return bool(
+        (solver_success or solver_status == 0)
+        and q.shape == lower.shape == upper.shape == (7,)
+        and np.isfinite(q).all()
+        and np.all(q >= lower - 1e-9) and np.all(q <= upper + 1e-9)
+        and fk.shape == (4, 4) and np.isfinite(fk).all()
+        and np.isfinite(position_mm) and position_mm <= 20.
+        and np.isfinite(rotation_deg) and rotation_deg <= 15.
+    )
+
+
+def solve_full_chain(arrays, assets, flange_mounts, *, progress=None, max_nfev=80,
+                     continuity_weight=0.0, experimental_seed_recovery_frames=None):
     """Fixed placement, actual-dt gaps reset the seed, target scale remains one."""
     from scipy.optimize import least_squares
     from chaoyang.pipeline import robot_scene_state_cpu as arm
     from chaoyang.pipeline.robot_renderer_cycles import forward_kinematics
     from chaoyang.pipeline.robot_renderer_eevee_fullchain import ARM_JOINT_NAMES
     edge, times = validate_motion(arrays)
+    if not np.isfinite(continuity_weight) or continuity_weight < 0:
+        raise ValueError('INVALID_CONTINUITY_WEIGHT')
     lower, upper = arm._arm_limits(assets)
     neutral = .5 * (lower + upper)
     neutral_fk = forward_kinematics(assets.tianji, {
@@ -158,26 +177,76 @@ def solve_full_chain(arrays, assets, flange_mounts, *, progress=None, max_nfev=8
     actual = target.copy(); q_arm = np.full((count, 2, 7), np.nan)
     position = np.full((count, 2), np.nan); rotation = position.copy()
     converged = np.zeros((count, 2), bool); nfev = np.zeros((count, 2), int)
+    solver_status = np.full((count, 2), -999, dtype=np.int32)
+    seed_usable = np.zeros((count, 2), bool)
+    seed_in = np.full((count, 2, 7), np.nan)
+    seed_source_frame = np.full((count, 2), -1, dtype=np.int64)
+    reset_reason = np.full((count, 2), 'UNSET', dtype='<U32')
     for side in range(2):
         target[valid[:, side], side] = neutral_roots[side] @ arrays['relative_wrist_T'][valid[:, side], side]
         seed = neutral[side].copy()
+        previous_usable = False
         for frame in range(count):
             if not valid[frame, side]:
-                seed = neutral[side].copy(); continue
-            if not edge[frame] or not valid[frame-1, side]:
                 seed = neutral[side].copy()
+                previous_usable = False
+                reset_reason[frame, side] = 'INVALID_INPUT'
+                continue
+            continuous = bool(frame > 0 and edge[frame] and valid[frame-1, side])
+            if not continuous:
+                seed = neutral[side].copy()
+                reset_reason[frame, side] = 'FIRST_OR_TIME_GAP'
+            elif not previous_usable:
+                seed = neutral[side].copy()
+                reset_reason[frame, side] = 'PRIOR_SOLUTION_UNUSABLE'
+            else:
+                seed_source_frame[frame, side] = int(arrays['frame_id'][frame - 1])
+                reset_reason[frame, side] = 'INHERITED_PRIOR_SOLUTION'
+            seed_in[frame, side] = seed
             target_tool = target[frame, side] @ np.linalg.inv(tool_mounts[side])
+            prior = seed.copy()
+            use_continuity = bool(continuity_weight and edge[frame] and frame > 0
+                                  and valid[frame-1, side])
+            def residual(q):
+                pose = arm._pose_residual(arm._tool_fk(assets, side, q), target_tool)
+                if use_continuity:
+                    return np.concatenate((pose, continuity_weight * (q - prior)))
+                if continuity_weight:
+                    return np.concatenate((pose, np.zeros(7)))
+                return pose
             result = least_squares(
-                lambda q: arm._pose_residual(arm._tool_fk(assets, side, q), target_tool),
+                residual,
                 seed, bounds=(lower[side], upper[side]), max_nfev=max_nfev,
                 ftol=1e-10, xtol=1e-10, gtol=1e-10)
             q_arm[frame, side] = result.x; nfev[frame, side] = result.nfev
+            solver_status[frame, side] = result.status
             actual[frame, side] = arm._tool_fk(assets, side, result.x) @ tool_mounts[side]
             delta = np.linalg.inv(target[frame, side]) @ actual[frame, side]
             position[frame, side] = np.linalg.norm(delta[:3, 3]) * 1000
             rotation[frame, side] = np.degrees(np.linalg.norm(arm._rotation_vector(delta[:3, :3])))
             converged[frame, side] = bool(result.success)
-            seed = result.x.copy() if result.success else neutral[side].copy()
+            independent_joint_map = {
+                name: float(neutral[other_side, index])
+                for other_side in range(2)
+                for index, name in enumerate(ARM_JOINT_NAMES[other_side])
+            }
+            independent_joint_map.update({
+                name: float(value) for name, value in zip(
+                    ARM_JOINT_NAMES[side], result.x, strict=True)
+            })
+            independent_fk = forward_kinematics(
+                assets.tianji, independent_joint_map)[flange_names[side]] @ flange_mounts[side]
+            validated_seed = np.allclose(independent_fk, actual[frame, side], atol=3e-6) and seed_usable_solution(
+                result.x, lower[side], upper[side], solver_success=bool(result.success),
+                solver_status=int(result.status), position_mm=position[frame, side],
+                rotation_deg=rotation[frame, side], independent_fk=independent_fk)
+            # A diagnostic can change exactly one predeclared frame; all other
+            # frames retain the frozen old seeding rule for causal attribution.
+            previous_usable = (validated_seed if experimental_seed_recovery_frames is not None
+                               and frame in experimental_seed_recovery_frames
+                               else bool(result.success))
+            seed_usable[frame, side] = previous_usable
+            seed = result.x.copy() if previous_usable else neutral[side].copy()
             if progress and (frame % 25 == 0 or frame == count-1):
                 progress(f'arm side={side} frame={frame+1}/{count}')
     tolerance_pass = valid & converged & (position <= 20.) & (rotation <= 15.)
@@ -186,7 +255,11 @@ def solve_full_chain(arrays, assets, flange_mounts, *, progress=None, max_nfev=8
                 T_actual_root=actual, T_flange_hand=flange_mounts, T_tool_hand=tool_mounts,
                 T_flange_tool=flange_tools, neutral_q_arm=neutral, neutral_roots=neutral_roots,
                 position_residual_mm=position, rotation_residual_deg=rotation,
-                solver_success=converged, solver_nfev=nfev, tolerance_pass=tolerance_pass,
+                continuity_weight=np.asarray(continuity_weight, dtype=float),
+                solver_success=converged, solver_status=solver_status,
+                solver_nfev=nfev, seed_usable=seed_usable, seed_in=seed_in,
+                seed_source_frame=seed_source_frame, reset_reason=reset_reason,
+                tolerance_pass=tolerance_pass, quality_pass=tolerance_pass.copy(),
                 timestamp_ns=arrays['timestamp_ns'], frame_id=arrays['frame_id'],
                 human_to_physical=HUMAN_TO_PHYSICAL, time_edge_valid=edge,
                 **{'arm_'+k: v for k, v in motion_derivatives(q_arm, valid, times, edge).items()},

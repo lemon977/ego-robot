@@ -1,3 +1,6 @@
+# Historical source-frame review images stay on H20, not in the public GitHub snapshot.
+/docs/current/visuals/FOUR_STREAM_V5/ISSUE_*_DEVICE_OBJECT.jpg
+
 # Secrets and local credentials
 .env
 .env.*
@@ -26,6 +29,9 @@ venv/
 /_run/current/**
 !/_run/current/.gitkeep
 /_run/caches/
+/_run/cache/
+/.cache/
+# Existing caches remain local; do not upload or delete them during documentation work.
 
 # Model payloads are local; manifests remain tracked
 /assets/models/**

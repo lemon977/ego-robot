@@ -432,6 +432,21 @@ def add_rot6d_noise(o6d: torch.Tensor, max_deg: float):
     if max_deg <= 0: return o6d
     return o6d + torch.randn_like(o6d) * (max_deg / 180.0)
 
+
+def sanitize_flow_action_targets(
+    x_1: torch.Tensor, action_valid_mask: torch.Tensor,
+    sample_weight: torch.Tensor,
+) -> torch.Tensor:
+    """Remove invalid raw payload before any flow-path computation."""
+    valid = action_valid_mask.bool()
+    if valid.shape != x_1.shape:
+        raise RuntimeError("action_valid_mask and flow target shape differ")
+    if not torch.isfinite(x_1[valid]).all():
+        raise RuntimeError("Nonfinite admitted flow target")
+    if not bool((valid & (sample_weight[:, None, None] > 0)).any()):
+        raise RuntimeError("No effective action supervision in batch")
+    return torch.where(valid, x_1, torch.zeros_like(x_1))
+
 # ------------------------------------------------------------
 # EMA Helper
 # ------------------------------------------------------------
@@ -616,8 +631,17 @@ def train_one_epoch(
             float(sample_weight.mean().detach().cpu())
         )
 
-        if not torch.isfinite(x_1).all() or not torch.isfinite(x_ict).all():
-            raise RuntimeError("NaN found in Dataloader outputs!")
+        # Missing action fields can contain arbitrary source payloads.  Select
+        # admitted values before noise matching, x_t, and vector-field target
+        # construction; multiplying a later loss by zero is too late.
+        action_valid_mask = action_valid_mask.bool()
+        x_1 = sanitize_flow_action_targets(x_1, action_valid_mask, sample_weight)
+        y_action = torch.where(
+            action_valid_mask[..., : y_action.shape[-1]], y_action,
+            torch.zeros_like(y_action),
+        )
+        if not torch.isfinite(x_ict).all():
+            raise RuntimeError("NaN found in current conditioning inputs")
 
         agg["zero_ratio"].append(is_zero_state(x_ict, ict_mask).float().mean().detach().cpu().item())
 
@@ -628,7 +652,9 @@ def train_one_epoch(
         opt.zero_grad(set_to_none=True)
 
         # --- FLOW MATCHING & OT-CFM ---
-        x_0 = torch.randn_like(x_1)
+        x_0 = torch.where(
+            action_valid_mask, torch.randn_like(x_1), torch.zeros_like(x_1)
+        )
         if cfg.use_ot_cfm:
             x_0 = apply_ot_matching(x_0, x_1)
 

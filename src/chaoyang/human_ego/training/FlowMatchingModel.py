@@ -389,6 +389,18 @@ class FlowMatchingModel(nn.Module):
                 raise ValueError(
                     f"x_robot_state={tuple(x_robot_state.shape)}, expected {expected}"
                 )
+            if tuple(robot_state_mask.shape) != (B, self.num_hands):
+                raise ValueError("robot_state_mask shape mismatch")
+            admitted_robot = robot_state_mask.bool()
+            if not torch.isfinite(x_robot_state[admitted_robot]).all():
+                raise ValueError("Nonfinite admitted current Robot state")
+            # A masked token may carry NaN in an upstream packet. Select safe
+            # values before projection and context normalization, not merely
+            # in attention's key-padding mask.
+            x_robot_state = torch.where(
+                admitted_robot.unsqueeze(-1), x_robot_state,
+                torch.zeros_like(x_robot_state),
+            )
             robot_tokens = self.robot_state_proj(x_robot_state)
             robot_tokens = robot_tokens + self.robot_state_pos_emb[:, :self.num_hands]
             state_tokens = torch.cat([ict_tokens, robot_tokens], dim=1)
@@ -522,7 +534,22 @@ class FlowMatchingModel(nn.Module):
             w_done = weights.get("w_done", 1.0) if weights else 1.0
             w_dim[..., -1] = w_done
 
-        raw_diff = (v_pred - v_target) ** 2
+        valid = targets.get("action_valid_mask")
+        if valid is None:
+            valid = torch.ones_like(v_pred, dtype=torch.bool)
+        else:
+            valid = valid.to(device=v_pred.device, dtype=torch.bool)
+            if valid.shape != v_pred.shape:
+                raise ValueError(
+                    f"action_valid_mask={tuple(valid.shape)}, expected {tuple(v_pred.shape)}"
+                )
+        if not bool((valid & (sample_weight_3d > 0)).any()):
+            raise ValueError("No effective action supervision")
+        if not torch.isfinite(v_pred).all() or not torch.isfinite(v_target[valid]).all():
+            raise ValueError("Nonfinite prediction or admitted target")
+        safe_pred = torch.where(valid, v_pred, torch.zeros_like(v_pred))
+        safe_target = torch.where(valid, v_target, torch.zeros_like(v_target))
+        raw_diff = (safe_pred - safe_target) ** 2
         diff = raw_diff
         lower = upper = None
         if self.use_robot_state_conditioning and "joint_lower" in targets:
@@ -538,15 +565,7 @@ class FlowMatchingModel(nn.Module):
             )
             diff = raw_diff.clone()
             diff[..., nh * 9 : command_end] /= q_range.square()
-        valid = targets.get("action_valid_mask")
-        if valid is None:
-            valid = torch.ones_like(diff)
-        else:
-            valid = valid.float()
-            if valid.shape != diff.shape:
-                raise ValueError(
-                    f"action_valid_mask={tuple(valid.shape)}, expected {tuple(diff.shape)}"
-                )
+        valid = valid.float()
         weighted = diff * w_time * w_dim * valid * sample_weight_3d
         # Normalize by active weighted elements rather than batch size.  A
         # missing hand therefore contributes exactly zero gradient.
@@ -573,11 +592,20 @@ class FlowMatchingModel(nn.Module):
             and "y_action" in targets
         ):
             predicted_q = preds["action_pred"].float()[..., nh * 9 : command_end]
-            target_q = targets["y_action"].float()[..., nh * 9 : command_end]
+            target_q = torch.where(
+                valid[..., nh * 9 : command_end].bool(),
+                targets["y_action"].float()[..., nh * 9 : command_end],
+                torch.zeros_like(targets["y_action"].float()[..., nh * 9 : command_end]),
+            )
             lower_flat = lower.reshape(v_pred.shape[0], 1, -1)
             upper_flat = upper.reshape(v_pred.shape[0], 1, -1)
             range_flat = (upper_flat - lower_flat).clamp(min=1e-4)
             q_valid = valid[..., nh * 9 : command_end]
+            if not torch.isfinite(predicted_q[q_valid.bool()]).all():
+                raise ValueError("Nonfinite admitted joint prediction")
+            predicted_q = torch.where(
+                q_valid.bool(), predicted_q, torch.zeros_like(predicted_q)
+            )
             violation = (
                 torch.relu(lower_flat - predicted_q)
                 + torch.relu(predicted_q - upper_flat)

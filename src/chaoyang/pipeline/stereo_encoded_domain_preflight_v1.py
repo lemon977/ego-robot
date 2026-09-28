@@ -251,3 +251,37 @@ def aggregate_metrics(
         "thresholds": asdict(limits),
     }
 
+
+def foundation_disparity_adapter(aggregate: dict[str, Any]) -> dict[str, Any]:
+    """Select an explicit sign adapter without ever exchanging physical eyes."""
+
+    if aggregate.get("decision") != "PASS_DIRECT_FOUNDATION_INPUT":
+        return {
+            "authorized": False,
+            "route": "BLOCKED_STEREO_GEOMETRY",
+            "swap_physical_eyes": False,
+            "horizontal_reflection_for_disparity_sign": False,
+        }
+    sign = aggregate.get("metrics", {}).get("dominant_disparity_sign")
+    if sign == "NEGATIVE_LEFT_MINUS_RIGHT":
+        return {
+            "authorized": True,
+            "route": "SIMULTANEOUS_HORIZONTAL_REFLECTION_BOTH_PHYSICAL_EYES",
+            "swap_physical_eyes": False,
+            "horizontal_reflection_for_disparity_sign": True,
+            "output_spatial_unflip_required": True,
+        }
+    if sign == "POSITIVE_LEFT_MINUS_RIGHT":
+        return {
+            "authorized": True,
+            "route": "DIRECT_PHYSICAL_LEFT_RIGHT",
+            "swap_physical_eyes": False,
+            "horizontal_reflection_for_disparity_sign": False,
+            "output_spatial_unflip_required": False,
+        }
+    return {
+        "authorized": False,
+        "route": "BLOCKED_UNKNOWN_DISPARITY_SIGN",
+        "swap_physical_eyes": False,
+        "horizontal_reflection_for_disparity_sign": False,
+    }

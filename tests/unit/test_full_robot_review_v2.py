@@ -3,6 +3,7 @@ import pytest
 from chaoyang.pipeline.full_robot_review_v2 import (
     tool_mount_from_flange, relative_wrist, time_edges, motion_derivatives,
     validate_motion, validate_se3, read_frozen,
+    seed_usable_solution,
 )
 
 
@@ -134,3 +135,25 @@ def test_sha_scope_and_corruption_rejected(tmp_path):
     assert read_frozen(ref,[tmp_path])==b'{}'
     p.write_bytes(b'[]')
     with pytest.raises(ValueError):read_frozen(ref,[tmp_path])
+
+
+def test_max_nfev_valid_pose_can_seed_without_becoming_quality_pass():
+    q=np.zeros(7);lo=np.full(7,-1.);hi=np.full(7,1.)
+    assert seed_usable_solution(q,lo,hi,solver_success=False,solver_status=0,
+                                position_mm=3.4,rotation_deg=.9,independent_fk=np.eye(4))
+    # A reusable initializer does not change the current frame's convergence fact.
+    assert not (False and 3.4 <= 20 and .9 <= 15)
+
+
+@pytest.mark.parametrize('change', ['nan','bounds','pose','rotation','status','fk'])
+def test_invalid_solution_never_seeds(change):
+    q=np.zeros(7);lo=np.full(7,-1.);hi=np.full(7,1.)
+    kwargs=dict(solver_success=False,solver_status=0,position_mm=3.4,
+                rotation_deg=.9,independent_fk=np.eye(4))
+    if change=='nan':q[0]=np.nan
+    if change=='bounds':q[0]=2.
+    if change=='pose':kwargs['position_mm']=21.
+    if change=='rotation':kwargs['rotation_deg']=16.
+    if change=='status':kwargs['solver_status']=-1
+    if change=='fk':kwargs['independent_fk'][0,0]=np.nan
+    assert not seed_usable_solution(q,lo,hi,**kwargs)
