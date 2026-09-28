@@ -151,6 +151,7 @@ def build_algorithm_contract(
                         "src/chaoyang/governance/four_stream_completion.py",
                         "src/chaoyang/ops/run_four_stream_completion_clean.py",
                         "src/chaoyang/ops/run_four_stream_completion_clean_production.py",
+                        "src/chaoyang/ops/run_four_stream_completion_clean_context.py",
                         "src/chaoyang/ops/run_four_stream_completion_sensor.py",
                         "src/chaoyang/ops/run_four_stream_completion_clean_mask_support.py",
                         "src/chaoyang/ops/run_four_stream_completion_clean_role_refine.py",
