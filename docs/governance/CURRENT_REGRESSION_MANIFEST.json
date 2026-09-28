@@ -1,9 +1,9 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-21T12:36:28+08:00",
-  "generation_id": "gov-013317-6ff24dc3bc01",
-  "governance_revision": 13317,
+  "generated_at": "2026-09-28T11:05:43+08:00",
+  "generation_id": "gov-014171-86b9916cecd6",
+  "governance_revision": 14171,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
@@ -115,9 +115,9 @@
       "stage": "depth_object6d"
     },
     {
-      "bytes": 3292,
+      "bytes": 3835,
       "path": "/mnt/workspace/code/chaoyang/tests/test_stereo_encoded_domain_preflight_v1.py",
-      "sha256": "ed5bdbceeead0f67c3d8f1905f36e09e81e32b20fbec676ed3ceaf6e617851f8",
+      "sha256": "5bb44604b155cf436b79a9e8f4324dd41123cd8eda4481b904c03a1d8ff2fbf7",
       "stage": "depth_object6d"
     },
     {

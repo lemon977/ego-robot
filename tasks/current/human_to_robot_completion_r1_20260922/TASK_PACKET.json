@@ -1,0 +1,131 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "candidate_max_per_fault_package": 1,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "max_evidence_driven_repairs_per_fault_package": 2,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 43200
+  },
+  "calibration_or_absent": "PER_LANE_PINNED_OR_ABSENT",
+  "claim_limit": "Offline visual candidate and reproducibility evidence only; no training, contact truth, physical metric authority, control or deployment.",
+  "delivery_contract": {
+    "bytes": 2753,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_COMPLETION_R1_20260922/DELIVERY_CONTRACT.json",
+    "sha256": "4906a559fd79a145d12960d03e2f48a9a7a60318ee646b3c0b863ee69d8d3422"
+  },
+  "execution_revision": "HUMAN_TO_ROBOT_COMPLETION_R1_20260922",
+  "executor_epoch": 4,
+  "expected_resource": "FOUR_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
+  "external_metric_authority": false,
+  "fault_packages": {
+    "F01": 2,
+    "F02": 2,
+    "F03": 2,
+    "F04": 2,
+    "F05": 2,
+    "F06": 2,
+    "F07": 2,
+    "F08": 2
+  },
+  "fencing": {
+    "immutable_final": true,
+    "lane_writer_roots": {
+      "lane1_scene": "_run/current/human_to_robot_completion_r1_20260922/attempts/attempt_0001/lanes/lane1_scene",
+      "lane2_sensor": "_run/current/human_to_robot_completion_r1_20260922/attempts/attempt_0001/lanes/lane2_sensor",
+      "lane3_product": "_run/current/human_to_robot_completion_r1_20260922/attempts/attempt_0001/lanes/lane3_product",
+      "lane4_compare": "_run/current/human_to_robot_completion_r1_20260922/attempts/attempt_0001/lanes/lane4_compare"
+    },
+    "pid_startticks_required": true,
+    "unique_primary_writer": true
+  },
+  "objective": "Execute the user-reviewed Human-to-Robot Baseline v1 R1: four bounded lanes, real 007/031 products, 0902 regressions, three sensor backend consumers, and same-input Local R0 versus HuRo comparison.",
+  "phase": "HUMAN_TO_ROBOT_BASELINE_V1_R1",
+  "plan_revision": "HUMAN_TO_ROBOT_COMPLETION_R1_20260922",
+  "predecessor": {
+    "immutable": true,
+    "result": {
+      "bytes": 11434,
+      "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/RESULT.json",
+      "sha256": "1fda551ced98a5cb30e750f656fa5f7e641713967acb5782d3503cfa8fc96b50"
+    },
+    "revive_forbidden": true,
+    "task_id": "four_stream_visual_delivery_v5"
+  },
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "exclusive_current_index",
+    "sealed_v5_failure_bound_as_predecessor",
+    "read_only_source_processed_archive_sealed",
+    "single_publisher",
+    "single_GPU_lease_owner",
+    "cpu_total_soft_cap_8",
+    "noncommercial_offline_visual_only"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/DOC_AUTHORITY_MAP.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_COMPLETION_R1_20260922/07_可执行任务重排_R1.md",
+    "docs/plans/HUMAN_TO_ROBOT_COMPLETION_R1_20260922/01_AGENT_RULES_合并补充.md",
+    "docs/plans/HUMAN_TO_ROBOT_COMPLETION_R1_20260922/09_任务依赖_R1.json",
+    "docs/plans/HUMAN_TO_ROBOT_COMPLETION_R1_20260922/DELIVERY_CONTRACT.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/PROGRESS_2H.json",
+    "attempts/attempt_0001/lanes/lane1_scene/STATE.json",
+    "attempts/attempt_0001/lanes/lane2_sensor/STATE.json",
+    "attempts/attempt_0001/lanes/lane3_product/STATE.json",
+    "attempts/attempt_0001/lanes/lane4_compare/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "terminal_with_gaps_at_deadline",
+    "quality_failure_does_not_auto_retry",
+    "writer_or_gpu_lease_violation_fails_closed",
+    "no_source_processed_archive_or_sealed_writes",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false"
+  ],
+  "target_sessions": {
+    "frame_counts": {
+      "get_potato_chips_0902_103": 284,
+      "get_potato_chips_0915_007": 378,
+      "play_cards_0902_042": 171,
+      "play_cards_0915_031": 149,
+      "play_cards_0916_097": 165,
+      "play_cards_0916_098": 179,
+      "play_cards_0916_101": 122
+    },
+    "main_products": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031"
+    ],
+    "regressions": [
+      "get_potato_chips_0902_103",
+      "play_cards_0902_042"
+    ],
+    "sensor": [
+      "play_cards_0916_097",
+      "play_cards_0916_098",
+      "play_cards_0916_101"
+    ]
+  },
+  "task_id": "human_to_robot_completion_r1_20260922",
+  "weights": "ABSENT_OR_EXISTING_PINNED_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_completion_r1_20260922",
+    "tasks/receipts/HUMAN_TO_ROBOT_COMPLETION_R1_20260922_RESULT.json",
+    "docs/current/PLAN.md",
+    "docs/current/README_ZH.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/STATUS.json",
+    "docs/current/visuals/FOUR_STREAM_V5/R1_20260922"
+  ]
+}

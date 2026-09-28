@@ -1,0 +1,75 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 3600
+  },
+  "calibration_or_absent": "ABSENT_REGION_ONLY",
+  "claim_limit": "Upstream SAM region denominator correction, not independent HaWoR pose accuracy or product quality.",
+  "execution_revision": "HUMAN_TO_ROBOT_031_OBSERVABILITY_DTYPE_FIX_20260923",
+  "executor_epoch": 22,
+  "expected_resource": "CPU_ONLY_ONE_HOUR",
+  "frozen_gates": {
+    "anatomical_side": "UNKNOWN",
+    "foreground_value": 1,
+    "frames": 149,
+    "mask_dtype": "uint16",
+    "review_decoded_frames": 149
+  },
+  "objective": "Correct the uint16 foreground-one 031 SAM-region denominator and render its full-timeline evidence.",
+  "phase": "HUMAN_TO_ROBOT_031_OBSERVABILITY_DTYPE_FIX_20260923",
+  "plan": {
+    "bytes": 1066,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_031_OBSERVABILITY_DTYPE_FIX_20260923/00_EXECUTION.md",
+    "sha256": "ce29ee9ea31d9b71611087362415ae85b9d346bc70d3e14a8999dea8b733201c"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_031_OBSERVABILITY_DTYPE_FIX_20260923",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "CPU_TOTAL_SOFT_LIMIT_8"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_031_OBSERVABILITY_DTYPE_FIX_20260923/00_EXECUTION.md",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/masks031_right_epoch7_v1/play_cards_0915_031/MASK_MANIFEST.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/MASK031_RIGHT_FULL_SPEC.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/prepare_full_v1/play_cards_0915_031/DOMAIN_MANIFEST.json",
+    "_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/lanes/lane2_motion/recovered_031_wave0/HAND_MOTION_V1.npz",
+    "_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/lanes/lane2_motion/observability_031_wave1/RESULT.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/masks031_right_epoch7_v1/play_cards_0915_031/human"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/motion/observability_dtype_fix_v1/RESULT.json",
+    "attempts/attempt_0001/lanes/motion/observability_dtype_fix_v1/031_REGION_PROXY_FULL_REVIEW.mp4",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "149_frames_decoded_and_old_denominator_corrected_or_budget_exhausted",
+    "no_HaWoR_or_product_quality_promotion",
+    "no_old_output_overwrite"
+  ],
+  "task_id": "human_to_robot_031_observability_dtype_fix_20260923",
+  "weights": "ABSENT_CPU_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_031_observability_dtype_fix_20260923",
+    "tasks/current/human_to_robot_031_observability_dtype_fix_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_MOTION.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_031_observability_dtype_fix.py",
+    "src/chaoyang/ops/finalize_human_to_robot_031_observability_dtype_fix.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_031_observability_dtype_fix.py"
+  ]
+}

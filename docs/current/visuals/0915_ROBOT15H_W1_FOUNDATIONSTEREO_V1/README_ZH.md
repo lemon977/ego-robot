@@ -1,5 +1,6 @@
 # 0915 Robot15h W1 FoundationStereo 审阅入口
 
+
 状态：`8/8 PASSED_INTERNAL_DEPTH_GATES`；共 2,332 帧。
 
 本批在 H9 开封后运行，8 个独立录制会话的源视频 SHA 全部在调度时绑定。模型只加载一次，

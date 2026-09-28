@@ -29,9 +29,11 @@
 
 - `/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_0911`
 - `/mnt/data/egodata/datasets/ego/processed/chips_cards_handle_highview_0914`
-- `/mnt/data/egodata/datasets/ego/processed/chips_cards_hands__0915`
+- `/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915`
 
-0915 原始目录使用单下划线，已发布标识因消费者兼容保留双下划线。0915 发布根中的 `SOURCE_PATH_REPAIR_20260917.json` 只修复元数据来源路径；未改原始数据，也未改已发布 payload。
+0915 当前已发布 processed 根使用单下划线路径。旧合同和历史收据中的
+`chips_cards_hands__0915` 仅是逻辑发布标识，不是可直接读取的目录；不得据此拼接
+或回源。0915 发布根中的 `SOURCE_PATH_REPAIR_20260917.json` 只修复元数据来源路径；未改原始数据，也未改已发布 payload。
 
 0915 processed 单目像素域按会话元数据保持 `passthrough_scaled_source_domain`，
 `video_rectification.rectified=false`。用户已进一步确认所有 VST 编码视频像素本来没有
@@ -88,7 +90,7 @@ from pathlib import Path
 base = Path('/mnt/data/egodata/datasets/ego/processed')
 for name in ('chips_cards_handle_0911',
              'chips_cards_handle_highview_0914',
-             'chips_cards_hands__0915'):
+             'chips_cards_hands_0915'):
     value = json.loads((base / name / 'DATASET_RESULT.json').read_text())
     print(name, {key: value.get(key) for key in
           ('state', 'session_count', 'completed', 'cleaned', 'rejected', 'failed')})

@@ -1,0 +1,10 @@
+{
+  "inventory_status": "FAIL",
+  "quality_status": "NOT_ASSESSED",
+  "media_requested": false,
+  "errors": [
+    "actual run_id missing"
+  ],
+  "checked": [],
+  "warning": "Inventory PASS is not product, contact, or algorithm quality PASS."
+}

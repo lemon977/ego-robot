@@ -1,0 +1,25 @@
+test_actual_media_decode_and_wrong_count (tests_inventory.InventoryTests.test_actual_media_decode_and_wrong_count) ... ok
+test_changed_frozen_contract (tests_inventory.InventoryTests.test_changed_frozen_contract) ... ok
+test_clean_never_executed (tests_inventory.InventoryTests.test_clean_never_executed) ... ok
+test_different_source_timeline (tests_inventory.InventoryTests.test_different_source_timeline) ... ok
+test_duplicate_artifact (tests_inventory.InventoryTests.test_duplicate_artifact) ... ok
+test_duplicate_source_frame (tests_inventory.InventoryTests.test_duplicate_source_frame) ... ok
+test_fake_media_fails_decode (tests_inventory.InventoryTests.test_fake_media_fails_decode) ... ok
+test_good_inventory_does_not_certify_quality_or_media (tests_inventory.InventoryTests.test_good_inventory_does_not_certify_quality_or_media) ... ok
+test_invalid_output_indices (tests_inventory.InventoryTests.test_invalid_output_indices) ... ok
+test_missing (tests_inventory.InventoryTests.test_missing) ... ok
+test_missing_run (tests_inventory.InventoryTests.test_missing_run) ... ok
+test_nonmonotonic_timestamps (tests_inventory.InventoryTests.test_nonmonotonic_timestamps) ... ok
+test_raw_background_not_product (tests_inventory.InventoryTests.test_raw_background_not_product) ... ok
+test_receipt_missing_frame (tests_inventory.InventoryTests.test_receipt_missing_frame) ... ok
+test_receipt_not_bound_to_video (tests_inventory.InventoryTests.test_receipt_not_bound_to_video) ... ok
+test_symlink_disallowed (tests_inventory.InventoryTests.test_symlink_disallowed) ... ok
+test_unsafe_qualification (tests_inventory.InventoryTests.test_unsafe_qualification) ... ok
+test_video_sha_tamper (tests_inventory.InventoryTests.test_video_sha_tamper) ... ok
+test_wrong_session_label (tests_inventory.InventoryTests.test_wrong_session_label) ... ok
+test_wrong_source_session (tests_inventory.InventoryTests.test_wrong_source_session) ... ok
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.602s
+
+OK

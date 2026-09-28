@@ -8,9 +8,22 @@ import numpy as np
 from chaoyang.pipeline.stereo_encoded_domain_preflight_v1 import (
     EncodedStereoGateV1,
     aggregate_metrics,
+    foundation_disparity_adapter,
     frame_metrics,
     split_source_index_eyes,
 )
+
+
+def test_negative_disparity_uses_reflection_without_swapping_physical_eyes():
+    aggregate = {
+        "decision": "PASS_DIRECT_FOUNDATION_INPUT",
+        "metrics": {"dominant_disparity_sign": "NEGATIVE_LEFT_MINUS_RIGHT"},
+    }
+    adapter = foundation_disparity_adapter(aggregate)
+    assert adapter["authorized"] is True
+    assert adapter["horizontal_reflection_for_disparity_sign"] is True
+    assert adapter["swap_physical_eyes"] is False
+    assert adapter["output_spatial_unflip_required"] is True
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -88,4 +101,3 @@ def test_runner_has_mandatory_frames_and_no_geometric_pixel_transform() -> None:
     assert not any("undistort" in name.lower() for name in called)
     assert "NOTABLE_FRAMES = (81, 94)" in source
     assert "split_resize_physical_eyes" in source
-

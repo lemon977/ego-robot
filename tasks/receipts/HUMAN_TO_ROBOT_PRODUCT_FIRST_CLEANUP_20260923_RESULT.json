@@ -1,0 +1,15 @@
+{
+  "cleanup_logical_deleted_bytes": 5219025177,
+  "products_adopted": "0/4",
+  "products_quality": "0/4",
+  "products_structure": "4/4",
+  "result": {
+    "bytes": 9497,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "0324d47e993c4dcf9699f097a69a192b2085404f069b0ad471fdf08e429c7f26"
+  },
+  "schema_version": "HUMAN_TO_ROBOT_PRODUCT_FIRST_CLEANUP_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_product_first_cleanup_20260923",
+  "video_slots": "15/15_CHECKED"
+}

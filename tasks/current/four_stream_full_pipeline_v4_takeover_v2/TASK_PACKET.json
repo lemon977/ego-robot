@@ -1,0 +1,89 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "candidate_max_per_lane": 1,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "same_signature_retry_max": 0,
+    "wall_seconds_max": 28800
+  },
+  "calibration_or_absent": "PER_LANE_PINNED_OR_ABSENT",
+  "claim_limit": "Development-only visual and numeric evidence. No causal training, external metric truth, control ground truth or physical deployability.",
+  "execution_revision": "FOUR_STREAM_V4_TAKEOVER_V2",
+  "executor_epoch": 2,
+  "expected_resource": "CPU_GATE_FIRST_THEN_SINGLE_GOVERNED_GPU_LEASE",
+  "external_metric_authority": false,
+  "fencing": {
+    "immutable_final": true,
+    "lane_writer_roots": {
+      "controller_manus": "_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/lanes/controller_manus",
+      "exact78": "_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/lanes/exact78",
+      "hawor_retarget": "_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/lanes/hawor_retarget",
+      "huro": "_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/lanes/huro"
+    },
+    "pid_startticks_required": true,
+    "unique_primary_writer": true
+  },
+  "image_domain_policy": "PER_SESSION_EXPLICIT_NO_GLOBAL_SOURCE_INDEX",
+  "objective": "Sole-writer V4 takeover: correct input/route facts, run one frozen bounded candidate per eligible lane, and produce evidence-linked full-session visuals or explicit fail-closed blockers.",
+  "phase": "FOUR_STREAM_V4_TAKEOVER_V2",
+  "plan_revision": "FOUR_STREAM_V4_TAKEOVER_V2",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "exclusive_current_index",
+    "source_processed_archive_sealed_READ_ONLY",
+    "registered_chaoyang_run_entry",
+    "per_session_image_domain_and_input_SHA",
+    "four_lane_writer_roots_ISOLATED",
+    "single_GPU_lease_owner"
+  ],
+  "read_set": [
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "tasks/current/INDEX.json",
+    "tasks/current/four_stream_full_pipeline_v4_recovery_v1/TASK_PACKET.json",
+    "_run/current/four_stream_full_pipeline_v4_recovery_v1/attempts/attempt_0001/RECOVERY_RUNTIME_TERMINAL_20260922.json",
+    "_run/current/four_stream_full_pipeline_v4_recovery_v1/attempts/attempt_0001/lanes/exact78/pair_production_0001/RESULT.json",
+    "_run/current/four_stream_full_pipeline_v4_recovery_v1/attempts/attempt_0001/lanes/controller_manus/AI1_INPUT_PREFLIGHT.json",
+    "docs/current/FOUR_STREAM_FULL_PIPELINE_V4_HANDOFF_ZH.md"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/ROUTE_AND_INPUT_AUDIT.json",
+    "attempts/attempt_0001/lanes/exact78/STATE.json",
+    "attempts/attempt_0001/lanes/controller_manus/STATE.json",
+    "attempts/attempt_0001/lanes/hawor_retarget/STATE.json",
+    "attempts/attempt_0001/lanes/huro/STATE.json",
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "deadline_or_budget_terminal_receipt",
+    "quality_C_no_automatic_retry",
+    "missing_input_or_producer_BLOCKED_NOT_READY",
+    "no_source_or_sealed_writes",
+    "no_clean_to_geometry",
+    "control_ground_truth_false",
+    "physical_deployable_false"
+  ],
+  "target_sessions": {
+    "controller_manus": [
+      "play_cards_0916_097",
+      "play_cards_0916_098",
+      "play_cards_0916_101"
+    ],
+    "exact78": "frozen_156_only_no_formal_training_claim",
+    "hawor_retarget": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031"
+    ],
+    "huro": "same_frozen_input_and_robot_objective_as_comparator"
+  },
+  "task_id": "four_stream_full_pipeline_v4_takeover_v2",
+  "weights": "PER_LANE_PINNED_OR_ABSENT",
+  "write_set": [
+    "_run/current/four_stream_full_pipeline_v4_takeover_v2",
+    "docs/current/visuals/FOUR_STREAM_V4_TAKEOVER_V2",
+    "tasks/receipts/FOUR_STREAM_FULL_PIPELINE_V4_TAKEOVER_V2_RESULT.json"
+  ]
+}

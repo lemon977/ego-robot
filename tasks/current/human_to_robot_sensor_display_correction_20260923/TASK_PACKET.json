@@ -1,0 +1,85 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 7200
+  },
+  "calibration_or_absent": "REUSED_DEVELOPMENT_SENSOR",
+  "claim_limit": "Display correction only; no new calibration, wrist accuracy, robot product or deployment authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_SENSOR_DISPLAY_CORRECTION_20260923",
+  "executor_epoch": 18,
+  "expected_resource": "CPU_ONLY_TWO_HOURS",
+  "frozen_gates": {
+    "frames": [
+      165,
+      179,
+      122
+    ],
+    "local_scale_shared_fixed_per_session": true,
+    "new_solver_invocations": 0,
+    "sessions": [
+      "play_cards_0916_097",
+      "play_cards_0916_098",
+      "play_cards_0916_101"
+    ],
+    "world_xz_equal_pixels_per_m": true
+  },
+  "objective": "Re-render 466 saved Sensor frames with honest equal metric world and fixed shared local scales.",
+  "old_review": {
+    "bytes": 4972,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_baseline_v1_convergence_20260923/attempts/attempt_0001/lanes/sensor/review_v1/RESULT.json",
+    "sha256": "2b90e88097e8b23c308ef90648d81436fd1d7021e8367728d34beeebf7c42216"
+  },
+  "phase": "HUMAN_TO_ROBOT_SENSOR_DISPLAY_CORRECTION_20260923",
+  "plan": {
+    "bytes": 1461,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_SENSOR_DISPLAY_CORRECTION_20260923/00_EXECUTION.md",
+    "sha256": "4bf493916a5f1808904958212dc944d020470d07c4d5ef5c1dabe8d616778593"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_SENSOR_DISPLAY_CORRECTION_20260923",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "CPU_TOTAL_SOFT_LIMIT_8"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_SENSOR_DISPLAY_CORRECTION_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_baseline_v1_convergence_20260923/attempts/attempt_0001/lanes/sensor/review_v1/RESULT.json",
+    "src/chaoyang/ops/run_human_to_robot_convergence_sensor_review.py"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/sensor/review_metric_v2/RESULT.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "three_full_replays_terminal_or_budget_exhausted",
+    "no_old_output_overwrite",
+    "no_sensor_alignment_or_product_quality_promotion",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false"
+  ],
+  "task_id": "human_to_robot_sensor_display_correction_20260923",
+  "weights": "ABSENT_CPU_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_sensor_display_correction_20260923",
+    "tasks/current/human_to_robot_sensor_display_correction_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/V5_SENSOR.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_sensor_display_correction.py",
+    "src/chaoyang/ops/finalize_human_to_robot_sensor_display_correction.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_sensor_display_correction.py"
+  ]
+}

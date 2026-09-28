@@ -1,0 +1,10 @@
+{
+  "result": {
+    "bytes": 5200,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_result_breakthrough_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "c87e521bd9debf84f67c7803aa903d65deb6d8ea2c816927957067a631cbaf45"
+  },
+  "schema_version": "HUMAN_TO_ROBOT_RESULT_BREAKTHROUGH_TASK_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_result_breakthrough_20260924"
+}

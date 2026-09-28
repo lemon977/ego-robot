@@ -1,0 +1,20 @@
+{
+  "kind": "PLAN_PREPARATION_AUDIT_NOT_PIPELINE_EXECUTION",
+  "date": "2026-09-22",
+  "plan_registered_remotely": false,
+  "remote_algorithm_started": false,
+  "remote_current_documents_modified": false,
+  "original_pack_modified": false,
+  "checks": {
+    "original_bundle_sha256": {"status":"PASS","checked_files":14,"command":"sha256sum -c BUNDLE_SHA256.txt"},
+    "inventory_checker_self_tests": {"status":"PASS","tests":20,"command":"python3 -m unittest -v tests_inventory.py","scope":"本地清单检查器自身，包括媒体反例；不是远端四支线质量验收"},
+    "planned_dependency_graph": {"status":"PASS","tasks":19,"checks":["任务ID唯一","依赖存在且无环","增量消费者存在","故障包ID合法","入口引用存在","15视频期望中4个产品"]},
+    "remote_governance_snapshot": {"status":"PASS","freshness":"FRESH","revision":13800,"active_tasks":0,"freshness_scope":"active_task_heartbeat_only","large_sha_skipped":{"algorithm_contract":3,"baseline_registry_v2":3},"command":"PYTHONPATH=src /usr/local/bin/python -B -m chaoyang.cli validate-governance"}
+  },
+  "new_plan_files": [
+    {"path":"07_可执行任务重排_R1.md","sha256":"117ba979bb459f80b2f900006fe1824c9c02f623ced255726fb37e4851b4b4c8"},
+    {"path":"08_交给执行AI的启动指令.txt","sha256":"537d0009c3b53e0a3f60f32b73f1cb7ef6bb4a4dfaaf9a7647cf469b24a23a9e"},
+    {"path":"09_任务依赖_R1.json","sha256":"3de3bc612c0066added1d970d209be0f01cba2441360a759989baf6db8ff0196"}
+  ],
+  "claim_limit": "任务书可以用于下一执行实例，当前没有新的Clean/Robot产品或算法改善成果。"
+}

@@ -1,0 +1,108 @@
+{
+  "attempt_max": 1,
+  "baseline": {
+    "bytes": 1973,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_attachment_clean_canary_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "beb63e6c22fe3af65b507adedc39f4450af01125d7479fe5ab934c1181e862fd"
+  },
+  "budgets": {
+    "cpu_heavy_jobs_max": 2,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "new_031_ik_attempts_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 36000
+  },
+  "calibration_or_absent": "ABSENT_PIXEL_ONLY_FOR_CLEAN;DEVELOPMENT_MOUNT_FOR_ROBOT",
+  "claim_limit": "Offline candidate and review only; no Clean/product, Contact, training, external metric, control, or physical authority without their own gates.",
+  "execution_revision": "HUMAN_TO_ROBOT_10H_DELIVERY_20260924",
+  "executor_epoch": 25,
+  "expected_resource": "FOUR_LANES_SINGLE_GPU_LEASE",
+  "frozen_gates": {
+    "center_step": 16,
+    "evaluation_frames": [
+      181,
+      196
+    ],
+    "evaluation_local_indices": [
+      21,
+      36
+    ],
+    "full_frame_count": 378,
+    "input_frames": [
+      160,
+      216
+    ],
+    "left_context": 21,
+    "new_031_ik_attempts_max": 0,
+    "right_context": 20,
+    "session": "get_potato_chips_0915_007"
+  },
+  "objective": "One 007 fixed-center temporal-context Clean candidate and four-lane consumer, review, and delivery closure.",
+  "phase": "HUMAN_TO_ROBOT_10H_DELIVERY_20260924",
+  "plan": {
+    "bytes": 3480,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_10H_DELIVERY_20260924/00_EXECUTION.md",
+    "sha256": "d05eb7628c537af46956af98cf807d26591f66647720289aff7bb6bf9697fdb6"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_10H_DELIVERY_20260924",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "one_GPU_owner",
+    "no_same_signature_quality_retry"
+  ],
+  "product_first": {
+    "bytes": 9497,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "0324d47e993c4dcf9699f097a69a192b2085404f069b0ad471fdf08e429c7f26"
+  },
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_10H_DELIVERY_20260924/00_EXECUTION.md",
+    "_run/current/human_to_robot_007_attachment_clean_canary_20260923/attempts/attempt_0001/RESULT.json",
+    "_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/RESULT.json",
+    "docs/current/STATUS.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/STATE.json",
+    "attempts/attempt_0001/lanes/sensor/STATE.json",
+    "attempts/attempt_0001/lanes/motion_product/STATE.json",
+    "attempts/attempt_0001/lanes/compare/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "all_authorized_branches_terminal_or_10h_deadline",
+    "one_007_context_candidate_only",
+    "quality_failure_does_not_stop_other_ready_lanes",
+    "no_old_output_overwrite",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false",
+    "external_metric_authority_false"
+  ],
+  "task_id": "human_to_robot_10h_delivery_20260924",
+  "weights": "PINNED_EXISTING_PROPAINTER_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_10h_delivery_20260924",
+    "tasks/current/human_to_robot_10h_delivery_20260924",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_SCENE.md",
+    "docs/current/V5_SENSOR.md",
+    "docs/current/V5_MOTION.md",
+    "docs/current/V5_HURO.md",
+    "docs/current/STATUS.json",
+    "docs/current/visuals/HUMAN_TO_ROBOT_10H_DELIVERY",
+    "src/chaoyang/ops/run_human_to_robot_10h_007_context.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_10h_007_context.py"
+  ]
+}

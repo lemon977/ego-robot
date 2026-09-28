@@ -1,4 +1,8 @@
-# Chaoyang 三条数据链现状与后续 AI 交接
+# Chaoyang 三条数据链历史现状与后续 AI 交接
+
+> 历史交接记录：本页不是当前执行入口。当前任务与终态以
+> [`README_ZH.md`](README_ZH.md)、[`STATUS.json`](STATUS.json) 和
+> [`tasks/current/INDEX.json`](../../tasks/current/INDEX.json) 为准。
 
 更新时间：2026-09-20（Asia/Shanghai）
 

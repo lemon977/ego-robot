@@ -1,0 +1,15 @@
+{
+  "delivery_slots": "15/15",
+  "new_videos": 5,
+  "products_adopted": "0/4",
+  "products_quality": "0/4",
+  "products_structure": "4/4",
+  "result": {
+    "bytes": 6563,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_baseline_v1_convergence_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "dd963ed0666c6f70a02d73aee26e04f4024c119cbb86e7f4afdfd3ec9d453d2d"
+  },
+  "schema_version": "HUMAN_TO_ROBOT_BASELINE_V1_CONVERGENCE_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_baseline_v1_convergence_20260923"
+}

@@ -1,0 +1,16 @@
+{
+  "formal_resume": "4/4",
+  "products_adopted": "0/4",
+  "products_quality": "0/4",
+  "products_structure": "4/4",
+  "result": {
+    "bytes": 5087,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "3afd3c0fe61ac6ce0f4f63bb00efa837270b921f73d00d8d3fffcc73b0537a0a"
+  },
+  "robot_r1_adopted": 0,
+  "schema_version": "HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_evidence_unlock_s2_20260923",
+  "videos_full_decode": 11
+}

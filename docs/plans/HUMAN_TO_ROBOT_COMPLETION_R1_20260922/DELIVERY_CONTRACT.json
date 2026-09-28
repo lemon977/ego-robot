@@ -1,0 +1,98 @@
+{
+  "schema_version": 1,
+  "route": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "purpose": "FROZEN_EXPECTED_INVENTORY_NOT_AUTHORITY",
+  "note": "4 product + 11 review videos. Inventory PASS does not certify visual/algorithm quality. Match all original source timeline IDs; do not relabel sessions.",
+  "expected_artifacts": [
+    {
+      "artifact_id": "product:get_potato_chips_0915_007",
+      "session_id": "get_potato_chips_0915_007",
+      "kind": "robot_product",
+      "frames": 378
+    },
+    {
+      "artifact_id": "product:play_cards_0915_031",
+      "session_id": "play_cards_0915_031",
+      "kind": "robot_product",
+      "frames": 149
+    },
+    {
+      "artifact_id": "product:get_potato_chips_0902_103",
+      "session_id": "get_potato_chips_0902_103",
+      "kind": "robot_product",
+      "frames": 284
+    },
+    {
+      "artifact_id": "product:play_cards_0902_042",
+      "session_id": "play_cards_0902_042",
+      "kind": "robot_product",
+      "frames": 171
+    },
+    {
+      "artifact_id": "scene:get_potato_chips_0915_007",
+      "session_id": "get_potato_chips_0915_007",
+      "kind": "scene_review",
+      "frames": 378
+    },
+    {
+      "artifact_id": "scene:play_cards_0915_031",
+      "session_id": "play_cards_0915_031",
+      "kind": "scene_review",
+      "frames": 149
+    },
+    {
+      "artifact_id": "scene:get_potato_chips_0902_103",
+      "session_id": "get_potato_chips_0902_103",
+      "kind": "scene_review",
+      "frames": 284
+    },
+    {
+      "artifact_id": "scene:play_cards_0902_042",
+      "session_id": "play_cards_0902_042",
+      "kind": "scene_review",
+      "frames": 171
+    },
+    {
+      "artifact_id": "sensor:play_cards_0916_097",
+      "session_id": "play_cards_0916_097",
+      "kind": "sensor_review",
+      "frames": 165
+    },
+    {
+      "artifact_id": "sensor:play_cards_0916_098",
+      "session_id": "play_cards_0916_098",
+      "kind": "sensor_review",
+      "frames": 179
+    },
+    {
+      "artifact_id": "sensor:play_cards_0916_101",
+      "session_id": "play_cards_0916_101",
+      "kind": "sensor_review",
+      "frames": 122
+    },
+    {
+      "artifact_id": "main:get_potato_chips_0915_007",
+      "session_id": "get_potato_chips_0915_007",
+      "kind": "main_review",
+      "frames": 378
+    },
+    {
+      "artifact_id": "compare:get_potato_chips_0915_007",
+      "session_id": "get_potato_chips_0915_007",
+      "kind": "compare_review",
+      "frames": 378
+    },
+    {
+      "artifact_id": "main:play_cards_0915_031",
+      "session_id": "play_cards_0915_031",
+      "kind": "main_review",
+      "frames": 149
+    },
+    {
+      "artifact_id": "compare:play_cards_0915_031",
+      "session_id": "play_cards_0915_031",
+      "kind": "compare_review",
+      "frames": 149
+    }
+  ]
+}

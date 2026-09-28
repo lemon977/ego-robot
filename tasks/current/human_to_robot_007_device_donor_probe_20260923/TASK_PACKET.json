@@ -1,0 +1,82 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "cpu_threads_soft_cap": 4,
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 7200
+  },
+  "calibration_or_absent": "PLANAR_IMAGE_ALIGNMENT_ONLY_NOT_METRIC",
+  "claim_limit": "One-frame device-support and donor feasibility; no Clean, product, training or external metric adoption.",
+  "execution_revision": "HUMAN_TO_ROBOT_007_DEVICE_DONOR_PROBE_20260923",
+  "executor_epoch": 12,
+  "expected_resource": "CPU_ONLY_SINGLE_WRITER",
+  "frozen_gates": {
+    "donor_frames": [
+      0,
+      100,
+      250,
+      377
+    ],
+    "scene_007_frames": [
+      181,
+      196
+    ],
+    "target_frame": 184
+  },
+  "objective": "Prove whether 007 residual finger devices are outside the current write mask and whether any frozen same-recording table donor is geometrically usable.",
+  "phase": "HUMAN_TO_ROBOT_007_DEVICE_DONOR_PROBE_20260923",
+  "plan": {
+    "bytes": 2079,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_007_DEVICE_DONOR_PROBE_20260923/00_EXECUTION.md",
+    "sha256": "b8e1284a81caa4066a5f3beddee20ffd85789971b15b687a7d07e29295a23b5b"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_007_DEVICE_DONOR_PROBE_20260923",
+  "predecessor": {
+    "bytes": 5622,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_source_coverage_recovery_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "7d487df6f02a632dffedd11b878436936d308366308f92812b967f02c1e04832"
+  },
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_007_DEVICE_DONOR_PROBE_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_source_coverage_recovery_20260923/attempts/attempt_0001/RESULT.json",
+    "_run/current/human_to_robot_source_coverage_recovery_20260923/attempts/attempt_0001/lanes/scene/rebound_007_window_v2/RESULT.json",
+    "_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/lanes/scene/masks_007_v1/MASK_MANIFEST.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/device_donor_probe_v1/RESULT.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "fixed_probe_terminal_or_budget_exhausted",
+    "no_old_output_overwrite",
+    "no_new_model_or_full_clean_run",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false"
+  ],
+  "task_id": "human_to_robot_007_device_donor_probe_20260923",
+  "weights": "ABSENT_CPU_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_007_device_donor_probe_20260923",
+    "tasks/current/human_to_robot_007_device_donor_probe_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py",
+    "src/chaoyang/ops/finalize_human_to_robot_007_device_donor_probe.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_007_device_donor_probe.py"
+  ]
+}

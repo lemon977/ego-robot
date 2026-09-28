@@ -1,0 +1,87 @@
+{
+  "created_at": "2026-09-28T10:58:21+08:00",
+  "files": [
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/README_ZH.md",
+      "bytes": 651,
+      "original_path": "docs/current/README_ZH.md",
+      "sha256": "c2905db0991848cfe3c13800bdb3e34c740620df49712fe9debbaaa7d0dbfcb4"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/PLAN.md",
+      "bytes": 1213,
+      "original_path": "docs/current/PLAN.md",
+      "sha256": "506b7d2492e6051eff60addfe723f2e4a5fcdad9eac14abe7bc978ba1528dd83"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/AI_WORK_ENTRY_ZH.md",
+      "bytes": 620,
+      "original_path": "docs/current/AI_WORK_ENTRY_ZH.md",
+      "sha256": "7ae9998a7fab12cd110efe9c9cd3f64104290d832ececaae4ea039d0af3cc837"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/HUMAN_TO_ROBOT_BASELINE_V1_ZH.md",
+      "bytes": 17671,
+      "original_path": "docs/current/HUMAN_TO_ROBOT_BASELINE_V1_ZH.md",
+      "sha256": "c188dd13d4e0be93295bdfc4750e62ae56a648891674dcf500b9c2ba788d39a8"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/V5_SCENE.md",
+      "bytes": 8514,
+      "original_path": "docs/current/V5_SCENE.md",
+      "sha256": "d9a94224621f4b023b793a8dc6c11190bc17fc92345e077d52497d7e30755136"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/V5_SENSOR.md",
+      "bytes": 7112,
+      "original_path": "docs/current/V5_SENSOR.md",
+      "sha256": "e7d28c82a88ce16078c0c0497e489cbd322225e924540afbe362181bcf202c59"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/V5_MOTION.md",
+      "bytes": 9966,
+      "original_path": "docs/current/V5_MOTION.md",
+      "sha256": "6de9026f326b5d8cb040c5cd5a655b56214fd3b33ed02a7bdeb5394f9d0389dc"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/V5_HURO.md",
+      "bytes": 5135,
+      "original_path": "docs/current/V5_HURO.md",
+      "sha256": "1b478bf3be29037d5c4b6162a2d1ea75b0e378a46e7eedbf129ccf1acfcd2a65"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/visuals/README_ZH.md",
+      "bytes": 37639,
+      "original_path": "docs/current/visuals/README_ZH.md",
+      "sha256": "4dceb9f5ac9412843d33da559349a92cbcdad92f8575c0f8629e68c50fe37d00"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/AI1.md",
+      "bytes": 313,
+      "original_path": "docs/current/AI1.md",
+      "sha256": "0f3a39cf4a74eee346a86c6e1656e6f00bff8f1e5972476773fbeca7b6e30a66"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/AI2.md",
+      "bytes": 264,
+      "original_path": "docs/current/AI2.md",
+      "sha256": "61f79f0ef5dd031fd8a5f6923c0996463cbb6b985e6172c233d67eadb227bb5e"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/AI4_HURO.md",
+      "bytes": 303,
+      "original_path": "docs/current/AI4_HURO.md",
+      "sha256": "20e811282b8836e017d9dd2ca373d84ae974cde7c94b9e80e0afea7066a7ecba"
+    },
+    {
+      "archive_path": "docs/archive/navigation_20260928/docs/current/EXACT78.md",
+      "bytes": 425,
+      "original_path": "docs/current/EXACT78.md",
+      "sha256": "58ab9f5656ee13b08037e4ca6f61ba8badb7ed0e8bd4ce5835024d639b1cf6a5"
+    }
+  ],
+  "historical_links": "Archived text is byte-exact. Relative links retain their original source-file context; do not treat this folder as executable navigation.",
+  "restore": "Copy only selected archived text to original_path, then publish a new governance revision; never overwrite immutable receipts.",
+  "schema_version": "DOCUMENTATION_SNAPSHOT_V1",
+  "source_revision": 14167
+}

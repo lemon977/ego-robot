@@ -357,9 +357,9 @@
           "sha256": "fd2c7ddbfebd363437e2c2f2d5f95a430717b65988011b920391e5426b83b634"
         },
         {
-          "bytes": 9699,
+          "bytes": 11054,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
-          "sha256": "c9a127cfd4e235e2c2c4c32f8031b6c6d85205f1bac25af25ac99e84084f5c04"
+          "sha256": "5f426a8891dfeaea76ee20efcee5f814b93c1a14acba1476d48b66233a20590d"
         },
         {
           "bytes": 16606,
@@ -1594,9 +1594,9 @@
       "authorized_scope": "NO_CURRENT_AUTHORITY",
       "code_closure": [
         {
-          "bytes": 18638,
+          "bytes": 19975,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/occlusion_compositor_v1.py",
-          "sha256": "7a238737cd8f9005f85a010ba9da2bca19d5109d3f885303713f6c7baceade2b"
+          "sha256": "b28fcc0f5b82e46ed092d260274345d1d19fe85fbfedcd71d6a109d1034df8c9"
         },
         {
           "bytes": 11253,
@@ -1959,9 +1959,9 @@
       "weights": "ABSENT"
     }
   ],
-  "generated_at": "2026-09-21T12:36:28+08:00",
-  "generation_id": "gov-013317-6ff24dc3bc01",
-  "governance_revision": 13317,
+  "generated_at": "2026-09-28T11:05:43+08:00",
+  "generation_id": "gov-014171-86b9916cecd6",
+  "governance_revision": 14171,
   "parallel_pipelines": [
     {
       "claim_limit": "Parallel sensor pipeline status; no exact78 denominator, physical accuracy, full Depth/Mask or deployment authority is implied.",

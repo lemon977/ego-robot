@@ -1,0 +1,99 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 3600
+  },
+  "calibration_or_absent": "ABSENT_PIXEL_ONLY",
+  "claim_limit": "Spatial interpolation diagnostic only; no Clean, physical background or product claim.",
+  "execution_revision": "HUMAN_TO_ROBOT_007_SPATIAL_DONOR_CHECK_20260923",
+  "executor_epoch": 20,
+  "expected_resource": "CPU_ONLY_ONE_HOUR",
+  "frozen_gates": {
+    "donor_pairs": {
+      "192": [
+        115,
+        135,
+        170,
+        175,
+        281,
+        282,
+        336,
+        363
+      ],
+      "196": [
+        48,
+        51,
+        197,
+        377
+      ]
+    },
+    "fit_inlier_hulls_both_sides_required": true,
+    "target_frames": [
+      192,
+      196
+    ]
+  },
+  "objective": "Check target and donor inlier-hull interpolation support for twelve frozen 007 pairs.",
+  "phase": "HUMAN_TO_ROBOT_007_SPATIAL_DONOR_CHECK_20260923",
+  "plan": {
+    "bytes": 1389,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_007_SPATIAL_DONOR_CHECK_20260923/00_EXECUTION.md",
+    "sha256": "8270411d8b76aeca596e621da3a76cd9715a0dc8c02da5dc2766127408e9de1d"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_007_SPATIAL_DONOR_CHECK_20260923",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "CPU_TOTAL_SOFT_LIMIT_8"
+  ],
+  "prior": {
+    "bytes": 5179,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_late_donor_probe_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "3979684be53c521749a3aacebee60f9a00671b1d8f41d68ee2fe97d6437ce94d"
+  },
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_007_SPATIAL_DONOR_CHECK_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_007_late_donor_probe_20260923/attempts/attempt_0001/RESULT.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/prepare_full_v1/get_potato_chips_0915_007/raw",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/masks_007_recovered_join_v1/human",
+    "_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/lanes/scene/masks_007_v1",
+    "_run/current/human_to_robot_007_attachment_clean_canary_20260923/attempts/attempt_0001/lanes/scene/attachment_clean_window_v1",
+    "src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/spatial_donor_check_v1/RESULT.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "twelve_frozen_pairs_terminal_or_budget_exhausted",
+    "no_old_output_overwrite",
+    "no_Clean_or_product_promotion",
+    "training_eligible_false",
+    "control_ground_truth_false"
+  ],
+  "task_id": "human_to_robot_007_spatial_donor_check_20260923",
+  "weights": "ABSENT_CPU_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_007_spatial_donor_check_20260923",
+    "tasks/current/human_to_robot_007_spatial_donor_check_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_SCENE.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_007_spatial_donor_check.py",
+    "src/chaoyang/ops/finalize_human_to_robot_007_spatial_donor_check.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_007_spatial_donor_check.py"
+  ]
+}

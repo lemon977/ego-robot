@@ -1,34 +1,12 @@
-# 后续 AI 工作入口
+# 后续AI接手步骤
 
-状态：CURRENT；当前执行范围是[四支线算法基线 V2](PLAN.md)，不是历史 V3.2 checkpoint 训练。
+1. 在项目内设置TMP、缓存与输出；运行 `PYTHONPATH=src /usr/local/bin/python -B -m chaoyang.cli validate-governance`。
+2. 读取[总入口](README_ZH.md)、[机器状态](STATUS.json)、[当前任务索引](../../tasks/current/INDEX.json)和receipt绑定的[权威登记](../governance/DOC_AUTHORITY_MAP.json)。
+3. 仅阅读本线短卡和其中明确的最新RESULT/STATE。需要追溯再查[历史索引](../plans/INDEX_ZH.md)，不要从旧计划恢复命令。
+4. 当前无活动算法任务。[后续建议](NEXT_ACTIONS_ZH.md)不等于执行授权；获得授权后登记有限任务、冻结输入/代码/环境/门槛并取得独立写入范围。
+5. 发布前核对PID/startticks/epoch/fencing；不得热改其他执行者、复活历史包或覆盖封存结果。
+6. 报告执行、结构、质量、改善、审阅与采用六个独立状态；视频存在与CPU测试PASS不是产品PASS。
 
-## 启动顺序
+旧AI1=Sensor，AI2=HaWoR/Motion，AI4=HuRo；支线1现为共享Scene/Clean。CPU维护B与原始数据清洗不是额外算法支线。
 
-1. [当前 receipt](../governance/CURRENT_STATUS_RECEIPT.json) 与 [权威登记](../governance/DOC_AUTHORITY_MAP.json)。
-2. [当前任务索引](../../tasks/current/INDEX.json)、[算法合同](../governance/ALGORITHM_CONTRACT.json)。
-3. [PLAN](PLAN.md)、[机器生成状态](STATUS.json)，随后只读本支线：[Exact78](EXACT78.md)、[PICO/MANUS](AI1.md)、[HaWoR/Kai22](AI2.md)、[HuRo](AI4_HURO.md)。
-
-```bash
-PYTHONPATH=src /usr/local/bin/python -B -m chaoyang.cli validate-governance
-```
-
-治理PASS说明登记和引用在检查时一致，不认证真实精度。FRESH只用于活动任务心跳。当前浅层STATUS是同一publisher发布的时间点快照，不通过mtime找“最新结果”。
-
-任务包绑定实际base、writer PID/startticks/epoch/fence、读写范围和入口。单一publisher负责共享文档与合同；worker只写自己的worktree和lane。接续前取得明确交接，不覆盖仍存活的writer、不伪造心跳、不停止别人。
-
-源数据、processed、archive与封存结果只读；全部新文件位于chaoyang。不依赖外部兄弟项目、不下载模型、不改共享环境。只有用户额外批准的HuRo独立环境可联网补必要依赖。
-
-## 不可跨越的语义
-
-- 不以工程测试PASS替代算法质量、人工审阅、训练资格或真机资格。
-- 不用 Attachment 证明对象身份/Contact；不恢复已撤权Depth/Object6D。
-- 图像按已核验sourceIndex裁眼/resize；不得把RAW fisheye参数重复用于encoded VST像素。
-- fixed-prior、虚拟安装和物理标定分开；不以好看的叠加证明标定。
-- 观测、补帧、缺失、左右手及各模态有效性独立保留。
-- 历史R0已clip；旧手部初始化的用途仍保留，不改写历史。
-
-## 已完成数据清洗与历史查询
-
-0911/0914/0915清洗见[数据清洗基线](DATA_CLEANING_0911_0915_ZH.md)；0916见[0915/0916交接](FULL_FUNNEL_0915_AND_CLEANING_0916_ZH.md)。本轮不重新清洗921条、不改数据布局。
-
-历史V3.2及其hand-only结果在原任务attempt保留；本轮[产物根](../../_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/)中的前驱文档快照只供追溯，不能直接续跑旧计划。当前采用与下一步任务以本轮最终发布清单为准，未发布期间不要把中间输出当完成。
+仅在原H20上能直接解析历史绝对路径；GitHub克隆不包含模型、视频、processed、环境和运行证据实体。见[Git交付说明](GIT_DELIVERY_ZH.md)。

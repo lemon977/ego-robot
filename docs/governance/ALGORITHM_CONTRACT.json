@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-21T12:36:28+08:00",
-  "generation_id": "gov-013317-6ff24dc3bc01",
-  "governance_revision": 13317,
+  "generated_at": "2026-09-28T11:05:43+08:00",
+  "generation_id": "gov-014171-86b9916cecd6",
+  "governance_revision": 14171,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -200,9 +200,9 @@
           "sha256": "b055361fee35c6ea431bdce2e3d88465e6322fe92abeab304c8e2a94d6b88a92"
         },
         {
-          "bytes": 20348,
+          "bytes": 24428,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/full_robot_review_v2.py",
-          "sha256": "88f4dc6e3bd7d540d7cbfe554e4bdda067e54d3d0127cdb507d73962e0dae82a"
+          "sha256": "a9c3a3abcbe3fccc11a435c4b0bb15eb9425f0619e02f1dfcfacbdb6f34b5b03"
         },
         {
           "bytes": 10668,
@@ -210,9 +210,9 @@
           "sha256": "ac26a5bd9ccfcf12a022d54ec2b77c3909a21342ef5a4517c97e5f1fd56938a0"
         },
         {
-          "bytes": 5198,
+          "bytes": 6294,
           "path": "/mnt/workspace/code/chaoyang/tests/unit/test_full_robot_review_v2.py",
-          "sha256": "5aeff4e7f3e346cfc0bb2d184c930f7632627063c0d7c8a87019dd0c7527d20d"
+          "sha256": "e78e55db47d1f5d3df8825c002a499ced8d0789acdbced8b546773780a2d9e09"
         },
         {
           "bytes": 8672,
@@ -286,6 +286,504 @@
       "training_eligible": false,
       "virtual_installation_policy": "EXPLICIT_NONMEASURED_NO_PHYSICAL_ACCURACY",
       "weights": "NO_NEW_MODEL_DOWNLOADS"
+    },
+    "four_stream_full_pipeline_v3": {
+      "candidate_signatures_per_lane_max": 3,
+      "claim_limit": "Full stage execution is distinct from quality; ego-data consistency is not independent physical accuracy.",
+      "code_closure": [
+        {
+          "bytes": 6721,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/bf949fb33a8d768fc6330240be36be781d3aac898f80be54d9bfe4f8c118d0e9/support/CONTINUATION_EPOCH5_ZH.md",
+          "sha256": "bf949fb33a8d768fc6330240be36be781d3aac898f80be54d9bfe4f8c118d0e9"
+        },
+        {
+          "bytes": 8198,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/a928de61a90441a84d0d01916a1639d82ca0a558ea464975c37593af56a039dd/support/CONTINUATION_EPOCH6_ZH.md",
+          "sha256": "a928de61a90441a84d0d01916a1639d82ca0a558ea464975c37593af56a039dd"
+        },
+        {
+          "bytes": 2356,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/b88694dd0647e59fc2bf3346df4de946e6a7a69f6f3554f18483549628b5f210/support/START_HERE_NEXT_AI_ZH.md",
+          "sha256": "b88694dd0647e59fc2bf3346df4de946e6a7a69f6f3554f18483549628b5f210"
+        },
+        {
+          "bytes": 9423,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/fce96968e890ba1050d364af5656f5e3c21d98eb1b2c48824d4ae3e38bf94eab/support/START_HERE_PRE_EPOCH6_ZH.md",
+          "sha256": "fce96968e890ba1050d364af5656f5e3c21d98eb1b2c48824d4ae3e38bf94eab"
+        },
+        {
+          "bytes": 4862,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/0aa22957209985c7786eeb080b466cf2f9b3d7b381048a8378069870b996ad73/support/checkpoint_v3_handoff_epoch5.py",
+          "sha256": "0aa22957209985c7786eeb080b466cf2f9b3d7b381048a8378069870b996ad73"
+        },
+        {
+          "bytes": 5712,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/6d46e3b7e0d682c008e5be3c343ca1f6355c23aeb0cc419f79c1b48cad5b96a7/support/checkpoint_v3_handoff_epoch6.py",
+          "sha256": "6d46e3b7e0d682c008e5be3c343ca1f6355c23aeb0cc419f79c1b48cad5b96a7"
+        },
+        {
+          "bytes": 3003,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/b3da089ffe57886bc025f454f16062f7e7ce0ae6f12d1f0198b833964f6d9cc9/support/FULL031_COMPONENT_EPOCH7_SPEC.json",
+          "sha256": "b3da089ffe57886bc025f454f16062f7e7ce0ae6f12d1f0198b833964f6d9cc9"
+        },
+        {
+          "bytes": 43394,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/f65dd5ffcb886bfc9e366e60d6c7f568b5b3c3584bfafea74a8c19885088af9d/support/INPUT_MANIFEST.json",
+          "sha256": "f65dd5ffcb886bfc9e366e60d6c7f568b5b3c3584bfafea74a8c19885088af9d"
+        },
+        {
+          "bytes": 922,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/11c547d0063f3179b3e8f3fb683eb858485e204134fcf07108f2a31ec4e2e073/support/RUN_CONFIG.json",
+          "sha256": "11c547d0063f3179b3e8f3fb683eb858485e204134fcf07108f2a31ec4e2e073"
+        },
+        {
+          "bytes": 2147,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/aa2b46b290cc426ff9e3644d99c2dd0af1f571fb52bdc651d15d9e7ddf9c9abc/support/MASK031_EPOCH7_REGISTRATION.json",
+          "sha256": "aa2b46b290cc426ff9e3644d99c2dd0af1f571fb52bdc651d15d9e7ddf9c9abc"
+        },
+        {
+          "bytes": 83124,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e9cd1b4b2327bb7a1e6045ddc20945fd75ae098dc47177999ddc8efc50e9a501/support/MASK031_VERIFIED_ARRAYS_EPOCH7.json",
+          "sha256": "e9cd1b4b2327bb7a1e6045ddc20945fd75ae098dc47177999ddc8efc50e9a501"
+        },
+        {
+          "bytes": 4504,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/7c8d12c2886e46bd7797d98f93a8b98682bdb89aa5e27d04aa18420b96b773e9/support/MOUNT_CONTRACT.json",
+          "sha256": "7c8d12c2886e46bd7797d98f93a8b98682bdb89aa5e27d04aa18420b96b773e9"
+        },
+        {
+          "bytes": 2611,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/f38594b8fe9d0f30c8890ad44b8d9a3fb54394b8f77686911b92d06d0bf405a7/support/CAMERA031_EPOCH7_CONFIG.json",
+          "sha256": "f38594b8fe9d0f30c8890ad44b8d9a3fb54394b8f77686911b92d06d0bf405a7"
+        },
+        {
+          "bytes": 3129,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/cec8a8c06367e0485d8229313a964da91caa0c3d1dd029201a8b9e28a60df731/support/COMPOSITE_C3_EPOCH6_CONFIG.json",
+          "sha256": "cec8a8c06367e0485d8229313a964da91caa0c3d1dd029201a8b9e28a60df731"
+        },
+        {
+          "bytes": 3156,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e8fe7efada803a27a93ebe4c36c6ee5ba13added288ccc62bc60f8fa74d5f7ef/support/COMPOSITE_HURO_C3_EPOCH6_CONFIG.json",
+          "sha256": "e8fe7efada803a27a93ebe4c36c6ee5ba13added288ccc62bc60f8fa74d5f7ef"
+        },
+        {
+          "bytes": 3306,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/d6c756f9063c766927f3546b03a83caac74eab375bdcbf0285adcc04778a1ca7/support/COMPOSITE_ROI_C2_FIRST16_CONFIG.json",
+          "sha256": "d6c756f9063c766927f3546b03a83caac74eab375bdcbf0285adcc04778a1ca7"
+        },
+        {
+          "bytes": 3161,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/6bde5ccf78267d1b800bee1f95ac42876abc58ffe0e5c57b7adc60dcd940e082/support/COMPOSITE_ROI_C2_FULL_CONFIG.json",
+          "sha256": "6bde5ccf78267d1b800bee1f95ac42876abc58ffe0e5c57b7adc60dcd940e082"
+        },
+        {
+          "bytes": 1146,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/8e23ffe84567bf38756f08342ac652d20e7807be728bc3a69dbdfd2296d796ac/support/FAIR_COMPARISON_EPOCH6_CONFIG.json",
+          "sha256": "8e23ffe84567bf38756f08342ac652d20e7807be728bc3a69dbdfd2296d796ac"
+        },
+        {
+          "bytes": 1981,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/74adbfd32e21ec96a1cdb2629ab5196fc683ea420025add63eb29b20278d9f9e/support/HURO031_EPOCH7_CONFIG.json",
+          "sha256": "74adbfd32e21ec96a1cdb2629ab5196fc683ea420025add63eb29b20278d9f9e"
+        },
+        {
+          "bytes": 1969,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/7a389f4afc793af38f0902a96472c948420fb834120fdad7357f43c22fd5289a/support/HURO_C3_EPOCH6_CONFIG.json",
+          "sha256": "7a389f4afc793af38f0902a96472c948420fb834120fdad7357f43c22fd5289a"
+        },
+        {
+          "bytes": 5025,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/873b2414dc6c0f9e6f072c78122d2c3738d7e5b2cef0eb857a6d8180c44443c5/support/HURO_WRIST_OBJECTIVE_AUDIT_EPOCH6.json",
+          "sha256": "873b2414dc6c0f9e6f072c78122d2c3738d7e5b2cef0eb857a6d8180c44443c5"
+        },
+        {
+          "bytes": 2340,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/5316424b245d13b416c7e95d385ffce3d1e2a064e5042af281015754d9fa4e86/support/KAIHAND_ADAPTER_V3_MOUNT_CONTRACT.json",
+          "sha256": "5316424b245d13b416c7e95d385ffce3d1e2a064e5042af281015754d9fa4e86"
+        },
+        {
+          "bytes": 2995,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/cb54159804cf4fbb873cfcf6cc760babc060c667363b832840da88bbb7cc5a8f/support/LANDMARK_C3_EPOCH6_CONFIG.json",
+          "sha256": "cb54159804cf4fbb873cfcf6cc760babc060c667363b832840da88bbb7cc5a8f"
+        },
+        {
+          "bytes": 3541,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/f8583bee2f474ad1285eac904d541ed5c9ac22f260be95bb115944966bfc92d3/support/LANDMARK_C3_FULL_EPOCH6_CONFIG.json",
+          "sha256": "f8583bee2f474ad1285eac904d541ed5c9ac22f260be95bb115944966bfc92d3"
+        },
+        {
+          "bytes": 1696,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/63085c382c0c747bf11fbc19ce59d6ec0372bb64c594c65cfe158ef22e5d786e/support/PROJECTION_AUDIT_EPOCH4_CONFIG.json",
+          "sha256": "63085c382c0c747bf11fbc19ce59d6ec0372bb64c594c65cfe158ef22e5d786e"
+        },
+        {
+          "bytes": 1212,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/5c441ec3b1b1dcaf0e570027fd9353291f41f8006ca50a4f45ce4e5cb991c9dc/support/ROBOT_SCENE_CANARY_007.json",
+          "sha256": "5c441ec3b1b1dcaf0e570027fd9353291f41f8006ca50a4f45ce4e5cb991c9dc"
+        },
+        {
+          "bytes": 1194,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/40a83dc402677a14650c387ac33fad6e454b52c2d00e7d3434d2a60e0530c693/support/ROBOT_SCENE_CANARY_031.json",
+          "sha256": "40a83dc402677a14650c387ac33fad6e454b52c2d00e7d3434d2a60e0530c693"
+        },
+        {
+          "bytes": 1227,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/0400b27f6e1d45aa3a74084a71414a5da33bb190a3eca861d9e190233d5b9b92/support/ROBOT_SCENE_CHIRALITY_007.json",
+          "sha256": "0400b27f6e1d45aa3a74084a71414a5da33bb190a3eca861d9e190233d5b9b92"
+        },
+        {
+          "bytes": 1231,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/809e0ec381821ccb0eceddbc51237e6f76cd4e20c6e8ec3d41b46e9565f63e88/support/ROBOT_SCENE_MOUNT2_007.json",
+          "sha256": "809e0ec381821ccb0eceddbc51237e6f76cd4e20c6e8ec3d41b46e9565f63e88"
+        },
+        {
+          "bytes": 1325,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/2cf04e16abed21126bb13e3425b53162081cc435628d51fcf40a1afc7680c966/support/SOURCE_REVIEW031_EPOCH7_CONFIG.json",
+          "sha256": "2cf04e16abed21126bb13e3425b53162081cc435628d51fcf40a1afc7680c966"
+        },
+        {
+          "bytes": 16218,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/2d4effe568d1d6c9ad410be213064f748c580fed5c0b7ed5ad0ab2a0eb5cb639/src/chaoyang/ops/run_pico_manus_alignment_v3.py",
+          "sha256": "2d4effe568d1d6c9ad410be213064f748c580fed5c0b7ed5ad0ab2a0eb5cb639"
+        },
+        {
+          "bytes": 10476,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/39b892cd2b1de643aaa7e5bac5f98852f410fb91d8e78bb622b35064f57e6317/src/chaoyang/pipeline/pico_manus_alignment_v3.py",
+          "sha256": "39b892cd2b1de643aaa7e5bac5f98852f410fb91d8e78bb622b35064f57e6317"
+        },
+        {
+          "bytes": 5386,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/7edf549e534e78abac55e26c8d3aecee73165018ca79532dd67e007ad7767bdc/support/test_pico_manus_alignment_contract_v3.py",
+          "sha256": "7edf549e534e78abac55e26c8d3aecee73165018ca79532dd67e007ad7767bdc"
+        },
+        {
+          "bytes": 1465,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/25d0548447ca73b1fdd4b50ab4ed98e62bc3cd6945206df7efd68feb17878a78/support/test_pico_manus_alignment_v3.py",
+          "sha256": "25d0548447ca73b1fdd4b50ab4ed98e62bc3cd6945206df7efd68feb17878a78"
+        },
+        {
+          "bytes": 4240,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/687d3cc5da74d365e724202d64cf93274a67528ca9e22bd7007ad16d570f6b0d/src/chaoyang/ops/run_encoded_stereo_canary_v3.py",
+          "sha256": "687d3cc5da74d365e724202d64cf93274a67528ca9e22bd7007ad16d570f6b0d"
+        },
+        {
+          "bytes": 8280,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/d107bf38924baeefe7eb1e0c433d0f8bce11b464c21ff65c7f7c0678c7b9d7ab/src/chaoyang/ops/run_exact_source_domain_v3.py",
+          "sha256": "d107bf38924baeefe7eb1e0c433d0f8bce11b464c21ff65c7f7c0678c7b9d7ab"
+        },
+        {
+          "bytes": 19562,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/c6d9ac6ec915f537644472df4905c89e6e6b8fb151f9aa63139f29f5d68bec78/src/chaoyang/ops/run_full_pipeline_scene_stages_v3.py",
+          "sha256": "c6d9ac6ec915f537644472df4905c89e6e6b8fb151f9aa63139f29f5d68bec78"
+        },
+        {
+          "bytes": 9253,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/205f5ea2344c88ab2232a820a5ea136a363197974680d3eb7f483d8377f72c9b/src/chaoyang/ops/run_scene_clean_geometry_v3.py",
+          "sha256": "205f5ea2344c88ab2232a820a5ea136a363197974680d3eb7f483d8377f72c9b"
+        },
+        {
+          "bytes": 2113,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/1ac78ded22d15e7a49d87c452242a5587c6c1f9e97c3ea6b58afad7b6d10a280/src/chaoyang/ops/run_scene_completed_role_manifest_v3.py",
+          "sha256": "1ac78ded22d15e7a49d87c452242a5587c6c1f9e97c3ea6b58afad7b6d10a280"
+        },
+        {
+          "bytes": 3441,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e764b37bec90a2c7d8a322239690ab8ca17d7aeac60f303efcc6d199f9fbb547/src/chaoyang/ops/run_scene_depth_preview_v3.py",
+          "sha256": "e764b37bec90a2c7d8a322239690ab8ca17d7aeac60f303efcc6d199f9fbb547"
+        },
+        {
+          "bytes": 4017,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/988ced38a8695e68e0cdc687780c76ef88ea9d8cbcf818f9cb5595717941324d/src/chaoyang/ops/run_scene_mask_recovery_join_v3.py",
+          "sha256": "988ced38a8695e68e0cdc687780c76ef88ea9d8cbcf818f9cb5595717941324d"
+        },
+        {
+          "bytes": 2964,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/46e00b3e96897f77bb855ff1e09f46a0a0189d4205da4ad4e2b0d4d29fa1bd34/src/chaoyang/ops/run_scene_sparse_geometry_v3.py",
+          "sha256": "46e00b3e96897f77bb855ff1e09f46a0a0189d4205da4ad4e2b0d4d29fa1bd34"
+        },
+        {
+          "bytes": 5486,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/d1f85884870a4cd9f8d723418ae6460c2320035ccf0cdf115406d8b099c29726/src/chaoyang/ops/run_scene_stereo_canary_v3.py",
+          "sha256": "d1f85884870a4cd9f8d723418ae6460c2320035ccf0cdf115406d8b099c29726"
+        },
+        {
+          "bytes": 6579,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/8bb2c4fca6c8395ab459bf3b1882251100365356fde300172150f360df94c099/src/chaoyang/ops/run_scene_stereo_depth_v3.py",
+          "sha256": "8bb2c4fca6c8395ab459bf3b1882251100365356fde300172150f360df94c099"
+        },
+        {
+          "bytes": 5863,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/3e366678b09650c3150bb025cbd41635bb2894d0b5bd9816d1c617a22db83ec1/src/chaoyang/pipeline/scene_stages_v3.py",
+          "sha256": "3e366678b09650c3150bb025cbd41635bb2894d0b5bd9816d1c617a22db83ec1"
+        },
+        {
+          "bytes": 4475,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/69e77371b650686f2c8ae931292e6c828da3cb4ce1885c3384c41f06ee2c4eeb/support/test_scene_stages_v3.py",
+          "sha256": "69e77371b650686f2c8ae931292e6c828da3cb4ce1885c3384c41f06ee2c4eeb"
+        },
+        {
+          "bytes": 4921,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/27b0ed44ea9501c61b8623152476f844fd6235910b120770f7b603078b02b63f/src/chaoyang/ops/audit_kaihand_adapter_interfaces_v3.py",
+          "sha256": "27b0ed44ea9501c61b8623152476f844fd6235910b120770f7b603078b02b63f"
+        },
+        {
+          "bytes": 5359,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/ad163c32430b855e47879151c358630e8803d661229d7844376d201d4cc9f7fc/src/chaoyang/ops/prepare_hawor_roi_component_c2.py",
+          "sha256": "ad163c32430b855e47879151c358630e8803d661229d7844376d201d4cc9f7fc"
+        },
+        {
+          "bytes": 6044,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e2f7051db9c8ba62e2cd91924d2001854277f9e6ed500e1eaf930e57bd1e2532/src/chaoyang/ops/run_asset_landmark_reference_v3.py",
+          "sha256": "e2f7051db9c8ba62e2cd91924d2001854277f9e6ed500e1eaf930e57bd1e2532"
+        },
+        {
+          "bytes": 3656,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/74c6cc610a5589f2cfc54541c06f3ac764315cacc28da06f4c937caded9ebc15/src/chaoyang/ops/run_asset_reference_review_v3.py",
+          "sha256": "74c6cc610a5589f2cfc54541c06f3ac764315cacc28da06f4c937caded9ebc15"
+        },
+        {
+          "bytes": 6402,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e9206f84f27e4746d0742bd6a9e8d5d2f5739b3f024566dfc7fc26aaadebd422/src/chaoyang/ops/run_camera_regression_v3.py",
+          "sha256": "e9206f84f27e4746d0742bd6a9e8d5d2f5739b3f024566dfc7fc26aaadebd422"
+        },
+        {
+          "bytes": 4163,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/f51b0ad55dbe9d9e4ebcbd591d48968b386b43a0b2dc0630151ec23c7779681b/src/chaoyang/ops/run_distal_observability_audit_v3.py",
+          "sha256": "f51b0ad55dbe9d9e4ebcbd591d48968b386b43a0b2dc0630151ec23c7779681b"
+        },
+        {
+          "bytes": 7091,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/7382d22dccc7860dd2e999ca125653529471266064075ea7c8e82558306f28d8/src/chaoyang/ops/run_fair_robot_comparison_v3.py",
+          "sha256": "7382d22dccc7860dd2e999ca125653529471266064075ea7c8e82558306f28d8"
+        },
+        {
+          "bytes": 10717,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/969c9612ca5976dda067a05f02c1b0ac883aeed658c5dae51a873360feeebd8d/src/chaoyang/ops/run_hawor_roi_full_pipeline_v3.py",
+          "sha256": "969c9612ca5976dda067a05f02c1b0ac883aeed658c5dae51a873360feeebd8d"
+        },
+        {
+          "bytes": 14920,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/0fdb52def686786715094dc97ecdf0162a39d428db46557ffc0b7d8d19cbd7b7/src/chaoyang/ops/run_huro_bounded_core_v3.py",
+          "sha256": "0fdb52def686786715094dc97ecdf0162a39d428db46557ffc0b7d8d19cbd7b7"
+        },
+        {
+          "bytes": 12074,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e973258a4dd55d29ff0a471cc24211d438b5b8c34527808d6d6085bd792e8e61/src/chaoyang/ops/run_huro_fixed_placement_core_v2.py",
+          "sha256": "e973258a4dd55d29ff0a471cc24211d438b5b8c34527808d6d6085bd792e8e61"
+        },
+        {
+          "bytes": 4776,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/65e0802008f00265d351e7efd3ed76dc4328304306d01b1ad012fad35ed2f827/src/chaoyang/ops/run_landmark_camera_full_v3.py",
+          "sha256": "65e0802008f00265d351e7efd3ed76dc4328304306d01b1ad012fad35ed2f827"
+        },
+        {
+          "bytes": 7460,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/8e628683941db68854126d8fc0e720133a927d42535797b6f3a75858ded47ba2/src/chaoyang/ops/run_landmark_candidate_probe_v3.py",
+          "sha256": "8e628683941db68854126d8fc0e720133a927d42535797b6f3a75858ded47ba2"
+        },
+        {
+          "bytes": 7669,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/afe2ecbab7751d705bfd12d53406375df85fa192f9621989b6744ea8d61724f1/src/chaoyang/ops/run_projection_chain_audit_v3.py",
+          "sha256": "afe2ecbab7751d705bfd12d53406375df85fa192f9621989b6744ea8d61724f1"
+        },
+        {
+          "bytes": 4407,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e7ae87426ea8e42ddfd064ff3ab2f41015777b6c291862bee2834db41e80be2d/src/chaoyang/ops/run_robot_assembly_review_v3.py",
+          "sha256": "e7ae87426ea8e42ddfd064ff3ab2f41015777b6c291862bee2834db41e80be2d"
+        },
+        {
+          "bytes": 9986,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/bbe353ff7f0a2267c8240d3cfe6450f02006fae6d6c62ef551cd13906183bc07/src/chaoyang/ops/run_robot_scene_canary_v3.py",
+          "sha256": "bbe353ff7f0a2267c8240d3cfe6450f02006fae6d6c62ef551cd13906183bc07"
+        },
+        {
+          "bytes": 17662,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/bc82ee034587ca39b9c93698f09cb58f191cc452a94deb57c7071f51ec445222/src/chaoyang/ops/run_robot_scene_composite_v3.py",
+          "sha256": "bc82ee034587ca39b9c93698f09cb58f191cc452a94deb57c7071f51ec445222"
+        },
+        {
+          "bytes": 6634,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/95900216d17c255a723941bc303a079904f12b8c5671c545ada828d82f2af3c3/src/chaoyang/ops/run_source_regression_review_v3.py",
+          "sha256": "95900216d17c255a723941bc303a079904f12b8c5671c545ada828d82f2af3c3"
+        },
+        {
+          "bytes": 2048,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/9da2c2d677826e366a1e81c3341d262edcfc6cce66d06cc1d3b075fcf8a9264e/src/chaoyang/pipeline/asset_surface_reference_v3.py",
+          "sha256": "9da2c2d677826e366a1e81c3341d262edcfc6cce66d06cc1d3b075fcf8a9264e"
+        },
+        {
+          "bytes": 11905,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/1ff0777744ef807a4db81792cdcdd1802b8c0586bac37e03f8dfe61f3234a17c/src/chaoyang/pipeline/camera_robot_motion_v3.py",
+          "sha256": "1ff0777744ef807a4db81792cdcdd1802b8c0586bac37e03f8dfe61f3234a17c"
+        },
+        {
+          "bytes": 1745,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/aad797f39085ca1fc9b6a30ae41101804a0e9acc9f3210fd05a8d1b58ab908b2/src/chaoyang/pipeline/hand_landmark_adapter_v3.py",
+          "sha256": "aad797f39085ca1fc9b6a30ae41101804a0e9acc9f3210fd05a8d1b58ab908b2"
+        },
+        {
+          "bytes": 2889,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/1b693f5787fbd7132ae4811f05adab3afe743b155810f412d69023db0dc11835/src/chaoyang/pipeline/hand_reference_contract_v3.py",
+          "sha256": "1b693f5787fbd7132ae4811f05adab3afe743b155810f412d69023db0dc11835"
+        },
+        {
+          "bytes": 6502,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/7cec282267837711c75740370305814f4adcc7654b8dcf87724f67169c47b2ee/src/chaoyang/pipeline/huro_bounded_adapter_v3.py",
+          "sha256": "7cec282267837711c75740370305814f4adcc7654b8dcf87724f67169c47b2ee"
+        },
+        {
+          "bytes": 6617,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/dd586371c582eeb53f4ae91a1302b075baea794bfb753507a44aafa9f5687f3d/src/chaoyang/pipeline/pairwise_collision_v3.py",
+          "sha256": "dd586371c582eeb53f4ae91a1302b075baea794bfb753507a44aafa9f5687f3d"
+        },
+        {
+          "bytes": 12512,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/7f3506b6868dd72841f3af1d2d58c37f51288fa48a61276a28b9853e14792543/src/chaoyang/pipeline/robot_scene_camera_v3.py",
+          "sha256": "7f3506b6868dd72841f3af1d2d58c37f51288fa48a61276a28b9853e14792543"
+        },
+        {
+          "bytes": 1289,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/53564d36e516dab4d9662ae31dbf28d41774618111819474d676d6c6325cb4ce/support/test_asset_surface_reference_v3.py",
+          "sha256": "53564d36e516dab4d9662ae31dbf28d41774618111819474d676d6c6325cb4ce"
+        },
+        {
+          "bytes": 2081,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/e5eb872067701371bfdf0091a49a11e7c4402c2bb36166aecbd465b17f9a9816/support/test_camera_regression_v3.py",
+          "sha256": "e5eb872067701371bfdf0091a49a11e7c4402c2bb36166aecbd465b17f9a9816"
+        },
+        {
+          "bytes": 1170,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/38b54b210dc568b70fc3d0f5cc2077bbb2d9a34122763f1ccf66376a8160b7ad/support/test_fair_robot_comparison_v3.py",
+          "sha256": "38b54b210dc568b70fc3d0f5cc2077bbb2d9a34122763f1ccf66376a8160b7ad"
+        },
+        {
+          "bytes": 1558,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/a3cd98ab5f224783d8dc992493c95bc256e7bca2d0e060033f7acbb3e802d516/support/test_hand_landmark_adapter_v3.py",
+          "sha256": "a3cd98ab5f224783d8dc992493c95bc256e7bca2d0e060033f7acbb3e802d516"
+        },
+        {
+          "bytes": 2453,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/84103cc545dc1066681f9aa816b62eac4de203f7f4ed2385d1bb805b62157e75/support/test_hand_reference_contract_v3.py",
+          "sha256": "84103cc545dc1066681f9aa816b62eac4de203f7f4ed2385d1bb805b62157e75"
+        },
+        {
+          "bytes": 930,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/2c8b853d7674b7c2efdd392431742088902f1eedc223ed04064ae2afff69b529/support/test_huro_missing_side_v3.py",
+          "sha256": "2c8b853d7674b7c2efdd392431742088902f1eedc223ed04064ae2afff69b529"
+        },
+        {
+          "bytes": 985,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/53a8cfb52e80ecf97428fd22dec93907a099460419b873e8f2456bf5799c3bd9/support/test_projection_chain_audit_v3.py",
+          "sha256": "53a8cfb52e80ecf97428fd22dec93907a099460419b873e8f2456bf5799c3bd9"
+        },
+        {
+          "bytes": 3483,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/3af1e7eae3c03d7a6f8fb62ecc6dd8f76176704a962a735dc9cfa174668b7bb1/support/test_robot_scene_camera_v3.py",
+          "sha256": "3af1e7eae3c03d7a6f8fb62ecc6dd8f76176704a962a735dc9cfa174668b7bb1"
+        },
+        {
+          "bytes": 4535,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/31e4943162f8ddb6f06946c10aaaf266d05e3d23f3ba4c48e6ec7aefe530e2db/support/test_robot_scene_composite_v3.py",
+          "sha256": "31e4943162f8ddb6f06946c10aaaf266d05e3d23f3ba4c48e6ec7aefe530e2db"
+        },
+        {
+          "bytes": 1192,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/b5796d6daf3de6b48ceefc5c5e528683e6e838fd46f7084cad2783dcf37b1e98/support/test_source_regression_review_v3.py",
+          "sha256": "b5796d6daf3de6b48ceefc5c5e528683e6e838fd46f7084cad2783dcf37b1e98"
+        },
+        {
+          "bytes": 5359,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/ad163c32430b855e47879151c358630e8803d661229d7844376d201d4cc9f7fc/src/chaoyang/ops/prepare_hawor_roi_component_c2.py",
+          "sha256": "ad163c32430b855e47879151c358630e8803d661229d7844376d201d4cc9f7fc"
+        },
+        {
+          "bytes": 4853,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/bad22412366df99ca22cda85e128f8a40a6a7ecde77cc8b0f0353b255b1bcc65/src/chaoyang/ops/run_frozen_bounded_camera_adapter_v3.py",
+          "sha256": "bad22412366df99ca22cda85e128f8a40a6a7ecde77cc8b0f0353b255b1bcc65"
+        },
+        {
+          "bytes": 10717,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/969c9612ca5976dda067a05f02c1b0ac883aeed658c5dae51a873360feeebd8d/src/chaoyang/ops/run_hawor_roi_full_pipeline_v3.py",
+          "sha256": "969c9612ca5976dda067a05f02c1b0ac883aeed658c5dae51a873360feeebd8d"
+        },
+        {
+          "bytes": 3603,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/5cdf8da91b42b4b3b368cf08a2f1126e51386f7de1bdf5711348cd71f30292f6/src/chaoyang/ops/run_hawor_roi_review_v3.py",
+          "sha256": "5cdf8da91b42b4b3b368cf08a2f1126e51386f7de1bdf5711348cd71f30292f6"
+        },
+        {
+          "bytes": 12051,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/446121b1c0c3f7bd278b0fd53d86850762eb1c05b50be2b9e133413c7c456c40/src/chaoyang/ops/run_huro_bounded_core_v3.py",
+          "sha256": "446121b1c0c3f7bd278b0fd53d86850762eb1c05b50be2b9e133413c7c456c40"
+        },
+        {
+          "bytes": 2652,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/9a85ff4a70806c5929ae36ec3540a5a74b5316094571e8b69988b8c6d0defdb2/src/chaoyang/ops/run_robot_camera_motion_v3.py",
+          "sha256": "9a85ff4a70806c5929ae36ec3540a5a74b5316094571e8b69988b8c6d0defdb2"
+        },
+        {
+          "bytes": 11641,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/66022a1421ec9f611b972a792ead4324935439201f6181a2204e4bd5d09302ec/src/chaoyang/pipeline/camera_robot_motion_v3.py",
+          "sha256": "66022a1421ec9f611b972a792ead4324935439201f6181a2204e4bd5d09302ec"
+        },
+        {
+          "bytes": 6502,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/7cec282267837711c75740370305814f4adcc7654b8dcf87724f67169c47b2ee/src/chaoyang/pipeline/huro_bounded_adapter_v3.py",
+          "sha256": "7cec282267837711c75740370305814f4adcc7654b8dcf87724f67169c47b2ee"
+        },
+        {
+          "bytes": 2202,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/5959c8a45b635a887c0e612c1696f4c9492ec8eebc63ddf2df29c2eb0ded1491/support/test_exact_bounded_adapter_v3.py",
+          "sha256": "5959c8a45b635a887c0e612c1696f4c9492ec8eebc63ddf2df29c2eb0ded1491"
+        },
+        {
+          "bytes": 9159,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/b349f63c15c76683c46c4d5ac6813024343927271e6198f8d5abd62f17aa3a24/support/test_motion_full_pipeline_v3.py",
+          "sha256": "b349f63c15c76683c46c4d5ac6813024343927271e6198f8d5abd62f17aa3a24"
+        },
+        {
+          "bytes": 937,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/f87dece1fa3cb0481f7f873d3e969c754fbfaaf33f969ec52241adf1d5bf2185/support/test_roi_component_c2.py",
+          "sha256": "f87dece1fa3cb0481f7f873d3e969c754fbfaaf33f969ec52241adf1d5bf2185"
+        },
+        {
+          "bytes": 3684,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/641bc4ccda64cb46c2b14fc7bcc3fb179999b35b5d9f6e8ce980e451c417ca9d/support/README_ZH.md",
+          "sha256": "641bc4ccda64cb46c2b14fc7bcc3fb179999b35b5d9f6e8ce980e451c417ca9d"
+        },
+        {
+          "bytes": 1693,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/1b9ef7972f0c959c24c53fef80e977d50800a20029fae8cca6b6fa3e938185b0/src/chaoyang/governance/build_full_pipeline_v3_status.py",
+          "sha256": "1b9ef7972f0c959c24c53fef80e977d50800a20029fae8cca6b6fa3e938185b0"
+        },
+        {
+          "bytes": 1270,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/10189ac6836ea6f782bb5232dc3f2477bf36066ef6edb2d1b9abbf0bb0a81d79/src/chaoyang/governance/full_pipeline_v3_contract.py",
+          "sha256": "10189ac6836ea6f782bb5232dc3f2477bf36066ef6edb2d1b9abbf0bb0a81d79"
+        },
+        {
+          "bytes": 6537,
+          "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/code_snapshots/ff51c6c4e254ad08728e5ae8f79730595454a89288313910d2469d8537a64ec8/src/chaoyang/ops/audit_kaihand_adapter_step_v1.py",
+          "sha256": "ff51c6c4e254ad08728e5ae8f79730595454a89288313910d2469d8537a64ec8"
+        }
+      ],
+      "code_registry": {
+        "bytes": 79438,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/CODE_REGISTRY.json",
+        "sha256": "87499e3953b41f6589c06e73d7427a09fba1cf747cf191159860d8dc2163299a"
+      },
+      "control_ground_truth": false,
+      "execution_scope": "ORIGINAL_SCENE_FULL_PIPELINE_VISUAL_RESEARCH",
+      "gpu_concurrent_owners_max": 1,
+      "operation_policy": "EXPLICIT_SHA_BOUND_CODE_ONLY",
+      "physical_deployment_authorized": false,
+      "task_packet": {
+        "bytes": 3945,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_full_pipeline_v3/TASK_PACKET.json",
+        "sha256": "893e406a21c626d585b02a2ff38a3ba1da124c30b9649a4b5fccba76a741613f"
+      },
+      "training_eligible": false,
+      "weights": "EXISTING_PINNED_MODELS_ONLY"
     },
     "four_stream_pretraining_baseline_v32": {
       "authority_separation": [
@@ -474,6 +972,105 @@
       "weights": "ABSENT_AT_PARENT_EACH_CHILD_ONE_PINNED_WEIGHT_OR_ABSENT",
       "wujihand_status": "BLOCKED_ROBOT_ASSET"
     },
+    "four_stream_v4_takeover_v2": {
+      "claim_limit": "Registered route/input audit and bounded lane execution only; no quality, training, control or physical authority.",
+      "code_closure": [
+        {
+          "bytes": 10729,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_v4_takeover_v2.py",
+          "sha256": "b658ffd5078dde9a365f3b596a58a3a79a59f9ebe592ece65e265dda6201051a"
+        },
+        {
+          "bytes": 14193,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_huro_wrist_pose_refinement_v4.py",
+          "sha256": "ff5029089bc150e6760bb0943c2c058dc250f386079d5b8231416ef33c4db99a"
+        }
+      ],
+      "execution_scope": "FOUR_ISOLATED_LANES_DEVELOPMENT_ONLY",
+      "execution_status": "CURRENT_BOUNDED_TASK"
+    },
+    "four_stream_visual_delivery_v5": {
+      "claim_limit": "V5 delivered 11 diagnostic MP4 and no Clean/Robot product; Scene quality C. No causal training, contact truth, control or physical authority.",
+      "code_closure": [
+        {
+          "bytes": 5731,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_v5_setup.py",
+          "sha256": "90bb2365e2b6632dc0f21c2948793a03cfb9ad51f9a1d4d5959f149b188ca201"
+        },
+        {
+          "bytes": 8966,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_sensor.py",
+          "sha256": "18b77e1a555c4fe3bc4bbe0d9b07711fc4317d874e1863e0c564ba8af6222abe"
+        },
+        {
+          "bytes": 14030,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_sensor.py",
+          "sha256": "bcf334cbed8d6df8e2276dfd1adfc332b16d57ad09c5d85d904b06210cb16665"
+        },
+        {
+          "bytes": 10759,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_motion.py",
+          "sha256": "cb115a001c8d7b77af4fd6577ddf738a4f73f4d3d4b7f10d5e213405aeba12ed"
+        },
+        {
+          "bytes": 585,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_motion.py",
+          "sha256": "608eda928622b431e8929ed692d36b08ec67ffd47f88b1f9f1812c76eb55ddc0"
+        },
+        {
+          "bytes": 11536,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_scene.py",
+          "sha256": "90b53ebbcc23275951fad9edd6a977d7e249d0dbba909889756800274f8ee24b"
+        },
+        {
+          "bytes": 25757,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_scene.py",
+          "sha256": "cb070046f9e71f6183fa5eb30632087a6c0b509becb92b17e8ea7bce456fa24a"
+        },
+        {
+          "bytes": 17136,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_product.py",
+          "sha256": "e921a67ac29d692709cbc2afcd1ae3263c487a788f12a98c45d16f350541be6f"
+        },
+        {
+          "bytes": 28301,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_baseline_v1.py",
+          "sha256": "081ac25d5116d2294f4b22fda4bd1562d9a6bb07186e00fee4677e1c69944ea8"
+        },
+        {
+          "bytes": 21983,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_huro.py",
+          "sha256": "c279ac1ff87a9aa3f11bafce142d14399a67bc4033e8e16d8e62e91be90fc9d5"
+        },
+        {
+          "bytes": 11112,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_exact_motion.py",
+          "sha256": "726c35b07d13759767d4b1114dfaadaf9f55d574feda2397cc1b9c190b183c67"
+        },
+        {
+          "bytes": 562,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_exact_motion.py",
+          "sha256": "0f54482f852cfbe1ebe0252f1135a14a47fac273c18a2149717ea3fdb742a43c"
+        },
+        {
+          "bytes": 4457,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_scene_diagnostic_prepare.py",
+          "sha256": "630bcf75d62256be095a547514796c22b16ac09f315db95d903a405fe554bea0"
+        },
+        {
+          "bytes": 7257,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_huro_raw_comparison_review.py",
+          "sha256": "451bf79cf6e138e0dd6bdf94ff3e57f4db625949cdc9b9afbba476f16bfba141"
+        },
+        {
+          "bytes": 6506,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_exact_r0_raw_review.py",
+          "sha256": "80a65ac8a2b1f6020dadccc6f01c57b822a581597fa93eed4cbfe32ccab1d57f"
+        }
+      ],
+      "execution_scope": "SHARED_SCENE_HUMAN_TO_ROBOT_BASELINE_V1",
+      "execution_status": "FAILED_QUALITY_C_TERMINAL"
+    },
     "handle_data_cleaning_v3": {
       "claim_limit": "Raw tactile integrity/activity and declared modality completeness only; not calibrated force, contact truth, or physical accuracy.",
       "code_closure": [
@@ -511,9 +1108,9 @@
         "session_count": 681
       },
       "current_document": {
-        "bytes": 5161,
+        "bytes": 5276,
         "path": "/mnt/workspace/code/chaoyang/docs/current/DATA_CLEANING_0911_0915_ZH.md",
-        "sha256": "9d7de80cc8ae3b10ed903ab053e51e834ba04d8213f14d25941c820993928e07"
+        "sha256": "e80c64ee9e0005a22465631e45d2357b1e412be6f7b8c355a479ed6d8b471cca"
       },
       "execution_status": "COMPLETE_NO_ACTIVE_TASK",
       "gpu_required": false,
@@ -570,6 +1167,1168 @@
       "gpu_required": true,
       "input_domain": "PHYSICAL_LEFT_SOURCEINDEX1_PASSTHROUGH_RESIZE_ONLY",
       "weights": "ONE_LOGICAL_HAWOR_INFERENCE_BUNDLE_V1"
+    },
+    "human_to_robot_007_attachment_clean_canary": {
+      "claim_limit": "Real changed-input 16-frame ProPainter candidate rejected for brown arm ghost and cable/attachment residue; object overlap unresolved, no full Clean or product adoption.",
+      "code_closure": [
+        {
+          "bytes": 8906,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_attachment_clean_canary.py",
+          "sha256": "5004ba27abb3dee0fdf71309d650e052d8cdf30eabef725f83323144ec6a1ba6"
+        },
+        {
+          "bytes": 13610,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_attachment_clean_canary.py",
+          "sha256": "f903b2ccf11224b877fbefef661722b14e1ead97165385e9cad8f2015c9933df"
+        },
+        {
+          "bytes": 8344,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_attachment_clean_canary.py",
+          "sha256": "c75aba36957c32171aa1ee158ed77ee74dd830a06cb83d23f55eebb205060ea6"
+        },
+        {
+          "bytes": 6564,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_source_coverage_rebind_007.py",
+          "sha256": "f10273e9587b21ee828e078e44b3b98437bc74b16c5ff57610f0c6957410d3e7"
+        },
+        {
+          "bytes": 2860,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_attachment_clean_canary.py",
+          "sha256": "6e61eecd634d17591690eea9cd76182b28aac7cc07e28546f667d9ac1f694739"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FIXED_16_FRAME_007_ATTACHMENT_REBOUND_PROPAINTER_CANARY",
+      "execution_status": "TERMINAL_REJECTED_QUALITY_16_FRAME",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_attachment_clean_canary_20260923",
+      "training_eligible": false,
+      "weights": "PINNED_PROPAINTER_THREE_WEIGHTS"
+    },
+    "human_to_robot_007_cross_eye_source_probe": {
+      "claim_limit": "A four-frame cross-eye source diagnostic only; no Clean, hidden background truth or metric depth authority.",
+      "code_closure": [
+        {
+          "bytes": 8852,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_cross_eye_source_probe.py",
+          "sha256": "5d7e1c8aee5a3b09ad0dcecb4a4b2bd60bb6ec123699a6d11569ce51dd504d99"
+        },
+        {
+          "bytes": 6758,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_cross_eye_source_probe.py",
+          "sha256": "73d8001c69f9ab18374e6c53afa05ef1ffbe2683a095f8c0af934dfba5d8fb29"
+        },
+        {
+          "bytes": 6976,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_cross_eye_source_probe.py",
+          "sha256": "148f55922bfebcd9d269624e55ab7db63c66f759507e0370df3a7c218e9920d6"
+        },
+        {
+          "bytes": 9885,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py",
+          "sha256": "e8e7cce40dd01644ae6de1419b42c324aba74c748066973c6ec678e20934900a"
+        },
+        {
+          "bytes": 7139,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_late_donor_probe.py",
+          "sha256": "cd20c638ee6a8bbbce4ad1e5d63ad923173ea4f8a56e0a00481aaa2cae70e1b0"
+        },
+        {
+          "bytes": 9314,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_spatial_donor_check.py",
+          "sha256": "44c26a54b536fdcd1895ff43802aed6e6e8d3d6c7b3c2be02d5dcc275b1be038"
+        },
+        {
+          "bytes": 1294,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_cross_eye_source_probe.py",
+          "sha256": "99b20f054eb84cffc0f21cff1122b51c295946d2366ffe774e9d0b44ac736022"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FOUR_FROZEN_007_SAME_FRAME_PHYSICAL_RIGHT_TO_LEFT_TABLE_SOURCE_CHECK",
+      "execution_status": "TERMINAL_4_FRAME_GEOMETRY_REJECTED_NO_PRODUCT_AUTHORITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_cross_eye_source_probe_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY"
+    },
+    "human_to_robot_007_device_donor_probe": {
+      "claim_limit": "Fixed-frame device support and planar donor probe only; no full Clean or product adoption.",
+      "code_closure": [
+        {
+          "bytes": 8542,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_device_donor_probe.py",
+          "sha256": "ce07e2e81387b5990147e498043b9651d0b1b14f38600fba295cedffa7304f4e"
+        },
+        {
+          "bytes": 9885,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py",
+          "sha256": "e8e7cce40dd01644ae6de1419b42c324aba74c748066973c6ec678e20934900a"
+        },
+        {
+          "bytes": 6692,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_device_donor_probe.py",
+          "sha256": "16c1b53f9321213c341c77bca3731b7fcab3d4bc4eedc3f5629a2c30136708b2"
+        },
+        {
+          "bytes": 2116,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_device_donor_probe.py",
+          "sha256": "21529820180842b2d9d54c8b7fbc9b80e83fc47dec0c15f3db646336f7e78042"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "BOUNDED_007_DEVICE_SUPPORT_AND_SAME_RECORDING_DONOR_FEASIBILITY",
+      "execution_status": "FINITE_SUCCESSOR_TERMINAL_REJECTED_QUALITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_device_donor_probe_20260923",
+      "training_eligible": false
+    },
+    "human_to_robot_007_late_donor_probe": {
+      "claim_limit": "Two-frame source availability probe; no synthetic pixel, Clean or product quality authority.",
+      "code_closure": [
+        {
+          "bytes": 8829,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_late_donor_probe.py",
+          "sha256": "8be5add33794c786d8806acb3065e3264c952402b3a6ecfb49d59307270825b6"
+        },
+        {
+          "bytes": 7139,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_late_donor_probe.py",
+          "sha256": "cd20c638ee6a8bbbce4ad1e5d63ad923173ea4f8a56e0a00481aaa2cae70e1b0"
+        },
+        {
+          "bytes": 8277,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_late_donor_probe.py",
+          "sha256": "c520d91d0070c854774a4099eb3df5a2f4f4687687636fc084c407fe369d22a5"
+        },
+        {
+          "bytes": 9885,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py",
+          "sha256": "e8e7cce40dd01644ae6de1419b42c324aba74c748066973c6ec678e20934900a"
+        },
+        {
+          "bytes": 938,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_late_donor_probe.py",
+          "sha256": "c514a298998c796d816b35f328aa1b807e0f9fba82ec4676e2eb1262bf2b4221"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "TWO_LATE_007_FRAMES_ALL_OTHER_SESSION_DONOR_SEARCH",
+      "execution_status": "TERMINAL_PASSED_SOURCE_DIAGNOSTIC_ONLY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_late_donor_probe_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY"
+    },
+    "human_to_robot_007_multidonor_table_canary": {
+      "claim_limit": "Executed table-only 16-frame diagnostic rejected for incomplete ghost removal, hard boundaries and zero support in final five frames; no complete Clean or product adoption.",
+      "code_closure": [
+        {
+          "bytes": 8727,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_multidonor_table_canary.py",
+          "sha256": "c6264ea02e2dd5396db96937001860d32bed5b061fac5e827da3e0b0a80444c6"
+        },
+        {
+          "bytes": 11571,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_multidonor_table_canary.py",
+          "sha256": "3d6f11c242806c3d3f121ba7b690e59143d1ab0a65076c6af27c1600b3460e8e"
+        },
+        {
+          "bytes": 7602,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_multidonor_table_canary.py",
+          "sha256": "dcf8e4b93d7bea3a8d3bde23ceb72b968d6c926c48a3df054dff651788d32732"
+        },
+        {
+          "bytes": 9885,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py",
+          "sha256": "e8e7cce40dd01644ae6de1419b42c324aba74c748066973c6ec678e20934900a"
+        },
+        {
+          "bytes": 1493,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_multidonor_table_canary.py",
+          "sha256": "dfb40364e5b0cec58ded6cb15c8fd9a83a7331b117fe15783bc9b99305728f55"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FIXED_16_FRAME_007_MULTIDONOR_TABLE_ONLY_CANARY",
+      "execution_status": "TERMINAL_REJECTED_QUALITY_16_FRAME",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_multidonor_table_canary_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY"
+    },
+    "human_to_robot_007_spatial_donor_check": {
+      "claim_limit": "Matched fit-inlier hull support only; no hidden background, Clean or product quality authority.",
+      "code_closure": [
+        {
+          "bytes": 8877,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_spatial_donor_check.py",
+          "sha256": "1dfbf46e69048b08e87192440210bb690b755d5a8c7434d68a0efc880f43c3c8"
+        },
+        {
+          "bytes": 9314,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_spatial_donor_check.py",
+          "sha256": "44c26a54b536fdcd1895ff43802aed6e6e8d3d6c7b3c2be02d5dcc275b1be038"
+        },
+        {
+          "bytes": 9601,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_spatial_donor_check.py",
+          "sha256": "51d119c8eccca927fd0a02e75507d6f70434fcdde1a6d1dd1cb5413a6c91c658"
+        },
+        {
+          "bytes": 7139,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_late_donor_probe.py",
+          "sha256": "cd20c638ee6a8bbbce4ad1e5d63ad923173ea4f8a56e0a00481aaa2cae70e1b0"
+        },
+        {
+          "bytes": 1782,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_spatial_donor_check.py",
+          "sha256": "6cb8024c4916d04a7bdd5332ec900162a20f3bdbfeeb9e1a67c2a9389daa204d"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "TWELVE_FROZEN_007_DONOR_PAIRS_FIT_INLIER_SPATIAL_SUPPORT",
+      "execution_status": "TERMINAL_PASSED_SPATIAL_DIAGNOSTIC_ONLY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_spatial_donor_check_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY"
+    },
+    "human_to_robot_007_table_donor_expansion": {
+      "claim_limit": "Table-only same-session donor diagnostic; no plate/chips, Clean or product adoption.",
+      "code_closure": [
+        {
+          "bytes": 8529,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_table_donor_expansion.py",
+          "sha256": "3b148ae00fece84927b61db71e9553a9b2c8f35ed2179c979f8724c1c5d06423"
+        },
+        {
+          "bytes": 6149,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_table_donor_expansion.py",
+          "sha256": "8116034e1680ebf75242ce0b2385a8ea3d5563565af9f2f5fa2a573a3616c516"
+        },
+        {
+          "bytes": 7040,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_table_donor_expansion.py",
+          "sha256": "24a25d20cc648cb71d677577496a3323340c6ad61b4e6cf69e9cabf0298537ee"
+        },
+        {
+          "bytes": 9885,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py",
+          "sha256": "e8e7cce40dd01644ae6de1419b42c324aba74c748066973c6ec678e20934900a"
+        },
+        {
+          "bytes": 1521,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_table_donor_expansion.py",
+          "sha256": "39a580a0e8e12b528cc5de8cbae27a3c06d88df81cb498dbc3238404cbac28f4"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FIXED_46_FRAME_SAME_SESSION_TABLE_ONLY_DONOR_PROBE",
+      "execution_status": "FINITE_SUCCESSOR_TERMINAL_TABLE_ONLY_DIAGNOSTIC",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_table_donor_expansion_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_SIFT_ONLY"
+    },
+    "human_to_robot_007_wearable_sam_canary": {
+      "claim_limit": "Raw one-frame wearable instances only; no temporal mask, Clean or product adoption.",
+      "code_closure": [
+        {
+          "bytes": 8605,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_wearable_sam_canary.py",
+          "sha256": "05324aa860d890c168572bdd50aeb5235e663aed98046b93cd5674c1357a3b25"
+        },
+        {
+          "bytes": 10164,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_wearable_sam_canary.py",
+          "sha256": "853d360a3bbfa60bd06ce2328ec06effca47fbf8c963d3c22e4eba3cf0ccae50"
+        },
+        {
+          "bytes": 7622,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_wearable_sam_canary.py",
+          "sha256": "635572fb094b7ce94e76c22ee6f564895c46a1263c1dc7daedb3bcaebe1aeccd"
+        },
+        {
+          "bytes": 2304,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_wearable_sam_canary.py",
+          "sha256": "2b6e3abe8efe8c1a13c54a588f9bfdfef0846b0e34b6f7b17dc9eb7d852d4cba"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "PINNED_SAM31_ONE_FRAME_007_WEARABLE_INSTANCES",
+      "execution_status": "FINITE_SUCCESSOR_TERMINAL_REJECTED_QUALITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_wearable_sam_canary_20260923",
+      "training_eligible": false,
+      "weights": "PINNED_SAM31_MULTIPLEX_SHA256_0567DEBEEC80"
+    },
+    "human_to_robot_007_wearable_seed_refine": {
+      "claim_limit": "Raw one-frame seed/refine instances only; no propagation, Clean or product adoption.",
+      "code_closure": [
+        {
+          "bytes": 8480,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_007_wearable_seed_refine.py",
+          "sha256": "b4f2f4cbe0b48412a266ad5be4a9ba70e95e96084ac29f5a80d56331a5e36596"
+        },
+        {
+          "bytes": 8075,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_wearable_seed_refine.py",
+          "sha256": "ed209a0133f3f9f74123bbb69c9c2632a5ddf2123ca08415155fe814eb05cafc"
+        },
+        {
+          "bytes": 7081,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_007_wearable_seed_refine.py",
+          "sha256": "f607f8bc6e1099b2e636cffbd9a379e2433cf55f11fc29c7074815f03e2f2c1e"
+        },
+        {
+          "bytes": 10164,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_007_wearable_sam_canary.py",
+          "sha256": "853d360a3bbfa60bd06ce2328ec06effca47fbf8c963d3c22e4eba3cf0ccae50"
+        },
+        {
+          "bytes": 1347,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_007_wearable_seed_refine.py",
+          "sha256": "ed88d74458283a0512c875b33a4814e93242600ee49a39123fe14dcc9cee9f6b"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "PINNED_SAM31_ONE_FRAME_007_TEXT_BOX_SEED_POINT_REFINE",
+      "execution_status": "FINITE_SUCCESSOR_TERMINAL_REJECTED_QUALITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_007_wearable_seed_refine_20260923",
+      "training_eligible": false,
+      "weights": "PINNED_SAM31_MULTIPLEX_SHA256_0567DEBEEC80"
+    },
+    "human_to_robot_031_observability_dtype_fix": {
+      "claim_limit": "Correct region-only observability counts; no anatomical side, model pose accuracy or product quality claim.",
+      "code_closure": [
+        {
+          "bytes": 8736,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_031_observability_dtype_fix.py",
+          "sha256": "23e2e8c66d4cba9c2791d6ba4236173d5232b5db63c929567175c71c4f6de43c"
+        },
+        {
+          "bytes": 7429,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_031_observability_dtype_fix.py",
+          "sha256": "3011395d4e5a00753d9fff6a901cbe9e02c5c994eeb03bfd58a916a4773c978e"
+        },
+        {
+          "bytes": 7552,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_031_observability_dtype_fix.py",
+          "sha256": "4d4d0364b0148bbbaa3b710df503a398661726293f56186b631d4f97232e36e0"
+        },
+        {
+          "bytes": 1052,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_031_observability_dtype_fix.py",
+          "sha256": "d0bac60cc8dde17ba21bf2dbe950c3a163969c49545de4926536c4178c790ae6"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "149_FRAME_UINT16_REGION_MASK_DENOMINATOR_CORRECTION_AND_REVIEW",
+      "execution_status": "TERMINAL_149_FRAME_REGION_DENOMINATOR_CORRECTED_NO_POSE_AUTHORITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_031_observability_dtype_fix_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY"
+    },
+    "human_to_robot_031_surface_depth_diagnostic": {
+      "claim_limit": "Fixed-frame same-pixel MANO/Stereo visible-surface Z difference only; no wrist-centre or external metric accuracy authority.",
+      "code_closure": [
+        {
+          "bytes": 8675,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_031_surface_depth_diagnostic.py",
+          "sha256": "d207f1aedeb8691d6504f9658b30e72d1f5eb893bc6855b1f7d9c8b7eed54709"
+        },
+        {
+          "bytes": 12815,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_031_surface_depth_diagnostic.py",
+          "sha256": "b5fa8c40ee62f22c199ab2be22ec5dd0307f47f061a048b30b922537f46ebc01"
+        },
+        {
+          "bytes": 7578,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_031_surface_depth_diagnostic.py",
+          "sha256": "a89290a8bda6b4854ce8ad7d3dcf0d0a8eae82c87e054ddc19ed8a991ff2edd1"
+        },
+        {
+          "bytes": 1303,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_031_surface_depth_diagnostic.py",
+          "sha256": "0c1836a9531886fc4ea0cb3401ebe59f5d7b01d339bce0a661301ce1b21bac18"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FIXED_16_FRAME_031_MANO_STEREO_SAME_PIXEL_SURFACE_DIAGNOSTIC",
+      "execution_status": "TERMINAL_DEVELOPMENT_DIAGNOSTIC_NO_PRODUCT_AUTHORITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_031_surface_depth_diagnostic_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY_FROZEN_OUTPUTS"
+    },
+    "human_to_robot_031_surface_depth_temporal_audit": {
+      "claim_limit": "Visible-card object guard and full-timeline same-pixel model/Stereo surface-Z diagnostic only; no wrist or product promotion.",
+      "code_closure": [
+        {
+          "bytes": 9081,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_031_surface_depth_temporal_audit.py",
+          "sha256": "1c27bf97ee2a91841279eb849413f1ff2298789c52203c6d3b5181726f7e3016"
+        },
+        {
+          "bytes": 13013,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_031_surface_depth_temporal_audit.py",
+          "sha256": "7654b81819d74256f0b2bf63895300695a4c4ef6042d16e404fff2c54d3fb3fa"
+        },
+        {
+          "bytes": 8181,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_031_surface_depth_temporal_audit.py",
+          "sha256": "5701f1e08247a63446ff0eb2def03067907dc90f445bfbcdb2277f69ba5c27b3"
+        },
+        {
+          "bytes": 1077,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_031_surface_depth_temporal_audit.py",
+          "sha256": "1487898f91debc9788d35c7e715d6bc9f8a1482ea94fe9bd1d99136e0aa211d2"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "149_FRAME_031_MANO_STEREO_OBJECT_GUARDED_SURFACE_Z_AUDIT",
+      "execution_status": "TERMINAL_DEVELOPMENT_DIAGNOSTIC_NO_PRODUCT_AUTHORITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_031_surface_depth_temporal_audit_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY_FROZEN_OUTPUTS"
+    },
+    "human_to_robot_10h_delivery": {
+      "claim_limit": "One same-center-input 007 expanded-context Clean canary; all quality, product, and adoption gates remain separate.",
+      "code_closure": [
+        {
+          "bytes": 9846,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_10h_delivery.py",
+          "sha256": "02d6d187a72ef06e5902c40c8a7227197eaaf1b468add0f0240c9f22ee53a293"
+        },
+        {
+          "bytes": 64115,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_10h_007_context.py",
+          "sha256": "84f1ff75567e3b5c8517c1dfbd4b6db3987ce0f269e906911be8415a912b29c6"
+        },
+        {
+          "bytes": 7563,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_10h_007_context.py",
+          "sha256": "4515cd427d54ac3d58ec4fe9eeb78e43e82e7efa358c1a045ae01ec48a1a60f3"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FOUR_LANE_10H_CONSUMER_DELIVERY_ONE_007_CONTEXT_CANDIDATE",
+      "execution_status": "REGISTERED_BOUNDED_CANDIDATE",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_10h_delivery_20260924",
+      "training_eligible": false,
+      "weights": "PINNED_EXISTING_PROPAINTER_THREE_WEIGHTS_FOR_ONE_007_CANDIDATE"
+    },
+    "human_to_robot_baseline_v1_convergence": {
+      "claim_limit": "Finite offline four-lane convergence only. Partial-direction passage does not grant full-pose, collision, contact, control, metric or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 11701,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_baseline_v1_convergence.py",
+          "sha256": "441a564c4d8a433c30efc05d79d69fab70657ec91ad9e19bc4cf5bbb7ce37f41"
+        },
+        {
+          "bytes": 19117,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_convergence_motion_wave0.py",
+          "sha256": "825955829cf05ee4d07f733776e5f47beb242078ea8afb0d8e017b5a4bdce959"
+        },
+        {
+          "bytes": 5013,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/render_human_to_robot_convergence_ik_window.py",
+          "sha256": "45d7a6131f194bd323b71b6177a8551ce2b1c0f07523367edbc51375c0de0d39"
+        },
+        {
+          "bytes": 6451,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_convergence_cable_evidence.py",
+          "sha256": "42a6fb650cd182dc71ea35e333ba289013149f1aabada6955e323dd66a85973f"
+        },
+        {
+          "bytes": 7734,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_convergence_contact_screen.py",
+          "sha256": "c19e5ad03b78457d5010fe86631add8abadad356bba77cd2b7e9518a71345de2"
+        },
+        {
+          "bytes": 8984,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_convergence_sensor_review.py",
+          "sha256": "a4c855a2582f8afa9e745d2e468399693d8a46cf2655b275303dbb86d11cdd70"
+        },
+        {
+          "bytes": 4079,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_convergence_compare_numeric.py",
+          "sha256": "fdeb9d113102a2437eedbac3a979b50376352f908187f8c7cfb8f3cd40e4869f"
+        },
+        {
+          "bytes": 9240,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_convergence_remaining_audits.py",
+          "sha256": "cabef040408f6d43396d92e1b83357ccf1bcbaa069c508eb2ec3d8eae2276754"
+        },
+        {
+          "bytes": 7923,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_human_to_robot_convergence_delivery.py",
+          "sha256": "dededd19b70fb96b51632103e15d5f8e239c163df07388eb926e4fc66d754426"
+        },
+        {
+          "bytes": 14249,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/terminalize_human_to_robot_convergence.py",
+          "sha256": "6260d76df48c50b9a6ca6738b17f02bcbbba2f15d0d54a365feb7f020f5f1332"
+        },
+        {
+          "bytes": 3621,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/recover_human_to_robot_convergence_terminal_publish.py",
+          "sha256": "de549db86886213712c8a7ecb3f6997cec0cfe2a906a4bbb30a8fd6ec8812f68"
+        },
+        {
+          "bytes": 4256,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_convergence_validation.py",
+          "sha256": "9779bd31703afd90fa712e3fb95758bb5f4a0d6f2756959f6b0e3641935528b1"
+        },
+        {
+          "bytes": 2176,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_convergence_evidence.py",
+          "sha256": "2c675596f81ca15900410c0b557b1842a4a95bfb0c4c66683447eecc7f7e184f"
+        },
+        {
+          "bytes": 17136,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_product.py",
+          "sha256": "e921a67ac29d692709cbc2afcd1ae3263c487a788f12a98c45d16f350541be6f"
+        },
+        {
+          "bytes": 19975,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/occlusion_compositor_v1.py",
+          "sha256": "b28fcc0f5b82e46ed092d260274345d1d19fe85fbfedcd71d6a109d1034df8c9"
+        },
+        {
+          "bytes": 28301,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_baseline_v1.py",
+          "sha256": "081ac25d5116d2294f4b22fda4bd1562d9a6bb07186e00fee4677e1c69944ea8"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FOUR_LANE_REMAINING_QUALITY_AND_VISUAL_EVIDENCE_CONVERGENCE",
+      "execution_status": "FINITE_SUCCESSOR_PENDING_OR_CURRENT",
+      "external_metric_authority": false,
+      "full_so3_gate_deg": 15.0,
+      "installation_contract": "INTERFACES_MOUNT_V2_CORRECTED_68P4MM_DEVELOPMENT_ONLY",
+      "physical_deployment_authorized": false,
+      "position_gate_mm": 20.0,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "supported_direction_gate_deg": 15.0,
+      "task_id": "human_to_robot_baseline_v1_convergence_20260923",
+      "training_eligible": false
+    },
+    "human_to_robot_evidence_unlock_s2": {
+      "adapter_collision_scope": "UNVERIFIED_VISUAL_GEOMETRY_ONLY_UNLESS_SEPARATELY_PROVEN",
+      "claim_limit": "S2 offline visual evidence closure only; module execution, structure, quality and adoption remain separate and no training, external metric, contact truth, control or deployment authority is granted.",
+      "code_closure": [
+        {
+          "bytes": 17136,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_product.py",
+          "sha256": "e921a67ac29d692709cbc2afcd1ae3263c487a788f12a98c45d16f350541be6f"
+        },
+        {
+          "bytes": 19975,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/occlusion_compositor_v1.py",
+          "sha256": "b28fcc0f5b82e46ed092d260274345d1d19fe85fbfedcd71d6a109d1034df8c9"
+        },
+        {
+          "bytes": 2748,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/r2_dependency_signature.py",
+          "sha256": "8c288f1fc5e84098d5932ff9eb2bd15c40ec8d26e6cae57568e73493c62aa8da"
+        },
+        {
+          "bytes": 28301,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_baseline_v1.py",
+          "sha256": "081ac25d5116d2294f4b22fda4bd1562d9a6bb07186e00fee4677e1c69944ea8"
+        },
+        {
+          "bytes": 7560,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_s2_h3_adapter_ab.py",
+          "sha256": "58fdf1f928247053310a7513b18fdce921568e521ae2361abd50f64ca28bec00"
+        },
+        {
+          "bytes": 11574,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_s2_h3_motion_audit.py",
+          "sha256": "10ce66eef87a53b4a03dac56349c7b25826868ccea1fcd049e42c302296db361"
+        },
+        {
+          "bytes": 14509,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_s2_h3_occlusion_ab.py",
+          "sha256": "78c57867d2948ab3c42aca685e8718418e07913a72394d5bbeaac6fab44d7a83"
+        },
+        {
+          "bytes": 8902,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_s2_031_position_first_candidate.py",
+          "sha256": "08928aed10e706ebefe11dab6569af4a2cfa531789671dc07c366deef260207e"
+        },
+        {
+          "bytes": 8312,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_s2_031_two_stage_candidate.py",
+          "sha256": "aaa0e0ebdf00558456502b9cda4f62b72a45d9c12374b7441997c3bc224a2283"
+        },
+        {
+          "bytes": 6903,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_human_to_robot_s2_031_source_provenance.py",
+          "sha256": "f83e28fd4ae0a57ca5ddba5dd6e5d622c52fea8bd289cf422c98ec0abef39012"
+        },
+        {
+          "bytes": 6317,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_human_to_robot_s2_031_target_authority.py",
+          "sha256": "3f63d882bcc442328f8ebe1086765f7256f651a63b617540c1835f1844f502eb"
+        },
+        {
+          "bytes": 5844,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_human_to_robot_s2_031_binding.py",
+          "sha256": "27b478f0a1090f4a090278654d3d09e6047ce06c57576111e763d6f9077c6bf7"
+        },
+        {
+          "bytes": 5011,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_human_to_robot_s2_007_binding.py",
+          "sha256": "d451923660e2ff0c8331646d932ef3e26c79206cd41a18c3ca61cf050ffdd804"
+        },
+        {
+          "bytes": 5857,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_human_to_robot_s2_0902_bindings.py",
+          "sha256": "fbf8ff44f963f86b7827d3ba8cc717397b8413e8bc36dc4bf87e75fe64d6d1fd"
+        },
+        {
+          "bytes": 5337,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_s2_reuse_audit.py",
+          "sha256": "e4f9b8d5ec16f4a23d16b0ac24250a31ee41fd24bc5c5fe975059aa7f1a97528"
+        },
+        {
+          "bytes": 9635,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_s2_local_huro_adapter_refresh.py",
+          "sha256": "a23e2952ff6c7b23f8c46d77d7b12432195e4d77f0f4364501f4c06e843ba8d5"
+        },
+        {
+          "bytes": 5753,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/verify_human_to_robot_s2_formal_resume.py",
+          "sha256": "d6ba13321a4d6e52c27884282aa3bbbac5d1cd078f1d4b6db597623bba805533"
+        },
+        {
+          "bytes": 10050,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_human_to_robot_s2_h6_readiness.py",
+          "sha256": "84034bbacff121d06ef2d38c8075a68765d298adc545ae35202995648b1a8362"
+        },
+        {
+          "bytes": 4492,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/audit_human_to_robot_s2_evidence_refs.py",
+          "sha256": "7ecef7af9ff381751527b34646bfbf7b6601ac8bea3a075dd061518cb2acfc42"
+        },
+        {
+          "bytes": 11941,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/validate_human_to_robot_s2_final.py",
+          "sha256": "332cbe217aab7954383b26596d706999f79110b5d967323740a31bcf79f4cd9e"
+        },
+        {
+          "bytes": 12931,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_s2_progress.py",
+          "sha256": "b22c42f0d15941afecb72ed9a11927015c4181836d782238dc9af9368f520c4c"
+        },
+        {
+          "bytes": 20833,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_s2_h3.py",
+          "sha256": "d9334a2376fecb0fc7a5963387bcf14da0396a7974d5cacf350fda7a5cab17f8"
+        },
+        {
+          "bytes": 15307,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_s2_checkpoint.py",
+          "sha256": "c68f164d9203472eeef222c00eee7e69838442a4655e1faf85d1956e02e25bc6"
+        },
+        {
+          "bytes": 75017,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+          "sha256": "9f9915c3db3c133b5d3e70ddc83705ef470979a79b96aa06c6c76194297e3366"
+        },
+        {
+          "bytes": 11855,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/terminalize_human_to_robot_evidence_unlock_s2.py",
+          "sha256": "c8b72060e80c785cc2a08bcb2d0eeecc3ba55df7c24da6a5066abcf52b080557"
+        },
+        {
+          "bytes": 22224,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/build_visible_surface_occlusion_canary_v71.py",
+          "sha256": "92f9a75a3b6a6fdee55a8eb8a0e567343919d218f5cf755224ad233b0e37d4c2"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FIXED_007_031_PRODUCTS_0902_REGRESSION_AND_0916_SENSOR_EVIDENCE",
+      "execution_status": "CURRENT_BOUNDED_TASK",
+      "external_metric_authority": false,
+      "installation_contract": "INTERFACES_MOUNT_V2_CORRECTED_68P4MM_DEVELOPMENT_ONLY",
+      "occlusion_policy": "SAME_CAMERA_SAME_DOMAIN_METRIC_QUALIFICATION_THEN_3MM_ORDERING_UNKNOWN_FAIL_CLOSED",
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_evidence_unlock_s2_20260923",
+      "training_eligible": false
+    },
+    "human_to_robot_four_lane_increment": {
+      "claim_limit": "One CPU-only quality increment per lane; old q and historical outputs remain unchanged.",
+      "code_closure": [
+        {
+          "bytes": 9295,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_four_lane_increment.py",
+          "sha256": "164ec7cacbe6ef9fe393a11017197de35020ccc047644426134ee6b1e4e5bda7"
+        },
+        {
+          "bytes": 65088,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_four_lane_increment.py",
+          "sha256": "7ae569de29750e549bc9d1fb1be506948cf55d1d3c672e05158c62512c03c02a"
+        },
+        {
+          "bytes": 5681,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_four_lane_increment.py",
+          "sha256": "80db206d526b880705db79c07404ef012d1f5db0e267e4eb74e13572cc5bdc28"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FOUR_LANE_CPU_QUALITY_INCREMENT_FIXED_WINDOWS",
+      "execution_status": "REGISTERED_BOUNDED_CANDIDATE",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_four_lane_quality_increment_20260924",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY"
+    },
+    "human_to_robot_product_first_cleanup": {
+      "claim_limit": "007 16-frame model output has local cable improvement but full Clean is rejected; geometric consumers are development diagnostics, first cleanup batch is actually purged; no product, contact or collision adoption.",
+      "code_closure": [
+        {
+          "bytes": 10836,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_product_first_cleanup.py",
+          "sha256": "bd0b6fdb1887f97c86c45fa044a9245509afbbd91e33ef7523b26df622193a3c"
+        },
+        {
+          "bytes": 1289,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_product_first_code.py",
+          "sha256": "83fbba24cf5b741929a654041fef7fdb3b8260449d1688a250a38ab6cb417053"
+        },
+        {
+          "bytes": 7944,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_product_first_progress.py",
+          "sha256": "ee72f737bd12213279e7ce6c38d2bab6a7532d6ce047a23aad114b9159503d19"
+        },
+        {
+          "bytes": 4314,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_product_first_h2.py",
+          "sha256": "5ee821c6bf3a4a379c9d2c6e3e2e8e4fc983e51ae1e1b5c628f0fc180b794bb6"
+        },
+        {
+          "bytes": 4169,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_product_first_cleanup_b1b.py",
+          "sha256": "2fc975cbb3ddcd1cd9cc734c6a3b0b16b5fdce771c5699b1bb43294c20746ffe"
+        },
+        {
+          "bytes": 5007,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/publish_human_to_robot_product_first_cleanup_b2.py",
+          "sha256": "957763b12afad36c967bfe8ea56114ffbee3b68708b3d80fc2321ad0a4f63f37"
+        },
+        {
+          "bytes": 15340,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/terminalize_human_to_robot_product_first_cleanup.py",
+          "sha256": "a7a22b7df610556f0ce7abd7e323cd7ac597355cf0b76c0d1e08da3e5c8827a8"
+        },
+        {
+          "bytes": 10417,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_cable.py",
+          "sha256": "26a6bb9a3ba4b49f19ef3e317bb68db00ffc6f63937363bd0a4ccc07f7f46e2e"
+        },
+        {
+          "bytes": 8083,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_clean_007.py",
+          "sha256": "d2be47d97673716ffd5d7e568552ee54ed27c019c3840b0dd6f04076f7d77e57"
+        },
+        {
+          "bytes": 6027,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_patch_031.py",
+          "sha256": "6cf7edf132ad8c5a900ea7313ea0c04c2625a14d937fe52903a24fd8ff0d23ec"
+        },
+        {
+          "bytes": 5521,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_robot_correspondence_031.py",
+          "sha256": "5f525cfa3ab5243b502904ce559f060f41777968b50ea9aa948e6204c895a0fe"
+        },
+        {
+          "bytes": 11524,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_cleanup_batch1.py",
+          "sha256": "b1a7f7d5c46fe03f2e7c66db386de438be497befe80de8d55311f21eb5bc6f14"
+        },
+        {
+          "bytes": 9445,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_cleanup_aborted_stereo.py",
+          "sha256": "4926dabb8dc7e088eef9f1064abac33356a2c011b17584b25e69557d747414d8"
+        },
+        {
+          "bytes": 6510,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/validate_human_to_robot_product_first_after_cleanup.py",
+          "sha256": "4f714ba90618cd0df29de50fd964cf02684f105e6953b863df7b6b7b44efc53f"
+        },
+        {
+          "bytes": 5506,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/validate_human_to_robot_product_first_after_batch2.py",
+          "sha256": "2a1d51df6a86bccd4effa31858c1a9e993f631eddbc1303c29442133c9c7c947"
+        },
+        {
+          "bytes": 7541,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_cleanup_batch2_preflight.py",
+          "sha256": "7f7bb76252f6e14624d64f5ee11fa26cf907588e5eb9fa7434c24df9973b2df7"
+        },
+        {
+          "bytes": 10915,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_cleanup_batch2.py",
+          "sha256": "f595345fc467a9a6953d50d4574f994bafc30d205e8b01d013c83cada781c348"
+        },
+        {
+          "bytes": 3687,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_large_inventory.py",
+          "sha256": "96c66ebf02f76ebf8ee0fddf12670a5d775a1d7be46ed3d2445474712ce96c02"
+        },
+        {
+          "bytes": 8118,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_adapter_collision.py",
+          "sha256": "5f8fa285865511c636c487c98f4f27a82d312a2040687b2b0f8672758748d243"
+        },
+        {
+          "bytes": 6503,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_frame47_audit.py",
+          "sha256": "81444804357a323449f949333c2dd68b0faa214ffbc06afbe55868cdfd506a4e"
+        },
+        {
+          "bytes": 6236,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_compare_refresh.py",
+          "sha256": "706785c2c3f2c07d9d541c39593dda70c75ca4147a4f3c2afcee9bca4ac3ab78"
+        },
+        {
+          "bytes": 3678,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_left_rgb_review.py",
+          "sha256": "aa7a08ba09d3a01a53afd4e538274fb361841156c4be101406c29615d1578439"
+        },
+        {
+          "bytes": 4488,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_sensor_review.py",
+          "sha256": "4adfa5c8619e04e95ce51e04406566a61d4095754ac9e5f70b484953779e3502"
+        },
+        {
+          "bytes": 6369,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_007_product_window.py",
+          "sha256": "2fe384687e266f5c411fa960d3f037ed9a3917f3fb38b088a5a7ab8d6669b4e8"
+        },
+        {
+          "bytes": 4483,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_007_quality_review.py",
+          "sha256": "97e1d5e9e46101d173d6893a8c10c44e404ae694d5b55d2a2116ad56e1743c2d"
+        },
+        {
+          "bytes": 4476,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_product_first_card_review_031.py",
+          "sha256": "f93038a0a280e7bb0d1bc1a709b7c6838a296811f54f28443abd9685c2caa7b5"
+        },
+        {
+          "bytes": 3987,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/verify_human_to_robot_product_first_formal_007_resume.py",
+          "sha256": "f4f8303c36fb9c62bef02af90812684fc4fd6351d91c95a623bbb3e696b4c52c"
+        },
+        {
+          "bytes": 3001,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/object_patch_sample_v1.py",
+          "sha256": "82bcaf3ef0e946b4086d343263ad57ef5468d20414392502ac1631bd14a6e5e5"
+        },
+        {
+          "bytes": 2816,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/robot_rigid_correspondence_v1.py",
+          "sha256": "028eb05fa7479129147d573af5046488bbd87186454bf812d5ec1e08f5e2f408"
+        },
+        {
+          "bytes": 17136,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_product.py",
+          "sha256": "e921a67ac29d692709cbc2afcd1ae3263c487a788f12a98c45d16f350541be6f"
+        },
+        {
+          "bytes": 1084,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_product_first_cable.py",
+          "sha256": "30f5020afde749cad5ed63fc7c327b475cd5e0ccc144e81f8717b0f960ecbbab"
+        },
+        {
+          "bytes": 958,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_object_patch_sample_v1.py",
+          "sha256": "74eb810a74313b2b214e796ccdb230a243ea768ec70057569a00bf63f84ba98d"
+        },
+        {
+          "bytes": 1152,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_robot_rigid_correspondence_v1.py",
+          "sha256": "f40085bef14c621557ad36bcc9f0b0f1b1c1f3fb90d571db1209d54eb0ab7115"
+        },
+        {
+          "bytes": 1204,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_product_first_cleanup_batch1.py",
+          "sha256": "c8766d8fcc70e4e4fcc72bf47d717aeb8bfda96d395f30236b4224f12f36bdb8"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FOUR_LANE_PRODUCT_FIRST_AND_AUDITED_CLEANUP",
+      "execution_status": "FINITE_SUCCESSOR_CURRENT",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_product_first_cleanup_20260923",
+      "training_eligible": false
+    },
+    "human_to_robot_quality_acceptance": {
+      "claim_limit": "Offline quality candidate and field-scoped consumer checks only; user adoption separate.",
+      "code_closure": [
+        {
+          "bytes": 8934,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_quality_acceptance.py",
+          "sha256": "b86a71991a1cca6212f090947b6d9ec42c9bc8ca15c4f1a3df547d7f1a2bcee0"
+        },
+        {
+          "bytes": 105534,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_quality_acceptance.py",
+          "sha256": "646a69a9beceb6ed081f1702d860c4b2ad7afe705d38dac33ff74ef7fabbc73e"
+        },
+        {
+          "bytes": 28301,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_baseline_v1.py",
+          "sha256": "081ac25d5116d2294f4b22fda4bd1562d9a6bb07186e00fee4677e1c69944ea8"
+        },
+        {
+          "bytes": 24428,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/full_robot_review_v2.py",
+          "sha256": "a9c3a3abcbe3fccc11a435c4b0bb15eb9425f0619e02f1dfcfacbdb6f34b5b03"
+        },
+        {
+          "bytes": 6294,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_full_robot_review_v2.py",
+          "sha256": "e78e55db47d1f5d3df8825c002a499ced8d0789acdbced8b546773780a2d9e09"
+        },
+        {
+          "bytes": 2411,
+          "path": "/mnt/workspace/code/chaoyang/tests/unit/test_product_scene_gate_quality.py",
+          "sha256": "01c054810da404b8d55fc58b748583f7d01e405fce8d060f411d97450823fb98"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FOUR_LANE_10H_POKER_QUALITY_AND_SENSOR_LOCAL_CONSUMER",
+      "execution_status": "REGISTERED_BOUNDED_CANDIDATE",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_quality_acceptance_20260924",
+      "training_eligible": false,
+      "weights": "EXISTING_PINNED_ONLY"
+    },
+    "human_to_robot_representative_baseline": {
+      "claim_limit": "Representative offline visual and field-scoped learning interface checks only; no training benefit, control or physical authority.",
+      "code_closure": [
+        {
+          "bytes": 10300,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_representative_baseline.py",
+          "sha256": "9db6901222c908519cb9e813d301cf6eaa62d7b8629097d56d15bd047b2cb4ea"
+        },
+        {
+          "bytes": 61809,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_representative_baseline.py",
+          "sha256": "ba9939182913b33e0a19756bb7b56ace1774a1bd87e849ea778e96fd9c6f100e"
+        },
+        {
+          "bytes": 24428,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/full_robot_review_v2.py",
+          "sha256": "a9c3a3abcbe3fccc11a435c4b0bb15eb9425f0619e02f1dfcfacbdb6f34b5b03"
+        },
+        {
+          "bytes": 94898,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/training/FlowMatchingDataloader.py",
+          "sha256": "973032c72a91e04f488337a0cf9fbb97e2250ce67d5fca060869422392bb5e1c"
+        },
+        {
+          "bytes": 32960,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/training/FlowMatchingModel.py",
+          "sha256": "5f108794b93dde56db90ba0c793f658b890d36e6e177a00f37143801c05997d7"
+        },
+        {
+          "bytes": 96151,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/human_ego/training/FlowMatchingTrainer.py",
+          "sha256": "a610392b3a7eab355fe5f4168285d1461cd990b48c179bb69a637f57aa0d4b7f"
+        },
+        {
+          "bytes": 6105,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_representative_baseline.py",
+          "sha256": "af948b968c2cbf48d9c89e56cd7ab6efad936d5908aedfef53f28edbae2c1279"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "FOUR_LANE_10H_REPRESENTATIVE_ROBOT_CLEAN_SENSOR_AND_LEARNING_CONSUMER",
+      "execution_status": "REGISTERED_BOUNDED_CANDIDATE",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_representative_baseline_20260924",
+      "training_eligible": false,
+      "weights": "EXISTING_PINNED_ONLY"
+    },
+    "human_to_robot_sensor_display_correction": {
+      "claim_limit": "Re-rendered 466 saved Sensor frames with equal metric world and shared local scales; display-only PASS, no new sensor calibration, wrist accuracy or robot quality.",
+      "code_closure": [
+        {
+          "bytes": 8630,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_sensor_display_correction.py",
+          "sha256": "43c9198c7ab7f911e4109a33a8e77ca4a97f8bb1ab11bc6ad0c4e62ca04d6cb2"
+        },
+        {
+          "bytes": 11976,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_sensor_display_correction.py",
+          "sha256": "4ab1f0a98f7229037b6c3dcee60949380436bc879d2e1464ee80eba684f2d11d"
+        },
+        {
+          "bytes": 8031,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_sensor_display_correction.py",
+          "sha256": "9544990a3855c151d501ce4ffea928bd46a2a601ca4b532d1a20b4f8de7e0057"
+        },
+        {
+          "bytes": 8984,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_convergence_sensor_review.py",
+          "sha256": "a4c855a2582f8afa9e745d2e468399693d8a46cf2655b275303dbb86d11cdd70"
+        },
+        {
+          "bytes": 1382,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_sensor_display_correction.py",
+          "sha256": "fb4dfaae1684a7a30a68fc9eba88f4448f262b649c0ab2a86261bacb92655f42"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "THREE_0916_SENSOR_REPLAYS_EQUAL_METRIC_DISPLAY_ONLY",
+      "execution_status": "TERMINAL_PASSED_DISPLAY_ONLY_466_FRAME",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_sensor_display_correction_20260923",
+      "training_eligible": false,
+      "weights": "ABSENT_CPU_ONLY_REUSED_ARRAYS"
+    },
+    "human_to_robot_shared_hand_delivery": {
+      "claim_limit": "Offline local q22 qualification and bounded Robot/Clean development only; technical results do not create user adoption.",
+      "code_closure": [
+        {
+          "bytes": 24683,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_shared_delivery_hand_data.py",
+          "sha256": "52faa16bf4fecd26ff40f434024c1d63d734450b38cdcb9ff28a1d7d05c81511"
+        },
+        {
+          "bytes": 23816,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/shared_local_hand_target_v1.py",
+          "sha256": "29d786dc8bf2f7924a1ac145bcbb3a60025abb952c7eaf09339b7f5a667a1f33"
+        },
+        {
+          "bytes": 23747,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_shared_delivery_robot.py",
+          "sha256": "dde0810769a8fcbd5afc08e2dd557c3dc9bd6efe290bda44aa7bee63a6f5d75e"
+        },
+        {
+          "bytes": 45606,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_shared_delivery_clean.py",
+          "sha256": "80b51c4c70b9543b2a13370e6f261d56164afc40943dbe3dafe6eaf98682334b"
+        },
+        {
+          "bytes": 15012,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/terminalize_human_to_robot_shared_hand_delivery.py",
+          "sha256": "9e2e4ef5b07dd997fdfbf718ecbc80824c31eed1319148c5ef4ee7e0e2255ef4"
+        },
+        {
+          "bytes": 27211,
+          "path": "/mnt/workspace/code/chaoyang/vendor/ProPainter/inference_propainter.py",
+          "sha256": "4e7913ef8e5e54c9bbd277642550f1dc57fec3f400ab5bf9fcaa2c0de900bd84"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_status": "CURRENT_BOUNDED_TASK",
+      "external_metric_authority": false,
+      "implementation_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_20260924",
+      "physical_deployable": false,
+      "scope": [
+        "LOCAL_KAI22",
+        "POKER_ARM_TRAJECTORY",
+        "POKER_CLEAN"
+      ],
+      "training_steps_authorized": 0
+    },
+    "human_to_robot_source_coverage_recovery": {
+      "claim_limit": "Source coverage and target lineage diagnostics only; no new model, IK, product quality, external metric or deployment authority.",
+      "code_closure": [
+        {
+          "bytes": 8494,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/register_human_to_robot_source_coverage_recovery.py",
+          "sha256": "ac450f15fd19bc277d7cfff9b886bb69cbf30a0aaf96ad493b7464fc04152208"
+        },
+        {
+          "bytes": 12438,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_source_coverage_diagnostic.py",
+          "sha256": "722f2f4ef1ce60b2c46c2f74c4ff032201eb45dd699d9e64398e4a175dfd4944"
+        },
+        {
+          "bytes": 6564,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_source_coverage_rebind_007.py",
+          "sha256": "f10273e9587b21ee828e078e44b3b98437bc74b16c5ff57610f0c6957410d3e7"
+        },
+        {
+          "bytes": 7621,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_source_coverage_clean_007.py",
+          "sha256": "b46ca3b77b78944fb502392cada9824b98c479960b68d202052990fb7b727fee"
+        },
+        {
+          "bytes": 4736,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_source_projection_031.py",
+          "sha256": "96eb08da5bdcd34123ab5a6c69bec8debad73312a4250bee8f18c7d5ffa3be11"
+        },
+        {
+          "bytes": 13440,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/finalize_human_to_robot_source_coverage_recovery.py",
+          "sha256": "689668fa2fc97ca868e92d0977069f9a1aeef56dd461978c58d66bc50c1d6384"
+        },
+        {
+          "bytes": 2311,
+          "path": "/mnt/workspace/code/chaoyang/tests/test_human_to_robot_source_coverage_recovery.py",
+          "sha256": "3745cc2b785ae81f4d27d5672d057edccfafdadd797860f45758c74139139731"
+        }
+      ],
+      "control_ground_truth": false,
+      "execution_scope": "BOUNDED_007_MASK_SUPPORT_AND_031_TARGET_SOURCE_DIAGNOSTIC",
+      "execution_status": "FINITE_SUCCESSOR_TERMINAL_REJECTED_QUALITY",
+      "external_metric_authority": false,
+      "physical_deployment_authorized": false,
+      "product_family": "HUMAN_TO_ROBOT_BASELINE_V1",
+      "task_id": "human_to_robot_source_coverage_recovery_20260923",
+      "training_eligible": false
     },
     "kai22_r0_quality_successor_v1": {
       "authority_promoted": false,
@@ -712,9 +2471,9 @@
           "sha256": "fecac6f54f45a33d10beab842ddd9f4bf20b9f68b80ee5b9b0b65783c9bfefac"
         },
         {
-          "bytes": 9699,
+          "bytes": 11054,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
-          "sha256": "c9a127cfd4e235e2c2c4c32f8031b6c6d85205f1bac25af25ac99e84084f5c04"
+          "sha256": "5f426a8891dfeaea76ee20efcee5f814b93c1a14acba1476d48b66233a20590d"
         }
       ],
       "disparity_sign_adapter": "SIMULTANEOUS_HORIZONTAL_REFLECTION_NO_CAMERA_SWAP_THEN_UNFLIP",
@@ -764,9 +2523,9 @@
           "sha256": "fecac6f54f45a33d10beab842ddd9f4bf20b9f68b80ee5b9b0b65783c9bfefac"
         },
         {
-          "bytes": 9699,
+          "bytes": 11054,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
-          "sha256": "c9a127cfd4e235e2c2c4c32f8031b6c6d85205f1bac25af25ac99e84084f5c04"
+          "sha256": "5f426a8891dfeaea76ee20efcee5f814b93c1a14acba1476d48b66233a20590d"
         },
         {
           "bytes": 3046,
@@ -1222,9 +2981,9 @@
           "sha256": "89d32d1ae37aa9675520f441096b66125f7e19a7e1ece635faeb00ed0e483fd8"
         },
         {
-          "bytes": 20698,
+          "bytes": 27211,
           "path": "/mnt/workspace/code/chaoyang/vendor/ProPainter/inference_propainter.py",
-          "sha256": "5aee61d93a40e4c54d531866ab80c66e8ad7d9285373a801c2e22372bf87147f"
+          "sha256": "4e7913ef8e5e54c9bbd277642550f1dc57fec3f400ab5bf9fcaa2c0de900bd84"
         },
         {
           "bytes": 9036,
@@ -2153,9 +3912,9 @@
           "sha256": "fd2c7ddbfebd363437e2c2f2d5f95a430717b65988011b920391e5426b83b634"
         },
         {
-          "bytes": 9699,
+          "bytes": 11054,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/stereo_encoded_domain_preflight_v1.py",
-          "sha256": "c9a127cfd4e235e2c2c4c32f8031b6c6d85205f1bac25af25ac99e84084f5c04"
+          "sha256": "5f426a8891dfeaea76ee20efcee5f814b93c1a14acba1476d48b66233a20590d"
         },
         {
           "bytes": 16606,
@@ -2711,9 +4470,9 @@
       "algorithm_id": "occlusion_silver_gold_split_v71",
       "code_closure": [
         {
-          "bytes": 18638,
+          "bytes": 19975,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/occlusion_compositor_v1.py",
-          "sha256": "7a238737cd8f9005f85a010ba9da2bca19d5109d3f885303713f6c7baceade2b"
+          "sha256": "b28fcc0f5b82e46ed092d260274345d1d19fe85fbfedcd71d6a109d1034df8c9"
         },
         {
           "bytes": 11253,

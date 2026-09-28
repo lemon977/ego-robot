@@ -63,10 +63,10 @@ B1R 改善的是运行终态与可追溯性，不是 Mask 质量。以上视频�
 
 ## D1 · Clean 零写入准备复核
 
-- [Poker044 全片](D1_CLEAN_PREP_V2/play_cards_0915_044_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4)：
+- [Poker044 全片](D1_CLEAN_PREP/play_cards_0915_044_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4)：
   166帧、30 FPS、1440×506。左右 Hand 都是 UNKNOWN，所以没有删除/待写域；
   三张牌只作同帧 Raw 保护，物理牌/牌面身份未解决。
-- [Chips097 全片](D1_CLEAN_PREP_V2/get_potato_chips_0915_097_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4)：
+- [Chips097 全片](D1_CLEAN_PREP/get_potato_chips_0915_097_D1_CLEAN_PREP_OFFLINE_REVIEW.mp4)：
   394帧、30 FPS、1440×506。青色是 `M_write=UNKNOWN`，品红是 `M_remove`，
   黄色是 `M_flow` 边界；只有右手可用，左手保持 UNKNOWN。
 

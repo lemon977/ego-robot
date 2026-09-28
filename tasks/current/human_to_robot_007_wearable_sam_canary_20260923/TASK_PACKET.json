@@ -1,0 +1,83 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_concurrent_owners_max": 1,
+    "gpu_seconds_max": 1800,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 7200
+  },
+  "calibration_or_absent": "ABSENT_PIXEL_ONLY",
+  "claim_limit": "One frame raw wearable instance only; no full mask, Clean, product or metric adoption.",
+  "execution_revision": "HUMAN_TO_ROBOT_007_WEARABLE_SAM_CANARY_20260923",
+  "executor_epoch": 13,
+  "expected_resource": "SINGLE_V71_GPU_LEASE_CANARY",
+  "frozen_gates": {
+    "device_ids": [
+      201,
+      202,
+      203,
+      204,
+      205,
+      206
+    ],
+    "session": "get_potato_chips_0915_007",
+    "source_frame": 184
+  },
+  "objective": "One fixed frame184 pinned-SAM3.1 raw-instance test for six complaint wearable pixels, with plate/chip/skin negative controls.",
+  "phase": "HUMAN_TO_ROBOT_007_WEARABLE_SAM_CANARY_20260923",
+  "plan": {
+    "bytes": 1607,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_007_WEARABLE_SAM_CANARY_20260923/00_EXECUTION.md",
+    "sha256": "b6cd83dc1dd39c2beb6c4f2eb04aff14731c55397f3522fe634723a134fdd06d"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_007_WEARABLE_SAM_CANARY_20260923",
+  "predecessor": {
+    "bytes": 1780,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_device_donor_probe_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "6eb09188ddb62ea40064b345800c8ed4e0a6cf1e302a697571223182ac47cc5f"
+  },
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "one_GPU_owner"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_007_WEARABLE_SAM_CANARY_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_007_device_donor_probe_20260923/attempts/attempt_0001/RESULT.json",
+    "_run/current/human_to_robot_007_device_donor_probe_20260923/attempts/attempt_0001/lanes/scene/device_donor_probe_v1/RESULT.json",
+    "assets/models/checkpoints/sam3.1/sam3.1_multiplex.pt"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/frame184_sam_v1/RESULT.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "single_frame_instance_result_terminal_or_budget_exhausted",
+    "no_old_output_overwrite",
+    "no_full_Clean_or_product_promotion",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false"
+  ],
+  "task_id": "human_to_robot_007_wearable_sam_canary_20260923",
+  "weights": "PINNED_SAM31_MULTIPLEX_SHA256_0567DEBEEC80",
+  "write_set": [
+    "_run/current/human_to_robot_007_wearable_sam_canary_20260923",
+    "tasks/current/human_to_robot_007_wearable_sam_canary_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_007_wearable_sam_canary.py",
+    "src/chaoyang/ops/finalize_human_to_robot_007_wearable_sam_canary.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_007_wearable_sam_canary.py"
+  ]
+}

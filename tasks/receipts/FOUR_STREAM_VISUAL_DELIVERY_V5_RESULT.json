@@ -1,0 +1,13 @@
+{
+  "product_robot_videos": 0,
+  "release_status": "INCOMPLETE",
+  "result": {
+    "bytes": 11434,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/RESULT.json",
+    "sha256": "1fda551ced98a5cb30e750f656fa5f7e641713967acb5782d3503cfa8fc96b50"
+  },
+  "review_videos_complete": 11,
+  "schema_version": "chaoyang-v5-terminal-receipt-v1",
+  "status": "FAILED_QUALITY_C",
+  "task_id": "four_stream_visual_delivery_v5"
+}

@@ -1,0 +1,73 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 3600
+  },
+  "calibration_or_absent": "LOCAL_STEREO_METRIC_DEV_NOT_EXTERNAL",
+  "claim_limit": "Surface-Z diagnostic only; not anatomical wrist truth, correction or product quality.",
+  "execution_revision": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_DIAGNOSTIC_20260923",
+  "executor_epoch": 23,
+  "expected_resource": "CPU_ONLY_ONE_HOUR",
+  "frozen_gates": {
+    "depth_discontinuity_m": 0.025,
+    "sampled_frames": 16,
+    "session": "play_cards_0915_031",
+    "time_frame_count": 149
+  },
+  "objective": "Measure fixed-frame same-pixel MANO visible-surface versus Stereo optical-Z differences in 031.",
+  "phase": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_DIAGNOSTIC_20260923",
+  "plan": {
+    "bytes": 998,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_031_SURFACE_DEPTH_DIAGNOSTIC_20260923/00_EXECUTION.md",
+    "sha256": "5686b934d6eca893719163fcdd029b5ee52b9d7f81457892b2df36aaa8eba500"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_DIAGNOSTIC_20260923",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "CPU_TOTAL_SOFT_LIMIT_8"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_031_SURFACE_DEPTH_DIAGNOSTIC_20260923/00_EXECUTION.md",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/ai2/hawor_full031_epoch7_c3/play_cards_0915_031/HAWOR_CAMERA_SOURCE_V3.npz",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/prepare_full_v1/play_cards_0915_031/DOMAIN_MANIFEST.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/masks031_right_epoch7_v1/play_cards_0915_031/human",
+    "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/lanes/geometry_contact/depth_full_v1/play_cards_0915_031/RESULT.json",
+    "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/lanes/geometry_contact/depth_full_v1/play_cards_0915_031/frames"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/motion/surface_depth_v1/RESULT.json",
+    "attempts/attempt_0001/lanes/motion/surface_depth_v1/031_MANO_STEREO_SURFACE_Z_16FRAME_REVIEW.mp4",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "16_fixed_frames_diagnosed_or_wall_budget_exhausted",
+    "no_model_reinference_or_calibration_fit",
+    "no_product_quality_promotion"
+  ],
+  "task_id": "human_to_robot_031_surface_depth_diagnostic_20260923",
+  "weights": "ABSENT_CPU_ONLY_FROZEN_OUTPUTS",
+  "write_set": [
+    "_run/current/human_to_robot_031_surface_depth_diagnostic_20260923",
+    "tasks/current/human_to_robot_031_surface_depth_diagnostic_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_MOTION.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_031_surface_depth_diagnostic.py",
+    "src/chaoyang/ops/finalize_human_to_robot_031_surface_depth_diagnostic.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_031_surface_depth_diagnostic.py"
+  ]
+}

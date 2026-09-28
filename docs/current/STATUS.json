@@ -1,97 +1,38 @@
 {
-  "claim_limit": "Point-in-time navigation. Only immutable RESULT and baseline release decide adoption; no unknown becomes PASS.",
+  "active_tasks": [],
+  "claim_limit": "Bounded shared-hand terminal projection; module evidence does not promote product or training eligibility.",
+  "clean_qualified_scope": "NONE; METHOD_QUALITY_NOT_EVALUATED_AFTER_ADAPTER_LIMIT",
   "control_ground_truth": false,
-  "freshness_scope": "Parent receipt FRESH is process heartbeat only, not document freshness or algorithm quality",
-  "generated_at": "2026-09-21T12:36:28+08:00",
-  "lanes": {
-    "ai1": {
-      "algorithm_quality_pass": false,
-      "control_ground_truth": false,
-      "current_action": null,
-      "heartbeat_at": "2026-09-21T04:19:40.164969+00:00",
-      "owner_live": false,
-      "owner_pid": null,
-      "pipeline_complete": true,
-      "source_snapshot": {
-        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai1/STATE.json",
-        "observed_bytes": 2414,
-        "observed_sha256": "206cf31b79b32abe9eed4518b9e6055ac57105d1c0576209a106005e433ad712",
-        "read_status": "SNAPSHOT"
-      },
-      "source_snapshot_is_not_frozen_result": true,
-      "status": "COMPLETE",
-      "training_eligible": false
-    },
-    "ai2": {
-      "algorithm_quality_pass": false,
-      "control_ground_truth": false,
-      "current_action": null,
-      "heartbeat_at": null,
-      "job_live": false,
-      "job_pid": 559646,
-      "job_snapshot": {
-        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/ROBOT_RUN_STATE.json",
-        "observed_bytes": 1071,
-        "observed_sha256": "20cc401d7a51e13c402e076e48593ad0e223d8b05463a7d9ec8dc1e6f2bf23af",
-        "read_status": "SNAPSHOT"
-      },
-      "job_status": "EVALUATED_DELIVERY_COMPLETE",
-      "owner_live": false,
-      "owner_pid": null,
-      "pipeline_complete": true,
-      "source_snapshot": {
-        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai2/STATE.json",
-        "observed_bytes": 1255,
-        "observed_sha256": "506ea9332b7dda70c1bc92ae4bb6e8cc22cc5d9535ec75c80f9237a25dd1708f",
-        "read_status": "SNAPSHOT"
-      },
-      "source_snapshot_is_not_frozen_result": true,
-      "status": "COMPLETE",
-      "training_eligible": false
-    },
-    "ai4_huro": {
-      "algorithm_quality_pass": false,
-      "control_ground_truth": false,
-      "current_action": "OFFICIAL_CORE_COMPLETE_HANDOFF_READY_COMMON_REVIEW_BY_PUBLISHER",
-      "heartbeat_at": "2026-09-21T04:26:51.432601+00:00",
-      "owner_live": false,
-      "owner_pid": null,
-      "pipeline_complete": true,
-      "source_snapshot": {
-        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/ai4_huro/STATE.json",
-        "observed_bytes": 1410,
-        "observed_sha256": "9dede073b88b743350ee5059e76475c5e858d6ae3055f7d2a7b032d89dfc279d",
-        "read_status": "SNAPSHOT"
-      },
-      "source_snapshot_is_not_frozen_result": true,
-      "status": "COMPLETE",
-      "training_eligible": false
-    },
-    "exact78": {
-      "algorithm_quality_pass": false,
-      "control_ground_truth": false,
-      "current_action": null,
-      "heartbeat_at": "2026-09-21T04:30:58.050068+00:00",
-      "owner_live": false,
-      "owner_pid": null,
-      "pipeline_complete": true,
-      "source_snapshot": {
-        "live_source_path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/lanes/exact78/STATE.json",
-        "observed_bytes": 4721,
-        "observed_sha256": "82065f44e9b08b3bcd2842c847eb6546e36205c52b812b5a45e70e0c50d54b0a",
-        "read_status": "SNAPSHOT"
-      },
-      "source_snapshot_is_not_frozen_result": true,
-      "status": "COMPLETE",
-      "training_eligible": false
-    }
+  "counts": {
+    "products_adopted": "0/4",
+    "products_quality": "0/4",
+    "products_structure": "4/4",
+    "qualified_kai22_h50_windows": 0
   },
-  "parent": {
-    "routable": false,
-    "status": "PASSED"
+  "current_index_status": "PASS_NO_ACTIVE_TASKS",
+  "data_interface_pass": false,
+  "data_label_quality_pass": false,
+  "external_metric_authority": false,
+  "generated_at": "2026-09-28T11:05:43+08:00",
+  "governance_revision": 14171,
+  "latest_task": "human_to_robot_shared_hand_delivery_20260924",
+  "latest_terminal_status": "REJECTED_QUALITY",
+  "next_task": null,
+  "parent_status": "REJECTED_QUALITY",
+  "parent_task_id": "human_to_robot_shared_hand_delivery_20260924",
+  "physical_deployable": false,
+  "result": {
+    "bytes": 3598,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
   },
-  "parent_task_id": "four_stream_algorithm_baseline_v2",
-  "run_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001",
-  "schema_version": "FOUR_STREAM_ALGORITHM_BASELINE_V2_STATUS",
+  "robot_qualified_scope": "NO_NEW_FULL_SCOPE; 3_OF_4_WINDOW_BLOCKS_FEASIBLE_NOT_ADOPTED",
+  "schema_version": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_CURRENT_STATUS_V1",
+  "status": "PASS_NO_ACTIVE_TASKS",
+  "task_packet": {
+    "bytes": 3746,
+    "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_shared_hand_delivery_20260924/TASK_PACKET.json",
+    "sha256": "3729f8ab6652c04a5fd8eb12069b14875f3ef0dd6a36b7d7a418618829d0f059"
+  },
   "training_eligible": false
 }

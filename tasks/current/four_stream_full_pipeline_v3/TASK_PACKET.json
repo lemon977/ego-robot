@@ -1,0 +1,103 @@
+{
+  "alignment_policy": "Existing ego data, identifiable session-constant parameters, held-out validation; no per-frame placement or scaling; no HaWoR wrist substitution.",
+  "base_commit": "2d2306d61b2c38daa847d7468bab48a6ddd909b1",
+  "budgets": {
+    "attempts_per_signature_max": 2,
+    "candidate_signatures_per_lane_max": 3,
+    "cpu_threads_max": 8,
+    "gpu_concurrent_owners_max": 1,
+    "wall_seconds_max": 28800,
+    "worker_cpu_threads_max": 2
+  },
+  "candidate_policy": "Initial correction plus two root-cause-specific amendments; each preregistered new signature, never blind quality retries.",
+  "claim_limit": "Execution, consistency, visual review and external accuracy separate. No training/control/physical deployment authority.",
+  "deadline": "2026-09-21T22:13:25+08:00",
+  "execution_scope": {
+    "bytes": 2124,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/EXECUTION_SCOPE.md",
+    "sha256": "1340b8072e01b2ff9bfbe83cf02409d02eca27a1302fbcee89bb092458b9b011"
+  },
+  "objective": "Full original-scene Robot replacement, stage evidence and PICO/MANUS alignment; finite Chinese report; no training.",
+  "phase": "FOUR_STREAM_FULL_PIPELINE_V3",
+  "plan_revision": "FULL_PIPELINE_V3",
+  "predecessor_packet": {
+    "bytes": 3944,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/publisher_recovery_epoch_0007/TASK_PACKET_PREDECESSOR.json",
+    "sha256": "64207025c6be532b5c4452504172da9f3f4f1ead9e5ab81131d7e0c089acbab4"
+  },
+  "prerequisites": [
+    "unique_fenced_publisher",
+    "registered_operations_only",
+    "source_processed_sealed_read_only",
+    "single_gpu_lease"
+  ],
+  "publisher": {
+    "executor_epoch": 7,
+    "fencing_token": "e5517d63828f4104566e7b7a722c48e617d2824bccf9e92c6060d81a4ec2ae90",
+    "pid": 656602,
+    "proc_start_ticks": 225024415
+  },
+  "publisher_recovery": {
+    "bytes": 1858,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/publisher_recovery_epoch_0007/RECOVERY.json",
+    "sha256": "b98aca4dbe6a7a1c5aff76756d41f56c36773354766d7f522722449f53541a54"
+  },
+  "read_set": [
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/EXECUTION_SCOPE.md",
+    "docs/governance/CURRENT_STATUS_RECEIPT.json",
+    "docs/governance/ALGORITHM_CONTRACT.json",
+    "assets/robot/ROBOT_ASSET_PIN.json",
+    "_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/BASELINE_RELEASE.json"
+  ],
+  "required_outputs": [
+    "BASELINE_RELEASE.json",
+    "README_ZH.md",
+    "four_lane_results",
+    "review",
+    "TEST_RESULTS.json",
+    "DELIVERY.json"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "sessions": {
+    "ai1": [
+      "play_cards_0916_097",
+      "play_cards_0916_098",
+      "play_cards_0916_101"
+    ],
+    "ai2": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031"
+    ],
+    "ai4_huro": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031"
+    ],
+    "exact78": [
+      "get_potato_chips_0902_103",
+      "play_cards_0902_042"
+    ]
+  },
+  "source_data_write_authorized": false,
+  "stop_conditions": [
+    "deadline",
+    "identity_or_fencing_conflict",
+    "candidate_budget_exhausted",
+    "unsafe_input_or_resource"
+  ],
+  "t0": "2026-09-21T14:13:25+08:00",
+  "task_id": "four_stream_full_pipeline_v3",
+  "weights_policy": "Existing pinned models only; HuRo existing independent environment; no new model downloads.",
+  "write_set": [
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001",
+    "tasks/current/four_stream_full_pipeline_v3",
+    "src/chaoyang/ops",
+    "src/chaoyang/pipeline",
+    "src/chaoyang/governance",
+    "tests/unit",
+    "contracts",
+    "docs/current",
+    "docs/governance",
+    "assets/robot/hardware_handoff/kaihand_flange_adapter_v1/README_ZH.md",
+    "_run/current/worktrees/full-pipeline-v3-*"
+  ]
+}

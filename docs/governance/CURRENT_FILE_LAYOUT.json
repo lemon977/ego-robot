@@ -22,9 +22,9 @@
     "tools",
     "data"
   ],
-  "generated_at": "2026-09-21T12:36:28+08:00",
-  "generation_id": "gov-013317-6ff24dc3bc01",
-  "governance_revision": 13317,
+  "generated_at": "2026-09-28T11:05:43+08:00",
+  "generation_id": "gov-014171-86b9916cecd6",
+  "governance_revision": 14171,
   "protected_external": [
     "/mnt/data/egodata",
     "/nas/chenxianchi/egosteertouch",

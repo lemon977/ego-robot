@@ -1,0 +1,3229 @@
+{
+  "blockers": [
+    {
+      "name": "KaiHand adapter CAD",
+      "resolution": "Verified adapter CAD and measured installation transform.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Robot TCP and installation calibration",
+      "resolution": "Measured TCP, mount and camera/world-to-base calibration.",
+      "scope": "Physical Robot authority",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Real Robot action demonstrations",
+      "resolution": "Synchronized action/state/RGB data satisfying the formal schema.",
+      "scope": "HumanEgo policy checkpoints",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Contact-aware Robot execution closure",
+      "resolution": "Provide a verified NaturalV2 flange-to-KaiHand assembly transform or adapter CAD/measured installation transform, world-to-Tianji-base calibration, and Robot TCP/installation calibration. Then rerun only the frozen four-frame retarget gate before any 24-frame or full-session render; do not guess missing transforms from a prior visual proxy.",
+      "scope": "Poker042 contact-aware Robot retarget, Robot render, occlusion compositor and any Robot authority; Chips034 additionally remains BLOCKED_PREREQ upstream. Evidence: archive/baseline-20260917-0aa69e9/content/history/tasks/control/runs/20260913_contact_robot_v1_canary_v3/poker/play_cards_0902_042/RESULT.json. Poker042 human-contact output is HYPOTHESIS_ONLY.",
+      "status": "BLOCKED_EXTERNAL"
+    },
+    {
+      "name": "Contact/Robot 034/042 formal prerequisites",
+      "resolution": "For Chips034, pass the frozen Role Mask successor and publish a fresh formal Depth/Object6D delta before contact inference. For Poker042, do not rerun contact inference; close the separately recorded Robot assembly/world-to-base/TCP prerequisites, then run only the frozen four-frame retarget gate. Clean and Robot render are required later for the compositor, not for contact inference.",
+      "scope": "Chips034 Human Contact remains blocked because its current Role Mask is Grade C and no formal Wave0 Depth/Object6D exists. Poker042 Human Contact is complete as HYPOTHESIS_ONLY; only its Robot retarget and compositor remain blocked.",
+      "status": "BLOCKED_PREREQ"
+    },
+    {
+      "name": "Sensor-line DEPTH-10/20 play_cards_0910_001 prerequisites",
+      "resolution": "Recover or verify same-session rectification that passes median <=2 px and P90 <=5 px on held-out frames. Current corrected-source P90 is 47.98/35.09/14.31 px. Do not request GPU or run FoundationStereo until the CPU gate passes.",
+      "scope": "New sensor-line play_cards_0910_001 Stereo/DEPTH-20 only; sourceIndex code is fixed, exact78 Depth and Controller/MANUS branches are unchanged.",
+      "status": "BLOCKED_PREREQ"
+    },
+    {
+      "name": "Clean-20/21 causal semantic prerequisites",
+      "resolution": "Build causal semantic donor rejection and lossless frame/source-map closure; build a verified Poker atlas; only then request GPU for fresh ProPainter. Current causal UNKNOWN/write is 82.36% Poker and 69.90% Chips.",
+      "scope": "Poker245 and Chips039 Clean successor only; Wave0 R7_0 structural terminals remain immutable.",
+      "status": "BLOCKED_PREREQ"
+    },
+    {
+      "name": "Mask challenger R7_3 bounded NO_GO",
+      "resolution": "Provide a reviewed four-role prompt/adapter closure for Role Mask. For Poker object re-entry, improve causal memory/re-detection so the frozen failed canary passes known coverage and post-reentry overlap before running Poker001/005 regression. SAM2.1 current run achieved only 13.785% known coverage; Cutie OOM is runtime evidence, not quality evidence.",
+      "scope": "Role C cluster and Poker Object Mask successor only; SAM3.1 current authority and existing A/B results unchanged.",
+      "status": "BLOCKED_PREREQ"
+    },
+    {
+      "name": "R2.2 Mask canary not executed",
+      "resolution": "Acquire the serialized GPU lease and run the frozen candidate/reference canaries; absence of pixel gold limits results to development metrics.",
+      "scope": "Poker and Chips independent SAM3.1 canaries",
+      "status": "BLOCKED_RESOURCE"
+    },
+    {
+      "name": "R2.2 causal Clean prerequisites incomplete",
+      "resolution": "Publish support-surface semantics and lossless successor RGB/source-map pairs; Poker also requires a pose-verified causal atlas warp.",
+      "scope": "Poker245 and Chips039 prefix-only Clean successor",
+      "status": "BLOCKED_PREREQ"
+    },
+    {
+      "name": "R2.2 same-session rectification gate failed",
+      "resolution": "Provide a verified same-session selected-eye/SBS mapping and rectification whose vertical epipolar residual P90 is at most 5 px with the frozen coverage gate.",
+      "scope": "play_cards_0910_001 FoundationStereo and Stereo wrist proxy",
+      "status": "BLOCKED_PREREQ"
+    },
+    {
+      "name": "0915 left-mono chips instance identity propagation",
+      "resolution": "Supply reviewed task-specific three-instance temporal supervision or a pinned object tracker/segmentation weight that propagates the three correct frame-0 chips seeds. Do not synthesize missing tracker roles.",
+      "scope": "get_potato_chips_0915_001 Object Mask and dependent Object6D/Clean/Contact/Robot/HumanEgo only.",
+      "status": "BLOCKED_PREREQ"
+    }
+  ],
+  "generated_at": "2026-09-24T19:34:32+08:00",
+  "generation_id": "gov-014167-4f7eeefcbbd4",
+  "generator_code_sha": "73a55a062d4a75b18b6c85e11f74de81059f2d4fbd4aa59b6c68e2ee148f8f95",
+  "governance_revision": 14167,
+  "host": "dsw-1019706-57c5b8df6-4vg6j",
+  "next_task": null,
+  "rc1_budget": {
+    "checkpoint_gpu_hours_limit": 48,
+    "checkpoint_gpu_hours_used": 0,
+    "engineering_hours_limit": 24,
+    "engineering_hours_used": 0,
+    "production_gpu_hours_limit": 96,
+    "production_gpu_hours_used": 0
+  },
+  "rc1_pair_status": {
+    "chips": "BLOCKED_DATA_VOLUME",
+    "poker": "BLOCKED_DATA_VOLUME"
+  },
+  "rc1_release_flags": {
+    "CHECKPOINT_PAIR_CHIPS": "BLOCKED_DATA_VOLUME",
+    "CHECKPOINT_PAIR_POKER": "BLOCKED_DATA_VOLUME",
+    "DATA_MINIMUM_MET_CHIPS": false,
+    "DATA_MINIMUM_MET_POKER": false,
+    "FOUR_CHECKPOINTS_TRAINED": false,
+    "PIPELINE_OPERATIONALLY_CLOSED": false,
+    "RATE_FINALIZED": false,
+    "RC1_RELEASE_STATUS": "INCOMPLETE"
+  },
+  "recent_events": [
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T10:22:39+08:00",
+      "message": "Requeued after bounded coordinator restart; immutable lane artifacts retained.",
+      "reason": "SAFE_COORDINATOR_RESTART_FOR_LONG_WINDOW",
+      "status": "PENDING",
+      "task_id": "four_stream_full_pipeline_v4"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T10:22:54+08:00",
+      "message": "V4 coordinator claimed; CPU evidence production started.",
+      "pid": 766934,
+      "proc_start_ticks": 230946649,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4"
+    },
+    {
+      "attempt": 1,
+      "claim_window": {
+        "bytes": 338,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4/attempts/attempt_0001/CLAIM_WINDOW.json",
+        "sha256": "a75703b297cfaa96ed3602d8477977313c961e12a4214a9aff05ddea912c6266"
+      },
+      "created_at": "2026-09-22T10:31:29+08:00",
+      "message": "Twelve-hour V4 window bound to actual claim time.",
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T12:23:57+08:00",
+      "message": "Requeued after bounded coordinator restart; immutable lane artifacts retained.",
+      "reason": "COORDINATOR_EXITED_WITHOUT_RESULT",
+      "status": "PENDING",
+      "task_id": "four_stream_full_pipeline_v4"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T12:27:04+08:00",
+      "message": "Heartbeat-only coordinator closed without quality inference; successor must repair execution contract.",
+      "result": {
+        "bytes": 705,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4/attempts/attempt_0001/V4_RUNTIME_TERMINAL_20260922.json",
+        "sha256": "bbfd10b0b96ad5da30957539817f849fd312bcc75a0a68e4cab04f03dbd9bd86"
+      },
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "four_stream_full_pipeline_v4"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-22T13:02:48+08:00",
+      "message": "Registered bounded recovery successor after coordinator-only V4 terminal.",
+      "predecessor_terminal": "four_stream_full_pipeline_v4",
+      "status": "PENDING",
+      "task_id": "four_stream_full_pipeline_v4_recovery_v1",
+      "task_packet": {
+        "bytes": 3580,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_full_pipeline_v4_recovery_v1/TASK_PACKET.json",
+        "sha256": "f51d49a87b96eac026a14bf789a0012e5a13c27cd2fcfcf4b35c803b919cccc1"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T13:07:55+08:00",
+      "message": "Recovery attempt initialized; lane writers remain unclaimed.",
+      "run_signature": {
+        "bytes": 714,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_recovery_v1/attempts/attempt_0001/RUN_SIGNATURE.json",
+        "sha256": "5ae84b0796f93772e82c575960c25d03f3a9e08e9c58d3bbf432b4c3f3f8cfb4"
+      },
+      "status": "READY",
+      "task_id": "four_stream_full_pipeline_v4_recovery_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T13:41:08+08:00",
+      "message": "Recovery coordinator claimed; contract preflight started.",
+      "pid": 784880,
+      "proc_start_ticks": 232135997,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_recovery_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T14:21:02+08:00",
+      "message": "Stale coordinator PID verified dead; preserving completed CPU lane receipts for sole-writer takeover.",
+      "session": "four_lane_recovery",
+      "status": "PENDING",
+      "task_id": "four_stream_full_pipeline_v4_recovery_v1"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T14:28:10+08:00",
+      "message": "Recovery wrapper exited without RESULT; partial evidence preserved and false AI1 root blocker identified.",
+      "result": {
+        "bytes": 1437,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_recovery_v1/attempts/attempt_0001/RECOVERY_RUNTIME_TERMINAL_20260922.json",
+        "sha256": "96328285ff0a6f35f71b2b606f74b770802806eb324755aa8c561b40d0b6df6d"
+      },
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "four_stream_full_pipeline_v4_recovery_v1"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-22T14:28:10+08:00",
+      "message": "Registered sole-writer corrected V4 takeover with actual execution gate.",
+      "status": "PENDING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2",
+      "task_packet": {
+        "bytes": 3972,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_full_pipeline_v4_takeover_v2/TASK_PACKET.json",
+        "sha256": "e62924289f066844322083a2c67b8de5613fa0e1cef98dbc3411825ae705d87f"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T14:28:22+08:00",
+      "message": "Maintained V2 route/input audit claimed by sole writer.",
+      "pid": 803234,
+      "proc_start_ticks": 232419460,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T14:28:26+08:00",
+      "message": "Corrected route/input audit complete; sole writer released for bounded lane candidates.",
+      "result": {
+        "bytes": 7419,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/ROUTE_AND_INPUT_AUDIT.json",
+        "sha256": "f4b1cc94886d93670442a9dc48d34b7ed6d8703c6daaf772612e8598d7f3df34"
+      },
+      "status": "PENDING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:17:33+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:18:04+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:18:43+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:19:23+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:20:01+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:20:40+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:21:22+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:22:57+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:25:25+08:00",
+      "message": "HURO_WRIST_POSE_REFINEMENT",
+      "pid": 814237,
+      "proc_start_ticks": 232714472,
+      "status": "RUNNING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T15:27:10+08:00",
+      "message": "V2_NEXT_LANE_AFTER_HURO",
+      "pid": null,
+      "proc_start_ticks": null,
+      "status": "PENDING",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T16:33:04+08:00",
+      "message": "User superseded V4 with shared product plan; HuRo evidence preserved.",
+      "result": {
+        "bytes": 793,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "402094b82d94cd147b7785d323231d5aff848d43b8e52f4fbf8b3ded1ec32d8e"
+      },
+      "status": "CANCELLED",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-22T16:33:04+08:00",
+      "message": "Registered twelve-hour four-lane shared Human-to-Robot baseline V1.",
+      "status": "PENDING",
+      "task_id": "four_stream_visual_delivery_v5",
+      "task_packet": {
+        "bytes": 3644,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_visual_delivery_v5/TASK_PACKET.json",
+        "sha256": "1c67032e4d56abe3e56b5725dcc1ccda9ec907fad2847a3ebe45d79bcc335c99"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T16:37:53+08:00",
+      "message": "Four visual source domains frozen; algorithm lanes not yet evaluated.",
+      "result": {
+        "bytes": 501,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/SETUP_RESULT.json",
+        "sha256": "3dcee3aa63917ed0b027b98f0ddcb5c12627df1de60967ae662d6ad099c14ba2"
+      },
+      "status": "PENDING",
+      "task_id": "four_stream_visual_delivery_v5"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T17:25:28+08:00",
+      "message": "11 review MP4 and four issue collages delivered; no accepted Clean or Robot product.",
+      "result": {
+        "bytes": 11434,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/RESULT.json",
+        "sha256": "1fda551ced98a5cb30e750f656fa5f7e641713967acb5782d3503cfa8fc96b50"
+      },
+      "status": "FAILED_QUALITY_C",
+      "task_id": "four_stream_visual_delivery_v5"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-22T23:50:32+08:00",
+      "message": "Registered user-reviewed Human-to-Robot Baseline v1 R1 successor; V5 preserved.",
+      "predecessor": {
+        "bytes": 11434,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/RESULT.json",
+        "sha256": "1fda551ced98a5cb30e750f656fa5f7e641713967acb5782d3503cfa8fc96b50"
+      },
+      "status": "PENDING",
+      "task_id": "human_to_robot_completion_r1_20260922",
+      "task_packet": {
+        "bytes": 5067,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_completion_r1_20260922/TASK_PACKET.json",
+        "sha256": "82dd4811ded7ab3b117525316a9d95f6a57567406425f8ab90dae8662f640c53"
+      }
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T23:55:50+08:00",
+      "message": "R1 registered execution started; four lane evidence audit produced.",
+      "session": "four_lane_r1",
+      "status": "RUNNING",
+      "task_id": "human_to_robot_completion_r1_20260922"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-22T23:59:46+08:00",
+      "message": "Heartbeat owner rotated; R1 remains active after navigation publication.",
+      "session": "four_lane_r1",
+      "status": "RUNNING",
+      "task_id": "human_to_robot_completion_r1_20260922"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T00:34:38+08:00",
+      "message": "R1 closed as immutable diagnostic predecessor; successor R2 will carry remaining execution.",
+      "result": {
+        "bytes": 3176,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_completion_r1_20260922/attempts/attempt_0001/RESULT.json",
+        "sha256": "c88b0eeb1e9e47238d7ef904623cfaee0c1fcff4954b7a8ebce58ef79365bb70"
+      },
+      "session": "four_lane_r1",
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_completion_r1_20260922"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T00:44:07+08:00",
+      "message": "Registered R2 root-cause-first successor; V5 and R1 preserved.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_root_cause_gated_r2_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T00:46:18+08:00",
+      "message": "R2 coordinator claimed; starting independent Scene031, Motion031, Sensor097 and Local/HuRo diagnostics.",
+      "session": "r2_root_cause_gated",
+      "status": "RUNNING",
+      "task_id": "human_to_robot_root_cause_gated_r2_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T03:01:08+08:00",
+      "message": "R2 terminal with structural evidence and explicit quality gaps; no formal product adoption.",
+      "result": {
+        "bytes": 4612,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "640163a91e9bae41dc755ca3d0019f0c2d8ad77000625150ccb2414daf7400c8"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_root_cause_gated_r2_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T03:13:03+08:00",
+      "message": "Registered finite R2 quality-closure successor; terminal R2 remains immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_quality_closure_s1_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T03:13:52+08:00",
+      "message": "Quality-closure coordinator claimed; starting independent evidence and geometry readiness production.",
+      "session": "human_to_robot_quality_closure_s1",
+      "status": "RUNNING",
+      "task_id": "human_to_robot_quality_closure_s1_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T04:07:20+08:00",
+      "message": "S1 terminal: valid local evidence and 031 geometry, but formal quality/adoption remains unmet.",
+      "result": {
+        "bytes": 3517,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "b239b2346adf37d1ce9f2c2bf508293cb511e31c392f9a7f2ab5258f222264e8"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_quality_closure_s1_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T10:45:07+08:00",
+      "message": "Registered finite S2 successor; S1/R2 remain immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_evidence_unlock_s2_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T05:45:32.645732Z",
+      "message": "S2 H3 checkpoint published; finite H6/H9 work remains.",
+      "result": {
+        "bytes": 16585,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/checkpoints/H3_RESULT.json",
+        "sha256": "79d01135c3188128e3a08165f214d93007ae5164289e4431966f6709c07adf75"
+      },
+      "status": "PENDING",
+      "task_id": "human_to_robot_evidence_unlock_s2_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T15:52:51+08:00",
+      "message": "S2 H6 checkpoint published without quality promotion.",
+      "result": {
+        "bytes": 8769,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/checkpoints/H6_RESULT.json",
+        "sha256": "267efe4d1cbfc09e9b30a8e8babac1ba664aa551ceefd0b80ef1657b3973a3dc"
+      },
+      "status": "PENDING",
+      "task_id": "human_to_robot_evidence_unlock_s2_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T15:52:52+08:00",
+      "message": "S2 H9 checkpoint published without quality promotion.",
+      "result": {
+        "bytes": 6277,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/checkpoints/H9_RESULT.json",
+        "sha256": "508806c61f70b37133223629cf8b2165a4f17fc85354fc2126c3325ae9896ead"
+      },
+      "status": "PENDING",
+      "task_id": "human_to_robot_evidence_unlock_s2_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T15:55:21+08:00",
+      "message": "S2 terminal: structural/current-signature closure, 0/4 product quality pass and no authority promotion.",
+      "result": {
+        "bytes": 5087,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "3afd3c0fe61ac6ce0f4f63bb00efa837270b921f73d00d8d3fffcc73b0537a0a"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_evidence_unlock_s2_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T16:59:24+08:00",
+      "message": "Registered finite four-lane convergence successor; S2 remains immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_baseline_v1_convergence_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T17:16:54+08:00",
+      "message": "Wave0 executed: 031 IK rejected without expansion; cable/contact/Sensor/compare advanced independently; remaining finite work queued.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_baseline_v1_convergence_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T17:32:45+08:00",
+      "message": "Recovered terminal governance publish; no algorithm rerun or artifact rewrite.",
+      "result": {
+        "bytes": 6563,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_baseline_v1_convergence_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "dd963ed0666c6f70a02d73aee26e04f4024c119cbb86e7f4afdfd3ec9d453d2d"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_baseline_v1_convergence_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T17:41:03+08:00",
+      "message": "Post-terminal validation published; quality/adoption unchanged.",
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_baseline_v1_convergence_20260923",
+      "validation": {
+        "bytes": 2009,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_baseline_v1_convergence_20260923/attempts/attempt_0001/FINAL_VALIDATION.json",
+        "sha256": "0caae7e1bb7a58003ce86358641d0c4123ba5b262782970d49f23a5011993aae"
+      }
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T18:34:25+08:00",
+      "message": "Registered finite product-first successor with independently auditable cleanup; predecessor immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_product_first_cleanup_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T19:08:54+08:00",
+      "message": "007 actual 16-frame Clean/Product improved locally but rejected overall; three geometry consumers ran; batch1 obsolete payloads purged.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_product_first_cleanup_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T19:24:06+08:00",
+      "message": "031 card fixed window rejected; current-signature 007 full candidate and resume validated, with identical visual SHA to old rejected product.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_product_first_cleanup_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T19:29:07+08:00",
+      "message": "Second audited first-batch purge removed abandoned Stereo staging; cumulative logical deletion 1334858645 bytes; product quality unchanged.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_product_first_cleanup_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T19:48:20+08:00",
+      "message": "Two historical Stereo frame trees trimmed; cumulative logical deletion 5219025177 bytes; 15 current slots revalidated; product quality unchanged.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_product_first_cleanup_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T20:07:35+08:00",
+      "message": "Product-first finite task terminal: 007 local cable improvement, three consumers, three audited purges, 0/4 product quality.",
+      "result": {
+        "bytes": 9497,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "0324d47e993c4dcf9699f097a69a192b2085404f069b0ad471fdf08e429c7f26"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_product_first_cleanup_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T20:16:56+08:00",
+      "message": "Registered bounded 007/031 source-coverage recovery; predecessor immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_source_coverage_recovery_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T20:33:12+08:00",
+      "message": "007 rebound mask/model executed but Clean rejected; 031 wrist projection 0/102 in-image; product quality remains 0/4.",
+      "result": {
+        "bytes": 5622,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_source_coverage_recovery_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "7d487df6f02a632dffedd11b878436936d308366308f92812b967f02c1e04832"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_source_coverage_recovery_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T20:47:48+08:00",
+      "message": "Registered CPU-only 007 device/donor probe; predecessor immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_device_donor_probe_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T20:48:57+08:00",
+      "message": "Bounded 007 device/donor probe sealed; full Clean remains unadopted.",
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_007_device_donor_probe_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T20:58:21+08:00",
+      "message": "Registered pinned-SAM3.1 007 wearable one-frame canary; predecessor immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_wearable_sam_canary_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T21:02:56+08:00",
+      "message": "Single-frame wearable instance canary sealed; Clean remains unadopted.",
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_007_wearable_sam_canary_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T21:12:01+08:00",
+      "message": "Registered frozen text+box seed then point refine, six devices on frame184.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_wearable_seed_refine_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T21:14:44+08:00",
+      "message": "Frozen seed/refine one-frame result sealed; Clean remains unadopted.",
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_007_wearable_seed_refine_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T21:23:54+08:00",
+      "message": "Registered frozen 46-donor CPU table-only expansion probe.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_table_donor_expansion_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T21:25:24+08:00",
+      "message": "Fixed-grid table donor result sealed; no Clean/product promotion.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_007_table_donor_expansion_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T21:40:30+08:00",
+      "message": "Registered sealed attachment track changed-input ProPainter canary.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_attachment_clean_canary_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T21:45:00+08:00",
+      "message": "Attachment-rebound 16-frame ProPainter canary sealed after visual review.",
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_007_attachment_clean_canary_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T21:55:19+08:00",
+      "message": "Registered same-session multi-donor table-only diagnostic.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_multidonor_table_canary_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T22:00:31+08:00",
+      "message": "Multi-donor table 16-frame diagnostic sealed after visual review.",
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_007_multidonor_table_canary_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T22:11:45+08:00",
+      "message": "Registered Sensor display-only metric scale correction.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_sensor_display_correction_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T22:13:48+08:00",
+      "message": "Sensor metric display correction sealed after fixed-sample visual review.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_sensor_display_correction_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T22:30:10+08:00",
+      "message": "Registered full-session source search for two late 007 frames.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_late_donor_probe_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T22:38:14+08:00",
+      "message": "Late-window 007 donor-source search sealed without Clean promotion.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_007_late_donor_probe_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T22:44:05+08:00",
+      "message": "Registered 007 donor spatial interpolation check.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_spatial_donor_check_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T22:44:58+08:00",
+      "message": "Twelve frozen donor pairs spatially checked without Clean promotion.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_007_spatial_donor_check_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T23:08:32+08:00",
+      "message": "Registered four-frame physical-right source availability diagnostic.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_007_cross_eye_source_probe_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T23:09:24+08:00",
+      "message": "Four-frame physical-right source support quantified without Clean promotion.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_007_cross_eye_source_probe_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T23:20:31+08:00",
+      "message": "Registered fixed 031 uint16 mask decoding correction.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_031_observability_dtype_fix_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T23:21:00+08:00",
+      "message": "Corrected historical 031 uint16 region-mask denominator without pose promotion.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_031_observability_dtype_fix_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T23:31:32+08:00",
+      "message": "Registered 031 same-pixel MANO/Stereo surface diagnostic.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_031_surface_depth_diagnostic_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T23:33:56+08:00",
+      "message": "Sealed fixed 031 same-pixel MANO/Stereo surface-Z diagnostic without product authority.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_031_surface_depth_diagnostic_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-23T23:42:41+08:00",
+      "message": "Registered 031 full-timeline visible-card-guarded surface-Z audit.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_031_surface_depth_temporal_audit_20260923"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-23T23:43:53+08:00",
+      "message": "Sealed full 031 visible-card-guarded surface-Z diagnostic without product promotion.",
+      "status": "PASSED",
+      "task_id": "human_to_robot_031_surface_depth_temporal_audit_20260923"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T00:27:45+08:00",
+      "message": "Registered bounded consumer-delivery successor; prior attempts remain immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_10h_delivery_20260924"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-24T01:06:02+08:00",
+      "message": "15/15 full-session delivery slots validated; 007 context Clean and four products remain quality-rejected.",
+      "result": {
+        "bytes": 3241,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_10h_delivery_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "3d755f6d5d89aae90da357de624fd4eb1ac973e2f36f083a2693966117620cec"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_10h_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T01:14:22+08:00",
+      "message": "Registered bounded CPU-only four-lane quality increment; prior attempts immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_four_lane_quality_increment_20260924"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-24T01:46:37+08:00",
+      "message": "Four bounded CPU lanes completed; derived HuRo limit repair remains window-only and products 0/4 quality.",
+      "result": {
+        "bytes": 4242,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_four_lane_quality_increment_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "83ed4bcddc90e35b4a3e322de36ad13f2f4b4a65527f27dff05fcf2e4ba5aa19"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_four_lane_quality_increment_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T10:11:17+08:00",
+      "message": "Registered representative consumer baseline; prior attempts immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_representative_baseline_20260924"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-24T11:18:13+08:00",
+      "message": "Two complete saved-q fixed-third-person reviews; one continuity candidate rejected for tracking regression; corrected physical-left learning adapter consumed by existing Flow Matching without optimizer. Scene and final review remain.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_representative_baseline_20260924"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-24T11:24:12+08:00",
+      "message": "Two representative reviews decoded; corrected physical-left learning interface, no training-quality labels; Robot/Clean product quality rejected.",
+      "result": {
+        "bytes": 6231,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_representative_baseline_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "a8fa2612ce35702e31e4c02a84a85e1c367c5511cf33ee12ef20f06fff888ab7"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_representative_baseline_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T12:40:40+08:00",
+      "message": "Registered quality acceptance; prior attempts immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_quality_acceptance_20260924"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-24T13:59:51+08:00",
+      "message": "Finite quality task ended with 0/4 product quality, 0/4 adoption; new Poker Clean and motion candidates rejected; Sensor label not admitted.",
+      "result": {
+        "bytes": 6101,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_acceptance_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "0296ae4b0c7d021d49383f7acb73dc1f5f03515998756032965efbb62817d0da"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_quality_acceptance_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T16:00:03+08:00",
+      "message": "Registered three-result cycle and audited cleanup; old outputs remain immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_result_breakthrough_20260924"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-24T16:35:55+08:00",
+      "message": "171-frame Robot candidate, 16-frame rejected Clean, 0 qualified label windows, and 19 actual cleanup purges.",
+      "result": {
+        "bytes": 5200,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_result_breakthrough_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "c87e521bd9debf84f67c7803aa903d65deb6d8ea2c816927957067a631cbaf45"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_result_breakthrough_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T18:44:25+08:00",
+      "message": "Registered shared-hand, joint-trajectory, and Clean-layer delivery; predecessor immutable.",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T18:54:08+08:00",
+      "message": "Registered immutable hand_data, robot, and clean operations in the current algorithm contract; formal lane execution may begin.",
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T18:56:09+08:00",
+      "message": "Rebound maintained operation code closure after bounded hand-data gate repair and Clean tracing implementation; old V1 runtime failure remains immutable.",
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T18:58:40+08:00",
+      "message": "Rebound Robot joint-trajectory operation after the single authorized implementation repair: hard-margin unit normalization only; gates, window, initialization, weights and denominator unchanged.",
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T19:06:53+08:00",
+      "message": "Unified immutable code-closure rebind after final authorized mapping repair, Robot hard-margin normalization, and Clean internal-model-to-LaMa residual adapter freeze; 18 cross-lane targeted tests pass.",
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T19:16:07+08:00",
+      "message": "Rebound Clean after its first and only contract implementation repair: dynamic ONNX batch dimension accepted while dtype and C/H/W remain exact; Robot and hand-data terminal evidence unchanged; 20 cross-lane tests pass.",
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T19:16:52+08:00",
+      "message": "Rebound the same Clean FIX1 after protocol-required immutable attempt directory rollover from V1 to V2; algorithm, input, masks, model and gates unchanged.",
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 0,
+      "created_at": "2026-09-24T19:22:16+08:00",
+      "message": "Bound Clean FIX2 normalization adapter and final V3 recipe to immutable governance code closure before execution.",
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "PENDING",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-24T19:31:53+08:00",
+      "message": "Bounded Robot, shared-hand, and Clean work terminated without product or label promotion.",
+      "result": {
+        "bytes": 3598,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    }
+  ],
+  "repository": {
+    "branch": "task/0915-full-funnel-0916-clean-v1",
+    "commit": "2d2306d61b2c38daa847d7468bab48a6ddd909b1"
+  },
+  "schema_version": "chaoyang-long-horizon-task-state-v1",
+  "tasks": [
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "PROCESSED_INPUT_AUDIT_AND_0916_CLEANING",
+      "pid": null,
+      "plan_execution_revision": "0915_0916_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1043,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_0916_input_audit_clean_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "bc1cc48a5648ce5596160826007766b84846328d430e41e79c0f556286caa398"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_0916_input_audit_clean_v1",
+      "task_packet": {
+        "bytes": 1990,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_0916_input_audit_clean_v1/TASK_PACKET.json",
+        "sha256": "c0fe44e0e7f4c75f50b4a4af655c7d292f0dbf125e2cefb50ecdf3edc1773cf3"
+      },
+      "updated_at": "2026-09-18T04:09:09+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INPUT_AUDIT_PREPARE_AND_CAD",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 740,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "d79a2290b726ad7c9f5df4795c3c19c4376adecabec676bedb3fffc8b50e65c5"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_input_prepare_cad_v1",
+      "task_packet": {
+        "bytes": 1641,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v1/TASK_PACKET.json",
+        "sha256": "3c5fbb0e1791ac60bbc98ed20e3a0bfcbd78b8339d9c07af5191d7a525e27e64"
+      },
+      "updated_at": "2026-09-18T04:12:13+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INPUT_AUDIT_PREPARE_AND_CAD",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1482,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_input_prepare_cad_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "23e175652438a5c3b9c59e4bd79ad726f8de1d5ebc217e2e9d809f0fe090a60d"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_input_prepare_cad_v2",
+      "task_packet": {
+        "bytes": 1868,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_input_prepare_cad_v2/TASK_PACKET.json",
+        "sha256": "fb9544fe46234c30107daefe79a39e45e1850d13e2ea29747d4037fc11c55555"
+      },
+      "updated_at": "2026-09-18T05:37:48+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HAWOR_PHYSICAL_LEFT_FULL",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1315,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_FULL_V1_USER_STOP.json",
+        "sha256": "a323595df26bcea44f6c9bd37db50b3b916c341328d9ffe802b1e7b6fbd968f2"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_hawor_full_v1",
+      "task_packet": {
+        "bytes": 1577,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_full_v1/TASK_PACKET.json",
+        "sha256": "b7005278c4bffb7cb56fddb7fa62c02ca54ee1c0ceb60f8661c32d7cb9a0afcf"
+      },
+      "updated_at": "2026-09-18T10:22:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_VST_IMAGE_DOMAIN_SINGLE_SESSION_AB",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2435,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_VST_IMAGE_DOMAIN_AB_V1_RESULT.json",
+        "sha256": "fb0778e91cc148e91b5e2d5488e4b88605ecfb818c93afa3c9b0ae32d2879248"
+      },
+      "session": null,
+      "status": "BLOCKED_EXTERNAL",
+      "task_id": "0915_vst_image_domain_ab_v1",
+      "task_packet": {
+        "bytes": 2088,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_vst_image_domain_ab_v1/TASK_PACKET.json",
+        "sha256": "3e4d8badce77c83633e4a8e0e1814bfbb8abbd580a371e04c1ca336ab7137402"
+      },
+      "updated_at": "2026-09-18T10:37:47+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HAWOR_PHYSICAL_LEFT_RESIZE_ONLY_CANARY",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2865,
+        "path": "/mnt/workspace/code/chaoyang/tasks/receipts/0915_HAWOR_RESIZE_ONLY_CANARY_V1_RESULT.json",
+        "sha256": "724201a507dd424982470d8177bbf5f10057fa5dd937b8cc1a42f854d5e94d45"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_hawor_resize_only_canary_v1",
+      "task_packet": {
+        "bytes": 2217,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_hawor_resize_only_canary_v1/TASK_PACKET.json",
+        "sha256": "7fdd91ddacf13bc0023f9c1011339ff10df8f3ccdb5d9e01643388a104f2344a"
+      },
+      "updated_at": "2026-09-18T10:58:55+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 364,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8813b3329b018274b0083b7e1ee8b45c05dec59ef72e344cb7377accbb06fee5"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v1",
+      "task_packet": {
+        "bytes": 2385,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v1/TASK_PACKET.json",
+        "sha256": "b6fc47cb52a779ecd69c8bac20bf0a7926bf0ec35b8373188fbcc6bb019bdfcd"
+      },
+      "updated_at": "2026-09-18T12:13:37+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V2",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1227,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "f8908b70f6674c5eb3ec109e1d8114456519da6922a9f0e00c628babd894dd7a"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v2",
+      "task_packet": {
+        "bytes": 2699,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v2/TASK_PACKET.json",
+        "sha256": "7d54f6c7f06f5f84221dfaef8817c482ac8a5dc54afa1a9a2bdb71d50e5b7e00"
+      },
+      "updated_at": "2026-09-18T12:23:33+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V3",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1151,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v3/attempts/attempt_0001/RESULT.json",
+        "sha256": "098db0b6b271433915a9c078870da894aba3d6a2d03be2a2f7717af1d4f4556e"
+      },
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "0915_sam31_strict_role_canary_v3",
+      "task_packet": {
+        "bytes": 2663,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v3/TASK_PACKET.json",
+        "sha256": "ba4079c9b7ed65b19ec2e55951923ab58102ac1ad7c47939d8c71cca47ae776d"
+      },
+      "updated_at": "2026-09-18T12:29:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V4",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1228,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v4/attempts/attempt_0001/RESULT.json",
+        "sha256": "7302fdef2cbe4f0432d5729e1b871cb72b24f43af82b49414cd2dc1283568c99"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_sam31_strict_role_canary_v4",
+      "task_packet": {
+        "bytes": 2795,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v4/TASK_PACKET.json",
+        "sha256": "58302a69d2b63db95e00db25ef21bdbf90213cbc0f2aae6849d19c74189fa292"
+      },
+      "updated_at": "2026-09-18T12:35:30+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_STRICT_ROLE_SINGLE_SESSION_CANARY_V5",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1685,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_strict_role_canary_v5/attempts/attempt_0001/RESULT.json",
+        "sha256": "2002a3022235b3ee2da474c096f962edfcaaf36892d947f9492586d89d602c4a"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_sam31_strict_role_canary_v5",
+      "task_packet": {
+        "bytes": 2765,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_strict_role_canary_v5/TASK_PACKET.json",
+        "sha256": "b868e6d7a6d579203af068f692654eef67db579e60a06f60bf4bd391889e6c3d"
+      },
+      "updated_at": "2026-09-18T12:47:38+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_STEREO_INTERACTION_CPU_CANARY",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2072,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_stereo_interaction_cpu_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "d7b20d565825a4ad90792a4f6f649c9759aea2013e39d93ccebf05cf81c8f6b3"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_stereo_interaction_cpu_canary_v1",
+      "task_packet": {
+        "bytes": 2663,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_stereo_interaction_cpu_canary_v1/TASK_PACKET.json",
+        "sha256": "2fcdb685cf45ac57ba0e5f53b3129490e8a213760159db21eff8b05c4fe8503d"
+      },
+      "updated_at": "2026-09-18T13:56:44+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_SAM31_WEAK_ROLE_SINGLE_SESSION_CANARY_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1702,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_sam31_weak_role_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "b22ee1253ef6358889b4baeaaf357b871452476ef0f8aba0ff99bdb92e47a71e"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_sam31_weak_role_canary_v1",
+      "task_packet": {
+        "bytes": 2719,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_sam31_weak_role_canary_v1/TASK_PACKET.json",
+        "sha256": "a2c3ee57bfbd0271f04b1cd5fee98510507fc8fb611e11bc6c445dfee602b639"
+      },
+      "updated_at": "2026-09-18T14:11:17+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_REMOVAL_ENVELOPE_SINGLE_SESSION_CANARY_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2634,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_single_session_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "4f554be5aa8cff4aa6e8a55aeec507dc1553fd2e791630d6c2be10c55e099a6c"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_removal_envelope_single_session_canary_v1",
+      "task_packet": {
+        "bytes": 3228,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_removal_envelope_single_session_canary_v1/TASK_PACKET.json",
+        "sha256": "3b0140e19bff90263f776dc1509a39f9efb64de15bd84c9f4f6f63ff9db54147"
+      },
+      "updated_at": "2026-09-18T14:56:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_FOUNDATIONSTEREO_SINGLE_SESSION_METRIC_CANARY",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3165,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_single_session_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "e67148f27752af9924d3559594f164662824235c3c46bcb0307f163a2dce2bb2"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_foundationstereo_single_session_canary_v1",
+      "task_packet": {
+        "bytes": 2613,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_foundationstereo_single_session_canary_v1/TASK_PACKET.json",
+        "sha256": "98a4e34cf569ba16e6777b265ec09a0b2064369c3ee09ac4588d797ffcdbf194"
+      },
+      "updated_at": "2026-09-18T15:51:22+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_STEREO_ENCODED_DOMAIN_PREFLIGHT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1696,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_stereo_encoded_domain_preflight_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "4c8b4d36980a7e11a3602db862eca3ba00f2ad42cd18aa7f11aa4f4c9dfdbcda"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_stereo_encoded_domain_preflight_v1",
+      "task_packet": {
+        "bytes": 2453,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_stereo_encoded_domain_preflight_v1/TASK_PACKET.json",
+        "sha256": "7eedd4d784b606cae400fb03f1a9bd6c370a4bfdbd1b67da155f2b605ee4a34c"
+      },
+      "updated_at": "2026-09-18T17:08:21+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_REMOVAL_ENVELOPE_V2_REAL_CANARY_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2110,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_removal_envelope_v2_real_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9234b3aa362f5d88549e9a5457eb69d0ee9b8382f0dfc9b677febad9d7d24ea0"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_removal_envelope_v2_real_canary_v1",
+      "task_packet": {
+        "bytes": 2805,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_removal_envelope_v2_real_canary_v1/TASK_PACKET.json",
+        "sha256": "c065ff86876038e9959dde3077b3b9811e9285bc6619db5e01e4a098d3dd4909"
+      },
+      "updated_at": "2026-09-18T17:20:36+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_FOUNDATIONSTEREO_ENCODED_DOMAIN_CANARY_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3377,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_foundationstereo_encoded_domain_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "6dde1b8037751b66172870422877679a6b70813db10247daea4d226d2eeef970"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_foundationstereo_encoded_domain_canary_v1",
+      "task_packet": {
+        "bytes": 2877,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_foundationstereo_encoded_domain_canary_v1/TASK_PACKET.json",
+        "sha256": "7ba51af19bba072178317dc469f04302bee2401c3ea229859ca76559c97637f4"
+      },
+      "updated_at": "2026-09-18T18:00:15+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_PLANAR_OBJECT6D_ENCODED_OBSERVABILITY_CANARY_V2",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2181,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_planar_object6d_observability_canary_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "1c7b3152e98ab4dd42c1d6c004865b78ad95d9d4afd517d156eb74b37bcd3323"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_planar_object6d_observability_canary_v2",
+      "task_packet": {
+        "bytes": 2807,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_planar_object6d_observability_canary_v2/TASK_PACKET.json",
+        "sha256": "dafc99c798b197ef71874f2be2ab4d25ef5517c9304d6880da6336161e817360"
+      },
+      "updated_at": "2026-09-18T18:13:34+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 751,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "c5226d0fa6f29d22e22992d2aa5653c23b0b5fb32741d9b1cf74e47fe9a181e0"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v1",
+      "task_packet": {
+        "bytes": 3500,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v1/TASK_PACKET.json",
+        "sha256": "04b838cad2bdc646c927d9a9345d9eca683e05637236da21094ee884576649a5"
+      },
+      "updated_at": "2026-09-18T19:08:46+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V2",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 525,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "c551be10dd91dbc004055ad5c0bf955f3857fb5ad06b05150fb7ab42e0c89be1"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_interaction_contact_robot_dev_v2",
+      "task_packet": {
+        "bytes": 3465,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v2/TASK_PACKET.json",
+        "sha256": "dbb61a19a8c610b16628db9543ee103e1efadf0f41ba8e9f2d78762a6bac8ce1"
+      },
+      "updated_at": "2026-09-18T19:10:49+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_INTERACTION_CONTACT_KAI22_DEVELOPMENT_V3",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5580,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_interaction_contact_robot_dev_v3/attempts/attempt_0001/RESULT.json",
+        "sha256": "41e5676cbc1d7238d36d439a79094069d50012a2851b1f5c9ac761e26bcbd2a3"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_interaction_contact_robot_dev_v3",
+      "task_packet": {
+        "bytes": 3301,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_interaction_contact_robot_dev_v3/TASK_PACKET.json",
+        "sha256": "ff2ae68a3158e8b8750099c55175cbed5eb30d0089454889a3f43e4e2ca46bdf"
+      },
+      "updated_at": "2026-09-18T19:14:02+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HUMAN_STEREO_SURFACE_ASSOCIATION_CANARY_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3751,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_surface_association_canary_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "4a525a6b66456837f546d3073a9e5eae5b3483afb6279422a0a119f163542dfc"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_surface_association_canary_v1",
+      "task_packet": {
+        "bytes": 3734,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_human_stereo_surface_association_canary_v1/TASK_PACKET.json",
+        "sha256": "312af76781af174e79bdccfcd1c08523bfc4b6f6982bff49754441185ea3f91b"
+      },
+      "updated_at": "2026-09-18T19:40:54+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_HUMAN_STEREO_ALIGNMENT_BOUND_AUDIT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_FULL_FUNNEL_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2946,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_human_stereo_alignment_bound_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "122955d4c2cbe7b4f5eabb183872c30f05950a265afe1ab7d3caa28438ef17ad"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_human_stereo_alignment_bound_audit_v1",
+      "task_packet": {
+        "bytes": 3295,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_human_stereo_alignment_bound_audit_v1/TASK_PACKET.json",
+        "sha256": "42fc86e481a682afe81cbd8cc092d5a65b05d921fa8f066c6337c00f60847fba"
+      },
+      "updated_at": "2026-09-18T19:45:45+08:00"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_WINDOW_START_INVENTORY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2656,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_start_inventory_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ad2599383c3857028124247e0b12d1eb9166df55d7bb3f107bac93874c5e7c85"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_window_start_inventory_v1",
+      "task_packet": {
+        "bytes": 2648,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_window_start_inventory_v1/TASK_PACKET.json",
+        "sha256": "6c9682ed69d4fd2f40c7f4f5022a90f01a1953003d74ce5a9adc81a4748967f6"
+      },
+      "updated_at": "2026-09-19T00:23:33+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1140,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "480ffac548475ea174632c14c2703f045287ae22cb3f60da0c72591978252641"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_hawor_wave0_v1",
+      "task_packet": {
+        "bytes": 2754,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_wave0_v1/TASK_PACKET.json",
+        "sha256": "2c6a107131cd8a7a5b4e41bdf9041ae52c296732e5ef9d217494b2162fced6e6"
+      },
+      "updated_at": "2026-09-19T00:32:47+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_WAVE0_RESIZE_ONLY_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2099,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ca6326f64ad010c5eec9e2bafe5f0806b07c9938b25866f0183a414d7fd18557"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_hawor_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 2589,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "9de9c72830bc6d206d56426f0a6be08ecd786229109d3eb5eb8ac5a98383694f"
+      },
+      "updated_at": "2026-09-19T00:42:27+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_KAI22_R0_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1600,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_kai22_r0_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "ec5a203c15c879896f448383ab2562842b809bc560af5c9d28d7b1cb2d978f43"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_kai22_r0_wave0_v1",
+      "task_packet": {
+        "bytes": 2580,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_kai22_r0_wave0_v1/TASK_PACKET.json",
+        "sha256": "8a00ffea1d734633e37c7ae5052c4a16a03359d8e366fdbc160b4011aee66ee6"
+      },
+      "updated_at": "2026-09-19T00:54:03+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HUMAN_STEREO_SCALE_CAUSE_AUDIT",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2465,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_scale_cause_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "555b4c707f556ee8d1bf680c295c92ec6de0621085bfa8fc51950052d6f1db2b"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_scale_cause_audit_v1",
+      "task_packet": {
+        "bytes": 2903,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_scale_cause_audit_v1/TASK_PACKET.json",
+        "sha256": "2d9665e02515f0e177c81bc6f7b4b28ae73ef47a37a56abe496200a0ec4f5502"
+      },
+      "updated_at": "2026-09-19T01:00:08+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_WAVE0_ENCODED_DOMAIN",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1486,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "573a0dfc9556673f4d4c9d922e8fffbceaf3db7d6f319bbbdd366f3e3aacdd37"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_foundationstereo_wave0_v1",
+      "task_packet": {
+        "bytes": 2901,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_wave0_v1/TASK_PACKET.json",
+        "sha256": "a0ae04adf6f6c4736e7a198b727bcc9f1dc40f06715776a7cd12425d11eb3250"
+      },
+      "updated_at": "2026-09-19T01:24:56+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_WAVE0_BOUNDED_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2097,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8a049ba2d00963dc80857fdb81088f361896a4654f09cfa8335479aae49b9440"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 2870,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "728c0313c483ad71900611b2a6248a2579ff02ad88cb4ed60a009040b076bd6d"
+      },
+      "updated_at": "2026-09-19T01:35:55+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1641,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "f1f95164246f99b99f4188a117e2c5a7bb8a6cb9f4f1da81b2649903d2fee35b"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_temporal_identity_v1",
+      "task_packet": {
+        "bytes": 3081,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_v1/TASK_PACKET.json",
+        "sha256": "c6362dc2e42b8002f5a4f7fd9dcf7c8ad48d6b04ae3929ff78c108d4f687283f"
+      },
+      "updated_at": "2026-09-19T01:37:35+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0_RUNTIME_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2205,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9f7c3f02c537437ad7fbbe5b917b6714b129feb4d4b4c6bdff77c0080bd439da"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_recovery_v1",
+      "task_packet": {
+        "bytes": 2949,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_recovery_v1/TASK_PACKET.json",
+        "sha256": "edae04e6bd9babf8482c30a423f22252a8e0a8b84faea0e4b20f486711b460a6"
+      },
+      "updated_at": "2026-09-19T01:48:26+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_HAND_TEMPORAL_IDENTITY_WAVE0_QUALITY_V2",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2482,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_temporal_identity_quality_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "6801385f8354c94f23771c182aeca138e7678418cdad557886122ce3680a87d7"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_temporal_identity_quality_v2",
+      "task_packet": {
+        "bytes": 3248,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_temporal_identity_quality_v2/TASK_PACKET.json",
+        "sha256": "646d5cf93a9f5f43b9c29a1298a58c4005b1bca0b14ce0eb0325e4efb7bcf208"
+      },
+      "updated_at": "2026-09-19T02:13:50+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1556,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "2e9fc6ba6cd872d7b58c929480cb52be029c369a0a75f993e3d074561d268857"
+      },
+      "session": null,
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_v1",
+      "task_packet": {
+        "bytes": 3044,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_task_object_wave0_v1/TASK_PACKET.json",
+        "sha256": "6579f25c6923942f7d48aa6f00b663f1561b2efafeaf81a3a1e66bce36a27873"
+      },
+      "updated_at": "2026-09-19T02:17:19+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_TASK_OBJECT_IDENTITY_WAVE0_EMPTY_CANDIDATE_RECOVERY",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1511,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "14c0be81f2e2724275e59b5262297397e5db2e1961480604e6296d1095e05256"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_sam31_task_object_wave0_recovery_v1",
+      "task_packet": {
+        "bytes": 3063,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/TASK_PACKET.json",
+        "sha256": "d5a779e91edf36943dedebb0660d1dea2c5d849375229f7b61a92c5ce6335cd4"
+      },
+      "updated_at": "2026-09-19T02:24:06+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_OBJECT6D_W0_VISIBLE_PATCH",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2854,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_geometry_object6d_wave0_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "82df2b77267b732261214833847dc7a829f834cd5dc48d7497acb7b345872e17"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_geometry_object6d_wave0_v1",
+      "task_packet": {
+        "bytes": 3090,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_geometry_object6d_wave0_v1/TASK_PACKET.json",
+        "sha256": "629be1aa46c360b4e0e9ad4b6b462bf60b9e174d6fddbbe4950c25a4a2cf1f5d"
+      },
+      "updated_at": "2026-09-19T02:42:32+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_INTERACTION_W0_DIRECT_OBSERVED_VISIBLE_SURFACE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2936,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_interaction_occlusion_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "1940c5310f1f70bf59647b93487d5c5d8e2b5f5af297abc9e48a6135043409cd"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_interaction_occlusion_v1",
+      "task_packet": {
+        "bytes": 3455,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_interaction_occlusion_v1/TASK_PACKET.json",
+        "sha256": "9bf50f0e384107a0836fd4bbca173e3e1e975fb51eab18767e7d0fd1bf925009"
+      },
+      "updated_at": "2026-09-19T03:15:20+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_CONTACT_W0_DUAL_EVIDENCE_DIAGNOSTIC",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2898,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_contact_dual_evidence_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "8cfcb6b663e5f5d5808f0f8ba34775f2a44626c3572a5267ba6cee30af4c7c74"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_contact_dual_evidence_v1",
+      "task_packet": {
+        "bytes": 3103,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_contact_dual_evidence_v1/TASK_PACKET.json",
+        "sha256": "c5a8dfa744a82245caebcecdf5c2d9e7df8fa1ad6dd7cdf81ced9d27a61d574f"
+      },
+      "updated_at": "2026-09-19T03:17:03+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_KAI22_R1_E_AND_R1_H_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2704,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_relative_refinement_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "2fc991550e85f4ce8ef85ad09dcafb5184b151195db99fc73a03df15bbdb2640"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_relative_refinement_v1",
+      "task_packet": {
+        "bytes": 3203,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_relative_refinement_v1/TASK_PACKET.json",
+        "sha256": "45801b2af016fa4c204314ec7b072f4e2716e8ab5d1b96a6542845686a122275"
+      },
+      "updated_at": "2026-09-19T03:18:04+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_ROBOT_VIRTUAL_ARM_WAVE0",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2016,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_virtual_arm_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "e399c556db68f434774960189f1f8e83f7d02303c22afbe48b4337fcd75f4c8b"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_robot_virtual_arm_v1",
+      "task_packet": {
+        "bytes": 2767,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_virtual_arm_v1/TASK_PACKET.json",
+        "sha256": "01fb4e8daf12fd6023a0ec1c9881185af10bd30c6c2a48d447b270247174ed9c"
+      },
+      "updated_at": "2026-09-19T03:23:03+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_ROBOT15H_RELEASE_CANDIDATE_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1340,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_release_candidate_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "3830d7bedfd30b942edd51d730fdb0ce86fc038425b44c16f8961fb1182effc8"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_release_candidate_v1",
+      "task_packet": {
+        "bytes": 3661,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_release_candidate_v1/TASK_PACKET.json",
+        "sha256": "a25765f2838e0f53dfaebaa14326111091cbb73ac903bed87f500aae7ce5f608"
+      },
+      "updated_at": "2026-09-19T03:24:29+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_HAWOR_W1_RELEASE_SCOPE_GATE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1322,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_hawor_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "33e1d11166360e588ed6415834ab5f7fefa4bd6ed537ea1f1386781311d6c8cd"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_hawor_waves_v1",
+      "task_packet": {
+        "bytes": 2274,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_hawor_waves_v1/TASK_PACKET.json",
+        "sha256": "7e7e217e66e00660fb4fb89bfc1e253362b376abc6a02359ccd54ad8053fed5d"
+      },
+      "updated_at": "2026-09-19T03:31:37+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_SAM31_W1_PROMPT_SOURCE_GATE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1315,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_sam31_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9b4cba37c4a63901aeaf0fb85a50bd22553f6621220963b8730a9b398773a40e"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_sam31_waves_v1",
+      "task_packet": {
+        "bytes": 2500,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_sam31_waves_v1/TASK_PACKET.json",
+        "sha256": "58405e85f1fc34633b0fa91b7cb1784f27ba17ad7410343bbfdc85c2895c6049"
+      },
+      "updated_at": "2026-09-19T03:31:59+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_FOUNDATIONSTEREO_W1_ENCODED_DOMAIN",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2195,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_foundationstereo_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "9ccf1d26bd00db6cdcfb9324156ca5311095bf64ff186d027a02a8631da1f5be"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "0915_robot15h_foundationstereo_waves_v1",
+      "task_packet": {
+        "bytes": 3050,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_foundationstereo_waves_v1/TASK_PACKET.json",
+        "sha256": "65d0f9e8bfae60157e6153c05b80a089f608e010d7c5777deea24639aa836d2d"
+      },
+      "updated_at": "2026-09-19T09:52:46+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT15H_ROBOT_W1_UPSTREAM_GATE",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1253,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_robot_waves_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "aada424805d9f83494210e1f844ee9dfbb35e8393d345aae5c27b3b320f09966"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_robot_waves_v1",
+      "task_packet": {
+        "bytes": 2560,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_robot_waves_v1/TASK_PACKET.json",
+        "sha256": "3d2b49560ba45a8b97dc99d60574d01a3747c97de045ab352e2025b3c4dddb62"
+      },
+      "updated_at": "2026-09-19T09:52:49+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "0915_ROBOT15H_WINDOW_RELEASE_AUDIT_V1",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_15H_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2092,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_window_release_audit_v1/attempts/attempt_0001/RESULT.json",
+        "sha256": "3465d5e4eea1830146814e2635daf08e9c9d2e4cddaaad85a08199cf796f8e0f"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot15h_window_release_audit_v1",
+      "task_packet": {
+        "bytes": 4620,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot15h_window_release_audit_v1/TASK_PACKET.json",
+        "sha256": "9bff0b3812432bc081fd5f956777e35001ae58d82760cdbbbf247676c2bc715c"
+      },
+      "updated_at": "2026-09-19T14:21:29+08:00",
+      "window_clock": {
+        "bytes": 521,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot15h_v1/WINDOW_CLOCK.json",
+        "sha256": "ee3acd04856f89bf414a8f81241b30fb2f3e36abae92ff187611be408490df57"
+      },
+      "window_run_id": "robot15h-0915-20260919T000959+0800"
+    },
+    {
+      "attempt": 0,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "ROBOT_QUALITY_RECOVERY_0915_15H_V21",
+      "pid": null,
+      "plan_execution_revision": "0915_ROBOT_RECOVERY_15H_V2_1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1415,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "91a7cfc9b861ed8fea85d84d72a0b7aa4a42113d6d4ee7e18b1fc02cd9c79928"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "0915_robot_quality_recovery_15h_v2",
+      "task_packet": {
+        "bytes": 8261,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/0915_robot_quality_recovery_15h_v2/TASK_PACKET.json",
+        "sha256": "56152522d619356c5405661d8ba3ec30c71b7c4f6ff72214a1586d10e9ad0ea7"
+      },
+      "updated_at": "2026-09-20T11:11:19+08:00",
+      "window_clock": {
+        "bytes": 696,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/0915_robot_quality_recovery_15h_v2/WINDOW_CLOCK.json",
+        "sha256": "03eaaeed828bc46f49d19c6d0bce78deca43c7fb57d7491471d80a9320dcea99"
+      },
+      "window_run_id": "0915-robot-quality-recovery-v21-20260919T234412+0800"
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "THREE_STREAM_STABLE_BASELINE_V31",
+      "pid": null,
+      "plan_execution_revision": "THREE_STREAM_STABLE_BASELINE_V3_1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1095,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/three_stream_stable_baseline_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "544e64632073bac96bbaa4ae21e442ac43a465c10c1fb6a28155fa9c54722a89"
+      },
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "three_stream_stable_baseline_v31",
+      "task_packet": {
+        "bytes": 8437,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/three_stream_stable_baseline_v31/TASK_PACKET.json",
+        "sha256": "a20e952c2ef5839bc037033b4570969d3283cfbc441be7e4a2be5c4fcb81eb45"
+      },
+      "updated_at": "2026-09-20T16:33:59+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI1_CPFS_PUBLISH_FIX_V31",
+      "pid": null,
+      "plan_execution_revision": "AI1_CPFS_PUBLISH_FIX_V31",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1280,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "6f3e15ff325e188abd0b45812fbd894bd5ba70cc86c40b7ba1f4dfabea76d46a"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai1_cpfs_publish_fix_v31",
+      "task_packet": {
+        "bytes": 4470,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai1_cpfs_publish_fix_v31/TASK_PACKET.json",
+        "sha256": "3569f09290d8c05e17b2649b62b4c7255771315d2bd2983ca3660b7cd78f7a82"
+      },
+      "updated_at": "2026-09-20T16:51:19+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI2_CURRENT_ASSET_PATH_FIX_V31",
+      "pid": null,
+      "plan_execution_revision": "AI2_CURRENT_ASSET_PATH_FIX_V31",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 8741,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "9478bb83040a24e1ee1e589a311c1b31534d198b8e1ff3dde44a8471e86aaead"
+      },
+      "session": null,
+      "status": "BLOCKED_PREREQ",
+      "task_id": "ai2_current_asset_path_fix_v31",
+      "task_packet": {
+        "bytes": 2995,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai2_current_asset_path_fix_v31/TASK_PACKET.json",
+        "sha256": "e8c96b70c580a259c2836d3884737409059dd23150b0bc2bc348dcdc20445950"
+      },
+      "updated_at": "2026-09-20T16:51:37+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "AI1_ARTIFACT_REF_REBIND_V31",
+      "pid": null,
+      "plan_execution_revision": "AI1_ARTIFACT_REF_REBIND_V31",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2365,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/RESULT.json",
+        "sha256": "b473e9d75f35fc88f2d92d85dc1ef4176a853695ba394824b3da90f6928f9f38"
+      },
+      "session": null,
+      "status": "PASSED",
+      "task_id": "ai1_artifact_ref_rebind_v31",
+      "task_packet": {
+        "bytes": 2889,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/ai1_artifact_ref_rebind_v31/TASK_PACKET.json",
+        "sha256": "3c53bb0a918a3454dccd11d306532548111d0166aa9ea0f8c5dff238f91adf64"
+      },
+      "updated_at": "2026-09-20T17:00:58+08:00"
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_pretraining_baseline_v32/attempts/attempt_0001",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "FOUR_STREAM_V32_EXECUTION",
+      "pid": null,
+      "plan_execution_revision": "FOUR_STREAM_PRETRAINING_BASELINE_V3_2",
+      "proc_start_ticks": null,
+      "session": "multi_lane",
+      "status": "CANCELLED",
+      "task_id": "four_stream_pretraining_baseline_v32",
+      "task_packet": {
+        "bytes": 6486,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_pretraining_baseline_v32/TASK_PACKET.json",
+        "sha256": "d4896c1a74563e6ac4ff2d8e47338c74eb1e454ef32b22b4318319e476d1de6f"
+      },
+      "updated_at": "2026-09-21T11:41:59+08:00"
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "numeric_quality_pass": false,
+      "phase": "FINITE_DELIVERY_COMPLETE_NOT_NUMERIC_QUALITY_PASS",
+      "pid": null,
+      "plan_execution_revision": "ALGORITHM_BASELINE_V2",
+      "proc_start_ticks": null,
+      "release": {
+        "bytes": 13906,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/BASELINE_RELEASE.json",
+        "sha256": "a128740eb9b425fd7fa45dfde6137921d9f21dddae3dc7e89842694762793396"
+      },
+      "result": {
+        "bytes": 817,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "7113025921bdff73bd6aabff6c046525241b743eae6ee96ad514c05928331ded"
+      },
+      "session": "multi_lane",
+      "status": "PASSED",
+      "status_scope": "FINITE_ENGINEERING_EXECUTION_AND_DELIVERY_ONLY",
+      "task_id": "four_stream_algorithm_baseline_v2",
+      "task_packet": {
+        "bytes": 2854,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_algorithm_baseline_v2/TASK_PACKET.json",
+        "sha256": "2be6bd02f3519d0366e079abef2d865976ebb0341ea2c0f8247a36a4930560be"
+      },
+      "training_eligible": false,
+      "updated_at": "2026-09-21T12:36:28+08:00",
+      "windows_transfer": {
+        "bytes": 6828,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/WINDOWS_TRANSFER_VERIFICATION.json",
+        "sha256": "b6154d266840d7525aeaf0f82ef662eccda03e5f53cddc387d75032098faa21b"
+      }
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001",
+      "executor_epoch": 7,
+      "fencing_token": "e5517d63828f4104566e7b7a722c48e617d2824bccf9e92c6060d81a4ec2ae90",
+      "gpu_id": null,
+      "handoff_checkpoint": {
+        "bytes": 79119,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/handoff_epoch_0006/HANDOFF_CHECKPOINT.json",
+        "sha256": "24a33deb1c6eb7fe896790047f4151c822f364e555cb383714cbb3b4c09963a5"
+      },
+      "heartbeat_at": null,
+      "last_attempt_reason": "DEAD_PUBLISHER_AFTER_CHECKPOINT",
+      "last_attempt_terminal": "FAILED_RUNTIME_FINAL",
+      "phase": "FOUR_STREAM_FULL_PIPELINE_V3_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "FULL_PIPELINE_V3",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 576,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/V3_STALE_RUNTIME_TERMINAL.json",
+        "sha256": "cbba96f23c87b487c4a3bf3c0e495e50b447dbeea6c92c24bb63a9c9e72c41c3"
+      },
+      "session": "multi_lane",
+      "status": "FAILED_RUNTIME_FINAL",
+      "task_id": "four_stream_full_pipeline_v3",
+      "task_packet": {
+        "bytes": 3945,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_full_pipeline_v3/TASK_PACKET.json",
+        "sha256": "893e406a21c626d585b02a2ff38a3ba1da124c30b9649a4b5fccba76a741613f"
+      },
+      "updated_at": "2026-09-21T23:45:18+08:00"
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4/attempts/attempt_0001",
+      "deadline_at": "2026-09-22T22:31:29+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "COORDINATOR_EXITED_WITHOUT_RESULT_AND_CONTRACT_CONFLICT",
+      "last_attempt_terminal": "FAILED_RUNTIME_FINAL",
+      "phase": "V4_CONTRACT_AND_COORDINATOR_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "FOUR_STREAM_FULL_PIPELINE_V4",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 705,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4/attempts/attempt_0001/V4_RUNTIME_TERMINAL_20260922.json",
+        "sha256": "bbfd10b0b96ad5da30957539817f849fd312bcc75a0a68e4cab04f03dbd9bd86"
+      },
+      "session": "four_lane",
+      "status": "FAILED_RUNTIME_FINAL",
+      "t0": "2026-09-22T10:31:29+08:00",
+      "task_id": "four_stream_full_pipeline_v4",
+      "task_packet": {
+        "bytes": 3416,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_full_pipeline_v4/TASK_PACKET.json",
+        "sha256": "887927a5f0e81c125dc4ea53cea323eacdfd4e5bd2d0f7b61bc1bd115ce17d71"
+      },
+      "updated_at": "2026-09-22T12:27:04+08:00"
+    },
+    {
+      "attempt": 1,
+      "attempt_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_recovery_v1/attempts/attempt_0001",
+      "deadline_at": "2026-09-22T19:02:48+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "COORDINATOR_EXITED_WITHOUT_RESULT",
+      "last_attempt_terminal": "FAILED_RUNTIME_FINAL",
+      "phase": "RECOVERY_RUNTIME_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "FOUR_STREAM_FULL_PIPELINE_V4_RECOVERY_V1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1437,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_recovery_v1/attempts/attempt_0001/RECOVERY_RUNTIME_TERMINAL_20260922.json",
+        "sha256": "96328285ff0a6f35f71b2b606f74b770802806eb324755aa8c561b40d0b6df6d"
+      },
+      "session": "four_lane_recovery",
+      "status": "FAILED_RUNTIME_FINAL",
+      "t0": "2026-09-22T13:02:48+08:00",
+      "task_id": "four_stream_full_pipeline_v4_recovery_v1",
+      "task_packet": {
+        "bytes": 3580,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_full_pipeline_v4_recovery_v1/TASK_PACKET.json",
+        "sha256": "f51d49a87b96eac026a14bf789a0012e5a13c27cd2fcfcf4b35c803b919cccc1"
+      },
+      "updated_at": "2026-09-22T14:28:10+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-22T22:28:10+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "USER_REPLACED_OBJECTIVE_WITH_SHARED_HUMAN_TO_ROBOT_PRODUCT",
+      "last_attempt_terminal": "CANCELLED",
+      "phase": "SUPERSEDED_BY_V5_PRODUCT_PLAN",
+      "pid": null,
+      "plan_execution_revision": "FOUR_STREAM_V4_TAKEOVER_V2",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 793,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/RESULT.json",
+        "sha256": "402094b82d94cd147b7785d323231d5aff848d43b8e52f4fbf8b3ded1ec32d8e"
+      },
+      "route_audit": {
+        "bytes": 7419,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_full_pipeline_v4_takeover_v2/attempts/attempt_0001/ROUTE_AND_INPUT_AUDIT.json",
+        "sha256": "f4b1cc94886d93670442a9dc48d34b7ed6d8703c6daaf772612e8598d7f3df34"
+      },
+      "session": "four_lane_takeover",
+      "status": "CANCELLED",
+      "t0": "2026-09-22T14:28:10+08:00",
+      "task_id": "four_stream_full_pipeline_v4_takeover_v2",
+      "task_packet": {
+        "bytes": 3972,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_full_pipeline_v4_takeover_v2/TASK_PACKET.json",
+        "sha256": "e62924289f066844322083a2c67b8de5613fa0e1cef98dbc3411825ae705d87f"
+      },
+      "updated_at": "2026-09-22T16:33:04+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-23T04:33:04+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "SCENE_CLEAN_AND_ROBOT_PRODUCT_QUALITY_GATES_UNMET",
+      "last_attempt_terminal": "FAILED_QUALITY_C",
+      "phase": "HUMAN_TO_ROBOT_BASELINE_V1_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "FOUR_STREAM_VISUAL_DELIVERY_V5",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 11434,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/RESULT.json",
+        "sha256": "1fda551ced98a5cb30e750f656fa5f7e641713967acb5782d3503cfa8fc96b50"
+      },
+      "session": null,
+      "status": "FAILED_QUALITY_C",
+      "t0": "2026-09-22T16:33:04+08:00",
+      "task_id": "four_stream_visual_delivery_v5",
+      "task_packet": {
+        "bytes": 3644,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_visual_delivery_v5/TASK_PACKET.json",
+        "sha256": "1c67032e4d56abe3e56b5725dcc1ccda9ec907fad2847a3ebe45d79bcc335c99"
+      },
+      "updated_at": "2026-09-22T17:25:28+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-23T11:50:32+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_BASELINE_V1_R1_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_COMPLETION_R1_20260922",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3176,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_completion_r1_20260922/attempts/attempt_0001/RESULT.json",
+        "sha256": "c88b0eeb1e9e47238d7ef904623cfaee0c1fcff4954b7a8ebce58ef79365bb70"
+      },
+      "session": "four_lane_r1",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-22T23:50:32+08:00",
+      "task_id": "human_to_robot_completion_r1_20260922",
+      "task_packet": {
+        "bytes": 5067,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_completion_r1_20260922/TASK_PACKET.json",
+        "sha256": "82dd4811ded7ab3b117525316a9d95f6a57567406425f8ab90dae8662f640c53"
+      },
+      "updated_at": "2026-09-23T00:34:38+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-23T12:44:07+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "STRUCTURE_COMPLETE_BUT_PRODUCT_QUALITY_AND_AUTHORITIES_UNMET",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_BASELINE_V1_R2_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_ROOT_CAUSE_GATED_R2_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 4612,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "640163a91e9bae41dc755ca3d0019f0c2d8ad77000625150ccb2414daf7400c8"
+      },
+      "session": "r2_root_cause_gated",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T00:44:07+08:00",
+      "task_id": "human_to_robot_root_cause_gated_r2_20260923",
+      "task_packet": {
+        "bytes": 4943,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_root_cause_gated_r2_20260923/TASK_PACKET.json",
+        "sha256": "14a587f6a60b1340b4d0e88c5c9062875a365e34927936c84f871c520e80c857"
+      },
+      "updated_at": "2026-09-23T03:01:08+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-23T15:13:03+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "STRUCTURE_COMPLETE_BUT_FORMAL_CLEAN_CONTACT_ASSEMBLY_AND_COMPARE_QUALITY_UNMET",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3517,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "b239b2346adf37d1ce9f2c2bf508293cb511e31c392f9a7f2ab5258f222264e8"
+      },
+      "session": "human_to_robot_quality_closure_s1",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T03:13:03+08:00",
+      "task_id": "human_to_robot_quality_closure_s1_20260923",
+      "task_packet": {
+        "bytes": 4457,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_quality_closure_s1_20260923/TASK_PACKET.json",
+        "sha256": "b84be052229df09ec9c691c079d02e7c721b7c0260cf12577ec61cbf4cda9f5e"
+      },
+      "updated_at": "2026-09-23T04:07:20+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-23T22:45:07+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "STRUCTURE_AND_LINEAGE_CLOSED_WITH_PRODUCT_QUALITY_GAPS",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5087,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "3afd3c0fe61ac6ce0f4f63bb00efa837270b921f73d00d8d3fffcc73b0537a0a"
+      },
+      "session": "human_to_robot_s2",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T10:45:07+08:00",
+      "task_id": "human_to_robot_evidence_unlock_s2_20260923",
+      "task_packet": {
+        "bytes": 4907,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_evidence_unlock_s2_20260923/TASK_PACKET.json",
+        "sha256": "1a3dc242bf6e74bd92385e182541edf901432dd802b840a970e6e12303a1c857"
+      },
+      "updated_at": "2026-09-23T15:55:21+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-24T04:59:24+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "FINITE_WORK_EXECUTED_WITH_PRODUCT_QUALITY_GAPS",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "CONVERGENCE_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_BASELINE_V1_CONVERGENCE_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 6563,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_baseline_v1_convergence_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "dd963ed0666c6f70a02d73aee26e04f4024c119cbb86e7f4afdfd3ec9d453d2d"
+      },
+      "session": "human_to_robot_baseline_v1_convergence",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T16:59:24+08:00",
+      "task_id": "human_to_robot_baseline_v1_convergence_20260923",
+      "task_packet": {
+        "bytes": 6162,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_baseline_v1_convergence_20260923/TASK_PACKET.json",
+        "sha256": "f6a5b3b93f3a32c6e492c5ac0d7f4cbe7f11f883c60612bdde38c39b2d7d0dc6"
+      },
+      "updated_at": "2026-09-23T17:31:33+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-24T06:34:25+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "FINITE_WORK_EXECUTED_WITH_PRODUCT_QUALITY_GAPS",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "PRODUCT_FIRST_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_PRODUCT_FIRST_CLEANUP_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 9497,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "0324d47e993c4dcf9699f097a69a192b2085404f069b0ad471fdf08e429c7f26"
+      },
+      "session": "human_to_robot_product_first_cleanup",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T18:34:25+08:00",
+      "task_id": "human_to_robot_product_first_cleanup_20260923",
+      "task_packet": {
+        "bytes": 5400,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_product_first_cleanup_20260923/TASK_PACKET.json",
+        "sha256": "b5e7497ef0f9be95e00c47c096fb9c3e801eecd97d3d69f0c96e8065fdce929a"
+      },
+      "updated_at": "2026-09-23T20:07:35+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-23T23:16:56+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "INPUT_REPAIRED_BUT_CLEAN_REJECTED_AND_031_WRIST_AUTHORITY_UNSUPPORTED",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "SOURCE_COVERAGE_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_SOURCE_COVERAGE_RECOVERY_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5622,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_source_coverage_recovery_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "7d487df6f02a632dffedd11b878436936d308366308f92812b967f02c1e04832"
+      },
+      "session": "human_to_robot_source_coverage_recovery",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T20:16:56+08:00",
+      "task_id": "human_to_robot_source_coverage_recovery_20260923",
+      "task_packet": {
+        "bytes": 3423,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_source_coverage_recovery_20260923/TASK_PACKET.json",
+        "sha256": "272bdc552e031ae9988f37595f357ae53ef4d63d0b616cc70f9f2739371ded34"
+      },
+      "updated_at": "2026-09-23T20:33:12+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T22:47:48+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_DEVICE_DONOR_PROBE_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_DEVICE_DONOR_PROBE_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1780,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_device_donor_probe_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "6eb09188ddb62ea40064b345800c8ed4e0a6cf1e302a697571223182ac47cc5f"
+      },
+      "session": "human_to_robot_007_device_donor_probe",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T20:47:48+08:00",
+      "task_id": "human_to_robot_007_device_donor_probe_20260923",
+      "task_packet": {
+        "bytes": 3281,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_device_donor_probe_20260923/TASK_PACKET.json",
+        "sha256": "2d67700e653474bd6993995dbd897d0a821b2c6b7a29d0715b87eb3ca69efcf6"
+      },
+      "updated_at": "2026-09-23T20:48:57+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T22:58:21+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_WEARABLE_SAM_CANARY_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_WEARABLE_SAM_CANARY_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1759,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_wearable_sam_canary_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "73e6698c4e5b9eaf30b6f8c6b2efbf340cc075f14467e64b5b749087dc0f16cb"
+      },
+      "session": "human_to_robot_007_wearable_sam_canary",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T20:58:21+08:00",
+      "task_id": "human_to_robot_007_wearable_sam_canary_20260923",
+      "task_packet": {
+        "bytes": 3295,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_wearable_sam_canary_20260923/TASK_PACKET.json",
+        "sha256": "1db118ff29c79665feaf5b34145bd2e52d0d9aa03357b89820d28d7f304e521d"
+      },
+      "updated_at": "2026-09-23T21:02:56+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T23:12:01+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_WEARABLE_SEED_REFINE_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_WEARABLE_SEED_REFINE_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1766,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_wearable_seed_refine_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "2d7eddb5339f3e450720e944bc18971e51cabd23a14a784d7e8a33063380995b"
+      },
+      "session": "human_to_robot_007_wearable_seed_refine",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T21:12:01+08:00",
+      "task_id": "human_to_robot_007_wearable_seed_refine_20260923",
+      "task_packet": {
+        "bytes": 3189,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_wearable_seed_refine_20260923/TASK_PACKET.json",
+        "sha256": "9983c8f7efc36a478ca6b5ca3a84994984fed403cc1f9b72d533b97712a21c0c"
+      },
+      "updated_at": "2026-09-23T21:14:44+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T23:23:54+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_TABLE_DONOR_EXPANSION_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_TABLE_DONOR_EXPANSION_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1644,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_table_donor_expansion_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "20eb895c0add142c01244ea836c38ca3a248eeaca41023a053c3254d6c48ab69"
+      },
+      "session": "human_to_robot_007_table_donor_expansion",
+      "status": "PASSED",
+      "t0": "2026-09-23T21:23:54+08:00",
+      "task_id": "human_to_robot_007_table_donor_expansion_20260923",
+      "task_packet": {
+        "bytes": 3690,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_table_donor_expansion_20260923/TASK_PACKET.json",
+        "sha256": "38cad32c97be33d777afb4511ff0a8341387e780be28ce8036df9c6da20f9d32"
+      },
+      "updated_at": "2026-09-23T21:25:24+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T23:40:30+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_ATTACHMENT_CLEAN_CANARY_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_ATTACHMENT_CLEAN_CANARY_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1973,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_attachment_clean_canary_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "beb63e6c22fe3af65b507adedc39f4450af01125d7479fe5ab934c1181e862fd"
+      },
+      "session": "human_to_robot_007_attachment_clean_canary",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T21:40:30+08:00",
+      "task_id": "human_to_robot_007_attachment_clean_canary_20260923",
+      "task_packet": {
+        "bytes": 3963,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_attachment_clean_canary_20260923/TASK_PACKET.json",
+        "sha256": "7e1e400212bd810217f7b94126fde25134f9579e55027da029e49cb8f8df171f"
+      },
+      "updated_at": "2026-09-23T21:45:00+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T22:55:19+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_MULTIDONOR_TABLE_CANARY_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_MULTIDONOR_TABLE_CANARY_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1861,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_multidonor_table_canary_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "0c01ba6d2968ec3c6806c712aaa9376f9babff800a49f7001d38c07535fea1db"
+      },
+      "session": "human_to_robot_007_multidonor_table_canary",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-23T21:55:19+08:00",
+      "task_id": "human_to_robot_007_multidonor_table_canary_20260923",
+      "task_packet": {
+        "bytes": 3845,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_multidonor_table_canary_20260923/TASK_PACKET.json",
+        "sha256": "355edcce8d074ba23be15717ed105845d4040c8a087199e481b499d0be419ba6"
+      },
+      "updated_at": "2026-09-23T22:00:31+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-24T00:11:45+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_SENSOR_DISPLAY_CORRECTION_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_SENSOR_DISPLAY_CORRECTION_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1830,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_sensor_display_correction_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "42fcd54f6071395ec3930c961dcae76fb0a2ef1a0a196f8728d35733c3d09c0d"
+      },
+      "session": "human_to_robot_sensor_display_correction",
+      "status": "PASSED",
+      "t0": "2026-09-23T22:11:45+08:00",
+      "task_id": "human_to_robot_sensor_display_correction_20260923",
+      "task_packet": {
+        "bytes": 3334,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_sensor_display_correction_20260923/TASK_PACKET.json",
+        "sha256": "ed09ef86ff6d247087bc3e4310a87f40081259d4011e4a8002be7a8491bf0822"
+      },
+      "updated_at": "2026-09-23T22:13:48+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T23:30:10+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_LATE_DONOR_PROBE_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_LATE_DONOR_PROBE_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5179,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_late_donor_probe_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "3979684be53c521749a3aacebee60f9a00671b1d8f41d68ee2fe97d6437ce94d"
+      },
+      "session": "human_to_robot_007_late_donor_probe",
+      "status": "PASSED",
+      "t0": "2026-09-23T22:30:10+08:00",
+      "task_id": "human_to_robot_007_late_donor_probe_20260923",
+      "task_packet": {
+        "bytes": 7353,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_late_donor_probe_20260923/TASK_PACKET.json",
+        "sha256": "06ca671be482ebb74064f2c0848bb13c968d4f13595ba04cd5f54923463a968d"
+      },
+      "updated_at": "2026-09-23T22:38:14+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-23T23:44:05+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_007_SPATIAL_DONOR_CHECK_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_SPATIAL_DONOR_CHECK_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5164,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_spatial_donor_check_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "6942a020af10ac670a0635f3d56170ce318c2d355c4c80ff7fd182feb670fde4"
+      },
+      "session": "human_to_robot_007_spatial_donor_check",
+      "status": "PASSED",
+      "t0": "2026-09-23T22:44:05+08:00",
+      "task_id": "human_to_robot_007_spatial_donor_check_20260923",
+      "task_packet": {
+        "bytes": 3766,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_spatial_donor_check_20260923/TASK_PACKET.json",
+        "sha256": "80ee5f15d09a463a0e2e0b502f28796788a9e46063d4b0c8f05b5541b1221061"
+      },
+      "updated_at": "2026-09-23T22:44:58+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-24T00:08:32+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "CROSS_EYE_SOURCE_PROBE",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_007_CROSS_EYE_SOURCE_PROBE_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1327,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_cross_eye_source_probe_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "ce83adc2880ba459f728c66677baba1fa4b9d76fab95ac9cf089e74d600c938a"
+      },
+      "session": "get_potato_chips_0915_007",
+      "status": "PASSED",
+      "t0": "2026-09-23T23:08:32+08:00",
+      "task_id": "human_to_robot_007_cross_eye_source_probe_20260923",
+      "task_packet": {
+        "bytes": 3677,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_007_cross_eye_source_probe_20260923/TASK_PACKET.json",
+        "sha256": "4a7367b7169aa68611833e8abb429ec5f386f3d8a38c65994bcceda49ff95b4a"
+      },
+      "updated_at": "2026-09-23T23:09:24+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-24T00:20:31+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "REGION_DTYPE_CORRECTION",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_031_OBSERVABILITY_DTYPE_FIX_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1713,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_031_observability_dtype_fix_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "13919fde7e834cd3c0d43e9f59206376f955b34ba75ac88774e8907f58706d2c"
+      },
+      "session": "play_cards_0915_031",
+      "status": "PASSED",
+      "t0": "2026-09-23T23:20:31+08:00",
+      "task_id": "human_to_robot_031_observability_dtype_fix_20260923",
+      "task_packet": {
+        "bytes": 3646,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_031_observability_dtype_fix_20260923/TASK_PACKET.json",
+        "sha256": "ef7a748899fee80999035ce4b146d35e4f4f8a2ab76f466b4b0aff12a62c62f0"
+      },
+      "updated_at": "2026-09-23T23:21:00+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-24T00:31:32+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_DIAGNOSTIC_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_DIAGNOSTIC_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 1865,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_031_surface_depth_diagnostic_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "164fc62b0e77ef2e13f62732020b578e63c9c6ee911c28f06275e57a7ae6131a"
+      },
+      "session": "play_cards_0915_031",
+      "status": "PASSED",
+      "t0": "2026-09-23T23:31:32+08:00",
+      "task_id": "human_to_robot_031_surface_depth_diagnostic_20260923",
+      "task_packet": {
+        "bytes": 3546,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_031_surface_depth_diagnostic_20260923/TASK_PACKET.json",
+        "sha256": "d0d3c661244990c499abc7aa6239974045f7c4f04668ac54bfc377fc989a2a2f"
+      },
+      "updated_at": "2026-09-23T23:33:56+08:00"
+    },
+    {
+      "attempt": 0,
+      "deadline_at": "2026-09-24T00:42:41+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_TEMPORAL_AUDIT_20260923",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_TEMPORAL_AUDIT_20260923",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 2035,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_031_surface_depth_temporal_audit_20260923/attempts/attempt_0001/RESULT.json",
+        "sha256": "2554c7a1c20c98b902cf377e4b306f8c23b2cfedf0a859dcbfce7686d250c89c"
+      },
+      "session": "play_cards_0915_031",
+      "status": "PASSED",
+      "t0": "2026-09-23T23:42:41+08:00",
+      "task_id": "human_to_robot_031_surface_depth_temporal_audit_20260923",
+      "task_packet": {
+        "bytes": 3645,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_031_surface_depth_temporal_audit_20260923/TASK_PACKET.json",
+        "sha256": "b1a9c24484e0057f7463ffb947ee320dce70ec20add7df98392ece8a59963d67"
+      },
+      "updated_at": "2026-09-23T23:43:53+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-24T10:27:45+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "DELIVERY_COMPLETE_PRODUCT_AND_CLEAN_QUALITY_REJECTED",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_10H_DELIVERY_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_10H_DELIVERY_20260924",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3241,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_10h_delivery_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "3d755f6d5d89aae90da357de624fd4eb1ac973e2f36f083a2693966117620cec"
+      },
+      "session": "human_to_robot_10h_delivery",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-24T00:27:45+08:00",
+      "task_id": "human_to_robot_10h_delivery_20260924",
+      "task_packet": {
+        "bytes": 4095,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_10h_delivery_20260924/TASK_PACKET.json",
+        "sha256": "569973fdfbea83ca94bf44032d801644ac4b03f1e7c2419485a19e87aff75f0a"
+      },
+      "updated_at": "2026-09-24T01:06:02+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-24T04:14:22+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "CPU_INCREMENT_COMPLETE_NO_PRODUCT_QUALITY_PROMOTION",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_FOUR_LANE_QUALITY_INCREMENT_20260924",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_FOUR_LANE_QUALITY_INCREMENT_20260924",
+      "proc_start_ticks": null,
+      "progress": {
+        "bytes": 1774,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_four_lane_quality_increment_20260924/attempts/attempt_0001/PROGRESS.json",
+        "sha256": "488bb75e35d956b16e618b6de6432a7fd6c0581c16f94455e8daca2994ea02c9"
+      },
+      "result": {
+        "bytes": 4242,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_four_lane_quality_increment_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "83ed4bcddc90e35b4a3e322de36ad13f2f4b4a65527f27dff05fcf2e4ba5aa19"
+      },
+      "session": "human_to_robot_four_lane_increment",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-24T01:14:22+08:00",
+      "task_id": "human_to_robot_four_lane_quality_increment_20260924",
+      "task_packet": {
+        "bytes": 3711,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_four_lane_quality_increment_20260924/TASK_PACKET.json",
+        "sha256": "41820107494075db6408246a903131d765f872040e522747bc45d5e24653da0a"
+      },
+      "updated_at": "2026-09-24T01:46:37+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-24T20:11:17+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "FINITE_WORK_EXECUTED_WITH_ROBOT_CLEAN_AND_LABEL_QUALITY_GAPS",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "REPRESENTATIVE_BASELINE_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE_20260924",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 6231,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_representative_baseline_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "a8fa2612ce35702e31e4c02a84a85e1c367c5511cf33ee12ef20f06fff888ab7"
+      },
+      "session": "human_to_robot_representative_baseline",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-24T10:11:17+08:00",
+      "task_id": "human_to_robot_representative_baseline_20260924",
+      "task_packet": {
+        "bytes": 4400,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_representative_baseline_20260924/TASK_PACKET.json",
+        "sha256": "c9adf759e1918c19e38775303bb56a65fff1f9b0735f33d0f9ae7dbae0a47d30"
+      },
+      "updated_at": "2026-09-24T11:24:12+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-24T22:40:40+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "FINITE_WORK_EXECUTED_WITH_PRODUCT_QUALITY_GAPS",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_20260924",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 6101,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_acceptance_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "0296ae4b0c7d021d49383f7acb73dc1f5f03515998756032965efbb62817d0da"
+      },
+      "session": "human_to_robot_quality_acceptance",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-24T12:40:40+08:00",
+      "task_id": "human_to_robot_quality_acceptance_20260924",
+      "task_packet": {
+        "bytes": 4557,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_quality_acceptance_20260924/TASK_PACKET_V2.json",
+        "sha256": "a217efa8f12eb886d61451e9bbd5c3bdf9e41cb3d342ce01e778edb449f9a6f6"
+      },
+      "updated_at": "2026-09-24T13:59:51+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-25T02:00:03+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "ROBOT_CLEAN_AND_KAI22_LABEL_QUALITY_ALL_UNMET",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_RESULT_BREAKTHROUGH_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_RESULT_BREAKTHROUGH_CYCLE1",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 5200,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_result_breakthrough_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "c87e521bd9debf84f67c7803aa903d65deb6d8ea2c816927957067a631cbaf45"
+      },
+      "session": "human_to_robot_result_breakthrough",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-24T16:00:03+08:00",
+      "task_id": "human_to_robot_result_breakthrough_20260924",
+      "task_packet": {
+        "bytes": 3384,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_result_breakthrough_20260924/TASK_PACKET.json",
+        "sha256": "1f722c6dd20913c00bb8a96ec612637d195d00e1beb141d9bff78ec729dece9b"
+      },
+      "updated_at": "2026-09-24T16:35:55+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-25T04:44:25+08:00",
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "last_attempt_reason": "ROBOT_WINDOW_AND_LOCAL_KAI22_QUALITY_FAILED; CLEAN_METHOD_NOT_EVALUATED_AFTER_ADAPTER_REPAIR_LIMIT",
+      "last_attempt_terminal": "REJECTED_QUALITY",
+      "phase": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_TERMINAL",
+      "pid": null,
+      "plan_execution_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_20260924",
+      "proc_start_ticks": null,
+      "result": {
+        "bytes": 3598,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
+        "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
+      },
+      "session": "human_to_robot_shared_hand_delivery",
+      "status": "REJECTED_QUALITY",
+      "t0": "2026-09-24T18:44:25+08:00",
+      "task_id": "human_to_robot_shared_hand_delivery_20260924",
+      "task_packet": {
+        "bytes": 3746,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_shared_hand_delivery_20260924/TASK_PACKET.json",
+        "sha256": "3729f8ab6652c04a5fd8eb12069b14875f3ef0dd6a36b7d7a418618829d0f059"
+      },
+      "updated_at": "2026-09-24T19:31:53+08:00"
+    }
+  ]
+}

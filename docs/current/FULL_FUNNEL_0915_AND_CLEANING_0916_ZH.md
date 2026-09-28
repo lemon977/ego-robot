@@ -1,4 +1,8 @@
-# 0915 裸手全链与 0916 清洗当前任务
+# 0915 裸手全链与 0916 清洗历史任务记录
+
+> 历史阶段记录：本页保留当时的输入域、实验和失败证据，不是当前执行入口。
+> 当前状态以 [`README_ZH.md`](README_ZH.md)、[`STATUS.json`](STATUS.json) 和
+> [`tasks/current/INDEX.json`](../../tasks/current/INDEX.json) 为准；不要从本页恢复已终止任务。
 
 ## 当前决定
 

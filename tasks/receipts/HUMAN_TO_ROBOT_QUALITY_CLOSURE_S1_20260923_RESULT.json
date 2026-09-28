@@ -1,0 +1,13 @@
+{
+  "result": {
+    "bytes": 3517,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "b239b2346adf37d1ce9f2c2bf508293cb511e31c392f9a7f2ab5258f222264e8"
+  },
+  "schema_version": "HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_quality_closure_s1_20260923",
+  "tests_passed_preterminal": 1493,
+  "tests_skipped": 1,
+  "videos_full_decode": 15
+}

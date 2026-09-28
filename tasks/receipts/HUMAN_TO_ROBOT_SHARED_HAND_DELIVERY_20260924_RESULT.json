@@ -1,0 +1,10 @@
+{
+  "result": {
+    "bytes": 3598,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
+  },
+  "schema_version": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_TASK_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_shared_hand_delivery_20260924"
+}

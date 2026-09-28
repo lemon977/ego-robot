@@ -50,14 +50,33 @@ def test_0915_source_group_current_provenance_preserves_historical_claim() -> No
     assert len(recovery["source_group_authority_evidence"]) == 2
 
 
-def test_current_execution_is_one_four_stream_parent() -> None:
+def test_r2_s2_and_convergence_are_terminal_and_four_stream_contract_is_preserved() -> None:
     index = _load("tasks/current/INDEX.json")
-    assert index["status"] == "PASS"
-    assert len(index["task_packets"]) == 1
-    parent = index["task_packets"][0]
-    assert parent["task_id"] == "four_stream_pretraining_baseline_v32"
-    assert parent["execution_allowed"] is True
-    assert parent["weights"] == "ABSENT"
+    assert index["status"] == "PASS_NO_ACTIVE_TASKS"
+    assert index["task_packets"] == []
+    packet = _load(
+        "tasks/current/human_to_robot_root_cause_gated_r2_20260923/TASK_PACKET.json"
+    )
+    assert packet["route_id"] == "HUMAN_TO_ROBOT_BASELINE_V1_R2"
+    assert "control_ground_truth_false" in packet["stop_conditions"]
+    assert "physical_deployable_false" in packet["stop_conditions"]
+    state = _load("docs/governance/LONG_HORIZON_TASK_STATE.json")
+    r2 = next(
+        row for row in state["tasks"]
+        if row["task_id"] == "human_to_robot_root_cause_gated_r2_20260923"
+    )
+    assert r2["status"] == "REJECTED_QUALITY"
+    s2 = next(
+        row for row in state["tasks"]
+        if row["task_id"] == "human_to_robot_evidence_unlock_s2_20260923"
+    )
+    convergence = next(
+        row for row in state["tasks"]
+        if row["task_id"] == "human_to_robot_baseline_v1_convergence_20260923"
+    )
+    assert s2["status"] == "REJECTED_QUALITY"
+    assert convergence["status"] == "REJECTED_QUALITY"
+    assert state["next_task"] is None
 
     contract = _load("docs/governance/ALGORITHM_CONTRACT.json")
     four_stream = contract["special_status_contracts"]["four_stream_pretraining_baseline_v32"]

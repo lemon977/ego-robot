@@ -1,0 +1,99 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 3600
+  },
+  "calibration_or_absent": "ABSENT_PIXEL_ONLY",
+  "claim_limit": "Table-only 16-frame diagnostic; no object surface, complete Clean or product quality promotion.",
+  "donors": {
+    "bytes": 63989,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_table_donor_expansion_20260923/attempts/attempt_0001/lanes/scene/table_donor_expansion_v1/RESULT.json",
+    "sha256": "dd2b8ae1db985e4ce0096e17cb968a41571bb6d32d3d6702ae865a152b8c1f1a"
+  },
+  "execution_revision": "HUMAN_TO_ROBOT_007_MULTIDONOR_TABLE_CANARY_20260923",
+  "executor_epoch": 17,
+  "expected_resource": "CPU_ONLY_ONE_HOUR",
+  "frozen_gates": {
+    "donor_count": 19,
+    "min_donors_per_pixel": 3,
+    "photometric_offset_bound_uint8": 25,
+    "session": "get_potato_chips_0915_007",
+    "source_frames": [
+      181,
+      182,
+      183,
+      184,
+      185,
+      186,
+      187,
+      188,
+      189,
+      190,
+      191,
+      192,
+      193,
+      194,
+      195,
+      196
+    ]
+  },
+  "objective": "Fixed 16-frame same-session multi-donor table-only candidate and visual rejection/adoption evidence.",
+  "phase": "HUMAN_TO_ROBOT_007_MULTIDONOR_TABLE_CANARY_20260923",
+  "plan": {
+    "bytes": 1864,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_007_MULTIDONOR_TABLE_CANARY_20260923/00_EXECUTION.md",
+    "sha256": "555ede4b19e1fedc0c920759e57cf091677c8e4c6d8b5a00b6da357332e6fc1a"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_007_MULTIDONOR_TABLE_CANARY_20260923",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "CPU_TOTAL_SOFT_LIMIT_8"
+  ],
+  "prior_clean": {
+    "bytes": 9752,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_007_attachment_clean_canary_20260923/attempts/attempt_0001/lanes/scene/attachment_clean_window_v1/RESULT.json",
+    "sha256": "8ccda30f062c30855dd2da3e5f85ba41ae08c1ae6c0053d31131b8cc4f90a5ff"
+  },
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_007_MULTIDONOR_TABLE_CANARY_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_007_attachment_clean_canary_20260923/attempts/attempt_0001/lanes/scene/attachment_clean_window_v1/RESULT.json",
+    "_run/current/human_to_robot_007_table_donor_expansion_20260923/attempts/attempt_0001/lanes/scene/table_donor_expansion_v1/RESULT.json",
+    "src/chaoyang/ops/run_human_to_robot_007_device_donor_probe.py"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/multidonor_table_window_v1/RESULT.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "fixed_16_frame_result_terminal_or_budget_exhausted",
+    "no_old_output_overwrite",
+    "no_full_Clean_or_product_promotion",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false"
+  ],
+  "task_id": "human_to_robot_007_multidonor_table_canary_20260923",
+  "weights": "ABSENT_CPU_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_007_multidonor_table_canary_20260923",
+    "tasks/current/human_to_robot_007_multidonor_table_canary_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_007_multidonor_table_canary.py",
+    "src/chaoyang/ops/finalize_human_to_robot_007_multidonor_table_canary.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_007_multidonor_table_canary.py"
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 3600
+  },
+  "calibration_or_absent": "LOCAL_STEREO_METRIC_DEV_NOT_EXTERNAL",
+  "claim_limit": "Object-visible mask exclusion and temporal same-pixel Z diagnostic only; not wrist truth or product quality.",
+  "execution_revision": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_TEMPORAL_AUDIT_20260923",
+  "executor_epoch": 24,
+  "expected_resource": "CPU_ONLY_ONE_HOUR",
+  "frozen_gates": {
+    "card_guard_source_dilation_px": 7,
+    "card_instances": 3,
+    "depth_discontinuity_m": 0.025,
+    "frames": 149,
+    "original_right_valid": 102
+  },
+  "objective": "Compare 031 MANO/Stereo same-pixel surface Z over the complete time axis with visible-card UNKNOWN semantics.",
+  "phase": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_TEMPORAL_AUDIT_20260923",
+  "plan": {
+    "bytes": 999,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_031_SURFACE_DEPTH_TEMPORAL_AUDIT_20260923/00_EXECUTION.md",
+    "sha256": "d08a4171945beb5c063f30762209839c4769af425250c3f5a60d8e2dc3e04f08"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_031_SURFACE_DEPTH_TEMPORAL_AUDIT_20260923",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "CPU_TOTAL_SOFT_LIMIT_8"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_031_SURFACE_DEPTH_TEMPORAL_AUDIT_20260923/00_EXECUTION.md",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/ai2/hawor_full031_epoch7_c3/play_cards_0915_031/HAWOR_CAMERA_SOURCE_V3.npz",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/prepare_full_v1/play_cards_0915_031/DOMAIN_MANIFEST.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/masks031_right_epoch7_v1/play_cards_0915_031/human",
+    "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/lanes/geometry_contact/depth_full_v1/play_cards_0915_031",
+    "_run/current/0915_robot15h_sam31_task_object_wave0_recovery_v1/attempts/attempt_0001/sessions/playing_cards/play_cards_0915_031"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/motion/surface_depth_temporal_v1/RESULT.json",
+    "attempts/attempt_0001/lanes/motion/surface_depth_temporal_v1/031_SURFACE_Z_OBJECT_GUARD_FULL_REVIEW.mp4",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "149_rows_and_video_decoded_or_budget_exhausted",
+    "102_original_right_valid_denominator_preserved",
+    "no_wrist_or_product_promotion"
+  ],
+  "task_id": "human_to_robot_031_surface_depth_temporal_audit_20260923",
+  "weights": "ABSENT_CPU_ONLY_FROZEN_OUTPUTS",
+  "write_set": [
+    "_run/current/human_to_robot_031_surface_depth_temporal_audit_20260923",
+    "tasks/current/human_to_robot_031_surface_depth_temporal_audit_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_MOTION.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_031_surface_depth_temporal_audit.py",
+    "src/chaoyang/ops/finalize_human_to_robot_031_surface_depth_temporal_audit.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_031_surface_depth_temporal_audit.py"
+  ]
+}

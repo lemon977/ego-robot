@@ -120,6 +120,35 @@ class SessionSilverAudit:
     failed_gates: tuple[str, ...]
 
 
+def exclude_removed_foreground_depth(
+    *,
+    scene_depth_m: np.ndarray,
+    scene_depth_valid: np.ndarray,
+    human_equipment_mask: np.ndarray,
+) -> tuple[np.ndarray, np.ndarray]:
+    """Remove deleted human/equipment pixels from scene-depth ownership.
+
+    A Clean image removes the visible person and worn equipment.  Their depth
+    samples consequently cannot be reused as scene geometry in a later Robot
+    z-buffer comparison.  This helper is deliberately narrow: it only revokes
+    those samples and never fills the resulting holes or promotes another
+    surface.  Consumers must keep the revoked region UNKNOWN unless a legal,
+    independently registered scene/object surface supplies depth there.
+    """
+
+    depth = np.asarray(scene_depth_m, dtype=np.float64)
+    if depth.ndim != 2:
+        raise OcclusionContractError("scene_depth_m must be a 2D image")
+    valid = _bool_image(scene_depth_valid, depth.shape, "scene_depth_valid")
+    removed = _bool_image(human_equipment_mask, depth.shape, "human_equipment_mask")
+    if not np.isfinite(depth[valid]).all() or np.any(depth[valid] <= 0.0):
+        raise OcclusionContractError("valid scene depth must be finite and positive")
+    kept_valid = valid & ~removed
+    kept_depth = depth.copy()
+    kept_depth[~kept_valid] = np.nan
+    return kept_depth, kept_valid
+
+
 def _bool_image(value: np.ndarray, shape: tuple[int, ...], label: str) -> np.ndarray:
     result = np.asarray(value)
     if result.shape != shape or result.dtype != np.bool_:

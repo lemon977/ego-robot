@@ -1,0 +1,107 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "candidate_max_per_fault_package": 1,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "max_evidence_driven_repairs_per_fault_package": 2,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 43200
+  },
+  "calibration_or_absent": "PER_CONSUMER_PINNED_OR_ABSENT",
+  "claim_limit": "Offline evidence and candidate quality closure only; no training, contact truth, external metric, control or deployment authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_20260923",
+  "executor_epoch": 6,
+  "expected_resource": "FOUR_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
+  "external_metric_authority": false,
+  "fault_packages": {
+    "ASSEMBLY_EVIDENCE": 2,
+    "CONTACT_ROBOT_R1": 2,
+    "DEVICE_CABLE_EVIDENCE": 2,
+    "LOCAL_HURO_FAIR_COMPARE": 2,
+    "REAL_OCCLUSION_REGISTRATION": 2,
+    "VISIBLE_OBJECT_PROTECTION": 2
+  },
+  "fencing": {
+    "immutable_final": true,
+    "lane_writer_roots": {
+      "assembly_product": "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/lanes/assembly_product",
+      "compare": "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/lanes/compare",
+      "geometry_contact": "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/lanes/geometry_contact",
+      "scene_evidence": "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/lanes/scene_evidence"
+    },
+    "pid_startticks_required": true,
+    "unique_primary_writer": true
+  },
+  "objective": "Close the remaining R2 Scene evidence, real geometry/Contact, assembly and fair-comparison quality gaps without same-signature retries.",
+  "phase": "HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1",
+  "plan": {
+    "bytes": 1994,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_20260923/00_EXECUTION.md",
+    "sha256": "e22711a1932bdd3e715a9bfc63be743507e6379cec17940a056a69871b04ac9a"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_20260923",
+  "predecessor": {
+    "bytes": 4612,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "640163a91e9bae41dc755ca3d0019f0c2d8ad77000625150ccb2414daf7400c8"
+  },
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "exclusive_current_index",
+    "terminal_r2_predecessor",
+    "read_only_source_processed_archive_sealed_and_r2",
+    "single_publisher",
+    "single_GPU_lease_owner",
+    "cpu_total_soft_cap_8",
+    "no_same_signature_quality_retry"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/RESULT.json",
+    "_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/FINAL_VALIDATION.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene_evidence/STATE.json",
+    "attempts/attempt_0001/lanes/geometry_contact/STATE.json",
+    "attempts/attempt_0001/lanes/assembly_product/STATE.json",
+    "attempts/attempt_0001/lanes/compare/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1_R2_QUALITY_CLOSURE_S1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "all_registered_branches_terminal",
+    "quality_failure_does_not_auto_retry",
+    "evidence_absence_fails_closed_per_consumer",
+    "no_source_processed_archive_sealed_or_r2_writes",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false"
+  ],
+  "target_sessions": {
+    "scene": [
+      "play_cards_0915_031",
+      "get_potato_chips_0915_007",
+      "get_potato_chips_0902_103",
+      "play_cards_0902_042"
+    ],
+    "sensor_read_only": [
+      "play_cards_0916_097",
+      "play_cards_0916_098",
+      "play_cards_0916_101"
+    ]
+  },
+  "task_id": "human_to_robot_quality_closure_s1_20260923",
+  "weights": "ABSENT_OR_EXISTING_PINNED_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_quality_closure_s1_20260923",
+    "tasks/receipts/HUMAN_TO_ROBOT_QUALITY_CLOSURE_S1_20260923_RESULT.json",
+    "docs/current/README_ZH.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/HUMAN_TO_ROBOT_BASELINE_V1_ZH.md",
+    "docs/current/STATUS.json"
+  ]
+}

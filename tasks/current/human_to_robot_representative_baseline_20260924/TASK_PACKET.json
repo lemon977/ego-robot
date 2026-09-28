@@ -1,0 +1,104 @@
+{
+  "attempt_max": 1,
+  "baseline": {
+    "bytes": 4242,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_four_lane_quality_increment_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "83ed4bcddc90e35b4a3e322de36ad13f2f4b4a65527f27dff05fcf2e4ba5aa19"
+  },
+  "budgets": {
+    "cpu_heavy_jobs_max": 2,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "new_031_ik_attempts_max": 0,
+    "new_huro_solver_runs_max": 0,
+    "optimizer_steps_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 36000
+  },
+  "calibration_or_absent": "PINNED_DEVELOPMENT_MOUNT_OR_ABSENT_PER_FIELD",
+  "claim_limit": "Offline visual Robot/Clean/Sensor diagnostics and field-scoped learning interface check; no learning benefit, real action, external metric, control or deployment authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE_20260924",
+  "executor_epoch": 27,
+  "expected_resource": "FOUR_LANES_CPU8_GPU_SINGLE_OWNER",
+  "frozen_gates": {
+    "chips_candidates": [
+      "get_potato_chips_0915_042",
+      "get_potato_chips_0902_103",
+      "get_potato_chips_0915_007"
+    ],
+    "horizon_frames": 50,
+    "new_031_ik_attempts_max": 0,
+    "new_huro_solver_runs_max": 0,
+    "poker_candidates": [
+      "play_cards_0902_042",
+      "play_cards_0915_119"
+    ]
+  },
+  "objective": "Select two representative sessions; deliver stable Robot review, bounded Clean, Sensor field quality, frozen HuRo comparison and genuine Flow Matching consumer check.",
+  "phase": "HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE_20260924",
+  "plan": {
+    "bytes": 4002,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE_20260924/00_EXECUTION.md",
+    "sha256": "608803d1d04bca807937d2d5c32fa8d47ce39a106ed35fb6e14b87cc680c38ae"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE_20260924",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "one_GPU_owner",
+    "no_same_signature_quality_retry"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE_20260924/00_EXECUTION.md",
+    "_run/current/human_to_robot_four_lane_quality_increment_20260924/attempts/attempt_0001/RESULT.json",
+    "docs/current/STATUS.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/STATE.json",
+    "attempts/attempt_0001/lanes/sensor/STATE.json",
+    "attempts/attempt_0001/lanes/motion_product/STATE.json",
+    "attempts/attempt_0001/lanes/compare/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "all_authorized_lanes_terminal_or_10h_deadline",
+    "quality_failure_is_local",
+    "no_old_output_overwrite",
+    "no_new_model_training",
+    "control_ground_truth_false",
+    "physical_deployable_false",
+    "external_metric_authority_false"
+  ],
+  "task_id": "human_to_robot_representative_baseline_20260924",
+  "weights": "EXISTING_PINNED_WEIGHTS_ONLY_NO_DOWNLOAD",
+  "write_set": [
+    "_run/current/human_to_robot_representative_baseline_20260924",
+    "tasks/current/human_to_robot_representative_baseline_20260924",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_SCENE.md",
+    "docs/current/V5_SENSOR.md",
+    "docs/current/V5_MOTION.md",
+    "docs/current/V5_HURO.md",
+    "docs/current/STATUS.json",
+    "docs/current/visuals/HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE",
+    "docs/plans/HUMAN_TO_ROBOT_REPRESENTATIVE_BASELINE_20260924",
+    "src/chaoyang/governance/register_human_to_robot_representative_baseline.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "src/chaoyang/ops/run_human_to_robot_representative_baseline.py",
+    "src/chaoyang/pipeline/full_robot_review_v2.py",
+    "src/chaoyang/human_ego/preprocess/retarget_labels/schema.py",
+    "src/chaoyang/human_ego/training/FlowMatchingDataloader.py",
+    "src/chaoyang/human_ego/training/FlowMatchingModel.py",
+    "src/chaoyang/human_ego/training/FlowMatchingTrainer.py",
+    "tests/test_human_to_robot_representative_baseline.py"
+  ]
+}

@@ -2,7 +2,9 @@
 import os
 import cv2
 import argparse
+import hashlib
 import imageio
+import json
 import numpy as np
 import scipy.ndimage
 from PIL import Image
@@ -28,6 +30,17 @@ def imwrite(img, file_path, params=None, auto_mkdir=True):
         dir_name = os.path.abspath(os.path.dirname(file_path))
         os.makedirs(dir_name, exist_ok=True)
     return cv2.imwrite(file_path, img, params)
+
+
+def tensor_identity(value):
+    """Return a stable identity for the tensor actually selected by the model."""
+    array = value.detach().cpu().contiguous().numpy()
+    return {
+        "sha256": hashlib.sha256(array.tobytes(order="C")).hexdigest(),
+        "shape": list(array.shape),
+        "dtype": str(array.dtype),
+        "nonzero": int(np.count_nonzero(array)),
+    }
 
 
 # resize frames
@@ -213,6 +226,12 @@ if __name__ == '__main__':
         '--save_frames', action='store_true', help='Save output frames. Default: False')
     parser.add_argument(
         '--fp16', action='store_true', help='Use fp16 (half precision) during inference. Default: fp32 (single precision).')
+    parser.add_argument(
+        '--trace_dir', type=str, default=None,
+        help='Optional diagnostic directory for immutable neighbor/reference and internal-output traces.')
+    parser.add_argument(
+        '--trace_source_map', type=str, default=None,
+        help='Optional JSON source-frame map paired with --trace_dir.')
 
     args = parser.parse_args()
 
@@ -296,6 +315,24 @@ if __name__ == '__main__':
     # ProPainter inference
     ##############################################
     video_length = frames.size(1)
+    trace_root = None
+    trace_source_map = None
+    trace_steps = []
+    if args.trace_dir is not None:
+        trace_root = os.path.abspath(args.trace_dir)
+        os.makedirs(os.path.join(trace_root, 'internal_pred'), exist_ok=False)
+        os.makedirs(os.path.join(trace_root, 'internal_comp_visit'), exist_ok=False)
+        os.makedirs(os.path.join(trace_root, 'internal_comp_cumulative'), exist_ok=False)
+        os.makedirs(os.path.join(trace_root, 'propagated_frame'), exist_ok=False)
+        os.makedirs(os.path.join(trace_root, 'residual_propagation_mask'), exist_ok=False)
+        if args.trace_source_map is None:
+            raise ValueError('--trace_source_map is required with --trace_dir')
+        with open(args.trace_source_map, 'r', encoding='utf-8') as handle:
+            trace_source_map = json.load(handle)
+        if len(trace_source_map) != video_length:
+            raise ValueError('TRACE_SOURCE_MAP_LENGTH')
+        if [row['local_index'] for row in trace_source_map] != list(range(video_length)):
+            raise ValueError('TRACE_SOURCE_MAP_INDEX')
     print(f'\nProcessing: {video_name} [{video_length} frames]...')
     with torch.no_grad():
         # ---- compute flow ----
@@ -402,6 +439,24 @@ if __name__ == '__main__':
             updated_frames = frames * (1 - masks_dilated) + prop_imgs.view(b, t, 3, h, w) * masks_dilated
             updated_masks = updated_local_masks.view(b, t, 1, h, w)
             torch.cuda.empty_cache()
+
+        if trace_root is not None:
+            propagation_rows = []
+            for idx in range(video_length):
+                propagated = ((updated_frames[0, idx].float() + 1) / 2).clamp(0, 1)
+                propagated = (propagated.permute(1, 2, 0).cpu().numpy() * 255).astype(np.uint8)
+                residual = (updated_masks[0, idx, 0].float().cpu().numpy() > 0).astype(np.uint8) * 255
+                frame_path = os.path.join(trace_root, 'propagated_frame', f'{idx:04d}.png')
+                mask_path = os.path.join(trace_root, 'residual_propagation_mask', f'{idx:04d}.png')
+                imwrite(cv2.cvtColor(propagated, cv2.COLOR_RGB2BGR), frame_path)
+                imwrite(residual, mask_path)
+                propagation_rows.append({
+                    'local_index': idx,
+                    'source_frame': trace_source_map[idx]['source_frame'],
+                    'propagated_frame': os.path.relpath(frame_path, trace_root),
+                    'residual_propagation_mask': os.path.relpath(mask_path, trace_root),
+                    'residual_mask_tensor': tensor_identity(updated_masks[:, idx:idx + 1]),
+                })
             
     
     ori_frames = frames_inp
@@ -414,7 +469,7 @@ if __name__ == '__main__':
         ref_num = -1
     
     # ---- feature propagation + transformer ----
-    for f in tqdm(range(0, video_length, neighbor_stride)):
+    for step_index, f in enumerate(tqdm(range(0, video_length, neighbor_stride))):
         neighbor_ids = [
             i for i in range(max(0, f - neighbor_stride),
                                 min(video_length, f + neighbor_stride + 1))
@@ -438,9 +493,33 @@ if __name__ == '__main__':
             pred_img = pred_img.cpu().permute(0, 2, 3, 1).numpy() * 255
             binary_masks = masks_dilated[0, neighbor_ids, :, :, :].cpu().permute(
                 0, 2, 3, 1).numpy().astype(np.uint8)
+            trace_row = None
+            if trace_root is not None:
+                selected_ids = neighbor_ids + ref_ids
+                trace_row = {
+                    'step_index': step_index,
+                    'mid_neighbor_local_index': f,
+                    'neighbor_local_indices': neighbor_ids,
+                    'reference_local_indices': ref_ids,
+                    'neighbor_source_frames': [trace_source_map[i]['source_frame'] for i in neighbor_ids],
+                    'reference_source_frames': [trace_source_map[i]['source_frame'] for i in ref_ids],
+                    'selected_mask_tensor': tensor_identity(selected_masks),
+                    'selected_update_mask_tensor': tensor_identity(selected_update_masks),
+                    'selected_slots': [
+                        {
+                            'local_index': i,
+                            'source_frame': trace_source_map[i]['source_frame'],
+                            'role': 'neighbor' if i in neighbor_ids else 'reference',
+                            'actual_mask_tensor': tensor_identity(masks_dilated[:, i:i + 1]),
+                        }
+                        for i in selected_ids
+                    ],
+                    'visits': [],
+                }
             for i in range(len(neighbor_ids)):
                 idx = neighbor_ids[i]
-                img = np.array(pred_img[i]).astype(np.uint8) * binary_masks[i] \
+                raw_pred = np.array(pred_img[i]).astype(np.uint8)
+                img = raw_pred * binary_masks[i] \
                     + ori_frames[idx] * (1 - binary_masks[i])
                 if comp_frames[idx] is None:
                     comp_frames[idx] = img
@@ -448,6 +527,24 @@ if __name__ == '__main__':
                     comp_frames[idx] = comp_frames[idx].astype(np.float32) * 0.5 + img.astype(np.float32) * 0.5
                     
                 comp_frames[idx] = comp_frames[idx].astype(np.uint8)
+                if trace_root is not None:
+                    stem = f'step{step_index:04d}_local{idx:04d}'
+                    pred_path = os.path.join(trace_root, 'internal_pred', stem + '.png')
+                    visit_path = os.path.join(trace_root, 'internal_comp_visit', stem + '.png')
+                    cumulative_path = os.path.join(trace_root, 'internal_comp_cumulative', stem + '.png')
+                    imwrite(cv2.cvtColor(raw_pred, cv2.COLOR_RGB2BGR), pred_path)
+                    imwrite(cv2.cvtColor(img, cv2.COLOR_RGB2BGR), visit_path)
+                    imwrite(cv2.cvtColor(comp_frames[idx], cv2.COLOR_RGB2BGR), cumulative_path)
+                    trace_row['visits'].append({
+                        'local_index': idx,
+                        'source_frame': trace_source_map[idx]['source_frame'],
+                        'raw_prediction': os.path.relpath(pred_path, trace_root),
+                        'internal_comp_visit': os.path.relpath(visit_path, trace_root),
+                        'internal_comp_cumulative': os.path.relpath(cumulative_path, trace_root),
+                        'binary_mask_nonzero': int(np.count_nonzero(binary_masks[i])),
+                    })
+            if trace_row is not None:
+                trace_steps.append(trace_row)
         
         torch.cuda.empty_cache()
                 
@@ -459,6 +556,27 @@ if __name__ == '__main__':
             f = cv2.cvtColor(f, cv2.COLOR_BGR2RGB)
             img_save_root = os.path.join(save_root, 'frames', str(idx).zfill(4)+'.png')
             imwrite(f, img_save_root)
+
+    if trace_root is not None:
+        manifest = {
+            'schema_version': 'PROPAINTER_INTERNAL_TRACE_V1',
+            'video_length': video_length,
+            'processing_size': [w, h],
+            'output_size': list(out_size),
+            'mask_dilation': args.mask_dilation,
+            'neighbor_length': args.neighbor_length,
+            'ref_stride': args.ref_stride,
+            'subvideo_length': args.subvideo_length,
+            'source_map': trace_source_map,
+            'propagation_rows': propagation_rows,
+            'steps': trace_steps,
+        }
+        manifest_path = os.path.join(trace_root, 'TRACE_MANIFEST.json')
+        temporary_path = manifest_path + '.tmp'
+        with open(temporary_path, 'x', encoding='utf-8') as handle:
+            json.dump(manifest, handle, ensure_ascii=False, indent=2, sort_keys=True)
+            handle.write('\n')
+        os.replace(temporary_path, manifest_path)
                     
 
     # if args.mode == 'video_outpainting':

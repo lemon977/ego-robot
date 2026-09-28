@@ -663,6 +663,16 @@ def publish_bundle(
         atomic_json(TASK_STATE_PATH, task_state)
         from chaoyang.governance.build_algorithm_baseline_v2_status import publish_navigation_if_v2
         publish_navigation_if_v2(REPO_ROOT, task_state, authority["generated_at"])
+        from chaoyang.governance.build_full_pipeline_v3_status import publish_navigation_if_v3
+        publish_navigation_if_v3(REPO_ROOT, task_state, authority["generated_at"])
+        from chaoyang.governance.build_full_pipeline_v4_status import publish_navigation_if_v4
+        publish_navigation_if_v4(REPO_ROOT, task_state, authority["generated_at"])
+        from chaoyang.governance.build_human_to_robot_r2_terminal_status import (
+            publish_navigation_if_human_to_robot_r2,
+        )
+        publish_navigation_if_human_to_robot_r2(
+            REPO_ROOT, task_state, authority["generated_at"]
+        )
         # V2 shallow navigation is a bounded snapshot, not a quality promotion.
         atomic_write(STATUS_PATH, markdown)
         atomic_json(MIN_STATUS_PATH, min_status)

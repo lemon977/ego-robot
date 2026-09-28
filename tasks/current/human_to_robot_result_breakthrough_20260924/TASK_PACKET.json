@@ -1,0 +1,93 @@
+{
+  "attempt_max": 1,
+  "baseline": {
+    "bytes": 6101,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_acceptance_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "0296ae4b0c7d021d49383f7acb73dc1f5f03515998756032965efbb62817d0da"
+  },
+  "budgets": {
+    "cleanup_coordination_seconds_max": 7200,
+    "cpu_heavy_jobs_max": 2,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "new_031_ik_attempts_max": 0,
+    "new_huro_solver_runs_max": 0,
+    "optimizer_steps_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 36000
+  },
+  "calibration_or_absent": "PINNED_DEVELOPMENT_MOUNT_OR_ABSENT_PER_FIELD",
+  "claim_limit": "Offline Robot/Clean quality and field-scoped learning label eligibility; no training, control, deployment or external metric authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_RESULT_BREAKTHROUGH_CYCLE1",
+  "executor_epoch": 29,
+  "expected_resource": "THREE_LANES_CPU8_GPU_SINGLE_OWNER_PLUS_ONE_IO_WORKER",
+  "frozen_sessions": {
+    "chips": "get_potato_chips_0915_042",
+    "chips_frames": 363,
+    "clean_window": [
+      76,
+      91
+    ],
+    "poker": "play_cards_0902_042",
+    "poker_frames": 171,
+    "product_denominator": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031",
+      "get_potato_chips_0902_103",
+      "play_cards_0902_042"
+    ],
+    "sensor": "play_cards_0916_097"
+  },
+  "objective": "Deliver full-session Robot and Clean quality attempts, Sensor097 field-qualified learning labels, and audited real cleanup.",
+  "phase": "HUMAN_TO_ROBOT_RESULT_BREAKTHROUGH_CYCLE1",
+  "plan": {
+    "bytes": 2267,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/RESULT_BREAKTHROUGH_CARD_ZH.md",
+    "sha256": "e7862a5bfc714d8a9633cf7d87cc894e6e446a2e9ecffe6f51c7c61e54042070"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_RESULT_BREAKTHROUGH_CYCLE1",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_receipts_read_only",
+    "all_writes_inside_repo",
+    "one_GPU_owner",
+    "cleanup_reference_proof"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/current/RESULT_BREAKTHROUGH_CARD_ZH.md",
+    "_run/current/human_to_robot_quality_acceptance_20260924/attempts/attempt_0001/RESULT.json",
+    "docs/current/STATUS.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/robot/STATE.json",
+    "attempts/attempt_0001/lanes/clean/STATE.json",
+    "attempts/attempt_0001/lanes/data/STATE.json",
+    "attempts/attempt_0001/lanes/cleanup/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "all_authorized_actions_terminal_or_10h_deadline",
+    "first_cycle_all_candidates_rejected_skips_second_cycle",
+    "one_branch_failure_does_not_stop_other_ready_work"
+  ],
+  "task_id": "human_to_robot_result_breakthrough_20260924",
+  "weights": "EXISTING_PINNED_WEIGHTS_ONLY_NO_DOWNLOAD",
+  "write_set": [
+    "_run/current/human_to_robot_result_breakthrough_20260924",
+    "tasks/current/human_to_robot_result_breakthrough_20260924",
+    "tasks/current/INDEX.json",
+    "docs/current",
+    "docs/archive",
+    "docs/governance",
+    "tests",
+    "src/chaoyang",
+    "_run/cache",
+    "_run/current",
+    "tasks/receipts"
+  ]
+}

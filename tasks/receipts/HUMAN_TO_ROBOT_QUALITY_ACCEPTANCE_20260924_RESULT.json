@@ -1,0 +1,12 @@
+{
+  "products_adopted": "0/4",
+  "products_quality": "0/4",
+  "result": {
+    "bytes": 6101,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_acceptance_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "0296ae4b0c7d021d49383f7acb73dc1f5f03515998756032965efbb62817d0da"
+  },
+  "schema_version": "HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_TASK_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_quality_acceptance_20260924"
+}

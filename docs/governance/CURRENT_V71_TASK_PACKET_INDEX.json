@@ -1,12 +1,12 @@
 {
-  "execution_revision": "ALGORITHM_BASELINE_V2",
-  "generated_at": "2026-09-21T12:36:28+08:00",
-  "generation_id": "gov-013317-6ff24dc3bc01",
-  "governance_revision": 13317,
-  "index_bytes": 1383,
+  "execution_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_20260924",
+  "generated_at": "2026-09-28T11:05:43+08:00",
+  "generation_id": "gov-014171-86b9916cecd6",
+  "governance_revision": 14171,
+  "index_bytes": 736,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "e14be1835bbca45948ca324ac41a55b6c62fef06033f3d791c72a4d7711df2b4",
-  "packet_revision": "ALGORITHM_BASELINE_V2_PARENT_ROUTABLE",
-  "plan_revision": "ALGORITHM_BASELINE_V2",
+  "index_sha256": "2d934c2a786ea271bd6bb57b59fc52de4edcc71cfd1b46624650cc5f91f62bbe",
+  "packet_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_TERMINAL",
+  "plan_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_20260924",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
 }

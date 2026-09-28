@@ -1,0 +1,99 @@
+{
+  "attempt_max": 1,
+  "baseline": {
+    "bytes": 3241,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_10h_delivery_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "3d755f6d5d89aae90da357de624fd4eb1ac973e2f36f083a2693966117620cec"
+  },
+  "budgets": {
+    "cpu_heavy_jobs_max": 2,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 0,
+    "new_031_ik_attempts_max": 0,
+    "new_model_runs_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 10800
+  },
+  "calibration_or_absent": "PINNED_DEVELOPMENT_MOUNT_NO_NEW_CALIBRATION",
+  "claim_limit": "Bounded quality diagnostics and one derived limit-constrained HuRo postprocess; no Clean/product adoption, external accuracy, training, control or physical authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_FOUR_LANE_QUALITY_INCREMENT_20260924",
+  "executor_epoch": 26,
+  "expected_resource": "CPU_ONLY_FOUR_LANES",
+  "frozen_gates": {
+    "huro_007_frames": [
+      181,
+      196
+    ],
+    "huro_031_frames": [
+      66,
+      81
+    ],
+    "new_model_runs_max": 0,
+    "scene_frames": [
+      181,
+      196
+    ],
+    "scene_session": "get_potato_chips_0915_007"
+  },
+  "objective": "Four CPU-only quality increments on fixed 007/031, Sensor 097/098/101 and old Local/HuRo inputs.",
+  "phase": "HUMAN_TO_ROBOT_FOUR_LANE_QUALITY_INCREMENT_20260924",
+  "plan": {
+    "bytes": 2675,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_FOUR_LANE_QUALITY_INCREMENT_20260924/00_EXECUTION.md",
+    "sha256": "03cb36b59216bea847d37b33aedbf243b6c3d26004f33b3315e347462e7f7a24"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_FOUR_LANE_QUALITY_INCREMENT_20260924",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "cpu_only",
+    "no_same_signature_quality_retry"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_FOUR_LANE_QUALITY_INCREMENT_20260924/00_EXECUTION.md",
+    "_run/current/human_to_robot_10h_delivery_20260924/attempts/attempt_0001/RESULT.json",
+    "docs/current/STATUS.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/STATE.json",
+    "attempts/attempt_0001/lanes/sensor/STATE.json",
+    "attempts/attempt_0001/lanes/motion_product/STATE.json",
+    "attempts/attempt_0001/lanes/compare/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "four_lanes_terminal_or_3h_deadline",
+    "no_new_model_inference",
+    "no_old_output_overwrite",
+    "quality_failure_is_local",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false",
+    "external_metric_authority_false"
+  ],
+  "task_id": "human_to_robot_four_lane_quality_increment_20260924",
+  "weights": "ABSENT_CPU_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_four_lane_quality_increment_20260924",
+    "tasks/current/human_to_robot_four_lane_quality_increment_20260924",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_SCENE.md",
+    "docs/current/V5_SENSOR.md",
+    "docs/current/V5_MOTION.md",
+    "docs/current/V5_HURO.md",
+    "docs/current/STATUS.json",
+    "docs/current/visuals/HUMAN_TO_ROBOT_FOUR_LANE_INCREMENT",
+    "src/chaoyang/ops/run_human_to_robot_four_lane_increment.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "tests/test_human_to_robot_four_lane_increment.py"
+  ]
+}

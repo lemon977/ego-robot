@@ -1,4 +1,8 @@
-# 0915 Robot 15 小时执行状态
+# 0915 Robot 15 小时历史执行状态
+
+> 历史执行记录：本页只用于追溯已结束的 15 小时运行，不是当前任务入口，也不授权恢复或重跑。
+> 当前状态以 [`README_ZH.md`](README_ZH.md)、[`STATUS.json`](STATUS.json) 和
+> [`tasks/current/INDEX.json`](../../tasks/current/INDEX.json) 为准。
 
 状态：`COMPLETED_WITH_FINAL_AUDIT_REJECTED_QUALITY`
 
@@ -55,6 +59,7 @@ R2 的“4 个导出”不是 4 个 Robot 成功。人工复核也看到虚拟�
 - [W0 Virtual R2](visuals/0915_ROBOT15H_W0_VIRTUAL_R2_V1/README_ZH.md)
 
 ## H9 冻结与 W1
+
 
 H9 release candidate 已在截止前冻结，20 个 capability/task/scope row 中：13 个实际执行、
 11 个导出、4 个窄 scope 质量准入。获准扩展的只有：

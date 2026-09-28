@@ -1,31 +1,17 @@
 {
-  "claim_limit": "One parent publisher; isolated lane writers. No training or deployment authority.",
-  "execution_revision": "ALGORITHM_BASELINE_V2",
-  "generated_at": "2026-09-21T12:36:28+08:00",
-  "generation_id": "gov-013317-6ff24dc3bc01",
-  "governance_revision": 13317,
-  "packet_revision": "ALGORITHM_BASELINE_V2_PARENT_ROUTABLE",
-  "plan_revision": "ALGORITHM_BASELINE_V2",
+  "claim_limit": "Finite task terminal; no automatic successor or quality promotion.",
+  "execution_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_20260924",
+  "generated_at": "2026-09-24T19:31:53+08:00",
+  "generation_id": "gov-014164-a1404fdb7b81",
+  "governance_revision": 14164,
+  "packet_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_TERMINAL",
+  "plan_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_20260924",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
-  "status": "PASS",
+  "status": "PASS_NO_ACTIVE_TASKS",
   "supersedes_index": {
-    "bytes": 1180,
-    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/PREDECESSOR_INDEX.json",
-    "sha256": "5238c62090b1723e747df51e8e1cb5f20660c185f79e91278b45a8f9bcdaada8"
+    "bytes": 1252,
+    "path": "/mnt/workspace/code/chaoyang/tasks/current/INDEX.json",
+    "sha256": "9dc76ce2837d0a7b2302ac37e2548d9b81379503f403831e82d0b5842959a0de"
   },
-  "task_packets": [
-    {
-      "execution_allowed": false,
-      "execution_class": "TERMINAL_LEDGER_EVIDENCE",
-      "packet_path": "tasks/current/four_stream_algorithm_baseline_v2/TASK_PACKET.json",
-      "packet_sha256": "2be6bd02f3519d0366e079abef2d865976ebb0341ea2c0f8247a36a4930560be",
-      "task_id": "four_stream_algorithm_baseline_v2",
-      "terminal_result": {
-        "bytes": 817,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT.json",
-        "sha256": "7113025921bdff73bd6aabff6c046525241b743eae6ee96ad514c05928331ded"
-      },
-      "weights": "ABSENT"
-    }
-  ]
+  "task_packets": []
 }

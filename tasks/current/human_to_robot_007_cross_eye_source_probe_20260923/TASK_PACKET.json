@@ -1,0 +1,83 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "gpu_seconds_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "same_signature_runtime_retry_max": 1,
+    "wall_seconds_max": 3600
+  },
+  "calibration_or_absent": "ABSENT_PIXEL_ONLY",
+  "claim_limit": "Cross-eye source appearance support only; no hidden background truth, Clean, metric depth or product claim.",
+  "execution_revision": "HUMAN_TO_ROBOT_007_CROSS_EYE_SOURCE_PROBE_20260923",
+  "executor_epoch": 21,
+  "expected_resource": "CPU_ONLY_ONE_HOUR",
+  "frozen_gates": {
+    "both_fit_inlier_hulls_required": true,
+    "frames": [
+      181,
+      184,
+      192,
+      196
+    ],
+    "left_mean_abs_max": 2.5,
+    "left_p99_abs_max": 8.0,
+    "source_index_right": 0,
+    "target_index_left": 1
+  },
+  "objective": "Quantify fixed-frame physical-right table-source support for physical-left 007, without synthesis.",
+  "phase": "HUMAN_TO_ROBOT_007_CROSS_EYE_SOURCE_PROBE_20260923",
+  "plan": {
+    "bytes": 1425,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_007_CROSS_EYE_SOURCE_PROBE_20260923/00_EXECUTION.md",
+    "sha256": "e617be3cd8307815719dddd311fb29770ac897bbe0392c0b6108301d2cfe7ab0"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_007_CROSS_EYE_SOURCE_PROBE_20260923",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "source_stereo_read_only",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "CPU_TOTAL_SOFT_LIMIT_8"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_007_CROSS_EYE_SOURCE_PROBE_20260923/00_EXECUTION.md",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/prepare_full_v1/get_potato_chips_0915_007/DOMAIN_MANIFEST.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/prepare_full_v1/get_potato_chips_0915_007/raw",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/lanes/exact78/masks_007_recovered_join_v1/human",
+    "_run/current/four_stream_visual_delivery_v5/attempts/attempt_0001/lanes/scene/masks_007_v1",
+    "_run/current/human_to_robot_007_attachment_clean_canary_20260923/attempts/attempt_0001/lanes/scene/attachment_clean_window_v1",
+    "/mnt/data/egodata/datasets/ego/processed/chips_cards_hands_0915/cleaned/potato_chips/get_potato_chips_0915_007/source_stereo/CameraRecord_get_potato_chips_0915_007_stereo.mp4"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/cross_eye_source_probe_v1/RESULT.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "four_frozen_frames_terminal_or_budget_exhausted",
+    "no_Clean_or_metric_depth_promotion",
+    "no_old_output_overwrite",
+    "training_eligible_false",
+    "control_ground_truth_false"
+  ],
+  "task_id": "human_to_robot_007_cross_eye_source_probe_20260923",
+  "weights": "ABSENT_CPU_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_007_cross_eye_source_probe_20260923",
+    "tasks/current/human_to_robot_007_cross_eye_source_probe_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/V5_SCENE.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops/run_human_to_robot_007_cross_eye_source_probe.py",
+    "src/chaoyang/ops/finalize_human_to_robot_007_cross_eye_source_probe.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_007_cross_eye_source_probe.py"
+  ]
+}

@@ -1,0 +1,16 @@
+{
+  "product_quality_pass": 0,
+  "result": {
+    "bytes": 4612,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_root_cause_gated_r2_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "640163a91e9bae41dc755ca3d0019f0c2d8ad77000625150ccb2414daf7400c8"
+  },
+  "robot_r1_adopted": 0,
+  "scene_quality_pass": 0,
+  "schema_version": "HUMAN_TO_ROBOT_ROOT_CAUSE_GATED_R2_RECEIPT_V1",
+  "status": "REJECTED_QUALITY",
+  "task_id": "human_to_robot_root_cause_gated_r2_20260923",
+  "tests_passed": 1489,
+  "tests_skipped": 1,
+  "videos_full_decode": 13
+}

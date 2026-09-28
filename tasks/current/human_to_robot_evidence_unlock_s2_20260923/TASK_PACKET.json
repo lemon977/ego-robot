@@ -1,0 +1,120 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "algorithm_change_cutoff_seconds": 36000,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "h3_checkpoint_seconds": 10800,
+    "h3_gpu_seconds_max": 5400,
+    "h6_checkpoint_seconds": 21600,
+    "h9_freeze_seconds": 32400,
+    "max_evidence_driven_repairs_per_fault_package": 2,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 43200
+  },
+  "calibration_or_absent": "DEVELOPMENT_MOUNT_PINNED;MEASURED_INSTALLATION_ABSENT",
+  "claim_limit": "Offline visual baseline convergence only; no training, contact truth, external metric, control or deployment authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_20260923",
+  "executor_epoch": 8,
+  "expected_resource": "FOUR_ISOLATED_CPU_LANES_PLUS_ONE_GOVERNED_GPU_LEASE",
+  "external_metric_authority": false,
+  "fault_packages": {
+    "ASSEMBLY_RENDER_CONSUMPTION": 2,
+    "C007_CLEAN_CABLE": 2,
+    "FORMAL_PRODUCT_ENTRY_AND_CACHE": 2,
+    "LOCAL_HURO_INCREMENTAL_COMPARE": 2,
+    "P031_SOURCE_PROVENANCE": 2,
+    "P031_WRIST_TARGET_TRACKING": 2,
+    "ROBOT_DEPTH_OCCLUSION": 2,
+    "SENSOR_VISUAL_INTERPRETATION": 2
+  },
+  "fencing": {
+    "immutable_final": true,
+    "lane_writer_roots": {
+      "compare": "_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/lanes/compare",
+      "motion_product": "_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/lanes/motion_product",
+      "scene": "_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/lanes/scene",
+      "sensor": "_run/current/human_to_robot_evidence_unlock_s2_20260923/attempts/attempt_0001/lanes/sensor"
+    },
+    "pid_startticks_required": true,
+    "unique_primary_writer": true
+  },
+  "objective": "Freeze a reusable Human-to-Robot baseline by closing real adapter consumption, truthful q/FK rendering, target tracking, occlusion and four-stream quality evidence.",
+  "phase": "HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_20260923",
+  "plan": {
+    "bytes": 4361,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_20260923/00_EXECUTION.md",
+    "sha256": "71d880aa25a057b4648d95f5db9ad98aa42c6a4646236629e8a280c3464e3b0e"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_20260923",
+  "predecessor": {
+    "bytes": 3517,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "b239b2346adf37d1ce9f2c2bf508293cb511e31c392f9a7f2ab5258f222264e8"
+  },
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "exclusive_current_index",
+    "terminal_s1_predecessor",
+    "read_only_source_processed_archive_sealed_and_predecessors",
+    "single_publisher",
+    "single_GPU_lease_owner",
+    "cpu_total_soft_cap_8",
+    "all_new_writes_inside_repo",
+    "no_same_signature_quality_retry"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_quality_closure_s1_20260923/attempts/attempt_0001/RESULT.json",
+    "_run/current/four_stream_full_pipeline_v3/attempts/attempt_0001/shared/cad/interfaces_mount_v2_corrected/MOUNT_CONTRACT.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/STATE.json",
+    "attempts/attempt_0001/lanes/sensor/STATE.json",
+    "attempts/attempt_0001/lanes/motion_product/STATE.json",
+    "attempts/attempt_0001/lanes/compare/STATE.json",
+    "attempts/attempt_0001/H3_PROGRESS.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "all_registered_branches_terminal_or_wall_budget_exhausted",
+    "h9_component_combination_frozen",
+    "no_new_algorithm_after_h10",
+    "quality_failure_does_not_auto_retry",
+    "no_predecessor_or_source_writes",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false",
+    "external_metric_authority_false"
+  ],
+  "target_sessions": {
+    "primary": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031"
+    ],
+    "regression": [
+      "get_potato_chips_0902_103",
+      "play_cards_0902_042"
+    ],
+    "sensor": [
+      "play_cards_0916_097",
+      "play_cards_0916_098",
+      "play_cards_0916_101"
+    ]
+  },
+  "task_id": "human_to_robot_evidence_unlock_s2_20260923",
+  "weights": "ABSENT_OR_EXISTING_PINNED_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_evidence_unlock_s2_20260923",
+    "tasks/receipts/HUMAN_TO_ROBOT_EVIDENCE_UNLOCK_S2_20260923_RESULT.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/HUMAN_TO_ROBOT_BASELINE_V1_ZH.md",
+    "docs/current/STATUS.json",
+    "docs/current/visuals/HUMAN_TO_ROBOT_S2"
+  ]
+}

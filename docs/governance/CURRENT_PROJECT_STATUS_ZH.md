@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-21T12:36:28+08:00`
-- governance revision：`13317`
-- generation id：`gov-013317-6ff24dc3bc01`
+- 状态生成时间：`2026-09-28T11:05:43+08:00`
+- governance revision：`14171`
+- generation id：`gov-014171-86b9916cecd6`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`48777376e55a4c6b2fc27f700dda999245bc80f57da88eed5a77725c55e4b4d0`
-- repository：`bf5e4e743dea90b72beb1d7d88ffb305ae60208c` / `task/0915-full-funnel-0916-clean-v1`
+- generator code SHA：`73a55a062d4a75b18b6c85e11f74de81059f2d4fbd4aa59b6c68e2ee148f8f95`
+- repository：`2d2306d61b2c38daa847d7468bab48a6ddd909b1` / `task/0915-full-funnel-0916-clean-v1`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -99,8 +99,7 @@
 
 ### PASSED
 
-- `four_stream_algorithm_baseline_v2` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/four_stream_algorithm_baseline_v2/attempts/attempt_0001/RESULT.json / `2026-09-21T12:36:28+08:00`
-- `ai1_artifact_ref_rebind_v31` / `-` / `PASSED` / /mnt/workspace/code/chaoyang/_run/current/ai1_artifact_ref_rebind_v31/attempts/attempt_0001/RESULT.json / `2026-09-20T17:00:58+08:00`
+- 无。
 
 ### FAILED_QUALITY_C
 
@@ -112,8 +111,7 @@
 
 ### BLOCKED
 
-- `ai2_current_asset_path_fix_v31` / `-` / `BLOCKED_PREREQ` / /mnt/workspace/code/chaoyang/_run/current/ai2_current_asset_path_fix_v31/attempts/attempt_0001/RESULT.json / `2026-09-20T16:51:37+08:00`
-- `ai1_cpfs_publish_fix_v31` / `-` / `BLOCKED_PREREQ` / /mnt/workspace/code/chaoyang/_run/current/ai1_cpfs_publish_fix_v31/attempts/attempt_0001/RESULT.json / `2026-09-20T16:51:19+08:00`
+- 无。
 
 ## H. 下一任务
 

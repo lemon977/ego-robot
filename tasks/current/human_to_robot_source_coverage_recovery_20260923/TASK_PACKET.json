@@ -1,0 +1,81 @@
+{
+  "attempt_max": 1,
+  "budgets": {
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "new_031_ik_attempts_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 10800
+  },
+  "calibration_or_absent": "DEVELOPMENT_MOUNT_PINNED;MEASURED_INSTALLATION_ABSENT",
+  "claim_limit": "Source and input support recovery only; no automatic Clean, IK, Contact, metric, training, control or product adoption authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_SOURCE_COVERAGE_RECOVERY_20260923",
+  "executor_epoch": 11,
+  "expected_resource": "TWO_FOCUSED_LANES_CPU_FIRST_OPTIONAL_SINGLE_GPU",
+  "frozen_gates": {
+    "motion_031_left_input": 0,
+    "motion_031_right_input": 102,
+    "motion_031_timeline": 149,
+    "scene_007_frames": [
+      181,
+      196
+    ]
+  },
+  "objective": "Quantify and repair, where evidence permits, 007 missing hand-removal support and 031 target-source discontinuity without rerunning rejected candidates unchanged.",
+  "phase": "HUMAN_TO_ROBOT_SOURCE_COVERAGE_RECOVERY_20260923",
+  "plan": {
+    "bytes": 2226,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_SOURCE_COVERAGE_RECOVERY_20260923/00_EXECUTION.md",
+    "sha256": "8c39fa1a8462ffbb475ab7aa32db076216f8ffc1ef656b57522d32f4aecb7e1e"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_SOURCE_COVERAGE_RECOVERY_20260923",
+  "predecessor": {
+    "bytes": 9497,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/RESULT.json",
+    "sha256": "0324d47e993c4dcf9699f097a69a192b2085404f069b0ad471fdf08e429c7f26"
+  },
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "one_GPU_owner"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_SOURCE_COVERAGE_RECOVERY_20260923/00_EXECUTION.md",
+    "_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/RESULT.json",
+    "_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/lanes/scene/cable_007/window_v1/RESULT.json",
+    "_run/current/human_to_robot_product_first_cleanup_20260923/attempts/attempt_0001/lanes/motion_product/frame47_audit_031/v1/RESULT.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/STATE.json",
+    "attempts/attempt_0001/lanes/motion_product/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "two_bound_diagnostics_terminal_or_budget_exhausted",
+    "no_old_output_overwrite",
+    "no_unproved_GPU_retry",
+    "training_eligible_false",
+    "control_ground_truth_false",
+    "physical_deployable_false",
+    "external_metric_authority_false"
+  ],
+  "task_id": "human_to_robot_source_coverage_recovery_20260923",
+  "weights": "EXISTING_PINNED_ONLY",
+  "write_set": [
+    "_run/current/human_to_robot_source_coverage_recovery_20260923",
+    "tasks/current/human_to_robot_source_coverage_recovery_20260923",
+    "tasks/current/INDEX.json",
+    "docs/current/PLAN.md",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/STATUS.json",
+    "src/chaoyang/ops",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "tests/test_human_to_robot_source_coverage_recovery.py"
+  ]
+}

@@ -1,0 +1,107 @@
+{
+  "attempt_max": 1,
+  "baseline": {
+    "bytes": 6231,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_representative_baseline_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "a8fa2612ce35702e31e4c02a84a85e1c367c5511cf33ee12ef20f06fff888ab7"
+  },
+  "budgets": {
+    "cpu_heavy_jobs_max": 2,
+    "cpu_threads_soft_cap": 8,
+    "gpu_concurrent_owners_max": 1,
+    "new_031_ik_attempts_max": 0,
+    "new_huro_solver_runs_max": 0,
+    "optimizer_steps_max": 0,
+    "same_signature_quality_retry_max": 0,
+    "wall_seconds_max": 36000
+  },
+  "calibration_or_absent": "PINNED_DEVELOPMENT_MOUNT_OR_ABSENT_PER_FIELD",
+  "claim_limit": "Offline visual technical quality only; user adoption separate; no training, control, physical deployment or external metric authority.",
+  "execution_revision": "HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_20260924",
+  "executor_epoch": 28,
+  "expected_resource": "FOUR_LANES_CPU8_GPU_SINGLE_OWNER",
+  "frozen_gates": {
+    "full_rotation_deg": 15,
+    "new_031_ik_attempts_max": 0,
+    "new_huro_solver_runs_max": 0,
+    "poker_frames": 171,
+    "position_mm": 20,
+    "product_denominator": [
+      "get_potato_chips_0915_007",
+      "play_cards_0915_031",
+      "get_potato_chips_0902_103",
+      "play_cards_0902_042"
+    ]
+  },
+  "objective": "Poker 0902_042 full 171-frame independent technical quality acceptance, user-reviewable SHA, and Sensor local Kai22 consumer qualification.",
+  "phase": "HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_20260924",
+  "plan": {
+    "bytes": 2561,
+    "path": "/mnt/workspace/code/chaoyang/docs/plans/HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_20260924/00_EXECUTION.md",
+    "sha256": "afc9002833834fcef64f40c79c45b11f59ba25ce3ff0fb34c06f723fb6aeb7c9"
+  },
+  "plan_revision": "HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_20260924",
+  "prerequisites": [
+    "governance_PASS_FRESH",
+    "single_publisher",
+    "old_outputs_read_only",
+    "all_writes_inside_repo",
+    "one_GPU_owner"
+  ],
+  "read_set": [
+    "tasks/current/INDEX.json",
+    "docs/plans/HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_20260924/00_EXECUTION.md",
+    "_run/current/human_to_robot_representative_baseline_20260924/attempts/attempt_0001/RESULT.json",
+    "docs/current/STATUS.json"
+  ],
+  "required_outputs": [
+    "attempts/attempt_0001/RUN_SIGNATURE.json",
+    "attempts/attempt_0001/lanes/scene/STATE.json",
+    "attempts/attempt_0001/lanes/sensor/STATE.json",
+    "attempts/attempt_0001/lanes/motion_product/STATE.json",
+    "attempts/attempt_0001/lanes/compare/STATE.json",
+    "attempts/attempt_0001/RESULT.json"
+  ],
+  "route_id": "HUMAN_TO_ROBOT_BASELINE_V1",
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "scope_amendment_reason": "Formal product gate and deterministic Scene producer tests are in the authorized quality-acceptance plan.",
+  "stop_conditions": [
+    "all_authorized_lanes_terminal_or_10h_deadline",
+    "quality_failure_is_local",
+    "no_old_output_overwrite",
+    "no_new_model_training",
+    "adoption_requires_user_confirmation"
+  ],
+  "supersedes_packet": {
+    "bytes": 3808,
+    "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_quality_acceptance_20260924/TASK_PACKET.json",
+    "sha256": "09093d18c7e75d718909795bd9fc191d6919ade37412176b7090c84064ba8ad1"
+  },
+  "task_id": "human_to_robot_quality_acceptance_20260924",
+  "weights": "EXISTING_PINNED_WEIGHTS_ONLY_NO_DOWNLOAD",
+  "write_set": [
+    "_run/current/human_to_robot_quality_acceptance_20260924",
+    "docs/current/AI_WORK_ENTRY_ZH.md",
+    "docs/current/PLAN.md",
+    "docs/current/STATUS.json",
+    "docs/current/V5_HURO.md",
+    "docs/current/V5_MOTION.md",
+    "docs/current/V5_SCENE.md",
+    "docs/current/V5_SENSOR.md",
+    "docs/current/visuals/HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE",
+    "docs/plans/HUMAN_TO_ROBOT_QUALITY_ACCEPTANCE_20260924",
+    "src/chaoyang/governance/amend_human_to_robot_quality_acceptance_packet.py",
+    "src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
+    "src/chaoyang/governance/current_r3_contracts.py",
+    "src/chaoyang/governance/publish_human_to_robot_quality_acceptance_impl.py",
+    "src/chaoyang/ops/run_human_to_robot_baseline_v1.py",
+    "src/chaoyang/ops/run_human_to_robot_quality_acceptance.py",
+    "src/chaoyang/ops/run_r2_scene_candidate.py",
+    "src/chaoyang/pipeline/full_robot_review_v2.py",
+    "src/chaoyang/pipeline/v5_scene.py",
+    "tasks/current/INDEX.json",
+    "tasks/current/human_to_robot_quality_acceptance_20260924",
+    "tests/unit/test_full_robot_review_v2.py",
+    "tests/unit/test_product_scene_gate_quality.py"
+  ]
+}
