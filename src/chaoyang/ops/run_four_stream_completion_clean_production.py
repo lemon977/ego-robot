@@ -10,6 +10,12 @@ OUTPUT="C01_PRODUCTION_CONSUMER_REPLAY_V1"
 FROZEN="C01_PRODUCTION_CONSUMER_REPLAY_INPUT_V1.json"
 LABELS={0:"RAW_OUTSIDE_WRITE",1:"FROZEN_PROPAGATION_NOT_DIRECT_OBSERVATION",2:"LAMA_GENERATED",3:"LINEAR_RESIZE_MIX_PROPAGATION_LAMA",4:"RAW_PROTECTED",5:"RAW_UNKNOWN_PRESERVED"}
 
+def canonical_repo(repo):
+    value=Path(repo).resolve(strict=True)
+    if value != Path(__file__).resolve().parents[3]:
+        raise ValueError("REPO_ROOT_MISMATCH")
+    return value
+
 def consumer_wiring():
     source=inspect.getsource(production.lama_candidate_infer)
     calls={n.func.id for n in ast.walk(ast.parse(source)) if isinstance(n,ast.Call) and isinstance(n.func,ast.Name)}
@@ -114,6 +120,6 @@ def run(repo,lane):
 
 def main():
     p=argparse.ArgumentParser();p.add_argument("stage",choices=["freeze","run"]);p.add_argument("--repo-root",required=True);p.add_argument("--attempt",default="attempt_0001");a=p.parse_args()
-    repo,lane=c01.safe_context(a.repo_root,a.attempt)
+    repo,lane=c01.safe_context(canonical_repo(a.repo_root),a.attempt)
     print(__import__("json").dumps((freeze if a.stage=="freeze" else run)(repo,lane),ensure_ascii=False));return 0
 if __name__=="__main__":raise SystemExit(main())

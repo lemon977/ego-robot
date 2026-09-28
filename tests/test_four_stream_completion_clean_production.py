@@ -53,3 +53,9 @@ def test_invalid_model_fails_without_raw_success():
 def test_wrong_mask_domain_rejected():
     args=list(inputs());args[4]=args[4].astype(np.uint8)
     with pytest.raises(ValueError,match="MASK_DOMAIN"):p.consume(Model(),"out",*args)
+
+def test_noncanonical_repo_root_is_rejected(tmp_path):
+    with pytest.raises(ValueError,match="REPO_ROOT_MISMATCH"):
+        p.canonical_repo(tmp_path)
+    canonical=p.Path(p.__file__).resolve().parents[3]
+    assert p.canonical_repo(canonical)==canonical
