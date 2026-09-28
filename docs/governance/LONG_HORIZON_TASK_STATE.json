@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-28T12:49:39+08:00",
-  "generation_id": "gov-014197-a7d8cc1f9ee7",
+  "generated_at": "2026-09-28T12:54:42+08:00",
+  "generation_id": "gov-014198-9cefe5df9bc1",
   "generator_code_sha": "21ca73bd06e94348cbe323c3159cc84057b9dee17d968f034a9d811b5e90a455",
-  "governance_revision": 14197,
+  "governance_revision": 14198,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": {
     "session": "all_fixed_sessions",
@@ -999,7 +999,7 @@
   ],
   "repository": {
     "branch": "task/four-stream-completion-20260928",
-    "commit": "da104752f5523d35e344632590e53eea4957e5f3"
+    "commit": "044a8a8e680db733ee745af63d8ac7a96a334f32"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -3237,9 +3237,9 @@
       "pid": 2099865,
       "proc_start_ticks": 282946792,
       "progress_checkpoint": {
-        "bytes": 5354,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0004.json",
-        "sha256": "990a8d57b3dd1b7c1a02d2885f1708b8fcccf388532df40c22a948fa8f04f8c1"
+        "bytes": 5976,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0005.json",
+        "sha256": "ac7dcb3d1f927b11f2ea708a292e710639f17fb1e2d27ca9b22dc47869e61c2c"
       },
       "status": "PENDING",
       "task_id": "four_stream_completion_20260928",
@@ -3248,7 +3248,7 @@
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928/TASK_PACKET.json",
         "sha256": "5418c58b8b31d4fceb2827c3382d81733c13d54f71e5220c1324bbdbc97e8e25"
       },
-      "updated_at": "2026-09-28T12:49:39+08:00"
+      "updated_at": "2026-09-28T12:54:42+08:00"
     },
     {
       "attempt": 1,
