@@ -9,6 +9,12 @@ from chaoyang.ops.run_four_stream_completion_assembly_canary import authority
 from chaoyang.ops.run_four_stream_completion_sensor import read_pinned,checked_path
 from chaoyang.pipeline.s01_overlay_consumer_v1 import FRAMES,consume,projected_points,proxy_errors
 
+def require_canonical_repo(root):
+    if Path(root).resolve(strict=True) != Path(__file__).resolve().parents[3]:
+        raise ValueError('repo root is not canonical')
+    return root
+
+
 
 def draw_frame(raw,points,motion,frame,housing,glove,font):
     import cv2
@@ -48,7 +54,7 @@ def draw_frame(raw,points,motion,frame,housing,glove,font):
 
 
 def run(config):
-    root,lane,index,ticks=authority(config)
+    root,lane,index,ticks=authority(config);require_canonical_repo(root)
     if config['frame_indices']!=list(FRAMES):raise ValueError('frame scope changed')
     refs=config['references'];data={k:read_pinned(v,root) for k,v in refs.items()}
     contract,fit_config,fit,housing,glove=[json.loads(data[k]) for k in ('contract','fit_config','fit','housing','glove')]
