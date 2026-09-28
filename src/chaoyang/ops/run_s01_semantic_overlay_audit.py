@@ -9,11 +9,53 @@ from chaoyang.ops.run_four_stream_completion_assembly_canary import authority
 from chaoyang.ops.run_four_stream_completion_sensor import read_pinned,checked_path
 from chaoyang.pipeline.s01_overlay_consumer_v1 import FRAMES,consume,projected_points,proxy_errors
 
+
 def require_canonical_repo(root):
     if Path(root).resolve(strict=True) != Path(__file__).resolve().parents[3]:
         raise ValueError('repo root is not canonical')
     return root
 
+
+CODE_PATHS=('ops/run_s01_semantic_overlay_audit.py','pipeline/s01_overlay_consumer_v1.py',
+            'pipeline/s01_point_semantics_v1.py','ops/run_four_stream_completion_assembly_canary.py',
+            'ops/run_four_stream_completion_sensor.py')
+TEMPLATE_SHA='69df1e4d71d2cc28d5237b74af97e1ac0cb25ce49a25f2e6929bcfe90e72750c'
+
+
+def freeze_config(template_path):
+    """Only rebind exact code refs in the immutable preregistered V3 template."""
+    template_path=Path(template_path)
+    raw=template_path.read_bytes()
+    config=json.loads(raw)
+    root,lane,index,ticks=authority(config)
+    require_canonical_repo(root)
+    if checked_path(template_path,root) != lane/'S01_OVERLAY_CONFIG_V3.json':
+        raise ValueError('freeze requires exact V3 template path')
+    if hashlib.sha256(raw).hexdigest()!=TEMPLATE_SHA:
+        raise ValueError('preregistered V3 template SHA drift')
+    expected={str(root/'src/chaoyang'/p) for p in CODE_PATHS}
+    closure=config['code_closure']
+    if len(closure)!=len(expected) or {r['path'] for r in closure}!=expected:
+        raise ValueError('code closure path set changed')
+    out=lane/'S01_OVERLAY_CONFIG_V4.json'
+    if out.exists() or out.is_symlink():raise FileExistsError(out)
+    for ref in closure:
+        path=checked_path(ref['path'],root)
+        before=path.stat()
+        if before.st_size>32*1024*1024:raise ValueError('code input too large')
+        code=path.read_bytes();after=path.stat()
+        identity=lambda s:(s.st_dev,s.st_ino,s.st_size,s.st_mtime_ns,s.st_ctime_ns)
+        if identity(before)!=identity(after):raise ValueError('unstable code during freeze')
+        ref['bytes']=len(code);ref['sha256']=hashlib.sha256(code).hexdigest()
+    if authority(config)[2:]!=(index,ticks):raise ValueError('authority changed during freeze')
+    if template_path.read_bytes()!=raw:raise ValueError('template changed during freeze')
+    for ref in closure:read_pinned(ref,root)
+    with out.open('x',encoding='utf8') as stream:
+        json.dump(config,stream,ensure_ascii=False,indent=2,allow_nan=False)
+    frozen=out.read_bytes()
+    return {'execution':'CONFIG_FROZEN','adoption':'NOT_ADOPTED',
+            'config':{'path':str(out),'bytes':len(frozen),'sha256':hashlib.sha256(frozen).hexdigest()},
+            'updated_fields':'code_closure[*].bytes/sha256_ONLY'}
 
 
 def draw_frame(raw,points,motion,frame,housing,glove,font):
@@ -116,8 +158,10 @@ def run(config):
 
 def main(argv=None):
     p=argparse.ArgumentParser(description=__doc__);p.add_argument('--config',required=True,type=Path)
-    args=p.parse_args(argv);result=run(json.loads(args.config.read_text()))
-    print(json.dumps({'execution':result['execution'],'adoption':result['adoption']}));return 0
+    p.add_argument('--action',choices=('run','freeze-config'),default='run')
+    args=p.parse_args(argv)
+    result=freeze_config(args.config) if args.action=='freeze-config' else run(json.loads(args.config.read_text()))
+    print(json.dumps(result if args.action=='freeze-config' else {'execution':result['execution'],'adoption':result['adoption']}));return 0
 
 
 if __name__=='__main__':raise SystemExit(main())
