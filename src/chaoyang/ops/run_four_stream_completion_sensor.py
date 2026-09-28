@@ -143,7 +143,10 @@ def run(config):
     allowed = [checked_path(p,root) for p in packet['write_set']]
     if output_root not in allowed:
         raise ValueError('sensor lane missing from delegated write-set')
-    output = output_root/'DIAGNOSTIC_V1.json'
+    kind=config.get('diagnostic_kind','source_collision_pairs_v1')
+    if kind not in ('source_collision_pairs_v1','asset_geometry_v1'):
+        raise ValueError('unsupported diagnostic kind')
+    output = output_root/('ASSET_GEOMETRY_V1.json' if kind=='asset_geometry_v1' else 'DIAGNOSTIC_V1.json')
     if output.exists():
         raise FileExistsError(output)
     config_frames = config['frame_indices']
@@ -170,9 +173,14 @@ def run(config):
     if Path(config['asset_pin']['path']).resolve() != (root/'assets/robot/ROBOT_ASSET_PIN.json').resolve():
         raise ValueError('wrong asset pin')
     models, asset_refs = load_pinned_kaihand_models(root)
+    if kind=='asset_geometry_v1':
+        from chaoyang.pipeline.sensor_collision_asset_audit_v1 import audit_assets
+        diagnostic=dict(asset_geometry=audit_assets(models,root,json.loads(read_pinned(config['asset_pin'],root))))
+    else:
+        diagnostic=dict(collision_pairs=collision_pairs(models,states,config_frames))
     result = dict(schema_version='FOUR_STREAM_SENSOR_DIAGNOSTIC_V1', task_id=TASK,
                   execution='EXECUTED', quality='NOT_EVALUATED', adoption='NOT_ADOPTED',
-                  source=source_summary(source), collision_pairs=collision_pairs(models,states,config_frames),
+                  source=source_summary(source), diagnostic_kind=kind, **diagnostic,
                   inputs=config, assets=asset_refs, gpu_used=False, optimizer_executed=False,
                   limitations=['Collision pair diagnosis, not checker calibration or physical collision proof.',
                                'Source naming audit does not certify anatomical correspondences.'])

@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T11:35:37+08:00",
-  "generation_id": "gov-014179-b7443a4fbf0a",
-  "governance_revision": 14179,
+  "generated_at": "2026-09-28T11:41:12+08:00",
+  "generation_id": "gov-014182-43306c91bfb1",
+  "governance_revision": 14182,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -291,9 +291,9 @@
       "claim_limit": "Registered bounded repair operations; parent routing, child write sets. No quality promotion.",
       "code_closure": [
         {
-          "bytes": 10403,
+          "bytes": 10407,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/four_stream_completion.py",
-          "sha256": "b2f962ad56140723841ad2de659325a39ec76ae845065c379a30dfed3703c977"
+          "sha256": "21ca73bd06e94348cbe323c3159cc84057b9dee17d968f034a9d811b5e90a455"
         },
         {
           "bytes": 12944,
@@ -301,9 +301,34 @@
           "sha256": "49f947c098e693ec0d66e8eeaa3992af9daeab8ab259e7ddbd928890ca106fc4"
         },
         {
-          "bytes": 10710,
+          "bytes": 11267,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_sensor.py",
-          "sha256": "ccad8f4a8770c647584ddee41c6e0ad6db6a793ccd7706cd8e506aa706526a00"
+          "sha256": "18595a0d0008663c0ca6e768f5e98e7ffd5e2d4f78740783ae98323fb11fd777"
+        },
+        {
+          "bytes": 6826,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_clean_mask_support.py",
+          "sha256": "5350c9933c98ce771d4176d02ae19ad3059388bad0cea1b14155e86fe6aed8ae"
+        },
+        {
+          "bytes": 9637,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sensor_collision_asset_audit_v1.py",
+          "sha256": "0ad7919ae8b73192ec3aa451fbc8e7341505f7981890bd65ada1c6b0a8d2105c"
+        },
+        {
+          "bytes": 13415,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_huro.py",
+          "sha256": "65bea8f9d0d295961535626bd6a9431a9ae84469dab4de705b0e9bf88bff9785"
+        },
+        {
+          "bytes": 4704,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_constrained_core_v1.py",
+          "sha256": "ade04d311dd14f997de690402824cf2a0e5fe8bc0d19a53f14f98bec582be0c1"
+        },
+        {
+          "bytes": 5072,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/huro_projected_joints_v1.py",
+          "sha256": "54b2b54352dc87cfa96804f6a15e35ef00284c830fb149d395de8e0cad23389c"
         }
       ],
       "implementation_revision": "FOUR_STREAM_COMPLETION_20260928_PHASE_AB",

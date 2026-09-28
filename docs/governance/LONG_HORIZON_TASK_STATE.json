@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-28T11:35:37+08:00",
-  "generation_id": "gov-014179-b7443a4fbf0a",
-  "generator_code_sha": "b2f962ad56140723841ad2de659325a39ec76ae845065c379a30dfed3703c977",
-  "governance_revision": 14179,
+  "generated_at": "2026-09-28T11:41:12+08:00",
+  "generation_id": "gov-014182-43306c91bfb1",
+  "generator_code_sha": "21ca73bd06e94348cbe323c3159cc84057b9dee17d968f034a9d811b5e90a455",
+  "governance_revision": 14182,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": {
     "session": "all_fixed_sessions",
@@ -999,7 +999,7 @@
   ],
   "repository": {
     "branch": "task/four-stream-completion-20260928",
-    "commit": "d4bb2d7f4de757a89babf8e9f9dc72576dbe35f9"
+    "commit": "cdeb18893cc1453eec16358637d7d9405b028d3a"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -3233,7 +3233,7 @@
       "heartbeat_at": null,
       "parent_task_id": null,
       "phase": "COMPLETION_PHASE_AB",
-      "phase_detail": "IMPLEMENTING_ISOLATED_PATCHES_NO_ALGORITHM_RUNNING",
+      "phase_detail": "ACTIVE_ROOT_CAUSE_REPAIR_SEE_LANE_STATE_AND_CHECKPOINT",
       "pid": 2099865,
       "proc_start_ticks": 282946792,
       "status": "PENDING",
@@ -3243,7 +3243,7 @@
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928/TASK_PACKET.json",
         "sha256": "5418c58b8b31d4fceb2827c3382d81733c13d54f71e5220c1324bbdbc97e8e25"
       },
-      "updated_at": "2026-09-28T11:35:37+08:00"
+      "updated_at": "2026-09-28T11:41:12+08:00"
     },
     {
       "attempt": 1,

@@ -1,9 +1,9 @@
 {
   "claim_limit": "Current smoke/regression selection; full historical test inventory is not implied current.",
   "command": "python -m pytest -q <tests[].path>",
-  "generated_at": "2026-09-28T11:35:37+08:00",
-  "generation_id": "gov-014179-b7443a4fbf0a",
-  "governance_revision": 14179,
+  "generated_at": "2026-09-28T11:41:12+08:00",
+  "generation_id": "gov-014182-43306c91bfb1",
+  "governance_revision": 14182,
   "schema_version": "chaoyang-current-regression-manifest-v1",
   "tests": [
     {
