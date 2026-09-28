@@ -4,8 +4,10 @@ import argparse
 import json
 import os
 from pathlib import Path
+import re
 import secrets
 from datetime import datetime, timedelta
+from typing import Any, Mapping
 from chaoyang.governance.common import (
     REPO_ROOT, RECEIPT_PATH, AUTHORITY_PATH, TASK_STATE_PATH,
     artifact_ref, atomic_json, load_json, now_iso, publish_bundle,
@@ -18,6 +20,91 @@ ACTIVE = {"PENDING", "CLAIMED", "RUNNING", "WAIT_GPU_RESOURCE"}
 LANES = ("scene", "sensor", "motion", "huro")
 PLAN = REPO_ROOT / "docs/current/COMPLETION_20260928_ZH.md"
 BASE = REPO_ROOT / "_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json"
+PROGRESS_SCHEMA = "FOUR_STREAM_COMPLETION_PROGRESS_V1"
+PROGRESS_NAME = re.compile(r"^PROGRESS_(\d{4})\.json$")
+
+
+def _verify_checkpoint_artifacts(value: Any) -> None:
+    """Verify every artifact-shaped mapping in a new checkpoint.
+
+    A checkpoint may contain ordinary mappings, but a mapping that declares any
+    artifact identity field must declare all three.  Relative paths are resolved
+    only against the canonical repository root; no search or mtime fallback is
+    permitted.
+    """
+    if isinstance(value, Mapping):
+        identity = {"path", "bytes", "sha256"}.intersection(value)
+        if identity:
+            if identity != {"path", "bytes", "sha256"}:
+                raise RuntimeError("CHECKPOINT_PARTIAL_ARTIFACT_REF")
+            raw_path = Path(str(value["path"]))
+            candidate = raw_path if raw_path.is_absolute() else REPO_ROOT / raw_path
+            if candidate.is_symlink():
+                raise RuntimeError("CHECKPOINT_ARTIFACT_SYMLINK")
+            path = candidate
+            path = path.resolve(strict=True)
+            if not path.is_relative_to(REPO_ROOT.resolve()):
+                raise RuntimeError("CHECKPOINT_ARTIFACT_OUTSIDE_REPO")
+            actual = artifact_ref(path)
+            if actual["bytes"] != value["bytes"] or actual["sha256"] != value["sha256"]:
+                raise RuntimeError("CHECKPOINT_ARTIFACT_DRIFT")
+        for child in value.values():
+            _verify_checkpoint_artifacts(child)
+    elif isinstance(value, list):
+        for child in value:
+            _verify_checkpoint_artifacts(child)
+
+
+def validate_progress_checkpoint(
+    checkpoint: Path,
+    parent: Mapping[str, Any],
+    expected_revision: int,
+) -> dict[str, Any]:
+    """Return a verified, strictly consecutive progress checkpoint."""
+    if checkpoint.is_symlink():
+        raise RuntimeError("CHECKPOINT_SYMLINK")
+    checkpoint = checkpoint.resolve(strict=True)
+    checkpoint_root = (ATTEMPT / "checkpoints").resolve(strict=True)
+    if checkpoint.is_symlink() or checkpoint.parent != checkpoint_root:
+        raise RuntimeError("CHECKPOINT_SCOPE_MISMATCH")
+    match = PROGRESS_NAME.fullmatch(checkpoint.name)
+    if match is None:
+        raise RuntimeError("CHECKPOINT_NAME_MISMATCH")
+
+    current_ref = parent.get("progress_checkpoint")
+    if not isinstance(current_ref, Mapping):
+        raise RuntimeError("CURRENT_CHECKPOINT_MISSING")
+    current_path = Path(str(current_ref.get("path", "")))
+    if current_path.is_symlink():
+        raise RuntimeError("CURRENT_CHECKPOINT_SYMLINK")
+    current_path = current_path.resolve(strict=True)
+    current_match = PROGRESS_NAME.fullmatch(current_path.name)
+    if (
+        current_match is None
+        or current_path.parent != checkpoint_root
+        or artifact_ref(current_path) != dict(current_ref)
+    ):
+        raise RuntimeError("CURRENT_CHECKPOINT_DRIFT")
+    if int(match.group(1)) != int(current_match.group(1)) + 1:
+        raise RuntimeError("CHECKPOINT_NOT_CONSECUTIVE")
+
+    value = load_json(checkpoint)
+    if value.get("schema_version") != PROGRESS_SCHEMA or value.get("task_id") != TASK:
+        raise RuntimeError("CHECKPOINT_IDENTITY_MISMATCH")
+    if value.get("predecessor") != str(current_path.relative_to(ATTEMPT.resolve())):
+        raise RuntimeError("CHECKPOINT_PREDECESSOR_MISMATCH")
+    if value.get("governance_revision_before_binding") != expected_revision:
+        raise RuntimeError("CHECKPOINT_REVISION_MISMATCH")
+    if value.get("project_complete") is not False:
+        raise RuntimeError("CHECKPOINT_CANNOT_COMPLETE_PROJECT")
+    claims = value.get("claims")
+    if not isinstance(claims, Mapping):
+        raise RuntimeError("CHECKPOINT_CLAIMS_MISSING")
+    for key in ("training_executed", "raw_or_processed_modified", "physical_accuracy_proven"):
+        if claims.get(key) is not False:
+            raise RuntimeError("CHECKPOINT_CLAIM_PROMOTION")
+    _verify_checkpoint_artifacts(value)
+    return value
 
 def ticks(pid):
     return int(Path(f"/proc/{pid}/stat").read_text().split(") ", 1)[1].split()[19])
@@ -77,8 +164,7 @@ def main():
                       phase_detail="ACTIVE_ROOT_CAUSE_REPAIR_SEE_LANE_STATE_AND_CHECKPOINT")
         if args.checkpoint is not None:
             checkpoint = args.checkpoint.resolve(strict=True)
-            if not checkpoint.is_relative_to(ATTEMPT.resolve()) or load_json(checkpoint).get("task_id") != TASK:
-                raise RuntimeError("CHECKPOINT_SCOPE_MISMATCH")
+            validate_progress_checkpoint(checkpoint, parent, args.expected_revision)
             parent["progress_checkpoint"] = artifact_ref(checkpoint)
         # Only the parent is directly routable; child packets isolate work.
         for entry in index["task_packets"]:

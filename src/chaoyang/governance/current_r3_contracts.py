@@ -149,6 +149,7 @@ def build_algorithm_contract(
                 "code_closure": [
                     artifact_ref(repo_root / name) for name in (
                         "src/chaoyang/governance/four_stream_completion.py",
+                        "src/chaoyang/governance/terminalize_four_stream_completion_huro.py",
                         "src/chaoyang/ops/run_four_stream_completion_clean.py",
                         "src/chaoyang/ops/run_four_stream_completion_clean_production.py",
                         "src/chaoyang/ops/run_four_stream_completion_clean_context.py",
