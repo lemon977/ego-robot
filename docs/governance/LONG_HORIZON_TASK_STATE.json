@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-28T14:34:28+08:00",
-  "generation_id": "gov-014207-76d306425bbf",
+  "generated_at": "2026-09-28T14:38:26+08:00",
+  "generation_id": "gov-014208-ee4e7d9d5a85",
   "generator_code_sha": "ca44035cbe35cc6a04d9cdd210fc735b8baa42122ed3da98ccbbc0e1dd488d30",
-  "governance_revision": 14207,
+  "governance_revision": 14208,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": {
     "session": "all_fixed_sessions",
@@ -1002,7 +1002,7 @@
   ],
   "repository": {
     "branch": "task/four-stream-completion-20260928",
-    "commit": "783aa2043c9a91c0b5e38f3e245e7a06bf0c0395"
+    "commit": "009551bbe148160fad30c40e3ebfc2df55832986"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -3251,7 +3251,7 @@
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928/TASK_PACKET.json",
         "sha256": "5418c58b8b31d4fceb2827c3382d81733c13d54f71e5220c1324bbdbc97e8e25"
       },
-      "updated_at": "2026-09-28T14:34:28+08:00"
+      "updated_at": "2026-09-28T14:38:26+08:00"
     },
     {
       "attempt": 1,

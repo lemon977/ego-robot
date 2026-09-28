@@ -16,8 +16,8 @@
   },
   "counts_scope": "PREDECESSOR_ONLY_NOT_NEW_EXECUTION",
   "external_metric_authority": false,
-  "generated_at": "2026-09-28T14:34:28+08:00",
-  "governance_revision": 14207,
+  "generated_at": "2026-09-28T14:38:26+08:00",
+  "governance_revision": 14208,
   "lanes": [
     {
       "status": "PENDING",
