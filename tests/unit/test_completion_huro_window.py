@@ -36,4 +36,12 @@ class WindowTests(unittest.TestCase):
     def test_bad_attempt_rejected_before_metadata_read(self):
         with self.assertRaises(ValueError): runner.guard(Path.cwd(),'../foreign')
 
+    def test_cpu_backend_rejects_gpu_env_and_excess_affinity(self):
+        with patch.dict(os.environ, {'JAX_PLATFORMS':'cpu','CUDA_VISIBLE_DEVICES':''}), patch.object(os,'sched_getaffinity',return_value={2,3}):
+            runner.cpu_guard()
+        with patch.dict(os.environ, {'JAX_PLATFORMS':'cuda','CUDA_VISIBLE_DEVICES':'0'}), patch.object(os,'sched_getaffinity',return_value={2,3}):
+            with self.assertRaises(RuntimeError): runner.cpu_guard()
+        with patch.dict(os.environ, {'JAX_PLATFORMS':'cpu','CUDA_VISIBLE_DEVICES':''}), patch.object(os,'sched_getaffinity',return_value={0,1,2}):
+            with self.assertRaises(RuntimeError): runner.cpu_guard()
+
 if __name__=='__main__': unittest.main(verbosity=2)
