@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T11:48:02+08:00",
-  "generation_id": "gov-014186-85dd8d9d99ad",
-  "governance_revision": 14186,
+  "generated_at": "2026-09-28T11:50:26+08:00",
+  "generation_id": "gov-014187-1dcc8ea84e48",
+  "governance_revision": 14187,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -301,9 +301,9 @@
           "sha256": "49f947c098e693ec0d66e8eeaa3992af9daeab8ab259e7ddbd928890ca106fc4"
         },
         {
-          "bytes": 11621,
+          "bytes": 11891,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_sensor.py",
-          "sha256": "f86fe60e5fc3df8f6b179946767ff246e5486e29b58c6b375310603f982bd118"
+          "sha256": "a5c09c3e330b0879b46ffeee4e61572ed33396e1bd5c90d61632df31fea15de6"
         },
         {
           "bytes": 6826,
@@ -321,9 +321,9 @@
           "sha256": "0ad7919ae8b73192ec3aa451fbc8e7341505f7981890bd65ada1c6b0a8d2105c"
         },
         {
-          "bytes": 6898,
+          "bytes": 10400,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sensor_collision_pair_probe_v1.py",
-          "sha256": "e3b9dfe4b4df31f0a153e587316cce603dc8618d5af59fbe21bd956b6cfc4845"
+          "sha256": "77c661099d093886b6fa996c4c9dc2fbf1330578cb3bacaffc0ad835baf549b4"
         },
         {
           "bytes": 15495,
