@@ -3,7 +3,8 @@ import pytest
 import trimesh
 
 from chaoyang.pipeline.sensor_collision_pair_probe_v1 import (
-    rigid,triangle_backend_controls,query_mesh_pair,_summary)
+    rigid,triangle_backend_controls,query_mesh_pair,_summary,
+    compound_backend_control,vhacd_decompose)
 
 
 def test_triangle_and_convex_backend_controls_execute_real_queries():
@@ -67,3 +68,20 @@ def test_runtime_file_controls_same_margin(tmp_path):
     assert all(r['collision_margins_m']==[.001,.001] for r in result['rows'])
     assert result['fixture']['bytes']>0
     assert all(row['query_returned_points']>0 for row in result['rows'])
+
+
+def test_vhacd_requires_safe_label(tmp_path):
+    path=tmp_path/'box.stl'
+    trimesh.creation.box(extents=[.02]*3).export(path)
+    with pytest.raises(ValueError,match='safe'):
+        vhacd_decompose(path,tmp_path/'bad','../escape')
+
+
+def test_compound_backend_preserves_u_shape_cavity(tmp_path):
+    result=compound_backend_control(tmp_path/'compound',.001)
+    assert result['pass_check']
+    assert result['raw_single_hull']['minimum_signed_distance_m'] < 0
+    assert result['vhacd_compound']['minimum_signed_distance_m'] > 0
+    assert result['provenance']['convex_object_count'] >= 2
+    assert not result['provenance']['parameters']['gpu_acceleration_requested']
+    assert result['provenance']['parameters']['binding_opencl_report'] == 'OFF'
