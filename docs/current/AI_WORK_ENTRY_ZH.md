@@ -1,12 +1,15 @@
-# 后续AI接手步骤
+# AI工作入口：先确认本轮已结束
 
-1. 在项目内设置TMP、缓存与输出；运行 `PYTHONPATH=src /usr/local/bin/python -B -m chaoyang.cli validate-governance`。
-2. 读取[总入口](README_ZH.md)、[机器状态](STATUS.json)、[当前任务索引](../../tasks/current/INDEX.json)和receipt绑定的[权威登记](../governance/DOC_AUTHORITY_MAP.json)。
-3. 仅阅读本线短卡和其中明确的最新RESULT/STATE。需要追溯再查[历史索引](../plans/INDEX_ZH.md)，不要从旧计划恢复命令。
-4. 当前已登记[四支线收敛任务](COMPLETION_20260928_ZH.md)。先核对任务索引父路由及委派子包；旧[后续建议](NEXT_ACTIONS_ZH.md)不是独立执行授权。
-5. 发布前核对PID/startticks/epoch/fencing；不得热改其他执行者、复活历史包或覆盖封存结果。
-6. 报告执行、结构、质量、改善、审阅与采用六个独立状态；视频存在与CPU测试PASS不是产品PASS。
+1. 阅读AGENTS与本目录README，核验生成STATUS与当前receipt。
+2. 本轮completion任务全部终态，当前任务包索引不提供其执行路由；不得沿历史next_action续跑。
+3. 结果事实以最终结束清单及不可变前驱为准，不把任务关闭等同质量通过。
+4. 其他AI任务、维护目录和数据原件保持不动。新任务必须有新授权、范围、writer与登记。
 
-旧AI1=Sensor，AI2=HaWoR/Motion，AI4=HuRo；支线1现为共享Scene/Clean。CPU维护B与原始数据清洗不是额外算法支线。
+## 当前证据与观看
 
-仅在原H20上能直接解析历史绝对路径；GitHub克隆不包含模型、视频、processed、环境和运行证据实体。见[Git交付说明](GIT_DELIVERY_ZH.md)。
+- [最终结束清单](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/RESULT.json)：任务关闭与质量采用分开；质量采用0，人工审阅未完成。
+- [逐会话交付、取消与文件校验](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/DELIVERY_INVENTORY.json)
+- [观看说明](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/先看这里.md)
+- [工程回归](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/ENGINEERING_CHECKS.json)
+- [历史检查点8](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0008.json)：历史事实保留，其后续研究建议已停止。
+- [生成状态](STATUS.json)、[支线1/Clean](V5_SCENE.md)、[支线2/PICO＋MANUS](V5_SENSOR.md)、[支线3/HaWoR](V5_MOTION.md)、[HuRo终态](V5_HURO.md)。

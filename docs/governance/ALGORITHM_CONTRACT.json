@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T14:58:02+08:00",
-  "generation_id": "gov-014210-50fa3736a02c",
-  "governance_revision": 14210,
+  "generated_at": "2026-09-28T16:14:14+08:00",
+  "generation_id": "gov-014212-5657a6b36796",
+  "governance_revision": 14212,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -291,9 +291,9 @@
       "claim_limit": "Registered bounded repair operations; parent routing, child write sets. No quality promotion.",
       "code_closure": [
         {
-          "bytes": 14313,
+          "bytes": 14656,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/four_stream_completion.py",
-          "sha256": "ca44035cbe35cc6a04d9cdd210fc735b8baa42122ed3da98ccbbc0e1dd488d30"
+          "sha256": "cd72316a6f540ae88ff8f36f7055408ef84a6c0714742c004e7fee62277e83a6"
         },
         {
           "bytes": 11214,

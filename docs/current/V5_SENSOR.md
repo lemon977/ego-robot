@@ -1,24 +1,19 @@
-# 支线2：PICO / MANUS / 局部手动作
+# 支线2／PICO＋MANUS：诊断交付，贴合未达成
 
-本轮已登记[四支线收敛任务](COMPLETION_20260928_ZH.md)。以下为前驱冻结证据；新进展以[机器状态](STATUS.json)及本轮lane结果为准，不能将旧数值当新验收。
+固定会话：play_cards_0916_097、098、101；不新增读取102/103。
+保留坐标链、侧别、MANUS节点和同名点可观测性审计及097语义图片。
+controller原点、可见外壳点、估计腕点、MANUS虚拟根不是同一物理点。
+controller_to_wrist_v1现有数值只是未独立验证的采集先验；没有冻结可信的物理腕贴合配置。
+历史466帧显示修正版仅证明显示结构，不证明图像腕/骨架对齐。夹合/碰撞历史失败不被改写为通过。
+本轮用户取消后续研究，保留UNVERIFIED/NOT_ADOPTED；无需新增采集才能办理本轮结束。
 
-前驱2026-09-24终态：无活动任务。三会话回放属于既有结果，最新共享手修复只执行097；未扩098/101。
+本轮任务已结束，部分质量目标未达成。仅交付已有成果，不再自动续跑；重新研究须新授权与新任务。
 
-## 实际成果
+## 当前证据与观看
 
-097/098/101共466帧已经进入共同target-builder、solver和Kai22 FK，并有等比例回放。最新097共165帧、330侧帧，局部方向P50约118.58°降至13.48°，左侧方向165/165通过。
-
-## 未通过
-
-最新夹合门0/330、声明非相邻手部自碰撞门0/330；合格局部q22标签与H50窗口均0，interface_pass=false。旧任务的接口前向成功、旧碰撞结论不得移植给新映射。
-
-方向改善不证明PICO腕已经贴合真实视频；3D有效、出画面与源无效分开。无独立腕中心证据时不得报告真实标定精度。
-
-## 后续任务边界
-
-先基于最新失败数组和冻结局部目标区分MANUS节点语义、方向映射、夹合目标与碰撞约束，再设计一个可证伪候选；不可只调平滑或缩放。097通过全部预定门后才讨论098/101回归；不拟合098、不调101，不读取102/103。腕图像贴合与局部手标签采用分别验收。
-
-- [最新结果](../../_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/lanes/hand_data/RESULT_REPAIR2.json)
-- [最新状态](../../_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/lanes/hand_data/STATE.json)
-- [既有三会话显示修正结果](../../_run/current/human_to_robot_sensor_display_correction_20260923/attempts/attempt_0001/RESULT.json)
-- [后续建议](NEXT_ACTIONS_ZH.md) · [历史](../plans/INDEX_ZH.md)
+- [最终结束清单](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/RESULT.json)：任务关闭与质量采用分开；质量采用0，人工审阅未完成。
+- [逐会话交付、取消与文件校验](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/DELIVERY_INVENTORY.json)
+- [观看说明](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/先看这里.md)
+- [工程回归](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/ENGINEERING_CHECKS.json)
+- [历史检查点8](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0008.json)：历史事实保留，其后续研究建议已停止。
+- [生成状态](STATUS.json)、[支线1/Clean](V5_SCENE.md)、[支线2/PICO＋MANUS](V5_SENSOR.md)、[支线3/HaWoR](V5_MOTION.md)、[HuRo终态](V5_HURO.md)。

@@ -1,8 +1,8 @@
 {
   "execution_revision": "four_stream_completion_20260928",
-  "generated_at": "2026-09-28T14:58:02+08:00",
-  "generation_id": "gov-014210-50fa3736a02c",
-  "governance_revision": 14210,
+  "generated_at": "2026-09-28T16:13:08+08:00",
+  "generation_id": "gov-014211-914f6c5f7d4e",
+  "governance_revision": 14211,
   "packet_revision": "four_stream_completion_20260928",
   "plan_revision": "four_stream_completion_20260928",
   "schema_version": "chaoyang-v71-task-packet-index-v3",
@@ -12,45 +12,5 @@
     "path": "/mnt/workspace/code/chaoyang/tasks/current/INDEX.json",
     "sha256": "2d934c2a786ea271bd6bb57b59fc52de4edcc71cfd1b46624650cc5f91f62bbe"
   },
-  "task_packets": [
-    {
-      "execution_allowed": true,
-      "execution_class": "CURRENT_LEDGER_ROUTABLE",
-      "packet_path": "tasks/current/four_stream_completion_20260928/TASK_PACKET.json",
-      "packet_sha256": "5418c58b8b31d4fceb2827c3382d81733c13d54f71e5220c1324bbdbc97e8e25",
-      "task_id": "four_stream_completion_20260928"
-    },
-    {
-      "delegation_scope_only": true,
-      "execution_allowed": false,
-      "execution_class": "CATALOG_REFERENCE",
-      "packet_path": "tasks/current/four_stream_completion_20260928_scene/TASK_PACKET.json",
-      "packet_sha256": "6f11c76ad8fdde7f49d94100f1ed4f5e526f7e49aeaa1149cdee052fb192728c",
-      "task_id": "four_stream_completion_20260928_scene"
-    },
-    {
-      "delegation_scope_only": true,
-      "execution_allowed": false,
-      "execution_class": "CATALOG_REFERENCE",
-      "packet_path": "tasks/current/four_stream_completion_20260928_sensor/TASK_PACKET.json",
-      "packet_sha256": "43c670e5fa7babe4a77bccb9f927ec5f7c166072298a64ac06b95def2c06be06",
-      "task_id": "four_stream_completion_20260928_sensor"
-    },
-    {
-      "delegation_scope_only": true,
-      "execution_allowed": false,
-      "execution_class": "CATALOG_REFERENCE",
-      "packet_path": "tasks/current/four_stream_completion_20260928_motion/TASK_PACKET.json",
-      "packet_sha256": "b9fe18e96b5da896cf8a646701790aa8d1128de0d5490ffb6aa61dc7efe9746c",
-      "task_id": "four_stream_completion_20260928_motion"
-    },
-    {
-      "delegation_scope_only": true,
-      "execution_allowed": false,
-      "execution_class": "CATALOG_REFERENCE",
-      "packet_path": "tasks/current/four_stream_completion_20260928_huro/TASK_PACKET.json",
-      "packet_sha256": "3c673c680a75279d2a7134dd7a0f5ae5339ff4580de0019cea3ee0838dddd8ce",
-      "task_id": "four_stream_completion_20260928_huro"
-    }
-  ]
+  "task_packets": []
 }

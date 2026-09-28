@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-28T14:58:02+08:00`
-- governance revision：`14210`
-- generation id：`gov-014210-50fa3736a02c`
+- 状态生成时间：`2026-09-28T16:14:14+08:00`
+- governance revision：`14212`
+- generation id：`gov-014212-5657a6b36796`
 - freshness：`FRESH`（age=0s）
-- generator code SHA：`ca44035cbe35cc6a04d9cdd210fc735b8baa42122ed3da98ccbbc0e1dd488d30`
-- repository：`e44caa3c9838dbcd56d4375ae1c7e5b84e78d972` / `task/four-stream-completion-20260928`
+- generator code SHA：`d7b2faac5f50701ef87df7bdfa50918760f85fb0a2321e2331946acb3b210eb8`
+- repository：`9d2e2ba4fc110736c1eb10d8d881c9005d55e834` / `task/four-stream-completion-20260928`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
@@ -115,11 +115,7 @@
 
 ## H. 下一任务
 
-- next_task_id：`four_stream_completion_20260928`
-- next_session：`all_fixed_sessions`
-- prerequisites：`-`
-- expected_resource：`-`
-- stop_condition：`Finite phase AB checkpoint, not project completion`
+状态机当前未选择下一任务。
 
 ## 固定读取协议
 

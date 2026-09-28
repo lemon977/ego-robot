@@ -1,24 +1,19 @@
-# 支线3：HaWoR / Robot / 原场景产品
+# 支线3／HaWoR→Robot：工程修复保留，产品质量未采用
 
-本轮已登记[四支线收敛任务](COMPLETION_20260928_ZH.md)。以下为前驱冻结证据；新进展以[机器状态](STATUS.json)及本轮lane结果为准，不能将旧数值当新验收。
+固定会话：get_potato_chips_0915_007(378帧)、play_cards_0915_031(149帧)。
+031失效传播、坏目标拒绝与原图回退已有生产证据；不能用中性位、保持、对侧复制制造动作。
+两条全片资格账本已由登记的operation实际执行。独立资格证据不足导致全帧原图回退，product_completed=false。
+回退覆盖不等于Robot替换成功；历史原场景候选仅作失败证据。本轮REJECTED_QUALITY，新合格全片/阶段视频取消。
+既有20mm/15°门不降低，失败不能据此简单称物理不可达；数字资产碰撞仍不能作为物理安全认证。
+连接件CAD/网格已存在，不能再写成没有CAD；安装/投影/物理精度未因此自动验证。
 
-前驱2026-09-24终态：无活动任务，质量未通过。原始q/FK与历史失败保持不变。
+本轮任务已结束，部分质量目标未达成。仅交付已有成果，不再自动续跑；重新研究须新授权与新任务。
 
-## 已完成
+## 当前证据与观看
 
-四会话原场景候选、连接件颜色/深度/部件ID、正式入口与同签名resume已经执行。007双侧378帧；031全149帧时间轴、右102有效、左无合法输出。后续Chips0915_042和Poker0902_042有363/171帧第三人称回放，但不是新的合格原场景产品。
-
-## 需要分开处理的问题
-
-- 031第47→48帧约1.286m跳变在HaWoR源腕中已存在；第47帧贴底22×12px ROI。不能归咎renderer或删帧掩盖；没有证明物理不可达。
-- Poker与后续Chips还有求解分支/初始化导致的跳变。旧平滑和连续性修复曾恶化腕目标门，未采用。
-- 最新Poker80–111帧联合轨迹四块中三块可行，右93–95仍超过20mm/15°门；搜索未找到合格窗，不证明不存在可行解；没有扩全171帧或把三块拼成成功全片。
-
-## 后续任务边界
-
-Poker冻结目标、装配与评价器，只针对失败块的约束求解及边界连续性提出新候选。031作为独立上游证据任务，不能混入Poker的求解改善率。通过固定窗后才能扩片，并同时检查幅度、延迟、限位、碰撞和原场景合成。
-
-- [最新Robot状态及失败帧](../../_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/lanes/robot/STATE.json)
-- [最新固定窗数值](../../_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/lanes/robot/POKER_080_111_JOINT_TRAJECTORY_FIX1.json)
-- [最新视频导航](SHARED_HAND_DELIVERY_RESULT_ZH.md)
-- [四产品正式候选历史](visuals/HUMAN_TO_ROBOT_S2/INDEX_ZH.md)
+- [最终结束清单](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/RESULT.json)：任务关闭与质量采用分开；质量采用0，人工审阅未完成。
+- [逐会话交付、取消与文件校验](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/DELIVERY_INVENTORY.json)
+- [观看说明](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/先看这里.md)
+- [工程回归](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/ENGINEERING_CHECKS.json)
+- [历史检查点8](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0008.json)：历史事实保留，其后续研究建议已停止。
+- [生成状态](STATUS.json)、[支线1/Clean](V5_SCENE.md)、[支线2/PICO＋MANUS](V5_SENSOR.md)、[支线3/HaWoR](V5_MOTION.md)、[HuRo终态](V5_HURO.md)。

@@ -1,12 +1,8 @@
 {
-  "active_tasks": [
-    "four_stream_completion_20260928",
-    "four_stream_completion_20260928_scene",
-    "four_stream_completion_20260928_sensor",
-    "four_stream_completion_20260928_motion"
-  ],
+  "active_tasks": [],
   "adoption": "NOT_ADOPTED",
-  "claim_limit": "Active repair campaign. Historical counts are not new algorithm results.",
+  "campaign_closed": true,
+  "claim_limit": "Campaign closed with unmet quality; no automatic resume. Historical counts are not new results.",
   "control_ground_truth": false,
   "counts": {
     "products_adopted": "0/4",
@@ -16,19 +12,24 @@
   },
   "counts_scope": "PREDECESSOR_ONLY_NOT_NEW_EXECUTION",
   "external_metric_authority": false,
-  "generated_at": "2026-09-28T14:58:02+08:00",
-  "governance_revision": 14210,
+  "final_result": {
+    "bytes": 3260,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/RESULT.json",
+    "sha256": "3a2a350d8a690023aa03bc0470d0951d96d52a14469fcafccafda911d69faa32"
+  },
+  "generated_at": "2026-09-28T16:14:14+08:00",
+  "governance_revision": 14212,
   "lanes": [
     {
-      "status": "PENDING",
+      "status": "REJECTED_QUALITY",
       "task_id": "four_stream_completion_20260928_scene"
     },
     {
-      "status": "PENDING",
+      "status": "CANCELLED",
       "task_id": "four_stream_completion_20260928_sensor"
     },
     {
-      "status": "PENDING",
+      "status": "REJECTED_QUALITY",
       "task_id": "four_stream_completion_20260928_motion"
     },
     {
@@ -37,13 +38,9 @@
     }
   ],
   "latest_task": "four_stream_completion_20260928",
-  "new_quality": "NOT_EVALUATED",
-  "next_task": {
-    "session": "all_fixed_sessions",
-    "stop_condition": "Finite phase AB checkpoint, not project completion",
-    "task_id": "four_stream_completion_20260928"
-  },
-  "parent_status": "PENDING",
+  "new_quality": "UNMET_OR_UNVERIFIED",
+  "next_task": null,
+  "parent_status": "CANCELLED",
   "parent_task_id": "four_stream_completion_20260928",
   "physical_deployable": false,
   "prior_result": {
@@ -58,6 +55,6 @@
   },
   "review": "NOT_REVIEWED",
   "schema_version": "FOUR_STREAM_COMPLETION_STATUS_V1",
-  "status": "ACTIVE_COMPLETION",
+  "status": "NO_ACTIVE_COMPLETION",
   "training_eligible": false
 }

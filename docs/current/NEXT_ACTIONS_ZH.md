@@ -1,17 +1,14 @@
-# 下一阶段任务建议（未授权、未登记、未执行）
+# 非活动研究建议，不是续跑入口
 
-本次用户授权仅为文档整理和GitHub提交。以下是后续算法任务拆分，不自动创建任务或占用GPU。
+本轮已由用户结束。无本轮可执行下一任务，不得复活旧任务包、检查点或旧worker。
+未来如重新授权，应独立登记：Clean语义证据、物理同名点/安装可观测性、运动消费者资格与装配遮挡证据。
+以上仅研究方向，没有自动执行权；历史候选次数保留，不能改名重置。HuRo不在后续默认范围。
 
-| 优先 | 独立任务 | 固定起点 | 验收/停止线 |
-|---|---|---|---|
-| P0 | Clean输出域最小修复 | Poker76–91、最新LaMa V3输入/模型/mask | 仅移除输出×255；数值域、mask外不变、物体保护、真实16帧审阅。固定窗失败不得扩171 |
-| P1 | Robot约束轨迹 | Poker80–111、最新FIX1失败右93–95 | 20mm/15°等现行门不变；边界连续、幅度/延迟、限位与碰撞共同评估；不拼成功块冒充全片 |
-| P1 | Sensor局部映射 | 097共享手REPAIR2与冻结MANUS节点映射 | 定位夹合与声明碰撞全失败；方向改善不得单独采用。通过后再决定098/101回归 |
-| P1 | 031上游腕证据 | 第47/48帧ROI及全149时间轴、右102有效 | 对源输出异常提出可证伪原因；保留缺侧与异常帧，不用下游强拉腕替代证据 |
-| P2 | HuRo约束核心 | 007/031冻结共同输入及原q | 先修短窗原始限位/旋转；后处理与核心分名；共同输入变化时两方法同版本重评 |
+## 当前证据与观看
 
-每项启动前必须取得新授权并登记：owner/write-set、实际base commit、输入/代码/环境/资产签名、候选与运行次数预算、时间截止、回归帧和有限停止线。具体资源预算由新任务确定，不能继承已过期8小时/12小时授权。
-
-Scene、Sensor、运动和HuRo的独立前置分开；无关质量失败不阻止合法独立工作。共享实现只由唯一publisher在安全点集成；执行中不得热换current引用。
-
-交付最小集合：RESULT/STATE、逐项质量指标、失败帧、真实视频（注明新跑/复用、短窗/全片）、复现命令、下一步。不得通过放宽门或改分母宣布成功。
+- [最终结束清单](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/RESULT.json)：任务关闭与质量采用分开；质量采用0，人工审阅未完成。
+- [逐会话交付、取消与文件校验](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/DELIVERY_INVENTORY.json)
+- [观看说明](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/先看这里.md)
+- [工程回归](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/ENGINEERING_CHECKS.json)
+- [历史检查点8](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0008.json)：历史事实保留，其后续研究建议已停止。
+- [生成状态](STATUS.json)、[支线1/Clean](V5_SCENE.md)、[支线2/PICO＋MANUS](V5_SENSOR.md)、[支线3/HaWoR](V5_MOTION.md)、[HuRo终态](V5_HURO.md)。

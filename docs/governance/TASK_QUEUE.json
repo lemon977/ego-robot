@@ -1,55 +1,11 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-28T14:58:02+08:00",
-  "generation_id": "gov-014210-50fa3736a02c",
-  "governance_revision": 14210,
-  "next_task": {
-    "session": "all_fixed_sessions",
-    "stop_condition": "Finite phase AB checkpoint, not project completion",
-    "task_id": "four_stream_completion_20260928"
-  },
+  "generated_at": "2026-09-28T16:14:14+08:00",
+  "generation_id": "gov-014212-5657a6b36796",
+  "governance_revision": 14212,
+  "next_task": null,
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
-    {
-      "attempt": 1,
-      "gpu_id": null,
-      "heartbeat_at": null,
-      "phase": "COMPLETION_PHASE_AB",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "four_stream_completion_20260928",
-      "updated_at": "2026-09-28T14:58:02+08:00"
-    },
-    {
-      "attempt": 1,
-      "gpu_id": null,
-      "heartbeat_at": null,
-      "phase": "COMPLETION_PHASE_AB",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "four_stream_completion_20260928_motion",
-      "updated_at": "2026-09-28T11:20:06+08:00"
-    },
-    {
-      "attempt": 1,
-      "gpu_id": null,
-      "heartbeat_at": null,
-      "phase": "COMPLETION_PHASE_AB",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "four_stream_completion_20260928_scene",
-      "updated_at": "2026-09-28T11:20:06+08:00"
-    },
-    {
-      "attempt": 1,
-      "gpu_id": null,
-      "heartbeat_at": null,
-      "phase": "COMPLETION_PHASE_AB",
-      "session": null,
-      "status": "PENDING",
-      "task_id": "four_stream_completion_20260928_sensor",
-      "updated_at": "2026-09-28T11:20:06+08:00"
-    },
     {
       "attempt": 1,
       "gpu_id": null,
@@ -189,6 +145,26 @@
       "status": "REJECTED_QUALITY",
       "task_id": "four_stream_completion_20260928_huro",
       "updated_at": "2026-09-28T14:20:27+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "USER_CLOSED_WITH_UNMET_QUALITY",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "four_stream_completion_20260928_motion",
+      "updated_at": "2026-09-28T16:13:07+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "USER_CLOSED_WITH_UNMET_QUALITY",
+      "session": null,
+      "status": "REJECTED_QUALITY",
+      "task_id": "four_stream_completion_20260928_scene",
+      "updated_at": "2026-09-28T16:13:07+08:00"
     },
     {
       "attempt": 0,
@@ -889,6 +865,26 @@
       "status": "CANCELLED",
       "task_id": "0915_sam31_strict_role_canary_v3",
       "updated_at": "2026-09-18T12:29:58+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "USER_CLOSED_WITH_UNMET_QUALITY",
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "four_stream_completion_20260928",
+      "updated_at": "2026-09-28T16:13:07+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "USER_CLOSED_WITH_UNMET_QUALITY",
+      "session": null,
+      "status": "CANCELLED",
+      "task_id": "four_stream_completion_20260928_sensor",
+      "updated_at": "2026-09-28T16:13:07+08:00"
     },
     {
       "attempt": 1,

@@ -1,21 +1,18 @@
-# 支线4：HuRo核心公平比较
+# 支线4／HuRo：终止，不采用
 
-本轮已登记[四支线收敛任务](COMPLETION_20260928_ZH.md)。以下为前驱冻结证据；新进展以[机器状态](STATUS.json)及本轮lane结果为准，不能将旧数值当新验收。
+官方核心、独立环境、007/031研究及固定失败窗证据已存在；不再重建环境、求解、调参或做新对比视频。
+本轮之前已经REJECTED_QUALITY / NOT_ADOPTED，原终态收据保持不变。
+旋转目标冲突与约束未满足，不能将内部目标下降或posthoc clip称作质量改进。
+未调用的腕局部适配器仅有测试证据，不代表真实序列修复。
+没有符合基本约束的新公平比较，不能宣称HuRo优于或劣于本地产品基线。
 
-前驱2026-09-24终态：无活动任务；最新共享手任务未新跑HuRo。下述冻结比较不能用于后来更换输入的代表会话。
+本轮任务已结束，部分质量目标未达成。仅交付已有成果，不再自动续跑；重新研究须新授权与新任务。
 
-## 已执行与未采用
+## 当前证据与观看
 
-官方核心适配和腕目标测试、007/031全片求解已经执行。后续用同一固定URDF独立重算Local/HuRo FK；不是首次接入任务。
-
-原HuRo硬限位失败007为230/756侧帧、031为84/102；共同运动学有效526与18侧帧用于残差统计，原分母不得删去。007该交集内HuRo完整旋转P50约32°，仍不合格。
-
-固定16帧窗口派生有界q消除了该窗口的限位问题，但属于后处理研究，不替换原HuRo，不代表全片、碰撞、旋转或产品通过。没有方法胜者。
-
-## 后续任务边界
-
-新授权后在官方核心适配层检查原始求解限位与完整腕旋转，保存原q和派生结果。固定输入、资产、安装、相机、时间轴、掩码和评价器；优先失败短窗，不直接重跑全片。Local新增输入不得与旧HuRo直接比较。
-
-- [同输入独立FK结果](../../_run/current/human_to_robot_10h_delivery_20260924/attempts/attempt_0001/lanes/compare/independent_fk_v1_runtime_fix1/RESULT.json)
-- [窗口派生修复](../../_run/current/human_to_robot_four_lane_quality_increment_20260924/attempts/attempt_0001/lanes/compare/huro_limit_repair_window_v1/RESULT.json)
-- [历史与视频索引](../plans/INDEX_ZH.md)
+- [最终结束清单](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/RESULT.json)：任务关闭与质量采用分开；质量采用0，人工审阅未完成。
+- [逐会话交付、取消与文件校验](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/DELIVERY_INVENTORY.json)
+- [观看说明](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/先看这里.md)
+- [工程回归](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/final_closeout_20260928/ENGINEERING_CHECKS.json)
+- [历史检查点8](../../_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0008.json)：历史事实保留，其后续研究建议已停止。
+- [生成状态](STATUS.json)、[支线1/Clean](V5_SCENE.md)、[支线2/PICO＋MANUS](V5_SENSOR.md)、[支线3/HaWoR](V5_MOTION.md)、[HuRo终态](V5_HURO.md)。
