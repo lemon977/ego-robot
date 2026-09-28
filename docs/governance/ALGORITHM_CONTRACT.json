@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T14:26:27+08:00",
-  "generation_id": "gov-014206-d278c9d1c706",
-  "governance_revision": 14206,
+  "generated_at": "2026-09-28T14:34:28+08:00",
+  "generation_id": "gov-014207-76d306425bbf",
+  "governance_revision": 14207,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -374,6 +374,11 @@
           "bytes": 6515,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/motion_consumer_qualification_v2.py",
           "sha256": "49f0ce9974528605434967ea72899d664dae55ed22d5a7b25d866607ba68a079"
+        },
+        {
+          "bytes": 4954,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/motion_four_certificate_ledger_v1.py",
+          "sha256": "39577a1442d938d5369607b0c7a4fb294580a0601784e0956c664f19c64af69b"
         },
         {
           "bytes": 13074,
