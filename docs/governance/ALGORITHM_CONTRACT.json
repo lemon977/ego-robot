@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T11:59:37+08:00",
-  "generation_id": "gov-014188-6046263ceb8c",
-  "governance_revision": 14188,
+  "generated_at": "2026-09-28T12:08:54+08:00",
+  "generation_id": "gov-014189-6d45db3be265",
+  "governance_revision": 14189,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -324,6 +324,11 @@
           "bytes": 10400,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/sensor_collision_pair_probe_v1.py",
           "sha256": "77c661099d093886b6fa996c4c9dc2fbf1330578cb3bacaffc0ad835baf549b4"
+        },
+        {
+          "bytes": 9554,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_motion_diagnostic.py",
+          "sha256": "007c5ef4c39bfbaec043b5b2adeb01f266ae1f4fec1dfc715c35d4fb4ff3994b"
         },
         {
           "bytes": 21318,
