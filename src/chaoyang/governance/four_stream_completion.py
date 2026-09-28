@@ -112,6 +112,7 @@ def ticks(pid):
 def build_status(state, generated_at):
     rows = [r for r in state["tasks"] if r["task_id"] == TASK or r.get("parent_task_id") == TASK]
     parent = next(r for r in rows if r["task_id"] == TASK)
+    closed = not any(r["status"] in ACTIVE for r in rows)
     return {
         "schema_version": "FOUR_STREAM_COMPLETION_STATUS_V1",
         "generated_at": generated_at, "governance_revision": state["governance_revision"],
@@ -124,10 +125,14 @@ def build_status(state, generated_at):
         "counts_scope": "PREDECESSOR_ONLY_NOT_NEW_EXECUTION",
         "counts": load_json(BASE).get("counts", {}),
         "progress_checkpoint": parent.get("progress_checkpoint"),
-        "new_quality": "NOT_EVALUATED", "review": "NOT_REVIEWED", "adoption": "NOT_ADOPTED",
+        "campaign_closed": closed,
+        "final_result": parent.get("result") if closed else None,
+        "new_quality": "UNMET_OR_UNVERIFIED" if closed else "NOT_EVALUATED",
+        "review": "NOT_REVIEWED", "adoption": "NOT_ADOPTED",
         "control_ground_truth": False, "physical_deployable": False,
         "training_eligible": False, "external_metric_authority": False,
-        "claim_limit": "Active repair campaign. Historical counts are not new algorithm results.",
+        "claim_limit": ("Campaign closed with unmet quality; no automatic resume. Historical counts are not new results."
+                        if closed else "Active repair campaign. Historical counts are not new algorithm results."),
     }
 
 def publish_navigation(root, state, generated_at):
