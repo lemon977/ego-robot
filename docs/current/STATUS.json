@@ -17,8 +17,8 @@
   },
   "counts_scope": "PREDECESSOR_ONLY_NOT_NEW_EXECUTION",
   "external_metric_authority": false,
-  "generated_at": "2026-09-28T11:44:55+08:00",
-  "governance_revision": 14184,
+  "generated_at": "2026-09-28T11:48:02+08:00",
+  "governance_revision": 14186,
   "lanes": [
     {
       "status": "PENDING",
@@ -52,7 +52,11 @@
     "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
     "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
   },
-  "progress_checkpoint": null,
+  "progress_checkpoint": {
+    "bytes": 3611,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0001.json",
+    "sha256": "9d8b4feeea3da1f760e8e84970c0f3f806ea278cf85e0b188b533230293662de"
+  },
   "review": "NOT_REVIEWED",
   "schema_version": "FOUR_STREAM_COMPLETION_STATUS_V1",
   "status": "ACTIVE_COMPLETION",

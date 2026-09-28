@@ -7,6 +7,9 @@ import hashlib
 import importlib.metadata
 import json
 import os
+import resource
+import signal
+import threading
 from pathlib import Path
 import sys
 import time
@@ -85,7 +88,14 @@ def inspect_robot(robot):
     seed = validate_physical_seed(None, home, robot.joint_mask, lo, hi, 32)
     return dict(home=home.tolist(), joint_mask=np.asarray(robot.joint_mask).tolist(), lower=lo.tolist(), upper=hi.tolist(), full_lower=np.asarray(joints.lower_limits_all).tolist(), full_upper=np.asarray(joints.upper_limits_all).tolist(), affine_matrix=matrix.tolist(), affine_offset=offset.tolist(), names=list(joints.actuated_names), seed_policy='FROZEN_HOME_NO_WARM_START'), cls, seed
 
-def freeze(repo, lane):
+def cpu_guard():
+    if os.environ.get('JAX_PLATFORMS') != 'cpu' or os.environ.get('CUDA_VISIBLE_DEVICES') != '':
+        raise RuntimeError('CPU_ENV_REQUIRED')
+    if len(os.sched_getaffinity(0)) > 2:
+        raise RuntimeError('CPU_AFFINITY_EXCEEDS_TWO')
+
+def freeze(repo, lane, backend):
+    cpu_guard()
     if os.environ.get('JAX_PLATFORMS') != 'cpu' or os.environ.get('CUDA_VISIBLE_DEVICES') != '': raise RuntimeError('CPU_PREFLIGHT_REQUIRED')
     from chaoyang.ops.run_v5_huro import load_case, adapted_core
     from chaoyang.ops.run_huro_fixed_placement_core_v2 import compose_with_mounts
@@ -95,7 +105,9 @@ def freeze(repo, lane):
     case = load_case(SESSION, motion, r0)
     selected = slice_case(case)
     if not np.array_equal(selected['hand']['frame_id'], np.arange(181, 197)): raise RuntimeError('FRAME_AXIS')
-    root = lane / 'H01_007_181_196_FROZEN'; root.mkdir()
+    if not selected['valid'].any(): raise RuntimeError('EMPTY_VALID_WINDOW')
+    suffix = '_CPU_V1' if backend == 'cpu' else '_CUDA_V1'
+    root = lane / ('H01_007_181_196_FROZEN' + suffix); root.mkdir()
     core_path = repo / 'vendor/HuRo/pipeline/retargeting/retargeter.py'
     core, _, _, source = adapted_core(core_path)
     config, assets, _ = compose_with_mounts(repo, root, case['r0']['T_flange_hand'])
@@ -106,6 +118,8 @@ def freeze(repo, lane):
     write(root / 'MIMIC_AND_SEED.json', mapping)
     asset_manifest = read(root / 'COMBINED_ASSET_MANIFEST.json')
     payload = dict(schema_version='COMPLETION_H01_WINDOW_V1', task_id=TASK, session_id=SESSION, frames=[181,196], source_frame_count=378,
+       solve_backend=backend, predecessor_freeze=ref(lane / 'H01_007_181_196_FROZEN/FROZEN_INPUT.json'),
+       wall_seconds=900,
        predecessor=ref(repo / OLD_RESULT), motion=ref(motion), r0=ref(r0), core=ref(core_path), environment=environment(),
        code=[ref(repo / 'src/chaoyang' / name) for name in CODE], assets=asset_manifest['sources'],
        combined=ref(root / 'TIANJI_KAI_KINEMATIC_COMBINED.urdf'), config=ref(root / 'ROBOT_CONFIG.json'), mapping=ref(root / 'MIMIC_AND_SEED.json'), candidate_source=ref(root / 'PROJECTED_CORE.py'),
@@ -123,10 +137,12 @@ def lease_guard(repo, writer):
     if os.environ.get('CUDA_VISIBLE_DEVICES') != str(lease['gpu_id']) or os.environ.get('JAX_PLATFORMS') != 'cuda': raise RuntimeError('GPU_ENV')
     return lease
 
-def solve(repo, lane, writer, frozen_path, frozen_sha):
-    lease = lease_guard(repo, writer)  # Must precede JAX/core imports.
+def solve(repo, lane, writer, frozen_path, frozen_sha, backend):
+    lease = lease_guard(repo, writer) if backend == 'cuda' else None
+    if backend == 'cpu': cpu_guard()
     if ref(frozen_path)['sha256'] != frozen_sha: raise RuntimeError('FROZEN_SHA')
     frozen = read(frozen_path)
+    if frozen.get('solve_backend') != backend or frozen.get('wall_seconds') != 900: raise RuntimeError('EXECUTION_BACKEND_DRIFT')
     if frozen['task_id'] != TASK or frozen['session_id'] != SESSION or frozen['frames'] != [181,196]: raise RuntimeError('WINDOW_SCOPE')
     for key in ['motion','r0','core','combined','config','mapping','candidate_source','predecessor']: verify(frozen[key])
     for item in frozen['code'] + frozen['assets']: verify(item)
@@ -136,7 +152,7 @@ def solve(repo, lane, writer, frozen_path, frozen_sha):
     from chaoyang.pipeline.huro_constrained_core_v1 import check_raw_joint_limits
     import jax
     import jax.numpy as jnp
-    if jax.default_backend() != 'gpu': raise RuntimeError('EXPECTED_GPU_BACKEND')
+    if jax.default_backend() != ('gpu' if backend == 'cuda' else 'cpu'): raise RuntimeError('EXPECTED_BACKEND')
     core, _, _, _ = adapted_core(Path(frozen['core']['path']))
     robot = core.Retargeter(types.SimpleNamespace(config=read(frozen['config']['path']), urdf_path=frozen['combined']['path']))
     mapping, cls, seed = inspect_robot(robot)
@@ -146,22 +162,36 @@ def solve(repo, lane, writer, frozen_path, frozen_sha):
     exec(compile(Path(frozen['candidate_source']['path']).read_text(), '<frozen-projected-core>', 'exec'), core.__dict__)
     solver = core.solve_retargeting_with_projected_joints
     case = slice_case(load_case(SESSION, Path(frozen['motion']['path']), Path(frozen['r0']['path'])))
+    if not case['valid'].any() or not np.array_equal(case['valid'], frozen['mask']): raise RuntimeError('EMPTY_OR_DRIFTED_VALID_WINDOW')
     raw_blocks = []
     def checked_solver(**kwargs):
-        lease_guard(repo, writer)
+        lease_guard(repo, writer) if backend == 'cuda' else cpu_guard()
         if not np.array_equal(np.asarray(kwargs['initial_cfg']), np.asarray(mapping['home'], dtype=np.float32)): raise RuntimeError('HOME_DRIFT')
         q, cost = solver(**kwargs, initial_guess=jnp.asarray(seed))
         raw_blocks.append(np.asarray(q))
         return q, cost
-    root = lane / 'H01_007_181_196_PROJECTED_C2'; root.mkdir()
+    suffix = '_CPU_V1' if backend == 'cpu' else '_CUDA_V1'
+    root = lane / ('H01_007_181_196_PROJECTED_C2' + suffix); root.mkdir()
     started = time.monotonic()
-    product = solve_case(core, checked_solver, robot, load_pinned_robot_assets(repo), case, root)
+    write(root / 'RUNNING.json', dict(pid=os.getpid(), started_at=datetime.now(timezone.utc).isoformat(), wall_seconds=900, backend=backend, frozen=ref(frozen_path)))
+    # Hard watchdog terminates only this owned worker, never other tasks.
+    watchdog = threading.Timer(900, lambda: os.kill(os.getpid(), signal.SIGTERM))
+    watchdog.daemon = True; watchdog.start()
+    try:
+        product = solve_case(core, checked_solver, robot, load_pinned_robot_assets(repo), case, root)
+    except Exception as exc:
+        write(root / 'FAILED_RUNTIME.json', dict(error=repr(exc), elapsed_seconds=time.monotonic()-started, backend=backend))
+        raise
+    finally:
+        watchdog.cancel()
     raw = np.concatenate(raw_blocks)[:16]
     full = np.asarray(jax.vmap(robot.robot.joints.get_full_config)(jnp.asarray(raw)))
     with (root / 'RAW_SOLVER_Q.npz').open('xb') as f: np.savez_compressed(f, raw_q=raw, full_q=full, frame_id=np.arange(181,197), timestamp_ns=case['hand']['timestamp_ns'], valid=case['valid'])
     arrays = load_npz(root / 'HURO_CORE_V1.npz')
     valid = arrays['target_valid']
-    pose_pass = valid & (arrays['position_residual_mm'] <= 20.) & (arrays['rotation_residual_deg'] <= 15.)
+    rotation_valid = valid & case['rotation_valid']
+    position_pass = valid & (arrays['position_residual_mm'] <= 20.)
+    pose_pass = position_pass & rotation_valid & (arrays['rotation_residual_deg'] <= 15.)
     collision = dict(status='NOT_EVALUATED', scope='HAND_NON_ADJACENT_SELF_ONLY', arms='NOT_EVALUATED', environment='NOT_EVALUATED')
     try:
         from chaoyang.ops.run_huro_hand_frame_v2 import ExplicitSelfCollision
@@ -175,8 +205,8 @@ def solve(repo, lane, writer, frozen_path, frozen_sha):
     except ImportError as exc: collision.update(status='MISSING_CPU_COLLISION_DEPENDENCY', error=str(exc))
     result = dict(task_id=TASK, execution='REAL_OFFICIAL_CORE_ADAPTED_WINDOW_EXECUTED', original_q=ref(root / 'RAW_SOLVER_Q.npz'), candidate=ref(root / 'HURO_CORE_V1.npz'), frozen=ref(frozen_path),
       actuator_limits=check_raw_joint_limits(raw,mapping['lower'],mapping['upper']), full_limits=check_raw_joint_limits(full,mapping['full_lower'],mapping['full_upper']),
-      side_frames=int(valid.sum()), pose_pass_side_frames=int(pose_pass.sum()), pose_gate_pass=bool(np.all(pose_pass[valid])), collision=collision,
-      elapsed_seconds=time.monotonic()-started, gpu_used=True, lease_fencing=lease['fencing_token'], posthoc_clip_used=False,
+      side_frames=int(valid.sum()), rotation_valid_side_frames=int(rotation_valid.sum()), position_pass_side_frames=int(position_pass.sum()), pose_pass_side_frames=int(pose_pass.sum()), pose_gate_pass=bool(valid.any() and np.all(pose_pass[valid])), collision=collision,
+      elapsed_seconds=time.monotonic()-started, max_rss_kib=int(resource.getrusage(resource.RUSAGE_SELF).ru_maxrss), backend=backend, gpu_used=backend=='cuda', lease_fencing=lease['fencing_token'] if lease else None, posthoc_clip_used=False,
       quality='REQUIRES_FULL_REVIEW_NO_ADOPTION', adoption='NOT_ADOPTED', full_session_executed=False)
     write(root / 'WINDOW_RESULT.json', result)
     return result
@@ -185,11 +215,12 @@ def main():
     p=argparse.ArgumentParser(description=__doc__)
     p.add_argument('--repo',type=Path,required=True); p.add_argument('--attempt',required=True)
     p.add_argument('--mode',choices=['freeze','solve'],required=True)
+    p.add_argument('--backend',choices=['cpu','cuda'],required=True)
     p.add_argument('--frozen',type=Path); p.add_argument('--frozen-sha')
     args=p.parse_args(); repo,lane,writer=guard(args.repo,args.attempt)
     os.sched_setaffinity(0, sorted(os.sched_getaffinity(0))[:2])
     if args.mode=='solve' and (not args.frozen or not args.frozen_sha): p.error('solve requires frozen path/SHA')
-    print(json.dumps(freeze(repo,lane) if args.mode=='freeze' else solve(repo,lane,writer,args.frozen,args.frozen_sha), ensure_ascii=False))
+    print(json.dumps(freeze(repo,lane,args.backend) if args.mode=='freeze' else solve(repo,lane,writer,args.frozen,args.frozen_sha,args.backend), ensure_ascii=False))
     return 0
 
 if __name__=='__main__': raise SystemExit(main())
