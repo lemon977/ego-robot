@@ -162,6 +162,7 @@ def build_algorithm_contract(
                         "src/chaoyang/pipeline/s01_overlay_consumer_v1.py",
                         "src/chaoyang/ops/run_s01_semantic_overlay_audit.py",
                         "src/chaoyang/ops/run_four_stream_completion_motion_diagnostic.py",
+                        "src/chaoyang/ops/run_four_stream_completion_motion_ledger.py",
                         "src/chaoyang/pipeline/motion_invalid_propagation_v1.py",
                         "src/chaoyang/pipeline/final_frame_disposition_v1.py",
                         "src/chaoyang/pipeline/motion_consumer_qualification_v2.py",
