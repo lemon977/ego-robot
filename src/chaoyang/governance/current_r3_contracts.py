@@ -165,6 +165,7 @@ def build_algorithm_contract(
                         "src/chaoyang/pipeline/motion_invalid_propagation_v1.py",
                         "src/chaoyang/pipeline/final_frame_disposition_v1.py",
                         "src/chaoyang/pipeline/motion_consumer_qualification_v2.py",
+                        "src/chaoyang/pipeline/motion_four_certificate_ledger_v1.py",
                         "src/chaoyang/pipeline/v5_motion.py",
                         "src/chaoyang/pipeline/assembly_visibility_canary_v1.py",
                         "src/chaoyang/ops/run_four_stream_completion_assembly_canary.py",
