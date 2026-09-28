@@ -1,11 +1,11 @@
 {
   "execution_revision": "four_stream_completion_20260928",
-  "generated_at": "2026-09-28T12:26:19+08:00",
-  "generation_id": "gov-014194-1eb9e6dc2e44",
-  "governance_revision": 14194,
+  "generated_at": "2026-09-28T12:30:20+08:00",
+  "generation_id": "gov-014195-ad5432fe89df",
+  "governance_revision": 14195,
   "index_bytes": 2408,
   "index_path": "tasks/current/INDEX.json",
-  "index_sha256": "c8e4510f31b1908b8f64f5cfd0c64e33d99e7af8db1d70258a2b5ac486dbcf10",
+  "index_sha256": "7fca7a6a740ef07c7d85d5e63eaafe3d7660ba766812cb3db2f6c792b058f571",
   "packet_revision": "four_stream_completion_20260928",
   "plan_revision": "four_stream_completion_20260928",
   "schema_version": "chaoyang-v71-task-packet-pointer-v2"
