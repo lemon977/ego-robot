@@ -90,8 +90,8 @@ def analyze(source, roi, image_sizes, frames):
                 "box_xyxy": box.tolist() if finite else None,
                 "roi_width_px": bw, "roi_height_px": bh,
                 "roi_area_fraction": float(bw * bh / (width * height)),
-                "touches_left": finite and box[0] <= 0, "touches_top": finite and box[1] <= 0,
-                "touches_right": finite and box[2] >= width, "touches_bottom": finite and box[3] >= height,
+                "touches_left": bool(finite and box[0] <= 0), "touches_top": bool(finite and box[1] <= 0),
+                "touches_right": bool(finite and box[2] >= width), "touches_bottom": bool(finite and box[3] >= height),
                 "joints_inside_image": int(inside.sum()), "joints_total": 21,
                 "root_camera_m": root.tolist() if np.isfinite(root).all() else None,
                 "root_depth_m": float(root[2]) if np.isfinite(root).all() else None,
@@ -186,10 +186,10 @@ def run(config):
     stat = Path(f"/proc/{writer['pid']}/stat").read_text().rsplit(")", 1)[1].split()
     if int(stat[19]) != writer["proc_start_ticks"]:
         raise RuntimeError("WRITER_CHANGED")
+    encoded = json.dumps(result, indent=2, ensure_ascii=False, allow_nan=False) + "\n"
     output = lane / OUTPUT
     with output.open("x") as stream:
-        json.dump(result, stream, indent=2, ensure_ascii=False, allow_nan=False)
-        stream.write("\n")
+        stream.write(encoded)
     return result
 
 
