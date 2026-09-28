@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T11:50:26+08:00",
-  "generation_id": "gov-014187-1dcc8ea84e48",
-  "governance_revision": 14187,
+  "generated_at": "2026-09-28T11:59:37+08:00",
+  "generation_id": "gov-014188-6046263ceb8c",
+  "governance_revision": 14188,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -326,9 +326,9 @@
           "sha256": "77c661099d093886b6fa996c4c9dc2fbf1330578cb3bacaffc0ad835baf549b4"
         },
         {
-          "bytes": 15495,
+          "bytes": 21318,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_huro.py",
-          "sha256": "7db20cdc118d3327fd0d077ce70a44b07f3770525fe8d68fffc7807603d03c8c"
+          "sha256": "b295ea6017dab6d68e15fba9c5918540f377cf4226b061d545faaeae408fcf08"
         },
         {
           "bytes": 4704,

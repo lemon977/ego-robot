@@ -4,12 +4,12 @@
 
 ## A. 快照身份
 
-- 状态生成时间：`2026-09-28T11:50:26+08:00`
-- governance revision：`14187`
-- generation id：`gov-014187-1dcc8ea84e48`
+- 状态生成时间：`2026-09-28T11:59:37+08:00`
+- governance revision：`14188`
+- generation id：`gov-014188-6046263ceb8c`
 - freshness：`FRESH`（age=0s）
 - generator code SHA：`21ca73bd06e94348cbe323c3159cc84057b9dee17d968f034a9d811b5e90a455`
-- repository：`0e42895750c7d4fd1656bcac603122c8a3c271ec` / `task/four-stream-completion-20260928`
+- repository：`8adc7fa224000dc6559bdea2e8418d6b73a2c310` / `task/four-stream-completion-20260928`
 - host：`dsw-1019706-57c5b8df6-4vg6j`
 - data root：`/mnt/data/egodata/datasets/ego`
 
