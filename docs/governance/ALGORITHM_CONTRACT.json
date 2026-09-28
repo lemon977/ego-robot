@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T13:19:46+08:00",
-  "generation_id": "gov-014200-198bebcb0685",
-  "governance_revision": 14200,
+  "generated_at": "2026-09-28T14:26:27+08:00",
+  "generation_id": "gov-014206-d278c9d1c706",
+  "governance_revision": 14206,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -291,14 +291,29 @@
       "claim_limit": "Registered bounded repair operations; parent routing, child write sets. No quality promotion.",
       "code_closure": [
         {
-          "bytes": 10407,
+          "bytes": 14313,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/four_stream_completion.py",
-          "sha256": "21ca73bd06e94348cbe323c3159cc84057b9dee17d968f034a9d811b5e90a455"
+          "sha256": "ca44035cbe35cc6a04d9cdd210fc735b8baa42122ed3da98ccbbc0e1dd488d30"
+        },
+        {
+          "bytes": 11214,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/terminalize_four_stream_completion_huro.py",
+          "sha256": "bcd6c082194f5389071e3bf0a06f89761f0e121b2377c8bbee16ae972062740f"
         },
         {
           "bytes": 12944,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_clean.py",
           "sha256": "49f947c098e693ec0d66e8eeaa3992af9daeab8ab259e7ddbd928890ca106fc4"
+        },
+        {
+          "bytes": 8823,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_clean_production.py",
+          "sha256": "d8381848d7d193d86ec4122ee8f192a726422c7a87b2c9054924d53fa1689470"
+        },
+        {
+          "bytes": 9927,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_clean_context.py",
+          "sha256": "44b37ea80403fa0870fc1a937f0e9faa9b8437b52e36b9412f097ded68209a1a"
         },
         {
           "bytes": 12395,
@@ -331,6 +346,16 @@
           "sha256": "aaa5cb0fb9a73543a1c362a70c3d59ca63d88bb689053c2c1b6c0a1a2d402a79"
         },
         {
+          "bytes": 4506,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/s01_overlay_consumer_v1.py",
+          "sha256": "dade2b9429510d12884ecc2194cfa0006bc0a244ac44d044e62498313ae4f4fd"
+        },
+        {
+          "bytes": 10130,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_s01_semantic_overlay_audit.py",
+          "sha256": "0cdc8e04ccf4ba75fb60b301b2112f799f2d59a92c0a5ca050dd04f7305878f0"
+        },
+        {
           "bytes": 9587,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_motion_diagnostic.py",
           "sha256": "fd02050fcfa70b2b6f4eabd56931ceaacf2ccfadc10ce142b9551c6a16b5a5c7"
@@ -339,6 +364,21 @@
           "bytes": 6394,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/motion_invalid_propagation_v1.py",
           "sha256": "cde26a68b87e380e93a6ac03cf33af20131cc01e3a931d420ff33dc900b1c376"
+        },
+        {
+          "bytes": 6587,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/final_frame_disposition_v1.py",
+          "sha256": "75cabf2530f21b7f04b6fa3db82f665ec5516cd3cd1057924935c5e7a311fe67"
+        },
+        {
+          "bytes": 6515,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/motion_consumer_qualification_v2.py",
+          "sha256": "49f0ce9974528605434967ea72899d664dae55ed22d5a7b25d866607ba68a079"
+        },
+        {
+          "bytes": 13074,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_motion.py",
+          "sha256": "e4cac34f4b6afe97e43f9a9e1a0339aed514aac71c5cc2ba5684db4218951329"
         },
         {
           "bytes": 7567,
@@ -1095,9 +1135,9 @@
           "sha256": "bcf334cbed8d6df8e2276dfd1adfc332b16d57ad09c5d85d904b06210cb16665"
         },
         {
-          "bytes": 10759,
+          "bytes": 13074,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/v5_motion.py",
-          "sha256": "cb115a001c8d7b77af4fd6577ddf738a4f73f4d3d4b7f10d5e213405aeba12ed"
+          "sha256": "e4cac34f4b6afe97e43f9a9e1a0339aed514aac71c5cc2ba5684db4218951329"
         },
         {
           "bytes": 585,

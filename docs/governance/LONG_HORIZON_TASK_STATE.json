@@ -73,10 +73,10 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-28T13:19:46+08:00",
-  "generation_id": "gov-014200-198bebcb0685",
-  "generator_code_sha": "21ca73bd06e94348cbe323c3159cc84057b9dee17d968f034a9d811b5e90a455",
-  "governance_revision": 14200,
+  "generated_at": "2026-09-28T14:26:27+08:00",
+  "generation_id": "gov-014206-d278c9d1c706",
+  "generator_code_sha": "ca44035cbe35cc6a04d9cdd210fc735b8baa42122ed3da98ccbbc0e1dd488d30",
+  "governance_revision": 14206,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
   "next_task": {
     "session": "all_fixed_sessions",
@@ -106,15 +106,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 1,
-      "created_at": "2026-09-22T10:22:54+08:00",
-      "message": "V4 coordinator claimed; CPU evidence production started.",
-      "pid": 766934,
-      "proc_start_ticks": 230946649,
-      "status": "RUNNING",
-      "task_id": "four_stream_full_pipeline_v4"
-    },
     {
       "attempt": 1,
       "claim_window": {
@@ -995,11 +986,23 @@
       "message": "User authorized completion campaign; independent lanes and predecessor preserved.",
       "status": "RUNNING",
       "task_id": "four_stream_completion_20260928"
+    },
+    {
+      "attempt": 1,
+      "created_at": "2026-09-28T14:20:27+08:00",
+      "message": "HuRo objective conflict reviewed; current method is terminal and not adopted. Parent and product lanes remain active.",
+      "result": {
+        "bytes": 1707,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/lanes/huro/TERMINAL_NOT_ADOPTED.json",
+        "sha256": "39585742874b3b08a8209d61f6bf619fedeb96ae8863e59237d3b4a20a3bf0f1"
+      },
+      "status": "REJECTED_QUALITY",
+      "task_id": "four_stream_completion_20260928_huro"
     }
   ],
   "repository": {
     "branch": "task/four-stream-completion-20260928",
-    "commit": "6d889eebe8abde2a4c501196ef78c31754d0ee6c"
+    "commit": "d892bafcde81f8dfeb59b48e9d8d73ff22649076"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -3237,9 +3240,9 @@
       "pid": 2099865,
       "proc_start_ticks": 282946792,
       "progress_checkpoint": {
-        "bytes": 7951,
-        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0006.json",
-        "sha256": "03f57ab213d9c61b930a38318d1b509539d70f591cd036b51b022451aaf97225"
+        "bytes": 5398,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/checkpoints/PROGRESS_0007.json",
+        "sha256": "79cb8b1520aa394e743f623661b8520c541e1e446f84dca9b166d1a3b822d9b0"
       },
       "status": "PENDING",
       "task_id": "four_stream_completion_20260928",
@@ -3248,7 +3251,7 @@
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928/TASK_PACKET.json",
         "sha256": "5418c58b8b31d4fceb2827c3382d81733c13d54f71e5220c1324bbdbc97e8e25"
       },
-      "updated_at": "2026-09-28T13:19:46+08:00"
+      "updated_at": "2026-09-28T14:26:27+08:00"
     },
     {
       "attempt": 1,
@@ -3302,21 +3305,30 @@
       "updated_at": "2026-09-28T11:20:06+08:00"
     },
     {
+      "adoption": "NOT_ADOPTED",
       "attempt": 1,
       "deadline_at": "2026-09-29T11:20:06+08:00",
       "heartbeat_at": null,
+      "last_attempt_reason": "THREE_CANDIDATES_EXHAUSTED_OBJECTIVE_CONFLICT_USER_CLOSED_SCOPE",
+      "last_attempt_terminal": "REJECTED_QUALITY",
       "parent_task_id": "four_stream_completion_20260928",
-      "phase": "COMPLETION_PHASE_AB",
+      "phase": "HURO_TERMINAL_RESEARCH_NOT_ADOPTED",
       "pid": null,
       "proc_start_ticks": null,
-      "status": "PENDING",
+      "quality": "REJECTED_WRIST_POSE_OBJECTIVE_CONFLICT",
+      "result": {
+        "bytes": 1707,
+        "path": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/lanes/huro/TERMINAL_NOT_ADOPTED.json",
+        "sha256": "39585742874b3b08a8209d61f6bf619fedeb96ae8863e59237d3b4a20a3bf0f1"
+      },
+      "status": "REJECTED_QUALITY",
       "task_id": "four_stream_completion_20260928_huro",
       "task_packet": {
         "bytes": 2298,
         "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928_huro/TASK_PACKET.json",
         "sha256": "3c673c680a75279d2a7134dd7a0f5ae5339ff4580de0019cea3ee0838dddd8ce"
       },
-      "updated_at": "2026-09-28T11:20:06+08:00"
+      "updated_at": "2026-09-28T14:20:27+08:00"
     }
   ]
 }

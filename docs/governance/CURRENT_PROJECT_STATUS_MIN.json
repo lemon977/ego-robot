@@ -15,9 +15,9 @@
     "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-28T13:19:46+08:00",
-  "generation_id": "gov-014200-198bebcb0685",
-  "governance_revision": 14200,
+  "generated_at": "2026-09-28T14:26:27+08:00",
+  "generation_id": "gov-014206-d278c9d1c706",
+  "governance_revision": 14206,
   "next_task": {
     "session": "all_fixed_sessions",
     "stop_condition": "Finite phase AB checkpoint, not project completion",
