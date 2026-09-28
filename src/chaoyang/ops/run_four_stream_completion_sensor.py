@@ -144,9 +144,10 @@ def run(config):
     if output_root not in allowed:
         raise ValueError('sensor lane missing from delegated write-set')
     kind=config.get('diagnostic_kind','source_collision_pairs_v1')
-    if kind not in ('source_collision_pairs_v1','asset_geometry_v1'):
+    if kind not in ('source_collision_pairs_v1','asset_geometry_v1','triangle_pairs_v1'):
         raise ValueError('unsupported diagnostic kind')
-    output = output_root/('ASSET_GEOMETRY_V1.json' if kind=='asset_geometry_v1' else 'DIAGNOSTIC_V1.json')
+    names={'source_collision_pairs_v1':'DIAGNOSTIC_V1.json','asset_geometry_v1':'ASSET_GEOMETRY_V1.json','triangle_pairs_v1':'TRIANGLE_PAIRS_V1.json'}
+    output = output_root/names[kind]
     if output.exists():
         raise FileExistsError(output)
     config_frames = config['frame_indices']
@@ -176,6 +177,9 @@ def run(config):
     if kind=='asset_geometry_v1':
         from chaoyang.pipeline.sensor_collision_asset_audit_v1 import audit_assets
         diagnostic=dict(asset_geometry=audit_assets(models,root,json.loads(read_pinned(config['asset_pin'],root))))
+    elif kind=='triangle_pairs_v1':
+        from chaoyang.pipeline.sensor_collision_pair_probe_v1 import fixed_fk_pair_probe
+        diagnostic=dict(triangle_comparison=fixed_fk_pair_probe(models,root,json.loads(read_pinned(config['asset_pin'],root))))
     else:
         diagnostic=dict(collision_pairs=collision_pairs(models,states,config_frames))
     result = dict(schema_version='FOUR_STREAM_SENSOR_DIAGNOSTIC_V1', task_id=TASK,
