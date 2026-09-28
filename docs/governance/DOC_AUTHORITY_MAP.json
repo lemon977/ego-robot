@@ -173,7 +173,7 @@
       "document_id": "four_stream_status_v32",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/current/STATUS.json",
-      "sha256": "aa0763b5e9f6555250c610139ff118c061d66746beca64ee1c8915638084a737",
+      "sha256": "4cf3c128e7e130abf11ea361223e200bfd2e69092923ce6e82f8e2ffbf8ebcfc",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -306,7 +306,7 @@
       "document_id": "current_project_status",
       "evidence_receipts": [],
       "path": "/mnt/workspace/code/chaoyang/docs/governance/CURRENT_PROJECT_STATUS_ZH.md",
-      "sha256": "989dba0d170291b300b040e9b465daf93f64bf102a6910775e743d0f883c715e",
+      "sha256": "adae7d2af7da83e03ec5565cfeeec88882d913e2386cb89ac0036bdb1d386646",
       "status": "CURRENT",
       "supersedes": []
     },
@@ -439,9 +439,9 @@
       "supersedes": []
     }
   ],
-  "generated_at": "2026-09-28T12:41:14+08:00",
-  "generation_id": "gov-014196-9d81f31cf93d",
-  "governance_revision": 14196,
+  "generated_at": "2026-09-28T12:49:39+08:00",
+  "generation_id": "gov-014197-a7d8cc1f9ee7",
+  "governance_revision": 14197,
   "schema_version": "chaoyang-doc-authority-map-v1",
   "status": "CURRENT"
 }
