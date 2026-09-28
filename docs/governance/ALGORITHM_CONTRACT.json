@@ -1,8 +1,8 @@
 {
   "claim_limit": "Machine-classified current algorithm contract; internal residuals are not external physical accuracy.",
-  "generated_at": "2026-09-28T11:05:43+08:00",
-  "generation_id": "gov-014171-86b9916cecd6",
-  "governance_revision": 14171,
+  "generated_at": "2026-09-28T11:35:37+08:00",
+  "generation_id": "gov-014179-b7443a4fbf0a",
+  "governance_revision": 14179,
   "quality_gate_classes": {
     "DOWNSTREAM_ELIGIBILITY": "Controls only the named consumer and does not erase an upstream result.",
     "EXTERNAL_AUTHORITY": "Requires independent physical or human ground truth; absence blocks only that authority.",
@@ -286,6 +286,28 @@
       "training_eligible": false,
       "virtual_installation_policy": "EXPLICIT_NONMEASURED_NO_PHYSICAL_ACCURACY",
       "weights": "NO_NEW_MODEL_DOWNLOADS"
+    },
+    "four_stream_completion_20260928": {
+      "claim_limit": "Registered bounded repair operations; parent routing, child write sets. No quality promotion.",
+      "code_closure": [
+        {
+          "bytes": 10403,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/four_stream_completion.py",
+          "sha256": "b2f962ad56140723841ad2de659325a39ec76ae845065c379a30dfed3703c977"
+        },
+        {
+          "bytes": 12944,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_clean.py",
+          "sha256": "49f947c098e693ec0d66e8eeaa3992af9daeab8ab259e7ddbd928890ca106fc4"
+        },
+        {
+          "bytes": 10710,
+          "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_four_stream_completion_sensor.py",
+          "sha256": "ccad8f4a8770c647584ddee41c6e0ad6db6a793ccd7706cd8e506aa706526a00"
+        }
+      ],
+      "implementation_revision": "FOUR_STREAM_COMPLETION_20260928_PHASE_AB",
+      "training_steps_authorized": 0
     },
     "four_stream_full_pipeline_v3": {
       "candidate_signatures_per_lane_max": 3,
@@ -1038,9 +1060,9 @@
           "sha256": "081ac25d5116d2294f4b22fda4bd1562d9a6bb07186e00fee4677e1c69944ea8"
         },
         {
-          "bytes": 21983,
+          "bytes": 22350,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_v5_huro.py",
-          "sha256": "c279ac1ff87a9aa3f11bafce142d14399a67bc4033e8e16d8e62e91be90fc9d5"
+          "sha256": "7f9d443845ec2748aa0e2296730a9bd6284847f8138aa4b06afe68e088f2b908"
         },
         {
           "bytes": 11112,
@@ -1866,9 +1888,9 @@
           "sha256": "c68f164d9203472eeef222c00eee7e69838442a4655e1faf85d1956e02e25bc6"
         },
         {
-          "bytes": 75017,
+          "bytes": 75179,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/governance/build_human_to_robot_r2_terminal_status.py",
-          "sha256": "9f9915c3db3c133b5d3e70ddc83705ef470979a79b96aa06c6c76194297e3366"
+          "sha256": "faa561887586ec60fb5d6f649551eef68218e8982a232581f39dec7b7e55c64d"
         },
         {
           "bytes": 11855,
@@ -2245,9 +2267,9 @@
           "sha256": "52faa16bf4fecd26ff40f434024c1d63d734450b38cdcb9ff28a1d7d05c81511"
         },
         {
-          "bytes": 23816,
+          "bytes": 25413,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/pipeline/shared_local_hand_target_v1.py",
-          "sha256": "29d786dc8bf2f7924a1ac145bcbb3a60025abb952c7eaf09339b7f5a667a1f33"
+          "sha256": "9330ecbe1395b9b55d2b707cdce722d11892910de9c23b74b160a18e075f3250"
         },
         {
           "bytes": 23747,
@@ -2255,9 +2277,9 @@
           "sha256": "dde0810769a8fcbd5afc08e2dd557c3dc9bd6efe290bda44aa7bee63a6f5d75e"
         },
         {
-          "bytes": 45606,
+          "bytes": 45598,
           "path": "/mnt/workspace/code/chaoyang/src/chaoyang/ops/run_human_to_robot_shared_delivery_clean.py",
-          "sha256": "80b51c4c70b9543b2a13370e6f261d56164afc40943dbe3dafe6eaf98682334b"
+          "sha256": "3db98f508c1cd78de72df05d0476d5b183c82382dda6162c90ee1a512bc41b32"
         },
         {
           "bytes": 15012,

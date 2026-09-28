@@ -1,7 +1,13 @@
 {
-  "active_tasks": [],
-  "claim_limit": "Bounded shared-hand terminal projection; module evidence does not promote product or training eligibility.",
-  "clean_qualified_scope": "NONE; METHOD_QUALITY_NOT_EVALUATED_AFTER_ADAPTER_LIMIT",
+  "active_tasks": [
+    "four_stream_completion_20260928",
+    "four_stream_completion_20260928_scene",
+    "four_stream_completion_20260928_sensor",
+    "four_stream_completion_20260928_motion",
+    "four_stream_completion_20260928_huro"
+  ],
+  "adoption": "NOT_ADOPTED",
+  "claim_limit": "Active repair campaign. Historical counts are not new algorithm results.",
   "control_ground_truth": false,
   "counts": {
     "products_adopted": "0/4",
@@ -9,30 +15,46 @@
     "products_structure": "4/4",
     "qualified_kai22_h50_windows": 0
   },
-  "current_index_status": "PASS_NO_ACTIVE_TASKS",
-  "data_interface_pass": false,
-  "data_label_quality_pass": false,
+  "counts_scope": "PREDECESSOR_ONLY_NOT_NEW_EXECUTION",
   "external_metric_authority": false,
-  "generated_at": "2026-09-28T11:05:43+08:00",
-  "governance_revision": 14171,
-  "latest_task": "human_to_robot_shared_hand_delivery_20260924",
-  "latest_terminal_status": "REJECTED_QUALITY",
-  "next_task": null,
-  "parent_status": "REJECTED_QUALITY",
-  "parent_task_id": "human_to_robot_shared_hand_delivery_20260924",
+  "generated_at": "2026-09-28T11:35:37+08:00",
+  "governance_revision": 14179,
+  "lanes": [
+    {
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_scene"
+    },
+    {
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_sensor"
+    },
+    {
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_motion"
+    },
+    {
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_huro"
+    }
+  ],
+  "latest_task": "four_stream_completion_20260928",
+  "new_quality": "NOT_EVALUATED",
+  "next_task": {
+    "session": "all_fixed_sessions",
+    "stop_condition": "Finite phase AB checkpoint, not project completion",
+    "task_id": "four_stream_completion_20260928"
+  },
+  "parent_status": "PENDING",
+  "parent_task_id": "four_stream_completion_20260928",
   "physical_deployable": false,
-  "result": {
+  "prior_result": {
     "bytes": 3598,
     "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
     "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
   },
-  "robot_qualified_scope": "NO_NEW_FULL_SCOPE; 3_OF_4_WINDOW_BLOCKS_FEASIBLE_NOT_ADOPTED",
-  "schema_version": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_CURRENT_STATUS_V1",
-  "status": "PASS_NO_ACTIVE_TASKS",
-  "task_packet": {
-    "bytes": 3746,
-    "path": "/mnt/workspace/code/chaoyang/tasks/current/human_to_robot_shared_hand_delivery_20260924/TASK_PACKET.json",
-    "sha256": "3729f8ab6652c04a5fd8eb12069b14875f3ef0dd6a36b7d7a418618829d0f059"
-  },
+  "progress_checkpoint": null,
+  "review": "NOT_REVIEWED",
+  "schema_version": "FOUR_STREAM_COMPLETION_STATUS_V1",
+  "status": "ACTIVE_COMPLETION",
   "training_eligible": false
 }

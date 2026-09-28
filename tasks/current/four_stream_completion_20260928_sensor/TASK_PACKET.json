@@ -1,0 +1,61 @@
+{
+  "budgets": {
+    "batch_wall_seconds_max": 86400,
+    "candidates_per_root_cause": 3,
+    "cpu_threads": 2,
+    "gpu_owners_total": 1,
+    "training_steps": 0
+  },
+  "claim_limit": "Offline development only; no physical accuracy or training authorization.",
+  "objective": "Completion campaign sensor: bounded root-cause repair, no training.",
+  "output_root": "/mnt/workspace/code/chaoyang/_run/current/four_stream_completion_20260928/attempts/attempt_0001/lanes/sensor",
+  "phase": "COMPLETION_PHASE_AB",
+  "plan": {
+    "bytes": 2647,
+    "path": "/mnt/workspace/code/chaoyang/docs/current/COMPLETION_20260928_ZH.md",
+    "sha256": "1ce01478a276053bbb81809089f7f2b1300a986b59cc397be4f3dd49833cd22d"
+  },
+  "plan_revision": "four_stream_completion_20260928",
+  "predecessor": {
+    "bytes": 3598,
+    "path": "/mnt/workspace/code/chaoyang/_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
+    "sha256": "3dafc4464375870f2f6ba75120304984f6559a7baeb947a720cffd03617e1518"
+  },
+  "prerequisites": [
+    "governance_PASS",
+    "single_publisher",
+    "isolated_write_set",
+    "registered_operation"
+  ],
+  "read_set": [
+    "AGENTS.md",
+    "docs/current/COMPLETION_20260928_ZH.md",
+    "_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json",
+    "docs/governance/ALGORITHM_CONTRACT.json"
+  ],
+  "required_outputs": [
+    "STATE.json",
+    "HANDOFF_ZH.md",
+    "evidence_bound_test_results"
+  ],
+  "schema_version": "chaoyang-r22-task-packet-v1",
+  "stop_conditions": [
+    "24h_batch_checkpoint_not_project_completion",
+    "three_candidates_require_root_cause_review",
+    "writer_identity_or_scope_conflict"
+  ],
+  "task_id": "four_stream_completion_20260928_sensor",
+  "worktree": "/mnt/workspace/code/chaoyang/_run/current/worktrees/four_stream_completion_20260928_sensor",
+  "write_set": [
+    "_run/current/four_stream_completion_20260928/attempts/attempt_0001/lanes/sensor",
+    "_run/current/worktrees/four_stream_completion_20260928_sensor"
+  ],
+  "writer": {
+    "created_at": "2026-09-28T11:20:06+08:00",
+    "executor_epoch": 31,
+    "fencing_token": "a50922b59cca98407bdf23bf558fdd4c1ca51a3b83c49d17",
+    "pid": 2099865,
+    "proc_start_ticks": 282946792,
+    "scope": "four_stream_completion_20260928"
+  }
+}

@@ -777,7 +777,7 @@ def _apply_lama_residual(session, output_name: str, propagated: np.ndarray,
                                               "mask": mask_512[None, None]})[0]
     if prediction.shape != (1, 3, 512, 512) or not np.isfinite(prediction).all():
         raise RuntimeError("LAMA_OUTPUT_INVALID")
-    predicted = prediction[0].transpose(1, 2, 0) * 255.0
+    predicted = prediction[0].transpose(1, 2, 0)
     predicted = cv2.cvtColor(np.clip(predicted, 0, 255).astype(np.uint8), cv2.COLOR_RGB2BGR)
     predicted = cv2.resize(predicted, (960, 720), interpolation=cv2.INTER_LINEAR)
     output = propagated.copy()

@@ -1,11 +1,65 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-28T11:05:43+08:00",
-  "generation_id": "gov-014171-86b9916cecd6",
-  "governance_revision": 14171,
-  "next_task": null,
+  "generated_at": "2026-09-28T11:35:37+08:00",
+  "generation_id": "gov-014179-b7443a4fbf0a",
+  "governance_revision": 14179,
+  "next_task": {
+    "session": "all_fixed_sessions",
+    "stop_condition": "Finite phase AB checkpoint, not project completion",
+    "task_id": "four_stream_completion_20260928"
+  },
   "schema_version": "chaoyang-task-queue-v1",
   "tasks": [
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "COMPLETION_PHASE_AB",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928",
+      "updated_at": "2026-09-28T11:35:37+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "COMPLETION_PHASE_AB",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_huro",
+      "updated_at": "2026-09-28T11:20:06+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "COMPLETION_PHASE_AB",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_motion",
+      "updated_at": "2026-09-28T11:20:06+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "COMPLETION_PHASE_AB",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_scene",
+      "updated_at": "2026-09-28T11:20:06+08:00"
+    },
+    {
+      "attempt": 1,
+      "gpu_id": null,
+      "heartbeat_at": null,
+      "phase": "COMPLETION_PHASE_AB",
+      "session": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_sensor",
+      "updated_at": "2026-09-28T11:20:06+08:00"
+    },
     {
       "attempt": 1,
       "gpu_id": null,

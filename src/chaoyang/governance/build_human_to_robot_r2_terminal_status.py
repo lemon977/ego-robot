@@ -818,6 +818,9 @@ def build_status(task_state: Mapping[str, Any], generated_at: str) -> dict[str, 
 def publish_navigation_if_human_to_robot_r2(
     repo_root: Path, task_state: Mapping[str, Any], generated_at: str
 ) -> bool:
+    from chaoyang.governance.four_stream_completion import publish_navigation
+    if publish_navigation(repo_root, task_state, generated_at):
+        return True
     if repo_root.resolve() != REPO_ROOT.resolve():
         raise RuntimeError("R2_REPO_ROOT_MISMATCH")
     # This task is selected by the ledger's current event, not by the mere

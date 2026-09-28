@@ -73,12 +73,16 @@
       "status": "BLOCKED_PREREQ"
     }
   ],
-  "generated_at": "2026-09-28T11:05:43+08:00",
-  "generation_id": "gov-014171-86b9916cecd6",
-  "generator_code_sha": "73a55a062d4a75b18b6c85e11f74de81059f2d4fbd4aa59b6c68e2ee148f8f95",
-  "governance_revision": 14171,
+  "generated_at": "2026-09-28T11:35:37+08:00",
+  "generation_id": "gov-014179-b7443a4fbf0a",
+  "generator_code_sha": "b2f962ad56140723841ad2de659325a39ec76ae845065c379a30dfed3703c977",
+  "governance_revision": 14179,
   "host": "dsw-1019706-57c5b8df6-4vg6j",
-  "next_task": null,
+  "next_task": {
+    "session": "all_fixed_sessions",
+    "stop_condition": "Finite phase AB checkpoint, not project completion",
+    "task_id": "four_stream_completion_20260928"
+  },
   "rc1_budget": {
     "checkpoint_gpu_hours_limit": 48,
     "checkpoint_gpu_hours_used": 0,
@@ -102,14 +106,6 @@
     "RC1_RELEASE_STATUS": "INCOMPLETE"
   },
   "recent_events": [
-    {
-      "attempt": 1,
-      "created_at": "2026-09-22T10:22:39+08:00",
-      "message": "Requeued after bounded coordinator restart; immutable lane artifacts retained.",
-      "reason": "SAFE_COORDINATOR_RESTART_FOR_LONG_WINDOW",
-      "status": "PENDING",
-      "task_id": "four_stream_full_pipeline_v4"
-    },
     {
       "attempt": 1,
       "created_at": "2026-09-22T10:22:54+08:00",
@@ -993,11 +989,17 @@
       },
       "status": "REJECTED_QUALITY",
       "task_id": "human_to_robot_shared_hand_delivery_20260924"
+    },
+    {
+      "created_at": "2026-09-28T11:20:06+08:00",
+      "message": "User authorized completion campaign; independent lanes and predecessor preserved.",
+      "status": "RUNNING",
+      "task_id": "four_stream_completion_20260928"
     }
   ],
   "repository": {
-    "branch": "task/0915-full-funnel-0916-clean-v1",
-    "commit": "2d2306d61b2c38daa847d7468bab48a6ddd909b1"
+    "branch": "task/four-stream-completion-20260928",
+    "commit": "d4bb2d7f4de757a89babf8e9f9dc72576dbe35f9"
   },
   "schema_version": "chaoyang-long-horizon-task-state-v1",
   "tasks": [
@@ -3224,6 +3226,92 @@
         "sha256": "3729f8ab6652c04a5fd8eb12069b14875f3ef0dd6a36b7d7a418618829d0f059"
       },
       "updated_at": "2026-09-24T19:31:53+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-29T11:20:06+08:00",
+      "heartbeat_at": null,
+      "parent_task_id": null,
+      "phase": "COMPLETION_PHASE_AB",
+      "phase_detail": "IMPLEMENTING_ISOLATED_PATCHES_NO_ALGORITHM_RUNNING",
+      "pid": 2099865,
+      "proc_start_ticks": 282946792,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928",
+      "task_packet": {
+        "bytes": 2158,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928/TASK_PACKET.json",
+        "sha256": "5418c58b8b31d4fceb2827c3382d81733c13d54f71e5220c1324bbdbc97e8e25"
+      },
+      "updated_at": "2026-09-28T11:35:37+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-29T11:20:06+08:00",
+      "heartbeat_at": null,
+      "parent_task_id": "four_stream_completion_20260928",
+      "phase": "COMPLETION_PHASE_AB",
+      "pid": null,
+      "proc_start_ticks": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_scene",
+      "task_packet": {
+        "bytes": 2304,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928_scene/TASK_PACKET.json",
+        "sha256": "6f11c76ad8fdde7f49d94100f1ed4f5e526f7e49aeaa1149cdee052fb192728c"
+      },
+      "updated_at": "2026-09-28T11:20:06+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-29T11:20:06+08:00",
+      "heartbeat_at": null,
+      "parent_task_id": "four_stream_completion_20260928",
+      "phase": "COMPLETION_PHASE_AB",
+      "pid": null,
+      "proc_start_ticks": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_sensor",
+      "task_packet": {
+        "bytes": 2310,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928_sensor/TASK_PACKET.json",
+        "sha256": "43c670e5fa7babe4a77bccb9f927ec5f7c166072298a64ac06b95def2c06be06"
+      },
+      "updated_at": "2026-09-28T11:20:06+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-29T11:20:06+08:00",
+      "heartbeat_at": null,
+      "parent_task_id": "four_stream_completion_20260928",
+      "phase": "COMPLETION_PHASE_AB",
+      "pid": null,
+      "proc_start_ticks": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_motion",
+      "task_packet": {
+        "bytes": 2310,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928_motion/TASK_PACKET.json",
+        "sha256": "b9fe18e96b5da896cf8a646701790aa8d1128de0d5490ffb6aa61dc7efe9746c"
+      },
+      "updated_at": "2026-09-28T11:20:06+08:00"
+    },
+    {
+      "attempt": 1,
+      "deadline_at": "2026-09-29T11:20:06+08:00",
+      "heartbeat_at": null,
+      "parent_task_id": "four_stream_completion_20260928",
+      "phase": "COMPLETION_PHASE_AB",
+      "pid": null,
+      "proc_start_ticks": null,
+      "status": "PENDING",
+      "task_id": "four_stream_completion_20260928_huro",
+      "task_packet": {
+        "bytes": 2298,
+        "path": "/mnt/workspace/code/chaoyang/tasks/current/four_stream_completion_20260928_huro/TASK_PACKET.json",
+        "sha256": "3c673c680a75279d2a7134dd7a0f5ae5339ff4580de0019cea3ee0838dddd8ce"
+      },
+      "updated_at": "2026-09-28T11:20:06+08:00"
     }
   ]
 }

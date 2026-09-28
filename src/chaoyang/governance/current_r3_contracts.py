@@ -144,6 +144,18 @@ def build_algorithm_contract(
         "special_status_contracts": {
             **build_v2_contract(repo_root),
             **build_v3_contract(repo_root),
+            "four_stream_completion_20260928": {
+                "implementation_revision": "FOUR_STREAM_COMPLETION_20260928_PHASE_AB",
+                "code_closure": [
+                    artifact_ref(repo_root / name) for name in (
+                        "src/chaoyang/governance/four_stream_completion.py",
+                        "src/chaoyang/ops/run_four_stream_completion_clean.py",
+                        "src/chaoyang/ops/run_four_stream_completion_sensor.py",
+                    ) if (repo_root / name).is_file()
+                ],
+                "training_steps_authorized": 0,
+                "claim_limit": "Registered bounded repair operations; parent routing, child write sets. No quality promotion.",
+            },
             "human_to_robot_shared_hand_delivery": {
                 "execution_status": "CURRENT_BOUNDED_TASK",
                 "implementation_revision": "HUMAN_TO_ROBOT_SHARED_HAND_DELIVERY_20260924",
@@ -1492,6 +1504,7 @@ def build_doc_authority_map(
 ) -> dict[str, Any]:
     migration = governance_root / "PLAN_MIGRATION_RECEIPT.json"
     candidates = [
+        _doc("completion_execution_plan", "CURRENT", repo_root / "docs/current/COMPLETION_20260928_ZH.md", scope="CURRENT_COMPLETION_EXECUTION_PLAN", claim_limit="Registered campaign plan; execution from task index, no quality promotion."),
         _doc("repository_readme", "CURRENT", repo_root / "README.md", scope="PROJECT_NAVIGATION_PROTOCOL", claim_limit="Navigation only; current facts remain receipt-bound and current algorithms come from the algorithm contract."),
         _doc("agent_execution_protocol", "CURRENT", repo_root / "AGENTS.md", scope="AI_EXECUTION_PROTOCOL", claim_limit="Execution/reading rules only; not measurement evidence or stage authority."),
         _doc("current_navigation", "CURRENT", repo_root / "docs/current/README_ZH.md", scope="CURRENT_SHALLOW_ENTRY", claim_limit="Unique shallow entry only; machine facts remain receipt-bound."),

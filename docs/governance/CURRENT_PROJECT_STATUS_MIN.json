@@ -15,10 +15,14 @@
     "reason": "no_active_tasks",
     "status": "FRESH"
   },
-  "generated_at": "2026-09-28T11:05:43+08:00",
-  "generation_id": "gov-014171-86b9916cecd6",
-  "governance_revision": 14171,
-  "next_task": null,
+  "generated_at": "2026-09-28T11:35:37+08:00",
+  "generation_id": "gov-014179-b7443a4fbf0a",
+  "governance_revision": 14179,
+  "next_task": {
+    "session": "all_fixed_sessions",
+    "stop_condition": "Finite phase AB checkpoint, not project completion",
+    "task_id": "four_stream_completion_20260928"
+  },
   "schema_version": "chaoyang-current-project-status-min-v1",
   "stage_claim_limits": {
     "clean_passed": "STRUCTURAL_PROVENANCE_DECODE_ONLY_NOT_CONTACT_OR_SEMANTIC_CORRECTNESS",
