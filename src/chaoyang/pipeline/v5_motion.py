@@ -15,6 +15,7 @@ import numpy as np
 
 
 SCHEMA = "HUMAN_TO_ROBOT_BASELINE_V1_MOTION"
+CONSUMER_SCHEMA = "HUMAN_TO_ROBOT_BASELINE_V2_QUALIFIED_MOTION"
 SIDES = ("left", "right")
 
 
@@ -93,13 +94,24 @@ def recover(config_path: Path) -> dict[str, Any]:
     """
     config_path = Path(config_path)
     config = json.loads(config_path.read_text(encoding="utf-8"))
-    if config.get("schema_version") != SCHEMA:
+    if config.get("schema_version") not in [SCHEMA,CONSUMER_SCHEMA]:
         raise ValueError("CONFIG_SCHEMA")
     source_paths = {key: _pinned(config[key]) for key in ("hawor_source", "hawor_result", "roi", "robot_r0")}
     optional_refs = {key: _pinned(config[key]) for key in ("robot_result", "asset", "mount") if key in config}
+    qualified_mode=config['schema_version']==CONSUMER_SCHEMA
+    if qualified_mode:
+        optional_refs.update({key:_pinned(config[key]) for key in ['observability','quality_qualification']})
     input_refs = {key: _ref(path) for key, path in {**source_paths, **optional_refs}.items()}
     config_ref = _ref(config_path)
     code_ref = _ref(Path(__file__))
+    if qualified_mode:
+        from chaoyang.pipeline import motion_consumer_qualification_v2 as consumer
+        from chaoyang.pipeline import motion_invalid_propagation_v1 as policy
+        input_refs['consumer_code']=_ref(Path(consumer.__file__))
+        input_refs['policy_code']=_ref(Path(policy.__file__))
+        qualification=json.loads(optional_refs['quality_qualification'].read_text())
+        for row in qualification.get('rows',[]):
+            for evidence_ref in row.get('evidence_refs',[]):_pinned(evidence_ref)
     run_signature = hashlib.sha256(_canonical({"schema": SCHEMA, "config": config_ref, "code": code_ref, "inputs": input_refs})).hexdigest()
     output = Path(config["output"])
     receipt_path = output / "RESULT.json"
@@ -175,18 +187,29 @@ def recover(config_path: Path) -> dict[str, Any]:
         loss = next((name for name in stages if stages[name][side] == 0), None)
         first_recorded_loss.append(loss)
     output.mkdir(parents=True, exist_ok=False)
+    position_eligible=prediction;rotation_eligible=prediction;fingers_eligible=prediction
+    if qualified_mode:
+        qualified=consumer.qualify(hand,robot,json.loads(optional_refs['observability'].read_text()),qualification,input_refs['hawor_source']['sha256'],config['session_id'])
+        robot=consumer.robot_payload(robot,qualified)
+        position_eligible=qualified['masks']['position'];rotation_eligible=qualified['masks']['rotation'];fingers_eligible=qualified['masks']['fingers']
+        target_valid=robot['target_valid'];wrist_valid=robot['wrist_valid'];finger_valid=robot['finger_valid']
+        (output/'CONSUMPTION_LEDGER.json').write_bytes(_canonical({'schema_version':consumer.SCHEMA,'rows':qualified['ledger'],'raw_fallback_is_not_replacement_success':True}))
+        stages['qualified_position']=_counts(position_eligible);stages['qualified_rotation']=_counts(rotation_eligible)
+        stages['qualified_robot_wrist']=_counts(wrist_valid);stages['qualified_robot_fingers']=_counts(finger_valid)
     hand_path = output / "HAND_MOTION_V1.npz"
     robot_path = output / "ROBOT_R0_V1.npz"
     np.savez_compressed(
         hand_path, frame_id=frame_id, timestamp_ns=timestamp_ns,
         anatomical_side_names=np.asarray(SIDES), source_kind=np.asarray("HAWOR_INFERRED"),
         roi_valid=roi_valid, model_input=model_input, predicted_valid=prediction,
-        observed_physical=_require_shape(hand, "observed", (2, frames)).T,
-        inferred_physical=_require_shape(hand, "inferred", (2, frames)).T,
+        observed_physical=np.zeros_like(prediction) if qualified_mode else _require_shape(hand, "observed", (2, frames)).T,
+        inferred_physical=prediction.copy() if qualified_mode else _require_shape(hand, "inferred", (2, frames)).T,
+        source_observed=_require_shape(hand, "observed", (2, frames)).T,
+        source_inferred=_require_shape(hand, "inferred", (2, frames)).T,
         segment_id=_segments(prediction), T_camera_wrist=wrist_T,
         joints21_camera=joints_camera, joints21_root=joints_root,
-        position_valid=prediction, rotation_valid=prediction,
-        joint_valid=np.broadcast_to(prediction[:, :, None], (frames, 2, 21)).copy(),
+        position_valid=position_eligible, rotation_valid=rotation_eligible,
+        joint_valid=np.broadcast_to(fingers_eligible[:, :, None], (frames, 2, 21)).copy(),
         estimate_source=np.where(prediction, "HAWOR_INFERRED", "UNKNOWN"),
         T_world_camera=np.full((frames, 4, 4), np.nan, dtype=np.float64),
         world_valid=np.zeros(frames, dtype=bool),
@@ -222,5 +245,8 @@ def recover(config_path: Path) -> dict[str, Any]:
         "inputs": input_refs, "config": config_ref, "code": code_ref,
         "outputs": {"hand_motion": _ref(hand_path), "robot_r0": _ref(robot_path)},
     }
+    if qualified_mode:
+        receipt['schema_version']=CONSUMER_SCHEMA;receipt['outputs']['consumption_ledger']=_ref(output/'CONSUMPTION_LEDGER.json')
+        receipt['status']='QUALIFIED_CONSUMPTION_EXPORTED_NOT_QUALITY_ADOPTED'
     receipt_path.write_bytes(_canonical(receipt))
     return receipt
