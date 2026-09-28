@@ -1,3 +1,4 @@
+import json
 import numpy as np
 import pytest
 from chaoyang.ops.run_four_stream_completion_motion_diagnostic import analyze
@@ -35,6 +36,7 @@ def test_reports_crop_support_and_source_jump_without_repair():
     right = next(item for item in out["full_timeline"] if item["side"] == "right")
     assert right["largest_delta_from_frame"] == 47 and right["largest_delta_to_frame"] == 48
     assert right["largest_consecutive_root_delta_m"] == pytest.approx(1.25)
+    json.dumps(out, allow_nan=False)
     for key, value in before.items():
         np.testing.assert_array_equal(source[key], value)
 

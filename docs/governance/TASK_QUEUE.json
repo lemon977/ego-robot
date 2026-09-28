@@ -1,8 +1,8 @@
 {
   "claim_limit": "Queue projection only; task packets and current receipt are authoritative.",
-  "generated_at": "2026-09-28T12:08:54+08:00",
-  "generation_id": "gov-014189-6d45db3be265",
-  "governance_revision": 14189,
+  "generated_at": "2026-09-28T12:15:03+08:00",
+  "generation_id": "gov-014190-6f50cd9370bf",
+  "governance_revision": 14190,
   "next_task": {
     "session": "all_fixed_sessions",
     "stop_condition": "Finite phase AB checkpoint, not project completion",
@@ -18,7 +18,7 @@
       "session": null,
       "status": "PENDING",
       "task_id": "four_stream_completion_20260928",
-      "updated_at": "2026-09-28T12:08:54+08:00"
+      "updated_at": "2026-09-28T12:15:03+08:00"
     },
     {
       "attempt": 1,
