@@ -762,12 +762,17 @@ def _recover_runtime_checkpoint_authority_transaction(
     parent_descriptor: int,
     parent_state: os.stat_result,
     expected_encoded: bytes,
+    expected_staging_identity: tuple[int, int] | None = None,
 ) -> bool:
     """Finish only an exact fsynced staging/link transaction after a crash."""
     staging_name = _authority_staging_name(authority_path)
     staging_state = _directory_entry_state(parent_descriptor, staging_name)
     if staging_state is None:
         return False
+    if expected_staging_identity is not None and (
+        staging_state.st_dev, staging_state.st_ino
+    ) != expected_staging_identity:
+        raise ValueError("runtime checkpoint authority staging identity drift")
     authority_state = _directory_entry_state(parent_descriptor, authority_path.name)
     if authority_state is None:
         encoded, staging_state = _read_authority_transaction_entry(
@@ -923,12 +928,18 @@ def write_runtime_checkpoint_authority(
                     "runtime checkpoint authority staging changed while being written"
                 )
             os.fsync(parent_descriptor)
+            # Finish the staging writer before the link/unlink transaction.
+            # A still-open writer can leave link-count metadata stale on CPFS.
+            # Retain all identity/link checks; bind recovery to this staging inode.
+            os.close(descriptor)
+            descriptor = None
             published = _recover_runtime_checkpoint_authority_transaction(
                 authority_path,
                 parent,
                 parent_descriptor,
                 parent_state,
                 encoded,
+                expected_staging_identity=staging_identity,
             )
             if not published:
                 raise RuntimeError("runtime checkpoint authority staging was not published")

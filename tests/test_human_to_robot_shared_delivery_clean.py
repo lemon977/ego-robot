@@ -61,10 +61,6 @@ def test_final_paste_cannot_reintroduce_raw_inside_write() -> None:
     assert np.array_equal(output[protect], raw[protect])
 
 
-@pytest.mark.xfail(
-    strict=True,
-    reason="V3 output-domain adapter incorrectly multiplies an already 0..255 output; repair budget exhausted",
-)
 def test_lama_adapter_changes_only_propagation_residual() -> None:
     class Session:
         input_min = None

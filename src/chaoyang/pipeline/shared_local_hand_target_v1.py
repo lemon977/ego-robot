@@ -336,6 +336,26 @@ def solve_local_frame(
     return q, points, diagnostics
 
 
+def source_provenance_masks(source_valid, source_observed=None):
+    """Return independent validity and direct-observation masks.
+
+    Missing provenance never inherits True from valid/resampled/inferred data.
+    This validates mask shape/consistency, not the caller's provenance evidence.
+    """
+    valid = np.asarray(source_valid)
+    if valid.ndim != 2 or valid.shape[0] != 2 or valid.dtype != np.bool_:
+        raise HuroHandOnlyError("source validity must be boolean anatomical (2,T)")
+    if source_observed is None:
+        direct = np.zeros_like(valid)
+    else:
+        direct = np.asarray(source_observed)
+        if direct.shape != valid.shape or direct.dtype != np.bool_:
+            raise HuroHandOnlyError("source observation must match boolean validity")
+        if np.any(direct & ~valid):
+            raise HuroHandOnlyError("observed source cannot be invalid")
+    return valid.copy(), direct.copy()
+
+
 def solve_local_sequence(
     hands: tuple[HandModel, HandModel],
     source_points: np.ndarray,
@@ -348,11 +368,19 @@ def solve_local_sequence(
     units: str = "m",
     max_evaluations: int = 80,
     progress=None,
+    source_observed: np.ndarray | None = None,
 ) -> dict[str, np.ndarray]:
+    """Solve valid inputs; direct observation requires an explicit mask.
+
+    The legacy ``observed`` argument is retained for calling compatibility but
+    interpreted as validity only. It cannot establish direct sample provenance.
+    The explicit ``source_observed`` mask defaults to all False. Objectives and
+    numerical gates are unchanged; old results are never rewritten.
+    """
     adapted = adapt_source_points(
         source_points, source_kind=source_kind, joint_names=joint_names, units=units
     )
-    mask = np.asarray(observed, dtype=bool)
+    mask, direct = source_provenance_masks(observed, source_observed)
     frames = np.asarray(frame_ids)
     if tuple(anatomical_side_names) != ("left", "right"):
         raise HuroHandOnlyError("anatomical side axis must be explicit left,right")
@@ -383,7 +411,10 @@ def solve_local_sequence(
         "normalized_pinch_error": np.full(shape, np.nan),
         "temporal_delta_rms_rad": np.full(shape, np.nan),
         "failure_reason": np.full(shape, "UNOBSERVED", dtype="U96"),
-        "source_observed_physical": mask.T.copy(),
+        "source_valid_physical": mask.T.copy(),
+        "source_observed_physical": direct.T.copy(),
+        "source_valid_not_directly_observed_physical": (mask & ~direct).T.copy(),
+        "source_observation_policy": np.asarray("EXPLICIT_PROVENANCE_ONLY_V1"),
         "source_frame_id": frames.copy(),
         "human_to_physical": SOURCE_TO_PHYSICAL.copy(),
         "source_reference_width_m": source_width.copy(),

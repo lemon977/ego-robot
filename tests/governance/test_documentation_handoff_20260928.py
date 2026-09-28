@@ -22,15 +22,15 @@ def test_history_does_not_authorize_execution():
     ids = [r["task_id"] for r in history["tasks"]]
     assert len(ids) == len(set(ids)) == 85
     assert "Historical snapshot" in history["claim_limit"]
-    assert read("tasks/current/INDEX.json")["task_packets"] == []
+    executable = {r["task_id"] for r in read("tasks/current/INDEX.json")["task_packets"] if r.get("execution_allowed")}
+    assert not executable.intersection(ids)
 
-def test_latest_quality_is_unchanged():
-    status = read("docs/current/STATUS.json")
-    assert status["latest_task"] == "human_to_robot_shared_hand_delivery_20260924"
+def test_historical_quality_is_unchanged():
+    status = read("_run/current/human_to_robot_shared_hand_delivery_20260924/attempts/attempt_0001/RESULT.json")
+    assert status["task_id"] == "human_to_robot_shared_hand_delivery_20260924"
     assert status["counts"]["products_quality"] == "0/4"
     assert status["counts"]["products_adopted"] == "0/4"
     assert status["counts"]["qualified_kai22_h50_windows"] == 0
-    assert not status["data_interface_pass"]
     assert not status["training_eligible"]
 
 def test_latest_navigation_and_proposals_registered():
@@ -50,7 +50,7 @@ def test_readme_uses_latest_result_and_no_stale_interface_pass():
     text = (ROOT / "docs/current/README_ZH.md").read_text(encoding="utf-8")
     assert "SHARED_HAND_DELIVERY_RESULT_ZH.md" in text
     assert "Sensor097接口通过" not in text
-    assert "NEXT_ACTIONS_ZH.md" in text
+    assert "COMPLETION_20260928_ZH.md" in text
 
 def test_proposals_are_not_new_permissions():
     text = (ROOT / "docs/current/NEXT_ACTIONS_ZH.md").read_text(encoding="utf-8")

@@ -89,6 +89,22 @@ def load_case(session_id: str, motion_path: Path, r0_path: Path) -> dict:
             "rotation_valid": rotation_valid, "motion_ref": motion_ref, "r0_ref": r0_ref}
 
 
+def wrist_pose_residual(actual, target, pos_mask, rot_mask):
+    """Independent base-frame position and relative SO(3) residuals.
+
+    SE(3).log translation is coupled to relative rotation. It must not be
+    used for a position-only observation with an unknown wrist rotation.
+    The reference frame, scales, masks and frozen targets are unchanged.
+    """
+    import jax.numpy as jnp
+
+    translation = (actual.translation() - target.translation()) * (
+        pos_mask[..., None] / WRIST_POSITION_SCALE_M)
+    rotation = (target.rotation().inverse() @ actual.rotation()).log() * (
+        rot_mask[..., None] / WRIST_ROTATION_SCALE_RAD)
+    return jnp.concatenate((translation, rotation), axis=-1).reshape(-1)
+
+
 def adapted_core(core_path: Path):
     """Load the pinned upstream core and inject one auditable cost into its solve."""
     import jax.numpy as jnp
@@ -139,15 +155,9 @@ def adapted_core(core_path: Path):
         "        wrist_pose_cost(var_joints, target_wrist_se3, wrist_pos_mask, wrist_rot_mask),\n",
     )
 
-    def wrist_residual(actual, target, pos_mask, rot_mask):
-        error = (target.inverse() @ actual).log()
-        translation = error[..., :3] * (pos_mask[..., None] / WRIST_POSITION_SCALE_M)
-        rotation = error[..., 3:] * (rot_mask[..., None] / WRIST_ROTATION_SCALE_RAD)
-        return jnp.concatenate((translation, rotation), axis=-1).reshape(-1)
-
-    core.__dict__["_v5_wrist_residual"] = wrist_residual
+    core.__dict__["_v5_wrist_residual"] = wrist_pose_residual
     exec(compile(function, str(core_path) + ":v5_wrist", "exec"), core.__dict__)
-    return core, core.__dict__["solve_retargeting_with_wrist"], wrist_residual, function
+    return core, core.__dict__["solve_retargeting_with_wrist"], wrist_pose_residual, function
 
 
 def directional_tests(wrist_residual) -> dict:
