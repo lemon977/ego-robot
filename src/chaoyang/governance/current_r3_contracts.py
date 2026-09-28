@@ -155,6 +155,7 @@ def build_algorithm_contract(
                         "src/chaoyang/ops/run_four_stream_completion_clean_role_refine.py",
                         "src/chaoyang/pipeline/sensor_collision_asset_audit_v1.py",
                         "src/chaoyang/pipeline/sensor_collision_pair_probe_v1.py",
+                        "src/chaoyang/pipeline/s01_point_semantics_v1.py",
                         "src/chaoyang/ops/run_four_stream_completion_motion_diagnostic.py",
                         "src/chaoyang/pipeline/assembly_visibility_canary_v1.py",
                         "src/chaoyang/ops/run_four_stream_completion_assembly_canary.py",
