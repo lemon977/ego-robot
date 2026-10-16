@@ -1,0 +1,27 @@
+{
+  "schema_version": "exact78-cards002-cli-v2-ledger-prefix-trap-v1",
+  "captured_governance_revision": 16420,
+  "source_ledger_sha256": "7d80b58f976f11eecb706133445f974f93bde51c39c7c09c23b2121e8b7e29ea",
+  "row": {
+    "task_id": "exact78_newraw_cli_v2_acceptance_play_cards_0902_002_v1",
+    "phase": "EXACT78_NEWRAW_CLI_V2_CODE_ACCEPTANCE",
+    "session": "play_cards_0902_002",
+    "status": "PASSED",
+    "run_signature": "REDACTED_PUBLIC_EXPORT",
+    "task_packet": {
+      "path": "/path/to/chaoyang/tasks/current/exact78_newraw_cli_v2_acceptance_play_cards_0902_002_v1/TASK_PACKET.json",
+      "bytes": 8720,
+      "sha256": "caa283fd2cb4a77cbf106a2a4b45f81c8a10cd451aa4769666c33a7013d4dcdf"
+    },
+    "result": {
+      "path": "/path/to/chaoyang/_run/current/exact78_newraw_cli_v2_acceptance_play_cards_0902_002_v1/attempts/attempt_0001/RESULT.json",
+      "bytes": 3302,
+      "sha256": "1125e50902cb28c8243cfab3647988fd16f52f11fbdf75e3953ea7624a826a28"
+    },
+    "terminal_receipt": {
+      "path": "/path/to/chaoyang/tasks/receipts/EXACT78_NEWRAW_CLI_V2_ACCEPTANCE_PLAY_CARDS_0902_002_V1.json",
+      "bytes": 815,
+      "sha256": "23277d8bc0d0c7c6ef595eccf0bf114347fe1effb99247b95e239e24ff8e148b"
+    }
+  }
+}

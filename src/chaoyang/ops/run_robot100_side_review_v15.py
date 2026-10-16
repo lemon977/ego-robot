@@ -1,0 +1,125 @@
+"""One-session anatomical wrist correction and readable CPU review."""
+from pathlib import Path
+import json
+import subprocess
+import numpy as np
+import h5py
+import cv2
+from chaoyang.ops import run_robot100_world_first_v14 as old
+from chaoyang.pipeline.v5_product import ProductRobotRenderer
+from chaoyang.ops.render_tianji_kai_mount_proxy_audit import body_bounds
+
+ROOT = old.REPO_ROOT / '_run/current/robot100_side_review_v15_20260929/attempts/attempt_0001'
+
+def anatomical_world(raw):
+    if raw.ndim != 4 or raw.shape[1:] != (2, 4, 4):
+        raise ValueError('WRIST_SHAPE')
+    return raw.copy()
+
+def side_tests():
+    records = []
+    for active in (0, 1):
+        raw = np.tile(np.eye(4), (3, 2, 1, 1))
+        raw[:, active, 0, 3] = [0, .1, .2]
+        mapped = anatomical_world(raw)
+        assert np.array_equal(mapped, raw)
+        assert np.ptp(mapped[:, active, 0, 3]) == .2
+        assert np.ptp(mapped[:, 1-active, 0, 3]) == 0
+        swapped = raw[:, [1, 0]]
+        assert not np.array_equal(mapped, swapped)
+        records.append({'active_side': ['left','right'][active], 'identity_pass': True, 'old_swapped_negative_detected': True})
+    return records
+
+def render(row, solved, destination):
+    motion = dict(solved, q_hand22=solved['q22'], T_cam_base=np.eye(4))
+    r = ProductRobotRenderer(old.REPO_ROOT, motion, {'width':960,'height':480,'K':[[580,0,480],[0,580,240],[0,0,1]]}, include_adapter=True)
+    b = r.b
+    r.frame_layers(0)
+    # Fixed framing is fitted to the whole arm/hand trajectory, excluding the base.
+    lows, highs = [], []
+    for i in range(len(solved['frame_id'])):
+        r.frame_layers(i)
+        for hand in r.hands:
+            lo, hi = body_bounds(r.client, (hand,))
+            lows.append(lo); highs.append(hi)
+    lo, hi = np.min(lows,axis=0), np.max(highs,axis=0)
+    lo = np.minimum(lo, [-.1,-.4,.9]); hi = np.maximum(hi,[.1,.4,1.5])
+    center = (lo+hi)/2
+    distance = max(1.5, float(np.linalg.norm(hi-lo))*1.15)
+    full_view = b.computeViewMatrixFromYawPitchRoll(center.tolist(),distance,40,-16,0,2)
+    r.projection = b.computeProjectionMatrixFOV(48,2,.02,20)
+    cap = cv2.VideoCapture(str(old.baseline._stable_ref(Path(row['video']['path']),row['video'])))
+    if not cap.isOpened(): raise RuntimeError('SOURCE_OPEN')
+    dst = subprocess.Popen(['ffmpeg','-nostdin','-v','error','-threads','2','-f','rawvideo','-pix_fmt','bgr24','-s','1920x1080','-r',str(row['fps']),'-i','pipe:0','-an','-c:v','libx264','-threads','2','-preset','veryfast','-crf','19','-pix_fmt','yuv420p','-movflags','+faststart',str(destination)],stdin=subprocess.PIPE)
+    def image_for(view, target_body=None):
+        r.view = view
+        layers = r.frame_layers(i)
+        out = cv2.cvtColor(layers.rgb,cv2.COLOR_RGB2BGR)
+        out[~layers.alpha] = 244
+        return out
+    sample_ids={0,50,100,len(solved['frame_id'])-1}
+    try:
+        for i in range(len(solved['frame_id'])):
+            ok, raw = cap.read()
+            if not ok: raise RuntimeError('SOURCE_TRUNCATED')
+            canvas = np.full((1080,1920,3),244,np.uint8)
+            canvas[44:524,:960] = old.baseline._letterbox_bgr(raw,960,480)
+            canvas[44:524,960:] = image_for(full_view)
+            for side, hand in enumerate(r.hands):
+                lower, upper = body_bounds(r.client,(hand,))
+                target = ((lower+upper)*.5).tolist()
+                # Fixed distance and angle; translation follows the hand only for visibility.
+                view = b.computeViewMatrixFromYawPitchRoll(target,.46,40,-24,0,2)
+                canvas[564:1044,side*960:(side+1)*960] = image_for(view)
+            canvas = old.baseline._put_chinese(canvas,[
+                ('原始采集：主要活动为人体右手',(18,4),28),
+                ('双臂前侧方视图｜按解剖侧别驱动',(978,4),28),
+                ('机器人左手近景｜固定尺度、随腕观察',(18,528),27),
+                ('机器人右手近景｜固定尺度、随腕观察',(978,528),27),
+                (f'025｜帧 {i}｜V15 侧别纠错样片；虚拟安装，待人工审阅；正面画面左右不等于解剖左右',(18,1048),22)])
+            if i in sample_ids: cv2.imwrite(str(ROOT/f'REVIEW_{i:04d}.jpg'),canvas)
+            dst.stdin.write(canvas.tobytes())
+        dst.stdin.close()
+        if dst.wait(): raise RuntimeError('ENCODE_FAILED')
+    finally:
+        cap.release(); r.close()
+        if dst.poll() is None: dst.kill(); dst.wait()
+    subprocess.run(['ffmpeg','-nostdin','-v','error','-xerror','-threads','2','-i',str(destination),'-f','null','-'],check=True)
+    probe=json.loads(subprocess.check_output(['ffprobe','-v','error','-count_frames','-select_streams','v:0','-show_entries','stream=nb_read_frames,width,height','-of','json',str(destination)]))
+    assert int(probe['streams'][0]['nb_read_frames'])==len(solved['frame_id'])
+    return probe
+
+def main():
+    checks=side_tests()
+    selection=old.load_json(old.v4.SELECTION)
+    row=next(r for r in selection['rows'] if r['session_id']=='play_cards_0916_025')
+    original, metrics=old.baseline._load_motion(row,24)
+    arrays=old.v8.restore_anatomical_identity(original)
+    with h5py.File(old.baseline._stable_ref(Path(row['hdf5']['path']),row['hdf5']),'r') as source:
+        raw=np.stack([old.baseline._pose_matrix(np.asarray(source[k],dtype=float)) for k in ('left_wrist_pose','right_wrist_pose')],axis=1)
+    arrays['world_wrist_T']=anatomical_world(raw)
+    old.validate_se3(raw[arrays['wrist_valid']])
+    assets=old.load_pinned_robot_assets(old.REPO_ROOT)
+    mounts,_=old.baseline._mounts()
+    solved=old.solve_full_chain(arrays,assets,mounts,max_nfev=500,continuity_weight=.01,reference_q_arm=old.v6.POSTURE_REFERENCE_Q,expected_human_to_physical=old.v8.IDENTITY_MAPPING,target_mode='WORLD_FIRST_UNIT_GAIN',robot_from_head_R=np.eye(3),translation_scale=1.)
+    solved=old.solve_inward_multiseed(solved,assets,mounts,old.v6.inward_margin_m,minimum_inward_m=old.v6.MIN_INWARD_M,max_nfev=500,continuity_weight=.01)
+    valid=solved['wrist_valid']
+    source_path=old.path_mm(raw,valid)
+    target_path=old.path_mm(solved['T_target_root'],valid)
+    np.testing.assert_allclose(source_path,target_path,atol=1e-6)
+    for side in (0,1):
+        ids=np.flatnonzero(valid[:,side])
+        np.testing.assert_allclose(np.diff(raw[ids,side,:3,3],axis=0),np.diff(solved['T_target_root'][ids,side,:3,3],axis=0),atol=1e-9)
+    np.testing.assert_array_equal(solved['q22'],arrays['q22'])
+    solved['world_wrist_T']=raw
+    motion=ROOT/'ROBOT_MOTION_V15.npz'
+    if motion.exists(): raise RuntimeError('FRESH_OUTPUT_REQUIRED')
+    np.savez_compressed(motion,**solved)
+    video=ROOT/'play_cards_0916_025_V15_侧别修正_双臂与手指近景.mp4'
+    probe=render(row,solved,video)
+    result={'schema_version':'ROBOT100_SIDE_REVIEW_V15','status':'COMPLETE_PENDING_HUMAN_REVIEW','session_id':row['session_id'],'source':row,'checks':checks,'source_path_mm_left_right':source_path,'target_path_mm_left_right':target_path,'tracking_pass_left_right':solved['tolerance_pass'].sum(axis=0).tolist(),'finger_range_rad_left_right':np.ptp(solved['q22'],axis=0).tolist(),'motion':old.artifact_ref(motion),'video':old.artifact_ref(video),'decode':probe,'baseline_selected':False,'quality_adopted':False,'control_ground_truth':False,'review':'PENDING','predecessor':old.artifact_ref(old.REPO_ROOT/'_run/current/robot100_world_first_unit_gain_v14_20260929/attempts/attempt_0001/RESULT.json')}
+    old.atomic_json(ROOT/'RESULT.json',result)
+    print(json.dumps(result,ensure_ascii=False))
+    return 0
+
+if __name__=='__main__': raise SystemExit(main())

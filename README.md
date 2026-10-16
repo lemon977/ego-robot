@@ -1,60 +1,51 @@
-# Chaoyang Ego-to-Robot Pipeline
+# Chaoyang 项目入口
 
-2026-09-28已整理当前入口、四线状态与历史计划。请先读[当前总入口](docs/current/README_ZH.md)，不要从历史任务书续跑。[后续建议](docs/current/NEXT_ACTIONS_ZH.md)尚未登记执行；[Git与服务器证据边界](docs/current/GIT_DELIVERY_ZH.md)说明哪些产物不在GitHub。
+本 Inpainting 支线唯一生产基线为 **INPAINTING_RAW_TO_ROBOT_V1**，对应 pick_place_1008 原版 199 会话、29,322 原生帧的 V9 生产链。当前选择及依赖由 [V1 清单](inpainting_v1/MANIFEST.json)和同 revision 治理合同确定。
 
-Clean是独立视觉分支，不向Depth/Object6D/Contact提供几何真值；下面流水线名称仅列能力，不表示所有阶段已合格。
+| 要做的工作 | 从这里进入 |
+|---|---|
+| 使用原 V1 | [说明](inpainting_v1/README.md)、[完整链路](inpainting_v1/PIPELINE_ZH.md)、[新任务运行与恢复](inpainting_v1/RUN_ZH.md) |
+| 审阅视频 | [统一审阅导航](review/NAVIGATION_ZH.md)，区分原 V1、保留成果与执行诊断片 |
+| 继续 Inpainting 优化 | [接手说明](inpainting_optimization/incremental_v1_8h/HANDOFF_ZH.md)、[各线续接](inpainting_optimization/CONTINUE_HERE_ZH.md) |
+| 检索已核对的经验与误读 | 先读[记忆更新](inpainting_optimization/agent_memory/UPDATES_ZH.md)，再检索[执行记忆](inpainting_optimization/agent_memory/README_ZH.md) |
+| MANUS／0916 独立支线 | [原支线说明](docs/current/ROBOT100_BATCH_ZH.md)及[原 v16 指针](docs/current/ROBOT100_HARDWARE_BASELINE_V16.json)，由另一维护者负责 |
+| Raw／Robotized ICT 关节训练 | [Joint26 交接](docs/plans/PICK_PLACE_HUMANEGO_ICT_JOINT26_V1/README_ZH.md)、[两条命令](docs/plans/PICK_PLACE_HUMANEGO_ICT_JOINT26_V1/COLLEAGUE_COMMANDS_ZH.md)、[该线状态](docs/plans/PICK_PLACE_HUMANEGO_ICT_JOINT26_V1/STATUS.json) |
+| Tianji／Revo2 资产、通道与上位机资料 | [专项交接](revo2_ict_handoff/README.md)，来源与 SHA 见其机器索引 |
 
-本仓库实现第一视角数据的 Raw → HaWoR / Mask → Stereo Depth → Object6D → Clean → Contact → Robot Visual → HumanEgo 流水线。2026-09-17 起，活动代码统一使用 src/chaoyang 包布局；旧路径只可通过归档清单查询，不再是执行入口。
+## 开始工作
 
-## 当前唯一入口
+先读 [AGENTS](AGENTS.md)，运行治理校验，再按[当前总入口](docs/current/README_ZH.md)和 [AI 工作入口](docs/current/AI_WORK_ENTRY_ZH.md)读取本次任务范围：
 
-执行或回答状态问题前，按顺序读取：
+```bash
+PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=src python -B -m chaoyang.cli validate-governance
+```
 
-1. [当前入口](docs/current/README_ZH.md)
-2. [后续 AI 工作入口](docs/current/AI_WORK_ENTRY_ZH.md)
-3. [当前状态 receipt](docs/governance/CURRENT_STATUS_RECEIPT.json)
-4. [当前Human→Robot机器状态](docs/current/STATUS.json)；仅核查历史RC1时读取[RC1最小事实页](docs/governance/CURRENT_RC1_STATUS_MIN.json)
-5. [文档权威索引](docs/governance/DOC_AUTHORITY_MAP.json)与[算法合同](docs/governance/ALGORITHM_CONTRACT.json)
-6. [当前任务索引](tasks/current/INDEX.json)；只有 execution_allowed=true 的行可执行
-7. [三批数据清洗验收基线](docs/current/DATA_CLEANING_0911_0915_ZH.md)
-8. [端到端复现说明](docs/reference/pipeline/RAW_TO_HUMANEGO_END_TO_END_REPRODUCTION_ZH.md)
-9. [Clean baseline v1 迁移与恢复说明](docs/reference/architecture/CLEAN_BASELINE_V1_ZH.md)
+核对 [receipt](docs/governance/CURRENT_STATUS_RECEIPT.json)绑定的[文档权威](docs/governance/DOC_AUTHORITY_MAP.json)、[算法合同](docs/governance/ALGORITHM_CONTRACT.json)及[基线登记](docs/governance/CURRENT_BASELINE_REGISTRY_V2.json)。活动任务只看[实时状态](docs/current/STATUS.json)和[任务索引](tasks/current/INDEX.json)；新的执行目标须登记有限 Task、写集、预算、截止及真实 writer。
 
-freshness.reason=no_active_tasks 只表示没有需要心跳的活动治理任务，不表示所有研究文档刚更新。实时事实由 receipt、SHA 与 DOC_AUTHORITY_MAP 共同约束。历史文件名中的 current/latest/final 不具有当前权威性。
+`CURRENT` 表示文档在其登记范围内可读。目录名、最高版本、历史文件中的 current/latest/final，以及 `freshness=no_active_tasks` 均不能代替选版、执行许可或内容审阅。可搜索记忆帮助定位证据，每次执行仍须核对当前权威与来源 SHA。
 
-## 目录职责
+## 目录与维护
 
-    chaoyang/
-    ├── src/chaoyang/       # pipeline、human_ego、governance、ops、cli
-    ├── configs/            # pipeline、training、systems 配置
-    ├── contracts/          # schema 与机器合同
-    ├── manifests/          # 数据、模型、实验与 vendor 清单
-    ├── scripts/            # 少量迁移和人工入口
-    ├── tests/              # 当前回归
-    ├── docs/               # 当前入口、指南、参考、研究与治理
-    ├── tasks/current/      # 保留任务包路径；仅INDEX.json路由项可执行
-    ├── tasks/receipts/     # 紧凑证明与历史目录
-    ├── assets/models/      # 权重本体忽略，清单受控
-    ├── vendor/             # 运行必需的最小第三方源码
-    ├── _run/current/       # 忽略的锁、缓存、日志、媒体和实验结果
-    └── archive/            # 隔离且被 Git/构建/测试排除的可恢复历史
+| 位置 | 职责 |
+|---|---|
+| `src/chaoyang/` | 现用源码；V1 依赖按清单原路径读取 |
+| `inpainting_v1/` | 唯一生产 V1 的说明、链路、运行与机器清单 |
+| `inpainting_optimization/` | 候选实验、交接、结果索引与可搜索记忆 |
+| `configs/`、`contracts/`、`manifests/` | 配置、schema、数据／模型／来源清单 |
+| `docs/` | [当前入口、指南、参考、计划与治理](docs/README.md) |
+| `tasks/` | 有限任务包与不可变收据；仅 INDEX 中唯一授权行可执行 |
+| `review/` | 观看导航及审阅证据 |
+| `_run/` | 按任务／attempt 隔离的结果、日志、缓存和维护证明 |
+| `archive/`、`baseline_v1/` | 历史证据与冻结依赖；不作为第二套默认源码 |
 
-## 统一命令
+详细位置见[目录导览](docs/current/PROJECT_LAYOUT_ZH.md)，新增文件与封存规则见[项目约定](docs/maintenance/PROJECT_CONVENTIONS_V1_ZH.md)，环境与恢复见[交接说明](docs/maintenance/ENVIRONMENT_HANDOFF_V1_ZH.md)。[scripts](scripts/README.md)和 [tests](tests/README.md)各自说明可维护入口；`make check`、`make check-server`分别用于便携及服务器 CPU 检查，其通过不代表视觉或训练质量通过。
 
-    PYTHONPATH=src python -m chaoyang.cli paths
-    PYTHONPATH=src python -m chaoyang.cli validate-governance
-    PYTHONPATH=src python -m chaoyang.cli run <operation> [args...]
+所有新文件、临时输出和缓存写入本项目真实路径。外部原始数据、NAS、0916 与 ICT 独立工作域按各自授权处理。清理须证明精确目标的引用、活动 FD/CWD、Git、许可证及恢复来源；不按旧日期或目录名删除，也不丢弃既有 Git 工作。
 
-默认路径：原始数据 /path/to/private_data/egodata/datasets/ego；处理数据 /path/to/private_data/egodata/datasets/ego/processed；运行产物 <repo>/_run/current；模型权重 <repo>/assets/models。分别使用 EGO_DATA_ROOT、EGO_PROCESSED_ROOT、CHAOYANG_RUN_ROOT、CHAOYANG_MODEL_ROOT 覆盖。
+## 结果与历史的阅读边界
 
-## 不可破坏规则
+V1 实际动作为同会话 Controller/Head＋MANUS；SAM3.1、ProPainter 与 Tianji／KaiHand22 负责视觉生产链。199 会话执行完成、用户采用、视觉审阅、产品质量、训练和控制资格分别记录。原 FAIL、隐藏 UNKNOWN 和人工未审状态继续保留；Clean 生成像素只用于离线视觉，不作 Depth、Object6D、Contact 或控制真值。
 
-- 不移动、删除或改写 /path/to/private_data/egodata。
-- current authority 只由 receipt 绑定的机器文件解释。
-- 已有 final 不覆盖；输入、代码、权重、标定或 schema 签名变化不得静默复用。
-- HAND_OBJECT_ATTACHMENT 只可延续遮挡期 pose，不得反向证明身份、Contact 或正式 Object6D。
-- Clean 合成像素不得反喂 Depth、Object6D、Contact 几何或动作真值。
-- GPU 任务必须走租约；迁移、治理、哈希和测试默认 CPU。
-- 永久删除不可再生内容前，必须有归档清单、零 current 引用、零活动 FD/CWD、Git 保护快照和删除收据。
+旧 v13、V2、P1、0915／0918 实验及优化候选沿[历史隔离索引](archive/inpainting_baselines/README.md)追溯。被 V1 明确引用的旧名共享代码仍是必要依赖，保留原路径及 SHA；原 199 V1、旧 v13 的 234 会话与旧 156 会话资格账本分开统计。旧 H50×30／20k 腕模型与 H30×26 关节模型保持各自身份，状态只从对应训练线读取。
 
-第三方来源与许可证见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [vendor 清单](manifests/vendor.json)。
+Git 与服务器产物范围见[交付边界](docs/current/GIT_DELIVERY_ZH.md)；第三方来源与许可证见 [THIRD_PARTY_NOTICES](THIRD_PARTY_NOTICES.md)及 [vendor 清单](manifests/vendor.json)。

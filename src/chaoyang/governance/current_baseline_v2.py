@@ -459,6 +459,7 @@ def build_registry(authority: Mapping[str, Any], task_state: Mapping[str, Any]) 
             "src/chaoyang/ops/run_chips001_pico_mask_temporal.py",
             "src/chaoyang/ops/run_v71_post_visual_aux_sensor_canaries.py",
             "src/chaoyang/ops/build_sensor_pipeline_terminal_matrix_v71.py",
+            "src/chaoyang/ops/run_robot100_batch_baseline_v1.py",
         )],
         "weights": [_ref(path) for path in (
             "assets/models/checkpoints/foundationstereo/23-51-11/model_best_bp2.pth",
@@ -496,7 +497,7 @@ def build_layout(authority: Mapping[str, Any], task_state: Mapping[str, Any]) ->
         "retained_top_level": [
             "README.md", "AGENTS.md", "THIRD_PARTY_NOTICES.md", "pyproject.toml",
             "assets", "configs", "contracts", "docs", "manifests", "scripts",
-            "src", "tasks", "tests", "vendor", "archive", "_run",
+            "src", "tasks", "tests", "vendor", "archive", "_run", "review",
         ],
         "protected_external": [
             "/path/to/private_data/egodata",
@@ -506,6 +507,9 @@ def build_layout(authority: Mapping[str, Any], task_state: Mapping[str, Any]) ->
             "/path/to/private_storage/tactiel_pretrain_outputs",
         ],
         "canonical_documents": {
+            "project_directory_guide": str(ROOT / "docs/current/PROJECT_LAYOUT_ZH.md"),
+            "exact78_visual_baseline_v1": str(ROOT / "docs/current/EXACT78_VISUAL_BASELINE_V1.json"),
+            "exact78_visual_review": str(ROOT / "review/exact78_v1/README.md"),
             "current_status": str(ROOT / "docs/governance/CURRENT_PROJECT_STATUS_ZH.md"),
             "baseline_registry": str(REGISTRY_PATH),
             "algorithm_contract": str(ROOT / "docs/governance/ALGORITHM_CONTRACT.json"),

@@ -1,10 +1,14 @@
-# HumanEgo 当前入口
+# HumanEgo 辅助接口说明
+
+本目录是原 H50 辅助监督消费者的依赖，不是新阶段 Raw→Robot 的算法选择入口。
+Raw→Robot 默认选择[两条 V1](../../../docs/current/DUAL_BRANCH_BASELINE_V1.json)，
+HumanEgo 仅在具体 Task Packet 引用时使用。
 
 本目录保留当前项目需要的 HumanEgo 模型、dataloader、H50 future-2D
 辅助监督接口、推理逻辑与测试。当前算法、代码闭包和限制以
-[`CURRENT_BASELINE_REGISTRY_V2.json`](../docs/governance/CURRENT_BASELINE_REGISTRY_V2.json)
+[`CURRENT_BASELINE_REGISTRY_V2.json`](../../../docs/governance/CURRENT_BASELINE_REGISTRY_V2.json)
 中的 `humanego_aux`、`humanego_policy` 两项为准，运行数量只读
-[`CURRENT_PROJECT_STATUS_MIN.json`](../docs/governance/CURRENT_PROJECT_STATUS_MIN.json)。
+[`CURRENT_PROJECT_STATUS_MIN.json`](../../../docs/governance/CURRENT_PROJECT_STATUS_MIN.json)。
 
 当前边界：
 
@@ -19,4 +23,4 @@
 目录名或聊天记录推断 readiness。
 
 上游许可证见 [`LICENSE`](LICENSE)，全项目第三方说明见
-[`THIRD_PARTY_NOTICES.md`](../THIRD_PARTY_NOTICES.md)。
+[`THIRD_PARTY_NOTICES.md`](../../../THIRD_PARTY_NOTICES.md)。

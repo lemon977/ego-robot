@@ -1,0 +1,9 @@
+name: humanego_ict
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11.11
+  - pip=23.3.2
+# Install the two sibling requirements files explicitly with the setup entry.
+# Keeping pip requirements outside this file avoids relative-path ambiguity
+# and permits a separate install report for the large CUDA wheel closure.

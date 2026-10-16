@@ -1,0 +1,12 @@
+--- a/src/chaoyang/governance/current_r3_contracts.py
++++ b/src/chaoyang/governance/current_r3_contracts.py
+@@ -285,1 +285,9 @@
++            "robot100_v16_baseline_overlay_20260929": {
++                "execution_status": "V16_BASELINE_FREEZE_AND_DIAGNOSTIC",
++                "code_closure": [artifact_ref(repo_root / "src/chaoyang/ops/run_robot100_v16_baseline_overlay.py")],
++                "scope": ["0916_CARDS025", "USER_SELECTED_V16", "SAME_SESSION_HARDWARE_PROJECTION"],
++                "training_steps_authorized": 0,
++                "physical_deployable": False,
++                "claim_limit": "User-selected visual development baseline; image accuracy independently unverified.",
++            },
+             "robot100_constraint_review_v16_retry1_20260929": {

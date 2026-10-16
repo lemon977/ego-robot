@@ -1,0 +1,6 @@
+--- a/src/chaoyang/cli/__init__.py
++++ b/src/chaoyang/cli/__init__.py
+@@ -40,1 +40,3 @@
+     maintained = _maintained_operations()
++    from chaoyang.governance.operation_retirement import require_not_retired
++    require_not_retired(get_paths().repo_root, name)

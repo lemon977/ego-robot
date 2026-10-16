@@ -23,11 +23,13 @@ where = ["src"]
 include = ["chaoyang*"]
 
 [tool.pytest.ini_options]
+cache_dir = "_run/caches/pytest"
 pythonpath = ["src"]
 testpaths = ["tests"]
 addopts = "-ra"
 
 [tool.ruff]
+cache-dir = "_run/caches/ruff"
 target-version = "py310"
 line-length = 100
 

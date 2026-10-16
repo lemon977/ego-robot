@@ -1,0 +1,10 @@
+--- a/src/chaoyang/governance/current_r3_contracts.py
++++ b/src/chaoyang/governance/current_r3_contracts.py
+@@ -285,1 +285,7 @@
++            "robot100_retire_stale_navigation_20260929": {
++                "execution_status": "BOUNDED_NAVIGATION_CLEANUP",
++                "code_closure": [artifact_ref(repo_root / "src/chaoyang/ops/run_robot100_retire_stale_navigation.py")],
++                "training_steps_authorized": 0,
++                "claim_limit": "One obsolete untracked 0916 doc backup only; retain binary recovery and do not touch other branches.",
++            },
+             "robot100_v16_baseline_overlay_20260929": {

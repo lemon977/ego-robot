@@ -1,0 +1,15 @@
+--- a/src/chaoyang/governance/current_r3_contracts.py
++++ b/src/chaoyang/governance/current_r3_contracts.py
+@@ -144,4 +144,12 @@
+         "special_status_contracts": {
+             **build_v2_contract(repo_root),
+             **build_v3_contract(repo_root),
++            "sensor0916_generalization_visuals_20260930": {
++                "execution_status": "FIXED_PARAMETER_SENSOR_DIAGNOSTIC",
++                "code_closure": [artifact_ref(repo_root / "src/chaoyang/ops/run_0916_generalization_visuals.py"), artifact_ref(repo_root / "src/chaoyang/pipeline/pico_manus_motion_v2.py")],
++                "scope": ["0916_CARDS025_097_098_101", "FIXED_PARAMETERS", "2D_3D_DIAGNOSTICS"],
++                "training_steps_authorized": 0,
++                "physical_deployable": False,
++                "claim_limit": "Sensor chain regression only; not new robot IK, independent accuracy or blind holdout.",
++            },
+             "four_stream_completion_20260928": {

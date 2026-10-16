@@ -1,0 +1,41 @@
+"""Four-session, read-only Exact78 CLI-v5 admission candidate."""
+
+from __future__ import annotations
+
+import argparse
+import json
+from pathlib import Path
+
+from chaoyang.cli_v5.exact78_four_session_manifest_candidate_v1 import (
+    MANIFEST, plan_manifest, plan_one,
+)
+from chaoyang.governance.exact78_cold_start_guard_v1 import ColdStartInputError
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(prog="python -m chaoyang.cli_v5")
+    parser.add_argument("command", choices=("submit",))
+    parser.add_argument("recipe", choices=("exact78-raw-to-robot",))
+    source = parser.add_mutually_exclusive_group(required=True)
+    source.add_argument("--session", type=Path)
+    source.add_argument("--manifest", type=Path)
+    parser.add_argument("--expected-input-sha256")
+    parser.add_argument("--check-only", action="store_true", required=True)
+    args = parser.parse_args(argv)
+    if args.manifest is not None:
+        if args.manifest.resolve() != MANIFEST or args.expected_input_sha256 is not None:
+            parser.error("ONLY_FROZEN_V5_MANIFEST_SUPPORTED")
+    elif args.expected_input_sha256 is None:
+        parser.error("--expected-input-sha256 is required with --session")
+    try:
+        result = (plan_manifest() if args.manifest is not None else
+                  plan_one(args.session, args.expected_input_sha256))
+    except (ColdStartInputError, RuntimeError) as error:
+        print(json.dumps({"status": "REJECTED", "reason": str(error),
+                          "registration_started": False, "model_calls": 0}, sort_keys=True))
+        return 2
+    print(json.dumps(result, ensure_ascii=False, sort_keys=True))
+    return 0
+
+
+__all__ = ["main"]

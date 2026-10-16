@@ -818,6 +818,10 @@ def build_status(task_state: Mapping[str, Any], generated_at: str) -> dict[str, 
 def publish_navigation_if_human_to_robot_r2(
     repo_root: Path, task_state: Mapping[str, Any], generated_at: str
 ) -> bool:
+    from chaoyang.governance.project_branch_navigation_v1 import build_live_status, visual_selection_present
+    if (repo_root / "docs/current/PROJECT_BRANCH_MAP.json").is_file() and visual_selection_present(repo_root):
+        atomic_json(repo_root / "docs/current/STATUS.json", build_live_status(repo_root, task_state, generated_at))
+        return True
     from chaoyang.governance.four_stream_completion import publish_navigation
     if publish_navigation(repo_root, task_state, generated_at):
         return True

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Exact78 per-side RGB-derived visual Robot motion state",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "source_frame", "side", "roi_source", "motion_source", "visibility", "time_mode",
+    "wrist_position_valid", "wrist_orientation_valid", "local_hand_shape_valid",
+    "robot_drawable", "motion_evidence_eligible", "training_eligible", "coordinate_frame", "world_pose_aligned",
+    "model_input_valid", "model_prediction_valid", "model_completion_valid",
+    "deterministic_fill", "final_visible"
+  ],
+  "properties": {
+    "source_frame": {"type": "integer", "minimum": 0},
+    "side": {"enum": ["left", "right"]},
+    "roi_source": {"enum": ["MODEL_DETECTOR", "CURRENT_RGB_ROLE_MASK", "NONE", "DIAGNOSTIC"]},
+    "motion_source": {"enum": ["RGB_HAWOR_PREDICTED", "RGB_HAWOR_MASK_PROMPTED", "HAWOR_MODEL_INFILLED", "DETERMINISTIC_INTERPOLATED", "EDGE_HELD", "DIAGNOSTIC_LONG_GAP", "DIAGNOSTIC_NEUTRAL", "MISSING"]},
+    "visibility": {"enum": ["VISIBLE", "OCCLUDED", "OUT_OF_VIEW", "UNKNOWN"]},
+    "time_mode": {"enum": ["CAPTURE_SYNC_VERIFIED", "TRACKER_CLIP_METADATA_ONLY", "TIMEBASE_UNVERIFIED", "CAMERA_ONLY_DIAGNOSTIC"]},
+    "wrist_position_valid": {"type": "boolean"},
+    "wrist_orientation_valid": {"type": "boolean"},
+    "local_hand_shape_valid": {"type": "boolean"},
+    "robot_drawable": {"type": "boolean"},
+    "motion_evidence_eligible": {"type": "boolean"},
+    "training_eligible": {"const": false},
+    "coordinate_frame": {"enum": ["WORLD", "BASE", "CAMERA", "UNKNOWN"]},
+    "world_pose_aligned": {"type": "boolean"},
+    "model_input_valid": {"type": "boolean"},
+    "model_prediction_valid": {"type": "boolean"},
+    "model_completion_valid": {"type": "boolean"},
+    "deterministic_fill": {"type": "boolean"},
+    "final_visible": {"type": "boolean"}
+  }
+}

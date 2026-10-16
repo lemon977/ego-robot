@@ -1,0 +1,15 @@
+--- a/src/chaoyang/governance/current_r3_contracts.py
++++ b/src/chaoyang/governance/current_r3_contracts.py
+@@ -274,1 +274,12 @@
++            "robot100_constraint_review_v16_retry1_20260929": {
++                "execution_status": "SINGLE_CONSTRAINT_REVIEW",
++                "implementation_revision": "ROBOT100_CONSTRAINT_REVIEW_V16",
++                "code_closure": [artifact_ref(repo_root / "src/chaoyang/ops/run_robot100_constraint_review_v16_retry1.py")],
++                "scope": ["ONE_FROZEN_0916_CARDS025_SESSION", "EXPLICIT_INWARD_CONSTRAINT", "READABLE_HAND_VIEWS"],
++                "training_steps_authorized": 0,
++                "control_ground_truth": False,
++                "physical_deployable": False,
++                "external_metric_authority": False,
++                "claim_limit": "Frozen V15 targets with unchanged gates; review candidate, not batch adoption.",
++            },
+             "robot100_side_review_v15_20260929": {

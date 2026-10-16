@@ -654,6 +654,8 @@ def publish_bundle(
 
         baseline_registry = build_registry(authority, task_state)
         file_layout = build_layout(authority, task_state)
+        from chaoyang.governance.inpainting_v1_selection import overlay_registry, publish_status as publish_inpainting_status
+        overlay_registry(baseline_registry, file_layout, REPO_ROOT)
         regression_manifest = build_regression_manifest(authority)
         stage_baselines = render_stage_doc(baseline_registry).encode("utf-8")
         markdown = render_status(authority, task_state).encode("utf-8")
@@ -673,6 +675,7 @@ def publish_bundle(
         publish_navigation_if_human_to_robot_r2(
             REPO_ROOT, task_state, authority["generated_at"]
         )
+        publish_inpainting_status(REPO_ROOT, task_state, authority["generated_at"])
         # V2 shallow navigation is a bounded snapshot, not a quality promotion.
         atomic_write(STATUS_PATH, markdown)
         atomic_json(MIN_STATUS_PATH, min_status)

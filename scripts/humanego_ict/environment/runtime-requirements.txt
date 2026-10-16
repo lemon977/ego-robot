@@ -1,0 +1,18 @@
+# Joint26 training and the existing shared governance publisher.
+# Versions observed in the working Python 3.11.11 environment, except the
+# explicitly selected headless OpenCV wheel with the same 4.11.0.86 release.
+numpy==1.26.4
+Pillow==11.3.0
+jsonschema==4.26.0
+opencv-python-headless==4.11.0.86
+scipy==1.17.0
+trimesh==5.0.0
+numba==0.61.2
+PyYAML==6.0.3
+
+# Mandatory transitive dependencies, pinned rather than resolved to latest.
+llvmlite==0.44.0
+attrs==25.4.0
+jsonschema-specifications==2025.9.1
+referencing==0.37.0
+rpds-py==0.30.0

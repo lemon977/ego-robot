@@ -1,0 +1,15 @@
+--- a/src/chaoyang/governance/current_r3_contracts.py
++++ b/src/chaoyang/governance/current_r3_contracts.py
+@@ -274,1 +274,12 @@
++            "robot100_side_review_v15_20260929": {
++                "execution_status": "SINGLE_SIDE_CORRECTION_REVIEW",
++                "implementation_revision": "ROBOT100_SIDE_REVIEW_V15",
++                "code_closure": [artifact_ref(repo_root / "src/chaoyang/ops/run_robot100_side_review_v15.py")],
++                "scope": ["ONE_FROZEN_0916_CARDS025_SESSION", "ANATOMICAL_WRIST_IDENTITY", "READABLE_HAND_VIEWS"],
++                "training_steps_authorized": 0,
++                "control_ground_truth": False,
++                "physical_deployable": False,
++                "external_metric_authority": False,
++                "claim_limit": "One side correction canary pending visual review; no batch adoption.",
++            },
+             "robot100_world_first_unit_gain_v14_20260929": {

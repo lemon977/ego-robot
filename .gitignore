@@ -33,6 +33,28 @@ venv/
 /.cache/
 # Existing caches remain local; do not upload or delete them during documentation work.
 
+# Local maintenance evidence and known pytest runtime copies are not source.
+# Ignoring a path does not authorize deleting it; deletion proof is unchanged.
+/_run/maintenance/
+/_run/tmp/
+/.tmp/
+/tests/pick_place_1008/_tmp_*/
+/docs/plans/PICK_PLACE_1008_RAW_TO_ROBOT_V1/reverse_native_boundary_v9/test_tmp_v9_full/
+
+# Raw/review image and array payloads stay local. Their JSON provenance,
+# review scripts, plans and real test source remain eligible for Git tracking.
+/review/**/*.png
+/review/**/*.jpg
+/review/**/*.jpeg
+/review/**/*.webp
+/review/**/*.npy
+/review/**/*.npz
+/docs/plans/PICK_PLACE_1008_RAW_TO_ROBOT_V1/**/*.png
+/docs/plans/PICK_PLACE_1008_RAW_TO_ROBOT_V1/**/*.jpg
+/docs/plans/PICK_PLACE_1008_RAW_TO_ROBOT_V1/**/*.jpeg
+/docs/plans/PICK_PLACE_1008_RAW_TO_ROBOT_V1/**/*.npy
+/docs/plans/PICK_PLACE_1008_RAW_TO_ROBOT_V1/**/*.npz
+
 # Model payloads are local; manifests remain tracked
 /assets/models/**
 !/assets/models/README.md
