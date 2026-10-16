@@ -1,5 +1,19 @@
 > Public source mirror: private runtime/data evidence is excluded. See [publication scope](PRIVACY_PUBLICATION.md) before using this checkout.
 
+<div align="center">
+
+# Ego-to-Robot | Research Pipeline
+
+**第一视角视频、人体动作重建、交互感知、Robot 可视化与 HumanEgo 研究管线。**
+
+`HaWoR · Stereo · Object6D · Contact · HumanEgo`
+
+> 项目展示风格：科研技术概览 · 下方保留原有工程文档、状态与安全约束。
+
+</div>
+
+---
+
 # Chaoyang Ego-to-Robot Pipeline
 
 本仓库实现第一视角数据的 Raw → HaWoR / Mask → Stereo Depth → Object6D → Clean → Contact → Robot Visual → HumanEgo 流水线。
