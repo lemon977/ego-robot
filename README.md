@@ -1,3 +1,5 @@
+> Public source mirror: private runtime/data evidence is excluded. See [publication scope](PRIVACY_PUBLICATION.md) before using this checkout.
+
 <div align="center">
 
 # Ego-to-Robot | Research Pipeline

@@ -75,3 +75,24 @@ venv/
 *.STL
 *.stl
 /HumanEgo/vendor/
+
+# Private operational material is excluded from public publication.
+/tasks/
+/review/
+/_run/
+/archive/
+/inpainting_optimization/
+/assets/calibration/
+/docs/plans/
+/docs/governance/
+/docs/current/
+/docs/archive/
+/docs/maintenance/
+/manifests/human_ego/
+/manifests/legacy_data/
+.env
+.env.*
+*.pem
+*.key
+*.mcal
+*.mcal2
