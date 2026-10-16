@@ -1,3 +1,5 @@
+> Public source mirror: private runtime/data evidence is excluded. See [publication scope](PRIVACY_PUBLICATION.md) before using this checkout.
+
 # Chaoyang Ego-to-Robot Pipeline
 
 2026-09-28已整理当前入口、四线状态与历史计划。请先读[当前总入口](docs/current/README_ZH.md)，不要从历史任务书续跑。[后续建议](docs/current/NEXT_ACTIONS_ZH.md)尚未登记执行；[Git与服务器证据边界](docs/current/GIT_DELIVERY_ZH.md)说明哪些产物不在GitHub。
