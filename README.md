@@ -1,3 +1,5 @@
+> Public source mirror: private runtime/data evidence is excluded. See [publication scope](PRIVACY_PUBLICATION.md) before using this checkout.
+
 # Chaoyang 项目入口
 
 本 Inpainting 支线唯一生产基线为 **INPAINTING_RAW_TO_ROBOT_V1**，对应 pick_place_1008 原版 199 会话、29,322 原生帧的 V9 生产链。当前选择及依赖由 [V1 清单](inpainting_v1/MANIFEST.json)和同 revision 治理合同确定。
