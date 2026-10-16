@@ -1,3 +1,5 @@
+> Public source mirror: private runtime/data evidence is excluded. See [publication scope](PRIVACY_PUBLICATION.md) before using this checkout.
+
 # Chaoyang Ego-to-Robot Pipeline
 
 本仓库实现第一视角数据的 Raw → HaWoR / Mask → Stereo Depth → Object6D → Clean → Contact → Robot Visual → HumanEgo 流水线。
